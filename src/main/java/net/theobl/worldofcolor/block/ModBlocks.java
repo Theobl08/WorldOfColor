@@ -27,15 +27,15 @@ public class ModBlocks {
 
     public static final List<DeferredBlock<Block>> CLASSIC_WOOLS = registerClassicWools();
     public static final List<DeferredBlock<Block>> CLASSIC_CARPETS = registerClassicCarpets();
-    public static final List<DeferredBlock<Block>> SIMPLE_COLORED_BLOCKS = registerSimpleColoredBlock();
-    public static final List<DeferredBlock<Block>> QUILTED_CONCRETES = registerQuiltedConcrete();
+    public static final List<DeferredBlock<Block>> SIMPLE_COLORED_BLOCKS = registerColoredBlocks("block", BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE));
+    public static final List<DeferredBlock<Block>> QUILTED_CONCRETES = registerColoredBlocks("quilted_concrete", BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE));
     public static final List<DeferredBlock<Block>> GLAZED_CONCRETES = registerGlazedConcrete();
     public static final List<DeferredBlock<Block>> COLORED_LEAVES = registerColoredLeaves();
-    public static final List<DeferredBlock<Block>> COLORED_LOGS = registerColoredLogs(false);
-    public static final List<DeferredBlock<Block>> COLORED_WOODS = registerColoredWoods(false);
-    public static final List<DeferredBlock<Block>> COLORED_STRIPPED_LOGS = registerColoredLogs(true);
-    public static final List<DeferredBlock<Block>> COLORED_STRIPPED_WOODS = registerColoredWoods(true);
-    public static final List<DeferredBlock<Block>> COLORED_PLANKS = registerColoredPlanks();
+    public static final List<DeferredBlock<Block>> COLORED_LOGS = registerColoredLogs("log", false);
+    public static final List<DeferredBlock<Block>> COLORED_WOODS = registerColoredLogs("wood", false);
+    public static final List<DeferredBlock<Block>> COLORED_STRIPPED_LOGS = registerColoredLogs("log", true);
+    public static final List<DeferredBlock<Block>> COLORED_STRIPPED_WOODS = registerColoredLogs("wood", true);
+    public static final List<DeferredBlock<Block>> COLORED_PLANKS = registerColoredBlocks("planks", BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
     public static final List<DeferredBlock<Block>> COLORED_STAIRS = registerColoredStairs();
     public static final List<DeferredBlock<Block>> COLORED_SLABS = registerColoredSlabs();
     public static final List<DeferredBlock<Block>> COLORED_FENCES = registerColoredFences();
@@ -48,6 +48,12 @@ public class ModBlocks {
     public static final List<DeferredBlock<Block>> COLORED_WALL_SIGNS = registerColoredWallSign();
     public static final List<DeferredBlock<Block>> COLORED_HANGING_SIGNS = registerColoredHangingSign();
     public static final List<DeferredBlock<Block>> COLORED_WALL_HANGING_SIGNS = registerColoredWallHangingSign();
+
+    private static List<DeferredBlock<Block>> registerColoredBlocks(String key, BlockBehaviour.Properties properties) {
+        List<DeferredBlock<Block>> blocks = new ArrayList<>();
+        COLORS.forEach( color -> blocks.add(registerBlock(color.getName() + "_" + key, () -> new Block(properties.mapColor(color)))));
+        return blocks;
+    }
 
     private static List<DeferredBlock<Block>> registerClassicWools() {
         List<DeferredBlock<Block>> wools = new ArrayList<>();
@@ -69,31 +75,11 @@ public class ModBlocks {
         return wools;
     }
 
-    private static List<DeferredBlock<Block>> registerSimpleColoredBlock() {
-        List<DeferredBlock<Block>> quiltedConcrete = new ArrayList<>();
-        for (DyeColor color : COLORS) {
-            DeferredBlock<Block> block = registerBlock( color.getName() + "_block",
-                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE).mapColor(color.getMapColor())));
-            quiltedConcrete.add(block);
-        }
-        return quiltedConcrete;
-    }
-
-    private static List<DeferredBlock<Block>> registerQuiltedConcrete() {
-        List<DeferredBlock<Block>> quiltedConcrete = new ArrayList<>();
-        for (DyeColor color : COLORS) {
-            DeferredBlock<Block> block = registerBlock( color.getName() + "_quilted_concrete",
-                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE).mapColor(color.getMapColor())));
-            quiltedConcrete.add(block);
-        }
-        return quiltedConcrete;
-    }
-
     private static List<DeferredBlock<Block>> registerGlazedConcrete() {
         List<DeferredBlock<Block>> glazedConcrete = new ArrayList<>();
         for (DyeColor color : COLORS) {
             DeferredBlock<Block> block = registerBlock( color.getName() + "_glazed_concrete",
-                    () -> new GlazedTerracottaBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_GLAZED_TERRACOTTA).mapColor(color.getMapColor())));
+                    () -> new GlazedTerracottaBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_GLAZED_TERRACOTTA).mapColor(color)));
             glazedConcrete.add(block);
         }
         return glazedConcrete;
@@ -103,43 +89,22 @@ public class ModBlocks {
         List<DeferredBlock<Block>> leaves = new ArrayList<>();
         for (DyeColor color : COLORS) {
             DeferredBlock<Block> block = registerBlock(color.getName() + "_leaves",
-                    () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(color.getMapColor())
+                    () -> new LeavesBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(color)
                             .isSuffocating(ModBlocks::never).isViewBlocking(ModBlocks::never).isRedstoneConductor(ModBlocks::never)));
             leaves.add(block);
         }
         return leaves;
     }
 
-    private static List<DeferredBlock<Block>> registerColoredLogs(boolean isStripped){
+    private static List<DeferredBlock<Block>> registerColoredLogs(String key, boolean isStripped){
         List<DeferredBlock<Block>> log = new ArrayList<>();
         for (DyeColor color : COLORS) {
-            String name = isStripped ? "stripped_" + color.getName() + "_log" : color.getName() + "_log";
+            String name = isStripped ? "stripped_" + color.getName() + "_" + key : color.getName() + "_" + key;
             DeferredBlock<Block> block = registerBlock(name,
-                    () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(color.getMapColor())));
+                    () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG).mapColor(color)));
             log.add(block);
         }
         return log;
-    }
-
-    private static List<DeferredBlock<Block>> registerColoredWoods(boolean isStripped){
-        List<DeferredBlock<Block>> log = new ArrayList<>();
-        for (DyeColor color : COLORS) {
-            String name = isStripped ? "stripped_" + color.getName() + "_wood" : color.getName() + "_wood";
-            DeferredBlock<Block> block = registerBlock(name,
-                    () -> new RotatedPillarBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD).mapColor(color.getMapColor())));
-            log.add(block);
-        }
-        return log;
-    }
-
-    private static List<DeferredBlock<Block>> registerColoredPlanks(){
-        List<DeferredBlock<Block>> planks = new ArrayList<>();
-        for (DyeColor color : COLORS) {
-            DeferredBlock<Block> block = registerBlock( color.getName() + "_planks",
-                    () -> new Block(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS).mapColor(color.getMapColor())));
-            planks.add(block);
-        }
-        return planks;
     }
 
     private static List<DeferredBlock<Block>> registerColoredStairs(){
@@ -148,7 +113,7 @@ public class ModBlocks {
             int index = COLORS.indexOf(color);
             DeferredBlock<Block> block = registerBlock( color.getName() + "_stairs",
                     () -> new StairBlock(COLORED_PLANKS.get(index).get().defaultBlockState(),
-                            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS).mapColor(color.getMapColor())));
+                            BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_STAIRS).mapColor(color)));
             stairs.add(block);
         }
         return stairs;
@@ -158,7 +123,7 @@ public class ModBlocks {
         List<DeferredBlock<Block>> slabs = new ArrayList<>();
         for (DyeColor color : COLORS) {
             DeferredBlock<Block> block = registerBlock( color.getName() + "_slab",
-                    () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SLAB).mapColor(color.getMapColor())));
+                    () -> new SlabBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SLAB).mapColor(color)));
             slabs.add(block);
         }
         return slabs;
@@ -168,7 +133,7 @@ public class ModBlocks {
         List<DeferredBlock<Block>> fence = new ArrayList<>();
         for (DyeColor color : COLORS) {
             DeferredBlock<Block> block = registerBlock( color.getName() + "_fence",
-                    () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE).mapColor(color.getMapColor())));
+                    () -> new FenceBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE).mapColor(color)));
             fence.add(block);
         }
         return fence;
@@ -178,7 +143,7 @@ public class ModBlocks {
         List<DeferredBlock<Block>> fenceGate = new ArrayList<>();
         for (DyeColor color : COLORS) {
             DeferredBlock<Block> block = registerBlock( color.getName() + "_fence_gate",
-                    () -> new FenceGateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE).mapColor(color.getMapColor()),
+                    () -> new FenceGateBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE).mapColor(color),
                             SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_CLOSE));
             fenceGate.add(block);
         }
@@ -189,7 +154,7 @@ public class ModBlocks {
         List<DeferredBlock<Block>> doors = new ArrayList<>();
         for (DyeColor color : COLORS) {
             DeferredBlock<Block> block = registerBlock( color.getName() + "_door",
-                    () -> new DoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).mapColor(color.getMapColor())));
+                    () -> new DoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR).mapColor(color)));
             doors.add(block);
         }
         return doors;
@@ -199,7 +164,7 @@ public class ModBlocks {
         List<DeferredBlock<Block>> trapdoors = new ArrayList<>();
         for (DyeColor color : COLORS) {
             DeferredBlock<Block> block = registerBlock( color.getName() + "_trapdoor",
-                    () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR).mapColor(color.getMapColor()).isValidSpawn(Blocks::never)));
+                    () -> new TrapDoorBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR).mapColor(color).isValidSpawn(Blocks::never)));
             trapdoors.add(block);
         }
         return trapdoors;
@@ -209,7 +174,7 @@ public class ModBlocks {
         List<DeferredBlock<Block>> pressurePlates = new ArrayList<>();
         for (DyeColor color : COLORS) {
             DeferredBlock<Block> block = registerBlock( color.getName() + "_pressure_plate",
-                    () -> new PressurePlateBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE).mapColor(color.getMapColor())));
+                    () -> new PressurePlateBlock(BlockSetType.OAK, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE).mapColor(color)));
             pressurePlates.add(block);
         }
         return pressurePlates;
@@ -219,7 +184,7 @@ public class ModBlocks {
         List<DeferredBlock<Block>> button = new ArrayList<>();
         for (DyeColor color : COLORS) {
             DeferredBlock<Block> block = registerBlock( color.getName() + "_button",
-                    () -> new ButtonBlock(BlockSetType.OAK, 30,BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON).mapColor(color.getMapColor())));
+                    () -> new ButtonBlock(BlockSetType.OAK, 30,BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON).mapColor(color)));
             button.add(block);
         }
         return button;
@@ -230,7 +195,7 @@ public class ModBlocks {
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
             DeferredBlock<Block> block = BLOCKS.register( color.getName() + "_sign",
-                    () -> new StandingSignBlock(ModWoodType.COLORED_WOODS.get(index), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)));
+                    () -> new StandingSignBlock(ModWoodType.COLORED_WOODS.get(index), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(color)));
             signs.add(block);
         }
         return signs;
@@ -241,7 +206,7 @@ public class ModBlocks {
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
             DeferredBlock<Block> block = BLOCKS.register( color.getName() + "_wall_sign",
-                    () -> new WallSignBlock(ModWoodType.COLORED_WOODS.get(index), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN)));
+                    () -> new WallSignBlock(ModWoodType.COLORED_WOODS.get(index), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(color)));
             wallSign.add(block);
         }
         return wallSign;
@@ -252,7 +217,7 @@ public class ModBlocks {
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
             DeferredBlock<Block> block = BLOCKS.register( color.getName() + "_hanging_sign",
-                    () -> new CeilingHangingSignBlock(ModWoodType.COLORED_WOODS.get(index), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN)));
+                    () -> new CeilingHangingSignBlock(ModWoodType.COLORED_WOODS.get(index), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(color)));
             hangingSign.add(block);
         }
         return hangingSign;
@@ -263,7 +228,7 @@ public class ModBlocks {
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
             DeferredBlock<Block> block = BLOCKS.register( color.getName() + "_wall_hanging_sign",
-                    () -> new WallHangingSignBlock(ModWoodType.COLORED_WOODS.get(index), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN)));
+                    () -> new WallHangingSignBlock(ModWoodType.COLORED_WOODS.get(index), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(color)));
             hangingSign.add(block);
         }
         return hangingSign;
