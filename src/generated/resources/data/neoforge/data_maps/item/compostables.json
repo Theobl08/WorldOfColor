@@ -1,0 +1,52 @@
+{
+  "values": {
+    "worldofcolor:black_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:blue_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:brown_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:cyan_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:gray_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:green_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:light_blue_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:light_gray_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:lime_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:magenta_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:orange_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:pink_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:purple_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:red_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:white_leaves": {
+      "chance": 0.3
+    },
+    "worldofcolor:yellow_leaves": {
+      "chance": 0.3
+    }
+  }
+}

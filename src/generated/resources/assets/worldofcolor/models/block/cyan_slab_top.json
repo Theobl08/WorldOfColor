@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "worldofcolor:block/cyan_planks",
+    "side": "worldofcolor:block/cyan_planks",
+    "top": "worldofcolor:block/cyan_planks"
+  }
+}

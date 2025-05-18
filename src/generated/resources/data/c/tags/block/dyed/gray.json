@@ -1,0 +1,25 @@
+{
+  "values": [
+    "worldofcolor:gray_block",
+    "worldofcolor:gray_glazed_concrete",
+    "worldofcolor:gray_quilted_concrete",
+    "worldofcolor:gray_leaves",
+    "worldofcolor:gray_log",
+    "worldofcolor:stripped_gray_log",
+    "worldofcolor:gray_wood",
+    "worldofcolor:stripped_gray_wood",
+    "worldofcolor:gray_planks",
+    "worldofcolor:gray_stairs",
+    "worldofcolor:gray_slab",
+    "worldofcolor:gray_fence",
+    "worldofcolor:gray_fence_gate",
+    "worldofcolor:gray_door",
+    "worldofcolor:gray_trapdoor",
+    "worldofcolor:gray_pressure_plate",
+    "worldofcolor:gray_button",
+    "worldofcolor:gray_sign",
+    "worldofcolor:gray_wall_sign",
+    "worldofcolor:gray_hanging_sign",
+    "worldofcolor:gray_wall_hanging_sign"
+  ]
+}

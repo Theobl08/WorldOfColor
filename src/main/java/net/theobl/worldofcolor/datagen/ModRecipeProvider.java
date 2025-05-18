@@ -1,0 +1,77 @@
+package net.theobl.worldofcolor.datagen;
+
+import net.minecraft.core.HolderLookup;
+import net.minecraft.data.BlockFamilies;
+import net.minecraft.data.BlockFamily;
+import net.minecraft.data.PackOutput;
+import net.minecraft.data.recipes.RecipeCategory;
+import net.minecraft.data.recipes.RecipeOutput;
+import net.minecraft.data.recipes.RecipeProvider;
+import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.world.flag.FeatureFlagSet;
+import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.conditions.IConditionBuilder;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import net.theobl.worldofcolor.WorldOfColor;
+import net.theobl.worldofcolor.block.ModBlocks;
+import net.theobl.worldofcolor.tags.ModTags;
+
+import java.util.concurrent.CompletableFuture;
+
+import static net.theobl.worldofcolor.util.ModUtil.*;
+
+public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
+    public ModRecipeProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
+        super(output, registries);
+    }
+
+    @Override
+    protected void buildRecipes(RecipeOutput recipeOutput) {
+        generateForEnabledBlockFamilies(recipeOutput, FeatureFlagSet.of(FeatureFlags.VANILLA));
+        for (DeferredBlock<Block> quiltedConcrete : ModBlocks.QUILTED_CONCRETES) {
+            int index = ModBlocks.QUILTED_CONCRETES.indexOf(quiltedConcrete);
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, quiltedConcrete.get(), CONCRETES.get(index));
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, CONCRETES.get(index), quiltedConcrete.get());
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.SIMPLE_COLORED_BLOCKS.get(index), quiltedConcrete.get());
+        }
+        for (DeferredBlock<Block> block : ModBlocks.SIMPLE_COLORED_BLOCKS) {
+            int index = ModBlocks.SIMPLE_COLORED_BLOCKS.indexOf(block);
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, block.get(), CONCRETES.get(index));
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, CONCRETES.get(index), block.get());
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.QUILTED_CONCRETES.get(index), block.get());
+        }
+        for (DeferredBlock<Block> glazedConcrete : ModBlocks.GLAZED_CONCRETES) {
+            int index = ModBlocks.GLAZED_CONCRETES.indexOf(glazedConcrete);
+            smeltingResultFromBase(recipeOutput, glazedConcrete.get(), CONCRETES.get(index));
+        }
+        for (DeferredBlock<Block> carpet : ModBlocks.CLASSIC_CARPETS) {
+            int index = ModBlocks.CLASSIC_CARPETS.indexOf(carpet);
+            carpet(recipeOutput, carpet.get(), ModBlocks.CLASSIC_WOOLS.get(index));
+        }
+
+        for (DeferredBlock<Block> planks : ModBlocks.COLORED_PLANKS) {
+            int index = ModBlocks.COLORED_PLANKS.indexOf(planks);
+            planksFromLogs(recipeOutput, planks, ModTags.Items.COLORED_LOGS.get(index), 4);
+            woodFromLogs(recipeOutput, ModBlocks.COLORED_WOODS.get(index), ModBlocks.COLORED_LOGS.get(index));
+            woodFromLogs(recipeOutput, ModBlocks.COLORED_STRIPPED_WOODS.get(index), ModBlocks.COLORED_STRIPPED_LOGS.get(index));
+            hangingSign(recipeOutput, ModBlocks.COLORED_HANGING_SIGNS.get(index), ModBlocks.COLORED_STRIPPED_LOGS.get(index));
+        }
+    }
+
+    protected void generateForEnabledBlockFamilies(RecipeOutput enabledFeatures, FeatureFlagSet set) {
+        ModBlockFamilies.getAllFamilies().filter(BlockFamily::shouldGenerateRecipe).forEach(family -> generateRecipes(enabledFeatures, family, set));
+    }
+
+    protected static void stonecutterResultFromBase(RecipeOutput recipeOutput, RecipeCategory category, ItemLike result, ItemLike material) {
+        stonecutterResultFromBase(recipeOutput, category, result, material, 1);
+    }
+
+    protected static void stonecutterResultFromBase(RecipeOutput recipeOutput, RecipeCategory category, ItemLike result, ItemLike material, int resultCount) {
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(material), category, result, resultCount)
+                .unlockedBy(getHasName(material), has(material))
+                .save(recipeOutput, WorldOfColor.MODID + ":" + getConversionRecipeName(result, material) + "_stonecutting");
+    }
+}

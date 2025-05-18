@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "worldofcolor:block/light_gray_slab"
+    },
+    "type=double": {
+      "model": "worldofcolor:block/light_gray_planks"
+    },
+    "type=top": {
+      "model": "worldofcolor:block/light_gray_slab_top"
+    }
+  }
+}

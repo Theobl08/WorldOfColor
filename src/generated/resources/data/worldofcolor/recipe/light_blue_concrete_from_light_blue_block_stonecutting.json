@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "worldofcolor:light_blue_block"
+  },
+  "result": {
+    "count": 1,
+    "id": "minecraft:light_blue_concrete"
+  }
+}

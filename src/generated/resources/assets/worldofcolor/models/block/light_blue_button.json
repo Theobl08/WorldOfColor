@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "worldofcolor:block/light_blue_planks"
+  }
+}

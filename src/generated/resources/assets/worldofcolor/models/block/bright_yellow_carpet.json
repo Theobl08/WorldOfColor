@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "wool": "worldofcolor:block/bright_yellow_wool"
+  }
+}

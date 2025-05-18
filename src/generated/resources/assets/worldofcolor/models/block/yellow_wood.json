@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "worldofcolor:block/yellow_log",
+    "side": "worldofcolor:block/yellow_log"
+  }
+}

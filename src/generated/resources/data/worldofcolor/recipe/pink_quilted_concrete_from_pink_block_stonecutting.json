@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "worldofcolor:pink_block"
+  },
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:pink_quilted_concrete"
+  }
+}

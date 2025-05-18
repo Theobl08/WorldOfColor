@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.theobl.worldofcolor.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "refmap": "worldofcolor.refmap.json",
+  "mixins": [
+    "SheepMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

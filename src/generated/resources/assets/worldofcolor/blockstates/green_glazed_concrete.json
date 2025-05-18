@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "worldofcolor:block/green_glazed_concrete",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "worldofcolor:block/green_glazed_concrete",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "worldofcolor:block/green_glazed_concrete"
+    },
+    "facing=west": {
+      "model": "worldofcolor:block/green_glazed_concrete",
+      "y": 90
+    }
+  }
+}
