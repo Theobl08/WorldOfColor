@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/outer_stairs",
+  "textures": {
+    "bottom": "worldofcolor:block/yellow_cut_copper",
+    "side": "worldofcolor:block/yellow_cut_copper",
+    "top": "worldofcolor:block/yellow_cut_copper"
+  }
+}

@@ -48,10 +48,72 @@ public class ModBlocks {
     public static final List<DeferredBlock<Block>> COLORED_WALL_SIGNS = registerColoredWallSign();
     public static final List<DeferredBlock<Block>> COLORED_HANGING_SIGNS = registerColoredHangingSign();
     public static final List<DeferredBlock<Block>> COLORED_WALL_HANGING_SIGNS = registerColoredWallHangingSign();
+    public static final List<DeferredBlock<Block>> COLORED_COPPER_BLOCKS = registerColoredWeatheringBlocks("copper_block");
+    public static final List<DeferredBlock<Block>> COLORED_CHISELED_COPPER = registerColoredWeatheringBlocks("chiseled_copper");
+    public static final List<DeferredBlock<Block>> COLORED_COPPER_GRATES = registerColoredWeatheringCopperGrateBlocks();
+    public static final List<DeferredBlock<Block>> COLORED_CUT_COPPER = registerColoredWeatheringBlocks("cut_copper");
+    public static final List<DeferredBlock<Block>> COLORED_CUT_COPPER_STAIRS = registerColoredWeatheringStairs();
+    public static final List<DeferredBlock<Block>> COLORED_CUT_COPPER_SLABS = registerColoredWeatheringSlabs();
+    public static final List<DeferredBlock<Block>> COLORED_COPPER_DOORS = registerColoredWeatheringDoors();
+    public static final List<DeferredBlock<Block>> COLORED_COPPER_TRAPDOORS = registerColoredWeatheringTrapDoors();
+    public static final List<DeferredBlock<Block>> COLORED_COPPER_BULBS = registerColoredWeatheringCopperBulbs();
 
     private static List<DeferredBlock<Block>> registerColoredBlocks(String key, BlockBehaviour.Properties properties) {
         List<DeferredBlock<Block>> blocks = new ArrayList<>();
         COLORS.forEach( color -> blocks.add(registerBlock(color.getName() + "_" + key, () -> new Block(properties.mapColor(color)))));
+        return blocks;
+    }
+
+    private static List<DeferredBlock<Block>> registerColoredWeatheringBlocks(String key) {
+        List<DeferredBlock<Block>> blocks = new ArrayList<>();
+        COLORS.forEach( color -> blocks.add(registerBlock(color.getName() + "_" + key,
+                () -> new WeatheringCopperFullBlock(WeatheringCopper.WeatherState.UNAFFECTED, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(color)))));
+        return blocks;
+    }
+
+    private static List<DeferredBlock<Block>> registerColoredWeatheringStairs() {
+        List<DeferredBlock<Block>> blocks = new ArrayList<>();
+        COLORS.forEach( color -> blocks.add(registerBlock(color.getName() + "_cut_copper_stairs",
+                () -> new WeatheringCopperStairBlock(WeatheringCopper.WeatherState.UNAFFECTED, ModBlocks.COLORED_CUT_COPPER.get(COLORS.indexOf(color)).get().defaultBlockState(),
+                        BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(color)))));
+        return blocks;
+    }
+
+    private static List<DeferredBlock<Block>> registerColoredWeatheringSlabs() {
+        List<DeferredBlock<Block>> blocks = new ArrayList<>();
+        COLORS.forEach( color -> blocks.add(registerBlock(color.getName() + "_cut_copper_slab",
+                () -> new WeatheringCopperSlabBlock(WeatheringCopper.WeatherState.UNAFFECTED,
+                        BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK).mapColor(color)))));
+        return blocks;
+    }
+
+    private static List<DeferredBlock<Block>> registerColoredWeatheringDoors() {
+        List<DeferredBlock<Block>> blocks = new ArrayList<>();
+        COLORS.forEach( color -> blocks.add(registerBlock(color.getName() + "_copper_door",
+                () -> new WeatheringCopperDoorBlock(BlockSetType.COPPER, WeatheringCopper.WeatherState.UNAFFECTED,
+                        BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_DOOR).mapColor(color)))));
+        return blocks;
+    }
+
+    private static List<DeferredBlock<Block>> registerColoredWeatheringTrapDoors() {
+        List<DeferredBlock<Block>> blocks = new ArrayList<>();
+        COLORS.forEach( color -> blocks.add(registerBlock(color.getName() + "_copper_trapdoor",
+                () -> new WeatheringCopperTrapDoorBlock(BlockSetType.COPPER, WeatheringCopper.WeatherState.UNAFFECTED,
+                        BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_TRAPDOOR).mapColor(color)))));
+        return blocks;
+    }
+
+    private static List<DeferredBlock<Block>> registerColoredWeatheringCopperGrateBlocks() {
+        List<DeferredBlock<Block>> blocks = new ArrayList<>();
+        COLORS.forEach( color -> blocks.add(registerBlock(color.getName() + "_copper_grate",
+                () -> new WeatheringCopperGrateBlock(WeatheringCopper.WeatherState.UNAFFECTED, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GRATE).mapColor(color)))));
+        return blocks;
+    }
+
+    private static List<DeferredBlock<Block>> registerColoredWeatheringCopperBulbs() {
+        List<DeferredBlock<Block>> blocks = new ArrayList<>();
+        COLORS.forEach( color -> blocks.add(registerBlock(color.getName() + "_copper_bulb",
+                () -> new WeatheringCopperBulbBlock(WeatheringCopper.WeatherState.UNAFFECTED, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BULB).mapColor(color)))));
         return blocks;
     }
 

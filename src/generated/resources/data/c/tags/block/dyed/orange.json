@@ -1,6 +1,10 @@
 {
   "values": [
     "worldofcolor:orange_block",
+    "worldofcolor:orange_copper_block",
+    "worldofcolor:orange_chiseled_copper",
+    "worldofcolor:orange_copper_grate",
+    "worldofcolor:orange_cut_copper",
     "worldofcolor:orange_glazed_concrete",
     "worldofcolor:orange_quilted_concrete",
     "worldofcolor:orange_leaves",

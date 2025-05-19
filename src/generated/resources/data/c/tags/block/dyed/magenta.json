@@ -1,6 +1,10 @@
 {
   "values": [
     "worldofcolor:magenta_block",
+    "worldofcolor:magenta_copper_block",
+    "worldofcolor:magenta_chiseled_copper",
+    "worldofcolor:magenta_copper_grate",
+    "worldofcolor:magenta_cut_copper",
     "worldofcolor:magenta_glazed_concrete",
     "worldofcolor:magenta_quilted_concrete",
     "worldofcolor:magenta_leaves",

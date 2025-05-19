@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "worldofcolor:block/brown_cut_copper_slab"
+    },
+    "type=double": {
+      "model": "worldofcolor:block/brown_cut_copper"
+    },
+    "type=top": {
+      "model": "worldofcolor:block/brown_cut_copper_slab_top"
+    }
+  }
+}

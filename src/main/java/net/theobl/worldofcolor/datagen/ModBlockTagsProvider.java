@@ -30,7 +30,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     @SuppressWarnings("unchecked")
     protected void addTags(HolderLookup.Provider provider) {
         for (DeferredHolder<Block, ? extends Block> block : ModBlocks.BLOCKS.getEntries()) {
-            if(block.get().toString().contains("concrete") || ModBlocks.SIMPLE_COLORED_BLOCKS.contains(((DeferredBlock<Block>) block))) {
+            if(mineableWithPickaxe((DeferredBlock<Block>) block)) {
                 this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block.get());
             }
             else if(ModBlocks.CLASSIC_WOOLS.contains(block)) {
@@ -74,8 +74,26 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 this.tag(BlockTags.WOODEN_BUTTONS).add(block.get());
             }
 
+            if (block.get().toString().contains("copper")){
+                this.tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL).add(block.get());
+                this.tag(BlockTags.INCORRECT_FOR_GOLD_TOOL).add(block.get());
+                this.tag(BlockTags.NEEDS_STONE_TOOL).add(block.get());
+            }
+
             if(block.get() instanceof LeavesBlock) {
                 this.tag(BlockTags.LEAVES).add(block.get());
+            }
+            else if (block.get() instanceof StairBlock) {
+                if(!ModBlocks.COLORED_STAIRS.contains(block)) this.tag(BlockTags.STAIRS).add(block.get());
+            }
+            else if (block.get() instanceof SlabBlock) {
+                if(!ModBlocks.COLORED_SLABS.contains(block)) this.tag(BlockTags.SLABS).add(block.get());
+            }
+            else if (block.get() instanceof DoorBlock) {
+                if(!ModBlocks.COLORED_DOORS.contains(block)) this.tag(BlockTags.DOORS).add(block.get());
+            }
+            else if (block.get() instanceof TrapDoorBlock) {
+                if(!ModBlocks.COLORED_TRAPDOORS.contains(block)) this.tag(BlockTags.TRAPDOORS).add(block.get());
             }
             else if (block.get() instanceof StandingSignBlock) {
                 this.tag(BlockTags.STANDING_SIGNS).add(block.get());
@@ -101,6 +119,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         }
 
         addColored(Tags.Blocks.DYED, "{color}_block");
+        addColored(Tags.Blocks.DYED, "{color}_copper_block");
+        addColored(Tags.Blocks.DYED, "{color}_chiseled_copper");
+        addColored(Tags.Blocks.DYED, "{color}_copper_grate");
+        addColored(Tags.Blocks.DYED, "{color}_cut_copper");
         addColored(Tags.Blocks.DYED, "{color}_glazed_concrete");
         addColored(Tags.Blocks.DYED, "{color}_quilted_concrete");
         addColored(Tags.Blocks.DYED, "{color}_leaves");
@@ -122,6 +144,11 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         addColored(Tags.Blocks.DYED, "{color}_hanging_sign");
         addColored(Tags.Blocks.DYED, "{color}_wall_hanging_sign");
 //        addColoredTags(tag(Tags.Blocks.DYED)::addTag, Tags.Blocks.DYED);
+    }
+    private boolean mineableWithPickaxe(DeferredBlock<Block> block) {
+        return block.get().toString().contains("concrete") ||
+                block.get().toString().contains("copper") ||
+                ModBlocks.SIMPLE_COLORED_BLOCKS.contains(block);
     }
 
     private void addColored(TagKey<Block> group, String pattern) {

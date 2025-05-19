@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "worldofcolor:block/light_blue_cut_copper",
+    "side": "worldofcolor:block/light_blue_cut_copper",
+    "top": "worldofcolor:block/light_blue_cut_copper"
+  }
+}

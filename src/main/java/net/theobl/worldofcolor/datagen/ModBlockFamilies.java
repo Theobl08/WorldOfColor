@@ -17,19 +17,8 @@ public class ModBlockFamilies {
     private static final String RECIPE_GROUP_PREFIX_WOODEN = "wooden";
     private static final String RECIPE_UNLOCKED_BY_HAS_PLANKS = "has_planks";
     public static final List<BlockFamily> COLORED_PLANKS = coloredPlanksFamilyBuilder();
-//    public static final BlockFamily WHITE_PLANKS = familyBuilder(ModBlocks.COLORED_PLANKS.getFirst().get())
-//            .button(ModBlocks.COLORED_BUTTONS.getFirst().get())
-//            .fence(ModBlocks.COLORED_FENCES.getFirst().get())
-//            .fenceGate(ModBlocks.COLORED_FENCE_GATES.getFirst().get())
-//            .pressurePlate(ModBlocks.COLORED_PRESSURE_PLATES.getFirst().get())
-//            //.sign(ModBlocks.COLORED_SIGN.getFirst().get(), ModBlocks.COLORED_WALL_SIGN.getFirst().get())
-//            .slab(ModBlocks.COLORED_SLABS.getFirst().get())
-//            .stairs(ModBlocks.COLORED_STAIRS.getFirst().get())
-//            .door(ModBlocks.COLORED_DOORS.getFirst().get())
-//            .trapdoor(ModBlocks.COLORED_TRAPDOORS.getFirst().get())
-//            .recipeGroupPrefix(RECIPE_GROUP_PREFIX_WOODEN)
-//            .recipeUnlockedBy(RECIPE_UNLOCKED_BY_HAS_PLANKS)
-//            .getFamily();
+    public static final List<BlockFamily> COLORED_COPPER_BLOCK = coloredCopperBlockFamilyBuilder();
+    public static final List<BlockFamily> COLORED_CUT_COPPER = coloredCutCopperFamilyBuilder();
 
     private static List<BlockFamily> coloredPlanksFamilyBuilder() {
         List<BlockFamily> families = new ArrayList<>();
@@ -47,6 +36,31 @@ public class ModBlockFamilies {
                     .trapdoor(ModBlocks.COLORED_TRAPDOORS.get(index).get())
                     .recipeGroupPrefix(RECIPE_GROUP_PREFIX_WOODEN)
                     .recipeUnlockedBy(RECIPE_UNLOCKED_BY_HAS_PLANKS)
+                    .getFamily();
+            families.add(family);
+        }
+        return families;
+    }
+
+    private static List<BlockFamily> coloredCopperBlockFamilyBuilder() {
+        List<BlockFamily> families = new ArrayList<>();
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_BLOCKS) {
+            int index = ModBlocks.COLORED_COPPER_BLOCKS.indexOf(block);
+            BlockFamily family = familyBuilder(block.get()).cut(ModBlocks.COLORED_CUT_COPPER.get(index).get()).dontGenerateModel().getFamily();
+            families.add(family);
+        }
+        return families;
+    }
+
+    private static List<BlockFamily> coloredCutCopperFamilyBuilder() {
+        List<BlockFamily> families = new ArrayList<>();
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_CUT_COPPER) {
+            int index = ModBlocks.COLORED_CUT_COPPER.indexOf(block);
+            BlockFamily family = familyBuilder(block.get())
+                    .slab(ModBlocks.COLORED_CUT_COPPER_SLABS.get(index).get())
+                    .stairs(ModBlocks.COLORED_CUT_COPPER_STAIRS.get(index).get())
+                    .chiseled(ModBlocks.COLORED_CHISELED_COPPER.get(index).get())
+                    .dontGenerateModel()
                     .getFamily();
             families.add(family);
         }

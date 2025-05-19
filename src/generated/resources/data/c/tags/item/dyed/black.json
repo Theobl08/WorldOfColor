@@ -1,6 +1,10 @@
 {
   "values": [
     "worldofcolor:black_block",
+    "worldofcolor:black_copper_block",
+    "worldofcolor:black_chiseled_copper",
+    "worldofcolor:black_copper_grate",
+    "worldofcolor:black_cut_copper",
     "worldofcolor:black_glazed_concrete",
     "worldofcolor:black_quilted_concrete",
     "worldofcolor:black_leaves",

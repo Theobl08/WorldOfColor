@@ -1,6 +1,10 @@
 {
   "values": [
     "worldofcolor:purple_block",
+    "worldofcolor:purple_copper_block",
+    "worldofcolor:purple_chiseled_copper",
+    "worldofcolor:purple_copper_grate",
+    "worldofcolor:purple_cut_copper",
     "worldofcolor:purple_glazed_concrete",
     "worldofcolor:purple_quilted_concrete",
     "worldofcolor:purple_leaves",

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_trapdoor_bottom",
+  "textures": {
+    "texture": "worldofcolor:block/purple_copper_trapdoor"
+  }
+}

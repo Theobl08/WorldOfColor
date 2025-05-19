@@ -1,6 +1,10 @@
 {
   "values": [
     "worldofcolor:yellow_block",
+    "worldofcolor:yellow_copper_block",
+    "worldofcolor:yellow_chiseled_copper",
+    "worldofcolor:yellow_copper_grate",
+    "worldofcolor:yellow_cut_copper",
     "worldofcolor:yellow_glazed_concrete",
     "worldofcolor:yellow_quilted_concrete",
     "worldofcolor:yellow_leaves",

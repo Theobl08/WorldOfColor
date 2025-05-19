@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "worldofcolor:block/cyan_cut_copper",
+    "side": "worldofcolor:block/cyan_cut_copper",
+    "top": "worldofcolor:block/cyan_cut_copper"
+  }
+}

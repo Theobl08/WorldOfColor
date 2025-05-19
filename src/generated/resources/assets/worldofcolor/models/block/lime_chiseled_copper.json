@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "worldofcolor:block/lime_chiseled_copper"
+  }
+}

@@ -31,6 +31,23 @@ public class ModBlockStateProvider extends BlockStateProvider {
         }
 
         ModBlocks.SIMPLE_COLORED_BLOCKS.forEach(this::blockWithItem);
+        ModBlocks.COLORED_COPPER_BLOCKS.forEach(this::blockWithItem);
+        ModBlocks.COLORED_CHISELED_COPPER.forEach(this::blockWithItem);
+        ModBlocks.COLORED_COPPER_GRATES.forEach(block -> blockWithRenderTypeWithItem(block, RenderType.cutout()));
+        ModBlocks.COLORED_CUT_COPPER.forEach(this::blockWithItem);
+        ModBlocks.COLORED_COPPER_DOORS.forEach(this::simpleDoorBlockWithItem);
+        ModBlocks.COLORED_COPPER_TRAPDOORS.forEach(this::simpleTrapdoorBlockWithItem);
+        ModBlocks.COLORED_COPPER_BULBS.forEach(this::bulbBlockWithItem);
+
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_CUT_COPPER_STAIRS) {
+            int index = ModBlocks.COLORED_CUT_COPPER_STAIRS.indexOf(block);
+            stairsBlockWithItem(block, blockTexture(ModBlocks.COLORED_CUT_COPPER.get(index).get()));
+        }
+
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_CUT_COPPER_SLABS) {
+            int index = ModBlocks.COLORED_CUT_COPPER_SLABS.indexOf(block);
+            simpleSlabBlockWithItem(block, blockTexture(ModBlocks.COLORED_CUT_COPPER.get(index).get()));
+        }
 
         for (DeferredBlock<Block> quiltedConcrete : ModBlocks.QUILTED_CONCRETES) {
             int index = ModBlocks.QUILTED_CONCRETES.indexOf(quiltedConcrete);
@@ -83,6 +100,10 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {
         simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));
+    }
+
+    private void blockWithRenderTypeWithItem(DeferredBlock<?> deferredBlock, RenderType renderType) {
+        simpleBlockWithItem(deferredBlock.get(), models().cubeAll(name(deferredBlock.get()), blockTexture(deferredBlock.get())).renderType(renderType.name));
     }
 
     private void blockItem(DeferredBlock<?> deferredBlock) {
@@ -162,6 +183,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
         axisBlock((RotatedPillarBlock) block.get(),
                 models().cubeColumn(name(block.get()), texture, texture),
                 models().cubeColumn(name(block.get()), texture, texture));
+        blockItem(block);
+    }
+
+    private void bulbBlockWithItem(DeferredBlock<?> block) {
+        getVariantBuilder(block.get())
+                .partialState().with(CopperBulbBlock.LIT, false).with(CopperBulbBlock.POWERED, false)
+                .modelForState().modelFile(cubeAll(block.get())).addModel()
+                .partialState().with(CopperBulbBlock.LIT, false).with(CopperBulbBlock.POWERED, true)
+                .modelForState().modelFile(models().cubeAll(name(block.get()) + "_powered", extend(blockTexture(block.get()), "_powered"))).addModel()
+                .partialState().with(CopperBulbBlock.LIT, true).with(CopperBulbBlock.POWERED, false)
+                .modelForState().modelFile(models().cubeAll(name(block.get()) + "_lit", extend(blockTexture(block.get()), "_lit"))).addModel()
+                .partialState().with(CopperBulbBlock.LIT, true).with(CopperBulbBlock.POWERED, true)
+                .modelForState().modelFile(models().cubeAll(name(block.get()) + "_lit_powered", extend(blockTexture(block.get()), "_lit_powered"))).addModel();
         blockItem(block);
     }
 }

@@ -1,7 +1,6 @@
 package net.theobl.worldofcolor.datagen;
 
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.BlockFamilies;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
@@ -58,6 +57,24 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             woodFromLogs(recipeOutput, ModBlocks.COLORED_WOODS.get(index), ModBlocks.COLORED_LOGS.get(index));
             woodFromLogs(recipeOutput, ModBlocks.COLORED_STRIPPED_WOODS.get(index), ModBlocks.COLORED_STRIPPED_LOGS.get(index));
             hangingSign(recipeOutput, ModBlocks.COLORED_HANGING_SIGNS.get(index), ModBlocks.COLORED_STRIPPED_LOGS.get(index));
+        }
+
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_BLOCKS) {
+            int index = ModBlocks.COLORED_COPPER_BLOCKS.indexOf(block);
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER.get(index), block, 4);
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_STAIRS.get(index), block, 4);
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_SLABS.get(index), block, 8);
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CHISELED_COPPER.get(index), block, 4);
+            grate(recipeOutput, ModBlocks.COLORED_COPPER_GRATES.get(index).get(), block.get());
+            copperBulb(recipeOutput, ModBlocks.COLORED_COPPER_BULBS.get(index).get(), block.get());
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_COPPER_GRATES.get(index), block, 4);
+        }
+
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_CUT_COPPER) {
+            int index = ModBlocks.COLORED_CUT_COPPER.indexOf(block);
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_SLABS.get(index), block, 2);
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_STAIRS.get(index), block);
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CHISELED_COPPER.get(index), block);
         }
     }
 

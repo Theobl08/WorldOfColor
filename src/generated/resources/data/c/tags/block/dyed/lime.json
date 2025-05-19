@@ -1,6 +1,10 @@
 {
   "values": [
     "worldofcolor:lime_block",
+    "worldofcolor:lime_copper_block",
+    "worldofcolor:lime_chiseled_copper",
+    "worldofcolor:lime_copper_grate",
+    "worldofcolor:lime_cut_copper",
     "worldofcolor:lime_glazed_concrete",
     "worldofcolor:lime_quilted_concrete",
     "worldofcolor:lime_leaves",

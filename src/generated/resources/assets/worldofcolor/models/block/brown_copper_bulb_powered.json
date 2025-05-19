@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "worldofcolor:block/brown_copper_bulb_powered"
+  }
+}

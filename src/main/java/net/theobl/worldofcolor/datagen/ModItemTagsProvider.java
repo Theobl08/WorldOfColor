@@ -14,7 +14,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.tags.ModTags;
@@ -47,6 +46,11 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         this.copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
         this.copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
 
+        this.copy(BlockTags.STAIRS, ItemTags.STAIRS);
+        this.copy(BlockTags.SLABS, ItemTags.SLABS);
+        this.copy(BlockTags.DOORS, ItemTags.DOORS);
+        this.copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS);
+
         this.copy(Tags.Blocks.STRIPPED_LOGS, Tags.Items.STRIPPED_LOGS);
         this.copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
         this.copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
@@ -60,6 +64,10 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         ModItems.COLORED_CHEST_BOATS.forEach(item -> tag(ItemTags.CHEST_BOATS).add(item.asItem()));
 
         addColored(Tags.Items.DYED, "{color}_block");
+        addColored(Tags.Items.DYED, "{color}_copper_block");
+        addColored(Tags.Items.DYED, "{color}_chiseled_copper");
+        addColored(Tags.Items.DYED, "{color}_copper_grate");
+        addColored(Tags.Items.DYED, "{color}_cut_copper");
         addColored(Tags.Items.DYED, "{color}_glazed_concrete");
         addColored(Tags.Items.DYED, "{color}_quilted_concrete");
         addColored(Tags.Items.DYED, "{color}_leaves");
