@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "worldofcolor:lime_copper_block"
+  },
+  "result": {
+    "count": 4,
+    "id": "worldofcolor:lime_copper_grate"
+  }
+}

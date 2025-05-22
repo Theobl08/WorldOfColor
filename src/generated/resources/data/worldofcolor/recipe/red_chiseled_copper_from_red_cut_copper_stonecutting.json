@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "worldofcolor:red_cut_copper"
+  },
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:red_chiseled_copper"
+  }
+}

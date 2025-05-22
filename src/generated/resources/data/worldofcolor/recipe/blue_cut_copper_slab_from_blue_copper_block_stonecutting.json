@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "worldofcolor:blue_copper_block"
+  },
+  "result": {
+    "count": 8,
+    "id": "worldofcolor:blue_cut_copper_slab"
+  }
+}

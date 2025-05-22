@@ -3,15 +3,14 @@ package net.theobl.worldofcolor.datagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.recipes.RecipeCategory;
-import net.minecraft.data.recipes.RecipeOutput;
-import net.minecraft.data.recipes.RecipeProvider;
-import net.minecraft.data.recipes.SingleItemRecipeBuilder;
+import net.minecraft.data.recipes.*;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.WorldOfColor;
@@ -76,6 +75,22 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_STAIRS.get(index), block);
             stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CHISELED_COPPER.get(index), block);
         }
+
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_COPPER_BLOCKS.getFirst())
+                .requires(Blocks.COPPER_BLOCK)
+                .requires(Items.WHITE_DYE)
+                .unlockedBy(getHasName(Blocks.COPPER_BLOCK), has(Items.WHITE_DYE))
+                .save(recipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_DOORS.getFirst())
+                .requires(Blocks.COPPER_DOOR)
+                .requires(Items.WHITE_DYE)
+                .unlockedBy(getHasName(Blocks.COPPER_DOOR), has(Items.WHITE_DYE))
+                .save(recipeOutput);
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_TRAPDOORS.getFirst())
+                .requires(Blocks.COPPER_TRAPDOOR)
+                .requires(Items.WHITE_DYE)
+                .unlockedBy(getHasName(Blocks.COPPER_TRAPDOOR), has(Items.WHITE_DYE))
+                .save(recipeOutput);
     }
 
     protected void generateForEnabledBlockFamilies(RecipeOutput enabledFeatures, FeatureFlagSet set) {

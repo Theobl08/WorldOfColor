@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gray_cut_copper": {
+      "conditions": {
+        "items": [
+          {
+            "items": "worldofcolor:gray_cut_copper"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "worldofcolor:gray_cut_copper_slab_from_gray_cut_copper_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gray_cut_copper"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "worldofcolor:gray_cut_copper_slab_from_gray_cut_copper_stonecutting"
+    ]
+  }
+}
