@@ -55,6 +55,18 @@ public class ModCreativeModeTabs {
                             output.accept(ModBlocks.COLORED_COPPER_TRAPDOORS.get(index));
                             output.accept(ModBlocks.COLORED_COPPER_BULBS.get(index));
                         }
+                        for (DyeColor color : ModUtil.COLORS) {
+                            int index = ModUtil.COLORS.indexOf(color);
+                            output.accept(ModBlocks.COLORED_WAXED_COPPER_BLOCKS.get(index));
+                            output.accept(ModBlocks.COLORED_WAXED_CHISELED_COPPER.get(index));
+                            output.accept(ModBlocks.COLORED_WAXED_COPPER_GRATES.get(index));
+                            output.accept(ModBlocks.COLORED_WAXED_CUT_COPPER.get(index));
+                            output.accept(ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.get(index));
+                            output.accept(ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.get(index));
+                            output.accept(ModBlocks.COLORED_WAXED_COPPER_DOORS.get(index));
+                            output.accept(ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS.get(index));
+                            output.accept(ModBlocks.COLORED_WAXED_COPPER_BULBS.get(index));
+                        }
                         for (DeferredHolder<Block, ? extends Block> block : ModBlocks.BLOCKS.getEntries()) {
                             output.accept(block.get());
                         }

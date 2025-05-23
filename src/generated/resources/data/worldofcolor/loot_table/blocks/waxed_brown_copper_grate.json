@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "worldofcolor:waxed_brown_copper_grate"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "worldofcolor:blocks/waxed_brown_copper_grate"
+}

@@ -4,6 +4,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
@@ -13,7 +14,8 @@ import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
 
-import static net.theobl.worldofcolor.util.ModUtil.*;
+import static net.theobl.worldofcolor.util.ModUtil.COLORS;
+import static net.theobl.worldofcolor.util.ModUtil.SHULKER_BOXES;
 
 public class ModBlockStateProvider extends BlockStateProvider {
 
@@ -47,6 +49,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
         for (DeferredBlock<Block> block : ModBlocks.COLORED_CUT_COPPER_SLABS) {
             int index = ModBlocks.COLORED_CUT_COPPER_SLABS.indexOf(block);
             simpleSlabBlockWithItem(block, blockTexture(ModBlocks.COLORED_CUT_COPPER.get(index).get()));
+        }
+
+        for (DyeColor color : COLORS) {
+            int index = COLORS.indexOf(color);
+            waxedBlockWithItem(ModBlocks.COLORED_WAXED_COPPER_BLOCKS.get(index), ModBlocks.COLORED_COPPER_BLOCKS.get(index));
+            waxedBlockWithItem(ModBlocks.COLORED_WAXED_CHISELED_COPPER.get(index), ModBlocks.COLORED_CHISELED_COPPER.get(index));
+            waxedBlockWithItem(ModBlocks.COLORED_WAXED_COPPER_GRATES.get(index), ModBlocks.COLORED_COPPER_GRATES.get(index));
+            waxedBlockWithItem(ModBlocks.COLORED_WAXED_CUT_COPPER.get(index), ModBlocks.COLORED_CUT_COPPER.get(index));
+            waxedStairsBlockWithItem(ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.get(index), ModBlocks.COLORED_CUT_COPPER_STAIRS.get(index));
+            waxedSlabBlockWithItem(ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.get(index), ModBlocks.COLORED_CUT_COPPER_SLABS.get(index), blockTexture(ModBlocks.COLORED_CUT_COPPER.get(index).get()));
+            waxedDoorBlockWithItem(ModBlocks.COLORED_WAXED_COPPER_DOORS.get(index), ModBlocks.COLORED_COPPER_DOORS.get(index));
+            waxedTrapdoorBlockWithItem(ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS.get(index), ModBlocks.COLORED_COPPER_TRAPDOORS.get(index));
+            waxedBulbBlockWithItem(ModBlocks.COLORED_WAXED_COPPER_BULBS.get(index), ModBlocks.COLORED_COPPER_BULBS.get(index));
         }
 
         for (DeferredBlock<Block> quiltedConcrete : ModBlocks.QUILTED_CONCRETES) {
@@ -150,7 +165,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void trapdoorBlockWithItem(DeferredBlock<?> trapdoor, ResourceLocation texture) {
         trapdoorBlockWithRenderType((TrapDoorBlock) trapdoor.get(), texture, true, RenderType.cutout().name);
-        simpleBlockItem(trapdoor.get(), models().trapdoorBottom(name(trapdoor.get()), texture));
+        simpleBlockItem(trapdoor.get(), models().trapdoorOrientableBottom(name(trapdoor.get()) + "_bottom", texture));
     }
 
     private void pressurePlateBlockWithItem(DeferredBlock<?> pressurePlate, ResourceLocation texture) {
@@ -197,5 +212,65 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .partialState().with(CopperBulbBlock.LIT, true).with(CopperBulbBlock.POWERED, true)
                 .modelForState().modelFile(models().cubeAll(name(block.get()) + "_lit_powered", extend(blockTexture(block.get()), "_lit_powered"))).addModel();
         blockItem(block);
+    }
+
+    private void waxedBulbBlockWithItem(DeferredBlock<?> waxedBlock, DeferredBlock<?> regularBlock) {
+        ModelFile bulb = models().getExistingFile(blockTexture(regularBlock.get()));
+        ModelFile powered = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_powered"));
+        ModelFile lit = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_lit"));
+        ModelFile litPowered = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_lit_powered"));
+        getVariantBuilder(waxedBlock.get())
+                .partialState().with(CopperBulbBlock.LIT, false).with(CopperBulbBlock.POWERED, false)
+                .modelForState().modelFile(bulb).addModel()
+                .partialState().with(CopperBulbBlock.LIT, false).with(CopperBulbBlock.POWERED, true)
+                .modelForState().modelFile(powered).addModel()
+                .partialState().with(CopperBulbBlock.LIT, true).with(CopperBulbBlock.POWERED, false)
+                .modelForState().modelFile(lit).addModel()
+                .partialState().with(CopperBulbBlock.LIT, true).with(CopperBulbBlock.POWERED, true)
+                .modelForState().modelFile(litPowered).addModel();
+        simpleBlockItem(waxedBlock.get(), bulb);
+    }
+
+    private void waxedBlockWithItem(DeferredBlock<Block> waxedBlock, DeferredBlock<Block> regularBlock) {
+        ModelFile modelFile = models().getExistingFile(blockTexture(regularBlock.get()));
+        simpleBlock(waxedBlock.get(), modelFile);
+        simpleBlockItem(waxedBlock.get(), modelFile);
+    }
+
+    private void waxedStairsBlockWithItem(DeferredBlock<Block> waxedBlock, DeferredBlock<Block> regularBlock) {
+        ModelFile stairs = models().getExistingFile(blockTexture(regularBlock.get()));
+        ModelFile stairsInner = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_inner"));
+        ModelFile stairsOuter = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_outer"));
+        stairsBlock((StairBlock) waxedBlock.get(), stairs, stairsInner, stairsOuter);
+        simpleBlockItem(waxedBlock.get(), stairs);
+    }
+
+    private void waxedSlabBlockWithItem(DeferredBlock<Block> waxedBlock, DeferredBlock<Block> regularBlock, ResourceLocation doubleSlab) {
+        ModelFile bottom = models().getExistingFile(blockTexture(regularBlock.get()));
+        ModelFile top = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_top"));
+        slabBlock((SlabBlock) waxedBlock.get(), bottom, top, models().getExistingFile(doubleSlab));
+        simpleBlockItem(waxedBlock.get(), bottom);
+    }
+
+    private void waxedDoorBlockWithItem(DeferredBlock<Block> waxedBlock, DeferredBlock<Block> regularBlock) {
+        ModelFile bottomLeft = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_bottom_left"));
+        ModelFile bottomLeftOpen = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_bottom_left_open"));
+        ModelFile bottomRight = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_bottom_right"));
+        ModelFile bottomRightOpen = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_bottom_right_open"));
+        ModelFile topLeft = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_top_left"));
+        ModelFile topLeftOpen = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_top_left_open"));
+        ModelFile topRight = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_top_right"));
+        ModelFile topRightOpen = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_top_right_open"));
+        ModelFile item = models().getExistingFile(ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, "item/" + name(regularBlock.get())));
+        doorBlock((DoorBlock) waxedBlock.get(), bottomLeft, bottomLeftOpen, bottomRight, bottomRightOpen, topLeft, topLeftOpen, topRight, topRightOpen);
+        simpleBlockItem(waxedBlock.get(), item);
+    }
+
+    private void waxedTrapdoorBlockWithItem(DeferredBlock<Block> waxedBlock, DeferredBlock<Block> regularBlock) {
+        ModelFile bottom = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_bottom"));
+        ModelFile top = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_top"));
+        ModelFile open = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_open"));
+        trapdoorBlock((TrapDoorBlock) waxedBlock.get(), bottom, top, open, true);
+        simpleBlockItem(waxedBlock.get(), bottom);
     }
 }

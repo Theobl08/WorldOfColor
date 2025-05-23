@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "group": "waxed_cut_copper_stairs",
+  "key": {
+    "#": {
+      "item": "worldofcolor:waxed_green_cut_copper"
+    }
+  },
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "result": {
+    "count": 4,
+    "id": "worldofcolor:waxed_green_cut_copper_stairs"
+  }
+}

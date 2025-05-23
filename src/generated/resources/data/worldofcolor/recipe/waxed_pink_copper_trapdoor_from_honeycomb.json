@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "waxed_pink_copper_trapdoor",
+  "ingredients": [
+    {
+      "item": "worldofcolor:pink_copper_trapdoor"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:waxed_pink_copper_trapdoor"
+  }
+}

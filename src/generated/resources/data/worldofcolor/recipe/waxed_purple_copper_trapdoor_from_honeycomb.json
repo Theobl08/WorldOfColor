@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "waxed_purple_copper_trapdoor",
+  "ingredients": [
+    {
+      "item": "worldofcolor:purple_copper_trapdoor"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:waxed_purple_copper_trapdoor"
+  }
+}

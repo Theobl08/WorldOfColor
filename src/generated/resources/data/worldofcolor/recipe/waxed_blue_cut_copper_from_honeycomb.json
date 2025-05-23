@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "waxed_blue_cut_copper",
+  "ingredients": [
+    {
+      "item": "worldofcolor:blue_cut_copper"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:waxed_blue_cut_copper"
+  }
+}

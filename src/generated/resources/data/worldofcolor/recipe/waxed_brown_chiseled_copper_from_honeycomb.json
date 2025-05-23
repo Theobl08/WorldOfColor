@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "waxed_brown_chiseled_copper",
+  "ingredients": [
+    {
+      "item": "worldofcolor:brown_chiseled_copper"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:waxed_brown_chiseled_copper"
+  }
+}

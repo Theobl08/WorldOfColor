@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "waxed_light_blue_copper_grate",
+  "ingredients": [
+    {
+      "item": "worldofcolor:light_blue_copper_grate"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:waxed_light_blue_copper_grate"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "worldofcolor:waxed_yellow_copper_block"
+  },
+  "result": {
+    "count": 4,
+    "id": "worldofcolor:waxed_yellow_cut_copper_stairs"
+  }
+}

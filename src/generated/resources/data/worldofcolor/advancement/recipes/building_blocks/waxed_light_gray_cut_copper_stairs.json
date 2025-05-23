@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "worldofcolor:waxed_light_gray_cut_copper_stairs"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_waxed_light_gray_cut_copper": {
+      "conditions": {
+        "items": [
+          {
+            "items": "worldofcolor:waxed_light_gray_cut_copper"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_waxed_light_gray_cut_copper"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "worldofcolor:waxed_light_gray_cut_copper_stairs"
+    ]
+  }
+}

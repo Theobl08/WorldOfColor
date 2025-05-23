@@ -19,6 +19,8 @@ public class ModBlockFamilies {
     public static final List<BlockFamily> COLORED_PLANKS = coloredPlanksFamilyBuilder();
     public static final List<BlockFamily> COLORED_COPPER_BLOCK = coloredCopperBlockFamilyBuilder();
     public static final List<BlockFamily> COLORED_CUT_COPPER = coloredCutCopperFamilyBuilder();
+    public static final List<BlockFamily> COLORED_WAXED_COPPER_BLOCK = coloredWaxedCopperBlockFamilyBuilder();
+    public static final List<BlockFamily> COLORED_WAXED_CUT_COPPER = coloredWaxedCutCopperFamilyBuilder();
 
     private static List<BlockFamily> coloredPlanksFamilyBuilder() {
         List<BlockFamily> families = new ArrayList<>();
@@ -60,6 +62,36 @@ public class ModBlockFamilies {
                     .slab(ModBlocks.COLORED_CUT_COPPER_SLABS.get(index).get())
                     .stairs(ModBlocks.COLORED_CUT_COPPER_STAIRS.get(index).get())
                     .chiseled(ModBlocks.COLORED_CHISELED_COPPER.get(index).get())
+                    .dontGenerateModel()
+                    .getFamily();
+            families.add(family);
+        }
+        return families;
+    }
+
+    private static List<BlockFamily> coloredWaxedCopperBlockFamilyBuilder() {
+        List<BlockFamily> families = new ArrayList<>();
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_WAXED_COPPER_BLOCKS) {
+            int index = ModBlocks.COLORED_WAXED_COPPER_BLOCKS.indexOf(block);
+            BlockFamily family = familyBuilder(block.get())
+                    .cut(ModBlocks.COLORED_WAXED_CUT_COPPER.get(index).get())
+                    .recipeGroupPrefix("waxed_cut_copper")
+                    .dontGenerateModel()
+                    .getFamily();
+            families.add(family);
+        }
+        return families;
+    }
+
+    private static List<BlockFamily> coloredWaxedCutCopperFamilyBuilder() {
+        List<BlockFamily> families = new ArrayList<>();
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_WAXED_CUT_COPPER) {
+            int index = ModBlocks.COLORED_WAXED_CUT_COPPER.indexOf(block);
+            BlockFamily family = familyBuilder(block.get())
+                    .slab(ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.get(index).get())
+                    .stairs(ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.get(index).get())
+                    .chiseled(ModBlocks.COLORED_WAXED_CHISELED_COPPER.get(index).get())
+                    .recipeGroupPrefix("waxed_cut_copper")
                     .dontGenerateModel()
                     .getFamily();
             families.add(family);

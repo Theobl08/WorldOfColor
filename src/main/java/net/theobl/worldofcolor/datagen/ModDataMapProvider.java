@@ -8,6 +8,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
 import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
 import net.neoforged.neoforge.registries.datamaps.builtin.Oxidizable;
+import net.neoforged.neoforge.registries.datamaps.builtin.Waxable;
 import net.theobl.worldofcolor.block.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
@@ -68,7 +69,7 @@ public class ModDataMapProvider extends DataMapProvider {
             if(index == ModBlocks.COLORED_CUT_COPPER_SLABS.size() - 1) {
                 break;
             }
-            oxidizables.add(block, new Oxidizable(ModBlocks.COLORED_COPPER_DOORS.get(index + 1).get()), false);
+            oxidizables.add(block, new Oxidizable(ModBlocks.COLORED_CUT_COPPER_SLABS.get(index + 1).get()), false);
         }
         for(DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_DOORS) {
             int index = ModBlocks.COLORED_COPPER_DOORS.indexOf(block);
@@ -90,6 +91,44 @@ public class ModDataMapProvider extends DataMapProvider {
                 break;
             }
             oxidizables.add(block, new Oxidizable(ModBlocks.COLORED_COPPER_BULBS.get(index + 1).get()), false);
+        }
+
+        final var waxables = builder(NeoForgeDataMaps.WAXABLES);
+        for(DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_BLOCKS) {
+            int index = ModBlocks.COLORED_COPPER_BLOCKS.indexOf(block);
+            waxables.add(block, new Waxable(ModBlocks.COLORED_WAXED_COPPER_BLOCKS.get(index).get()), false);
+        }
+        for(DeferredBlock<Block> block : ModBlocks.COLORED_CHISELED_COPPER) {
+            int index = ModBlocks.COLORED_CHISELED_COPPER.indexOf(block);
+            waxables.add(block, new Waxable(ModBlocks.COLORED_WAXED_CHISELED_COPPER.get(index).get()), false);
+        }
+        for(DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_GRATES) {
+            int index = ModBlocks.COLORED_COPPER_GRATES.indexOf(block);
+            waxables.add(block, new Waxable(ModBlocks.COLORED_WAXED_COPPER_GRATES.get(index).get()), false);
+        }
+        for(DeferredBlock<Block> block : ModBlocks.COLORED_CUT_COPPER) {
+            int index = ModBlocks.COLORED_CUT_COPPER.indexOf(block);
+            waxables.add(block, new Waxable(ModBlocks.COLORED_WAXED_CUT_COPPER.get(index).get()), false);
+        }
+        for(DeferredBlock<Block> block : ModBlocks.COLORED_CUT_COPPER_STAIRS) {
+            int index = ModBlocks.COLORED_CUT_COPPER_STAIRS.indexOf(block);
+            waxables.add(block, new Waxable(ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.get(index).get()), false);
+        }
+        for(DeferredBlock<Block> block : ModBlocks.COLORED_CUT_COPPER_SLABS) {
+            int index = ModBlocks.COLORED_CUT_COPPER_SLABS.indexOf(block);
+            waxables.add(block, new Waxable(ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.get(index).get()), false);
+        }
+        for(DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_DOORS) {
+            int index = ModBlocks.COLORED_COPPER_DOORS.indexOf(block);
+            waxables.add(block, new Waxable(ModBlocks.COLORED_WAXED_COPPER_DOORS.get(index).get()), false);
+        }
+        for(DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_TRAPDOORS) {
+            int index = ModBlocks.COLORED_COPPER_TRAPDOORS.indexOf(block);
+            waxables.add(block, new Waxable(ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS.get(index).get()), false);
+        }
+        for(DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_BULBS) {
+            int index = ModBlocks.COLORED_COPPER_BULBS.indexOf(block);
+            waxables.add(block, new Waxable(ModBlocks.COLORED_WAXED_COPPER_BULBS.get(index).get()), false);
         }
     }
 }

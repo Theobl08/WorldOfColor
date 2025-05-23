@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "waxed_pink_cut_copper_stairs",
+  "ingredients": [
+    {
+      "item": "worldofcolor:pink_cut_copper_stairs"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:waxed_pink_cut_copper_stairs"
+  }
+}
