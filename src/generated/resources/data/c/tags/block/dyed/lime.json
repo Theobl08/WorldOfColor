@@ -1,6 +1,10 @@
 {
   "values": [
     "worldofcolor:lime_block",
+    "worldofcolor:lime_bricks",
+    "worldofcolor:lime_brick_stairs",
+    "worldofcolor:lime_brick_slab",
+    "worldofcolor:lime_brick_wall",
     "worldofcolor:lime_copper_block",
     "worldofcolor:lime_chiseled_copper",
     "worldofcolor:lime_copper_grate",

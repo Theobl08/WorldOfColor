@@ -1,6 +1,10 @@
 {
   "values": [
     "worldofcolor:blue_block",
+    "worldofcolor:blue_bricks",
+    "worldofcolor:blue_brick_stairs",
+    "worldofcolor:blue_brick_slab",
+    "worldofcolor:blue_brick_wall",
     "worldofcolor:blue_copper_block",
     "worldofcolor:blue_chiseled_copper",
     "worldofcolor:blue_copper_grate",

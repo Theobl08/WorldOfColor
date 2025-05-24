@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/inner_stairs",
+  "textures": {
+    "bottom": "worldofcolor:block/black_bricks",
+    "side": "worldofcolor:block/black_bricks",
+    "top": "worldofcolor:block/black_bricks"
+  }
+}

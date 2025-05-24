@@ -41,6 +41,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ModBlocks.COLORED_COPPER_TRAPDOORS.forEach(this::simpleTrapdoorBlockWithItem);
         ModBlocks.COLORED_COPPER_BULBS.forEach(this::bulbBlockWithItem);
 
+        ModBlocks.COLORED_BRICKS.forEach(this::blockWithItem);
+
         for (DeferredBlock<Block> block : ModBlocks.COLORED_CUT_COPPER_STAIRS) {
             int index = ModBlocks.COLORED_CUT_COPPER_STAIRS.indexOf(block);
             stairsBlockWithItem(block, blockTexture(ModBlocks.COLORED_CUT_COPPER.get(index).get()));
@@ -62,6 +64,12 @@ public class ModBlockStateProvider extends BlockStateProvider {
             waxedDoorBlockWithItem(ModBlocks.COLORED_WAXED_COPPER_DOORS.get(index), ModBlocks.COLORED_COPPER_DOORS.get(index));
             waxedTrapdoorBlockWithItem(ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS.get(index), ModBlocks.COLORED_COPPER_TRAPDOORS.get(index));
             waxedBulbBlockWithItem(ModBlocks.COLORED_WAXED_COPPER_BULBS.get(index), ModBlocks.COLORED_COPPER_BULBS.get(index));
+
+            stairsBlockWithItem(ModBlocks.COLORED_BRICK_STAIRS.get(index), blockTexture(ModBlocks.COLORED_BRICKS.get(index).get()));
+            simpleSlabBlockWithItem(ModBlocks.COLORED_BRICK_SLABS.get(index), blockTexture(ModBlocks.COLORED_BRICKS.get(index).get()));
+            wallBlock((WallBlock) ModBlocks.COLORED_BRICK_WALLS.get(index).get(), blockTexture(ModBlocks.COLORED_BRICKS.get(index).get()));
+            simpleBlockItem(ModBlocks.COLORED_BRICK_WALLS.get(index).get(),
+                    models().wallInventory(name(ModBlocks.COLORED_BRICK_WALLS.get(index).get()).concat("_inventory"), blockTexture(ModBlocks.COLORED_BRICKS.get(index).get())));
         }
 
         for (DeferredBlock<Block> quiltedConcrete : ModBlocks.QUILTED_CONCRETES) {

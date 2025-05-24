@@ -1,6 +1,10 @@
 {
   "values": [
     "worldofcolor:white_block",
+    "worldofcolor:white_bricks",
+    "worldofcolor:white_brick_stairs",
+    "worldofcolor:white_brick_slab",
+    "worldofcolor:white_brick_wall",
     "worldofcolor:white_copper_block",
     "worldofcolor:white_chiseled_copper",
     "worldofcolor:white_copper_grate",

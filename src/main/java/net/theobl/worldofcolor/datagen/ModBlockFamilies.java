@@ -4,6 +4,7 @@ import com.google.common.collect.Maps;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.block.ModBlocks;
 
@@ -17,6 +18,7 @@ public class ModBlockFamilies {
     private static final String RECIPE_GROUP_PREFIX_WOODEN = "wooden";
     private static final String RECIPE_UNLOCKED_BY_HAS_PLANKS = "has_planks";
     public static final List<BlockFamily> COLORED_PLANKS = coloredPlanksFamilyBuilder();
+    public static final List<BlockFamily> COLORED_BRICKS = coloredBricksFamilyBuilder();
     public static final List<BlockFamily> COLORED_COPPER_BLOCK = coloredCopperBlockFamilyBuilder();
     public static final List<BlockFamily> COLORED_CUT_COPPER = coloredCutCopperFamilyBuilder();
     public static final List<BlockFamily> COLORED_WAXED_COPPER_BLOCK = coloredWaxedCopperBlockFamilyBuilder();
@@ -38,6 +40,20 @@ public class ModBlockFamilies {
                     .trapdoor(ModBlocks.COLORED_TRAPDOORS.get(index).get())
                     .recipeGroupPrefix(RECIPE_GROUP_PREFIX_WOODEN)
                     .recipeUnlockedBy(RECIPE_UNLOCKED_BY_HAS_PLANKS)
+                    .getFamily();
+            families.add(family);
+        }
+        return families;
+    }
+
+    private static List<BlockFamily> coloredBricksFamilyBuilder() {
+        List<BlockFamily> families = new ArrayList<>();
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_BRICKS) {
+            int index = ModBlocks.COLORED_BRICKS.indexOf(block);
+            BlockFamily family = familyBuilder(block.get())
+                    .wall(ModBlocks.COLORED_BRICK_WALLS.get(index).get())
+                    .stairs(ModBlocks.COLORED_BRICK_STAIRS.get(index).get())
+                    .slab(ModBlocks.COLORED_BRICK_SLABS.get(index).get())
                     .getFamily();
             families.add(family);
         }

@@ -17,6 +17,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.tags.ModTags;
+import net.theobl.worldofcolor.util.ModUtil;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -41,6 +42,13 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         waxRecipes(recipeOutput, ModBlocks.COLORED_COPPER_TRAPDOORS, ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS);
         waxRecipes(recipeOutput, ModBlocks.COLORED_COPPER_BULBS, ModBlocks.COLORED_WAXED_COPPER_BULBS);
 
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_BRICKS) {
+            int index = ModBlocks.COLORED_BRICKS.indexOf(block);
+            coloredBricksFromBricksAndDye(recipeOutput, block, DYES.get(index));
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_BRICK_SLABS.get(index), block, 2);
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_BRICK_STAIRS.get(index), block);
+            stonecutterResultFromBase(recipeOutput, RecipeCategory.DECORATIONS, ModBlocks.COLORED_BRICK_WALLS.get(index), block);
+        }
         for (DeferredBlock<Block> quiltedConcrete : ModBlocks.QUILTED_CONCRETES) {
             int index = ModBlocks.QUILTED_CONCRETES.indexOf(quiltedConcrete);
             stonecutterResultFromBase(recipeOutput, RecipeCategory.BUILDING_BLOCKS, quiltedConcrete.get(), CONCRETES.get(index));
@@ -135,6 +143,18 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(material), category, result, resultCount)
                 .unlockedBy(getHasName(material), has(material))
                 .save(recipeOutput, WorldOfColor.MODID + ":" + getConversionRecipeName(result, material) + "_stonecutting");
+    }
+
+    protected static void coloredBricksFromBricksAndDye(RecipeOutput recipeOutput, ItemLike bricks, ItemLike dye) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, bricks, 8)
+                .define('#', Blocks.BRICKS)
+                .define('X', dye)
+                .pattern("###")
+                .pattern("#X#")
+                .pattern("###")
+                .group("stained_bricks")
+                .unlockedBy("has_bricks", has(Blocks.BRICKS))
+                .save(recipeOutput);
     }
 
     protected static void waxRecipes(RecipeOutput recipeOutput, List<DeferredBlock<Block>> block, List<DeferredBlock<Block>> waxedBlock) {

@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "worldofcolor:block/red_brick_slab"
+    },
+    "type=double": {
+      "model": "worldofcolor:block/red_bricks"
+    },
+    "type=top": {
+      "model": "worldofcolor:block/red_brick_slab_top"
+    }
+  }
+}

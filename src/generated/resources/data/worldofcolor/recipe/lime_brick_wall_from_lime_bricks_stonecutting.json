@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "worldofcolor:lime_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:lime_brick_wall"
+  }
+}

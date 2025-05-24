@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "worldofcolor:block/purple_bricks",
+    "side": "worldofcolor:block/purple_bricks",
+    "top": "worldofcolor:block/purple_bricks"
+  }
+}

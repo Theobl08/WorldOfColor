@@ -119,6 +119,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         }
 
         addColored(Tags.Blocks.DYED, "{color}_block");
+        addColored(Tags.Blocks.DYED, "{color}_bricks");
+        addColored(Tags.Blocks.DYED, "{color}_brick_stairs");
+        addColored(Tags.Blocks.DYED, "{color}_brick_slab");
+        addColored(Tags.Blocks.DYED, "{color}_brick_wall");
         addColored(Tags.Blocks.DYED, "{color}_copper_block");
         addColored(Tags.Blocks.DYED, "{color}_chiseled_copper");
         addColored(Tags.Blocks.DYED, "{color}_copper_grate");
@@ -162,6 +166,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     private boolean mineableWithPickaxe(DeferredBlock<Block> block) {
         return block.get().toString().contains("concrete") ||
                 block.get().toString().contains("copper") ||
+                block.get().toString().contains("brick") ||
                 ModBlocks.SIMPLE_COLORED_BLOCKS.contains(block);
     }
 

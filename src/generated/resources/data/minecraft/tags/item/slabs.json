@@ -31,6 +31,22 @@
     "worldofcolor:waxed_blue_cut_copper_slab",
     "worldofcolor:waxed_purple_cut_copper_slab",
     "worldofcolor:waxed_magenta_cut_copper_slab",
-    "worldofcolor:waxed_pink_cut_copper_slab"
+    "worldofcolor:waxed_pink_cut_copper_slab",
+    "worldofcolor:white_brick_slab",
+    "worldofcolor:light_gray_brick_slab",
+    "worldofcolor:gray_brick_slab",
+    "worldofcolor:black_brick_slab",
+    "worldofcolor:brown_brick_slab",
+    "worldofcolor:red_brick_slab",
+    "worldofcolor:orange_brick_slab",
+    "worldofcolor:yellow_brick_slab",
+    "worldofcolor:lime_brick_slab",
+    "worldofcolor:green_brick_slab",
+    "worldofcolor:cyan_brick_slab",
+    "worldofcolor:light_blue_brick_slab",
+    "worldofcolor:blue_brick_slab",
+    "worldofcolor:purple_brick_slab",
+    "worldofcolor:magenta_brick_slab",
+    "worldofcolor:pink_brick_slab"
   ]
 }

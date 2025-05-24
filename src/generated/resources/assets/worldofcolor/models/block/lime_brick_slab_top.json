@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab_top",
+  "textures": {
+    "bottom": "worldofcolor:block/lime_bricks",
+    "side": "worldofcolor:block/lime_bricks",
+    "top": "worldofcolor:block/lime_bricks"
+  }
+}

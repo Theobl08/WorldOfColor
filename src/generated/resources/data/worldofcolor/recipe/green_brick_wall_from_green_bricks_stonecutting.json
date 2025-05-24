@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "worldofcolor:green_bricks"
+  },
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:green_brick_wall"
+  }
+}

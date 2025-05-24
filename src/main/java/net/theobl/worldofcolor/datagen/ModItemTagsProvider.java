@@ -64,6 +64,10 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         ModItems.COLORED_CHEST_BOATS.forEach(item -> tag(ItemTags.CHEST_BOATS).add(item.asItem()));
 
         addColored(Tags.Items.DYED, "{color}_block");
+        addColored(Tags.Items.DYED, "{color}_bricks");
+        addColored(Tags.Items.DYED, "{color}_brick_stairs");
+        addColored(Tags.Items.DYED, "{color}_brick_slab");
+        addColored(Tags.Items.DYED, "{color}_brick_wall");
         addColored(Tags.Items.DYED, "{color}_copper_block");
         addColored(Tags.Items.DYED, "{color}_chiseled_copper");
         addColored(Tags.Items.DYED, "{color}_copper_grate");
