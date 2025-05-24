@@ -1,7 +1,6 @@
 package net.theobl.worldofcolor.util;
 
 import com.google.common.collect.Maps;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -9,8 +8,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
-import net.minecraft.world.level.block.LeavesBlock;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.block.ModBlocks;
 

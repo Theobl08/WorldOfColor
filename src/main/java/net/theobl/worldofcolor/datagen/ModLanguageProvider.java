@@ -1,12 +1,10 @@
 package net.theobl.worldofcolor.datagen;
 
 import net.minecraft.data.PackOutput;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
-import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.theobl.worldofcolor.WorldOfColor;
@@ -14,8 +12,6 @@ import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.tags.ModTags;
 import org.jetbrains.annotations.NotNull;
-
-import java.lang.reflect.Field;
 
 public class ModLanguageProvider extends LanguageProvider {
     public ModLanguageProvider(PackOutput output) {
