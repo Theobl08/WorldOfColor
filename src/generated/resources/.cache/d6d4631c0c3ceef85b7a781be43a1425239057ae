@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-24T19:50:25.3195502	Tags for minecraft:block mod id worldofcolor
+// 1.21.1	2025-06-04T14:03:55.0262767	Tags for minecraft:block mod id worldofcolor
 0e12050e94e470e5e2a461e836fe9a6e950305dd data/c/tags/block/dyed/black.json
 73a9c649acae052181c503a9b8292ea4ac870916 data/c/tags/block/dyed/blue.json
 e3c9ef6dff0cd46d89c38408e1f34b5b34bdaa35 data/c/tags/block/dyed/brown.json
@@ -32,6 +32,7 @@ e0747f653629573aa91a5397dd01117d4661b50d data/minecraft/tags/block/planks.json
 74b5641d227c2351343268dabc5d879a3466c50f data/minecraft/tags/block/stairs.json
 106423e4f4a3a0011fbbfc76787b41641cccfd30 data/minecraft/tags/block/standing_signs.json
 cfa0406a15b4967acddfb4147a30623dc255a8d7 data/minecraft/tags/block/trapdoors.json
+cf32bb13fce37ac597eee29756cba1df76eb5d62 data/minecraft/tags/block/walls.json
 0c404149f5e3c05e16b0a137782079630c370a62 data/minecraft/tags/block/wall_hanging_signs.json
 54d80e6795b89855654954ee1bfff8c6b07fa267 data/minecraft/tags/block/wall_signs.json
 a661b835ebe8addbd5662e2a481837132f503a45 data/minecraft/tags/block/wooden_buttons.json

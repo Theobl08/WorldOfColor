@@ -89,6 +89,9 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             else if (block.get() instanceof SlabBlock) {
                 if(!ModBlocks.COLORED_SLABS.contains(block)) this.tag(BlockTags.SLABS).add(block.get());
             }
+            else if (block.get() instanceof WallBlock) {
+                this.tag(BlockTags.WALLS).add(block.get());
+            }
             else if (block.get() instanceof DoorBlock) {
                 if(!ModBlocks.COLORED_DOORS.contains(block)) this.tag(BlockTags.DOORS).add(block.get());
             }

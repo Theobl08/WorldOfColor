@@ -1,4 +1,4 @@
-// 1.21.1	2025-05-24T19:50:25.2895499	Tags for minecraft:item mod id worldofcolor
+// 1.21.1	2025-06-04T14:03:55.021277	Tags for minecraft:item mod id worldofcolor
 f190eeeb42270e9fe13003d1e6e0f6234060f26b data/c/tags/item/dyed/black.json
 17318f417880b35c9c2e5eca68e62f882581871b data/c/tags/item/dyed/blue.json
 47b29ba9c528321f248ec73d594c96eb7cdcbec7 data/c/tags/item/dyed/brown.json
@@ -30,6 +30,7 @@ e0747f653629573aa91a5397dd01117d4661b50d data/minecraft/tags/item/planks.json
 3402df65f407611a32bbf6658e9d06426972ec1f data/minecraft/tags/item/slabs.json
 74b5641d227c2351343268dabc5d879a3466c50f data/minecraft/tags/item/stairs.json
 cfa0406a15b4967acddfb4147a30623dc255a8d7 data/minecraft/tags/item/trapdoors.json
+cf32bb13fce37ac597eee29756cba1df76eb5d62 data/minecraft/tags/item/walls.json
 a661b835ebe8addbd5662e2a481837132f503a45 data/minecraft/tags/item/wooden_buttons.json
 ba1c086c85f27bebb5b00b84d4df5cb5db8350e6 data/minecraft/tags/item/wooden_doors.json
 b2cb4d28a320a4b7382cc21efe120945e470243d data/minecraft/tags/item/wooden_fences.json
