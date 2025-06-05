@@ -28,7 +28,7 @@ public class ModLanguageProvider extends LanguageProvider {
         }
 
         ModItems.COLORED_BOATS.forEach(item -> add(item.asItem(), capitalizeString(filterItemLang(item))));
-        ModItems.COLORED_CHEST_BOATS.forEach(item -> add(item.asItem(), capitalizeString(filterChestBoatLang(item))));
+        ModItems.COLORED_CHEST_BOATS.forEach(item -> add(item.asItem(), filterChestBoatLang(item)));
 
         for (TagKey<Block> tag : ModTags.Blocks.COLORED_LOGS) {
             add(tag, capitalizeString(filterTagLang(tag)));
