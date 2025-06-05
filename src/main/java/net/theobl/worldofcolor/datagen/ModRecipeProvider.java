@@ -4,8 +4,12 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
@@ -15,6 +19,7 @@ import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
+import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.tags.ModTags;
 
 import java.util.List;
@@ -39,6 +44,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         waxRecipes(recipeOutput, ModBlocks.COLORED_COPPER_DOORS, ModBlocks.COLORED_WAXED_COPPER_DOORS);
         waxRecipes(recipeOutput, ModBlocks.COLORED_COPPER_TRAPDOORS, ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS);
         waxRecipes(recipeOutput, ModBlocks.COLORED_COPPER_BULBS, ModBlocks.COLORED_WAXED_COPPER_BULBS);
+
+        colorBlockWithDye(recipeOutput, ModBlocks.COLORED_SAPLINGS, DYES, ItemTags.SAPLINGS, "sapling");
 
         for (DeferredBlock<Block> block : ModBlocks.COLORED_BRICKS) {
             int index = ModBlocks.COLORED_BRICKS.indexOf(block);
@@ -74,6 +81,8 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             woodFromLogs(recipeOutput, ModBlocks.COLORED_WOODS.get(index), ModBlocks.COLORED_LOGS.get(index));
             woodFromLogs(recipeOutput, ModBlocks.COLORED_STRIPPED_WOODS.get(index), ModBlocks.COLORED_STRIPPED_LOGS.get(index));
             hangingSign(recipeOutput, ModBlocks.COLORED_HANGING_SIGNS.get(index), ModBlocks.COLORED_STRIPPED_LOGS.get(index));
+            woodenBoat(recipeOutput, ModItems.COLORED_BOATS.get(index).get(), planks);
+            chestBoat(recipeOutput, ModItems.COLORED_CHEST_BOATS.get(index).get(), ModItems.COLORED_BOATS.get(index).get());
         }
 
         for (DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_BLOCKS) {
@@ -141,6 +150,19 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(material), category, result, resultCount)
                 .unlockedBy(getHasName(material), has(material))
                 .save(recipeOutput, WorldOfColor.MODID + ":" + getConversionRecipeName(result, material) + "_stonecutting");
+    }
+
+    protected static void colorBlockWithDye(RecipeOutput recipeOutput, List<DeferredBlock<Block>> results, List<Item> dyes, TagKey<Item> dyeableItems, String group) {
+        for (int i = 0; i < dyes.size(); i++) {
+            Item item = dyes.get(i);
+            Item item1 = results.get(i).asItem();
+            ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, item1)
+                    .requires(item)
+                    .requires(dyeableItems)
+                    .group(group)
+                    .unlockedBy("has_needed_dye", has(item))
+                    .save(recipeOutput, "dye_" + getItemName(item1));
+        }
     }
 
     protected static void coloredBricksFromBricksAndDye(RecipeOutput recipeOutput, ItemLike bricks, ItemLike dye) {

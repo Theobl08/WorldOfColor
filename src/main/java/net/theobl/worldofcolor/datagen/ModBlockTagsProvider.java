@@ -80,7 +80,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 this.tag(BlockTags.NEEDS_STONE_TOOL).add(block.get());
             }
 
-            if(block.get() instanceof LeavesBlock) {
+            if(block.get() instanceof SaplingBlock) {
+                this.tag(BlockTags.SAPLINGS).add(block.get());
+            }
+            else if(block.get() instanceof LeavesBlock) {
                 this.tag(BlockTags.LEAVES).add(block.get());
             }
             else if (block.get() instanceof StairBlock) {
@@ -146,6 +149,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         addColored(Tags.Blocks.DYED, "waxed_{color}_copper_bulb");
         addColored(Tags.Blocks.DYED, "{color}_glazed_concrete");
         addColored(Tags.Blocks.DYED, "{color}_quilted_concrete");
+        addColored(Tags.Blocks.DYED, "{color}_sapling");
         addColored(Tags.Blocks.DYED, "{color}_leaves");
         addColored(Tags.Blocks.DYED, "{color}_log");
         addColored(Tags.Blocks.DYED, "stripped_{color}_log");

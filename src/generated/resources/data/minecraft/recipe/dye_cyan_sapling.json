@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "sapling",
+  "ingredients": [
+    {
+      "item": "minecraft:cyan_dye"
+    },
+    {
+      "tag": "minecraft:saplings"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:cyan_sapling"
+  }
+}

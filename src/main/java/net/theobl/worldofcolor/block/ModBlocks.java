@@ -15,6 +15,7 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.theobl.worldofcolor.WorldOfColor;
+import net.theobl.worldofcolor.block.grower.ModTreeGrower;
 import net.theobl.worldofcolor.item.ModItems;
 
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ public class ModBlocks {
     public static final List<DeferredBlock<Block>> SIMPLE_COLORED_BLOCKS = registerColored("block", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE));
     public static final List<DeferredBlock<Block>> QUILTED_CONCRETES = registerColored("quilted_concrete", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE));
     public static final List<DeferredBlock<Block>> GLAZED_CONCRETES = registerColored("glazed_concrete", GlazedTerracottaBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_GLAZED_TERRACOTTA));
+    public static final List<DeferredBlock<Block>> COLORED_SAPLINGS = registerColoredSaplings();
     public static final List<DeferredBlock<Block>> COLORED_LEAVES = registerColored("leaves", LeavesBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES));
     public static final List<DeferredBlock<Block>> COLORED_LOGS = registerColored("log", RotatedPillarBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG));
     public static final List<DeferredBlock<Block>> COLORED_WOODS = registerColored("wood", RotatedPillarBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD));
@@ -107,8 +109,15 @@ public class ModBlocks {
         return blocks;
     }
 
+    private static List<DeferredBlock<Block>> registerColoredSaplings() {
+        List<DeferredBlock<Block>> saplings = new ArrayList<>();
         for (DyeColor color : COLORS) {
+            int index = COLORS.indexOf(color);
+            DeferredBlock<Block> block = registerBlock(color.getName() + "_sapling",
+                    () -> new SaplingBlock(ModTreeGrower.COLORED_TREES.get(index), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(color)));
+            saplings.add(block);
         }
+        return saplings;
     }
 
     private static List<DeferredBlock<Block>> registerColoredStairs(String key, List<DeferredBlock<Block>> baseState, BlockBehaviour.Properties properties, String prefix) {

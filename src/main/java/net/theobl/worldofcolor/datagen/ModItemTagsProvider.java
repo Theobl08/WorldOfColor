@@ -32,6 +32,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         this.copy(BlockTags.WOOL, ItemTags.WOOL);
         this.copy(BlockTags.WOOL_CARPETS, ItemTags.WOOL_CARPETS);
+        this.copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
         this.copy(BlockTags.LEAVES, ItemTags.LEAVES);
         this.copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
         this.copy(BlockTags.PLANKS, ItemTags.PLANKS);
@@ -89,6 +90,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         addColored(Tags.Items.DYED, "waxed_{color}_copper_bulb");
         addColored(Tags.Items.DYED, "{color}_glazed_concrete");
         addColored(Tags.Items.DYED, "{color}_quilted_concrete");
+        addColored(Tags.Items.DYED, "{color}_sapling");
         addColored(Tags.Items.DYED, "{color}_leaves");
         addColored(Tags.Items.DYED, "{color}_log");
         addColored(Tags.Items.DYED, "stripped_{color}_log");

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "chest_boat",
+  "ingredients": [
+    {
+      "item": "minecraft:chest"
+    },
+    {
+      "item": "worldofcolor:gray_boat"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:gray_chest_boat"
+  }
+}

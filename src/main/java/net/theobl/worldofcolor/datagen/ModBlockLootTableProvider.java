@@ -26,7 +26,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
             else if (block.get() instanceof DoorBlock)
                 this.add(block.get(), this::createDoorTable);
             else if (block.get() instanceof LeavesBlock) {
-                this.add(block.get(), createLeavesDrops(block.get(), block.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+                int index = ModBlocks.COLORED_LEAVES.indexOf(block);
+                if(index != -1)
+                    this.add(block.get(), createLeavesDrops(block.get(), ModBlocks.COLORED_SAPLINGS.get(index).get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
             } else
                 this.dropSelf(block.get());

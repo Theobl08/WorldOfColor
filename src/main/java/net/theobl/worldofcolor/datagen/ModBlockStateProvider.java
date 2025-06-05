@@ -99,6 +99,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
             hangingSignBlockWithItem(ModBlocks.COLORED_HANGING_SIGNS.get(index), ModBlocks.COLORED_WALL_HANGING_SIGNS.get(index),
                     blockTexture(ModBlocks.COLORED_STRIPPED_LOGS.get(index).get()));
 
+            saplingBlockWithItem(ModBlocks.COLORED_SAPLINGS.get(index));
             blockWithItem(ModBlocks.COLORED_LEAVES.get(index));
             logBlockWithItem(ModBlocks.COLORED_LOGS.get(index));
             logBlockWithItem(ModBlocks.COLORED_STRIPPED_LOGS.get(index));
@@ -123,6 +124,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void blockWithItem(DeferredBlock<?> deferredBlock) {
         simpleBlockWithItem(deferredBlock.get(), cubeAll(deferredBlock.get()));
+    }
+
+    private void saplingBlockWithItem(DeferredBlock<Block> deferredBlock) {
+        simpleBlock(deferredBlock.get(),
+                models().cross(BuiltInRegistries.BLOCK.getKey(deferredBlock.get()).getPath(), blockTexture(deferredBlock.get())).renderType("cutout"));
+        itemModels().withExistingParent(deferredBlock.getId().getPath(),
+                ResourceLocation.withDefaultNamespace("item/generated")).texture("layer0", modLoc("block/" + name(deferredBlock.get())));
     }
 
     private void blockWithRenderTypeWithItem(DeferredBlock<?> deferredBlock, RenderType renderType) {
