@@ -20,34 +20,31 @@ public class ModItems {
     // Create a Deferred Register to hold Items which will all be registered under the "worldofcolor" namespace
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(WorldOfColor.MODID);
 
-    public static final List<DeferredItem<Item>> COLORED_SIGNS = registerColoredSign();
-    private static List<DeferredItem<Item>> registerColoredSign(){
+    public static final List<DeferredItem<Item>> COLORED_SIGNS = registerColoredSign(false);
+    public static final List<DeferredItem<Item>> COLORED_HANGING_SIGNS = registerColoredSign(true);
+    public static final List<DeferredItem<Item>> COLORED_BOATS = registerColoredBoats(false);
+    public static final List<DeferredItem<Item>> COLORED_CHEST_BOATS = registerColoredBoats(true);
+
+    private static List<DeferredItem<Item>> registerColoredSign(boolean hanging) {
         List<DeferredItem<Item>> signs = new ArrayList<>();
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
-            DeferredItem<Item> item = ITEMS.register(color.getName() + "_sign",
-                    () -> new SignItem(new Item.Properties().stacksTo(16),
-                            ModBlocks.COLORED_SIGNS.get(index).get(), ModBlocks.COLORED_WALL_SIGNS.get(index).get()));
+            DeferredItem<Item> item;
+            if(!hanging) {
+                item = ITEMS.register(color.getName() + "_sign",
+                        () -> new SignItem(new Item.Properties().stacksTo(16),
+                                ModBlocks.COLORED_SIGNS.get(index).get(), ModBlocks.COLORED_WALL_SIGNS.get(index).get()));
+            }
+            else {
+                item = ITEMS.register(color.getName() + "_hanging_sign",
+                        () -> new HangingSignItem(ModBlocks.COLORED_HANGING_SIGNS.get(index).get(), ModBlocks.COLORED_WALL_HANGING_SIGNS.get(index).get(),
+                                new Item.Properties().stacksTo(16)));
+            }
             signs.add(item);
         }
         return signs;
     }
 
-    public static final List<DeferredItem<Item>> COLORED_HANGING_SIGNS = registerColoredHangingSign();
-    private static List<DeferredItem<Item>> registerColoredHangingSign(){
-        List<DeferredItem<Item>> hangingSign = new ArrayList<>();
-        for (DyeColor color : COLORS) {
-            int index = COLORS.indexOf(color);
-            DeferredItem<Item> item = ITEMS.register(color.getName() + "_hanging_sign",
-                    () -> new HangingSignItem(ModBlocks.COLORED_HANGING_SIGNS.get(index).get(), ModBlocks.COLORED_WALL_HANGING_SIGNS.get(index).get(),
-                            new Item.Properties().stacksTo(16)));
-            hangingSign.add(item);
-        }
-        return hangingSign;
-    }
-
-    public static final List<DeferredItem<Item>> COLORED_BOATS = registerColoredBoats(false);
-    public static final List<DeferredItem<Item>> COLORED_CHEST_BOATS = registerColoredBoats(true);
     private static List<DeferredItem<Item>> registerColoredBoats(boolean hasChest) {
         List<DeferredItem<Item>> boat = new ArrayList<>();
         for (DyeColor color : COLORS) {
