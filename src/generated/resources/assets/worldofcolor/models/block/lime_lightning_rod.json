@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/lightning_rod",
+  "textures": {
+    "particle": "worldofcolor:block/lime_lightning_rod",
+    "texture": "worldofcolor:block/lime_lightning_rod"
+  }
+}

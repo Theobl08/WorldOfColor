@@ -74,7 +74,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 this.tag(BlockTags.WOODEN_BUTTONS).add(block.get());
             }
 
-            if (block.get().toString().contains("copper")){
+            if (block.get().toString().contains("copper") || block.get() instanceof LightningRodBlock){
                 this.tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL).add(block.get());
                 this.tag(BlockTags.INCORRECT_FOR_GOLD_TOOL).add(block.get());
                 this.tag(BlockTags.NEEDS_STONE_TOOL).add(block.get());
@@ -147,6 +147,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         addColored(Tags.Blocks.DYED, "waxed_{color}_copper_door");
         addColored(Tags.Blocks.DYED, "waxed_{color}_copper_trapdoor");
         addColored(Tags.Blocks.DYED, "waxed_{color}_copper_bulb");
+        addColored(Tags.Blocks.DYED, "{color}_lightning_rod");
         addColored(Tags.Blocks.DYED, "{color}_glazed_concrete");
         addColored(Tags.Blocks.DYED, "{color}_quilted_concrete");
         addColored(Tags.Blocks.DYED, "{color}_sapling");
@@ -174,6 +175,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         return block.get().toString().contains("concrete") ||
                 block.get().toString().contains("copper") ||
                 block.get().toString().contains("brick") ||
+                block.get() instanceof LightningRodBlock ||
                 ModBlocks.SIMPLE_COLORED_BLOCKS.contains(block);
     }
 

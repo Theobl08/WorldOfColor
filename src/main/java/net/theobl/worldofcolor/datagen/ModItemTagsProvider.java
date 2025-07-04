@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.theobl.worldofcolor.WorldOfColor;
+import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.tags.ModTags;
 import org.jetbrains.annotations.Nullable;
@@ -62,7 +63,10 @@ public class ModItemTagsProvider extends ItemTagsProvider {
             this.copy(ModTags.Blocks.COLORED_LOGS.get(index), tag);
         }
 
-        ModItems.COLORED_BOATS.forEach(item -> tag(ItemTags.BOATS).add(item.asItem()));
+        ModBlocks.COLORED_LIGHTNING_RODS.forEach(block -> this.tag(ModTags.Items.LIGHTNING_RODS).add(block.asItem()));
+        this.tag(ModTags.Items.LIGHTNING_RODS).add(Items.LIGHTNING_ROD);
+
+    ModItems.COLORED_BOATS.forEach(item -> tag(ItemTags.BOATS).add(item.asItem()));
         ModItems.COLORED_CHEST_BOATS.forEach(item -> tag(ItemTags.CHEST_BOATS).add(item.asItem()));
 
         addColored(Tags.Items.DYED, "{color}_block");
@@ -88,6 +92,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         addColored(Tags.Items.DYED, "waxed_{color}_copper_door");
         addColored(Tags.Items.DYED, "waxed_{color}_copper_trapdoor");
         addColored(Tags.Items.DYED, "waxed_{color}_copper_bulb");
+        addColored(Tags.Items.DYED, "{color}_lightning_rod");
         addColored(Tags.Items.DYED, "{color}_glazed_concrete");
         addColored(Tags.Items.DYED, "{color}_quilted_concrete");
         addColored(Tags.Items.DYED, "{color}_sapling");

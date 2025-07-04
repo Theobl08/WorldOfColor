@@ -1,6 +1,7 @@
 package net.theobl.worldofcolor.datagen;
 
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.core.Direction;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -40,6 +41,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ModBlocks.COLORED_COPPER_DOORS.forEach(this::simpleDoorBlockWithItem);
         ModBlocks.COLORED_COPPER_TRAPDOORS.forEach(this::simpleTrapdoorBlockWithItem);
         ModBlocks.COLORED_COPPER_BULBS.forEach(this::bulbBlockWithItem);
+        ModBlocks.COLORED_LIGHTNING_RODS.forEach(this::lightningRodBlock);
 
         ModBlocks.COLORED_BRICKS.forEach(this::blockWithItem);
 
@@ -288,5 +290,45 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ModelFile open = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_open"));
         trapdoorBlock((TrapDoorBlock) waxedBlock.get(), bottom, top, open, true);
         simpleBlockItem(waxedBlock.get(), bottom);
+    }
+
+    private void lightningRodBlock(DeferredBlock<Block> lightningRod) {
+        ModelFile model = models().withExistingParent(lightningRod.getRegisteredName(), mcLoc("block/lightning_rod"))
+                .texture("texture", blockTexture(lightningRod.get()))
+                .texture("particle", blockTexture(lightningRod.get()));
+        ModelFile modelOn = models().getExistingFile(mcLoc("block/lightning_rod_on"));
+
+        getVariantBuilder(lightningRod.get())
+                .partialState().with(LightningRodBlock.FACING, Direction.DOWN).with(LightningRodBlock.POWERED, false)
+                .modelForState().rotationX(180).modelFile(model).addModel()
+                .partialState().with(LightningRodBlock.FACING, Direction.DOWN).with(LightningRodBlock.POWERED, true)
+                .modelForState().rotationX(180).modelFile(modelOn).addModel()
+
+                .partialState().with(LightningRodBlock.FACING, Direction.EAST).with(LightningRodBlock.POWERED, false)
+                .modelForState().rotationX(90).rotationY(90).modelFile(model).addModel()
+                .partialState().with(LightningRodBlock.FACING, Direction.EAST).with(LightningRodBlock.POWERED, true)
+                .modelForState().rotationX(90).rotationY(90).modelFile(modelOn).addModel()
+
+                .partialState().with(LightningRodBlock.FACING, Direction.NORTH).with(LightningRodBlock.POWERED, false)
+                .modelForState().rotationX(90).modelFile(model).addModel()
+                .partialState().with(LightningRodBlock.FACING, Direction.NORTH).with(LightningRodBlock.POWERED, true)
+                .modelForState().rotationX(90).modelFile(modelOn).addModel()
+
+                .partialState().with(LightningRodBlock.FACING, Direction.SOUTH).with(LightningRodBlock.POWERED, false)
+                .modelForState().rotationX(90).rotationY(180).modelFile(model).addModel()
+                .partialState().with(LightningRodBlock.FACING, Direction.SOUTH).with(LightningRodBlock.POWERED, true)
+                .modelForState().rotationX(90).rotationY(180).modelFile(modelOn).addModel()
+
+                .partialState().with(LightningRodBlock.FACING, Direction.UP).with(LightningRodBlock.POWERED, false)
+                .modelForState().modelFile(model).addModel()
+                .partialState().with(LightningRodBlock.FACING, Direction.UP).with(LightningRodBlock.POWERED, true)
+                .modelForState().modelFile(modelOn).addModel()
+
+                .partialState().with(LightningRodBlock.FACING, Direction.WEST).with(LightningRodBlock.POWERED, false)
+                .modelForState().rotationX(90).rotationY(270).modelFile(model).addModel()
+                .partialState().with(LightningRodBlock.FACING, Direction.WEST).with(LightningRodBlock.POWERED, true)
+                .modelForState().rotationX(90).rotationY(270).modelFile(modelOn).addModel();
+
+        blockItem(lightningRod);
     }
 }

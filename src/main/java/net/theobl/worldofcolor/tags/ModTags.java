@@ -34,6 +34,7 @@ public class ModTags {
 
     public static class Items {
         public static final List<TagKey<Item>> COLORED_LOGS = createColoredBlockTags();
+        public static final TagKey<Item> LIGHTNING_RODS = createTag("lightning_rod");
 
         private static List<TagKey<Item>> createColoredBlockTags() {
             List<TagKey<Item>> coloredTag = new ArrayList<>();

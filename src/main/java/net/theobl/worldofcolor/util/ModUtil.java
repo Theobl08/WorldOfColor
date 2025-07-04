@@ -8,6 +8,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FireBlock;
+import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.block.ModBlocks;
 
@@ -79,5 +80,14 @@ public class ModUtil {
     public static void registerStrippable(Block log, Block strippedLog) {
         AxeItem.STRIPPABLES = Maps.newHashMap(AxeItem.STRIPPABLES);
         AxeItem.STRIPPABLES.put(log, strippedLog);
+    }
+
+    public static boolean isColoredBlock(BlockState state, List<DeferredBlock<Block>> coloredBlocks) {
+        for (DyeColor color : COLORS) {
+            int index = COLORS.indexOf(color);
+            if (state.is(coloredBlocks.get(index)))
+                return true;
+        }
+        return false;
     }
 }

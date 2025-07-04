@@ -29,6 +29,7 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.block.ModWoodType;
 import net.theobl.worldofcolor.entity.ModEntityType;
+import net.theobl.worldofcolor.entity.ModPoiTypes;
 import net.theobl.worldofcolor.entity.client.ModBoatRenderer;
 import net.theobl.worldofcolor.entity.client.ModModelLayers;
 import net.theobl.worldofcolor.item.ModCreativeModeTabs;
@@ -53,6 +54,7 @@ public class WorldOfColor {
         // Register the Deferred Register to the mod event bus so blocks get registered
         ModBlocks.register(modEventBus);
         ModEntityType.register(modEventBus);
+        ModPoiTypes.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         ModItems.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered

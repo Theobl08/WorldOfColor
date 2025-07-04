@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "dyed_lighting_rod",
+  "ingredients": [
+    {
+      "item": "minecraft:black_dye"
+    },
+    {
+      "tag": "worldofcolor:lightning_rod"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:black_lightning_rod"
+  }
+}
