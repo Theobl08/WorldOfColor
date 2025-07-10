@@ -18,7 +18,7 @@ public class ModCreativeModeTabs {
     // Creates a creative tab with the id "worldofcolor:example_tab" for the example item, that is placed after the combat tab
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab",
             () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.worldofcolor"))
-                    .withTabsBefore(CreativeModeTabs.COMBAT)
+                    .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
                     .icon(() -> ModBlocks.QUILTED_CONCRETES.getFirst().get().asItem().getDefaultInstance())
                     .displayItems((parameters, output) -> {
                         for (DyeColor color : ModUtil.COLORS) {
