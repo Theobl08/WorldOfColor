@@ -163,7 +163,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                     .requires(dyeableItems)
                     .group(group)
                     .unlockedBy("has_needed_dye", has(item))
-                    .save(recipeOutput, "dye_" + getItemName(item1));
+                    .save(recipeOutput, WorldOfColor.MODID + ":dye_" + getItemName(item1));
         }
     }
 
