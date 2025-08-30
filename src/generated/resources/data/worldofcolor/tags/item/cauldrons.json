@@ -1,0 +1,21 @@
+{
+  "values": [
+    "minecraft:cauldron",
+    "worldofcolor:white_cauldron",
+    "worldofcolor:light_gray_cauldron",
+    "worldofcolor:gray_cauldron",
+    "worldofcolor:black_cauldron",
+    "worldofcolor:brown_cauldron",
+    "worldofcolor:red_cauldron",
+    "worldofcolor:orange_cauldron",
+    "worldofcolor:yellow_cauldron",
+    "worldofcolor:lime_cauldron",
+    "worldofcolor:green_cauldron",
+    "worldofcolor:cyan_cauldron",
+    "worldofcolor:light_blue_cauldron",
+    "worldofcolor:blue_cauldron",
+    "worldofcolor:purple_cauldron",
+    "worldofcolor:magenta_cauldron",
+    "worldofcolor:pink_cauldron"
+  ]
+}

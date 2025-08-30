@@ -47,6 +47,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         colorBlockWithDye(recipeOutput, ModBlocks.COLORED_SAPLINGS, DYES, ItemTags.SAPLINGS, "sapling");
         colorBlockWithDye(recipeOutput, ModBlocks.COLORED_LIGHTNING_RODS, DYES, ModTags.Items.LIGHTNING_RODS, "dyed_lighting_rod");
+        colorBlockWithDye(recipeOutput, ModBlocks.COLORED_CAULDRONS, DYES, ModTags.Items.CAULDRONS, "dyed_cauldron");
 
         for (DeferredBlock<Block> block : ModBlocks.COLORED_BRICKS) {
             int index = ModBlocks.COLORED_BRICKS.indexOf(block);

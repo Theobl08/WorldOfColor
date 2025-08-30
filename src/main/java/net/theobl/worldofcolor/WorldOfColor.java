@@ -3,6 +3,7 @@ package net.theobl.worldofcolor;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
+import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.network.chat.Component;
@@ -21,11 +22,13 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
+import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.theobl.worldofcolor.block.ColoredCauldronInteraction;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.block.ModWoodType;
 import net.theobl.worldofcolor.entity.ModEntityType;
@@ -43,7 +46,7 @@ public class WorldOfColor {
     // Define mod id in a common place for everything to reference
     public static final String MODID = "worldofcolor";
     // Directly reference a slf4j logger
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
 
     // The constructor for the mod class is the first code that is run when your mod is loaded.
     // FML will recognize some parameter types like IEventBus or ModContainer and pass them in automatically.
@@ -59,6 +62,7 @@ public class WorldOfColor {
         ModItems.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         ModCreativeModeTabs.register(modEventBus);
+        ColoredCauldronInteraction.bootStrap();
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (WorldOfColor) to respond directly to events.
@@ -68,6 +72,7 @@ public class WorldOfColor {
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::addBlockToBlockEntity);
+        modEventBus.addListener(this::registerBlockColor);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         //modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -88,6 +93,12 @@ public class WorldOfColor {
         ModBlocks.COLORED_WALL_SIGNS.forEach(sign -> event.modify(BlockEntityType.SIGN, sign.get()));
         ModBlocks.COLORED_HANGING_SIGNS.forEach(sign -> event.modify(BlockEntityType.HANGING_SIGN, sign.get()));
         ModBlocks.COLORED_WALL_HANGING_SIGNS.forEach(sign -> event.modify(BlockEntityType.HANGING_SIGN, sign.get()));
+    }
+
+    private void registerBlockColor(RegisterColorHandlersEvent.Block event) {
+        ModBlocks.COLORED_WATER_CAULDRONS.forEach(block ->
+                event.register((state, tintGetter, pos, i) ->
+                        tintGetter != null && pos != null ? BiomeColors.getAverageWaterColor(tintGetter, pos) : -1, block.get()));
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

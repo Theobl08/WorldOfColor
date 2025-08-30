@@ -16,6 +16,7 @@ import net.neoforged.neoforge.registries.DeferredHolder;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.tags.ModTags;
+import net.theobl.worldofcolor.util.ModUtil;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Locale;
@@ -115,6 +116,14 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             }
         }
 
+        for (DyeColor color : ModUtil.COLORS) {
+            int index = ModUtil.COLORS.indexOf(color);
+            this.tag(BlockTags.CAULDRONS).add(ModBlocks.COLORED_CAULDRONS.get(index).get())
+                    .add(ModBlocks.COLORED_WATER_CAULDRONS.get(index).get())
+                    .add(ModBlocks.COLORED_LAVA_CAULDRONS.get(index).get())
+                    .add(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(index).get());
+        }
+
         for (TagKey<Block> tagKey : ModTags.Blocks.COLORED_LOGS) {
             int index = ModTags.Blocks.COLORED_LOGS.indexOf(tagKey);
             this.tag(tagKey).add(ModBlocks.COLORED_LOGS.get(index).get(),
@@ -148,6 +157,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         addColored(Tags.Blocks.DYED, "waxed_{color}_copper_trapdoor");
         addColored(Tags.Blocks.DYED, "waxed_{color}_copper_bulb");
         addColored(Tags.Blocks.DYED, "{color}_lightning_rod");
+        addColored(Tags.Blocks.DYED, "{color}_cauldron");
+        addColored(Tags.Blocks.DYED, "{color}_water_cauldron");
+        addColored(Tags.Blocks.DYED, "{color}_lava_cauldron");
+        addColored(Tags.Blocks.DYED, "{color}_powder_snow_cauldron");
         addColored(Tags.Blocks.DYED, "{color}_glazed_concrete");
         addColored(Tags.Blocks.DYED, "{color}_quilted_concrete");
         addColored(Tags.Blocks.DYED, "{color}_sapling");

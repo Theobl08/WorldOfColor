@@ -55,6 +55,43 @@ public class ModBlockStateProvider extends BlockStateProvider {
             simpleSlabBlockWithItem(block, blockTexture(ModBlocks.COLORED_CUT_COPPER.get(index).get()));
         }
 
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_CAULDRONS) {
+            int index = ModBlocks.COLORED_CAULDRONS.indexOf(block);
+            String colorName = COLORS.get(index).getName();
+            simpleBlock(block.get(),
+                    models().withExistingParent(name(block.get()), "block/cauldron")
+                            .texture("particle", modLoc("block/" + colorName + "_cauldron_side"))
+                            .texture("top", modLoc("block/" + colorName + "_cauldron_top"))
+                            .texture("bottom", modLoc("block/" + colorName + "_cauldron_bottom"))
+                            .texture("side", modLoc("block/" + colorName + "_cauldron_side"))
+                            .texture("inside", modLoc("block/" + colorName + "_cauldron_inner"))
+            );
+            itemModels().basicItem(block.asItem());
+        }
+
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_WATER_CAULDRONS) {
+            String colorName = COLORS.get(ModBlocks.COLORED_WATER_CAULDRONS.indexOf(block)).getName();
+            layeredCauldron(block, "water", colorName);
+        }
+
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_POWDER_SNOW_CAULDRONS) {
+            String colorName = COLORS.get(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.indexOf(block)).getName();
+            layeredCauldron(block, "powder_snow", colorName);
+        }
+
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_LAVA_CAULDRONS) {
+            int index = ModBlocks.COLORED_LAVA_CAULDRONS.indexOf(block);
+            String colorName = COLORS.get(index).getName();
+            simpleBlock(block.get(),
+                    models().withExistingParent(name(block.get()), "block/lava_cauldron")
+                            .texture("particle", modLoc("block/" + colorName + "_cauldron_side"))
+                            .texture("top", modLoc("block/" + colorName + "_cauldron_top"))
+                            .texture("bottom", modLoc("block/" + colorName + "_cauldron_bottom"))
+                            .texture("side", modLoc("block/" + colorName + "_cauldron_side"))
+                            .texture("inside", modLoc("block/" + colorName + "_cauldron_inner"))
+            );
+        }
+
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
             waxedBlockWithItem(ModBlocks.COLORED_WAXED_COPPER_BLOCKS.get(index), ModBlocks.COLORED_COPPER_BLOCKS.get(index));
@@ -330,5 +367,33 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .modelForState().rotationX(90).rotationY(270).modelFile(modelOn).addModel();
 
         blockItem(lightningRod);
+    }
+
+    private void layeredCauldron(DeferredBlock<Block> block, String cauldronType, String colorName) {
+        ModelFile level1 = models().withExistingParent(name(block.get()) + "_level1", "block/" + cauldronType + "_cauldron_level1")
+                .texture("particle", modLoc("block/" + colorName + "_cauldron_side"))
+                .texture("top", modLoc("block/" + colorName + "_cauldron_top"))
+                .texture("bottom", modLoc("block/" + colorName + "_cauldron_bottom"))
+                .texture("side", modLoc("block/" + colorName + "_cauldron_side"))
+                .texture("inside", modLoc("block/" + colorName + "_cauldron_inner"));
+
+        ModelFile level2 = models().withExistingParent(name(block.get()) + "_level2", "block/" + cauldronType + "_cauldron_level2")
+                .texture("particle", modLoc("block/" + colorName + "_cauldron_side"))
+                .texture("top", modLoc("block/" + colorName + "_cauldron_top"))
+                .texture("bottom", modLoc("block/" + colorName + "_cauldron_bottom"))
+                .texture("side", modLoc("block/" + colorName + "_cauldron_side"))
+                .texture("inside", modLoc("block/" + colorName + "_cauldron_inner"));
+
+        ModelFile full = models().withExistingParent(name(block.get()) + "_full", "block/" + cauldronType + "_cauldron_full")
+                .texture("particle", modLoc("block/" + colorName + "_cauldron_side"))
+                .texture("top", modLoc("block/" + colorName + "_cauldron_top"))
+                .texture("bottom", modLoc("block/" + colorName + "_cauldron_bottom"))
+                .texture("side", modLoc("block/" + colorName + "_cauldron_side"))
+                .texture("inside", modLoc("block/" + colorName + "_cauldron_inner"));
+
+        getVariantBuilder(block.get())
+                .partialState().with(LayeredCauldronBlock.LEVEL, 1).modelForState().modelFile(level1).addModel()
+                .partialState().with(LayeredCauldronBlock.LEVEL, 2).modelForState().modelFile(level2).addModel()
+                .partialState().with(LayeredCauldronBlock.LEVEL, 3).modelForState().modelFile(full).addModel();
     }
 }

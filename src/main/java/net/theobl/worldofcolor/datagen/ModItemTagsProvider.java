@@ -65,6 +65,8 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
         ModBlocks.COLORED_LIGHTNING_RODS.forEach(block -> this.tag(ModTags.Items.LIGHTNING_RODS).add(block.asItem()));
         this.tag(ModTags.Items.LIGHTNING_RODS).add(Items.LIGHTNING_ROD);
+        this.tag(ModTags.Items.CAULDRONS).add(Items.CAULDRON);
+        ModBlocks.COLORED_CAULDRONS.forEach(block -> this.tag(ModTags.Items.CAULDRONS).add(block.asItem()));
 
     ModItems.COLORED_BOATS.forEach(item -> tag(ItemTags.BOATS).add(item.asItem()));
         ModItems.COLORED_CHEST_BOATS.forEach(item -> tag(ItemTags.CHEST_BOATS).add(item.asItem()));
@@ -93,6 +95,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         addColored(Tags.Items.DYED, "waxed_{color}_copper_trapdoor");
         addColored(Tags.Items.DYED, "waxed_{color}_copper_bulb");
         addColored(Tags.Items.DYED, "{color}_lightning_rod");
+        addColored(Tags.Items.DYED, "{color}_cauldron");
         addColored(Tags.Items.DYED, "{color}_glazed_concrete");
         addColored(Tags.Items.DYED, "{color}_quilted_concrete");
         addColored(Tags.Items.DYED, "{color}_sapling");

@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/water_cauldron_level1",
+  "textures": {
+    "bottom": "worldofcolor:block/orange_cauldron_bottom",
+    "inside": "worldofcolor:block/orange_cauldron_inner",
+    "particle": "worldofcolor:block/orange_cauldron_side",
+    "side": "worldofcolor:block/orange_cauldron_side",
+    "top": "worldofcolor:block/orange_cauldron_top"
+  }
+}

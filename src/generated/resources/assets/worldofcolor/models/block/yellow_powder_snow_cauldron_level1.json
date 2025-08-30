@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/powder_snow_cauldron_level1",
+  "textures": {
+    "bottom": "worldofcolor:block/yellow_cauldron_bottom",
+    "inside": "worldofcolor:block/yellow_cauldron_inner",
+    "particle": "worldofcolor:block/yellow_cauldron_side",
+    "side": "worldofcolor:block/yellow_cauldron_side",
+    "top": "worldofcolor:block/yellow_cauldron_top"
+  }
+}

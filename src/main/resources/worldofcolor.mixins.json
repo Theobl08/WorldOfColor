@@ -5,6 +5,8 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "worldofcolor.refmap.json",
   "mixins": [
+    "CauldronInteractionMixin",
+    "LayeredCauldronBlockMixin",
     "LightningBoltMixin",
     "ServerLevelMixin",
     "SheepMixin"

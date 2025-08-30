@@ -1,10 +1,10 @@
 package net.theobl.worldofcolor.block;
 
-import net.minecraft.core.BlockPos;
+import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -87,6 +87,12 @@ public class ModBlocks {
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_TRAPDOORS = registerColored("copper_trapdoor", p -> new TrapDoorBlock(BlockSetType.COPPER, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_TRAPDOOR), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_BULBS = registerColored("copper_bulb", CopperBulbBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BULB), "waxed_");
+    public static final List<DeferredBlock<Block>> COLORED_CAULDRONS = registerColoredCauldrons();
+    public static final List<DeferredBlock<Block>> COLORED_WATER_CAULDRONS = registerColoredWithoutItem("water_cauldron", p -> new LayeredCauldronBlock(Biome.Precipitation.RAIN, CauldronInteraction.WATER, p),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.WATER_CAULDRON), "");
+    public static final List<DeferredBlock<Block>> COLORED_LAVA_CAULDRONS = registerColoredWithoutItem("lava_cauldron", LavaCauldronBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA_CAULDRON), "");
+    public static final List<DeferredBlock<Block>> COLORED_POWDER_SNOW_CAULDRONS = registerColoredWithoutItem("powder_snow_cauldron", p -> new LayeredCauldronBlock(Biome.Precipitation.SNOW, CauldronInteraction.POWDER_SNOW, p),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.POWDER_SNOW_CAULDRON), "");
     public static final List<DeferredBlock<Block>> COLORED_BRICKS = registerColored("bricks", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS));
     public static final List<DeferredBlock<Block>> COLORED_BRICK_STAIRS = registerColoredStairs("brick_stairs", COLORED_BRICKS, BlockBehaviour.Properties.ofFullCopy(Blocks.BRICK_STAIRS));
     public static final List<DeferredBlock<Block>> COLORED_BRICK_SLABS = registerColored("brick_slab", SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BRICK_SLAB));
@@ -160,6 +166,17 @@ public class ModBlocks {
         return signs;
     }
 
+    private static List<DeferredBlock<Block>> registerColoredCauldrons() {
+        List<DeferredBlock<Block>> blocks = new ArrayList<>();
+        for (DyeColor color : COLORS) {
+            String name = color.getName().concat("_").concat("cauldron");
+            DeferredBlock<Block> deferredBlock = BLOCKS.register(name,
+                    () -> new ColoredCauldronBlock(BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON).mapColor(color), color));
+            blocks.add(deferredBlock);
+        }
+        return blocks;
+    }
+
     private static <T extends Block> List<DeferredBlock<T>> registerColored(String key, Function<BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties, String prefix) {
         List<DeferredBlock<T>> blocks = new ArrayList<>();
         for (DyeColor color : COLORS) {
@@ -205,6 +222,16 @@ public class ModBlocks {
 //        }
 //        return blocks;
 //    }
+
+    private static <T extends Block> List<DeferredBlock<T>> registerColoredWithoutItem(String key, Function<BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties, String prefix) {
+        List<DeferredBlock<T>> blocks = new ArrayList<>();
+        for (DyeColor color : COLORS) {
+            String name = prefix.concat(color.getName()).concat("_").concat(key);
+            DeferredBlock<T> deferredBlock = BLOCKS.registerBlock(name, block, properties.mapColor(color));
+            blocks.add(deferredBlock);
+        }
+        return blocks;
+    }
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Supplier<T> block) {
         DeferredBlock<T> deferredBlock = BLOCKS.register(name, block);

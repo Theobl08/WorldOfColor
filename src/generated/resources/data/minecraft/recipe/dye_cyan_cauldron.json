@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "dyed_cauldron",
+  "ingredients": [
+    {
+      "item": "minecraft:cyan_dye"
+    },
+    {
+      "tag": "worldofcolor:cauldrons"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:cyan_cauldron"
+  }
+}

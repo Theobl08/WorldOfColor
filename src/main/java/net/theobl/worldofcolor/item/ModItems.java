@@ -1,9 +1,7 @@
 package net.theobl.worldofcolor.item;
 
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.HangingSignItem;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.SignItem;
+import net.minecraft.world.item.*;
+import net.minecraft.world.level.block.Block;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -24,6 +22,7 @@ public class ModItems {
     public static final List<DeferredItem<Item>> COLORED_HANGING_SIGNS = registerColoredSign(true);
     public static final List<DeferredItem<Item>> COLORED_BOATS = registerColoredBoats(false);
     public static final List<DeferredItem<Item>> COLORED_CHEST_BOATS = registerColoredBoats(true);
+    public static final List<DeferredItem<Item>> COLORED_CAULDRONS = registerColoredCauldron();
 
     private static List<DeferredItem<Item>> registerColoredSign(boolean hanging) {
         List<DeferredItem<Item>> signs = new ArrayList<>();
@@ -54,6 +53,24 @@ public class ModItems {
             boat.add(item);
         }
         return boat;
+    }
+
+    private static List<DeferredItem<Item>> registerColoredCauldron() {
+        List<DeferredItem<Item>> cauldron = new ArrayList<>();
+        for (DyeColor color : COLORS) {
+            int index = COLORS.indexOf(color);
+            DeferredItem<Item> item = ITEMS.register(color.getName() + "_cauldron", key ->
+                    new BlockItem(ModBlocks.COLORED_CAULDRONS.get(index).get(), new Item.Properties()) {
+                        public void registerBlocks(java.util.Map<Block, Item> map, Item self) {
+                            super.registerBlocks(map, self);
+                            map.put(ModBlocks.COLORED_WATER_CAULDRONS.get(index).get(), self);
+                            map.put(ModBlocks.COLORED_LAVA_CAULDRONS.get(index).get(), self);
+                            map.put(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(index).get(), self);
+                        }
+                    });
+            cauldron.add(item);
+        }
+        return cauldron;
     }
 
     public static void register(IEventBus eventBus) {
