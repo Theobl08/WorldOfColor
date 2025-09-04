@@ -15,6 +15,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.WorldOfColor;
@@ -48,6 +49,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
         colorBlockWithDye(recipeOutput, ModBlocks.COLORED_SAPLINGS, DYES, ItemTags.SAPLINGS, "sapling");
         colorBlockWithDye(recipeOutput, ModBlocks.COLORED_LIGHTNING_RODS, DYES, ModTags.Items.LIGHTNING_RODS, "dyed_lighting_rod");
         colorBlockWithDye(recipeOutput, ModBlocks.COLORED_CAULDRONS, DYES, ModTags.Items.CAULDRONS, "dyed_cauldron");
+        colorBlockWithDye(recipeOutput, ModBlocks.COLORED_SLIME_BLOCKS, DYES, Tags.Items.STORAGE_BLOCKS_SLIME, "dyed_slime_blocks");
 
         for (DeferredBlock<Block> block : ModBlocks.COLORED_BRICKS) {
             int index = ModBlocks.COLORED_BRICKS.indexOf(block);

@@ -114,6 +114,9 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             else if (block.get() instanceof WallHangingSignBlock) {
                 this.tag(BlockTags.WALL_HANGING_SIGNS).add(block.get());
             }
+            else if (block.get() instanceof SlimeBlock) {
+                this.tag(Tags.Blocks.STORAGE_BLOCKS_SLIME).add(block.get());
+            }
         }
 
         for (DyeColor color : ModUtil.COLORS) {

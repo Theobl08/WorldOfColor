@@ -57,6 +57,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         this.copy(Tags.Blocks.STRIPPED_LOGS, Tags.Items.STRIPPED_LOGS);
         this.copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
         this.copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
+        this.copy(Tags.Blocks.STORAGE_BLOCKS_SLIME, Tags.Items.STORAGE_BLOCKS_SLIME);
 
         for(TagKey<Item> tag : ModTags.Items.COLORED_LOGS) {
             int index = ModTags.Items.COLORED_LOGS.indexOf(tag);

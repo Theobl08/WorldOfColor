@@ -44,6 +44,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ModBlocks.COLORED_LIGHTNING_RODS.forEach(this::lightningRodBlock);
 
         ModBlocks.COLORED_BRICKS.forEach(this::blockWithItem);
+        ModBlocks.COLORED_SLIME_BLOCKS.forEach(this::slimeBlockWithItem);
 
         for (DeferredBlock<Block> block : ModBlocks.COLORED_CUT_COPPER_STAIRS) {
             int index = ModBlocks.COLORED_CUT_COPPER_STAIRS.indexOf(block);
@@ -178,6 +179,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
     private void blockItem(DeferredBlock<?> deferredBlock) {
         simpleBlockItem(deferredBlock.get(), new ModelFile.UncheckedModelFile("worldofcolor:block/" + deferredBlock.getId().getPath()));
+    }
+
+    private void slimeBlockWithItem(DeferredBlock<?> deferredBlock) {
+        simpleBlockWithItem(deferredBlock.get(), models().withExistingParent(name(deferredBlock.get()), "block/slime_block")
+                .texture("texture", blockTexture(deferredBlock.get()))
+                .texture("particle", blockTexture(deferredBlock.get()))
+                .renderType(RenderType.translucent().name));
     }
 
     private void carpetBlockWithItem(DeferredBlock<?> deferredBlock, DeferredBlock<?> wool) {

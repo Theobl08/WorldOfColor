@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-29T00:43:29.5582086	Tags for minecraft:item mod id worldofcolor
+// 1.21.1	2025-09-04T10:40:36.7830547	Tags for minecraft:item mod id worldofcolor
 c8019c01c4b4e748467a4f957439becd7f72cb61 data/c/tags/item/dyed/black.json
 ec40aeed83fb38056b374cf83b5cf3bcc01e7ab3 data/c/tags/item/dyed/blue.json
 4310c10cbfaa3062b59fba6e9e1a983b8ce4f7a6 data/c/tags/item/dyed/brown.json
@@ -16,6 +16,7 @@ dea194ea7051d0f9f1b65d828c9aa668485c1260 data/c/tags/item/dyed/magenta.json
 ca233029212bc95fe38a16e2fab4f26d03a83be1 data/c/tags/item/dyed/white.json
 b6805e2dfd7bb737d3a5d8dd6a4299278032e529 data/c/tags/item/dyed/yellow.json
 eb78c48bba70dbc4b3b3f09510d0af4c186c77d4 data/c/tags/item/fence_gates/wooden.json
+696aab62b01cb4706c7c4eb526f34b11e2145535 data/c/tags/item/storage_blocks/slime.json
 10c99a4edef6e748c918eec5cba16f01f6e0dc9f data/c/tags/item/stripped_logs.json
 7c97a74d9f981d388ad9f2b9d6710813e9bbb6e0 data/c/tags/item/stripped_woods.json
 a210f42bbba5263bfdfba95deb3192b6613773ca data/minecraft/tags/item/boats.json

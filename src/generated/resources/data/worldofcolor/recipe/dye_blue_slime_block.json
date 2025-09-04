@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "dyed_slime_blocks",
+  "ingredients": [
+    {
+      "item": "minecraft:blue_dye"
+    },
+    {
+      "tag": "c:storage_blocks/slime"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:blue_slime_block"
+  }
+}

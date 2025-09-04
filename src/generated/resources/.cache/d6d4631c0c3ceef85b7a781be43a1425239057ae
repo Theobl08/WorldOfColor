@@ -1,4 +1,4 @@
-// 1.21.1	2025-08-29T00:43:29.5672174	Tags for minecraft:block mod id worldofcolor
+// 1.21.1	2025-09-04T10:40:36.8165539	Tags for minecraft:block mod id worldofcolor
 4e9f1ea8958208203afe8333de9e2ceea6f06c53 data/c/tags/block/dyed/black.json
 138171874078066103f74cb31afcf27033cea3a7 data/c/tags/block/dyed/blue.json
 473e20015f383a92ffbdd458b747e2b7720d9ca6 data/c/tags/block/dyed/brown.json
@@ -16,6 +16,7 @@ f40564ba0db7c15d9198e2b3cbfc579caea51c73 data/c/tags/block/dyed/purple.json
 9875caa66071ee263683591606b7dd2b2bc94717 data/c/tags/block/dyed/white.json
 f2f918bf6ff1f3e973da90b80e8f3c9d20c8ee98 data/c/tags/block/dyed/yellow.json
 eb78c48bba70dbc4b3b3f09510d0af4c186c77d4 data/c/tags/block/fence_gates/wooden.json
+696aab62b01cb4706c7c4eb526f34b11e2145535 data/c/tags/block/storage_blocks/slime.json
 10c99a4edef6e748c918eec5cba16f01f6e0dc9f data/c/tags/block/stripped_logs.json
 7c97a74d9f981d388ad9f2b9d6710813e9bbb6e0 data/c/tags/block/stripped_woods.json
 854c127296e15e333b04c035c4ac76bacc07d378 data/minecraft/tags/block/cauldrons.json
