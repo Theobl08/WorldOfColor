@@ -3,12 +3,8 @@
   "category": "building",
   "group": "waxed_orange_chiseled_copper",
   "ingredients": [
-    {
-      "item": "worldofcolor:orange_chiseled_copper"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    }
+    "worldofcolor:orange_chiseled_copper",
+    "minecraft:honeycomb"
   ],
   "result": {
     "count": 1,

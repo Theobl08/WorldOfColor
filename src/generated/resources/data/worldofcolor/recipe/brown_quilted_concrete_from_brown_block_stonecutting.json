@@ -1,8 +1,6 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "worldofcolor:brown_block"
-  },
+  "ingredient": "worldofcolor:brown_block",
   "result": {
     "count": 1,
     "id": "worldofcolor:brown_quilted_concrete"

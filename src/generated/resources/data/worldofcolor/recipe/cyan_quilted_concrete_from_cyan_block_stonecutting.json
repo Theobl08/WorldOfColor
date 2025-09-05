@@ -1,8 +1,6 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "worldofcolor:cyan_block"
-  },
+  "ingredient": "worldofcolor:cyan_block",
   "result": {
     "count": 1,
     "id": "worldofcolor:cyan_quilted_concrete"

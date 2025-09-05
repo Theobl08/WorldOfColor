@@ -3,12 +3,8 @@
   "category": "building",
   "group": "stained_bricks",
   "key": {
-    "#": {
-      "item": "minecraft:bricks"
-    },
-    "X": {
-      "item": "minecraft:magenta_dye"
-    }
+    "#": "minecraft:bricks",
+    "X": "minecraft:magenta_dye"
   },
   "pattern": [
     "###",

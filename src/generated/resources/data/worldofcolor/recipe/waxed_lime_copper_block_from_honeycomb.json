@@ -3,12 +3,8 @@
   "category": "building",
   "group": "waxed_lime_copper_block",
   "ingredients": [
-    {
-      "item": "worldofcolor:lime_copper_block"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    }
+    "worldofcolor:lime_copper_block",
+    "minecraft:honeycomb"
   ],
   "result": {
     "count": 1,

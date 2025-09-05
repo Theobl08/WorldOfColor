@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "chest_boat",
   "ingredients": [
-    {
-      "item": "minecraft:chest"
-    },
-    {
-      "item": "worldofcolor:blue_boat"
-    }
+    "minecraft:chest",
+    "worldofcolor:blue_boat"
   ],
   "result": {
     "count": 1,

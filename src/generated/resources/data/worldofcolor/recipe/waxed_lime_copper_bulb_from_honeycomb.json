@@ -3,12 +3,8 @@
   "category": "building",
   "group": "waxed_lime_copper_bulb",
   "ingredients": [
-    {
-      "item": "worldofcolor:lime_copper_bulb"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    }
+    "worldofcolor:lime_copper_bulb",
+    "minecraft:honeycomb"
   ],
   "result": {
     "count": 1,

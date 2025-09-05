@@ -3,12 +3,8 @@
   "category": "building",
   "group": "waxed_yellow_chiseled_copper",
   "ingredients": [
-    {
-      "item": "worldofcolor:yellow_chiseled_copper"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    }
+    "worldofcolor:yellow_chiseled_copper",
+    "minecraft:honeycomb"
   ],
   "result": {
     "count": 1,

@@ -99,6 +99,7 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         addColored(Tags.Items.DYED, "{color}_cauldron");
         addColored(Tags.Items.DYED, "{color}_glazed_concrete");
         addColored(Tags.Items.DYED, "{color}_quilted_concrete");
+        addColored(Tags.Items.DYED, "{color}_slime_block");
         addColored(Tags.Items.DYED, "{color}_sapling");
         addColored(Tags.Items.DYED, "{color}_leaves");
         addColored(Tags.Items.DYED, "{color}_log");

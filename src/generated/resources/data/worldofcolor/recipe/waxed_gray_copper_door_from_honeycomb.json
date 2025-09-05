@@ -3,12 +3,8 @@
   "category": "building",
   "group": "waxed_gray_copper_door",
   "ingredients": [
-    {
-      "item": "worldofcolor:gray_copper_door"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    }
+    "worldofcolor:gray_copper_door",
+    "minecraft:honeycomb"
   ],
   "result": {
     "count": 1,

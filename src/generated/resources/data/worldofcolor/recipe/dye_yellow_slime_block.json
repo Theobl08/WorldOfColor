@@ -3,12 +3,8 @@
   "category": "building",
   "group": "dyed_slime_blocks",
   "ingredients": [
-    {
-      "item": "minecraft:yellow_dye"
-    },
-    {
-      "tag": "c:storage_blocks/slime"
-    }
+    "minecraft:yellow_dye",
+    "#c:storage_blocks/slime"
   ],
   "result": {
     "count": 1,

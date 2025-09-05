@@ -3,12 +3,8 @@
   "category": "building",
   "group": "waxed_cyan_cut_copper",
   "ingredients": [
-    {
-      "item": "worldofcolor:cyan_cut_copper"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    }
+    "worldofcolor:cyan_cut_copper",
+    "minecraft:honeycomb"
   ],
   "result": {
     "count": 1,

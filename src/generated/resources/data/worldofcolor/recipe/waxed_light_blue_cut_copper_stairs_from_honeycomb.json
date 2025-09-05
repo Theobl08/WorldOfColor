@@ -3,12 +3,8 @@
   "category": "building",
   "group": "waxed_light_blue_cut_copper_stairs",
   "ingredients": [
-    {
-      "item": "worldofcolor:light_blue_cut_copper_stairs"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    }
+    "worldofcolor:light_blue_cut_copper_stairs",
+    "minecraft:honeycomb"
   ],
   "result": {
     "count": 1,

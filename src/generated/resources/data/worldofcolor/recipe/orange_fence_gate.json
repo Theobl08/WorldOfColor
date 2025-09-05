@@ -3,12 +3,8 @@
   "category": "redstone",
   "group": "wooden_fence_gate",
   "key": {
-    "#": {
-      "item": "minecraft:stick"
-    },
-    "W": {
-      "item": "worldofcolor:orange_planks"
-    }
+    "#": "minecraft:stick",
+    "W": "worldofcolor:orange_planks"
   },
   "pattern": [
     "#W#",

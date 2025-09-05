@@ -3,12 +3,8 @@
   "category": "building",
   "group": "waxed_orange_copper_bulb",
   "ingredients": [
-    {
-      "item": "worldofcolor:orange_copper_bulb"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    }
+    "worldofcolor:orange_copper_bulb",
+    "minecraft:honeycomb"
   ],
   "result": {
     "count": 1,

@@ -3,9 +3,7 @@
   "category": "building",
   "group": "planks",
   "ingredients": [
-    {
-      "tag": "worldofcolor:red_logs"
-    }
+    "#worldofcolor:red_logs"
   ],
   "result": {
     "count": 4,

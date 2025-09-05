@@ -3,12 +3,8 @@
   "category": "building",
   "group": "dyed_cauldron",
   "ingredients": [
-    {
-      "item": "minecraft:lime_dye"
-    },
-    {
-      "tag": "worldofcolor:cauldrons"
-    }
+    "minecraft:lime_dye",
+    "#worldofcolor:cauldrons"
   ],
   "result": {
     "count": 1,

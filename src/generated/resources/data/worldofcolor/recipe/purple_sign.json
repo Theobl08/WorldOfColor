@@ -3,12 +3,8 @@
   "category": "misc",
   "group": "wooden_sign",
   "key": {
-    "#": {
-      "item": "worldofcolor:purple_planks"
-    },
-    "X": {
-      "item": "minecraft:stick"
-    }
+    "#": "worldofcolor:purple_planks",
+    "X": "minecraft:stick"
   },
   "pattern": [
     "###",

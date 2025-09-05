@@ -3,9 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "minecraft:orange_concrete"
-  },
+  "ingredient": "minecraft:orange_concrete",
   "result": {
     "count": 1,
     "id": "worldofcolor:orange_glazed_concrete"

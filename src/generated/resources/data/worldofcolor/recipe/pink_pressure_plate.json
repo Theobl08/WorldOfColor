@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "wooden_pressure_plate",
   "key": {
-    "#": {
-      "item": "worldofcolor:pink_planks"
-    }
+    "#": "worldofcolor:pink_planks"
   },
   "pattern": [
     "##"

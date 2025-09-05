@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "boat",
   "key": {
-    "#": {
-      "item": "worldofcolor:yellow_planks"
-    }
+    "#": "worldofcolor:yellow_planks"
   },
   "pattern": [
     "# #",

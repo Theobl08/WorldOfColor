@@ -3,9 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "minecraft:red_concrete"
-  },
+  "ingredient": "minecraft:red_concrete",
   "result": {
     "count": 1,
     "id": "worldofcolor:red_glazed_concrete"

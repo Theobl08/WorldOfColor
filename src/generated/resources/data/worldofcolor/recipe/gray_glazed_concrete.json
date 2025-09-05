@@ -3,9 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "minecraft:gray_concrete"
-  },
+  "ingredient": "minecraft:gray_concrete",
   "result": {
     "count": 1,
     "id": "worldofcolor:gray_glazed_concrete"

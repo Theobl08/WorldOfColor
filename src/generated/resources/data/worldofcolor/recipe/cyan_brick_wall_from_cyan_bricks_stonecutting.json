@@ -1,8 +1,6 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "worldofcolor:cyan_bricks"
-  },
+  "ingredient": "worldofcolor:cyan_bricks",
   "result": {
     "count": 1,
     "id": "worldofcolor:cyan_brick_wall"

@@ -166,6 +166,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         addColored(Tags.Blocks.DYED, "{color}_powder_snow_cauldron");
         addColored(Tags.Blocks.DYED, "{color}_glazed_concrete");
         addColored(Tags.Blocks.DYED, "{color}_quilted_concrete");
+        addColored(Tags.Blocks.DYED, "{color}_slime_block");
         addColored(Tags.Blocks.DYED, "{color}_sapling");
         addColored(Tags.Blocks.DYED, "{color}_leaves");
         addColored(Tags.Blocks.DYED, "{color}_log");

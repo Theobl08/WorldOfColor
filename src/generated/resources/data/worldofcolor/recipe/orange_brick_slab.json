@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "worldofcolor:orange_bricks"
-    }
+    "#": "worldofcolor:orange_bricks"
   },
   "pattern": [
     "###"

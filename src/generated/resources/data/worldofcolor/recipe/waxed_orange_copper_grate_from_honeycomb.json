@@ -3,12 +3,8 @@
   "category": "building",
   "group": "waxed_orange_copper_grate",
   "ingredients": [
-    {
-      "item": "worldofcolor:orange_copper_grate"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    }
+    "worldofcolor:orange_copper_grate",
+    "minecraft:honeycomb"
   ],
   "result": {
     "count": 1,

@@ -3,9 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "minecraft:lime_concrete"
-  },
+  "ingredient": "minecraft:lime_concrete",
   "result": {
     "count": 1,
     "id": "worldofcolor:lime_glazed_concrete"

@@ -1,8 +1,6 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "worldofcolor:lime_cut_copper"
-  },
+  "ingredient": "worldofcolor:lime_cut_copper",
   "result": {
     "count": 1,
     "id": "worldofcolor:lime_chiseled_copper"

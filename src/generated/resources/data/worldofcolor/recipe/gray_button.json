@@ -3,9 +3,7 @@
   "category": "redstone",
   "group": "wooden_button",
   "ingredients": [
-    {
-      "item": "worldofcolor:gray_planks"
-    }
+    "worldofcolor:gray_planks"
   ],
   "result": {
     "count": 1,

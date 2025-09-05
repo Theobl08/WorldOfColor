@@ -1,8 +1,6 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "worldofcolor:green_bricks"
-  },
+  "ingredient": "worldofcolor:green_bricks",
   "result": {
     "count": 2,
     "id": "worldofcolor:green_brick_slab"

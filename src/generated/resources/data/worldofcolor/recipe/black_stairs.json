@@ -3,9 +3,7 @@
   "category": "building",
   "group": "wooden_stairs",
   "key": {
-    "#": {
-      "item": "worldofcolor:black_planks"
-    }
+    "#": "worldofcolor:black_planks"
   },
   "pattern": [
     "#  ",

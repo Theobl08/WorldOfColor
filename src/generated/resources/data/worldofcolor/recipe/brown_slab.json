@@ -3,9 +3,7 @@
   "category": "building",
   "group": "wooden_slab",
   "key": {
-    "#": {
-      "item": "worldofcolor:brown_planks"
-    }
+    "#": "worldofcolor:brown_planks"
   },
   "pattern": [
     "###"

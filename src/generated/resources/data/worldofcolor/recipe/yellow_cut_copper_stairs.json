@@ -2,9 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "category": "building",
   "key": {
-    "#": {
-      "item": "worldofcolor:yellow_cut_copper"
-    }
+    "#": "worldofcolor:yellow_cut_copper"
   },
   "pattern": [
     "#  ",

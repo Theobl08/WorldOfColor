@@ -3,12 +3,8 @@
   "category": "building",
   "group": "dyed_cauldron",
   "ingredients": [
-    {
-      "item": "minecraft:purple_dye"
-    },
-    {
-      "tag": "worldofcolor:cauldrons"
-    }
+    "minecraft:purple_dye",
+    "#worldofcolor:cauldrons"
   ],
   "result": {
     "count": 1,

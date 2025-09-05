@@ -3,9 +3,7 @@
   "category": "building",
   "group": "waxed_cut_copper",
   "key": {
-    "#": {
-      "item": "worldofcolor:waxed_cyan_copper_block"
-    }
+    "#": "worldofcolor:waxed_cyan_copper_block"
   },
   "pattern": [
     "##",

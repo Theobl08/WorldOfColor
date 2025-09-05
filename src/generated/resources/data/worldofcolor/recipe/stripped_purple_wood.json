@@ -3,9 +3,7 @@
   "category": "building",
   "group": "bark",
   "key": {
-    "#": {
-      "item": "worldofcolor:stripped_purple_log"
-    }
+    "#": "worldofcolor:stripped_purple_log"
   },
   "pattern": [
     "##",

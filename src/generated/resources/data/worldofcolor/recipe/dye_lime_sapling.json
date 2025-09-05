@@ -3,12 +3,8 @@
   "category": "building",
   "group": "sapling",
   "ingredients": [
-    {
-      "item": "minecraft:lime_dye"
-    },
-    {
-      "tag": "minecraft:saplings"
-    }
+    "minecraft:lime_dye",
+    "#minecraft:saplings"
   ],
   "result": {
     "count": 1,

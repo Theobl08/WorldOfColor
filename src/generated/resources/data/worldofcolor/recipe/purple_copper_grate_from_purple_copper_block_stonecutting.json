@@ -1,8 +1,6 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "worldofcolor:purple_copper_block"
-  },
+  "ingredient": "worldofcolor:purple_copper_block",
   "result": {
     "count": 4,
     "id": "worldofcolor:purple_copper_grate"

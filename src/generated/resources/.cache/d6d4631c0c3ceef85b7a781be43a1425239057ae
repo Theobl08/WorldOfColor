@@ -1,20 +1,20 @@
-// 1.21.1	2025-09-04T10:40:36.8165539	Tags for minecraft:block mod id worldofcolor
-4e9f1ea8958208203afe8333de9e2ceea6f06c53 data/c/tags/block/dyed/black.json
-138171874078066103f74cb31afcf27033cea3a7 data/c/tags/block/dyed/blue.json
-473e20015f383a92ffbdd458b747e2b7720d9ca6 data/c/tags/block/dyed/brown.json
-5e2fb1739072fb2d8357c25f8f118a1bef020a50 data/c/tags/block/dyed/cyan.json
-c58ba82f3478838fda4017ddd7695f07702a3cc1 data/c/tags/block/dyed/gray.json
-8046e3ca2496e3ca5ae5edbea10e7793c410e58b data/c/tags/block/dyed/green.json
-9f7f1a2dc8802bdf84ea708542d1a5bb49a135cb data/c/tags/block/dyed/light_blue.json
-0dbfa782f8a025ce795e356a233f44b1bb854b22 data/c/tags/block/dyed/light_gray.json
-ef3b0f94ccaf3ca691f0ac0d2fa0c4d13ab4470a data/c/tags/block/dyed/lime.json
-6aa129c5079d71ff92b50e180262edf511574f11 data/c/tags/block/dyed/magenta.json
-4efa344529e6c273d761c8f60394b1f6d940ebfb data/c/tags/block/dyed/orange.json
-b7de02d1001efb654b63592ed986f220a0057bc7 data/c/tags/block/dyed/pink.json
-f40564ba0db7c15d9198e2b3cbfc579caea51c73 data/c/tags/block/dyed/purple.json
-9e06badd0d4e77b729503c887ca492b567d45c68 data/c/tags/block/dyed/red.json
-9875caa66071ee263683591606b7dd2b2bc94717 data/c/tags/block/dyed/white.json
-f2f918bf6ff1f3e973da90b80e8f3c9d20c8ee98 data/c/tags/block/dyed/yellow.json
+// 1.21.3	2025-09-05T09:59:43.6614935	Tags for minecraft:block mod id worldofcolor
+3d6c0b035c67e9cd0ddbf4a707ff7bcd3291dd4f data/c/tags/block/dyed/black.json
+3fc255a89a05737990876711691e7477845dfbe0 data/c/tags/block/dyed/blue.json
+e0c6f5027cc18edbe863c39415c98f66f97f1a12 data/c/tags/block/dyed/brown.json
+821d7cb00b680a992476f15003774457844804e3 data/c/tags/block/dyed/cyan.json
+ea85c19bff08fbffb0c2ec03992e871ad7ac7284 data/c/tags/block/dyed/gray.json
+c9676725ecaf930e3094ae52c4aefca3c05fd769 data/c/tags/block/dyed/green.json
+3e56de6dd658fe7f49a05fc66cc7d002e51dd578 data/c/tags/block/dyed/light_blue.json
+785ccee478ae06173a53bff1079469502204fe8f data/c/tags/block/dyed/light_gray.json
+f63cbfdbe721062cd0bdeae71114daf1b9c7f4e1 data/c/tags/block/dyed/lime.json
+476fab80c394573d0538aeb3068310918c6a0447 data/c/tags/block/dyed/magenta.json
+f4a0d9ad1e5e71555fa7fbf5c1755b27b7937336 data/c/tags/block/dyed/orange.json
+4a812a1ceb695f48af7d5fa20164e841ce37eb16 data/c/tags/block/dyed/pink.json
+8f8794f5f7969283662d0deeefe5150354a0dbb5 data/c/tags/block/dyed/purple.json
+83bd4c385e93083f0bcdda80626077607054f724 data/c/tags/block/dyed/red.json
+8afcff0531d8543be5a624baf06e2a1905d80362 data/c/tags/block/dyed/white.json
+65970d0d330ca562c5338bc8621f3a49ef0e0237 data/c/tags/block/dyed/yellow.json
 eb78c48bba70dbc4b3b3f09510d0af4c186c77d4 data/c/tags/block/fence_gates/wooden.json
 696aab62b01cb4706c7c4eb526f34b11e2145535 data/c/tags/block/storage_blocks/slime.json
 10c99a4edef6e748c918eec5cba16f01f6e0dc9f data/c/tags/block/stripped_logs.json

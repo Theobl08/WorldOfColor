@@ -2,6 +2,7 @@ package net.theobl.worldofcolor.datagen;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
@@ -9,6 +10,7 @@ import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
+import net.theobl.worldofcolor.entity.ModEntityType;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.tags.ModTags;
 import org.jetbrains.annotations.NotNull;
@@ -29,6 +31,8 @@ public class ModLanguageProvider extends LanguageProvider {
 
         ModItems.COLORED_BOATS.forEach(item -> add(item.asItem(), capitalizeString(filterItemLang(item))));
         ModItems.COLORED_CHEST_BOATS.forEach(item -> add(item.asItem(), filterChestBoatLang(item)));
+        ModEntityType.COLORED_BOATS.forEach(boat -> add(boat.get(), capitalizeString(filterEntityTypeLang(boat.get()))));
+        ModEntityType.COLORED_CHEST_BOATS.forEach(boat -> add(boat.get(), filterChestBoatLang(boat.get())));
 
         for (TagKey<Block> tag : ModTags.Blocks.COLORED_LOGS) {
             add(tag, capitalizeString(filterTagLang(tag)));
@@ -83,5 +87,18 @@ public class ModLanguageProvider extends LanguageProvider {
                 .replace("_"," ");
 
         return capitalizeString(type) + "Boat with Chest";
+    }
+
+    private static String filterChestBoatLang(EntityType<?> key){
+        String type = key.getDescriptionId()
+                .replace("entity.worldofcolor.","")
+                .replace("chest_boat","")
+                .replace("_"," ");
+
+        return capitalizeString(type) + "Boat with Chest";
+    }
+
+    private static String filterEntityTypeLang(EntityType<?> key){
+        return key.getDescriptionId().replace("entity.worldofcolor.","").replace("_"," ");
     }
 }

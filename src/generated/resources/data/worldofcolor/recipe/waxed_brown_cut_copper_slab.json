@@ -3,9 +3,7 @@
   "category": "building",
   "group": "waxed_cut_copper_slab",
   "key": {
-    "#": {
-      "item": "worldofcolor:waxed_brown_cut_copper"
-    }
+    "#": "worldofcolor:waxed_brown_cut_copper"
   },
   "pattern": [
     "###"

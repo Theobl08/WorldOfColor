@@ -172,13 +172,13 @@ public class ModBlocks {
                         p -> new StandingSignBlock(ModWoodType.COLORED_WOODS.get(index), p), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(color));
             else if(wall && !hanging) // wall sign
                 block = BLOCKS.registerBlock( color.getName() + "_wall_sign",
-                        p -> new WallSignBlock(ModWoodType.COLORED_WOODS.get(index), p), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_SIGN).mapColor(color));
+                        p -> new WallSignBlock(ModWoodType.COLORED_WOODS.get(index), p), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN).mapColor(color));
             else if(!wall) // hanging sign
                 block = BLOCKS.registerBlock( color.getName() + "_hanging_sign",
                         p -> new CeilingHangingSignBlock(ModWoodType.COLORED_WOODS.get(index), p), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(color));
             else // wall hanging sign
                 block = BLOCKS.registerBlock( color.getName() + "_wall_hanging_sign",
-                        p -> new WallHangingSignBlock(ModWoodType.COLORED_WOODS.get(index), p), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WALL_HANGING_SIGN).mapColor(color));
+                        p -> new WallHangingSignBlock(ModWoodType.COLORED_WOODS.get(index), p), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN).mapColor(color));
             signs.add(block);
         }
         return signs;

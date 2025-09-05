@@ -3,12 +3,8 @@
   "category": "building",
   "group": "waxed_brown_copper_grate",
   "ingredients": [
-    {
-      "item": "worldofcolor:brown_copper_grate"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    }
+    "worldofcolor:brown_copper_grate",
+    "minecraft:honeycomb"
   ],
   "result": {
     "count": 1,

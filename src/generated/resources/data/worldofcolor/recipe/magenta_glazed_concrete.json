@@ -3,9 +3,7 @@
   "category": "blocks",
   "cookingtime": 200,
   "experience": 0.1,
-  "ingredient": {
-    "item": "minecraft:magenta_concrete"
-  },
+  "ingredient": "minecraft:magenta_concrete",
   "result": {
     "count": 1,
     "id": "worldofcolor:magenta_glazed_concrete"

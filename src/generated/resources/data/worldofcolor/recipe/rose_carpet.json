@@ -3,9 +3,7 @@
   "category": "misc",
   "group": "carpet",
   "key": {
-    "#": {
-      "item": "worldofcolor:rose_wool"
-    }
+    "#": "worldofcolor:rose_wool"
   },
   "pattern": [
     "##"

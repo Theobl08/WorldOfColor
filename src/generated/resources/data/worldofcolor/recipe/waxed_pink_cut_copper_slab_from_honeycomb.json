@@ -3,12 +3,8 @@
   "category": "building",
   "group": "waxed_pink_cut_copper_slab",
   "ingredients": [
-    {
-      "item": "worldofcolor:pink_cut_copper_slab"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    }
+    "worldofcolor:pink_cut_copper_slab",
+    "minecraft:honeycomb"
   ],
   "result": {
     "count": 1,

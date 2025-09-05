@@ -2,12 +2,8 @@
   "type": "minecraft:crafting_shapeless",
   "category": "redstone",
   "ingredients": [
-    {
-      "item": "minecraft:copper_door"
-    },
-    {
-      "item": "minecraft:white_dye"
-    }
+    "minecraft:copper_door",
+    "minecraft:white_dye"
   ],
   "result": {
     "count": 1,

@@ -3,12 +3,8 @@
   "category": "building",
   "group": "waxed_light_gray_copper_bulb",
   "ingredients": [
-    {
-      "item": "worldofcolor:light_gray_copper_bulb"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    }
+    "worldofcolor:light_gray_copper_bulb",
+    "minecraft:honeycomb"
   ],
   "result": {
     "count": 1,

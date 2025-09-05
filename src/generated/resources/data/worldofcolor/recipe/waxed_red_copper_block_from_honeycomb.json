@@ -3,12 +3,8 @@
   "category": "building",
   "group": "waxed_red_copper_block",
   "ingredients": [
-    {
-      "item": "worldofcolor:red_copper_block"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    }
+    "worldofcolor:red_copper_block",
+    "minecraft:honeycomb"
   ],
   "result": {
     "count": 1,

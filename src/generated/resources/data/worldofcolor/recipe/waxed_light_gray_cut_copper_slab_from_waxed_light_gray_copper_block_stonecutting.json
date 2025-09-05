@@ -1,8 +1,6 @@
 {
   "type": "minecraft:stonecutting",
-  "ingredient": {
-    "item": "worldofcolor:waxed_light_gray_copper_block"
-  },
+  "ingredient": "worldofcolor:waxed_light_gray_copper_block",
   "result": {
     "count": 8,
     "id": "worldofcolor:waxed_light_gray_cut_copper_slab"

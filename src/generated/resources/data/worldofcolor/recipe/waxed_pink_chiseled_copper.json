@@ -3,9 +3,7 @@
   "category": "building",
   "group": "waxed_cut_copper_chiseled",
   "key": {
-    "#": {
-      "item": "worldofcolor:waxed_pink_cut_copper_slab"
-    }
+    "#": "worldofcolor:waxed_pink_cut_copper_slab"
   },
   "pattern": [
     "#",

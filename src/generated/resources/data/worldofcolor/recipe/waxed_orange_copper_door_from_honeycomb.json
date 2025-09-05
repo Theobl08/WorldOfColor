@@ -3,12 +3,8 @@
   "category": "building",
   "group": "waxed_orange_copper_door",
   "ingredients": [
-    {
-      "item": "worldofcolor:orange_copper_door"
-    },
-    {
-      "item": "minecraft:honeycomb"
-    }
+    "worldofcolor:orange_copper_door",
+    "minecraft:honeycomb"
   ],
   "result": {
     "count": 1,
