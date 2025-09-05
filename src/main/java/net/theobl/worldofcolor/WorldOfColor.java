@@ -2,15 +2,16 @@ package net.theobl.worldofcolor;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.model.BoatModel;
-import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.api.distmarker.Dist;
@@ -33,7 +34,6 @@ import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.block.ModWoodType;
 import net.theobl.worldofcolor.entity.ModEntityType;
 import net.theobl.worldofcolor.entity.ModPoiTypes;
-import net.theobl.worldofcolor.entity.client.ModBoatRenderer;
 import net.theobl.worldofcolor.entity.client.ModModelLayers;
 import net.theobl.worldofcolor.item.ModCreativeModeTabs;
 import net.theobl.worldofcolor.item.ModItems;
@@ -119,14 +119,17 @@ public class WorldOfColor {
             for (WoodType type : ModWoodType.COLORED_WOODS)
                 Sheets.addWoodType(type);
 
-            EntityRenderers.register(ModEntityType.COLORED_BOAT.get(), pContext -> new ModBoatRenderer(pContext, false));
-            EntityRenderers.register(ModEntityType.COLORED_CHEST_BOAT.get(), pContext -> new ModBoatRenderer(pContext, true));
+            for (DyeColor color : ModUtil.COLORS) {
+                int index = ModUtil.COLORS.indexOf(color);
+                EntityRenderers.register(ModEntityType.COLORED_BOATS.get(index).get(), context -> new BoatRenderer(context, ModModelLayers.COLORED_BOATS.get(index)));
+                EntityRenderers.register(ModEntityType.COLORED_CHEST_BOATS.get(index).get(), context -> new BoatRenderer(context, ModModelLayers.COLORED_CHEST_BOATS.get(index)));
+            }
         }
 
         @SubscribeEvent
         public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-            ModModelLayers.COLORED_BOATS.forEach(layer -> event.registerLayerDefinition(layer, BoatModel::createBodyModel));
-            ModModelLayers.COLORED_CHEST_BOATS.forEach(layer -> event.registerLayerDefinition(layer, ChestBoatModel::createBodyModel));
+            ModModelLayers.COLORED_BOATS.forEach(layer -> event.registerLayerDefinition(layer, BoatModel::createBoatModel));
+            ModModelLayers.COLORED_CHEST_BOATS.forEach(layer -> event.registerLayerDefinition(layer, BoatModel::createChestBoatModel));
         }
 
         @SubscribeEvent

@@ -7,7 +7,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
-import net.theobl.worldofcolor.entity.ModBoat;
+import net.theobl.worldofcolor.entity.ModEntityType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,14 +30,14 @@ public class ModItems {
             int index = COLORS.indexOf(color);
             DeferredItem<Item> item;
             if(!hanging) {
-                item = ITEMS.register(color.getName() + "_sign",
-                        () -> new SignItem(new Item.Properties().stacksTo(16),
-                                ModBlocks.COLORED_SIGNS.get(index).get(), ModBlocks.COLORED_WALL_SIGNS.get(index).get()));
+                item = ITEMS.registerItem(color.getName() + "_sign",
+                        p -> new SignItem(ModBlocks.COLORED_SIGNS.get(index).get(), ModBlocks.COLORED_WALL_SIGNS.get(index).get(), p),
+                                new Item.Properties().stacksTo(16));
             }
             else {
-                item = ITEMS.register(color.getName() + "_hanging_sign",
-                        () -> new HangingSignItem(ModBlocks.COLORED_HANGING_SIGNS.get(index).get(), ModBlocks.COLORED_WALL_HANGING_SIGNS.get(index).get(),
-                                new Item.Properties().stacksTo(16)));
+                item = ITEMS.registerItem(color.getName() + "_hanging_sign",
+                        p -> new HangingSignItem(ModBlocks.COLORED_HANGING_SIGNS.get(index).get(), ModBlocks.COLORED_WALL_HANGING_SIGNS.get(index).get(), p),
+                                new Item.Properties().stacksTo(16));
             }
             signs.add(item);
         }
@@ -48,8 +48,15 @@ public class ModItems {
         List<DeferredItem<Item>> boat = new ArrayList<>();
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
-            DeferredItem<Item> item = ITEMS.register(color.getName() + (hasChest ? "_chest_boat" : "_boat"),
-                    () -> new ModBoatItem(hasChest, ModBoat.Type.byId(index), new Item.Properties().stacksTo(1)));
+            DeferredItem<Item> item;
+            if(hasChest) {
+                item = ITEMS.registerItem(color.getName() + "_chest_boat",
+                        p -> new BoatItem(ModEntityType.COLORED_CHEST_BOATS.get(index).get(), p), new Item.Properties().stacksTo(1));
+            }
+            else {
+                item = ITEMS.registerItem(color.getName() + "_boat",
+                        p -> new BoatItem(ModEntityType.COLORED_BOATS.get(index).get(), p), new Item.Properties().stacksTo(1));
+            }
             boat.add(item);
         }
         return boat;
@@ -59,15 +66,16 @@ public class ModItems {
         List<DeferredItem<Item>> cauldron = new ArrayList<>();
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
-            DeferredItem<Item> item = ITEMS.register(color.getName() + "_cauldron", key ->
-                    new BlockItem(ModBlocks.COLORED_CAULDRONS.get(index).get(), new Item.Properties()) {
+            DeferredItem<Item> item = ITEMS.registerItem(color.getName() + "_cauldron", p ->
+                    new BlockItem(ModBlocks.COLORED_CAULDRONS.get(index).get(), p) {
                         public void registerBlocks(java.util.Map<Block, Item> map, Item self) {
                             super.registerBlocks(map, self);
                             map.put(ModBlocks.COLORED_WATER_CAULDRONS.get(index).get(), self);
                             map.put(ModBlocks.COLORED_LAVA_CAULDRONS.get(index).get(), self);
                             map.put(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(index).get(), self);
                         }
-                    });
+                    },
+                    new Item.Properties().useBlockDescriptionPrefix());
             cauldron.add(item);
         }
         return cauldron;

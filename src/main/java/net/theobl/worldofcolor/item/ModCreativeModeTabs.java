@@ -76,7 +76,7 @@ public class ModCreativeModeTabs {
                         for (DeferredHolder<Block, ? extends Block> block : ModBlocks.BLOCKS.getEntries()) {
                             output.accept(block.get());
                         }
-                        ModItems.ITEMS.getEntries().forEach(item -> {if (item.get() instanceof ModBoatItem) output.accept(item.get());});
+                        ModItems.ITEMS.getEntries().forEach(item -> {if (item.get() instanceof BoatItem) output.accept(item.get());});
                     }).build());
 
     public static void register(IEventBus eventBus) {

@@ -200,7 +200,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         for (DyeColor color : DyeColor.values()) {
             ResourceLocation key = ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, pattern.replace("{color}", color.getName()));
             TagKey<Block> tag = getForgeTag(prefix + color.getName());
-            Block block = BuiltInRegistries.BLOCK.get(key);
+            Block block = BuiltInRegistries.BLOCK.getValue(key);
             if (block == null || block == Blocks.AIR)
                 throw new IllegalStateException("Unknown block: " + key);
             tag(tag).add(block);

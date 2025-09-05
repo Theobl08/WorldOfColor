@@ -8,7 +8,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.ItemInteractionResult;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -51,9 +51,9 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
                     level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
                     level.gameEvent(null, GameEvent.FLUID_PLACE, pos);
                 }
-                return ItemInteractionResult.sidedSuccess(level.isClientSide);
+                return InteractionResult.SUCCESS;
             } else {
-                return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+                return InteractionResult.TRY_WITH_EMPTY_HAND;
             }
         });
         Map<Item, CauldronInteraction> map1 = WATER.map();
@@ -103,7 +103,7 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
         );
     }
 
-    static ItemInteractionResult fillBucket(
+    static InteractionResult fillBucket(
             BlockState state,
             Level level,
             BlockPos pos,
@@ -115,7 +115,7 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
             SoundEvent fillSound
     ) {
         if (!statePredicate.test(state)) {
-            return ItemInteractionResult.PASS_TO_DEFAULT_BLOCK_INTERACTION;
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
         } else {
             if (!level.isClientSide) {
                 BlockState blockState = Blocks.CAULDRON.defaultBlockState();
@@ -146,7 +146,7 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
                 level.gameEvent(null, GameEvent.FLUID_PICKUP, pos);
             }
 
-            return ItemInteractionResult.sidedSuccess(level.isClientSide);
+            return InteractionResult.SUCCESS;
         }
     }
 }

@@ -4,7 +4,6 @@ import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.theobl.worldofcolor.WorldOfColor;
-import net.theobl.worldofcolor.entity.ModBoat;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,25 +22,5 @@ public class ModModelLayers {
             boat.add(layerLocation);
         }
         return boat;
-    }
-
-    private static ModelLayerLocation createLocation(String pPath, String pModel) {
-        return new ModelLayerLocation(ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, pPath), pModel);
-    }
-
-    public static ModelLayerLocation createRaftModelName(ModBoat.Type pType) {
-        return createLocation("raft/" + pType.getName(), "main");
-    }
-
-    public static ModelLayerLocation createChestRaftModelName(ModBoat.Type pType) {
-        return createLocation("chest_raft/" + pType.getName(), "main");
-    }
-
-    public static ModelLayerLocation createBoatModelName(ModBoat.Type pType) {
-        return createLocation("boat/" + pType.getName(), "main");
-    }
-
-    public static ModelLayerLocation createChestBoatModelName(ModBoat.Type pType) {
-        return createLocation("chest_boat/" + pType.getName(), "main");
     }
 }
