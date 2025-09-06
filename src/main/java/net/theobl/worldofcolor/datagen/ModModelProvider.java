@@ -1,5 +1,8 @@
 package net.theobl.worldofcolor.datagen;
 
+import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.Maps;
+import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
@@ -21,11 +24,35 @@ import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.util.ModUtil;
 
+import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.function.BiConsumer;
+
 import static net.minecraft.client.data.models.BlockModelGenerators.*;
 import static net.minecraft.client.data.models.model.TextureMapping.*;
 import static net.theobl.worldofcolor.datagen.VanillaModelTemplates.*;
 
 public class ModModelProvider extends ModelProvider {
+    public static final Map<BlockFamily.Variant, BiConsumer<ModBlockFamilyProvider, Block>> SHAPE_CONSUMERS = ImmutableMap.<BlockFamily.Variant, BiConsumer<ModBlockFamilyProvider, Block>>builder()
+        .put(BlockFamily.Variant.BUTTON, BlockModelGenerators.BlockFamilyProvider::button)
+        .put(BlockFamily.Variant.DOOR, ModBlockFamilyProvider::door)
+        .put(BlockFamily.Variant.CHISELED, BlockModelGenerators.BlockFamilyProvider::fullBlockVariant)
+        .put(BlockFamily.Variant.CRACKED, BlockModelGenerators.BlockFamilyProvider::fullBlockVariant)
+        .put(BlockFamily.Variant.CUSTOM_FENCE, BlockModelGenerators.BlockFamilyProvider::customFence)
+        .put(BlockFamily.Variant.FENCE, BlockModelGenerators.BlockFamilyProvider::fence)
+        .put(BlockFamily.Variant.CUSTOM_FENCE_GATE, BlockModelGenerators.BlockFamilyProvider::customFenceGate)
+        .put(BlockFamily.Variant.FENCE_GATE, BlockModelGenerators.BlockFamilyProvider::fenceGate)
+        .put(BlockFamily.Variant.SIGN, BlockModelGenerators.BlockFamilyProvider::sign)
+        .put(BlockFamily.Variant.SLAB, BlockModelGenerators.BlockFamilyProvider::slab)
+        .put(BlockFamily.Variant.STAIRS, BlockModelGenerators.BlockFamilyProvider::stairs)
+        .put(BlockFamily.Variant.PRESSURE_PLATE, BlockModelGenerators.BlockFamilyProvider::pressurePlate)
+        .put(BlockFamily.Variant.TRAPDOOR, ModBlockFamilyProvider::trapdoor)
+        .put(BlockFamily.Variant.WALL, BlockModelGenerators.BlockFamilyProvider::wall)
+        .build();
+
     public ModModelProvider(PackOutput output) {
         super(output, WorldOfColor.MODID);
     }
@@ -34,7 +61,7 @@ public class ModModelProvider extends ModelProvider {
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
         ModBlockFamilies.getAllFamilies()
                 .filter(BlockFamily::shouldGenerateModel)
-                .forEach(blockFamily -> blockModels.family(blockFamily.getBaseBlock()).generateFor(blockFamily));
+                .forEach(blockFamily -> this.family(blockFamily.getBaseBlock(), blockModels).generateFor(blockFamily));
         ModBlocks.SIMPLE_COLORED_BLOCKS.forEach(block -> blockModels.createTrivialCube(block.get()));
         ModBlocks.GLAZED_CONCRETES.forEach(block -> {
             ResourceLocation resourcelocation = TexturedModel.GLAZED_TERRACOTTA.create(block.get(), blockModels.modelOutput);
@@ -226,6 +253,11 @@ public class ModModelProvider extends ModelProvider {
                 );
     }
 
+    public ModBlockFamilyProvider family(Block block, BlockModelGenerators blockModels) {
+        TexturedModel texturedmodel = blockModels.texturedModels.getOrDefault(block, TexturedModel.CUBE.get(block));
+        return new ModBlockFamilyProvider(texturedmodel.getMapping(), blockModels).fullBlock(block, texturedmodel.getTemplate());
+    }
+
     public void createDoorWithRenderType(Block doorBlock, BlockModelGenerators blockModels, String renderType) {
         TextureMapping texturemapping = TextureMapping.door(doorBlock);
         ResourceLocation resourcelocation = ModelTemplates.DOOR_BOTTOM_LEFT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
@@ -258,7 +290,7 @@ public class ModModelProvider extends ModelProvider {
         ResourceLocation resourcelocation = ModelTemplates.ORIENTABLE_TRAPDOOR_TOP.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
         ResourceLocation resourcelocation1 = ModelTemplates.ORIENTABLE_TRAPDOOR_BOTTOM.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
         ResourceLocation resourcelocation2 = ModelTemplates.ORIENTABLE_TRAPDOOR_OPEN.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(createTrapdoor(trapdoorBlock, resourcelocation, resourcelocation1, resourcelocation2));
+        blockModels.blockStateOutput.accept(createOrientableTrapdoor(trapdoorBlock, resourcelocation, resourcelocation1, resourcelocation2));
         blockModels.registerSimpleItemModel(trapdoorBlock, resourcelocation1);
     }
 
@@ -298,5 +330,96 @@ public class ModModelProvider extends ModelProvider {
         return new TextureMapping()
                 .put(TextureSlot.PARTICLE, getBlockTexture(lightningRod))
                 .put(TextureSlot.TEXTURE, getBlockTexture(lightningRod));
+    }
+
+    @ParametersAreNonnullByDefault
+    @MethodsReturnNonnullByDefault
+    public class ModBlockFamilyProvider extends BlockModelGenerators.BlockFamilyProvider {
+        private final TextureMapping mapping;
+        private final Map<ModelTemplate, ResourceLocation> models = Maps.newHashMap();
+        @Nullable
+        private BlockFamily family;
+        @Nullable
+        private ResourceLocation fullBlock;
+        private final Set<Block> skipGeneratingModelsFor = new HashSet<>();
+        private final BlockModelGenerators blockModels;
+
+        public ModBlockFamilyProvider(TextureMapping mapping, BlockModelGenerators blockModels) {
+            blockModels.super(mapping);
+            this.mapping = mapping;
+            this.blockModels = blockModels;
+        }
+
+        public ModBlockFamilyProvider fullBlock(Block block, ModelTemplate modelTemplate) {
+            this.fullBlock = modelTemplate.create(block, this.mapping, blockModels.modelOutput);
+            if (blockModels.fullBlockModelCustomGenerators.containsKey(block)) {
+                blockModels.blockStateOutput
+                        .accept(
+                                blockModels.fullBlockModelCustomGenerators
+                                        .get(block)
+                                        .create(block, this.fullBlock, this.mapping, blockModels.modelOutput)
+                        );
+            } else {
+                blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, this.fullBlock));
+            }
+
+            return this;
+        }
+
+        public BlockModelGenerators.BlockFamilyProvider sign(Block signBlock) {
+            if (this.family == null) {
+                throw new IllegalStateException("Family not defined");
+            } else {
+                Block block = this.family.getVariants().get(BlockFamily.Variant.WALL_SIGN);
+                ResourceLocation resourcelocation = ModelTemplates.PARTICLE_ONLY.create(signBlock, this.mapping, blockModels.modelOutput);
+                blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(signBlock, resourcelocation));
+                blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, resourcelocation));
+                blockModels.registerSimpleFlatItemModel(signBlock.asItem());
+                return this;
+            }
+        }
+
+        public BlockModelGenerators.BlockFamilyProvider slab(Block slabBlock) {
+            if (this.fullBlock == null) {
+                throw new IllegalStateException("Full block not generated yet");
+            } else {
+                ResourceLocation bottom = this.getOrCreateModel(ModelTemplates.SLAB_BOTTOM, slabBlock);
+                ResourceLocation top = this.getOrCreateModel(ModelTemplates.SLAB_TOP, slabBlock);
+                blockModels.blockStateOutput
+                        .accept(BlockModelGenerators.createSlab(slabBlock, bottom, top, this.fullBlock));
+                blockModels.registerSimpleItemModel(slabBlock, bottom);
+                return this;
+            }
+        }
+
+        public BlockModelGenerators.BlockFamilyProvider door(Block doorBlock) {
+            createDoorWithRenderType(doorBlock, blockModels, "cutout");
+            return this;
+        }
+
+        public void trapdoor(Block trapdoorBlock) {
+            if (blockModels.nonOrientableTrapdoor.contains(trapdoorBlock)) {
+                blockModels.createTrapdoor(trapdoorBlock);
+            } else {
+                createOrientableTrapdoorWithRenderType(trapdoorBlock, blockModels, "cutout");
+            }
+        }
+
+        public ResourceLocation getOrCreateModel(ModelTemplate modelTemplate, Block block) {
+            return this.models.computeIfAbsent(modelTemplate, template -> template.create(block, this.mapping, blockModels.modelOutput));
+        }
+
+        public BlockModelGenerators.BlockFamilyProvider generateFor(BlockFamily family) {
+            this.family = family;
+            family.getVariants().forEach((variant, block) -> {
+                if (!this.skipGeneratingModelsFor.contains(block)) {
+                    BiConsumer<ModBlockFamilyProvider, Block> biconsumer = ModModelProvider.SHAPE_CONSUMERS.get(variant);
+                    if (biconsumer != null) {
+                        biconsumer.accept(this, block);
+                    }
+                }
+            });
+            return this;
+        }
     }
 }

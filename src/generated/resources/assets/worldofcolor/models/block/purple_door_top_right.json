@@ -1,5 +1,6 @@
 {
   "parent": "minecraft:block/door_top_right",
+  "render_type": "minecraft:cutout",
   "textures": {
     "bottom": "worldofcolor:block/purple_door_bottom",
     "top": "worldofcolor:block/purple_door_top"
