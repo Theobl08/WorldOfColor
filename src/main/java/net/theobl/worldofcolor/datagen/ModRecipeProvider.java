@@ -15,7 +15,6 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
-import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
@@ -27,7 +26,7 @@ import java.util.concurrent.CompletableFuture;
 
 import static net.theobl.worldofcolor.util.ModUtil.*;
 
-public class ModRecipeProvider extends RecipeProvider implements IConditionBuilder {
+public class ModRecipeProvider extends RecipeProvider {
 
     public ModRecipeProvider(HolderLookup.Provider provider, RecipeOutput output) {
         super(provider, output);
