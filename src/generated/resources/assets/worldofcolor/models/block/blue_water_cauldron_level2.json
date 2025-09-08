@@ -1,10 +1,40 @@
 {
-  "parent": "minecraft:block/water_cauldron_level2",
+  "ambientocclusion": false,
+  "children": {
+    "cauldron": "worldofcolor:block/blue_cauldron",
+    "content": {
+      "elements": [
+        {
+          "faces": {
+            "up": {
+              "texture": "#content",
+              "tintindex": 0
+            }
+          },
+          "from": [
+            2,
+            4,
+            2
+          ],
+          "to": [
+            14,
+            12,
+            14
+          ]
+        }
+      ],
+      "render_type": "minecraft:translucent",
+      "textures": {
+        "content": "minecraft:block/water_still"
+      }
+    }
+  },
+  "item_render_order": [
+    "cauldron",
+    "content"
+  ],
+  "loader": "neoforge:composite",
   "textures": {
-    "bottom": "worldofcolor:block/blue_cauldron_bottom",
-    "inside": "worldofcolor:block/blue_cauldron_inner",
-    "particle": "worldofcolor:block/blue_cauldron_side",
-    "side": "worldofcolor:block/blue_cauldron_side",
-    "top": "worldofcolor:block/blue_cauldron_top"
+    "particle": "worldofcolor:block/blue_cauldron_side"
   }
 }

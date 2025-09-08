@@ -104,11 +104,11 @@ public class ColoredBlockModelGenerators {
                                                         Variant.variant()
                                                                 .with(
                                                                         VariantProperties.MODEL,
-                                                                        CAULDRON.extend().parent(ResourceLocation.parse("block/water_cauldron_level1")).build()
+                                                                        VanillaModelTemplates.cauldronLevelX(color, 1)
                                                                                 .createWithSuffix(
                                                                                         waterCauldron,
                                                                                         "_level1",
-                                                                                        cauldronEmpty(color),
+                                                                                        TextureMapping.particle(getBlockTexture(cauldron, "_side")),
                                                                                         blockModels.modelOutput
                                                                                 )
                                                                 )
@@ -118,11 +118,11 @@ public class ColoredBlockModelGenerators {
                                                         Variant.variant()
                                                                 .with(
                                                                         VariantProperties.MODEL,
-                                                                        CAULDRON.extend().parent(ResourceLocation.parse("block/water_cauldron_level2")).build()
+                                                                        VanillaModelTemplates.cauldronLevelX(color, 2)
                                                                                 .createWithSuffix(
                                                                                         waterCauldron,
                                                                                         "_level2",
-                                                                                        cauldronEmpty(color),
+                                                                                        TextureMapping.particle(getBlockTexture(cauldron, "_side")),
                                                                                         blockModels.modelOutput
                                                                                 )
                                                                 )
@@ -132,11 +132,11 @@ public class ColoredBlockModelGenerators {
                                                         Variant.variant()
                                                                 .with(
                                                                         VariantProperties.MODEL,
-                                                                        CAULDRON.extend().parent(ResourceLocation.parse("block/water_cauldron_full")).build()
+                                                                        VanillaModelTemplates.cauldronLevelX(color, 3)
                                                                                 .createWithSuffix(
                                                                                         waterCauldron,
                                                                                         "_full",
-                                                                                        cauldronEmpty(color),
+                                                                                        TextureMapping.particle(getBlockTexture(cauldron, "_side")),
                                                                                         blockModels.modelOutput
                                                                                 )
                                                                 )
