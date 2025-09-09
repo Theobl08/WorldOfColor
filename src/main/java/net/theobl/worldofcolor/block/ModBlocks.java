@@ -1,6 +1,8 @@
 package net.theobl.worldofcolor.block;
 
 import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -35,7 +37,7 @@ public class ModBlocks {
     public static final List<DeferredBlock<Block>> GLAZED_CONCRETES = registerColored("glazed_concrete", GlazedTerracottaBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_GLAZED_TERRACOTTA));
     public static final List<DeferredBlock<Block>> COLORED_LIGHTNING_RODS = registerColored("lightning_rod", LightningRodBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHTNING_ROD));
     public static final List<DeferredBlock<Block>> COLORED_SAPLINGS = registerColoredSaplings();
-    public static final List<DeferredBlock<Block>> COLORED_LEAVES = registerColored("leaves", LeavesBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES));
+    public static final List<DeferredBlock<Block>> COLORED_LEAVES = registerColoredLeaves();
     public static final List<DeferredBlock<Block>> COLORED_LOGS = registerColored("log", RotatedPillarBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG));
     public static final List<DeferredBlock<Block>> COLORED_WOODS = registerColored("wood", RotatedPillarBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD));
     public static final List<DeferredBlock<Block>> COLORED_STRIPPED_LOGS = registerColored("log", RotatedPillarBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG), "stripped_");
@@ -143,6 +145,17 @@ public class ModBlocks {
             saplings.add(block);
         }
         return saplings;
+    }
+
+    private static List<DeferredBlock<Block>> registerColoredLeaves() {
+        List<DeferredBlock<Block>> leaves = new ArrayList<>();
+        for (DyeColor color : COLORS) {
+            DeferredBlock<Block> block = registerBlock(color.getName() + "_leaves",
+                    p -> new UntintedParticleLeavesBlock(0.01F, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, color.getTextureDiffuseColor()), p),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(color));
+            leaves.add(block);
+        }
+        return leaves;
     }
 
     private static List<DeferredBlock<Block>> registerColoredStairs(String key, List<DeferredBlock<Block>> baseState, BlockBehaviour.Properties properties, String prefix) {

@@ -6,9 +6,8 @@ import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
-import net.minecraft.client.data.models.blockstates.Variant;
-import net.minecraft.client.data.models.blockstates.VariantProperties;
 import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.block.model.Variant;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
@@ -64,11 +63,11 @@ public class ColoredBlockModelGenerators {
     }
 
     public void createTrivialBlockWithRenderType(Block block, TexturedModel.Provider provider, String renderType) {
-        blockModels.blockStateOutput.accept(createSimpleBlock(block, provider.updateTemplate(template -> template.extend().renderType(renderType).build()).create(block, blockModels.modelOutput)));
+        blockModels.blockStateOutput.accept(createSimpleBlock(block, plainVariant(provider.updateTemplate(template -> template.extend().renderType(renderType).build()).create(block, blockModels.modelOutput))));
     }
 
     public void createTrivialBlock(Block block, TextureMapping mapping, ModelTemplate template) {
-        blockModels.blockStateOutput.accept(createSimpleBlock(block, template.create(block, mapping, blockModels.modelOutput)));
+        blockModels.blockStateOutput.accept(createSimpleBlock(block, plainVariant(template.create(block, mapping, blockModels.modelOutput))));
     }
 
     public void createCauldrons(DyeColor color) {
@@ -82,28 +81,30 @@ public class ColoredBlockModelGenerators {
                 .accept(
                         createSimpleBlock(
                                 cauldron,
+                                plainVariant(
                                 CAULDRON
                                         .create(cauldron, cauldronEmpty(color), blockModels.modelOutput)
+                                )
                         )
                 );
         blockModels.blockStateOutput
                 .accept(
                         createSimpleBlock(
                                 lavaCauldron,
+                                plainVariant(
                                 CAULDRON.extend().parent(ResourceLocation.parse("block/lava_cauldron")).build()
                                         .create(lavaCauldron, ColoredTextureMapping.cauldron(getBlockTexture(Blocks.LAVA, "_still"), color), blockModels.modelOutput)
+                                )
                         )
                 );
         blockModels.blockStateOutput
                 .accept(
-                        MultiVariantGenerator.multiVariant(waterCauldron)
+                        MultiVariantGenerator.dispatch(waterCauldron)
                                 .with(
-                                        PropertyDispatch.property(LayeredCauldronBlock.LEVEL)
+                                        PropertyDispatch.initial(LayeredCauldronBlock.LEVEL)
                                                 .select(
                                                         1,
-                                                        Variant.variant()
-                                                                .with(
-                                                                        VariantProperties.MODEL,
+                                                        plainVariant(
                                                                         VanillaModelTemplates.cauldronLevelX(color, 1)
                                                                                 .createWithSuffix(
                                                                                         waterCauldron,
@@ -115,9 +116,7 @@ public class ColoredBlockModelGenerators {
                                                 )
                                                 .select(
                                                         2,
-                                                        Variant.variant()
-                                                                .with(
-                                                                        VariantProperties.MODEL,
+                                                        plainVariant(
                                                                         VanillaModelTemplates.cauldronLevelX(color, 2)
                                                                                 .createWithSuffix(
                                                                                         waterCauldron,
@@ -129,9 +128,7 @@ public class ColoredBlockModelGenerators {
                                                 )
                                                 .select(
                                                         3,
-                                                        Variant.variant()
-                                                                .with(
-                                                                        VariantProperties.MODEL,
+                                                        plainVariant(
                                                                         VanillaModelTemplates.cauldronLevelX(color, 3)
                                                                                 .createWithSuffix(
                                                                                         waterCauldron,
@@ -145,14 +142,12 @@ public class ColoredBlockModelGenerators {
                 );
         blockModels.blockStateOutput
                 .accept(
-                        MultiVariantGenerator.multiVariant(powderSnowCauldron)
+                        MultiVariantGenerator.dispatch(powderSnowCauldron)
                                 .with(
-                                        PropertyDispatch.property(LayeredCauldronBlock.LEVEL)
+                                        PropertyDispatch.initial(LayeredCauldronBlock.LEVEL)
                                                 .select(
                                                         1,
-                                                        Variant.variant()
-                                                                .with(
-                                                                        VariantProperties.MODEL,
+                                                        plainVariant(
                                                                         CAULDRON.extend().parent(ResourceLocation.parse("block/powder_snow_cauldron_level1")).build()
                                                                                 .createWithSuffix(
                                                                                         powderSnowCauldron,
@@ -164,9 +159,7 @@ public class ColoredBlockModelGenerators {
                                                 )
                                                 .select(
                                                         2,
-                                                        Variant.variant()
-                                                                .with(
-                                                                        VariantProperties.MODEL,
+                                                        plainVariant(
                                                                         CAULDRON.extend().parent(ResourceLocation.parse("block/powder_snow_cauldron_level2")).build()
                                                                                 .createWithSuffix(
                                                                                         powderSnowCauldron,
@@ -178,9 +171,7 @@ public class ColoredBlockModelGenerators {
                                                 )
                                                 .select(
                                                         3,
-                                                        Variant.variant()
-                                                                .with(
-                                                                        VariantProperties.MODEL,
+                                                        plainVariant(
                                                                         CAULDRON.extend().parent(ResourceLocation.parse("block/powder_snow_cauldron_full")).build()
                                                                                 .createWithSuffix(
                                                                                         powderSnowCauldron,
@@ -209,14 +200,14 @@ public class ColoredBlockModelGenerators {
                 .accept(
                         createDoor(
                                 doorBlock,
-                                resourcelocation,
-                                resourcelocation1,
-                                resourcelocation2,
-                                resourcelocation3,
-                                resourcelocation4,
-                                resourcelocation5,
-                                resourcelocation6,
-                                resourcelocation7
+                                plainVariant(resourcelocation),
+                                plainVariant(resourcelocation1),
+                                plainVariant(resourcelocation2),
+                                plainVariant(resourcelocation3),
+                                plainVariant(resourcelocation4),
+                                plainVariant(resourcelocation5),
+                                plainVariant(resourcelocation6),
+                                plainVariant(resourcelocation7)
                         )
                 );
     }
@@ -226,7 +217,7 @@ public class ColoredBlockModelGenerators {
         ResourceLocation resourcelocation = ModelTemplates.ORIENTABLE_TRAPDOOR_TOP.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
         ResourceLocation resourcelocation1 = ModelTemplates.ORIENTABLE_TRAPDOOR_BOTTOM.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
         ResourceLocation resourcelocation2 = ModelTemplates.ORIENTABLE_TRAPDOOR_OPEN.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(createOrientableTrapdoor(trapdoorBlock, resourcelocation, resourcelocation1, resourcelocation2));
+        blockModels.blockStateOutput.accept(createOrientableTrapdoor(trapdoorBlock, plainVariant(resourcelocation), plainVariant(resourcelocation1), plainVariant(resourcelocation2)));
         blockModels.registerSimpleItemModel(trapdoorBlock, resourcelocation1);
     }
 
@@ -234,22 +225,22 @@ public class ColoredBlockModelGenerators {
         blockModels.registerSimpleItemModel(block.asItem(), plantType.createItemModel(blockModels, block));
         TextureMapping texturemapping = plantType.getTextureMapping(block);
         ResourceLocation resourcelocation = plantType.getCross().extend().renderType(renderType).build().create(block, texturemapping, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(createSimpleBlock(block, resourcelocation));
+        blockModels.blockStateOutput.accept(createSimpleBlock(block, plainVariant(resourcelocation)));
     }
 
     public void createLightningRods(DeferredBlock<Block> block) {
         ResourceLocation resourcelocation = ModelLocationUtils.getModelLocation(Blocks.LIGHTNING_ROD, "_on");
-        ResourceLocation resourcelocation1 = ModelLocationUtils.getModelLocation(block.get());
+        ResourceLocation resourcelocation1 = LIGHTNING_ROD.create(block.get(), lightningRod(block.get()), blockModels.modelOutput);
         blockModels.blockStateOutput
                 .accept(
-                        MultiVariantGenerator.multiVariant(block.get(), Variant.variant().with(VariantProperties.MODEL, LIGHTNING_ROD.create(block.get(), lightningRod(block.get()), blockModels.modelOutput)))
-                                .with(blockModels.createColumnWithFacing())
-                                .with(createBooleanModelDispatch(BlockStateProperties.POWERED, resourcelocation, resourcelocation1))
+                        MultiVariantGenerator.dispatch(block.get())
+                                .with(createBooleanModelDispatch(BlockStateProperties.POWERED, plainVariant(resourcelocation), plainVariant(resourcelocation1)))
+                                .with(ROTATIONS_COLUMN_WITH_FACING)
                 );
     }
 
     public ModBlockFamilyProvider family(Block block) {
-        TexturedModel texturedmodel = blockModels.texturedModels.getOrDefault(block, TexturedModel.CUBE.get(block));
+        TexturedModel texturedmodel = TEXTURED_MODELS.getOrDefault(block, TexturedModel.CUBE.get(block));
         return new ModBlockFamilyProvider(texturedmodel.getMapping(), blockModels).fullBlock(block, texturedmodel.getTemplate());
     }
 
@@ -261,7 +252,7 @@ public class ColoredBlockModelGenerators {
         @Nullable
         private BlockFamily family;
         @Nullable
-        private ResourceLocation fullBlock;
+        private Variant fullBlock;
         private final Set<Block> skipGeneratingModelsFor = new HashSet<>();
         private final BlockModelGenerators blockModels;
 
@@ -272,16 +263,16 @@ public class ColoredBlockModelGenerators {
         }
 
         public ModBlockFamilyProvider fullBlock(Block block, ModelTemplate modelTemplate) {
-            this.fullBlock = modelTemplate.create(block, this.mapping, blockModels.modelOutput);
-            if (blockModels.fullBlockModelCustomGenerators.containsKey(block)) {
+            this.fullBlock = plainModel(modelTemplate.create(block, this.mapping, blockModels.modelOutput));
+            if (FULL_BLOCK_MODEL_CUSTOM_GENERATORS.containsKey(block)) {
                 blockModels.blockStateOutput
                         .accept(
-                                blockModels.fullBlockModelCustomGenerators
+                                FULL_BLOCK_MODEL_CUSTOM_GENERATORS
                                         .get(block)
-                                        .create(block, this.fullBlock, this.mapping, blockModels.modelOutput)
+                                        .create(block, (this.fullBlock), this.mapping, blockModels.modelOutput)
                         );
             } else {
-                blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, this.fullBlock));
+                blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, variant(this.fullBlock)));
             }
 
             return this;
@@ -293,8 +284,8 @@ public class ColoredBlockModelGenerators {
             } else {
                 Block block = this.family.getVariants().get(BlockFamily.Variant.WALL_SIGN);
                 ResourceLocation resourcelocation = ModelTemplates.PARTICLE_ONLY.create(signBlock, this.mapping, blockModels.modelOutput);
-                blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(signBlock, resourcelocation));
-                blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, resourcelocation));
+                blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(signBlock, plainVariant(resourcelocation)));
+                blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, plainVariant(resourcelocation)));
                 blockModels.registerSimpleFlatItemModel(signBlock.asItem());
                 return this;
             }
@@ -307,7 +298,7 @@ public class ColoredBlockModelGenerators {
                 ResourceLocation bottom = this.getOrCreateModel(ModelTemplates.SLAB_BOTTOM, slabBlock);
                 ResourceLocation top = this.getOrCreateModel(ModelTemplates.SLAB_TOP, slabBlock);
                 blockModels.blockStateOutput
-                        .accept(BlockModelGenerators.createSlab(slabBlock, bottom, top, this.fullBlock));
+                        .accept(BlockModelGenerators.createSlab(slabBlock, plainVariant(bottom), plainVariant(top), variant(this.fullBlock)));
                 blockModels.registerSimpleItemModel(slabBlock, bottom);
                 return this;
             }
@@ -319,7 +310,7 @@ public class ColoredBlockModelGenerators {
         }
 
         public void trapdoor(Block trapdoorBlock) {
-            if (blockModels.nonOrientableTrapdoor.contains(trapdoorBlock)) {
+            if (NON_ORIENTABLE_TRAPDOOR.contains(trapdoorBlock)) {
                 blockModels.createTrapdoor(trapdoorBlock);
             } else {
                 createOrientableTrapdoorWithRenderType(trapdoorBlock, "cutout");
