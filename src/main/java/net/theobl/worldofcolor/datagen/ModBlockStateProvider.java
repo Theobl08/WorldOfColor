@@ -9,6 +9,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.client.model.generators.BlockStateProvider;
 import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.client.model.generators.loaders.CompositeModelBuilder;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.WorldOfColor;
@@ -72,7 +73,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         for (DeferredBlock<Block> block : ModBlocks.COLORED_WATER_CAULDRONS) {
             String colorName = COLORS.get(ModBlocks.COLORED_WATER_CAULDRONS.indexOf(block)).getName();
-            layeredCauldron(block, "water", colorName);
+            waterCauldron(block, colorName);
         }
 
         for (DeferredBlock<Block> block : ModBlocks.COLORED_POWDER_SNOW_CAULDRONS) {
@@ -398,6 +399,68 @@ public class ModBlockStateProvider extends BlockStateProvider {
                 .texture("bottom", modLoc("block/" + colorName + "_cauldron_bottom"))
                 .texture("side", modLoc("block/" + colorName + "_cauldron_side"))
                 .texture("inside", modLoc("block/" + colorName + "_cauldron_inner"));
+
+        getVariantBuilder(block.get())
+                .partialState().with(LayeredCauldronBlock.LEVEL, 1).modelForState().modelFile(level1).addModel()
+                .partialState().with(LayeredCauldronBlock.LEVEL, 2).modelForState().modelFile(level2).addModel()
+                .partialState().with(LayeredCauldronBlock.LEVEL, 3).modelForState().modelFile(full).addModel();
+    }
+
+    private void waterCauldron(DeferredBlock<Block> block, String colorName) {
+        ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, "block/" + colorName + "_cauldron");
+        ModelFile level1 = models().getBuilder(name(block.get()) + "_level1").customLoader((builder, fileHelper) ->
+                CompositeModelBuilder.begin(builder, fileHelper)
+                        .child("cauldron", models().nested()
+                                .parent(models().getExistingFile(parent)))
+                        .child("content", models().nested()
+                                .renderType("translucent")
+                                .element()
+                                .from(2, 4, 2)
+                                .to(14, 9, 14)
+                                .face(Direction.UP)
+                                .texture("#content")
+                                .tintindex(0)
+                                .end().end()
+                                .texture("content", extend(blockTexture(Blocks.WATER), "_still"))))
+                .end()
+                .ao(false)
+                .texture("particle", modLoc("block/" + colorName + "_cauldron_side"));
+
+        ModelFile level2 = models().getBuilder(name(block.get()) + "_level2").customLoader((builder, fileHelper) ->
+                CompositeModelBuilder.begin(builder, fileHelper)
+                        .child("cauldron", models().nested()
+                                .parent(models().getExistingFile(parent)))
+                        .child("content", models().nested()
+                                .renderType("translucent")
+                                .element()
+                                .from(2, 4, 2)
+                                .to(14, 12, 14)
+                                .face(Direction.UP)
+                                .texture("#content")
+                                .tintindex(0)
+                                .end().end()
+                                .texture("content", extend(blockTexture(Blocks.WATER), "_still"))))
+                .end()
+                .ao(false)
+                .texture("particle", modLoc("block/" + colorName + "_cauldron_side"));
+
+        ModelFile full = models().getBuilder(name(block.get()) + "_full").customLoader((builder, fileHelper) ->
+                CompositeModelBuilder.begin(builder, fileHelper)
+                        .child("cauldron", models().nested()
+                                .parent(models().getExistingFile(parent)))
+                        .child("content", models().nested()
+                                .renderType("translucent")
+                                .element()
+                                .from(2, 4, 2)
+                                .to(14, 15, 14)
+                                .face(Direction.UP)
+                                .texture("#content")
+                                .tintindex(0)
+                                .end().end()
+                                .texture("content", extend(blockTexture(Blocks.WATER), "_still"))))
+                .end()
+                .ao(false)
+                .texture("particle", modLoc("block/" + colorName + "_cauldron_side"));
 
         getVariantBuilder(block.get())
                 .partialState().with(LayeredCauldronBlock.LEVEL, 1).modelForState().modelFile(level1).addModel()
