@@ -3,7 +3,6 @@ package net.theobl.worldofcolor.datagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
@@ -13,6 +12,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.data.BlockTagCopyingItemTagProvider;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
@@ -21,7 +21,7 @@ import net.theobl.worldofcolor.tags.ModTags;
 import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 
-public class ModItemTagsProvider extends ItemTagsProvider {
+public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
     public ModItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
                                CompletableFuture<TagLookup<Block>> blockTags) {
         super(output, lookupProvider, blockTags, WorldOfColor.MODID);

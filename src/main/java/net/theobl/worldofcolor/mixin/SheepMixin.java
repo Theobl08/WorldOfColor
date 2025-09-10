@@ -1,16 +1,18 @@
 package net.theobl.worldofcolor.mixin;
 
-import net.minecraft.world.entity.animal.sheep.Sheep;
+import com.llamalad7.mixinextras.injector.ModifyReturnValue;
+import com.llamalad7.mixinextras.sugar.Local;
+import net.minecraft.client.color.ColorLerper;
 import net.minecraft.world.item.DyeColor;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-@Mixin(Sheep.class)
+@Mixin(ColorLerper.class)
 public class SheepMixin {
-    @Inject(method = "createSheepColor", at = @At(value = "RETURN"), cancellable = true)
-    private static void bedrockEditionSheepColor(DyeColor dyeColor, CallbackInfoReturnable<Integer> cir) {
-        cir.setReturnValue(dyeColor.getTextureDiffuseColor());
+    @ModifyReturnValue(method = "getModifiedColor", at = @At(value = "RETURN"))
+    private static int bedrockEditionSheepColor(int original, @Local(argsOnly = true) DyeColor dyeColor, @Local(argsOnly = true) float brightness) {
+        if(brightness < 1.0F)
+            return dyeColor.getTextureDiffuseColor();
+        return original;
     }
 }

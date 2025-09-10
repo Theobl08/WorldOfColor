@@ -11,12 +11,12 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(LightningBolt.class)
 public abstract class LightningBoltMixin {
-    @ModifyExpressionValue(method = "powerLightningRod", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"))
+    @ModifyExpressionValue(method = "powerLightningRod", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"), require = 0)
     private boolean powerColoredLightningRod(boolean original, @Local BlockState blockState) {
         return original || ModUtil.isColoredBlock(blockState, ModBlocks.COLORED_LIGHTNING_RODS);
     }
 
-    @ModifyExpressionValue(method = "clearCopperOnLightningStrike", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"))
+    @ModifyExpressionValue(method = "clearCopperOnLightningStrike", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/state/BlockState;is(Lnet/minecraft/world/level/block/Block;)Z"), require = 0)
     private static boolean clearColoredCopperOnLightningStrike(boolean original, @Local BlockState blockState) {
         return original || ModUtil.isColoredBlock(blockState, ModBlocks.COLORED_LIGHTNING_RODS);
     }

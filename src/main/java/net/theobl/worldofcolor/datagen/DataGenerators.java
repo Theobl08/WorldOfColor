@@ -10,7 +10,7 @@ import net.theobl.worldofcolor.WorldOfColor;
 import java.util.Collections;
 import java.util.List;
 
-@EventBusSubscriber(modid = WorldOfColor.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = WorldOfColor.MODID)
 public class DataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent.Client event) {
