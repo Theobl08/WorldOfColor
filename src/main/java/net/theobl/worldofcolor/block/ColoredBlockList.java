@@ -3,6 +3,7 @@ package net.theobl.worldofcolor.block;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.theobl.worldofcolor.util.ModUtil;
 import org.jetbrains.annotations.NotNull;
 
@@ -18,7 +19,7 @@ public class ColoredBlockList<T extends Block> implements Iterable<DeferredBlock
     private final DeferredBlock<?>[] values = new DeferredBlock<?>[COLOR_AMOUNT];
 
     public ColoredBlockList(Function<DyeColor, DeferredBlock<? extends Block>> filler) {
-        for (DyeColor color : DyeColor.values()) {
+        for (DyeColor color : ModUtil.COLORS) {
             values[ModUtil.COLORS.indexOf(color)] = filler.apply(color);
         }
     }
@@ -37,6 +38,10 @@ public class ColoredBlockList<T extends Block> implements Iterable<DeferredBlock
         return (DeferredBlock<T>) values[index];
     }
 
+    public int size() {
+        return COLOR_AMOUNT;
+    }
+
     public boolean contains(Block block) {
         for (DeferredBlock<?> entry : values) {
             if (entry.get() == block) {
@@ -44,6 +49,10 @@ public class ColoredBlockList<T extends Block> implements Iterable<DeferredBlock
             }
         }
         return false;
+    }
+
+    public boolean contains(DeferredHolder<Block, ? extends Block> block) {
+        return contains(block.get());
     }
 
     public int indexOf(DeferredBlock<T> block) {
@@ -57,6 +66,11 @@ public class ColoredBlockList<T extends Block> implements Iterable<DeferredBlock
 
     public List<DeferredBlock<T>> toList() {
         return Arrays.stream(toArray()).toList();
+    }
+
+    @SuppressWarnings("unchecked")
+    public DeferredBlock<T> getFirst() {
+        return (DeferredBlock<T>) values[0];
     }
 
     @Override

@@ -8,9 +8,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
+import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -19,6 +17,7 @@ import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.WorldOfColor;
+import net.theobl.worldofcolor.block.ColoredBlockList;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.tags.ModTags;
@@ -156,7 +155,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput, WorldOfColor.MODID + ":" + getConversionRecipeName(result, material) + "_stonecutting");
     }
 
-    protected static void colorBlockWithDye(RecipeOutput recipeOutput, List<DeferredBlock<Block>> results, List<Item> dyes, TagKey<Item> dyeableItems, String group) {
+    protected static void colorBlockWithDye(RecipeOutput recipeOutput, ColoredBlockList<Block> results, List<Item> dyes, TagKey<Item> dyeableItems, String group) {
         for (int i = 0; i < dyes.size(); i++) {
             Item item = dyes.get(i);
             Item item1 = results.get(i).asItem();
@@ -181,7 +180,7 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(recipeOutput);
     }
 
-    protected static void waxRecipes(RecipeOutput recipeOutput, List<DeferredBlock<Block>> block, List<DeferredBlock<Block>> waxedBlock) {
+    protected static void waxRecipes(RecipeOutput recipeOutput, ColoredBlockList<Block> block, ColoredBlockList<Block> waxedBlock) {
         COLORS.forEach(color ->
         {
             int index = COLORS.indexOf(color);

@@ -8,6 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.SlabBlock;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.theobl.worldofcolor.block.ModBlocks;
 
@@ -26,7 +27,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
             else if (block.get() instanceof DoorBlock)
                 this.add(block.get(), this::createDoorTable);
             else if (block.get() instanceof LeavesBlock) {
-                int index = ModBlocks.COLORED_LEAVES.indexOf(block);
+                int index = ModBlocks.COLORED_LEAVES.indexOf((DeferredBlock<Block>) block);
                 if(index != -1)
                     this.add(block.get(), createLeavesDrops(block.get(), ModBlocks.COLORED_SAPLINGS.get(index).get(), NORMAL_LEAVES_SAPLING_CHANCES));
 

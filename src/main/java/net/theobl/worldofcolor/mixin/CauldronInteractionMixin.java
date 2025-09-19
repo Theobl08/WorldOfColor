@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.theobl.worldofcolor.block.ColoredBlockList;
 import net.theobl.worldofcolor.block.ModBlocks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -60,7 +61,7 @@ public interface CauldronInteractionMixin {
     }
 
     @Unique
-    private static BlockState worldOfColor$isColoredCauldron(List<DeferredBlock<Block>> checkedBlock, Level level, BlockPos pos, Item item) {
+    private static BlockState worldOfColor$isColoredCauldron(ColoredBlockList<Block> checkedBlock, Level level, BlockPos pos, Item item) {
         BlockState blockState = null;
         for (DeferredBlock<Block> block : checkedBlock) {
             if (level.getBlockState(pos).is(block)) {
