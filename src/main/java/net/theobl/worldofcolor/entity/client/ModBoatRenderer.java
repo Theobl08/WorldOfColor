@@ -22,7 +22,7 @@ public class ModBoatRenderer extends BoatRenderer {
     public ModBoatRenderer(EntityRendererProvider.Context pContext, boolean pChestBoat) {
         super(pContext, pChestBoat);
         this.boatResources = Stream.of(ModBoat.Type.values()).collect(ImmutableMap.toImmutableMap(type -> type,
-                type -> Pair.of(ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, getTextureLocation(type, pChestBoat)),
+                type -> Pair.of(WorldOfColor.asResource(getTextureLocation(type, pChestBoat)),
                         this.createBoatModel(pContext, type, pChestBoat))));
     }
 

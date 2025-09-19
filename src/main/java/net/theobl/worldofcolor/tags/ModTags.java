@@ -28,7 +28,7 @@ public class ModTags {
         }
 
         private static TagKey<Block> createTag(String name) {
-            return BlockTags.create(ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, name));
+            return BlockTags.create(WorldOfColor.asResource(name));
         }
     }
 
@@ -47,7 +47,7 @@ public class ModTags {
         }
 
         private static TagKey<Item> createTag(String name) {
-            return ItemTags.create(ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, name));
+            return ItemTags.create(WorldOfColor.asResource(name));
         }
     }
 }

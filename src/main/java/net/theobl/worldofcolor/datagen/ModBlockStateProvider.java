@@ -325,7 +325,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         ModelFile topLeftOpen = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_top_left_open"));
         ModelFile topRight = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_top_right"));
         ModelFile topRightOpen = models().getExistingFile(extend(blockTexture(regularBlock.get()), "_top_right_open"));
-        ModelFile item = models().getExistingFile(ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, "item/" + name(regularBlock.get())));
+        ModelFile item = models().getExistingFile(WorldOfColor.asResource("item/" + name(regularBlock.get())));
         doorBlock((DoorBlock) waxedBlock.get(), bottomLeft, bottomLeftOpen, bottomRight, bottomRightOpen, topLeft, topLeftOpen, topRight, topRightOpen);
         simpleBlockItem(waxedBlock.get(), item);
     }
@@ -407,7 +407,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     }
 
     private void waterCauldron(DeferredBlock<Block> block, String colorName) {
-        ResourceLocation parent = ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, "block/" + colorName + "_cauldron");
+        ResourceLocation parent = WorldOfColor.asResource("block/" + colorName + "_cauldron");
         ModelFile level1 = models().getBuilder(name(block.get()) + "_level1").customLoader((builder, fileHelper) ->
                 CompositeModelBuilder.begin(builder, fileHelper)
                         .child("cauldron", models().nested()

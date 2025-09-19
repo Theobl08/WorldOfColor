@@ -108,6 +108,10 @@ public class WorldOfColor {
         LOGGER.info("HELLO from server starting");
     }
 
+    public static ResourceLocation asResource(String path) {
+        return ResourceLocation.fromNamespaceAndPath(MODID, path);
+    }
+
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
     @EventBusSubscriber(modid = MODID, value = Dist.CLIENT)
     public static class ClientModEvents {
@@ -131,7 +135,7 @@ public class WorldOfColor {
 
         @SubscribeEvent
         public static void addPackFinders(AddPackFindersEvent event) {
-            event.addPackFinders(ResourceLocation.fromNamespaceAndPath(MODID, "resourcepacks/accurate_stained_glass"), PackType.CLIENT_RESOURCES,
+            event.addPackFinders(asResource("resourcepacks/accurate_stained_glass"), PackType.CLIENT_RESOURCES,
                     Component.literal("Accurate stained glass color"), PackSource.DEFAULT, false, Pack.Position.TOP);
         }
     }
