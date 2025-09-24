@@ -117,6 +117,7 @@ public class ModBlocks {
             return super.canStickTo(state, other);
         }
     }, BlockBehaviour.Properties.ofFullCopy(Blocks.SLIME_BLOCK));
+    public static final List<DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = registerPottedColoredSaplings();
 
     private static List<DeferredBlock<Block>> registerColoredWeatheringStairs() {
         List<DeferredBlock<Block>> blocks = new ArrayList<>();
@@ -142,6 +143,19 @@ public class ModBlocks {
             int index = COLORS.indexOf(color);
             DeferredBlock<Block> block = registerBlock(color.getName() + "_sapling",
                     p -> new SaplingBlock(ModTreeGrower.COLORED_TREES.get(index), p), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(color));
+            saplings.add(block);
+        }
+        return saplings;
+    }
+
+    private static List<DeferredBlock<Block>> registerPottedColoredSaplings() {
+        List<DeferredBlock<Block>> saplings = new ArrayList<>();
+        for (DyeColor color : COLORS) {
+            int index = COLORS.indexOf(color);
+            DeferredBlock<Block> block = BLOCKS.registerBlock("potted_" + COLORED_SAPLINGS.get(index).getId().getPath(),
+                    p -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, COLORED_SAPLINGS.get(index), p),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(COLORED_SAPLINGS.get(index).getId(), block);
             saplings.add(block);
         }
         return saplings;

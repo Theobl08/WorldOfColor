@@ -115,6 +115,9 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             else if (block.get() instanceof SlimeBlock) {
                 this.tag(Tags.Blocks.STORAGE_BLOCKS_SLIME).add(block.get());
             }
+            else if (block.get() instanceof FlowerPotBlock) {
+                this.tag(BlockTags.FLOWER_POTS).add(block.get());
+            }
         }
 
         for (DyeColor color : ModUtil.COLORS) {

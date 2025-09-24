@@ -4,6 +4,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -74,7 +75,8 @@ public class ModCreativeModeTabs {
                             output.accept(ModBlocks.COLORED_BRICK_WALLS.get(index));
                         }
                         for (DeferredHolder<Block, ? extends Block> block : ModBlocks.BLOCKS.getEntries()) {
-                            output.accept(block.get());
+                            if(block.get().asItem() != Blocks.AIR.asItem())
+                                output.accept(block.get());
                         }
                         ModItems.ITEMS.getEntries().forEach(item -> {if (item.get() instanceof BoatItem) output.accept(item.get());});
                     }).build());

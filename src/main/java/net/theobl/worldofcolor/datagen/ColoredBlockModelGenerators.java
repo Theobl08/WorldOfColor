@@ -4,6 +4,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.data.models.BlockModelGenerators;
+import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
@@ -221,11 +222,18 @@ public class ColoredBlockModelGenerators {
         blockModels.registerSimpleItemModel(trapdoorBlock, resourcelocation1);
     }
 
-    public void createCrossBlockWithDefaultItem(Block block, BlockModelGenerators.PlantType plantType, String renderType) {
-        blockModels.registerSimpleItemModel(block.asItem(), plantType.createItemModel(blockModels, block));
+    public void createCrossBlock(Block block, BlockModelGenerators.PlantType plantType, String renderType) {
         TextureMapping texturemapping = plantType.getTextureMapping(block);
         ResourceLocation resourcelocation = plantType.getCross().extend().renderType(renderType).build().create(block, texturemapping, blockModels.modelOutput);
         blockModels.blockStateOutput.accept(createSimpleBlock(block, plainVariant(resourcelocation)));
+    }
+
+    public void createPlantWithDefaultItem(Block block, Block pottedBlock, BlockModelGenerators.PlantType plantType) {
+        blockModels.registerSimpleItemModel(block.asItem(), plantType.createItemModel(blockModels, block));
+        this.createCrossBlock(block, plantType, "cutout");
+        TextureMapping texturemapping = plantType.getPlantTextureMapping(block);
+        MultiVariant multivariant = plainVariant(plantType.getCrossPot().extend().renderType("cutout").build().create(pottedBlock, texturemapping, blockModels.modelOutput));
+        blockModels.blockStateOutput.accept(createSimpleBlock(pottedBlock, multivariant));
     }
 
     public void createLightningRods(DeferredBlock<Block> block) {
