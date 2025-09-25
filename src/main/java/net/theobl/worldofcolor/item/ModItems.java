@@ -32,12 +32,12 @@ public class ModItems {
             if(!hanging) {
                 item = ITEMS.registerItem(color.getName() + "_sign",
                         p -> new SignItem(ModBlocks.COLORED_SIGNS.get(index).get(), ModBlocks.COLORED_WALL_SIGNS.get(index).get(), p),
-                                new Item.Properties().stacksTo(16));
+                                new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
             }
             else {
                 item = ITEMS.registerItem(color.getName() + "_hanging_sign",
                         p -> new HangingSignItem(ModBlocks.COLORED_HANGING_SIGNS.get(index).get(), ModBlocks.COLORED_WALL_HANGING_SIGNS.get(index).get(), p),
-                                new Item.Properties().stacksTo(16));
+                                new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
             }
             signs.add(item);
         }
