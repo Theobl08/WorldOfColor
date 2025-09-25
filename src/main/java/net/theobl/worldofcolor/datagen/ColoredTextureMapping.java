@@ -39,4 +39,10 @@ public class ColoredTextureMapping {
                 .put(TextureSlot.PARTICLE, getBlockTexture(lightningRod))
                 .put(TextureSlot.TEXTURE, getBlockTexture(lightningRod));
     }
+
+    public static TextureMapping flowerPot(Block flowerPot) {
+        return new TextureMapping()
+                .put(TextureSlot.PARTICLE, getBlockTexture(flowerPot))
+                .put(ColoredTextureSlot.FLOWERPOT, getBlockTexture(flowerPot));
+    }
 }

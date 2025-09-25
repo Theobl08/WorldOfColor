@@ -35,6 +35,10 @@ public class ModModelProvider extends ModelProvider {
         ModBlocks.COLORED_COPPER_TRAPDOORS.forEach(block -> coloredBlockModels.createOrientableTrapdoorWithRenderType(block.get(), "cutout"));
         ModBlocks.COLORED_COPPER_GRATES.forEach(block -> coloredBlockModels.createTrivialCubeWithRenderType(block.get(), "cutout"));
         ModBlocks.COLORED_SLIME_BLOCKS.forEach(block -> coloredBlockModels.createTrivialBlockWithRenderType(block.get(), TexturedModel.createDefault(TextureMapping::defaultTexture, SLIME_BLOCK), "translucent"));
+        ModBlocks.COLORED_FLOWER_POTS.forEach(block -> {
+            blockModels.registerSimpleFlatItemModel(block.asItem());
+            coloredBlockModels.createTrivialBlock(block.get(), ColoredTextureMapping.flowerPot(block.get()), FLOWER_POT);
+        });
         for(DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
             blockModels.family(ModBlocks.COLORED_CUT_COPPER.get(index).get())

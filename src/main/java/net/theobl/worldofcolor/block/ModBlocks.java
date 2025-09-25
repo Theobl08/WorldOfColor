@@ -118,6 +118,7 @@ public class ModBlocks {
         }
     }, BlockBehaviour.Properties.ofFullCopy(Blocks.SLIME_BLOCK));
     public static final List<DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = registerPottedColoredSaplings();
+    public static final List<DeferredBlock<FlowerPotBlock>> COLORED_FLOWER_POTS = registerColored("flower_pot", p -> new FlowerPotBlock(null, () -> Blocks.AIR, p), BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
 
     private static List<DeferredBlock<Block>> registerColoredWeatheringStairs() {
         List<DeferredBlock<Block>> blocks = new ArrayList<>();

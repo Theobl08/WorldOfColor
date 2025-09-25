@@ -18,6 +18,7 @@ public class VanillaModelTemplates {
     );
     public static final ModelTemplate LIGHTNING_ROD = ModelTemplates.create("lightning_rod", TextureSlot.TEXTURE, TextureSlot.PARTICLE);
     public static final ModelTemplate SLIME_BLOCK = ModelTemplates.create("slime_block", TextureSlot.PARTICLE, TextureSlot.TEXTURE);
+    public static final ModelTemplate FLOWER_POT = ModelTemplates.create("flower_pot", TextureSlot.PARTICLE, ColoredTextureSlot.FLOWERPOT);
 
     public static ModelTemplate cauldronLevelX(DyeColor color, int level) {
         final float y;
