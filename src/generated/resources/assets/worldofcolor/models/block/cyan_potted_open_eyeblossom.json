@@ -1,0 +1,10 @@
+{
+  "parent": "minecraft:block/flower_pot_cross_emissive",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross_emissive": "minecraft:block/open_eyeblossom_emissive",
+    "flowerpot": "worldofcolor:block/cyan_flower_pot",
+    "particle": "worldofcolor:block/cyan_flower_pot",
+    "plant": "minecraft:block/open_eyeblossom"
+  }
+}

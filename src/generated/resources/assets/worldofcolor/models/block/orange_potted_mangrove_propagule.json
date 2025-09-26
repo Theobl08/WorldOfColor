@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/potted_mangrove_propagule",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "flowerpot": "worldofcolor:block/orange_flower_pot",
+    "particle": "worldofcolor:block/orange_flower_pot"
+  }
+}

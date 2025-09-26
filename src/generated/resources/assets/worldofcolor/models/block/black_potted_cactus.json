@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/potted_cactus",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "flowerpot": "worldofcolor:block/black_flower_pot",
+    "particle": "worldofcolor:block/black_flower_pot"
+  }
+}

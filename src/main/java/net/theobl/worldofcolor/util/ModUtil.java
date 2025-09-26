@@ -1,20 +1,23 @@
 package net.theobl.worldofcolor.util;
 
 import com.google.common.collect.Maps;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.FireBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.Supplier;
 
 public class ModUtil {
     public static final List<DyeColor> COLORS = new ArrayList<>(Arrays.asList(
@@ -47,6 +50,8 @@ public class ModUtil {
                     Items.LIME_DYE, Items.GREEN_DYE, Items.CYAN_DYE, Items.LIGHT_BLUE_DYE,
                     Items.BLUE_DYE, Items.PURPLE_DYE, Items.MAGENTA_DYE, Items.PINK_DYE);
 
+    public static final List<Block> POTTABLE_PLANTS = new ArrayList<>();
+
     public static void setup() {
         ModBlocks.COLORED_PLANKS.forEach(block -> registerFlammable(block.get(), 5, 20));
         ModBlocks.COLORED_SLABS.forEach(block -> registerFlammable(block.get(), 5, 20));
@@ -70,6 +75,13 @@ public class ModUtil {
             int index = ModBlocks.COLORED_WOODS.indexOf(wood);
             registerStrippable(wood.get(), ModBlocks.COLORED_STRIPPED_WOODS.get(index).get());
         }
+
+        for (DyeColor color : COLORS) {
+            int index = COLORS.indexOf(color);
+            //ModBlocks.COLORED_FLOWER_POTS.get(index).get().addPlant(BuiltInRegistries.BLOCK.getKey(Blocks.TORCHFLOWER), ModBlocks.COLORED_POTTED_COLORED_SAPLINGS.get(index));
+            ModBlocks.COLORED_POTTED_PLANTS.forEach((block, deferredBlocks) ->
+                    ModBlocks.COLORED_FLOWER_POTS.get(index).get().addPlant(BuiltInRegistries.BLOCK.getKey(block), deferredBlocks.get(index)));
+        }
     }
 
     public static void registerFlammable(Block block, int encouragement, int flammability) {
@@ -89,5 +101,47 @@ public class ModUtil {
                 return true;
         }
         return false;
+    }
+
+    public static String name(Supplier<Block> block) {
+        if(block instanceof DeferredBlock<Block> deferredBlock) {
+            return deferredBlock.getId().getPath();
+        }
+        else {
+            return BuiltInRegistries.BLOCK.getKey(block.get()).getPath();
+        }
+    }
+
+    static {
+//        for(Field field : Blocks.class.getDeclaredFields()) {
+//            try {
+//                if(field.getType() != Block.class)
+//                    continue;
+//                Block block = (Block) field.get(null);
+//                if(block instanceof FlowerBlock || block instanceof SaplingBlock) {
+//                    POTTABLE_PLANTS.add(block);
+//                }
+//            } catch (IllegalAccessException e) {
+//                throw new IllegalStateException(Blocks.class.getName() + "#" + field.getName() + " is not a static field of type Block");
+//            }
+//        }
+        for (Block block : BuiltInRegistries.BLOCK) {
+            if(block instanceof FlowerBlock || block instanceof SaplingBlock)
+                POTTABLE_PLANTS.add(block);
+        }
+        POTTABLE_PLANTS.addAll(List.of(
+                Blocks.FERN,
+                Blocks.RED_MUSHROOM,
+                Blocks.BROWN_MUSHROOM,
+                Blocks.DEAD_BUSH,
+                Blocks.CACTUS,
+                Blocks.BAMBOO,
+                Blocks.CRIMSON_FUNGUS,
+                Blocks.WARPED_FUNGUS,
+                Blocks.CRIMSON_ROOTS,
+                Blocks.WARPED_ROOTS,
+                Blocks.AZALEA,
+                Blocks.FLOWERING_AZALEA
+        ));
     }
 }

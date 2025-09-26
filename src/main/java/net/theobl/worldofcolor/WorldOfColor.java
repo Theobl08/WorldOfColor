@@ -11,7 +11,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.GrassColor;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.api.distmarker.Dist;
@@ -86,6 +91,10 @@ public class WorldOfColor {
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         //if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) event.accept(EXAMPLE_BLOCK_ITEM);
+//        if(event.getTabKey() == CreativeModeTabs.NATURAL_BLOCKS) {
+//            event.remove(Items.WHITE_TULIP.getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+//            event.insertAfter(Items.AZURE_BLUET.getDefaultInstance(), Items.WHITE_TULIP.getDefaultInstance(), CreativeModeTab.TabVisibility.PARENT_AND_SEARCH_TABS);
+//        }
     }
 
     private void addBlockToBlockEntity(BlockEntityTypeAddBlocksEvent event) {
@@ -99,6 +108,14 @@ public class WorldOfColor {
         ModBlocks.COLORED_WATER_CAULDRONS.forEach(block ->
                 event.register((state, tintGetter, pos, i) ->
                         tintGetter != null && pos != null ? BiomeColors.getAverageWaterColor(tintGetter, pos) : -1, block.get()));
+        ModBlocks.COLORED_POTTED_PLANTS.get(Blocks.FERN).forEach(block ->
+                event.register(
+                        (state, level, pos, tintIndex) -> level != null && pos != null
+                                ? BiomeColors.getAverageGrassColor(level, pos)
+                                : GrassColor.getDefaultColor(),
+                        block.get()
+                )
+        );
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

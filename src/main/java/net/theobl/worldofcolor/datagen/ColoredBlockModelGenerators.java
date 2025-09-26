@@ -236,6 +236,26 @@ public class ColoredBlockModelGenerators {
         blockModels.blockStateOutput.accept(createSimpleBlock(pottedBlock, multivariant));
     }
 
+    public void createPottedPlant(Block block, Block pottedBlock, Block emptyPot, BlockModelGenerators.PlantType plantType) {
+        TextureMapping texturemapping = plantType.getPlantTextureMapping(block);
+        texturemapping.put(ColoredTextureSlot.FLOWERPOT, getBlockTexture(emptyPot)).put(TextureSlot.PARTICLE, getBlockTexture(emptyPot));
+        MultiVariant multivariant = plainVariant(plantType.getCrossPot().extend()
+                .requiredTextureSlot(ColoredTextureSlot.FLOWERPOT)
+                .requiredTextureSlot(TextureSlot.PARTICLE)
+                .renderType("cutout")
+                .build().create(pottedBlock, texturemapping, blockModels.modelOutput));
+        blockModels.blockStateOutput.accept(createSimpleBlock(pottedBlock, multivariant));
+    }
+
+    public void createPottedPlant(Block pottedBlock, Block emptyPot, String parent) {
+        TextureMapping textureMapping = ColoredTextureMapping.flowerPot(emptyPot);
+        MultiVariant multivariant = plainVariant(VanillaModelTemplates.FLOWER_POT.extend()
+                .parent(ResourceLocation.parse("block/potted_" + parent))
+                .renderType("cutout")
+                .build().create(pottedBlock, textureMapping, blockModels.modelOutput));
+        blockModels.blockStateOutput.accept(createSimpleBlock(pottedBlock, multivariant));
+    }
+
     public void createLightningRods(DeferredBlock<Block> block) {
         ResourceLocation resourcelocation = ModelLocationUtils.getModelLocation(Blocks.LIGHTNING_ROD, "_on");
         ResourceLocation resourcelocation1 = LIGHTNING_ROD.create(block.get(), lightningRod(block.get()), blockModels.modelOutput);

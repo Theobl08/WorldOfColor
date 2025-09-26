@@ -3,6 +3,7 @@ package net.theobl.worldofcolor.block;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -19,10 +20,14 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.grower.ModTreeGrower;
 import net.theobl.worldofcolor.item.ModItems;
+import net.theobl.worldofcolor.util.ModUtil;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import static net.theobl.worldofcolor.util.ModUtil.*;
 
@@ -119,6 +124,7 @@ public class ModBlocks {
     }, BlockBehaviour.Properties.ofFullCopy(Blocks.SLIME_BLOCK));
     public static final List<DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = registerPottedColoredSaplings();
     public static final List<DeferredBlock<FlowerPotBlock>> COLORED_FLOWER_POTS = registerColored("flower_pot", p -> new FlowerPotBlock(null, () -> Blocks.AIR, p), BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
+    public static final Map<Block, List<DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
 
     private static List<DeferredBlock<Block>> registerColoredWeatheringStairs() {
         List<DeferredBlock<Block>> blocks = new ArrayList<>();
@@ -160,6 +166,34 @@ public class ModBlocks {
             saplings.add(block);
         }
         return saplings;
+    }
+
+//    private static List<DeferredBlock<Block>> registerColoredPottedPlant(Supplier<Block> plant) {
+//        List<DeferredBlock<Block>> pottedPlants = new ArrayList<>();
+//        for (DyeColor color : COLORS) {
+//            int index = COLORS.indexOf(color);
+//            DeferredBlock<Block> block = BLOCKS.registerBlock(color.getName() + "_potted_" + BuiltInRegistries.BLOCK.getKey(plant.get()).getPath(),
+//                    p -> new FlowerPotBlock(COLORED_FLOWER_POTS.get(index), plant, p),
+//                    BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
+//            pottedPlants.add(block);
+//        }
+//        return pottedPlants;
+//    }
+
+    private static Map<Block, List<DeferredBlock<Block>>> registerColoredPottedPlant() {
+        Map<Block, List<DeferredBlock<Block>>> pottedPlants = new HashMap<>();
+        for (Block plant : POTTABLE_PLANTS) {
+            List<DeferredBlock<Block>> blockList = new ArrayList<>();
+            for (DyeColor color : COLORS) {
+                int index = COLORS.indexOf(color);
+                DeferredBlock<Block> block = BLOCKS.registerBlock(color.getName() + "_potted_" + BuiltInRegistries.BLOCK.getKey(plant).getPath(),
+                        p -> new FlowerPotBlock(COLORED_FLOWER_POTS.get(index), () -> plant, p),
+                        BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
+                blockList.add(block);
+            }
+            pottedPlants.put(plant, blockList);
+        }
+        return pottedPlants;
     }
 
     private static List<DeferredBlock<Block>> registerColoredLeaves() {

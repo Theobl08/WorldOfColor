@@ -4,9 +4,13 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.*;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.AzaleaBlock;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.RootsBlock;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
@@ -59,6 +63,21 @@ public class ModModelProvider extends ModelProvider {
             coloredBlockModels.createCauldrons(color);
             coloredBlockModels.createTrivialBlock(ModBlocks.QUILTED_CONCRETES.get(index).get(), cube(ModUtil.SHULKER_BOXES.get(index)), ModelTemplates.CUBE_ALL);
             coloredBlockModels.createPlantWithDefaultItem(ModBlocks.COLORED_SAPLINGS.get(index).get(), ModBlocks.POTTED_COLORED_SAPLINGS.get(index).get(), BlockModelGenerators.PlantType.NOT_TINTED);
+//            coloredBlockModels.createPottedPlant(Blocks.SPRUCE_SAPLING, ModBlocks.COLORED_POTTED_SPRUCE_SAPLING.get(index).get(), ModBlocks.COLORED_FLOWER_POTS.get(index).get(), BlockModelGenerators.PlantType.NOT_TINTED);
+            ModBlocks.COLORED_POTTED_PLANTS.forEach((plant, pottedPlant) -> {
+                BlockModelGenerators.PlantType plantType = BlockModelGenerators.PlantType.NOT_TINTED;
+                if(plant == Blocks.FERN) {
+                    plantType = BlockModelGenerators.PlantType.TINTED;
+                } else if (plant == Blocks.OPEN_EYEBLOSSOM) {
+                    plantType = BlockModelGenerators.PlantType.EMISSIVE_NOT_TINTED;
+                }
+                if(plant == Blocks.BAMBOO || plant == Blocks.MANGROVE_PROPAGULE || plant == Blocks.CACTUS || plant instanceof AzaleaBlock || plant instanceof RootsBlock) {
+                    String suffix = plant instanceof AzaleaBlock ? "_bush" : "";
+                    coloredBlockModels.createPottedPlant(pottedPlant.get(index).get(), ModBlocks.COLORED_FLOWER_POTS.get(index).get(), BuiltInRegistries.BLOCK.getKey(plant).getPath() + suffix);
+                } else {
+                    coloredBlockModels.createPottedPlant(plant, pottedPlant.get(index).get(), ModBlocks.COLORED_FLOWER_POTS.get(index).get(), plantType);
+                }
+            });
         }
 
         ModItems.COLORED_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
