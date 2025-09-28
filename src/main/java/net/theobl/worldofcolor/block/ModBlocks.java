@@ -124,7 +124,7 @@ public class ModBlocks {
     }, BlockBehaviour.Properties.ofFullCopy(Blocks.SLIME_BLOCK));
     public static final List<DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = registerPottedColoredSaplings();
     public static final List<DeferredBlock<FlowerPotBlock>> COLORED_FLOWER_POTS = registerColored("flower_pot", p -> new FlowerPotBlock(null, () -> Blocks.AIR, p), BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
-    public static final Map<Block, List<DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
+    public static final Map<Supplier<Block>, List<DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
 
     private static List<DeferredBlock<Block>> registerColoredWeatheringStairs() {
         List<DeferredBlock<Block>> blocks = new ArrayList<>();
@@ -151,6 +151,7 @@ public class ModBlocks {
             DeferredBlock<Block> block = registerBlock(color.getName() + "_sapling",
                     p -> new SaplingBlock(ModTreeGrower.COLORED_TREES.get(index), p), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(color));
             saplings.add(block);
+            POTTABLE_PLANTS.add(block);
         }
         return saplings;
     }
@@ -180,14 +181,14 @@ public class ModBlocks {
 //        return pottedPlants;
 //    }
 
-    private static Map<Block, List<DeferredBlock<Block>>> registerColoredPottedPlant() {
-        Map<Block, List<DeferredBlock<Block>>> pottedPlants = new HashMap<>();
-        for (Block plant : POTTABLE_PLANTS) {
+    private static Map<Supplier<Block>, List<DeferredBlock<Block>>> registerColoredPottedPlant() {
+        Map<Supplier<Block>, List<DeferredBlock<Block>>> pottedPlants = new HashMap<>();
+        for (Supplier<Block> plant : POTTABLE_PLANTS) {
             List<DeferredBlock<Block>> blockList = new ArrayList<>();
             for (DyeColor color : COLORS) {
                 int index = COLORS.indexOf(color);
-                DeferredBlock<Block> block = BLOCKS.registerBlock(color.getName() + "_potted_" + BuiltInRegistries.BLOCK.getKey(plant).getPath(),
-                        p -> new FlowerPotBlock(COLORED_FLOWER_POTS.get(index), () -> plant, p),
+                DeferredBlock<Block> block = BLOCKS.registerBlock(color.getName() + "_potted_" + name(plant),
+                        p -> new FlowerPotBlock(COLORED_FLOWER_POTS.get(index), plant, p),
                         BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
                 blockList.add(block);
             }

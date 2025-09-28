@@ -50,7 +50,8 @@ public class ModUtil {
                     Items.LIME_DYE, Items.GREEN_DYE, Items.CYAN_DYE, Items.LIGHT_BLUE_DYE,
                     Items.BLUE_DYE, Items.PURPLE_DYE, Items.MAGENTA_DYE, Items.PINK_DYE);
 
-    public static final List<Block> POTTABLE_PLANTS = new ArrayList<>();
+    public static final Supplier<Block> FERN = supplier(Blocks.FERN);
+    public static final List<Supplier<Block>> POTTABLE_PLANTS = new ArrayList<>();
 
     public static void setup() {
         ModBlocks.COLORED_PLANKS.forEach(block -> registerFlammable(block.get(), 5, 20));
@@ -80,7 +81,7 @@ public class ModUtil {
             int index = COLORS.indexOf(color);
             //ModBlocks.COLORED_FLOWER_POTS.get(index).get().addPlant(BuiltInRegistries.BLOCK.getKey(Blocks.TORCHFLOWER), ModBlocks.COLORED_POTTED_COLORED_SAPLINGS.get(index));
             ModBlocks.COLORED_POTTED_PLANTS.forEach((block, deferredBlocks) ->
-                    ModBlocks.COLORED_FLOWER_POTS.get(index).get().addPlant(BuiltInRegistries.BLOCK.getKey(block), deferredBlocks.get(index)));
+                    ModBlocks.COLORED_FLOWER_POTS.get(index).get().addPlant(BuiltInRegistries.BLOCK.getKey(block.get()), deferredBlocks.get(index)));
         }
     }
 
@@ -112,6 +113,10 @@ public class ModUtil {
         }
     }
 
+    public static Supplier<Block> supplier(Block block) {
+        return () -> block;
+    }
+
     static {
 //        for(Field field : Blocks.class.getDeclaredFields()) {
 //            try {
@@ -127,21 +132,21 @@ public class ModUtil {
 //        }
         for (Block block : BuiltInRegistries.BLOCK) {
             if(block instanceof FlowerBlock || block instanceof SaplingBlock)
-                POTTABLE_PLANTS.add(block);
+                POTTABLE_PLANTS.add(supplier(block));
         }
         POTTABLE_PLANTS.addAll(List.of(
-                Blocks.FERN,
-                Blocks.RED_MUSHROOM,
-                Blocks.BROWN_MUSHROOM,
-                Blocks.DEAD_BUSH,
-                Blocks.CACTUS,
-                Blocks.BAMBOO,
-                Blocks.CRIMSON_FUNGUS,
-                Blocks.WARPED_FUNGUS,
-                Blocks.CRIMSON_ROOTS,
-                Blocks.WARPED_ROOTS,
-                Blocks.AZALEA,
-                Blocks.FLOWERING_AZALEA
+                FERN,
+                supplier(Blocks.RED_MUSHROOM),
+                supplier(Blocks.BROWN_MUSHROOM),
+                supplier(Blocks.DEAD_BUSH),
+                supplier(Blocks.CACTUS),
+                supplier(Blocks.BAMBOO),
+                supplier(Blocks.CRIMSON_FUNGUS),
+                supplier(Blocks.WARPED_FUNGUS),
+                supplier(Blocks.CRIMSON_ROOTS),
+                supplier(Blocks.WARPED_ROOTS),
+                supplier(Blocks.AZALEA),
+                supplier(Blocks.FLOWERING_AZALEA)
         ));
     }
 }

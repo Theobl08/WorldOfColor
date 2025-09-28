@@ -66,16 +66,16 @@ public class ModModelProvider extends ModelProvider {
 //            coloredBlockModels.createPottedPlant(Blocks.SPRUCE_SAPLING, ModBlocks.COLORED_POTTED_SPRUCE_SAPLING.get(index).get(), ModBlocks.COLORED_FLOWER_POTS.get(index).get(), BlockModelGenerators.PlantType.NOT_TINTED);
             ModBlocks.COLORED_POTTED_PLANTS.forEach((plant, pottedPlant) -> {
                 BlockModelGenerators.PlantType plantType = BlockModelGenerators.PlantType.NOT_TINTED;
-                if(plant == Blocks.FERN) {
+                if(plant.get() == Blocks.FERN) {
                     plantType = BlockModelGenerators.PlantType.TINTED;
-                } else if (plant == Blocks.OPEN_EYEBLOSSOM) {
+                } else if (plant.get() == Blocks.OPEN_EYEBLOSSOM) {
                     plantType = BlockModelGenerators.PlantType.EMISSIVE_NOT_TINTED;
                 }
-                if(plant == Blocks.BAMBOO || plant == Blocks.MANGROVE_PROPAGULE || plant == Blocks.CACTUS || plant instanceof AzaleaBlock || plant instanceof RootsBlock) {
-                    String suffix = plant instanceof AzaleaBlock ? "_bush" : "";
-                    coloredBlockModels.createPottedPlant(pottedPlant.get(index).get(), ModBlocks.COLORED_FLOWER_POTS.get(index).get(), BuiltInRegistries.BLOCK.getKey(plant).getPath() + suffix);
+                if(plant.get() == Blocks.BAMBOO || plant.get() == Blocks.MANGROVE_PROPAGULE || plant.get() == Blocks.CACTUS || plant.get() instanceof AzaleaBlock || plant.get() instanceof RootsBlock) {
+                    String suffix = plant.get() instanceof AzaleaBlock ? "_bush" : "";
+                    coloredBlockModels.createPottedPlant(pottedPlant.get(index).get(), ModBlocks.COLORED_FLOWER_POTS.get(index).get(), BuiltInRegistries.BLOCK.getKey(plant.get()).getPath() + suffix);
                 } else {
-                    coloredBlockModels.createPottedPlant(plant, pottedPlant.get(index).get(), ModBlocks.COLORED_FLOWER_POTS.get(index).get(), plantType);
+                    coloredBlockModels.createPottedPlant(plant.get(), pottedPlant.get(index).get(), ModBlocks.COLORED_FLOWER_POTS.get(index).get(), plantType);
                 }
             });
         }

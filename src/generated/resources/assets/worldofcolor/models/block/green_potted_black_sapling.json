@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/flower_pot_cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "flowerpot": "worldofcolor:block/green_flower_pot",
+    "particle": "worldofcolor:block/green_flower_pot",
+    "plant": "worldofcolor:block/black_sapling"
+  }
+}

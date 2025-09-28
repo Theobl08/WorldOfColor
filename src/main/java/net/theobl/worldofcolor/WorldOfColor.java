@@ -108,7 +108,7 @@ public class WorldOfColor {
         ModBlocks.COLORED_WATER_CAULDRONS.forEach(block ->
                 event.register((state, tintGetter, pos, i) ->
                         tintGetter != null && pos != null ? BiomeColors.getAverageWaterColor(tintGetter, pos) : -1, block.get()));
-        ModBlocks.COLORED_POTTED_PLANTS.get(Blocks.FERN).forEach(block ->
+        ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.FERN).forEach(block ->
                 event.register(
                         (state, level, pos, tintIndex) -> level != null && pos != null
                                 ? BiomeColors.getAverageGrassColor(level, pos)
