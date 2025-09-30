@@ -24,7 +24,7 @@ public interface CauldronInteractionMixin {
     @ModifyVariable(method = "emptyBucket", at = @At(value = "HEAD"), argsOnly = true)
     private static BlockState emptyBucketThatActuallyWorking(BlockState state, @Local(argsOnly = true)BlockPos pos,
                                                              @Local(argsOnly = true)Level level, @Local(argsOnly = true)ItemStack filledStack) {
-        if(!level.isClientSide) {
+        if(!level.isClientSide()) {
             Item item = filledStack.getItem();
             //checking if the block is one of our colored cauldron
 //            for (DeferredBlock<Block> block : ModBlocks.COLORED_CAULDRONS) {

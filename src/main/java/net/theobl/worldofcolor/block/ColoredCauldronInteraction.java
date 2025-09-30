@@ -35,7 +35,7 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
         map.put(Items.POTION, (state, level, pos, player, hand, stack) -> {
             PotionContents potioncontents = stack.get(DataComponents.POTION_CONTENTS);
             if (potioncontents != null && potioncontents.is(Potions.WATER)) {
-                if (!level.isClientSide) {
+                if (!level.isClientSide()) {
                     Item item = stack.getItem();
                     player.setItemInHand(hand, ItemUtils.createFilledResult(stack, player, new ItemStack(Items.GLASS_BOTTLE)));
                     player.awardStat(Stats.USE_CAULDRON);
@@ -117,7 +117,7 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
         if (!statePredicate.test(state)) {
             return InteractionResult.TRY_WITH_EMPTY_HAND;
         } else {
-            if (!level.isClientSide) {
+            if (!level.isClientSide()) {
                 BlockState blockState = Blocks.CAULDRON.defaultBlockState();
                 for (DeferredBlock<Block> block : ModBlocks.COLORED_WATER_CAULDRONS) {
                     if(state.is(block)) {

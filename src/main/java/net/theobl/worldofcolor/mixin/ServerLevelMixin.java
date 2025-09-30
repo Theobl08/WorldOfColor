@@ -13,7 +13,7 @@ import java.util.Objects;
 
 @Mixin(ServerLevel.class)
 public abstract class ServerLevelMixin {
-    @ModifyExpressionValue(method = "lambda$findLightningRod$4", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/Holder;is(Lnet/minecraft/resources/ResourceKey;)Z"))
+    @ModifyExpressionValue(method = "lambda$findLightningRod$5", at = @At(value = "INVOKE", target = "Lnet/minecraft/core/Holder;is(Lnet/minecraft/resources/ResourceKey;)Z"))
     private static boolean test(boolean original, @Local(argsOnly = true) Holder<PoiType> poiType) {
         return original || poiType.is(Objects.requireNonNull(ModPoiTypes.COLORED_LIGHTNING_RODS.getKey()));
     }
