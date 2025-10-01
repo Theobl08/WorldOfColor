@@ -46,7 +46,6 @@ public class ModRecipeProvider extends RecipeProvider {
         waxRecipes(output, ModBlocks.COLORED_COPPER_BULBS, ModBlocks.COLORED_WAXED_COPPER_BULBS);
 
         colorBlockWithDye(output, ModBlocks.COLORED_SAPLINGS, DYES, ItemTags.SAPLINGS, "sapling");
-        colorBlockWithDye(output, ModBlocks.COLORED_LIGHTNING_RODS, DYES, ModTags.Items.LIGHTNING_RODS, "dyed_lighting_rod");
         colorBlockWithDye(output, ModBlocks.COLORED_CAULDRONS, DYES, ModTags.Items.CAULDRONS, "dyed_cauldron");
         colorBlockWithDye(output, ModBlocks.COLORED_SLIME_BLOCKS, DYES, Tags.Items.STORAGE_BLOCKS_SLIME, "dyed_slime_blocks");
 
@@ -138,6 +137,11 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(Blocks.COPPER_TRAPDOOR)
                 .requires(Items.WHITE_DYE)
                 .unlockedBy(getHasName(Blocks.COPPER_TRAPDOOR), has(Items.WHITE_DYE))
+                .save(output);
+        shapeless(RecipeCategory.REDSTONE, ModBlocks.COLORED_LIGHTNING_RODS.getFirst())
+                .requires(Blocks.LIGHTNING_ROD)
+                .requires(Items.WHITE_DYE)
+                .unlockedBy(getHasName(Blocks.LIGHTNING_ROD), has(Items.LIGHTNING_ROD))
                 .save(output);
     }
 

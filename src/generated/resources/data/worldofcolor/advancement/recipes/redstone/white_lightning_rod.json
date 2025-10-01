@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_needed_dye": {
+    "has_lightning_rod": {
       "conditions": {
         "items": [
           {
-            "items": "minecraft:light_gray_dye"
+            "items": "minecraft:lightning_rod"
           }
         ]
       },
@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:dye_light_gray_lightning_rod"
+        "recipe": "worldofcolor:white_lightning_rod"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -21,12 +21,12 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_needed_dye"
+      "has_lightning_rod"
     ]
   ],
   "rewards": {
     "recipes": [
-      "worldofcolor:dye_light_gray_lightning_rod"
+      "worldofcolor:white_lightning_rod"
     ]
   }
 }

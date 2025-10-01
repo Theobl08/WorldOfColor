@@ -1,10 +1,9 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "building",
-  "group": "dyed_lighting_rod",
+  "category": "redstone",
   "ingredients": [
-    "minecraft:white_dye",
-    "#worldofcolor:lightning_rod"
+    "minecraft:lightning_rod",
+    "minecraft:white_dye"
   ],
   "result": {
     "count": 1,
