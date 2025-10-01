@@ -1,4 +1,4 @@
-// 1.21.9	2025-10-01T01:06:57.937443	Tags for minecraft:block mod id worldofcolor
+// 1.21.9	2025-10-01T18:05:45.4345885	Tags for minecraft:block mod id worldofcolor
 3d6c0b035c67e9cd0ddbf4a707ff7bcd3291dd4f data/c/tags/block/dyed/black.json
 3fc255a89a05737990876711691e7477845dfbe0 data/c/tags/block/dyed/blue.json
 e0c6f5027cc18edbe863c39415c98f66f97f1a12 data/c/tags/block/dyed/brown.json
@@ -24,12 +24,12 @@ eb78c48bba70dbc4b3b3f09510d0af4c186c77d4 data/c/tags/block/fence_gates/wooden.js
 ad7ced8da31a25d498587d611f687a552d1cd450 data/minecraft/tags/block/doors.json
 eb78c48bba70dbc4b3b3f09510d0af4c186c77d4 data/minecraft/tags/block/fence_gates.json
 7a5f962519c47783f4a9b9ef580ef9b559e4d6b8 data/minecraft/tags/block/flower_pots.json
-26501d4abbbed0ef476f7d5f63378c1608064600 data/minecraft/tags/block/incorrect_for_gold_tool.json
-26501d4abbbed0ef476f7d5f63378c1608064600 data/minecraft/tags/block/incorrect_for_wooden_tool.json
+3d55b88718e48d4d2db4e25f3ee5ed3bef96d09d data/minecraft/tags/block/incorrect_for_gold_tool.json
+3d55b88718e48d4d2db4e25f3ee5ed3bef96d09d data/minecraft/tags/block/incorrect_for_wooden_tool.json
 577a8c674e8e807d3b82949d8587fed069ee57d8 data/minecraft/tags/block/leaves.json
 56de79b538193a6ebe9bb005cce4460536d83aff data/minecraft/tags/block/logs_that_burn.json
-5ac4616f576ec375db4bdac7673cb1715728746b data/minecraft/tags/block/mineable/pickaxe.json
-26501d4abbbed0ef476f7d5f63378c1608064600 data/minecraft/tags/block/needs_stone_tool.json
+99d2fd76cec1ec77f315bcdccc6fc15245d9f86b data/minecraft/tags/block/mineable/pickaxe.json
+3d55b88718e48d4d2db4e25f3ee5ed3bef96d09d data/minecraft/tags/block/needs_stone_tool.json
 e0747f653629573aa91a5397dd01117d4661b50d data/minecraft/tags/block/planks.json
 480520574b77f45104165aa524c5261ed9d0715d data/minecraft/tags/block/saplings.json
 3402df65f407611a32bbf6658e9d06426972ec1f data/minecraft/tags/block/slabs.json

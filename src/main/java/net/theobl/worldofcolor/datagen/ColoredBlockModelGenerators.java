@@ -256,17 +256,6 @@ public class ColoredBlockModelGenerators {
         blockModels.blockStateOutput.accept(createSimpleBlock(pottedBlock, multivariant));
     }
 
-    public void createLightningRods(DeferredBlock<Block> block) {
-        ResourceLocation resourcelocation = ModelLocationUtils.getModelLocation(Blocks.LIGHTNING_ROD, "_on");
-        ResourceLocation resourcelocation1 = LIGHTNING_ROD.create(block.get(), lightningRod(block.get()), blockModels.modelOutput);
-        blockModels.blockStateOutput
-                .accept(
-                        MultiVariantGenerator.dispatch(block.get())
-                                .with(createBooleanModelDispatch(BlockStateProperties.POWERED, plainVariant(resourcelocation), plainVariant(resourcelocation1)))
-                                .with(ROTATIONS_COLUMN_WITH_FACING)
-                );
-    }
-
     public ModBlockFamilyProvider family(Block block) {
         TexturedModel texturedmodel = TEXTURED_MODELS.getOrDefault(block, TexturedModel.CUBE.get(block));
         return new ModBlockFamilyProvider(texturedmodel.getMapping(), blockModels).fullBlock(block, texturedmodel.getTemplate());

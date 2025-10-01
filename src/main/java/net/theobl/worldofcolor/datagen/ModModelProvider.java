@@ -32,7 +32,6 @@ public class ModModelProvider extends ModelProvider {
                 .forEach(blockFamily -> coloredBlockModels.family(blockFamily.getBaseBlock()).generateFor(blockFamily));
         ModBlocks.SIMPLE_COLORED_BLOCKS.forEach(block -> blockModels.createTrivialCube(block.get()));
         ModBlocks.GLAZED_CONCRETES.forEach(block -> blockModels.createColoredBlockWithStateRotations(TexturedModel.GLAZED_TERRACOTTA, block.get()));
-        ModBlocks.COLORED_LIGHTNING_RODS.forEach(coloredBlockModels::createLightningRods);
         ModBlocks.COLORED_LEAVES.forEach(block -> blockModels.createTrivialCube(block.get()));
         ModBlocks.COLORED_COPPER_BLOCKS.forEach(block -> blockModels.createTrivialCube(block.get()));
         ModBlocks.COLORED_COPPER_DOORS.forEach(block -> coloredBlockModels.createDoorWithRenderType(block.get(), "cutout"));
@@ -60,6 +59,7 @@ public class ModModelProvider extends ModelProvider {
             blockModels.copyDoorModel(ModBlocks.COLORED_COPPER_DOORS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_DOORS.get(index).get());
             blockModels.copyTrapdoorModel(ModBlocks.COLORED_COPPER_TRAPDOORS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS.get(index).get());
             blockModels.copyModel(ModBlocks.COLORED_COPPER_GRATES.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_GRATES.get(index).get());
+            blockModels.createLightningRod(ModBlocks.COLORED_LIGHTNING_RODS.get(index).get(), ModBlocks.COLORED_WAXED_LIGHTNING_RODS.get(index).get());
             coloredBlockModels.createCauldrons(color);
             coloredBlockModels.createTrivialBlock(ModBlocks.QUILTED_CONCRETES.get(index).get(), cube(ModUtil.SHULKER_BOXES.get(index)), ModelTemplates.CUBE_ALL);
             coloredBlockModels.createPlantWithDefaultItem(ModBlocks.COLORED_SAPLINGS.get(index).get(), ModBlocks.POTTED_COLORED_SAPLINGS.get(index).get(), BlockModelGenerators.PlantType.NOT_TINTED);

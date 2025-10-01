@@ -1,7 +1,6 @@
 {
-  "parent": "minecraft:block/lightning_rod",
+  "parent": "minecraft:block/template_lightning_rod",
   "textures": {
-    "particle": "worldofcolor:block/cyan_lightning_rod",
     "texture": "worldofcolor:block/cyan_lightning_rod"
   }
 }
