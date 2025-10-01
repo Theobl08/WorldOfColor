@@ -1,4 +1,4 @@
-// 1.21.9	2025-10-01T01:06:57.8504417	Tags for minecraft:item mod id worldofcolor
+// 1.21.9	2025-10-01T18:31:54.1643107	Tags for minecraft:item mod id worldofcolor
 a1ef82cc6d6804e7a7a65800c859abbae4d821e9 data/c/tags/item/dyed/black.json
 ccb76dc892f60404b6907cd2f05a1e2b23b76a5d data/c/tags/item/dyed/blue.json
 9d689c41b40fca813fe4f6a01131fe71fc67a2bb data/c/tags/item/dyed/brown.json
@@ -25,6 +25,7 @@ ad7ced8da31a25d498587d611f687a552d1cd450 data/minecraft/tags/item/doors.json
 eb78c48bba70dbc4b3b3f09510d0af4c186c77d4 data/minecraft/tags/item/fence_gates.json
 82f1e4258ace1d4c05a684125e81e099094ecf42 data/minecraft/tags/item/hanging_signs.json
 577a8c674e8e807d3b82949d8587fed069ee57d8 data/minecraft/tags/item/leaves.json
+9d9cfe0cba1b782690ba943b5a45a5b5ee6b099e data/minecraft/tags/item/lightning_rods.json
 56de79b538193a6ebe9bb005cce4460536d83aff data/minecraft/tags/item/logs_that_burn.json
 e0747f653629573aa91a5397dd01117d4661b50d data/minecraft/tags/item/planks.json
 480520574b77f45104165aa524c5261ed9d0715d data/minecraft/tags/item/saplings.json
@@ -49,7 +50,6 @@ dad9c7b121c9193f6e8083457a228bbf2ee1ec07 data/worldofcolor/tags/item/cauldrons.j
 cbede13e9dfeee53760d16c8c4943b1813c9ef9c data/worldofcolor/tags/item/cyan_logs.json
 c2912df685fa249921eb89c94f51c265eef1b7d3 data/worldofcolor/tags/item/gray_logs.json
 ad9b5681ce4df5b5ed60305a23d848d2f41135f6 data/worldofcolor/tags/item/green_logs.json
-ef3139a126c8150259ae012723d5cb5cb0052cae data/worldofcolor/tags/item/lightning_rod.json
 52952f8f92793751b6bc9308a04b7436dd144e04 data/worldofcolor/tags/item/light_blue_logs.json
 6a97eba55432ee56034273222f4044ec62ddb1c4 data/worldofcolor/tags/item/light_gray_logs.json
 edb79dc3ee9b418f752f27ca16cc600714d7b484 data/worldofcolor/tags/item/lime_logs.json

@@ -52,6 +52,8 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         this.copy(BlockTags.DOORS, ItemTags.DOORS);
         this.copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS);
 
+        this.copy(BlockTags.LIGHTNING_RODS, ItemTags.LIGHTNING_RODS);
+
         this.copy(Tags.Blocks.STRIPPED_LOGS, Tags.Items.STRIPPED_LOGS);
         this.copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
         this.copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
@@ -62,8 +64,6 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
             this.copy(ModTags.Blocks.COLORED_LOGS.get(index), tag);
         }
 
-        ModBlocks.COLORED_LIGHTNING_RODS.forEach(block -> this.tag(ModTags.Items.LIGHTNING_RODS).add(block.asItem()));
-        this.tag(ModTags.Items.LIGHTNING_RODS).add(Items.LIGHTNING_ROD);
         this.tag(ModTags.Items.CAULDRONS).add(Items.CAULDRON);
         ModBlocks.COLORED_CAULDRONS.forEach(block -> this.tag(ModTags.Items.CAULDRONS).add(block.asItem()));
 

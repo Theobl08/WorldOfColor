@@ -74,9 +74,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             }
 
             if (block.get().toString().contains("copper") || block.get() instanceof LightningRodBlock){
-                this.tag(BlockTags.INCORRECT_FOR_WOODEN_TOOL).add(block.get());
-                this.tag(BlockTags.INCORRECT_FOR_GOLD_TOOL).add(block.get());
                 this.tag(BlockTags.NEEDS_STONE_TOOL).add(block.get());
+                if(block.get() instanceof LightningRodBlock) {
+                    this.tag(BlockTags.LIGHTNING_RODS).add(block.get());
+                }
             }
 
             if(block.get() instanceof SaplingBlock) {
