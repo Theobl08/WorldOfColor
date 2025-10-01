@@ -67,16 +67,6 @@ public class ModUtil {
         ModBlocks.CLASSIC_WOOLS.forEach(block -> registerFlammable(block.get(), 30, 60));
         ModBlocks.CLASSIC_CARPETS.forEach(block -> registerFlammable(block.get(), 60, 20));
 
-        for (DeferredBlock<Block> log : ModBlocks.COLORED_LOGS) {
-            int index = ModBlocks.COLORED_LOGS.indexOf(log);
-            registerStrippable(log.get(), ModBlocks.COLORED_STRIPPED_LOGS.get(index).get());
-        }
-
-        for (DeferredBlock<Block> wood : ModBlocks.COLORED_WOODS) {
-            int index = ModBlocks.COLORED_WOODS.indexOf(wood);
-            registerStrippable(wood.get(), ModBlocks.COLORED_STRIPPED_WOODS.get(index).get());
-        }
-
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
             //ModBlocks.COLORED_FLOWER_POTS.get(index).get().addPlant(BuiltInRegistries.BLOCK.getKey(Blocks.TORCHFLOWER), ModBlocks.COLORED_POTTED_COLORED_SAPLINGS.get(index));
@@ -88,11 +78,6 @@ public class ModUtil {
     public static void registerFlammable(Block block, int encouragement, int flammability) {
         FireBlock fireblock = (FireBlock) Blocks.FIRE;
         fireblock.setFlammable(block, encouragement, flammability);
-    }
-
-    public static void registerStrippable(Block log, Block strippedLog) {
-        AxeItem.STRIPPABLES = Maps.newHashMap(AxeItem.STRIPPABLES);
-        AxeItem.STRIPPABLES.put(log, strippedLog);
     }
 
     public static boolean isColoredBlock(BlockState state, List<DeferredBlock<Block>> coloredBlocks) {

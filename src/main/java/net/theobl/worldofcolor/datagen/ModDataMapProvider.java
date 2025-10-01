@@ -5,10 +5,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.datamaps.builtin.Compostable;
-import net.neoforged.neoforge.registries.datamaps.builtin.NeoForgeDataMaps;
-import net.neoforged.neoforge.registries.datamaps.builtin.Oxidizable;
-import net.neoforged.neoforge.registries.datamaps.builtin.Waxable;
+import net.neoforged.neoforge.registries.datamaps.builtin.*;
 import net.theobl.worldofcolor.block.ModBlocks;
 
 import java.util.concurrent.CompletableFuture;
@@ -129,6 +126,16 @@ public class ModDataMapProvider extends DataMapProvider {
         for(DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_BULBS) {
             int index = ModBlocks.COLORED_COPPER_BULBS.indexOf(block);
             waxables.add(block, new Waxable(ModBlocks.COLORED_WAXED_COPPER_BULBS.get(index).get()), false);
+        }
+
+        final var strippable = builder(NeoForgeDataMaps.STRIPPABLES);
+        for (DeferredBlock<Block> log : ModBlocks.COLORED_LOGS) {
+            int index = ModBlocks.COLORED_LOGS.indexOf(log);
+            strippable.add(log, new Strippable(ModBlocks.COLORED_STRIPPED_LOGS.get(index).get()), false);
+        }
+        for (DeferredBlock<Block> wood : ModBlocks.COLORED_WOODS) {
+            int index = ModBlocks.COLORED_WOODS.indexOf(wood);
+            strippable.add(wood, new Strippable(ModBlocks.COLORED_STRIPPED_WOODS.get(index).get()), false);
         }
     }
 }
