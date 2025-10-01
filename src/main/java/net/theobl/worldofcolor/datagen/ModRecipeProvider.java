@@ -126,17 +126,17 @@ public class ModRecipeProvider extends RecipeProvider {
         shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_COPPER_BLOCKS.getFirst())
                 .requires(Blocks.COPPER_BLOCK)
                 .requires(Items.WHITE_DYE)
-                .unlockedBy(getHasName(Blocks.COPPER_BLOCK), has(Items.WHITE_DYE))
+                .unlockedBy(getHasName(Blocks.COPPER_BLOCK), has(Items.COPPER_BLOCK))
                 .save(output);
         shapeless(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_DOORS.getFirst())
                 .requires(Blocks.COPPER_DOOR)
                 .requires(Items.WHITE_DYE)
-                .unlockedBy(getHasName(Blocks.COPPER_DOOR), has(Items.WHITE_DYE))
+                .unlockedBy(getHasName(Blocks.COPPER_DOOR), has(Items.COPPER_DOOR))
                 .save(output);
         shapeless(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_TRAPDOORS.getFirst())
                 .requires(Blocks.COPPER_TRAPDOOR)
                 .requires(Items.WHITE_DYE)
-                .unlockedBy(getHasName(Blocks.COPPER_TRAPDOOR), has(Items.WHITE_DYE))
+                .unlockedBy(getHasName(Blocks.COPPER_TRAPDOOR), has(Items.COPPER_TRAPDOOR))
                 .save(output);
         shapeless(RecipeCategory.REDSTONE, ModBlocks.COLORED_LIGHTNING_RODS.getFirst())
                 .requires(Blocks.LIGHTNING_ROD)
