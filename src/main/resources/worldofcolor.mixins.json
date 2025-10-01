@@ -7,8 +7,6 @@
   "mixins": [
     "CauldronInteractionMixin",
     "LayeredCauldronBlockMixin",
-    "LightningBoltMixin",
-    "ServerLevelMixin",
     "SheepMixin"
   ],
   "client": [

@@ -11,6 +11,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
+import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.DyeColor;
@@ -30,6 +31,7 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.common.world.poi.ExtendPoiTypesEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
@@ -38,7 +40,6 @@ import net.theobl.worldofcolor.block.ColoredCauldronInteraction;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.block.ModWoodType;
 import net.theobl.worldofcolor.entity.ModEntityType;
-import net.theobl.worldofcolor.entity.ModPoiTypes;
 import net.theobl.worldofcolor.entity.client.ModModelLayers;
 import net.theobl.worldofcolor.item.ModCreativeModeTabs;
 import net.theobl.worldofcolor.item.ModItems;
@@ -62,7 +63,6 @@ public class WorldOfColor {
         // Register the Deferred Register to the mod event bus so blocks get registered
         ModBlocks.register(modEventBus);
         ModEntityType.register(modEventBus);
-        ModPoiTypes.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         ModItems.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
@@ -77,6 +77,7 @@ public class WorldOfColor {
         // Register the item to a creative tab
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::addBlockToBlockEntity);
+        modEventBus.addListener(this::extendPoiTypes);
         modEventBus.addListener(this::registerBlockColor);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
@@ -102,6 +103,10 @@ public class WorldOfColor {
         ModBlocks.COLORED_WALL_SIGNS.forEach(sign -> event.modify(BlockEntityType.SIGN, sign.get()));
         ModBlocks.COLORED_HANGING_SIGNS.forEach(sign -> event.modify(BlockEntityType.HANGING_SIGN, sign.get()));
         ModBlocks.COLORED_WALL_HANGING_SIGNS.forEach(sign -> event.modify(BlockEntityType.HANGING_SIGN, sign.get()));
+    }
+
+    private void extendPoiTypes(ExtendPoiTypesEvent event) {
+        ModBlocks.COLORED_LIGHTNING_RODS.forEach(block -> event.addBlockToPoi(PoiTypes.LIGHTNING_ROD, block.get()));
     }
 
     private void registerBlockColor(RegisterColorHandlersEvent.Block event) {
