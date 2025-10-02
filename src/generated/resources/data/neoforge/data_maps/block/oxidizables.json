@@ -3,6 +3,9 @@
     "worldofcolor:black_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:brown_chiseled_copper"
     },
+    "worldofcolor:black_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:brown_copper_bars"
+    },
     "worldofcolor:black_copper_block": {
       "next_oxidation_stage": "worldofcolor:brown_copper_block"
     },
@@ -32,6 +35,9 @@
     },
     "worldofcolor:blue_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:purple_chiseled_copper"
+    },
+    "worldofcolor:blue_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:purple_copper_bars"
     },
     "worldofcolor:blue_copper_block": {
       "next_oxidation_stage": "worldofcolor:purple_copper_block"
@@ -63,6 +69,9 @@
     "worldofcolor:brown_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:red_chiseled_copper"
     },
+    "worldofcolor:brown_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:red_copper_bars"
+    },
     "worldofcolor:brown_copper_block": {
       "next_oxidation_stage": "worldofcolor:red_copper_block"
     },
@@ -92,6 +101,9 @@
     },
     "worldofcolor:cyan_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:light_blue_chiseled_copper"
+    },
+    "worldofcolor:cyan_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:light_blue_copper_bars"
     },
     "worldofcolor:cyan_copper_block": {
       "next_oxidation_stage": "worldofcolor:light_blue_copper_block"
@@ -123,6 +135,9 @@
     "worldofcolor:gray_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:black_chiseled_copper"
     },
+    "worldofcolor:gray_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:black_copper_bars"
+    },
     "worldofcolor:gray_copper_block": {
       "next_oxidation_stage": "worldofcolor:black_copper_block"
     },
@@ -152,6 +167,9 @@
     },
     "worldofcolor:green_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:cyan_chiseled_copper"
+    },
+    "worldofcolor:green_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:cyan_copper_bars"
     },
     "worldofcolor:green_copper_block": {
       "next_oxidation_stage": "worldofcolor:cyan_copper_block"
@@ -183,6 +201,9 @@
     "worldofcolor:light_blue_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:blue_chiseled_copper"
     },
+    "worldofcolor:light_blue_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:blue_copper_bars"
+    },
     "worldofcolor:light_blue_copper_block": {
       "next_oxidation_stage": "worldofcolor:blue_copper_block"
     },
@@ -212,6 +233,9 @@
     },
     "worldofcolor:light_gray_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:gray_chiseled_copper"
+    },
+    "worldofcolor:light_gray_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:gray_copper_bars"
     },
     "worldofcolor:light_gray_copper_block": {
       "next_oxidation_stage": "worldofcolor:gray_copper_block"
@@ -243,6 +267,9 @@
     "worldofcolor:lime_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:green_chiseled_copper"
     },
+    "worldofcolor:lime_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:green_copper_bars"
+    },
     "worldofcolor:lime_copper_block": {
       "next_oxidation_stage": "worldofcolor:green_copper_block"
     },
@@ -272,6 +299,9 @@
     },
     "worldofcolor:magenta_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:pink_chiseled_copper"
+    },
+    "worldofcolor:magenta_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:pink_copper_bars"
     },
     "worldofcolor:magenta_copper_block": {
       "next_oxidation_stage": "worldofcolor:pink_copper_block"
@@ -303,6 +333,9 @@
     "worldofcolor:orange_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:yellow_chiseled_copper"
     },
+    "worldofcolor:orange_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:yellow_copper_bars"
+    },
     "worldofcolor:orange_copper_block": {
       "next_oxidation_stage": "worldofcolor:yellow_copper_block"
     },
@@ -332,6 +365,9 @@
     },
     "worldofcolor:purple_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:magenta_chiseled_copper"
+    },
+    "worldofcolor:purple_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:magenta_copper_bars"
     },
     "worldofcolor:purple_copper_block": {
       "next_oxidation_stage": "worldofcolor:magenta_copper_block"
@@ -363,6 +399,9 @@
     "worldofcolor:red_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:orange_chiseled_copper"
     },
+    "worldofcolor:red_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:orange_copper_bars"
+    },
     "worldofcolor:red_copper_block": {
       "next_oxidation_stage": "worldofcolor:orange_copper_block"
     },
@@ -393,6 +432,9 @@
     "worldofcolor:white_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:light_gray_chiseled_copper"
     },
+    "worldofcolor:white_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:light_gray_copper_bars"
+    },
     "worldofcolor:white_copper_block": {
       "next_oxidation_stage": "worldofcolor:light_gray_copper_block"
     },
@@ -422,6 +464,9 @@
     },
     "worldofcolor:yellow_chiseled_copper": {
       "next_oxidation_stage": "worldofcolor:lime_chiseled_copper"
+    },
+    "worldofcolor:yellow_copper_bars": {
+      "next_oxidation_stage": "worldofcolor:lime_copper_bars"
     },
     "worldofcolor:yellow_copper_block": {
       "next_oxidation_stage": "worldofcolor:lime_copper_block"

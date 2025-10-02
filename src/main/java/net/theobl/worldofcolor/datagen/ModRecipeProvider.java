@@ -143,6 +143,11 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(Items.WHITE_DYE)
                 .unlockedBy(getHasName(Blocks.LIGHTNING_ROD), has(Items.LIGHTNING_ROD))
                 .save(output);
+        shapeless(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_BARS.getFirst())
+                .requires(Blocks.COPPER_BARS.unaffected())
+                .requires(Items.WHITE_DYE)
+                .unlockedBy(getHasName(Blocks.COPPER_BARS.unaffected()), has(Items.COPPER_BARS.unaffected()))
+                .save(output);
     }
 
     protected void generateForEnabledBlockFamilies(FeatureFlagSet set) {

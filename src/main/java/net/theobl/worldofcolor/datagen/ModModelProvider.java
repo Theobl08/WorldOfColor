@@ -59,6 +59,7 @@ public class ModModelProvider extends ModelProvider {
             blockModels.copyDoorModel(ModBlocks.COLORED_COPPER_DOORS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_DOORS.get(index).get());
             blockModels.copyTrapdoorModel(ModBlocks.COLORED_COPPER_TRAPDOORS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS.get(index).get());
             blockModels.copyModel(ModBlocks.COLORED_COPPER_GRATES.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_GRATES.get(index).get());
+            coloredBlockModels.createBarsAndItem(ModBlocks.COLORED_COPPER_BARS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_BARS.get(index).get());
             blockModels.createLightningRod(ModBlocks.COLORED_LIGHTNING_RODS.get(index).get(), ModBlocks.COLORED_WAXED_LIGHTNING_RODS.get(index).get());
             coloredBlockModels.createCauldrons(color);
             coloredBlockModels.createTrivialBlock(ModBlocks.QUILTED_CONCRETES.get(index).get(), cube(ModUtil.SHULKER_BOXES.get(index)), ModelTemplates.CUBE_ALL);

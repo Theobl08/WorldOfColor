@@ -94,6 +94,8 @@ public class ModBlocks {
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_TRAPDOORS = registerColored("copper_trapdoor", p -> new TrapDoorBlock(BlockSetType.COPPER, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_TRAPDOOR), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_BULBS = registerColored("copper_bulb", CopperBulbBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BULB), "waxed_");
+    public static final List<DeferredBlock<Block>> COLORED_COPPER_BARS = registerColored("copper_bars", p -> new WeatheringCopperBarsBlock(WeatherState.UNAFFECTED, p), BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BARS.unaffected()));
+    public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_BARS = registerColored("copper_bars", IronBarsBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BARS.waxed()), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_CAULDRONS = registerColoredCauldrons();
     public static final List<DeferredBlock<Block>> COLORED_WATER_CAULDRONS = registerColoredWithoutItem("water_cauldron", p -> new LayeredCauldronBlock(Biome.Precipitation.RAIN, CauldronInteraction.WATER, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.WATER_CAULDRON), "");

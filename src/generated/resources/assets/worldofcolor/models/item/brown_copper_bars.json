@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "worldofcolor:block/brown_copper_bars"
+  }
+}

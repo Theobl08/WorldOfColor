@@ -119,6 +119,9 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             else if (block.get() instanceof FlowerPotBlock) {
                 this.tag(BlockTags.FLOWER_POTS).add(block.get());
             }
+            else if (block.get() instanceof IronBarsBlock) {
+                this.tag(BlockTags.BARS).add(block.get());
+            }
         }
 
         for (DyeColor color : ModUtil.COLORS) {

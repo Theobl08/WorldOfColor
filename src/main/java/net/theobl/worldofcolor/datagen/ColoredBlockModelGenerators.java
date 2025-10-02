@@ -9,6 +9,7 @@ import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.block.model.Variant;
+import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
@@ -259,6 +260,21 @@ public class ColoredBlockModelGenerators {
     public ModBlockFamilyProvider family(Block block) {
         TexturedModel texturedmodel = TEXTURED_MODELS.getOrDefault(block, TexturedModel.CUBE.get(block));
         return new ModBlockFamilyProvider(texturedmodel.getMapping(), blockModels).fullBlock(block, texturedmodel.getTemplate());
+    }
+
+    public void createBarsAndItem(Block weatheringBlock, Block waxedBlock) {
+        String renderType = ChunkSectionLayer.CUTOUT_MIPPED.label();
+        TextureMapping texturemapping = TextureMapping.bars(weatheringBlock);
+        ResourceLocation postEnd = ModelTemplates.BARS_POST_ENDS.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation post = ModelTemplates.BARS_POST.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation cap = ModelTemplates.BARS_CAP.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation capAlt = ModelTemplates.BARS_CAP_ALT.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation postSide = ModelTemplates.BARS_POST_SIDE.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation postSideAlt = ModelTemplates.BARS_POST_SIDE_ALT.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
+        blockModels.createBars(weatheringBlock, postEnd, post, cap, capAlt, postSide, postSideAlt);
+        blockModels.createBars(waxedBlock, postEnd, post, cap, capAlt, postSide, postSideAlt);
+        blockModels.registerSimpleFlatItemModel(weatheringBlock);
+        blockModels.itemModelOutput.copy(weatheringBlock.asItem(), waxedBlock.asItem());
     }
 
     @ParametersAreNonnullByDefault
