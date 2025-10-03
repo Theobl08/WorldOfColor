@@ -73,11 +73,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 this.tag(BlockTags.WOODEN_BUTTONS).add(block.get());
             }
 
-            if (block.get().toString().contains("copper") || block.get() instanceof LightningRodBlock){
+            if (block.get().toString().contains("copper") && !(block.get() instanceof LanternBlock)){
                 this.tag(BlockTags.NEEDS_STONE_TOOL).add(block.get());
-                if(block.get() instanceof LightningRodBlock) {
-                    this.tag(BlockTags.LIGHTNING_RODS).add(block.get());
-                }
             }
 
             if(block.get() instanceof SaplingBlock) {
@@ -124,6 +121,12 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             }
             else if (block.get() instanceof ChainBlock) {
                 this.tag(BlockTags.CHAINS).add(block.get());
+            }
+            else if (block.get() instanceof LanternBlock) {
+                this.tag(BlockTags.LANTERNS).add(block.get());
+            }
+            else if(block.get() instanceof LightningRodBlock) {
+                this.tag(BlockTags.LIGHTNING_RODS).add(block.get());
             }
         }
 

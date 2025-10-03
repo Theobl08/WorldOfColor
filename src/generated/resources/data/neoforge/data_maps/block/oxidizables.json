@@ -21,6 +21,9 @@
     "worldofcolor:black_copper_grate": {
       "next_oxidation_stage": "worldofcolor:brown_copper_grate"
     },
+    "worldofcolor:black_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:brown_copper_lantern"
+    },
     "worldofcolor:black_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:brown_copper_trapdoor"
     },
@@ -56,6 +59,9 @@
     },
     "worldofcolor:blue_copper_grate": {
       "next_oxidation_stage": "worldofcolor:purple_copper_grate"
+    },
+    "worldofcolor:blue_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:purple_copper_lantern"
     },
     "worldofcolor:blue_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:purple_copper_trapdoor"
@@ -93,6 +99,9 @@
     "worldofcolor:brown_copper_grate": {
       "next_oxidation_stage": "worldofcolor:red_copper_grate"
     },
+    "worldofcolor:brown_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:red_copper_lantern"
+    },
     "worldofcolor:brown_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:red_copper_trapdoor"
     },
@@ -128,6 +137,9 @@
     },
     "worldofcolor:cyan_copper_grate": {
       "next_oxidation_stage": "worldofcolor:light_blue_copper_grate"
+    },
+    "worldofcolor:cyan_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:light_blue_copper_lantern"
     },
     "worldofcolor:cyan_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:light_blue_copper_trapdoor"
@@ -165,6 +177,9 @@
     "worldofcolor:gray_copper_grate": {
       "next_oxidation_stage": "worldofcolor:black_copper_grate"
     },
+    "worldofcolor:gray_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:black_copper_lantern"
+    },
     "worldofcolor:gray_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:black_copper_trapdoor"
     },
@@ -200,6 +215,9 @@
     },
     "worldofcolor:green_copper_grate": {
       "next_oxidation_stage": "worldofcolor:cyan_copper_grate"
+    },
+    "worldofcolor:green_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:cyan_copper_lantern"
     },
     "worldofcolor:green_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:cyan_copper_trapdoor"
@@ -237,6 +255,9 @@
     "worldofcolor:light_blue_copper_grate": {
       "next_oxidation_stage": "worldofcolor:blue_copper_grate"
     },
+    "worldofcolor:light_blue_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:blue_copper_lantern"
+    },
     "worldofcolor:light_blue_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:blue_copper_trapdoor"
     },
@@ -272,6 +293,9 @@
     },
     "worldofcolor:light_gray_copper_grate": {
       "next_oxidation_stage": "worldofcolor:gray_copper_grate"
+    },
+    "worldofcolor:light_gray_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:gray_copper_lantern"
     },
     "worldofcolor:light_gray_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:gray_copper_trapdoor"
@@ -309,6 +333,9 @@
     "worldofcolor:lime_copper_grate": {
       "next_oxidation_stage": "worldofcolor:green_copper_grate"
     },
+    "worldofcolor:lime_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:green_copper_lantern"
+    },
     "worldofcolor:lime_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:green_copper_trapdoor"
     },
@@ -344,6 +371,9 @@
     },
     "worldofcolor:magenta_copper_grate": {
       "next_oxidation_stage": "worldofcolor:pink_copper_grate"
+    },
+    "worldofcolor:magenta_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:pink_copper_lantern"
     },
     "worldofcolor:magenta_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:pink_copper_trapdoor"
@@ -381,6 +411,9 @@
     "worldofcolor:orange_copper_grate": {
       "next_oxidation_stage": "worldofcolor:yellow_copper_grate"
     },
+    "worldofcolor:orange_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:yellow_copper_lantern"
+    },
     "worldofcolor:orange_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:yellow_copper_trapdoor"
     },
@@ -416,6 +449,9 @@
     },
     "worldofcolor:purple_copper_grate": {
       "next_oxidation_stage": "worldofcolor:magenta_copper_grate"
+    },
+    "worldofcolor:purple_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:magenta_copper_lantern"
     },
     "worldofcolor:purple_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:magenta_copper_trapdoor"
@@ -453,6 +489,9 @@
     "worldofcolor:red_copper_grate": {
       "next_oxidation_stage": "worldofcolor:orange_copper_grate"
     },
+    "worldofcolor:red_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:orange_copper_lantern"
+    },
     "worldofcolor:red_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:orange_copper_trapdoor"
     },
@@ -489,6 +528,9 @@
     "worldofcolor:white_copper_grate": {
       "next_oxidation_stage": "worldofcolor:light_gray_copper_grate"
     },
+    "worldofcolor:white_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:light_gray_copper_lantern"
+    },
     "worldofcolor:white_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:light_gray_copper_trapdoor"
     },
@@ -524,6 +566,9 @@
     },
     "worldofcolor:yellow_copper_grate": {
       "next_oxidation_stage": "worldofcolor:lime_copper_grate"
+    },
+    "worldofcolor:yellow_copper_lantern": {
+      "next_oxidation_stage": "worldofcolor:lime_copper_lantern"
     },
     "worldofcolor:yellow_copper_trapdoor": {
       "next_oxidation_stage": "worldofcolor:lime_copper_trapdoor"

@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "hanging=false": {
+      "model": "worldofcolor:block/light_blue_copper_lantern"
+    },
+    "hanging=true": {
+      "model": "worldofcolor:block/light_blue_copper_lantern_hanging"
+    }
+  }
+}

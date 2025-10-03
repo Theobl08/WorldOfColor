@@ -153,6 +153,11 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(Items.WHITE_DYE)
                 .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
                 .save(output);
+        shapeless(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_LANTERNS.getFirst())
+                .requires(Blocks.COPPER_LANTERN.unaffected())
+                .requires(Items.WHITE_DYE)
+                .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
+                .save(output);
     }
 
     protected void generateForEnabledBlockFamilies(FeatureFlagSet set) {

@@ -83,6 +83,8 @@ public class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BULB));
     public static final List<DeferredBlock<Block>> COLORED_COPPER_CHAINS = registerColored("copper_chain", p -> new WeatheringCopperChainBlock(WeatherState.UNAFFECTED, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHAIN.unaffected()));
+    public static final List<DeferredBlock<Block>> COLORED_COPPER_LANTERNS = registerColored("copper_lantern", p -> new WeatheringLanternBlock(WeatherState.UNAFFECTED, p),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_LANTERN.unaffected()));
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_BLOCKS = registerColored("copper_block", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_CHISELED_COPPER = registerColored("chiseled_copper", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_GRATES = registerColored("copper_grate", WaterloggedTransparentBlock::new,
@@ -99,6 +101,7 @@ public class ModBlocks {
     public static final List<DeferredBlock<Block>> COLORED_COPPER_BARS = registerColored("copper_bars", p -> new WeatheringCopperBarsBlock(WeatherState.UNAFFECTED, p), BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BARS.unaffected()));
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_BARS = registerColored("copper_bars", IronBarsBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BARS.waxed()), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_CHAINS = registerColored("copper_chain", ChainBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHAIN.waxed()), "waxed_");
+    public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_LANTERNS = registerColored("copper_lantern", LanternBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_LANTERN.waxed()), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_CAULDRONS = registerColoredCauldrons();
     public static final List<DeferredBlock<Block>> COLORED_WATER_CAULDRONS = registerColoredWithoutItem("water_cauldron", p -> new LayeredCauldronBlock(Biome.Precipitation.RAIN, CauldronInteraction.WATER, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.WATER_CAULDRON), "");

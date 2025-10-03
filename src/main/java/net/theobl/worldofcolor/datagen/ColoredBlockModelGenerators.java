@@ -286,6 +286,24 @@ public class ColoredBlockModelGenerators {
         blockModels.registerSimpleItemModel(waxed.asItem(), resourcelocation);
     }
 
+    public void createCopperLantern(Block block, Block waxed) {
+        String renderType = "cutout";
+        ResourceLocation lantern = TexturedModel.LANTERN.updateTemplate(template -> template.extend().renderType(renderType).build()).create(block, blockModels.modelOutput);
+        ResourceLocation hangingLantern = TexturedModel.HANGING_LANTERN.updateTemplate(template -> template.extend().renderType(renderType).build()).create(block, blockModels.modelOutput);
+        blockModels.registerSimpleFlatItemModel(block.asItem());
+        blockModels.itemModelOutput.copy(block.asItem(), waxed.asItem());
+        blockModels.blockStateOutput
+                .accept(
+                        MultiVariantGenerator.dispatch(block)
+                                .with(createBooleanModelDispatch(BlockStateProperties.HANGING, plainVariant(hangingLantern), plainVariant(lantern)))
+                );
+        blockModels.blockStateOutput
+                .accept(
+                        MultiVariantGenerator.dispatch(waxed)
+                                .with(createBooleanModelDispatch(BlockStateProperties.HANGING, plainVariant(hangingLantern), plainVariant(lantern)))
+                );
+    }
+
     @ParametersAreNonnullByDefault
     @MethodsReturnNonnullByDefault
     public class ModBlockFamilyProvider extends BlockModelGenerators.BlockFamilyProvider {
