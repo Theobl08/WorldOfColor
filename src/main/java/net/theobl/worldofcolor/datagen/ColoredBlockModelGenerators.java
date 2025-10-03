@@ -277,6 +277,15 @@ public class ColoredBlockModelGenerators {
         blockModels.itemModelOutput.copy(weatheringBlock.asItem(), waxedBlock.asItem());
     }
 
+    public void createCopperChain(Block block, Block waxed) {
+        MultiVariant multivariant = plainVariant(TexturedModel.CHAIN.updateTemplate(template -> template.extend().renderType("cutout_mipped").build()).create(block, blockModels.modelOutput));
+        blockModels.createAxisAlignedPillarBlockCustomModel(block, multivariant);
+        blockModels.createAxisAlignedPillarBlockCustomModel(waxed, multivariant);
+        ResourceLocation resourcelocation = blockModels.createFlatItemModel(block.asItem());
+        blockModels.registerSimpleItemModel(block.asItem(), resourcelocation);
+        blockModels.registerSimpleItemModel(waxed.asItem(), resourcelocation);
+    }
+
     @ParametersAreNonnullByDefault
     @MethodsReturnNonnullByDefault
     public class ModBlockFamilyProvider extends BlockModelGenerators.BlockFamilyProvider {
