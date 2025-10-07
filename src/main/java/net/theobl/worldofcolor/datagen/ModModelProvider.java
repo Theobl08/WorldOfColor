@@ -11,6 +11,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.AzaleaBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RootsBlock;
+import net.minecraft.world.level.block.WeatheringCopper;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
@@ -63,6 +64,8 @@ public class ModModelProvider extends ModelProvider {
             coloredBlockModels.createCopperChain(ModBlocks.COLORED_COPPER_CHAINS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_CHAINS.get(index).get());
             coloredBlockModels.createCopperLantern(ModBlocks.COLORED_COPPER_LANTERNS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_LANTERNS.get(index).get());
             blockModels.createLightningRod(ModBlocks.COLORED_LIGHTNING_RODS.get(index).get(), ModBlocks.COLORED_WAXED_LIGHTNING_RODS.get(index).get());
+            coloredBlockModels.createCopperGolemStatue(ModBlocks.COLORED_COPPER_GOLEM_STATUES.get(index).get(), ModBlocks.COLORED_COPPER_BLOCKS.get(index).get(), color);
+            blockModels.copyModel(ModBlocks.COLORED_COPPER_GOLEM_STATUES.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.get(index).get());
             coloredBlockModels.createCauldrons(color);
             coloredBlockModels.createTrivialBlock(ModBlocks.QUILTED_CONCRETES.get(index).get(), cube(ModUtil.SHULKER_BOXES.get(index)), ModelTemplates.CUBE_ALL);
             coloredBlockModels.createPlantWithDefaultItem(ModBlocks.COLORED_SAPLINGS.get(index).get(), ModBlocks.POTTED_COLORED_SAPLINGS.get(index).get(), BlockModelGenerators.PlantType.NOT_TINTED);

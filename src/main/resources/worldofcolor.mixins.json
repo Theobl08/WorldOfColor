@@ -10,6 +10,7 @@
     "SheepMixin"
   ],
   "client": [
+    "CopperGolemStatueBlockRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

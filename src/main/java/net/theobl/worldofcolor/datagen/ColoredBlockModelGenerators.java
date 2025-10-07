@@ -10,14 +10,14 @@ import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.block.model.Variant;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
+import net.minecraft.client.renderer.special.CopperGolemStatueSpecialRenderer;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LayeredCauldronBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.util.ModUtil;
@@ -301,6 +301,35 @@ public class ColoredBlockModelGenerators {
                 .accept(
                         MultiVariantGenerator.dispatch(waxed)
                                 .with(createBooleanModelDispatch(BlockStateProperties.HANGING, plainVariant(hangingLantern), plainVariant(lantern)))
+                );
+    }
+
+    public void createCopperGolemStatue(Block statueBlock, Block copperBlock, DyeColor color) {
+        MultiVariant multivariant = plainVariant(
+                ModelTemplates.PARTICLE_ONLY.create(statueBlock, TextureMapping.particle(TextureMapping.getBlockTexture(copperBlock)), blockModels.modelOutput)
+        );
+        ResourceLocation resourcelocation = ModelLocationUtils.decorateItemModelLocation("template_copper_golem_statue");
+        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, "textures/entity/copper_golem/" + color.getName() + "_copper_golem.png");
+        blockModels.blockStateOutput.accept(createSimpleBlock(statueBlock, multivariant));
+        blockModels.itemModelOutput
+                .accept(
+                        statueBlock.asItem(),
+                        ItemModelUtils.selectBlockItemProperty(
+                                CopperGolemStatueBlock.POSE,
+                                ItemModelUtils.specialModel(resourcelocation, new CopperGolemStatueSpecialRenderer.Unbaked(texture, CopperGolemStatueBlock.Pose.STANDING)),
+                                Map.of(
+                                        CopperGolemStatueBlock.Pose.SITTING,
+                                        ItemModelUtils.specialModel(
+                                                resourcelocation, new CopperGolemStatueSpecialRenderer.Unbaked(texture, CopperGolemStatueBlock.Pose.SITTING)
+                                        ),
+                                        CopperGolemStatueBlock.Pose.STAR,
+                                        ItemModelUtils.specialModel(resourcelocation, new CopperGolemStatueSpecialRenderer.Unbaked(texture, CopperGolemStatueBlock.Pose.STAR)),
+                                        CopperGolemStatueBlock.Pose.RUNNING,
+                                        ItemModelUtils.specialModel(
+                                                resourcelocation, new CopperGolemStatueSpecialRenderer.Unbaked(texture, CopperGolemStatueBlock.Pose.RUNNING)
+                                        )
+                                )
+                        )
                 );
     }
 

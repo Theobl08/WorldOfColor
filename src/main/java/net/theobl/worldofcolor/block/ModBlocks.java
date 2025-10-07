@@ -1,12 +1,13 @@
 package net.theobl.worldofcolor.block;
 
 import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
@@ -21,7 +22,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.grower.ModTreeGrower;
 import net.theobl.worldofcolor.item.ModItems;
-import net.theobl.worldofcolor.util.ModUtil;
+import org.apache.commons.lang3.function.TriFunction;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -89,6 +90,7 @@ public class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHAIN.unaffected()));
     public static final List<DeferredBlock<Block>> COLORED_COPPER_LANTERNS = registerColoredWeathering("copper_lantern", WeatheringLanternBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_LANTERN.unaffected()));
+    public static final List<DeferredBlock<Block>> COLORED_COPPER_GOLEM_STATUES = registerColoredCopperGolemStatues(ColoredWeatheringCopperGolemStatueBlock::new, "");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_BLOCKS = registerColored("copper_block", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_CHISELED_COPPER = registerColored("chiseled_copper", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_GRATES = registerColored("copper_grate", WaterloggedTransparentBlock::new,
@@ -105,6 +107,7 @@ public class ModBlocks {
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_BARS = registerColored("copper_bars", IronBarsBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BARS.waxed()), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_CHAINS = registerColored("copper_chain", ChainBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHAIN.waxed()), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_LANTERNS = registerColored("copper_lantern", LanternBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_LANTERN.waxed()), "waxed_");
+    public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_GOLEM_STATUES = registerColoredCopperGolemStatues(ColoredCopperGolemStatueBlock::new, "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_CAULDRONS = registerColoredCauldrons();
     public static final List<DeferredBlock<Block>> COLORED_WATER_CAULDRONS = registerColored("water_cauldron", p -> new LayeredCauldronBlock(Biome.Precipitation.RAIN, CauldronInteraction.WATER, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.WATER_CAULDRON), false);
@@ -241,6 +244,20 @@ public class ModBlocks {
             String name = color.getName().concat("_").concat("cauldron");
             DeferredBlock<Block> deferredBlock = BLOCKS.registerBlock(name,
                     p -> new ColoredCauldronBlock(p, color), BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON).mapColor(color));
+            blocks.add(deferredBlock);
+        }
+        return blocks;
+    }
+
+    private static List<DeferredBlock<Block>> registerColoredCopperGolemStatues(TriFunction<WeatherState, DyeColor, BlockBehaviour.Properties, Block> func, String prefix) {
+        List<DeferredBlock<Block>> blocks = new ArrayList<>();
+        for (DyeColor color : COLORS) {
+            String name = prefix + color.getName() + "_copper_golem_statue";
+            DeferredBlock<Block> deferredBlock = BLOCKS.registerBlock(name,
+                    p -> func.apply(WeatherState.OXIDIZED, color, p),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GOLEM_STATUE).mapColor(color));
+            ModItems.ITEMS.registerSimpleBlockItem(deferredBlock, new Item.Properties()
+                            .component(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(CopperGolemStatueBlock.POSE, CopperGolemStatueBlock.Pose.STANDING)));
             blocks.add(deferredBlock);
         }
         return blocks;

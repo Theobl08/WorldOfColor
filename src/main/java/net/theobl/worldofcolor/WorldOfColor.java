@@ -103,6 +103,8 @@ public class WorldOfColor {
         ModBlocks.COLORED_WALL_SIGNS.forEach(sign -> event.modify(BlockEntityType.SIGN, sign.get()));
         ModBlocks.COLORED_HANGING_SIGNS.forEach(sign -> event.modify(BlockEntityType.HANGING_SIGN, sign.get()));
         ModBlocks.COLORED_WALL_HANGING_SIGNS.forEach(sign -> event.modify(BlockEntityType.HANGING_SIGN, sign.get()));
+        ModBlocks.COLORED_COPPER_GOLEM_STATUES.forEach(block -> event.modify(BlockEntityType.COPPER_GOLEM_STATUE, block.get()));
+        ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.forEach(block -> event.modify(BlockEntityType.COPPER_GOLEM_STATUE, block.get()));
     }
 
     private void extendPoiTypes(ExtendPoiTypesEvent event) {

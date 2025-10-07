@@ -18,6 +18,9 @@
     "worldofcolor:black_copper_door": {
       "next_oxidation_stage": "worldofcolor:brown_copper_door"
     },
+    "worldofcolor:black_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:brown_copper_golem_statue"
+    },
     "worldofcolor:black_copper_grate": {
       "next_oxidation_stage": "worldofcolor:brown_copper_grate"
     },
@@ -56,6 +59,9 @@
     },
     "worldofcolor:blue_copper_door": {
       "next_oxidation_stage": "worldofcolor:purple_copper_door"
+    },
+    "worldofcolor:blue_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:purple_copper_golem_statue"
     },
     "worldofcolor:blue_copper_grate": {
       "next_oxidation_stage": "worldofcolor:purple_copper_grate"
@@ -96,6 +102,9 @@
     "worldofcolor:brown_copper_door": {
       "next_oxidation_stage": "worldofcolor:red_copper_door"
     },
+    "worldofcolor:brown_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:red_copper_golem_statue"
+    },
     "worldofcolor:brown_copper_grate": {
       "next_oxidation_stage": "worldofcolor:red_copper_grate"
     },
@@ -134,6 +143,9 @@
     },
     "worldofcolor:cyan_copper_door": {
       "next_oxidation_stage": "worldofcolor:light_blue_copper_door"
+    },
+    "worldofcolor:cyan_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:light_blue_copper_golem_statue"
     },
     "worldofcolor:cyan_copper_grate": {
       "next_oxidation_stage": "worldofcolor:light_blue_copper_grate"
@@ -174,6 +186,9 @@
     "worldofcolor:gray_copper_door": {
       "next_oxidation_stage": "worldofcolor:black_copper_door"
     },
+    "worldofcolor:gray_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:black_copper_golem_statue"
+    },
     "worldofcolor:gray_copper_grate": {
       "next_oxidation_stage": "worldofcolor:black_copper_grate"
     },
@@ -212,6 +227,9 @@
     },
     "worldofcolor:green_copper_door": {
       "next_oxidation_stage": "worldofcolor:cyan_copper_door"
+    },
+    "worldofcolor:green_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:cyan_copper_golem_statue"
     },
     "worldofcolor:green_copper_grate": {
       "next_oxidation_stage": "worldofcolor:cyan_copper_grate"
@@ -252,6 +270,9 @@
     "worldofcolor:light_blue_copper_door": {
       "next_oxidation_stage": "worldofcolor:blue_copper_door"
     },
+    "worldofcolor:light_blue_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:blue_copper_golem_statue"
+    },
     "worldofcolor:light_blue_copper_grate": {
       "next_oxidation_stage": "worldofcolor:blue_copper_grate"
     },
@@ -290,6 +311,9 @@
     },
     "worldofcolor:light_gray_copper_door": {
       "next_oxidation_stage": "worldofcolor:gray_copper_door"
+    },
+    "worldofcolor:light_gray_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:gray_copper_golem_statue"
     },
     "worldofcolor:light_gray_copper_grate": {
       "next_oxidation_stage": "worldofcolor:gray_copper_grate"
@@ -330,6 +354,9 @@
     "worldofcolor:lime_copper_door": {
       "next_oxidation_stage": "worldofcolor:green_copper_door"
     },
+    "worldofcolor:lime_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:green_copper_golem_statue"
+    },
     "worldofcolor:lime_copper_grate": {
       "next_oxidation_stage": "worldofcolor:green_copper_grate"
     },
@@ -368,6 +395,9 @@
     },
     "worldofcolor:magenta_copper_door": {
       "next_oxidation_stage": "worldofcolor:pink_copper_door"
+    },
+    "worldofcolor:magenta_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:pink_copper_golem_statue"
     },
     "worldofcolor:magenta_copper_grate": {
       "next_oxidation_stage": "worldofcolor:pink_copper_grate"
@@ -408,6 +438,9 @@
     "worldofcolor:orange_copper_door": {
       "next_oxidation_stage": "worldofcolor:yellow_copper_door"
     },
+    "worldofcolor:orange_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:yellow_copper_golem_statue"
+    },
     "worldofcolor:orange_copper_grate": {
       "next_oxidation_stage": "worldofcolor:yellow_copper_grate"
     },
@@ -446,6 +479,9 @@
     },
     "worldofcolor:purple_copper_door": {
       "next_oxidation_stage": "worldofcolor:magenta_copper_door"
+    },
+    "worldofcolor:purple_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:magenta_copper_golem_statue"
     },
     "worldofcolor:purple_copper_grate": {
       "next_oxidation_stage": "worldofcolor:magenta_copper_grate"
@@ -486,6 +522,9 @@
     "worldofcolor:red_copper_door": {
       "next_oxidation_stage": "worldofcolor:orange_copper_door"
     },
+    "worldofcolor:red_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:orange_copper_golem_statue"
+    },
     "worldofcolor:red_copper_grate": {
       "next_oxidation_stage": "worldofcolor:orange_copper_grate"
     },
@@ -525,6 +564,9 @@
     "worldofcolor:white_copper_door": {
       "next_oxidation_stage": "worldofcolor:light_gray_copper_door"
     },
+    "worldofcolor:white_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:light_gray_copper_golem_statue"
+    },
     "worldofcolor:white_copper_grate": {
       "next_oxidation_stage": "worldofcolor:light_gray_copper_grate"
     },
@@ -563,6 +605,9 @@
     },
     "worldofcolor:yellow_copper_door": {
       "next_oxidation_stage": "worldofcolor:lime_copper_door"
+    },
+    "worldofcolor:yellow_copper_golem_statue": {
+      "next_oxidation_stage": "worldofcolor:lime_copper_golem_statue"
     },
     "worldofcolor:yellow_copper_grate": {
       "next_oxidation_stage": "worldofcolor:lime_copper_grate"

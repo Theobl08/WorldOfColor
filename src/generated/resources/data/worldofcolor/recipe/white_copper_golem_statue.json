@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:copper_golem_statue",
+    "minecraft:white_dye"
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:white_copper_golem_statue"
+  }
+}

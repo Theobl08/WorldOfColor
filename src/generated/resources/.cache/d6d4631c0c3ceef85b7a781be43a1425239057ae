@@ -1,4 +1,4 @@
-// 1.21.9	2025-10-06T22:09:44.3700949	Tags for minecraft:block mod id worldofcolor
+// 1.21.9	2025-10-07T17:33:02.6349889	Tags for minecraft:block mod id worldofcolor
 3d6c0b035c67e9cd0ddbf4a707ff7bcd3291dd4f data/c/tags/block/dyed/black.json
 3fc255a89a05737990876711691e7477845dfbe0 data/c/tags/block/dyed/blue.json
 e0c6f5027cc18edbe863c39415c98f66f97f1a12 data/c/tags/block/dyed/brown.json
@@ -23,6 +23,7 @@ eb78c48bba70dbc4b3b3f09510d0af4c186c77d4 data/c/tags/block/fence_gates/wooden.js
 854c127296e15e333b04c035c4ac76bacc07d378 data/minecraft/tags/block/cauldrons.json
 82f1e4258ace1d4c05a684125e81e099094ecf42 data/minecraft/tags/block/ceiling_hanging_signs.json
 ef457a705be202f1e08bb88a8e908d1e927b238e data/minecraft/tags/block/chains.json
+217fd03c59bdddbf3d4466e0967ae0d138790d2e data/minecraft/tags/block/copper_golem_statues.json
 ad7ced8da31a25d498587d611f687a552d1cd450 data/minecraft/tags/block/doors.json
 eb78c48bba70dbc4b3b3f09510d0af4c186c77d4 data/minecraft/tags/block/fence_gates.json
 7a5f962519c47783f4a9b9ef580ef9b559e4d6b8 data/minecraft/tags/block/flower_pots.json
@@ -30,8 +31,8 @@ eb78c48bba70dbc4b3b3f09510d0af4c186c77d4 data/minecraft/tags/block/fence_gates.j
 577a8c674e8e807d3b82949d8587fed069ee57d8 data/minecraft/tags/block/leaves.json
 9d9cfe0cba1b782690ba943b5a45a5b5ee6b099e data/minecraft/tags/block/lightning_rods.json
 56de79b538193a6ebe9bb005cce4460536d83aff data/minecraft/tags/block/logs_that_burn.json
-1531c72a1be9b3fd2399b721763dc9d90602e838 data/minecraft/tags/block/mineable/pickaxe.json
-35bfb905f25a2eba3fd60572485639123c0286e0 data/minecraft/tags/block/needs_stone_tool.json
+6b79cfa3fc5f909580073739ef1b186c988115a9 data/minecraft/tags/block/mineable/pickaxe.json
+6ed104d1a6cbab8c5bbb5b9fda5f3b3f16b4bba1 data/minecraft/tags/block/needs_stone_tool.json
 e0747f653629573aa91a5397dd01117d4661b50d data/minecraft/tags/block/planks.json
 480520574b77f45104165aa524c5261ed9d0715d data/minecraft/tags/block/saplings.json
 3402df65f407611a32bbf6658e9d06426972ec1f data/minecraft/tags/block/slabs.json
