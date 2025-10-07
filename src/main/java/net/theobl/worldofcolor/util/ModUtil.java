@@ -51,6 +51,8 @@ public class ModUtil {
                     Items.BLUE_DYE, Items.PURPLE_DYE, Items.MAGENTA_DYE, Items.PINK_DYE);
 
     public static final Supplier<Block> FERN = supplier(Blocks.FERN);
+    public static final Supplier<Block> OPEN_EYEBLOSSOM = supplier(Blocks.OPEN_EYEBLOSSOM);
+    public static final Supplier<Block> CLOSED_EYEBLOSSOM = supplier(Blocks.CLOSED_EYEBLOSSOM);
     public static final List<Supplier<Block>> POTTABLE_PLANTS = new ArrayList<>();
 
     public static void setup() {
@@ -116,8 +118,17 @@ public class ModUtil {
 //            }
 //        }
         for (Block block : BuiltInRegistries.BLOCK) {
-            if(block instanceof FlowerBlock || block instanceof SaplingBlock)
-                POTTABLE_PLANTS.add(supplier(block));
+            if(block instanceof FlowerBlock || block instanceof SaplingBlock) {
+                if (block == Blocks.OPEN_EYEBLOSSOM) {
+                    POTTABLE_PLANTS.add(OPEN_EYEBLOSSOM);
+                }
+                else if (block == Blocks.CLOSED_EYEBLOSSOM) {
+                    POTTABLE_PLANTS.add(CLOSED_EYEBLOSSOM);
+                }
+                else {
+                    POTTABLE_PLANTS.add(supplier(block));
+                }
+            }
         }
         POTTABLE_PLANTS.addAll(List.of(
                 FERN,
