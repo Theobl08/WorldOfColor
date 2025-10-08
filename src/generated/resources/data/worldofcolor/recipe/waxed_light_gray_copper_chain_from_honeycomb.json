@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "waxed_light_gray_copper_chain",
+  "ingredients": [
+    "worldofcolor:light_gray_copper_chain",
+    "minecraft:honeycomb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:waxed_light_gray_copper_chain"
+  }
+}

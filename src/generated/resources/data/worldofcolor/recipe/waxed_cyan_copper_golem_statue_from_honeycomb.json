@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "waxed_cyan_copper_golem_statue",
+  "ingredients": [
+    "worldofcolor:cyan_copper_golem_statue",
+    "minecraft:honeycomb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:waxed_cyan_copper_golem_statue"
+  }
+}

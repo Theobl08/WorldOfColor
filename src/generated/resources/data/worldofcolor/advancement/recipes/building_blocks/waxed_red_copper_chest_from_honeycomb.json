@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_red_copper_chest": {
+      "conditions": {
+        "items": [
+          {
+            "items": "worldofcolor:red_copper_chest"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "worldofcolor:waxed_red_copper_chest_from_honeycomb"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_red_copper_chest"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "worldofcolor:waxed_red_copper_chest_from_honeycomb"
+    ]
+  }
+}

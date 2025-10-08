@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "waxed_purple_copper_chest",
+  "ingredients": [
+    "worldofcolor:purple_copper_chest",
+    "minecraft:honeycomb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:waxed_purple_copper_chest"
+  }
+}

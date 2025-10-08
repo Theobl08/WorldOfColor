@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "waxed_orange_copper_bars",
+  "ingredients": [
+    "worldofcolor:orange_copper_bars",
+    "minecraft:honeycomb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:waxed_orange_copper_bars"
+  }
+}

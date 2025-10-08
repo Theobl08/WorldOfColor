@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "group": "waxed_blue_lightning_rod",
+  "ingredients": [
+    "worldofcolor:blue_lightning_rod",
+    "minecraft:honeycomb"
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:waxed_blue_lightning_rod"
+  }
+}

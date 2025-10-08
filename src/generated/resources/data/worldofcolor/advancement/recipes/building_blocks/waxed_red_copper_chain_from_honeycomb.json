@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_red_copper_chain": {
+      "conditions": {
+        "items": [
+          {
+            "items": "worldofcolor:red_copper_chain"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "worldofcolor:waxed_red_copper_chain_from_honeycomb"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_red_copper_chain"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "worldofcolor:waxed_red_copper_chain_from_honeycomb"
+    ]
+  }
+}
