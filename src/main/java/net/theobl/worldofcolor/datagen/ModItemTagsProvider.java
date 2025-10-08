@@ -56,6 +56,7 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         this.copy(BlockTags.CHAINS, ItemTags.CHAINS);
         this.copy(BlockTags.LANTERNS, ItemTags.LANTERNS);
         this.copy(BlockTags.LIGHTNING_RODS, ItemTags.LIGHTNING_RODS);
+        this.copy(BlockTags.COPPER_CHESTS, ItemTags.COPPER_CHESTS);
         this.copy(BlockTags.COPPER_GOLEM_STATUES, ItemTags.COPPER_GOLEM_STATUES);
 
         this.copy(Tags.Blocks.STRIPPED_LOGS, Tags.Items.STRIPPED_LOGS);

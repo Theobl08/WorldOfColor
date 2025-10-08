@@ -110,6 +110,13 @@ public class ModDataMapProvider extends DataMapProvider {
             }
             oxidizables.add(block, new Oxidizable(ModBlocks.COLORED_COPPER_LANTERNS.get(index + 1).get()), false);
         }
+        for(DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_CHESTS) {
+            int index = ModBlocks.COLORED_COPPER_CHESTS.indexOf(block);
+            if(index == ModBlocks.COLORED_COPPER_CHESTS.size() - 1) {
+                break;
+            }
+            oxidizables.add(block, new Oxidizable(ModBlocks.COLORED_COPPER_CHESTS.get(index + 1).get()), false);
+        }
         for(DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_GOLEM_STATUES) {
             int index = ModBlocks.COLORED_COPPER_GOLEM_STATUES.indexOf(block);
             if(index == ModBlocks.COLORED_COPPER_GOLEM_STATUES.size() - 1) {
@@ -173,6 +180,10 @@ public class ModDataMapProvider extends DataMapProvider {
         for(DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_LANTERNS) {
             int index = ModBlocks.COLORED_COPPER_LANTERNS.indexOf(block);
             waxables.add(block, new Waxable(ModBlocks.COLORED_WAXED_COPPER_LANTERNS.get(index).get()), false);
+        }
+        for(DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_CHESTS) {
+            int index = ModBlocks.COLORED_COPPER_CHESTS.indexOf(block);
+            waxables.add(block, new Waxable(ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(index).get()), false);
         }
         for(DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_GOLEM_STATUES) {
             int index = ModBlocks.COLORED_COPPER_GOLEM_STATUES.indexOf(block);

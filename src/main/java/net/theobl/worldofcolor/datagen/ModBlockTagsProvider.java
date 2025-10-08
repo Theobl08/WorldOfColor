@@ -128,6 +128,9 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             else if(block.get() instanceof LightningRodBlock) {
                 this.tag(BlockTags.LIGHTNING_RODS).add(block.get());
             }
+            else if(block.get() instanceof CopperChestBlock) {
+                this.tag(BlockTags.COPPER_CHESTS).add(block.get());
+            }
             else if(block.get() instanceof CopperGolemStatueBlock) {
                 this.tag(BlockTags.COPPER_GOLEM_STATUES).add(block.get());
             }

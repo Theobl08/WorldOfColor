@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/template_chest",
+  "textures": {
+    "particle": "worldofcolor:block/gray_copper_block"
+  }
+}

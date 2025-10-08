@@ -90,6 +90,9 @@ public class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHAIN.unaffected()));
     public static final List<DeferredBlock<Block>> COLORED_COPPER_LANTERNS = registerColoredWeathering("copper_lantern", WeatheringLanternBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_LANTERN.unaffected()));
+    public static final List<DeferredBlock<Block>> COLORED_COPPER_CHESTS = registerColored("copper_chest",
+            p -> new WeatheringCopperChestBlock(WeatherState.OXIDIZED, SoundEvents.COPPER_CHEST_OPEN, SoundEvents.COPPER_CHEST_CLOSE, p),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHEST));
     public static final List<DeferredBlock<Block>> COLORED_COPPER_GOLEM_STATUES = registerColoredCopperGolemStatues(ColoredWeatheringCopperGolemStatueBlock::new, "");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_BLOCKS = registerColored("copper_block", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_CHISELED_COPPER = registerColored("chiseled_copper", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK), "waxed_");
@@ -107,6 +110,9 @@ public class ModBlocks {
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_BARS = registerColored("copper_bars", IronBarsBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BARS.waxed()), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_CHAINS = registerColored("copper_chain", ChainBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHAIN.waxed()), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_LANTERNS = registerColored("copper_lantern", LanternBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_LANTERN.waxed()), "waxed_");
+    public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_CHESTS = registerColored("copper_chest",
+            p -> new CopperChestBlock(WeatherState.OXIDIZED, SoundEvents.COPPER_CHEST_OPEN, SoundEvents.COPPER_CHEST_CLOSE, p),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHEST), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_GOLEM_STATUES = registerColoredCopperGolemStatues(ColoredCopperGolemStatueBlock::new, "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_CAULDRONS = registerColoredCauldrons();
     public static final List<DeferredBlock<Block>> COLORED_WATER_CAULDRONS = registerColored("water_cauldron", p -> new LayeredCauldronBlock(Biome.Precipitation.RAIN, CauldronInteraction.WATER, p),

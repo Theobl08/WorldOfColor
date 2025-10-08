@@ -12,12 +12,8 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.GrassColor;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.api.distmarker.Dist;
@@ -103,6 +99,8 @@ public class WorldOfColor {
         ModBlocks.COLORED_WALL_SIGNS.forEach(sign -> event.modify(BlockEntityType.SIGN, sign.get()));
         ModBlocks.COLORED_HANGING_SIGNS.forEach(sign -> event.modify(BlockEntityType.HANGING_SIGN, sign.get()));
         ModBlocks.COLORED_WALL_HANGING_SIGNS.forEach(sign -> event.modify(BlockEntityType.HANGING_SIGN, sign.get()));
+        ModBlocks.COLORED_COPPER_CHESTS.forEach(block -> event.modify(BlockEntityType.CHEST, block.get()));
+        ModBlocks.COLORED_WAXED_COPPER_CHESTS.forEach(block -> event.modify(BlockEntityType.CHEST, block.get()));
         ModBlocks.COLORED_COPPER_GOLEM_STATUES.forEach(block -> event.modify(BlockEntityType.COPPER_GOLEM_STATUE, block.get()));
         ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.forEach(block -> event.modify(BlockEntityType.COPPER_GOLEM_STATUE, block.get()));
     }
@@ -154,6 +152,8 @@ public class WorldOfColor {
                 EntityRenderers.register(ModEntityType.COLORED_BOATS.get(index).get(), context -> new BoatRenderer(context, ModModelLayers.COLORED_BOATS.get(index)));
                 EntityRenderers.register(ModEntityType.COLORED_CHEST_BOATS.get(index).get(), context -> new BoatRenderer(context, ModModelLayers.COLORED_CHEST_BOATS.get(index)));
             }
+
+            ModMaterial.bootstrap();
         }
 
         @SubscribeEvent

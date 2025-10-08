@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "worldofcolor:item/light_gray_copper_chest",
+    "model": {
+      "type": "minecraft:chest",
+      "texture": "worldofcolor:copper_light_gray"
+    }
+  }
+}

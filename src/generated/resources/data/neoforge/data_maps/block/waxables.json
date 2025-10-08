@@ -15,6 +15,9 @@
     "worldofcolor:black_copper_chain": {
       "waxed": "worldofcolor:waxed_black_copper_chain"
     },
+    "worldofcolor:black_copper_chest": {
+      "waxed": "worldofcolor:waxed_black_copper_chest"
+    },
     "worldofcolor:black_copper_door": {
       "waxed": "worldofcolor:waxed_black_copper_door"
     },
@@ -56,6 +59,9 @@
     },
     "worldofcolor:blue_copper_chain": {
       "waxed": "worldofcolor:waxed_blue_copper_chain"
+    },
+    "worldofcolor:blue_copper_chest": {
+      "waxed": "worldofcolor:waxed_blue_copper_chest"
     },
     "worldofcolor:blue_copper_door": {
       "waxed": "worldofcolor:waxed_blue_copper_door"
@@ -99,6 +105,9 @@
     "worldofcolor:brown_copper_chain": {
       "waxed": "worldofcolor:waxed_brown_copper_chain"
     },
+    "worldofcolor:brown_copper_chest": {
+      "waxed": "worldofcolor:waxed_brown_copper_chest"
+    },
     "worldofcolor:brown_copper_door": {
       "waxed": "worldofcolor:waxed_brown_copper_door"
     },
@@ -140,6 +149,9 @@
     },
     "worldofcolor:cyan_copper_chain": {
       "waxed": "worldofcolor:waxed_cyan_copper_chain"
+    },
+    "worldofcolor:cyan_copper_chest": {
+      "waxed": "worldofcolor:waxed_cyan_copper_chest"
     },
     "worldofcolor:cyan_copper_door": {
       "waxed": "worldofcolor:waxed_cyan_copper_door"
@@ -183,6 +195,9 @@
     "worldofcolor:gray_copper_chain": {
       "waxed": "worldofcolor:waxed_gray_copper_chain"
     },
+    "worldofcolor:gray_copper_chest": {
+      "waxed": "worldofcolor:waxed_gray_copper_chest"
+    },
     "worldofcolor:gray_copper_door": {
       "waxed": "worldofcolor:waxed_gray_copper_door"
     },
@@ -224,6 +239,9 @@
     },
     "worldofcolor:green_copper_chain": {
       "waxed": "worldofcolor:waxed_green_copper_chain"
+    },
+    "worldofcolor:green_copper_chest": {
+      "waxed": "worldofcolor:waxed_green_copper_chest"
     },
     "worldofcolor:green_copper_door": {
       "waxed": "worldofcolor:waxed_green_copper_door"
@@ -267,6 +285,9 @@
     "worldofcolor:light_blue_copper_chain": {
       "waxed": "worldofcolor:waxed_light_blue_copper_chain"
     },
+    "worldofcolor:light_blue_copper_chest": {
+      "waxed": "worldofcolor:waxed_light_blue_copper_chest"
+    },
     "worldofcolor:light_blue_copper_door": {
       "waxed": "worldofcolor:waxed_light_blue_copper_door"
     },
@@ -308,6 +329,9 @@
     },
     "worldofcolor:light_gray_copper_chain": {
       "waxed": "worldofcolor:waxed_light_gray_copper_chain"
+    },
+    "worldofcolor:light_gray_copper_chest": {
+      "waxed": "worldofcolor:waxed_light_gray_copper_chest"
     },
     "worldofcolor:light_gray_copper_door": {
       "waxed": "worldofcolor:waxed_light_gray_copper_door"
@@ -351,6 +375,9 @@
     "worldofcolor:lime_copper_chain": {
       "waxed": "worldofcolor:waxed_lime_copper_chain"
     },
+    "worldofcolor:lime_copper_chest": {
+      "waxed": "worldofcolor:waxed_lime_copper_chest"
+    },
     "worldofcolor:lime_copper_door": {
       "waxed": "worldofcolor:waxed_lime_copper_door"
     },
@@ -392,6 +419,9 @@
     },
     "worldofcolor:magenta_copper_chain": {
       "waxed": "worldofcolor:waxed_magenta_copper_chain"
+    },
+    "worldofcolor:magenta_copper_chest": {
+      "waxed": "worldofcolor:waxed_magenta_copper_chest"
     },
     "worldofcolor:magenta_copper_door": {
       "waxed": "worldofcolor:waxed_magenta_copper_door"
@@ -435,6 +465,9 @@
     "worldofcolor:orange_copper_chain": {
       "waxed": "worldofcolor:waxed_orange_copper_chain"
     },
+    "worldofcolor:orange_copper_chest": {
+      "waxed": "worldofcolor:waxed_orange_copper_chest"
+    },
     "worldofcolor:orange_copper_door": {
       "waxed": "worldofcolor:waxed_orange_copper_door"
     },
@@ -476,6 +509,9 @@
     },
     "worldofcolor:pink_copper_chain": {
       "waxed": "worldofcolor:waxed_pink_copper_chain"
+    },
+    "worldofcolor:pink_copper_chest": {
+      "waxed": "worldofcolor:waxed_pink_copper_chest"
     },
     "worldofcolor:pink_copper_door": {
       "waxed": "worldofcolor:waxed_pink_copper_door"
@@ -519,6 +555,9 @@
     "worldofcolor:purple_copper_chain": {
       "waxed": "worldofcolor:waxed_purple_copper_chain"
     },
+    "worldofcolor:purple_copper_chest": {
+      "waxed": "worldofcolor:waxed_purple_copper_chest"
+    },
     "worldofcolor:purple_copper_door": {
       "waxed": "worldofcolor:waxed_purple_copper_door"
     },
@@ -560,6 +599,9 @@
     },
     "worldofcolor:red_copper_chain": {
       "waxed": "worldofcolor:waxed_red_copper_chain"
+    },
+    "worldofcolor:red_copper_chest": {
+      "waxed": "worldofcolor:waxed_red_copper_chest"
     },
     "worldofcolor:red_copper_door": {
       "waxed": "worldofcolor:waxed_red_copper_door"
@@ -603,6 +645,9 @@
     "worldofcolor:white_copper_chain": {
       "waxed": "worldofcolor:waxed_white_copper_chain"
     },
+    "worldofcolor:white_copper_chest": {
+      "waxed": "worldofcolor:waxed_white_copper_chest"
+    },
     "worldofcolor:white_copper_door": {
       "waxed": "worldofcolor:waxed_white_copper_door"
     },
@@ -644,6 +689,9 @@
     },
     "worldofcolor:yellow_copper_chain": {
       "waxed": "worldofcolor:waxed_yellow_copper_chain"
+    },
+    "worldofcolor:yellow_copper_chest": {
+      "waxed": "worldofcolor:waxed_yellow_copper_chest"
     },
     "worldofcolor:yellow_copper_door": {
       "waxed": "worldofcolor:waxed_yellow_copper_door"

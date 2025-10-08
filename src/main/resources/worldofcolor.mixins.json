@@ -6,10 +6,12 @@
   "refmap": "worldofcolor.refmap.json",
   "mixins": [
     "CauldronInteractionMixin",
+    "CopperChestBlockMixin",
     "LayeredCauldronBlockMixin",
     "SheepMixin"
   ],
   "client": [
+    "ChestRendererMixin",
     "CopperGolemStatueBlockRendererMixin"
   ],
   "injectors": {
