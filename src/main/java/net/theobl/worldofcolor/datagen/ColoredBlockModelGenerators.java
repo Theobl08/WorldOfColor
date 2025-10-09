@@ -8,16 +8,16 @@ import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.block.model.SingleVariant;
 import net.minecraft.client.renderer.block.model.Variant;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
-import net.minecraft.client.renderer.special.ChestSpecialRenderer;
 import net.minecraft.client.renderer.special.CopperGolemStatueSpecialRenderer;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.client.model.generators.blockstate.CompositeBlockStateModelBuilder;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
@@ -33,9 +33,7 @@ import java.util.function.BiConsumer;
 import static net.minecraft.client.data.models.BlockModelGenerators.*;
 import static net.minecraft.client.data.models.model.TextureMapping.getBlockTexture;
 import static net.theobl.worldofcolor.datagen.ColoredTextureMapping.cauldronEmpty;
-import static net.theobl.worldofcolor.datagen.ColoredTextureMapping.lightningRod;
 import static net.theobl.worldofcolor.datagen.VanillaModelTemplates.CAULDRON;
-import static net.theobl.worldofcolor.datagen.VanillaModelTemplates.LIGHTNING_ROD;
 
 public class ColoredBlockModelGenerators {
     private final BlockModelGenerators blockModels;
@@ -61,6 +59,13 @@ public class ColoredBlockModelGenerators {
         this.blockModels = blockModels;
     }
 
+    public static MultiVariant createLayeredCauldron(ResourceLocation contentLevel, ResourceLocation emptyCauldron) {
+        CompositeBlockStateModelBuilder compositeBlockStateModelBuilder = new CompositeBlockStateModelBuilder();
+        compositeBlockStateModelBuilder.addPartModel(new SingleVariant.Unbaked(plainModel(contentLevel)));
+        compositeBlockStateModelBuilder.addPartModel(new SingleVariant.Unbaked(plainModel(emptyCauldron)));
+        return MultiVariant.of(compositeBlockStateModelBuilder);
+    }
+
     public void createTrivialCubeWithRenderType(Block block, String renderType) {
         blockModels.createTrivialBlock(block, TexturedModel.CUBE.updateTemplate(template -> template.extend().renderType(renderType).build()));
     }
@@ -79,14 +84,14 @@ public class ColoredBlockModelGenerators {
         Block lavaCauldron = ModBlocks.COLORED_LAVA_CAULDRONS.get(index).get();
         Block waterCauldron = ModBlocks.COLORED_WATER_CAULDRONS.get(index).get();
         Block powderSnowCauldron = ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(index).get();
+        ResourceLocation emptyCauldron = CAULDRON.create(cauldron, cauldronEmpty(color), blockModels.modelOutput);
         blockModels.registerSimpleFlatItemModel(ModItems.COLORED_CAULDRONS.get(index).get());
         blockModels.blockStateOutput
                 .accept(
                         createSimpleBlock(
                                 cauldron,
                                 plainVariant(
-                                CAULDRON
-                                        .create(cauldron, cauldronEmpty(color), blockModels.modelOutput)
+                                        emptyCauldron
                                 )
                         )
                 );
@@ -107,38 +112,38 @@ public class ColoredBlockModelGenerators {
                                         PropertyDispatch.initial(LayeredCauldronBlock.LEVEL)
                                                 .select(
                                                         1,
-                                                        plainVariant(
-                                                                        VanillaModelTemplates.cauldronLevelX(color, 1)
+                                                        createLayeredCauldron(
+                                                                        VanillaModelTemplates.cauldronLevelX(1)
                                                                                 .createWithSuffix(
                                                                                         waterCauldron,
                                                                                         "_level1",
-                                                                                        TextureMapping.particle(getBlockTexture(cauldron, "_side")),
+                                                                                        ColoredTextureMapping.cauldronContent(cauldron),
                                                                                         blockModels.modelOutput
-                                                                                )
+                                                                                ), emptyCauldron
                                                                 )
                                                 )
                                                 .select(
                                                         2,
-                                                        plainVariant(
-                                                                        VanillaModelTemplates.cauldronLevelX(color, 2)
+                                                        createLayeredCauldron(
+                                                                        VanillaModelTemplates.cauldronLevelX(2)
                                                                                 .createWithSuffix(
                                                                                         waterCauldron,
                                                                                         "_level2",
-                                                                                        TextureMapping.particle(getBlockTexture(cauldron, "_side")),
+                                                                                        ColoredTextureMapping.cauldronContent(cauldron),
                                                                                         blockModels.modelOutput
-                                                                                )
+                                                                                ), emptyCauldron
                                                                 )
                                                 )
                                                 .select(
                                                         3,
-                                                        plainVariant(
-                                                                        VanillaModelTemplates.cauldronLevelX(color, 3)
+                                                        createLayeredCauldron(
+                                                                        VanillaModelTemplates.cauldronLevelX(3)
                                                                                 .createWithSuffix(
                                                                                         waterCauldron,
                                                                                         "_full",
-                                                                                        TextureMapping.particle(getBlockTexture(cauldron, "_side")),
+                                                                                        ColoredTextureMapping.cauldronContent(cauldron),
                                                                                         blockModels.modelOutput
-                                                                                )
+                                                                                ), emptyCauldron
                                                                 )
                                                 )
                                 )

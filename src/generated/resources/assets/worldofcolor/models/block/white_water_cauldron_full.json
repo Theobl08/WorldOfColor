@@ -1,40 +1,28 @@
 {
   "ambientocclusion": false,
-  "children": {
-    "cauldron": "worldofcolor:block/white_cauldron",
-    "content": {
-      "elements": [
-        {
-          "faces": {
-            "up": {
-              "texture": "#content",
-              "tintindex": 0
-            }
-          },
-          "from": [
-            2,
-            4,
-            2
-          ],
-          "to": [
-            14,
-            15,
-            14
-          ]
+  "elements": [
+    {
+      "faces": {
+        "up": {
+          "texture": "#content",
+          "tintindex": 0
         }
+      },
+      "from": [
+        2,
+        4,
+        2
       ],
-      "render_type": "minecraft:translucent",
-      "textures": {
-        "content": "minecraft:block/water_still"
-      }
+      "to": [
+        14,
+        15,
+        14
+      ]
     }
-  },
-  "item_render_order": [
-    "cauldron",
-    "content"
   ],
-  "loader": "neoforge:composite",
+  "render_type": "minecraft:translucent",
   "textures": {
+    "content": "minecraft:block/water_still",
     "particle": "worldofcolor:block/white_cauldron_side"
   }
 }

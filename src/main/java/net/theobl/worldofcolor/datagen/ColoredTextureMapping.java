@@ -5,6 +5,7 @@ import net.minecraft.client.data.models.model.TextureSlot;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.util.ModUtil;
 
@@ -44,5 +45,10 @@ public class ColoredTextureMapping {
         return new TextureMapping()
                 .put(TextureSlot.PARTICLE, getBlockTexture(flowerPot))
                 .put(ColoredTextureSlot.FLOWERPOT, getBlockTexture(flowerPot));
+    }
+
+    public static TextureMapping cauldronContent(Block particle) {
+        return new TextureMapping().put(TextureSlot.CONTENT, TextureMapping.getBlockTexture(Blocks.WATER, "_still"))
+                .put(TextureSlot.PARTICLE, TextureMapping.getBlockTexture(particle, "_side"));
     }
 }

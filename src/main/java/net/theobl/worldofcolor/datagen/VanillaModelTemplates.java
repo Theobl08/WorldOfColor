@@ -20,7 +20,32 @@ public class VanillaModelTemplates {
     public static final ModelTemplate SLIME_BLOCK = ModelTemplates.create("slime_block", TextureSlot.PARTICLE, TextureSlot.TEXTURE);
     public static final ModelTemplate FLOWER_POT = ModelTemplates.create("flower_pot", TextureSlot.PARTICLE, ColoredTextureSlot.FLOWERPOT);
 
-    public static ModelTemplate cauldronLevelX(DyeColor color, int level) {
+//    public static ModelTemplate cauldronLevelX(DyeColor color, int level) {
+//        final float y;
+//        if(level == 1)
+//            y = 9;
+//        else if(level == 2)
+//            y = 12;
+//        else
+//            y = 15;
+//
+//        return ExtendedModelTemplateBuilder.builder().requiredTextureSlot(TextureSlot.PARTICLE).customLoader(CompositeModelBuilder::new,
+//                compositeModelBuilder -> compositeModelBuilder.child("cauldron",
+//                                ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, "block/" + color.getName() + "_cauldron"))
+//                        .inlineChild("content",
+//                                ModelTemplates.create(TextureSlot.CONTENT).extend()
+//                                        .renderType("translucent")
+//                                        .element(elementBuilder -> elementBuilder
+//                                                .from(2, 4, 2)
+//                                                .to(14, y, 14)
+//                                                .face(Direction.UP, faceBuilder -> faceBuilder
+//                                                        .texture(TextureSlot.CONTENT).tintindex(0)))
+//                                        .build(),
+//                                new TextureMapping().put(TextureSlot.CONTENT, TextureMapping.getBlockTexture(Blocks.WATER, "_still"))))
+//                .ambientOcclusion(false)
+//                .build();
+//    }
+    public static ModelTemplate cauldronLevelX(int level) {
         final float y;
         if(level == 1)
             y = 9;
@@ -29,20 +54,12 @@ public class VanillaModelTemplates {
         else
             y = 15;
 
-        return ExtendedModelTemplateBuilder.builder().requiredTextureSlot(TextureSlot.PARTICLE).customLoader(CompositeModelBuilder::new,
-                compositeModelBuilder -> compositeModelBuilder.child("cauldron",
-                                ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, "block/" + color.getName() + "_cauldron"))
-                        .inlineChild("content",
-                                ModelTemplates.create(TextureSlot.CONTENT).extend()
-                                        .renderType("translucent")
-                                        .element(elementBuilder -> elementBuilder
-                                                .from(2, 4, 2)
-                                                .to(14, y, 14)
-                                                .face(Direction.UP, faceBuilder -> faceBuilder
-                                                        .texture(TextureSlot.CONTENT).tintindex(0)))
-                                        .build(),
-                                new TextureMapping().put(TextureSlot.CONTENT, TextureMapping.getBlockTexture(Blocks.WATER, "_still"))))
-                .ambientOcclusion(false)
-                .build();
+        return ModelTemplates.create(TextureSlot.CONTENT, TextureSlot.PARTICLE).extend()
+                .renderType("translucent").ambientOcclusion(false)
+                .element(elementBuilder -> elementBuilder
+                        .from(2, 4, 2)
+                        .to(14, y, 14)
+                        .face(Direction.UP, faceBuilder -> faceBuilder
+                                .texture(TextureSlot.CONTENT).tintindex(0))).build();
     }
 }

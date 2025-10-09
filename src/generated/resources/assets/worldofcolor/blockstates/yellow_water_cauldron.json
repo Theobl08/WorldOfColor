@@ -1,13 +1,37 @@
 {
   "variants": {
     "level=1": {
-      "model": "worldofcolor:block/yellow_water_cauldron_level1"
+      "type": "neoforge:composite",
+      "models": [
+        {
+          "model": "worldofcolor:block/yellow_water_cauldron_level1"
+        },
+        {
+          "model": "worldofcolor:block/yellow_cauldron"
+        }
+      ]
     },
     "level=2": {
-      "model": "worldofcolor:block/yellow_water_cauldron_level2"
+      "type": "neoforge:composite",
+      "models": [
+        {
+          "model": "worldofcolor:block/yellow_water_cauldron_level2"
+        },
+        {
+          "model": "worldofcolor:block/yellow_cauldron"
+        }
+      ]
     },
     "level=3": {
-      "model": "worldofcolor:block/yellow_water_cauldron_full"
+      "type": "neoforge:composite",
+      "models": [
+        {
+          "model": "worldofcolor:block/yellow_water_cauldron_full"
+        },
+        {
+          "model": "worldofcolor:block/yellow_cauldron"
+        }
+      ]
     }
   }
 }
