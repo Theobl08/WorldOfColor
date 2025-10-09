@@ -2,10 +2,12 @@ package net.theobl.worldofcolor;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.PackType;
@@ -15,6 +17,7 @@ import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.GrassColor;
 import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -26,6 +29,8 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.extensions.common.IClientBlockExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.world.poi.ExtendPoiTypesEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
@@ -166,6 +171,16 @@ public class WorldOfColor {
         public static void addPackFinders(AddPackFindersEvent event) {
             event.addPackFinders(ResourceLocation.fromNamespaceAndPath(MODID, "resourcepacks/accurate_stained_glass"), PackType.CLIENT_RESOURCES,
                     Component.literal("Accurate stained glass color"), PackSource.DEFAULT, false, Pack.Position.TOP);
+        }
+
+        @SubscribeEvent
+        public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
+            event.registerBlock(new IClientBlockExtensions() {
+                @Override
+                public boolean areBreakingParticlesTinted(BlockState state, ClientLevel level, BlockPos pos) {
+                    return false;
+                }
+            }, ModUtil.asVarArgs(ModBlocks.COLORED_WATER_CAULDRONS));
         }
     }
 }

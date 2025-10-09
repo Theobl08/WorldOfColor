@@ -10,6 +10,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 
@@ -102,6 +103,19 @@ public class ModUtil {
 
     public static Supplier<Block> supplier(Block block) {
         return () -> block;
+    }
+
+    @SafeVarargs
+    public static Block[] asVarArgs(List<DeferredBlock<Block>> deferredBlocks, List<DeferredBlock<Block>>... optionals) {
+        if(optionals.length == 0)
+            return deferredBlocks.stream().map(DeferredHolder::get).toArray(Block[]::new);
+        else {
+            List<DeferredBlock<Block>> copy = new ArrayList<>(deferredBlocks);
+            for (List<DeferredBlock<Block>> list : optionals) {
+                copy.addAll(list);
+            }
+            return copy.stream().map(DeferredHolder::get).toArray(Block[]::new);
+        }
     }
 
     static {
