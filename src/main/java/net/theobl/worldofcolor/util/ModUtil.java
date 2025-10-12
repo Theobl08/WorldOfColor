@@ -107,6 +107,7 @@ public class ModUtil {
 
     @SafeVarargs
     public static Block[] asVarArgs(List<DeferredBlock<Block>> deferredBlocks, List<DeferredBlock<Block>>... optionals) {
+        // https://stackoverflow.com/questions/9863742/how-to-pass-an-arraylist-to-a-varargs-method-parameter
         if(optionals.length == 0)
             return deferredBlocks.stream().map(DeferredHolder::get).toArray(Block[]::new);
         else {
