@@ -18,9 +18,9 @@ public abstract class CopperGolemStatueBlockRendererMixin {
             at = @At("STORE"))
     private RenderType submitColoredCopperGolemStatue(RenderType value, @Local(argsOnly = true) CopperGolemStatueRenderState renderState) {
         if(renderState.blockState.getBlock() instanceof ColoredWeatheringCopperGolemStatueBlock block)
-            return RenderType.entityCutoutNoCull(ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, "textures/entity/copper_golem/" + block.getColor().getName() + "_copper_golem.png"));
+            return RenderType.entityCutoutNoCull(WorldOfColor.asResource("textures/entity/copper_golem/" + block.getColor().getName() + "_copper_golem.png"));
         else if(renderState.blockState.getBlock() instanceof ColoredCopperGolemStatueBlock block)
-            return RenderType.entityCutoutNoCull(ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, "textures/entity/copper_golem/" + block.getColor().getName() + "_copper_golem.png"));
+            return RenderType.entityCutoutNoCull(WorldOfColor.asResource("textures/entity/copper_golem/" + block.getColor().getName() + "_copper_golem.png"));
         else
             return value;
     }

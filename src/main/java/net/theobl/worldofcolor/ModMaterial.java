@@ -17,9 +17,9 @@ public class ModMaterial {
 
     public static void bootstrap() {
         for (DyeColor color : ModUtil.COLORS) {
-            COPPER_CHEST_LOCATION.add(CHEST_MAPPER.apply(ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, "copper_" + color.getName())));
-            COPPER_CHEST_LOCATION_LEFT.add(CHEST_MAPPER.apply(ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, "copper_" + color.getName() + "_left")));
-            COPPER_CHEST_LOCATION_RIGHT.add(CHEST_MAPPER.apply(ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID,"copper_" + color.getName() + "_right")));
+            COPPER_CHEST_LOCATION.add(CHEST_MAPPER.apply(WorldOfColor.asResource("copper_" + color.getName())));
+            COPPER_CHEST_LOCATION_LEFT.add(CHEST_MAPPER.apply(WorldOfColor.asResource("copper_" + color.getName() + "_left")));
+            COPPER_CHEST_LOCATION_RIGHT.add(CHEST_MAPPER.apply(WorldOfColor.asResource("copper_" + color.getName() + "_right")));
         }
     }
 }

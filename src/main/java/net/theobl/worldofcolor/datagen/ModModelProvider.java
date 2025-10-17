@@ -64,7 +64,7 @@ public class ModModelProvider extends ModelProvider {
             coloredBlockModels.createCopperChain(ModBlocks.COLORED_COPPER_CHAINS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_CHAINS.get(index).get());
             coloredBlockModels.createCopperLantern(ModBlocks.COLORED_COPPER_LANTERNS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_LANTERNS.get(index).get());
             blockModels.createLightningRod(ModBlocks.COLORED_LIGHTNING_RODS.get(index).get(), ModBlocks.COLORED_WAXED_LIGHTNING_RODS.get(index).get());
-            blockModels.createChest(ModBlocks.COLORED_COPPER_CHESTS.get(index).get(), ModBlocks.COLORED_COPPER_BLOCKS.get(index).get(), ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, "copper_" + color.getName()), false);
+            blockModels.createChest(ModBlocks.COLORED_COPPER_CHESTS.get(index).get(), ModBlocks.COLORED_COPPER_BLOCKS.get(index).get(), WorldOfColor.asResource("copper_" + color.getName()), false);
             blockModels.copyModel(ModBlocks.COLORED_COPPER_CHESTS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(index).get());
             coloredBlockModels.createCopperGolemStatue(ModBlocks.COLORED_COPPER_GOLEM_STATUES.get(index).get(), ModBlocks.COLORED_COPPER_BLOCKS.get(index).get(), color);
             blockModels.copyModel(ModBlocks.COLORED_COPPER_GOLEM_STATUES.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.get(index).get());

@@ -46,7 +46,7 @@ public class ModTreeFeatures {
     }
 
     public static ResourceKey<ConfiguredFeature<?, ?>> registerKey(String name) {
-        return ResourceKey.create(Registries.CONFIGURED_FEATURE, ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, name));
+        return ResourceKey.create(Registries.CONFIGURED_FEATURE, WorldOfColor.asResource(name));
     }
 
     public static <FC extends FeatureConfiguration, F extends Feature<FC>> void register(BootstrapContext<ConfiguredFeature<?, ?>> context, ResourceKey<ConfiguredFeature<?, ?>> key, F feature, FC config) {

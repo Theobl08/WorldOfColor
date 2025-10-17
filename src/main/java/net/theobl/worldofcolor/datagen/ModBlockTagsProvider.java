@@ -216,7 +216,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     private void addColored(TagKey<Block> group, String pattern) {
         String prefix = group.location().getPath().toUpperCase(Locale.ENGLISH) + '_';
         for (DyeColor color : DyeColor.values()) {
-            ResourceLocation key = ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, pattern.replace("{color}", color.getName()));
+            ResourceLocation key = WorldOfColor.asResource(pattern.replace("{color}", color.getName()));
             TagKey<Block> tag = getForgeTag(prefix + color.getName());
             Block block = BuiltInRegistries.BLOCK.getValue(key);
             if (block == null || block == Blocks.AIR)

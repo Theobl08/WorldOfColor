@@ -59,7 +59,7 @@ public class ModEntityType {
     }
 
     private static ResourceKey<EntityType<?>> coloredEntityId(String name) {
-        return ResourceKey.create(Registries.ENTITY_TYPE, ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, name));
+        return ResourceKey.create(Registries.ENTITY_TYPE, WorldOfColor.asResource(name));
     }
 
     private static EntityType.EntityFactory<Boat> boatFactory(Supplier<Item> boatItemGetter) {

@@ -315,7 +315,7 @@ public class ColoredBlockModelGenerators {
                 ModelTemplates.PARTICLE_ONLY.create(statueBlock, TextureMapping.particle(TextureMapping.getBlockTexture(copperBlock)), blockModels.modelOutput)
         );
         ResourceLocation resourcelocation = ModelLocationUtils.decorateItemModelLocation("template_copper_golem_statue");
-        ResourceLocation texture = ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID, "textures/entity/copper_golem/" + color.getName() + "_copper_golem.png");
+        ResourceLocation texture = WorldOfColor.asResource("textures/entity/copper_golem/" + color.getName() + "_copper_golem.png");
         blockModels.blockStateOutput.accept(createSimpleBlock(statueBlock, multivariant));
         blockModels.itemModelOutput
                 .accept(

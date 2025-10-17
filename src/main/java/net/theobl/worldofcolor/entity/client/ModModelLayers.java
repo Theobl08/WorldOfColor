@@ -18,7 +18,7 @@ public class ModModelLayers {
         List<ModelLayerLocation> boat = new ArrayList<>();
         for (DyeColor color : COLORS) {
             ModelLayerLocation layerLocation = new ModelLayerLocation(
-                    ResourceLocation.fromNamespaceAndPath(WorldOfColor.MODID,(hasChest ? "chest_boat/" : "boat/") + color.getName()), "main");
+                    WorldOfColor.asResource((hasChest ? "chest_boat/" : "boat/") + color.getName()), "main");
             boat.add(layerLocation);
         }
         return boat;
