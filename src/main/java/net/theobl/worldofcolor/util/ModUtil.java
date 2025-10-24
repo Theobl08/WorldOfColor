@@ -39,6 +39,12 @@ public class ModUtil {
                     Items.LIME_CONCRETE, Items.GREEN_CONCRETE, Items.CYAN_CONCRETE, Items.LIGHT_BLUE_CONCRETE,
                     Items.BLUE_CONCRETE, Items.PURPLE_CONCRETE, Items.MAGENTA_CONCRETE, Items.PINK_CONCRETE);
 
+    public static final List<Block> TERRACOTTAS =
+            List.of(Blocks.WHITE_TERRACOTTA, Blocks.LIGHT_GRAY_TERRACOTTA, Blocks.GRAY_TERRACOTTA, Blocks.BLACK_TERRACOTTA,
+                    Blocks.BROWN_TERRACOTTA, Blocks.RED_TERRACOTTA, Blocks.ORANGE_TERRACOTTA, Blocks.YELLOW_TERRACOTTA,
+                    Blocks.LIME_TERRACOTTA, Blocks.GREEN_TERRACOTTA, Blocks.CYAN_TERRACOTTA, Blocks.LIGHT_BLUE_TERRACOTTA,
+                    Blocks.BLUE_TERRACOTTA, Blocks.PURPLE_TERRACOTTA, Blocks.MAGENTA_TERRACOTTA, Blocks.PINK_TERRACOTTA);
+
     public static final List<Block> SHULKER_BOXES =
             List.of(Blocks.WHITE_SHULKER_BOX, Blocks.LIGHT_GRAY_SHULKER_BOX, Blocks.GRAY_SHULKER_BOX, Blocks.BLACK_SHULKER_BOX,
                     Blocks.BROWN_SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.ORANGE_SHULKER_BOX, Blocks.YELLOW_SHULKER_BOX,
@@ -92,8 +98,8 @@ public class ModUtil {
         return false;
     }
 
-    public static String name(Supplier<Block> block) {
-        if(block instanceof DeferredBlock<Block> deferredBlock) {
+    public static <T extends Block> String name(Supplier<T> block) {
+        if(block instanceof DeferredBlock<T> deferredBlock) {
             return deferredBlock.getId().getPath();
         }
         else {
@@ -106,13 +112,13 @@ public class ModUtil {
     }
 
     @SafeVarargs
-    public static Block[] asVarArgs(List<DeferredBlock<Block>> deferredBlocks, List<DeferredBlock<Block>>... optionals) {
+    public static <T extends Block> Block[] asVarArgs(List<DeferredBlock<T>> deferredBlocks, List<DeferredBlock<T>>... optionals) {
         // https://stackoverflow.com/questions/9863742/how-to-pass-an-arraylist-to-a-varargs-method-parameter
         if(optionals.length == 0)
             return deferredBlocks.stream().map(DeferredHolder::get).toArray(Block[]::new);
         else {
-            List<DeferredBlock<Block>> copy = new ArrayList<>(deferredBlocks);
-            for (List<DeferredBlock<Block>> list : optionals) {
+            List<DeferredBlock<T>> copy = new ArrayList<>(deferredBlocks);
+            for (List<DeferredBlock<T>> list : optionals) {
                 copy.addAll(list);
             }
             return copy.stream().map(DeferredHolder::get).toArray(Block[]::new);

@@ -1,7 +1,10 @@
 package net.theobl.worldofcolor.item;
 
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.entity.PotDecorations;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -23,6 +26,7 @@ public class ModItems {
     public static final List<DeferredItem<Item>> COLORED_BOATS = registerColoredBoats(false);
     public static final List<DeferredItem<Item>> COLORED_CHEST_BOATS = registerColoredBoats(true);
     public static final List<DeferredItem<Item>> COLORED_CAULDRONS = registerColoredCauldron();
+    public static final List<DeferredItem<Item>> COLORED_DECORATED_POTS = registerColoredDecoratedPots();
 
     private static List<DeferredItem<Item>> registerColoredSign(boolean hanging) {
         List<DeferredItem<Item>> signs = new ArrayList<>();
@@ -79,6 +83,18 @@ public class ModItems {
             cauldron.add(item);
         }
         return cauldron;
+    }
+
+    private static List<DeferredItem<Item>> registerColoredDecoratedPots() {
+        List<DeferredItem<Item>> items = new ArrayList<>();
+        for (DyeColor color : COLORS) {
+            int index = COLORS.indexOf(color);
+            DeferredItem<Item> item = ITEMS.registerItem(color.getName() + "_decorated_pot",
+                    p -> new BlockItem(ModBlocks.COLORED_DECORATED_POTS.get(index).get(), p),
+                    new Item.Properties().component(DataComponents.POT_DECORATIONS, PotDecorations.EMPTY).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix());
+            items.add(item);
+        }
+        return items;
     }
 
     public static void register(IEventBus eventBus) {

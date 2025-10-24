@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": "minecraft:brick",
+    "D": "minecraft:magenta_dye"
+  },
+  "pattern": [
+    " # ",
+    "#D#",
+    " # "
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:magenta_decorated_pot"
+  }
+}

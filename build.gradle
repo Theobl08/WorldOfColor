@@ -47,6 +47,10 @@ neoForge {
         client {
             client()
 
+            // Remove that annoying "com.mojang.authlib.exceptions.MinecraftClientHttpException: Status: 401" error when launching client
+            // TODO: Remove it when updating Neoforge past 21.10.32
+            programArgument '--offlineDeveloperMode'
+
             // Comma-separated list of namespaces to load gametests from. Empty = all namespaces.
             systemProperty 'neoforge.enabledGameTestNamespaces', project.mod_id
         }

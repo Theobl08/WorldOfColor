@@ -146,6 +146,7 @@ public class ModBlocks {
     public static final List<DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = registerPottedColoredSaplings();
     public static final List<DeferredBlock<FlowerPotBlock>> COLORED_FLOWER_POTS = registerColored("flower_pot", p -> new FlowerPotBlock(null, () -> Blocks.AIR, p), BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
     public static final Map<Supplier<Block>, List<DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
+    public static final List<DeferredBlock<ColoredDecoratedPotBlock>> COLORED_DECORATED_POTS = registerColoredDecoratedPots();
 
     private static List<DeferredBlock<Block>> registerColoredWeatheringStairs() {
         List<DeferredBlock<Block>> blocks = new ArrayList<>();
@@ -204,6 +205,17 @@ public class ModBlocks {
             pottedPlants.put(plant, blockList);
         }
         return pottedPlants;
+    }
+
+    private static List<DeferredBlock<ColoredDecoratedPotBlock>> registerColoredDecoratedPots() {
+        List<DeferredBlock<ColoredDecoratedPotBlock>> blocks = new ArrayList<>();
+        for (DyeColor color : COLORS) {
+            DeferredBlock<ColoredDecoratedPotBlock> block = BLOCKS.registerBlock(color.getName() + "_decorated_pot",
+                    p -> new ColoredDecoratedPotBlock(color, p),
+                    BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT));
+            blocks.add(block);
+        }
+        return blocks;
     }
 
     private static List<DeferredBlock<Block>> registerColoredLeaves() {

@@ -1,0 +1,10 @@
+{
+  "model": {
+    "type": "minecraft:special",
+    "base": "worldofcolor:item/light_gray_decorated_pot",
+    "model": {
+      "type": "worldofcolor:decorated_pot",
+      "color": "light_gray"
+    }
+  }
+}

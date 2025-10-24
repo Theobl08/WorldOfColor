@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/decorated_pot",
+  "textures": {
+    "particle": "worldofcolor:entity/decorated_pot/decorated_pot_side_black"
+  }
+}

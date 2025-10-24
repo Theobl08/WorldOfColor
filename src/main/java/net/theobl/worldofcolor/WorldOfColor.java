@@ -27,8 +27,12 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
+import net.neoforged.neoforge.client.event.RegisterSpecialBlockModelRendererEvent;
+import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
 import net.neoforged.neoforge.client.extensions.common.IClientBlockExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -37,13 +41,18 @@ import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.transfer.item.VanillaContainerWrapper;
 import net.theobl.worldofcolor.block.ColoredCauldronInteraction;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.block.ModWoodType;
+import net.theobl.worldofcolor.block.entity.ModBlockEntityType;
+import net.theobl.worldofcolor.client.renderer.blockentity.ColoredDecoratedPotRenderer;
+import net.theobl.worldofcolor.client.renderer.special.ColoredDecoratedPotSpecialRenderer;
 import net.theobl.worldofcolor.entity.ModEntityType;
 import net.theobl.worldofcolor.entity.client.ModModelLayers;
 import net.theobl.worldofcolor.item.ModCreativeModeTabs;
 import net.theobl.worldofcolor.item.ModItems;
+import net.theobl.worldofcolor.item.crafting.ModRecipeSerializer;
 import net.theobl.worldofcolor.util.ModUtil;
 import org.slf4j.Logger;
 
@@ -63,9 +72,11 @@ public class WorldOfColor {
 
         // Register the Deferred Register to the mod event bus so blocks get registered
         ModBlocks.register(modEventBus);
+        ModBlockEntityType.register(modEventBus);
         ModEntityType.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         ModItems.register(modEventBus);
+        ModRecipeSerializer.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         ModCreativeModeTabs.register(modEventBus);
         ColoredCauldronInteraction.bootStrap();
@@ -80,6 +91,7 @@ public class WorldOfColor {
         modEventBus.addListener(this::addBlockToBlockEntity);
         modEventBus.addListener(this::extendPoiTypes);
         modEventBus.addListener(this::registerBlockColor);
+        modEventBus.addListener(this::registerCapabilities);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         //modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -134,6 +146,10 @@ public class WorldOfColor {
         );
     }
 
+    public void registerCapabilities(RegisterCapabilitiesEvent event) {
+        event.registerBlockEntity(Capabilities.Item.BLOCK, ModBlockEntityType.COLORED_DECORATED_POT.get(), (container, side) -> VanillaContainerWrapper.of(container));
+    }
+
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
@@ -172,6 +188,11 @@ public class WorldOfColor {
         }
 
         @SubscribeEvent
+        public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+            event.registerBlockEntityRenderer(ModBlockEntityType.COLORED_DECORATED_POT.get(), ColoredDecoratedPotRenderer::new);
+        }
+
+        @SubscribeEvent
         public static void addPackFinders(AddPackFindersEvent event) {
             event.addPackFinders(ResourceLocation.fromNamespaceAndPath(MODID, "resourcepacks/accurate_stained_glass"), PackType.CLIENT_RESOURCES,
                     Component.literal("Accurate stained glass color"), PackSource.DEFAULT, false, Pack.Position.TOP);
@@ -185,6 +206,17 @@ public class WorldOfColor {
                     return false;
                 }
             }, ModUtil.asVarArgs(ModBlocks.COLORED_WATER_CAULDRONS));
+        }
+
+        @SubscribeEvent
+        public static void registerSpecialModelRenderer(RegisterSpecialModelRendererEvent event) {
+            event.register(asResource("decorated_pot"), ColoredDecoratedPotSpecialRenderer.Unbaked.MAP_CODEC);
+        }
+
+        @SubscribeEvent
+        public static void registerSpecialBlockModelRenderer(RegisterSpecialBlockModelRendererEvent event) {
+            ModBlocks.COLORED_DECORATED_POTS.forEach(block ->
+                    event.register(block.get(), new ColoredDecoratedPotSpecialRenderer.Unbaked(block.get().getColor())));
         }
     }
 }

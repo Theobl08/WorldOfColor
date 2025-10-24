@@ -1,16 +1,24 @@
 package net.theobl.worldofcolor.datagen;
 
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.DynamicLoot;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.theobl.worldofcolor.block.ColoredDecoratedPotBlock;
 import net.theobl.worldofcolor.block.ModBlocks;
 
 import java.util.Set;
@@ -34,9 +42,44 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
             } else if(block.get() instanceof FlowerPotBlock flowerPotBlock && block.get().defaultBlockState() != flowerPotBlock.getEmptyPot().defaultBlockState()) {
                 this.dropColoredPottedContents(block.get());
+            } else if (block.get() instanceof DecoratedPotBlock) {
+                this.add(block.get(), this::createDecoratedPotTable);
             } else
                 this.dropSelf(block.get());
         }
+    }
+
+    private LootTable.Builder createDecoratedPotTable(Block block) {
+        return LootTable.lootTable()
+                .withPool(
+                        LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1.0F))
+                                .add(
+                                        DynamicLoot.dynamicEntry(DecoratedPotBlock.SHERDS_DYNAMIC_DROP_ID)
+                                                .when(
+                                                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DecoratedPotBlock.CRACKED, true))
+                                                )
+                                                .otherwise(
+                                                        LootItem.lootTableItem(block)
+                                                                .apply(
+                                                                        CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY)
+                                                                                .include(DataComponents.POT_DECORATIONS)
+                                                                )
+                                                )
+                                )
+                )
+                .withPool(
+                        LootPool.lootPool()
+                                .setRolls(ConstantValue.exactly(1.0F))
+                                .add(
+                                        LootItem.lootTableItem(DyeItem.byColor(((ColoredDecoratedPotBlock) block).getColor()))
+                                                .when(
+                                                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
+                                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DecoratedPotBlock.CRACKED, true))
+                                                )
+                                )
+                );
     }
 
     protected LootTable.Builder createColoredPotFlowerItemTable(FlowerPotBlock fullPot) {

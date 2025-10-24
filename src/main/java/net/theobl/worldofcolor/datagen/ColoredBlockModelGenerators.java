@@ -12,9 +12,11 @@ import net.minecraft.client.renderer.block.model.SingleVariant;
 import net.minecraft.client.renderer.block.model.Variant;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.special.CopperGolemStatueSpecialRenderer;
+import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.blockstate.CompositeBlockStateModelBuilder;
@@ -34,6 +36,7 @@ import static net.minecraft.client.data.models.BlockModelGenerators.*;
 import static net.minecraft.client.data.models.model.TextureMapping.getBlockTexture;
 import static net.theobl.worldofcolor.datagen.ColoredTextureMapping.cauldronEmpty;
 import static net.theobl.worldofcolor.datagen.VanillaModelTemplates.CAULDRON;
+import static net.theobl.worldofcolor.datagen.VanillaModelTemplates.DECORATED_POT;
 
 public class ColoredBlockModelGenerators {
     private final BlockModelGenerators blockModels;
@@ -76,6 +79,14 @@ public class ColoredBlockModelGenerators {
 
     public void createTrivialBlock(Block block, TextureMapping mapping, ModelTemplate template) {
         blockModels.blockStateOutput.accept(createSimpleBlock(block, plainVariant(template.create(block, mapping, blockModels.modelOutput))));
+    }
+
+    public void generateDecoratedPotItemModel(Block block, SpecialModelRenderer.Unbaked specialModel, DyeColor color) {
+        Item item = block.asItem();
+        ResourceLocation resourcelocation = DECORATED_POT.create(ModelLocationUtils.getModelLocation(item),
+                TextureMapping.particle(WorldOfColor.asResource("entity/decorated_pot/decorated_pot_side_" + color.getName())),
+                blockModels.modelOutput);
+        blockModels.itemModelOutput.accept(item, ItemModelUtils.specialModel(resourcelocation, specialModel));
     }
 
     public void createCauldrons(DyeColor color) {

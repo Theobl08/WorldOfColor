@@ -7,13 +7,13 @@ import net.minecraft.client.data.models.model.*;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.AzaleaBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RootsBlock;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
+import net.theobl.worldofcolor.client.renderer.special.ColoredDecoratedPotSpecialRenderer;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.util.ModUtil;
 
@@ -42,6 +42,12 @@ public class ModModelProvider extends ModelProvider {
         ModBlocks.COLORED_FLOWER_POTS.forEach(block -> {
             blockModels.registerSimpleFlatItemModel(block.asItem());
             coloredBlockModels.createTrivialBlock(block.get(), ColoredTextureMapping.flowerPot(block.get()), FLOWER_POT);
+        });
+        ModBlocks.COLORED_DECORATED_POTS.forEach(block -> {
+            int index = ModBlocks.COLORED_DECORATED_POTS.indexOf(block);
+            DyeColor color = block.get().getColor();
+            blockModels.createParticleOnlyBlock(block.get(), ModUtil.TERRACOTTAS.get(index));
+            coloredBlockModels.generateDecoratedPotItemModel(block.get(), new ColoredDecoratedPotSpecialRenderer.Unbaked(color), color);
         });
         for(DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);

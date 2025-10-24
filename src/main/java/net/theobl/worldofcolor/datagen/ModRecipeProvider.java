@@ -8,6 +8,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -19,6 +20,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
+import net.theobl.worldofcolor.item.crafting.ColoredDecoratedPotRecipe;
 import net.theobl.worldofcolor.tags.ModTags;
 
 import java.util.List;
@@ -129,6 +131,15 @@ public class ModRecipeProvider extends RecipeProvider {
             stonecutterResultFromBase(output, RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CHISELED_COPPER.get(index), block);
         }
 
+        ModBlocks.COLORED_DECORATED_POTS.forEach(block -> this.shaped(RecipeCategory.DECORATIONS, block.get().asItem())
+                .define('#', Items.BRICK)
+                .define('D', DyeItem.byColor(block.get().getColor()))
+                .pattern(" # ")
+                .pattern("#D#")
+                .pattern(" # ")
+                .unlockedBy("has_brick", this.has(ItemTags.DECORATED_POT_INGREDIENTS))
+                .save(this.output, WorldOfColor.MODID + ":" + name(block) + "_simple"));
+
         shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_COPPER_BLOCKS.getFirst())
                 .requires(Blocks.COPPER_BLOCK)
                 .requires(Items.WHITE_DYE)
@@ -174,6 +185,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(Items.WHITE_DYE)
                 .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
                 .save(output);
+        SpecialRecipeBuilder.special(ColoredDecoratedPotRecipe::new).save(this.output, "colored_decorated_pot");
     }
 
     protected void generateForEnabledBlockFamilies(FeatureFlagSet set) {
