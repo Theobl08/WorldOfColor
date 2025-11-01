@@ -20,6 +20,8 @@ public class VanillaModelTemplates {
     public static final ModelTemplate SLIME_BLOCK = ModelTemplates.create("slime_block", TextureSlot.PARTICLE, TextureSlot.TEXTURE);
     public static final ModelTemplate FLOWER_POT = ModelTemplates.create("flower_pot", TextureSlot.PARTICLE, ColoredTextureSlot.FLOWERPOT);
     public static final ModelTemplate DECORATED_POT = ModelTemplates.createItem("decorated_pot", TextureSlot.PARTICLE);
+    public static final ModelTemplate ITEM_FRAME = ModelTemplates.create("template_item_frame", TextureSlot.PARTICLE, ColoredTextureSlot.WOOD, TextureSlot.BACK);
+    public static final ModelTemplate ITEM_FRAME_MAP = ModelTemplates.create("template_item_frame_map", TextureSlot.PARTICLE, ColoredTextureSlot.WOOD, TextureSlot.BACK);
 
 //    public static ModelTemplate cauldronLevelX(DyeColor color, int level) {
 //        final float y;

@@ -92,9 +92,22 @@ public class ModModelProvider extends ModelProvider {
                     coloredBlockModels.createPottedPlant(plant.get(), pottedPlant.get(index).get(), ModBlocks.COLORED_FLOWER_POTS.get(index).get(), plantType);
                 }
             });
+
+            ITEM_FRAME.create(WorldOfColor.asResource(color.getName() + "_item_frame").withPrefix("block/"),
+                    new TextureMapping().put(TextureSlot.PARTICLE, getBlockTexture(Blocks.BIRCH_PLANKS))
+                            .put(ColoredTextureSlot.WOOD, getBlockTexture(Blocks.BIRCH_PLANKS))
+                            .put(TextureSlot.BACK, WorldOfColor.asResource(color.getName() + "_item_frame").withPrefix("block/")),
+                    blockModels.modelOutput);
+
+            ITEM_FRAME_MAP.create(WorldOfColor.asResource(color.getName() + "_item_frame_map").withPrefix("block/"),
+                    new TextureMapping().put(TextureSlot.PARTICLE, getBlockTexture(Blocks.BIRCH_PLANKS))
+                            .put(ColoredTextureSlot.WOOD, getBlockTexture(Blocks.BIRCH_PLANKS))
+                            .put(TextureSlot.BACK, WorldOfColor.asResource(color.getName() + "_item_frame").withPrefix("block/")),
+                    blockModels.modelOutput);
         }
 
         ModItems.COLORED_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
         ModItems.COLORED_CHEST_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
+        ModItems.COLORED_ITEM_FRAMES.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
     }
 }

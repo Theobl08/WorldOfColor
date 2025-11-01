@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "map=false": { "model": "worldofcolor:block/blue_item_frame" },
+        "map=true":  { "model": "worldofcolor:block/blue_item_frame_map" }
+    }
+}

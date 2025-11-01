@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ItemFrameRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -176,6 +177,7 @@ public class WorldOfColor {
                 int index = ModUtil.COLORS.indexOf(color);
                 EntityRenderers.register(ModEntityType.COLORED_BOATS.get(index).get(), context -> new BoatRenderer(context, ModModelLayers.COLORED_BOATS.get(index)));
                 EntityRenderers.register(ModEntityType.COLORED_CHEST_BOATS.get(index).get(), context -> new BoatRenderer(context, ModModelLayers.COLORED_CHEST_BOATS.get(index)));
+                EntityRenderers.register(ModEntityType.COLORED_ITEM_FRAMES.get(index).get(), ItemFrameRenderer::new);
             }
 
             ModMaterial.bootstrap();

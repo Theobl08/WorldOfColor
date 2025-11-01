@@ -31,8 +31,10 @@ public class ModLanguageProvider extends LanguageProvider {
 
         ModItems.COLORED_BOATS.forEach(item -> add(item.asItem(), capitalizeString(filterItemLang(item))));
         ModItems.COLORED_CHEST_BOATS.forEach(item -> add(item.asItem(), filterChestBoatLang(item)));
+        ModItems.COLORED_ITEM_FRAMES.forEach(item -> add(item.asItem(), capitalizeString(filterItemLang(item))));
         ModEntityType.COLORED_BOATS.forEach(boat -> add(boat.get(), capitalizeString(filterEntityTypeLang(boat.get()))));
         ModEntityType.COLORED_CHEST_BOATS.forEach(boat -> add(boat.get(), filterChestBoatLang(boat.get())));
+        ModEntityType.COLORED_ITEM_FRAMES.forEach(type -> add(type.get(), capitalizeString(filterEntityTypeLang(type.get()))));
 
         for (TagKey<Block> tag : ModTags.Blocks.COLORED_LOGS) {
             add(tag, capitalizeString(filterTagLang(tag)));

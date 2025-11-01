@@ -78,7 +78,7 @@ public class ModCreativeModeTabs {
                             if(block.get().asItem() != Blocks.AIR.asItem())
                                 output.accept(block.get());
                         }
-                        ModItems.ITEMS.getEntries().forEach(item -> {if (item.get() instanceof BoatItem) output.accept(item.get());});
+                        ModItems.ITEMS.getEntries().stream().map(DeferredHolder::get).forEach(output::accept);
                     }).build());
 
     public static void register(IEventBus eventBus) {

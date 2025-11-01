@@ -1,18 +1,24 @@
 {
   "required": true,
   "minVersion": "0.8",
+  "mixinextras": {
+    "minVersion": "0.5.0"
+  },
   "package": "net.theobl.worldofcolor.mixin",
   "compatibilityLevel": "JAVA_8",
   "refmap": "worldofcolor.refmap.json",
   "mixins": [
     "CauldronInteractionMixin",
     "CopperChestBlockMixin",
+    "HangingEntityItemMixin",
     "LayeredCauldronBlockMixin",
     "SheepMixin"
   ],
   "client": [
+    "BlockStateDefinitionsMixin",
     "ChestRendererMixin",
-    "CopperGolemStatueBlockRendererMixin"
+    "CopperGolemStatueBlockRendererMixin",
+    "ItemFrameRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

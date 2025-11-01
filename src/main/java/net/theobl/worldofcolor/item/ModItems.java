@@ -27,6 +27,7 @@ public class ModItems {
     public static final List<DeferredItem<Item>> COLORED_CHEST_BOATS = registerColoredBoats(true);
     public static final List<DeferredItem<Item>> COLORED_CAULDRONS = registerColoredCauldron();
     public static final List<DeferredItem<Item>> COLORED_DECORATED_POTS = registerColoredDecoratedPots();
+    public static final List<DeferredItem<Item>> COLORED_ITEM_FRAMES = registerColoredItemFrames();
 
     private static List<DeferredItem<Item>> registerColoredSign(boolean hanging) {
         List<DeferredItem<Item>> signs = new ArrayList<>();
@@ -92,6 +93,17 @@ public class ModItems {
             DeferredItem<Item> item = ITEMS.registerItem(color.getName() + "_decorated_pot",
                     p -> new BlockItem(ModBlocks.COLORED_DECORATED_POTS.get(index).get(), p),
                     new Item.Properties().component(DataComponents.POT_DECORATIONS, PotDecorations.EMPTY).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix());
+            items.add(item);
+        }
+        return items;
+    }
+
+    private static List<DeferredItem<Item>> registerColoredItemFrames() {
+        List<DeferredItem<Item>> items = new ArrayList<>();
+        for (DyeColor color : COLORS) {
+            int index = COLORS.indexOf(color);
+            DeferredItem<Item> item = ITEMS.registerItem(color.getName() + "_item_frame",
+                    p -> new ItemFrameItem(ModEntityType.COLORED_ITEM_FRAMES.get(index).get(), p));
             items.add(item);
         }
         return items;
