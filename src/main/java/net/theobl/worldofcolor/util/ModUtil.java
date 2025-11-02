@@ -9,6 +9,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.theobl.worldofcolor.WorldOfColor;
@@ -32,6 +33,12 @@ public class ModUtil {
                     "vibrant_green", "spring_green", "bright_cyan", "capri",
                     "ultramarine", "violet", "vibrant_purple", "bright_magenta",
                     "rose", "dark_gray", "silver", "classic_white");
+
+    public static final List<MapColor> CLASSIC_COLORS_MAP_COLOR =
+            List.of(MapColor.FIRE, MapColor.TERRACOTTA_YELLOW, MapColor.GOLD, MapColor.COLOR_LIGHT_GREEN,
+                    MapColor.EMERALD, MapColor.EMERALD, MapColor.DIAMOND, MapColor.DIAMOND,
+                    MapColor.COLOR_LIGHT_BLUE, MapColor.COLOR_PURPLE, MapColor.COLOR_PURPLE, MapColor.COLOR_MAGENTA,
+                    MapColor.COLOR_PINK, MapColor.STONE, MapColor.METAL, MapColor.SNOW);
 
     public static final List<Item> CONCRETES =
             List.of(Items.WHITE_CONCRETE, Items.LIGHT_GRAY_CONCRETE, Items.GRAY_CONCRETE, Items.BLACK_CONCRETE,

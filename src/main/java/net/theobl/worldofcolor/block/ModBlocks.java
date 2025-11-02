@@ -160,7 +160,7 @@ public class ModBlocks {
         List<DeferredBlock<Block>> blocks = new ArrayList<>();
         for (String color : CLASSIC_COLORS) {
             String name = color.concat("_").concat(key);
-            DeferredBlock<Block> deferredBlock = registerBlock(name, block, properties);
+            DeferredBlock<Block> deferredBlock = registerBlock(name, block, properties.mapColor(CLASSIC_COLORS_MAP_COLOR.get(CLASSIC_COLORS.indexOf(color))));
             blocks.add(deferredBlock);
         }
         return blocks;
