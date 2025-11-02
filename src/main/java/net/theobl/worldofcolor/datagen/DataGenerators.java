@@ -23,6 +23,7 @@ public class DataGenerators {
         event.createProvider(ModDatapackBuiltInEntriesProvider::new);
 
         event.createProvider(ModModelProvider::new);
+        event.createProvider(ModSpriteSourceProvider::new);
         event.createProvider(ModLanguageProvider::new);
     }
 }

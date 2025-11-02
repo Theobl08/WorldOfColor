@@ -1,0 +1,68 @@
+{
+  "sources": [
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_white"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_light_gray"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_gray"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_black"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_brown"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_red"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_orange"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_yellow"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_lime"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_green"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_cyan"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_light_blue"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_blue"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_purple"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_magenta"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_pink"
+    }
+  ]
+}
