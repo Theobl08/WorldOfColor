@@ -12,6 +12,7 @@
     "CopperChestBlockMixin",
     "HangingEntityItemMixin",
     "LayeredCauldronBlockMixin",
+    "MapColorMixin",
     "SheepMixin"
   ],
   "client": [
