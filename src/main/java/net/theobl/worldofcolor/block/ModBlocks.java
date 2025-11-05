@@ -147,6 +147,11 @@ public class ModBlocks {
     public static final List<DeferredBlock<FlowerPotBlock>> COLORED_FLOWER_POTS = registerColored("flower_pot", p -> new FlowerPotBlock(null, () -> Blocks.AIR, p), BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
     public static final Map<Supplier<Block>, List<DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
     public static final List<DeferredBlock<ColoredDecoratedPotBlock>> COLORED_DECORATED_POTS = registerColoredDecoratedPots();
+    public static final List<DeferredBlock<Block>> COLORED_REDSTONE_LAMPS = registerColored(
+            "redstone_lamp",
+            RedstoneLampBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_LAMP)
+    );
 
     private static List<DeferredBlock<Block>> registerColoredWeatheringStairs() {
         List<DeferredBlock<Block>> blocks = new ArrayList<>();

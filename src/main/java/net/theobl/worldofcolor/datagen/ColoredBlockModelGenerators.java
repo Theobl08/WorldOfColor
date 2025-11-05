@@ -294,6 +294,12 @@ public class ColoredBlockModelGenerators {
         blockModels.itemModelOutput.copy(weatheringBlock.asItem(), waxedBlock.asItem());
     }
 
+    public void createRedstoneLamp(Block block) {
+        MultiVariant off = plainVariant(TexturedModel.CUBE.create(block, blockModels.modelOutput));
+        MultiVariant on = plainVariant(blockModels.createSuffixedVariant(block, "_on", ModelTemplates.CUBE_ALL, TextureMapping::cube));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(block).with(createBooleanModelDispatch(BlockStateProperties.LIT, on, off)));
+    }
+
     public void createCopperChain(Block block, Block waxed) {
         MultiVariant multivariant = plainVariant(TexturedModel.CHAIN.updateTemplate(template -> template.extend().renderType("cutout_mipped").build()).create(block, blockModels.modelOutput));
         blockModels.createAxisAlignedPillarBlockCustomModel(block, multivariant);

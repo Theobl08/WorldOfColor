@@ -49,6 +49,7 @@ public class ModModelProvider extends ModelProvider {
             blockModels.createParticleOnlyBlock(block.get(), ModUtil.TERRACOTTAS.get(index));
             coloredBlockModels.generateDecoratedPotItemModel(block.get(), new ColoredDecoratedPotSpecialRenderer.Unbaked(color), color);
         });
+        ModBlocks.COLORED_REDSTONE_LAMPS.forEach(block -> coloredBlockModels.createRedstoneLamp(block.get()));
         for(DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
             blockModels.family(ModBlocks.COLORED_CUT_COPPER.get(index).get())
