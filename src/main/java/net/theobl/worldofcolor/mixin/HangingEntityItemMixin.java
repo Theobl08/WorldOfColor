@@ -23,7 +23,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(HangingEntityItem.class)
-public class HangingEntityItemMixin {
+public abstract class HangingEntityItemMixin {
     @Final
     @Shadow
     private EntityType<? extends HangingEntity> type;

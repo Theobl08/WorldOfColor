@@ -7,7 +7,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(MapColor.class)
-public class MapColorMixin {
+public abstract class MapColorMixin {
     @ModifyVariable(method = "<init>", argsOnly = true, ordinal = 1, at = @At("HEAD"), require = 0)
     private static int correctDyeColorMapColor(int original, @Local(argsOnly = true, ordinal = 1) int col) {
         return switch (col) {
