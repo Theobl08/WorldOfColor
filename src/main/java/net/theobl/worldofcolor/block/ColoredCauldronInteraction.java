@@ -31,8 +31,8 @@ import java.util.function.Predicate;
 public interface ColoredCauldronInteraction extends CauldronInteraction {
     static void bootStrap() {
         WorldOfColor.LOGGER.info("ColoredCauldronInteraction bootstrap");
-        Map<Item, CauldronInteraction> map = EMPTY.map();
-        map.put(Items.POTION, (state, level, pos, player, hand, stack) -> {
+        Map<Item, CauldronInteraction> empty = EMPTY.map();
+        empty.put(Items.POTION, (state, level, pos, player, hand, stack) -> {
             PotionContents potioncontents = stack.get(DataComponents.POTION_CONTENTS);
             if (potioncontents != null && potioncontents.is(Potions.WATER)) {
                 if (!level.isClientSide()) {
@@ -56,8 +56,8 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
                 return InteractionResult.TRY_WITH_EMPTY_HAND;
             }
         });
-        Map<Item, CauldronInteraction> map1 = WATER.map();
-        map1.put(
+        Map<Item, CauldronInteraction> water = WATER.map();
+        water.put(
                 Items.BUCKET,
                 (state, level, pos, player, hand, stack) -> fillBucket(
                         state,
@@ -71,8 +71,8 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
                         SoundEvents.BUCKET_FILL
                 )
         );
-        Map<Item, CauldronInteraction> map2 = LAVA.map();
-        map2.put(
+        Map<Item, CauldronInteraction> lava = LAVA.map();
+        lava.put(
                 Items.BUCKET,
                 (state, level, pos, player, hand, stack) -> fillBucket(
                         state,
@@ -86,8 +86,8 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
                         SoundEvents.BUCKET_FILL_LAVA
                 )
         );
-        Map<Item, CauldronInteraction> map3 = POWDER_SNOW.map();
-        map3.put(
+        Map<Item, CauldronInteraction> powderSnow = POWDER_SNOW.map();
+        powderSnow.put(
                 Items.BUCKET,
                 (state, level, pos, player, hand, stack) -> fillBucket(
                         state,

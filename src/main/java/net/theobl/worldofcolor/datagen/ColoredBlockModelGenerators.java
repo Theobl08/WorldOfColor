@@ -206,38 +206,38 @@ public class ColoredBlockModelGenerators {
 
     public void createDoorWithRenderType(Block doorBlock, String renderType) {
         TextureMapping texturemapping = TextureMapping.door(doorBlock);
-        ResourceLocation resourcelocation = ModelTemplates.DOOR_BOTTOM_LEFT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation resourcelocation1 = ModelTemplates.DOOR_BOTTOM_LEFT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation resourcelocation2 = ModelTemplates.DOOR_BOTTOM_RIGHT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation resourcelocation3 = ModelTemplates.DOOR_BOTTOM_RIGHT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation resourcelocation4 = ModelTemplates.DOOR_TOP_LEFT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation resourcelocation5 = ModelTemplates.DOOR_TOP_LEFT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation resourcelocation6 = ModelTemplates.DOOR_TOP_RIGHT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation resourcelocation7 = ModelTemplates.DOOR_TOP_RIGHT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation doorBottomLeft = ModelTemplates.DOOR_BOTTOM_LEFT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation doorBottomLeftOpen = ModelTemplates.DOOR_BOTTOM_LEFT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation doorBottomRight = ModelTemplates.DOOR_BOTTOM_RIGHT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation doorBottomRightOpen = ModelTemplates.DOOR_BOTTOM_RIGHT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation doorTopLeft = ModelTemplates.DOOR_TOP_LEFT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation doorTopLeftOpen = ModelTemplates.DOOR_TOP_LEFT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation doorTopRight = ModelTemplates.DOOR_TOP_RIGHT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation doorTopRightOpen = ModelTemplates.DOOR_TOP_RIGHT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
         blockModels.registerSimpleFlatItemModel(doorBlock.asItem());
         blockModels.blockStateOutput
                 .accept(
                         createDoor(
                                 doorBlock,
-                                plainVariant(resourcelocation),
-                                plainVariant(resourcelocation1),
-                                plainVariant(resourcelocation2),
-                                plainVariant(resourcelocation3),
-                                plainVariant(resourcelocation4),
-                                plainVariant(resourcelocation5),
-                                plainVariant(resourcelocation6),
-                                plainVariant(resourcelocation7)
+                                plainVariant(doorBottomLeft),
+                                plainVariant(doorBottomLeftOpen),
+                                plainVariant(doorBottomRight),
+                                plainVariant(doorBottomRightOpen),
+                                plainVariant(doorTopLeft),
+                                plainVariant(doorTopLeftOpen),
+                                plainVariant(doorTopRight),
+                                plainVariant(doorTopRightOpen)
                         )
                 );
     }
 
     public void createOrientableTrapdoorWithRenderType(Block trapdoorBlock, String renderType) {
         TextureMapping texturemapping = TextureMapping.defaultTexture(trapdoorBlock);
-        ResourceLocation resourcelocation = ModelTemplates.ORIENTABLE_TRAPDOOR_TOP.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation resourcelocation1 = ModelTemplates.ORIENTABLE_TRAPDOOR_BOTTOM.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation resourcelocation2 = ModelTemplates.ORIENTABLE_TRAPDOOR_OPEN.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(createOrientableTrapdoor(trapdoorBlock, plainVariant(resourcelocation), plainVariant(resourcelocation1), plainVariant(resourcelocation2)));
-        blockModels.registerSimpleItemModel(trapdoorBlock, resourcelocation1);
+        ResourceLocation top = ModelTemplates.ORIENTABLE_TRAPDOOR_TOP.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation bottom = ModelTemplates.ORIENTABLE_TRAPDOOR_BOTTOM.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
+        ResourceLocation open = ModelTemplates.ORIENTABLE_TRAPDOOR_OPEN.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
+        blockModels.blockStateOutput.accept(createOrientableTrapdoor(trapdoorBlock, plainVariant(top), plainVariant(bottom), plainVariant(open)));
+        blockModels.registerSimpleItemModel(trapdoorBlock, bottom);
     }
 
     public void createCrossBlock(Block block, BlockModelGenerators.PlantType plantType, String renderType) {
@@ -301,9 +301,9 @@ public class ColoredBlockModelGenerators {
     }
 
     public void createCopperChain(Block block, Block waxed) {
-        MultiVariant multivariant = plainVariant(TexturedModel.CHAIN.updateTemplate(template -> template.extend().renderType("cutout_mipped").build()).create(block, blockModels.modelOutput));
-        blockModels.createAxisAlignedPillarBlockCustomModel(block, multivariant);
-        blockModels.createAxisAlignedPillarBlockCustomModel(waxed, multivariant);
+        MultiVariant model = plainVariant(TexturedModel.CHAIN.updateTemplate(template -> template.extend().renderType("cutout_mipped").build()).create(block, blockModels.modelOutput));
+        blockModels.createAxisAlignedPillarBlockCustomModel(block, model);
+        blockModels.createAxisAlignedPillarBlockCustomModel(waxed, model);
         ResourceLocation resourcelocation = blockModels.createFlatItemModel(block.asItem());
         blockModels.registerSimpleItemModel(block.asItem(), resourcelocation);
         blockModels.registerSimpleItemModel(waxed.asItem(), resourcelocation);
@@ -311,45 +311,45 @@ public class ColoredBlockModelGenerators {
 
     public void createCopperLantern(Block block, Block waxed) {
         String renderType = "cutout";
-        ResourceLocation lantern = TexturedModel.LANTERN.updateTemplate(template -> template.extend().renderType(renderType).build()).create(block, blockModels.modelOutput);
-        ResourceLocation hangingLantern = TexturedModel.HANGING_LANTERN.updateTemplate(template -> template.extend().renderType(renderType).build()).create(block, blockModels.modelOutput);
+        ResourceLocation ground = TexturedModel.LANTERN.updateTemplate(template -> template.extend().renderType(renderType).build()).create(block, blockModels.modelOutput);
+        ResourceLocation hanging = TexturedModel.HANGING_LANTERN.updateTemplate(template -> template.extend().renderType(renderType).build()).create(block, blockModels.modelOutput);
         blockModels.registerSimpleFlatItemModel(block.asItem());
         blockModels.itemModelOutput.copy(block.asItem(), waxed.asItem());
         blockModels.blockStateOutput
                 .accept(
                         MultiVariantGenerator.dispatch(block)
-                                .with(createBooleanModelDispatch(BlockStateProperties.HANGING, plainVariant(hangingLantern), plainVariant(lantern)))
+                                .with(createBooleanModelDispatch(BlockStateProperties.HANGING, plainVariant(hanging), plainVariant(ground)))
                 );
         blockModels.blockStateOutput
                 .accept(
                         MultiVariantGenerator.dispatch(waxed)
-                                .with(createBooleanModelDispatch(BlockStateProperties.HANGING, plainVariant(hangingLantern), plainVariant(lantern)))
+                                .with(createBooleanModelDispatch(BlockStateProperties.HANGING, plainVariant(hanging), plainVariant(ground)))
                 );
     }
 
     public void createCopperGolemStatue(Block statueBlock, Block copperBlock, DyeColor color) {
-        MultiVariant multivariant = plainVariant(
+        MultiVariant blockModel = plainVariant(
                 ModelTemplates.PARTICLE_ONLY.create(statueBlock, TextureMapping.particle(TextureMapping.getBlockTexture(copperBlock)), blockModels.modelOutput)
         );
-        ResourceLocation resourcelocation = ModelLocationUtils.decorateItemModelLocation("template_copper_golem_statue");
+        ResourceLocation itemBase = ModelLocationUtils.decorateItemModelLocation("template_copper_golem_statue");
         ResourceLocation texture = WorldOfColor.asResource("textures/entity/copper_golem/" + color.getName() + "_copper_golem.png");
-        blockModels.blockStateOutput.accept(createSimpleBlock(statueBlock, multivariant));
+        blockModels.blockStateOutput.accept(createSimpleBlock(statueBlock, blockModel));
         blockModels.itemModelOutput
                 .accept(
                         statueBlock.asItem(),
                         ItemModelUtils.selectBlockItemProperty(
                                 CopperGolemStatueBlock.POSE,
-                                ItemModelUtils.specialModel(resourcelocation, new CopperGolemStatueSpecialRenderer.Unbaked(texture, CopperGolemStatueBlock.Pose.STANDING)),
+                                ItemModelUtils.specialModel(itemBase, new CopperGolemStatueSpecialRenderer.Unbaked(texture, CopperGolemStatueBlock.Pose.STANDING)),
                                 Map.of(
                                         CopperGolemStatueBlock.Pose.SITTING,
                                         ItemModelUtils.specialModel(
-                                                resourcelocation, new CopperGolemStatueSpecialRenderer.Unbaked(texture, CopperGolemStatueBlock.Pose.SITTING)
+                                                itemBase, new CopperGolemStatueSpecialRenderer.Unbaked(texture, CopperGolemStatueBlock.Pose.SITTING)
                                         ),
                                         CopperGolemStatueBlock.Pose.STAR,
-                                        ItemModelUtils.specialModel(resourcelocation, new CopperGolemStatueSpecialRenderer.Unbaked(texture, CopperGolemStatueBlock.Pose.STAR)),
+                                        ItemModelUtils.specialModel(itemBase, new CopperGolemStatueSpecialRenderer.Unbaked(texture, CopperGolemStatueBlock.Pose.STAR)),
                                         CopperGolemStatueBlock.Pose.RUNNING,
                                         ItemModelUtils.specialModel(
-                                                resourcelocation, new CopperGolemStatueSpecialRenderer.Unbaked(texture, CopperGolemStatueBlock.Pose.RUNNING)
+                                                itemBase, new CopperGolemStatueSpecialRenderer.Unbaked(texture, CopperGolemStatueBlock.Pose.RUNNING)
                                         )
                                 )
                         )

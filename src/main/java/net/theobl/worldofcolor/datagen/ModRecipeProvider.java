@@ -204,14 +204,14 @@ public class ModRecipeProvider extends RecipeProvider {
 
     protected void colorBlockWithDye(RecipeOutput recipeOutput, List<DeferredBlock<Block>> results, List<Item> dyes, TagKey<Item> dyeableItems, String group) {
         for (int i = 0; i < dyes.size(); i++) {
-            Item item = dyes.get(i);
-            Item item1 = results.get(i).asItem();
-            shapeless(RecipeCategory.BUILDING_BLOCKS, item1)
-                    .requires(item)
+            Item dye = dyes.get(i);
+            Item dyedItem = results.get(i).asItem();
+            shapeless(RecipeCategory.BUILDING_BLOCKS, dyedItem)
+                    .requires(dye)
                     .requires(dyeableItems)
                     .group(group)
-                    .unlockedBy("has_needed_dye", has(item))
-                    .save(recipeOutput, WorldOfColor.MODID + ":dye_" + getItemName(item1));
+                    .unlockedBy("has_needed_dye", has(dye))
+                    .save(recipeOutput, WorldOfColor.MODID + ":dye_" + getItemName(dyedItem));
         }
     }
 

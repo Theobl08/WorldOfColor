@@ -51,25 +51,25 @@ public class ColoredDecoratedPotBlock extends DecoratedPotBlock {
             if (level.isClientSide()) {
                 return InteractionResult.SUCCESS;
             } else {
-                ItemStack itemstack1 = decoratedpotblockentity.getTheItem();
+                ItemStack potItem = decoratedpotblockentity.getTheItem();
                 if (!stack.isEmpty()
                         && (
-                        itemstack1.isEmpty()
-                                || ItemStack.isSameItemSameComponents(itemstack1, stack) && itemstack1.getCount() < itemstack1.getMaxStackSize()
+                        potItem.isEmpty()
+                                || ItemStack.isSameItemSameComponents(potItem, stack) && potItem.getCount() < potItem.getMaxStackSize()
                 )) {
                     decoratedpotblockentity.wobble(DecoratedPotBlockEntity.WobbleStyle.POSITIVE);
                     player.awardStat(Stats.ITEM_USED.get(stack.getItem()));
-                    ItemStack itemstack = stack.consumeAndReturn(1, player);
-                    float f;
+                    ItemStack awardedItem = stack.consumeAndReturn(1, player);
+                    float pitchBend;
                     if (decoratedpotblockentity.isEmpty()) {
-                        decoratedpotblockentity.setTheItem(itemstack);
-                        f = (float)itemstack.getCount() / itemstack.getMaxStackSize();
+                        decoratedpotblockentity.setTheItem(awardedItem);
+                        pitchBend = (float)awardedItem.getCount() / awardedItem.getMaxStackSize();
                     } else {
-                        itemstack1.grow(1);
-                        f = (float)itemstack1.getCount() / itemstack1.getMaxStackSize();
+                        potItem.grow(1);
+                        pitchBend = (float)potItem.getCount() / potItem.getMaxStackSize();
                     }
 
-                    level.playSound(null, pos, SoundEvents.DECORATED_POT_INSERT, SoundSource.BLOCKS, 1.0F, 0.7F + 0.5F * f);
+                    level.playSound(null, pos, SoundEvents.DECORATED_POT_INSERT, SoundSource.BLOCKS, 1.0F, 0.7F + 0.5F * pitchBend);
                     if (level instanceof ServerLevel serverlevel) {
                         serverlevel.sendParticles(
                                 ParticleTypes.DUST_PLUME, pos.getX() + 0.5, pos.getY() + 1.2, pos.getZ() + 0.5, 7, 0.0, 0.0, 0.0, 0.0

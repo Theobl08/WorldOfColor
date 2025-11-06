@@ -135,16 +135,16 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
         poseStack.translate(-0.5, 0.0, -0.5);
         if (renderState.wobbleProgress >= 0.0F && renderState.wobbleProgress <= 1.0F) {
             if (renderState.wobbleStyle == DecoratedPotBlockEntity.WobbleStyle.POSITIVE) {
-                float f = 0.015625F;
-                float f1 = renderState.wobbleProgress * (float) (Math.PI * 2);
-                float f2 = -1.5F * (Mth.cos(f1) + 0.5F) * Mth.sin(f1 / 2.0F);
-                poseStack.rotateAround(Axis.XP.rotation(f2 * f), 0.5F, 0.0F, 0.5F);
-                float f3 = Mth.sin(f1);
-                poseStack.rotateAround(Axis.ZP.rotation(f3 * f), 0.5F, 0.0F, 0.5F);
+                float amplitude = 0.015625F;
+                float deltaTime = renderState.wobbleProgress * (float) (Math.PI * 2);
+                float tiltX = -1.5F * (Mth.cos(deltaTime) + 0.5F) * Mth.sin(deltaTime / 2.0F);
+                poseStack.rotateAround(Axis.XP.rotation(tiltX * amplitude), 0.5F, 0.0F, 0.5F);
+                float tiltZ = Mth.sin(deltaTime);
+                poseStack.rotateAround(Axis.ZP.rotation(tiltZ * amplitude), 0.5F, 0.0F, 0.5F);
             } else {
-                float f4 = Mth.sin(-renderState.wobbleProgress * 3.0F * (float) Math.PI) * WOBBLE_AMPLITUDE;
-                float f5 = 1.0F - renderState.wobbleProgress;
-                poseStack.rotateAround(Axis.YP.rotation(f4 * f5), 0.5F, 0.0F, 0.5F);
+                float turnAngle = Mth.sin(-renderState.wobbleProgress * 3.0F * (float) Math.PI) * WOBBLE_AMPLITUDE;
+                float linearDecayFactor = 1.0F - renderState.wobbleProgress;
+                poseStack.rotateAround(Axis.YP.rotation(turnAngle * linearDecayFactor), 0.5F, 0.0F, 0.5F);
             }
         }
 
