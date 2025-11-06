@@ -165,7 +165,7 @@ public class ModBlocks {
         List<DeferredBlock<Block>> blocks = new ArrayList<>();
         for (String color : CLASSIC_COLORS) {
             String name = color.concat("_").concat(key);
-            DeferredBlock<Block> deferredBlock = registerBlock(name, block, properties.mapColor(CLASSIC_COLORS_MAP_COLOR.get(CLASSIC_COLORS.indexOf(color))));
+            DeferredBlock<Block> deferredBlock = registerBlock(name, block, () -> properties.mapColor(CLASSIC_COLORS_MAP_COLOR.get(CLASSIC_COLORS.indexOf(color))));
             blocks.add(deferredBlock);
         }
         return blocks;
@@ -241,7 +241,7 @@ public class ModBlocks {
             String name = prefix.concat(color.getName()).concat("_").concat(key);
             DeferredBlock<Block> block = registerBlock(name,
                     p -> new StairBlock(baseState.get(index).get().defaultBlockState(), p),
-                            properties.mapColor(color));
+                    () -> properties.mapColor(color));
             stairs.add(block);
         }
         return stairs;
@@ -255,7 +255,7 @@ public class ModBlocks {
         List<DeferredBlock<Block>> signs = new ArrayList<>();
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
-            DeferredBlock<Block> deferredBlock = BLOCKS.registerBlock(color.getName() + "_" + key, p -> block.apply(ModWoodType.COLORED_WOODS.get(index), p), properties.mapColor(color));
+            DeferredBlock<Block> deferredBlock = BLOCKS.registerBlock(color.getName() + "_" + key, p -> block.apply(ModWoodType.COLORED_WOODS.get(index), p), () -> properties.mapColor(color));
             signs.add(deferredBlock);
         }
         return signs;
@@ -279,7 +279,7 @@ public class ModBlocks {
             DeferredBlock<Block> deferredBlock = BLOCKS.registerBlock(name,
                     p -> func.apply(WeatherState.OXIDIZED, color, p),
                     BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GOLEM_STATUE).mapColor(color));
-            ModItems.ITEMS.registerSimpleBlockItem(deferredBlock, new Item.Properties()
+            ModItems.ITEMS.registerSimpleBlockItem(deferredBlock, p -> new Item.Properties()
                             .component(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(CopperGolemStatueBlock.POSE, CopperGolemStatueBlock.Pose.STANDING)));
             blocks.add(deferredBlock);
         }
@@ -294,7 +294,7 @@ public class ModBlocks {
         List<DeferredBlock<T>> blocks = new ArrayList<>();
         for (DyeColor color : COLORS) {
             String name = prefix.concat(color.getName()).concat("_").concat(key);
-            DeferredBlock<T> deferredBlock = BLOCKS.registerBlock(name, block, properties.mapColor(color));
+            DeferredBlock<T> deferredBlock = BLOCKS.registerBlock(name, block, () -> properties.mapColor(color));
             if(hasItem)
                 registerBlockItem(name, deferredBlock);
             blocks.add(deferredBlock);
@@ -347,13 +347,19 @@ public class ModBlocks {
 //    }
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties) {
+        DeferredBlock<T> deferredBlock = BLOCKS.registerBlock(name, block, () -> properties);
+        registerBlockItem(name, deferredBlock);
+        return deferredBlock;
+    }
+
+    private static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends T> block, Supplier<BlockBehaviour.Properties> properties) {
         DeferredBlock<T> deferredBlock = BLOCKS.registerBlock(name, block, properties);
         registerBlockItem(name, deferredBlock);
         return deferredBlock;
     }
 
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-        ModItems.ITEMS.registerSimpleBlockItem(name, block, new Item.Properties());
+        ModItems.ITEMS.registerSimpleBlockItem(name, block);
     }
 
     public static void register(IEventBus eventBus) {

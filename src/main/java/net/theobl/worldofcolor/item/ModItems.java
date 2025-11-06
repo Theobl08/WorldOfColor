@@ -37,12 +37,12 @@ public class ModItems {
             if(!hanging) {
                 item = ITEMS.registerItem(color.getName() + "_sign",
                         p -> new SignItem(ModBlocks.COLORED_SIGNS.get(index).get(), ModBlocks.COLORED_WALL_SIGNS.get(index).get(), p),
-                                new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
+                                p -> new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
             }
             else {
                 item = ITEMS.registerItem(color.getName() + "_hanging_sign",
                         p -> new HangingSignItem(ModBlocks.COLORED_HANGING_SIGNS.get(index).get(), ModBlocks.COLORED_WALL_HANGING_SIGNS.get(index).get(), p),
-                                new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
+                                p -> new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
             }
             signs.add(item);
         }
@@ -56,11 +56,11 @@ public class ModItems {
             DeferredItem<Item> item;
             if(hasChest) {
                 item = ITEMS.registerItem(color.getName() + "_chest_boat",
-                        p -> new BoatItem(ModEntityType.COLORED_CHEST_BOATS.get(index).get(), p), new Item.Properties().stacksTo(1));
+                        p -> new BoatItem(ModEntityType.COLORED_CHEST_BOATS.get(index).get(), p), p -> new Item.Properties().stacksTo(1));
             }
             else {
                 item = ITEMS.registerItem(color.getName() + "_boat",
-                        p -> new BoatItem(ModEntityType.COLORED_BOATS.get(index).get(), p), new Item.Properties().stacksTo(1));
+                        p -> new BoatItem(ModEntityType.COLORED_BOATS.get(index).get(), p), p -> new Item.Properties().stacksTo(1));
             }
             boat.add(item);
         }
@@ -80,7 +80,7 @@ public class ModItems {
                             map.put(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(index).get(), self);
                         }
                     },
-                    new Item.Properties().useBlockDescriptionPrefix());
+                    p -> new Item.Properties().useBlockDescriptionPrefix());
             cauldron.add(item);
         }
         return cauldron;
@@ -92,7 +92,7 @@ public class ModItems {
             int index = COLORS.indexOf(color);
             DeferredItem<Item> item = ITEMS.registerItem(color.getName() + "_decorated_pot",
                     p -> new BlockItem(ModBlocks.COLORED_DECORATED_POTS.get(index).get(), p),
-                    new Item.Properties().component(DataComponents.POT_DECORATIONS, PotDecorations.EMPTY).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix());
+                    p -> new Item.Properties().component(DataComponents.POT_DECORATIONS, PotDecorations.EMPTY).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix());
             items.add(item);
         }
         return items;
