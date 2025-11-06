@@ -315,37 +315,6 @@ public class ModBlocks {
         return registerColored(key, block, properties, "", hasItem);
     }
 
-//    /**
-//     * Create a new set of colored blocks.
-//     *
-//     * @param key the name of the new block
-//     * @param clazz the class to be instanced. It must have a constructor with {@linkplain WoodType} and {@linkplain BlockBehaviour.Properties} (like {@linkplain SignBlock})
-//     * @param properties the properties of the new block
-//     */
-//    @SuppressWarnings("unchecked")
-//    private static <T extends Block> List<DeferredBlock<T>> registerColored(String key, Class<?> clazz, BlockBehaviour.Properties properties) {
-//        List<DeferredBlock<T>> blocks = new ArrayList<>();
-//        for (DyeColor color : COLORS) {
-//            int index = COLORS.indexOf(color);
-//            String name = color.getName().concat("_").concat(key);
-//            DeferredBlock<T> deferredBlock = BLOCKS.registerBlock(name,
-//                    props -> {
-//                        try {
-//                            //https://stackoverflow.com/questions/4872978/how-do-i-pass-a-class-as-a-parameter-in-java
-//                            //https://stackoverflow.com/questions/15941957/passing-class-type-as-parameter-and-creating-instance-of-it
-//                            return (T) clazz.getDeclaredConstructor(WoodType.class, BlockBehaviour.Properties.class).newInstance(ModWoodType.COLORED_WOODS.get(index), props);
-//                        } catch (InstantiationException | IllegalAccessException | InvocationTargetException | NoSuchMethodException e) {
-//                            throw new RuntimeException(e);
-//                        }
-//                    }, properties.mapColor(color));
-//            if(!SignBlock.class.isAssignableFrom(clazz)) {
-//                registerBlockItem(name, deferredBlock);
-//            }
-//            blocks.add(deferredBlock);
-//        }
-//        return blocks;
-//    }
-
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties) {
         DeferredBlock<T> deferredBlock = BLOCKS.registerBlock(name, block, () -> properties);
         registerBlockItem(name, deferredBlock);

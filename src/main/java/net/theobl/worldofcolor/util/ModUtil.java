@@ -1,9 +1,6 @@
 package net.theobl.worldofcolor.util;
 
-import com.google.common.collect.Maps;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -12,10 +9,8 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -85,7 +80,6 @@ public class ModUtil {
 
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
-            //ModBlocks.COLORED_FLOWER_POTS.get(index).get().addPlant(BuiltInRegistries.BLOCK.getKey(Blocks.TORCHFLOWER), ModBlocks.COLORED_POTTED_COLORED_SAPLINGS.get(index));
             ModBlocks.COLORED_POTTED_PLANTS.forEach((block, deferredBlocks) ->
                     ModBlocks.COLORED_FLOWER_POTS.get(index).get().addPlant(BuiltInRegistries.BLOCK.getKey(block.get()), deferredBlocks.get(index)));
         }

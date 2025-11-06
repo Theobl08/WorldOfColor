@@ -78,7 +78,6 @@ public class ModModelProvider extends ModelProvider {
             coloredBlockModels.createCauldrons(color);
             coloredBlockModels.createTrivialBlock(ModBlocks.QUILTED_CONCRETES.get(index).get(), cube(ModUtil.SHULKER_BOXES.get(index)), ModelTemplates.CUBE_ALL);
             coloredBlockModels.createPlantWithDefaultItem(ModBlocks.COLORED_SAPLINGS.get(index).get(), ModBlocks.POTTED_COLORED_SAPLINGS.get(index).get(), BlockModelGenerators.PlantType.NOT_TINTED);
-//            coloredBlockModels.createPottedPlant(Blocks.SPRUCE_SAPLING, ModBlocks.COLORED_POTTED_SPRUCE_SAPLING.get(index).get(), ModBlocks.COLORED_FLOWER_POTS.get(index).get(), BlockModelGenerators.PlantType.NOT_TINTED);
             ModBlocks.COLORED_POTTED_PLANTS.forEach((plant, pottedPlant) -> {
                 BlockModelGenerators.PlantType plantType = BlockModelGenerators.PlantType.NOT_TINTED;
                 if(plant.get() == Blocks.FERN) {

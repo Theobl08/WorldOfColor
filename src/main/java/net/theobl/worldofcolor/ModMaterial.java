@@ -1,7 +1,6 @@
 package net.theobl.worldofcolor;
 
 import net.minecraft.client.resources.model.Material;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
 import net.theobl.worldofcolor.util.ModUtil;
 

@@ -4,7 +4,6 @@ import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.blockentity.CopperGolemStatueBlockRenderer;
 import net.minecraft.client.renderer.blockentity.state.CopperGolemStatueRenderState;
-import net.minecraft.resources.ResourceLocation;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ColoredCopperGolemStatueBlock;
 import net.theobl.worldofcolor.block.ColoredWeatheringCopperGolemStatueBlock;

@@ -3,7 +3,6 @@ package net.theobl.worldofcolor.entity;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -61,7 +60,6 @@ public class ModEntityType {
     public static <T extends ItemFrame> List<Supplier<EntityType<T>>> registerColoredItemFrames() {
         List<Supplier<EntityType<T>>> boats = new ArrayList<>();
         for (DyeColor color : ModUtil.COLORS) {
-            int index = ModUtil.COLORS.indexOf(color);
             Supplier<EntityType<T>> entity = registerEntityType(color.getName() + "_item_frame", (EntityType.Builder<T>) EntityType.Builder.of(itemFrameFactory(color), MobCategory.MISC)
                     .noLootTable()
                     .sized(0.5F, 0.5F)

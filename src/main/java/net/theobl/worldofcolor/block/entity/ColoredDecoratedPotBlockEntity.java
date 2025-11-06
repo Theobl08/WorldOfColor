@@ -132,6 +132,7 @@ public class ColoredDecoratedPotBlockEntity extends BlockEntity implements Rando
     }
 
     @Override
+    @SuppressWarnings("deprecation")
     public void removeComponentsFromTag(ValueOutput output) {
         super.removeComponentsFromTag(output);
         output.discard(TAG_SHERDS);

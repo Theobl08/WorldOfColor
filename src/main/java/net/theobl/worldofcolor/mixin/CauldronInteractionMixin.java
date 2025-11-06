@@ -26,19 +26,6 @@ public interface CauldronInteractionMixin {
                                                              @Local(argsOnly = true)Level level, @Local(argsOnly = true)ItemStack filledStack) {
         if(!level.isClientSide()) {
             Item item = filledStack.getItem();
-            //checking if the block is one of our colored cauldron
-//            for (DeferredBlock<Block> block : ModBlocks.COLORED_CAULDRONS) {
-//                if (level.getBlockState(pos).is(block)) {
-//                    int index = ModBlocks.COLORED_CAULDRONS.indexOf(block);
-//                    if (item == Items.WATER_BUCKET)
-//                        blockState = ModBlocks.COLORED_WATER_CAULDRONS.get(index).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
-//                    else if (item == Items.LAVA_BUCKET) {
-//                        blockState = ModBlocks.COLORED_LAVA_CAULDRONS.get(index).get().defaultBlockState();
-//                    } else
-//                        blockState = ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(index).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
-//                    return blockState;
-//                }
-//            }
             BlockState blockState = worldOfColor$isColoredCauldron(ModBlocks.COLORED_CAULDRONS, level, pos, item);
             if(blockState != null)
                 return blockState;
