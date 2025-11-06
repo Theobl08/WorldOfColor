@@ -2,6 +2,7 @@ package net.theobl.worldofcolor.datagen;
 
 import net.minecraft.client.renderer.texture.atlas.sources.SingleFile;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.data.AtlasIds;
 import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.client.data.SpriteSourceProvider;
 import net.neoforged.neoforge.client.textures.NamespacedDirectoryLister;
@@ -18,7 +19,7 @@ public class ModSpriteSourceProvider extends SpriteSourceProvider {
     @Override
     protected void gather() {
         //atlas(BLOCKS_ATLAS).addSource(new NamespacedDirectoryLister(WorldOfColor.MODID, "entity/decorated_pot/side", "entity/decorated_pot/side/"));
-        ModUtil.COLORS.forEach(color -> atlas(BLOCKS_ATLAS).addSource(new SingleFile(WorldOfColor.asResource("entity/decorated_pot/decorated_pot_side_" + color.getName()))));
+        ModUtil.COLORS.forEach(color -> atlas(AtlasIds.BLOCKS).addSource(new SingleFile(WorldOfColor.asResource("entity/decorated_pot/decorated_pot_side_" + color.getName()))));
 
     }
 }
