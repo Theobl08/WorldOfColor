@@ -189,7 +189,7 @@ public class ModBlocks {
             int index = COLORS.indexOf(color);
             DeferredBlock<Block> block = BLOCKS.registerBlock("potted_" + COLORED_SAPLINGS.get(index).getId().getPath(),
                     p -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, COLORED_SAPLINGS.get(index), p),
-                    BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
+                    () -> BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(COLORED_SAPLINGS.get(index).getId(), block);
             saplings.add(block);
         }
@@ -204,7 +204,7 @@ public class ModBlocks {
                 int index = COLORS.indexOf(color);
                 DeferredBlock<Block> block = BLOCKS.registerBlock(color.getName() + "_potted_" + name(plant),
                         p -> new ColoredFlowerPotBlock(COLORED_FLOWER_POTS.get(index), plant, color, p),
-                        BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT).mapColor(color).randomTicks());
+                        () -> BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT).mapColor(color).randomTicks());
                 blockList.add(block);
             }
             pottedPlants.put(plant, blockList);
@@ -217,7 +217,7 @@ public class ModBlocks {
         for (DyeColor color : COLORS) {
             DeferredBlock<ColoredDecoratedPotBlock> block = BLOCKS.registerBlock(color.getName() + "_decorated_pot",
                     p -> new ColoredDecoratedPotBlock(color, p),
-                    BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT));
+                    () -> BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT));
             blocks.add(block);
         }
         return blocks;
@@ -266,7 +266,7 @@ public class ModBlocks {
         for (DyeColor color : COLORS) {
             String name = color.getName().concat("_").concat("cauldron");
             DeferredBlock<Block> deferredBlock = BLOCKS.registerBlock(name,
-                    p -> new ColoredCauldronBlock(p, color), BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON).mapColor(color));
+                    p -> new ColoredCauldronBlock(p, color), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON).mapColor(color));
             blocks.add(deferredBlock);
         }
         return blocks;
@@ -278,7 +278,7 @@ public class ModBlocks {
             String name = prefix + color.getName() + "_copper_golem_statue";
             DeferredBlock<Block> deferredBlock = BLOCKS.registerBlock(name,
                     p -> func.apply(WeatherState.OXIDIZED, color, p),
-                    BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GOLEM_STATUE).mapColor(color));
+                    () -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GOLEM_STATUE).mapColor(color));
             ModItems.ITEMS.registerSimpleBlockItem(deferredBlock, p -> new Item.Properties()
                             .component(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(CopperGolemStatueBlock.POSE, CopperGolemStatueBlock.Pose.STANDING)));
             blocks.add(deferredBlock);
