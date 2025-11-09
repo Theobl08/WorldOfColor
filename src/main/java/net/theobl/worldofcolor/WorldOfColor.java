@@ -100,7 +100,7 @@ public class WorldOfColor {
 
     private void commonSetup(final FMLCommonSetupEvent event) {
         // Some common setup code
-        ModUtil.setup();
+        event.enqueueWork(ModUtil::setup);
     }
 
     // Add the example block item to the building blocks tab
