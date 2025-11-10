@@ -2,8 +2,10 @@ package net.theobl.worldofcolor.item;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CopperGolemStatueBlock;
 import net.minecraft.world.level.block.entity.PotDecorations;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -26,6 +28,8 @@ public class ModItems {
     public static final List<DeferredItem<Item>> COLORED_HANGING_SIGNS = registerColored("hanging_sign");
     public static final List<DeferredItem<Item>> COLORED_BOATS = registerColored("boat");
     public static final List<DeferredItem<Item>> COLORED_CHEST_BOATS = registerColored("chest_boat");
+    public static final List<DeferredItem<Item>> COLORED_COPPER_GOLEM_STATUES = registerColored("copper_golem_statue");
+    public static final List<DeferredItem<Item>> COLORED_WAXED_COPPER_GOLEM_STATUES = registerColored("waxed_copper_golem_statue");
     public static final List<DeferredItem<Item>> COLORED_CAULDRONS = registerColored("cauldron");
     public static final List<DeferredItem<Item>> COLORED_DECORATED_POTS = registerColored("decorated_pot");
     public static final List<DeferredItem<Item>> COLORED_ITEM_FRAMES = registerColored("item_frame");
@@ -51,6 +55,14 @@ public class ModItems {
                 case "chest_boat" -> ITEMS.registerItem(color.getName() + "_chest_boat",
                         p -> new BoatItem(ModEntityType.COLORED_CHEST_BOATS.get(index).get(), p),
                         p -> p.stacksTo(1));
+
+                case "copper_golem_statue" -> ITEMS.registerItem(color.getName() + "_copper_golem_statue",
+                        p -> new BlockItem(ModBlocks.COLORED_COPPER_GOLEM_STATUES.get(index).get(), p),
+                        p -> p.component(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(CopperGolemStatueBlock.POSE, CopperGolemStatueBlock.Pose.STANDING)).useBlockDescriptionPrefix());
+
+                case "waxed_copper_golem_statue" -> ITEMS.registerItem("waxed_" + color.getName() + "_copper_golem_statue",
+                        p -> new BlockItem(ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.get(index).get(), p),
+                        p -> p.component(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(CopperGolemStatueBlock.POSE, CopperGolemStatueBlock.Pose.STANDING)).useBlockDescriptionPrefix());
 
                 case "cauldron" -> ITEMS.registerItem(color.getName() + "_cauldron",
                         p -> new BlockItem(ModBlocks.COLORED_CAULDRONS.get(index).get(), p) {
