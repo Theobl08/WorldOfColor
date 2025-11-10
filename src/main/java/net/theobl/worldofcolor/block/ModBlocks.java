@@ -124,25 +124,11 @@ public class ModBlocks {
     public static final List<DeferredBlock<Block>> COLORED_BRICK_STAIRS = registerColoredStairs("brick_stairs", COLORED_BRICKS, BlockBehaviour.Properties.ofFullCopy(Blocks.BRICK_STAIRS));
     public static final List<DeferredBlock<Block>> COLORED_BRICK_SLABS = registerColored("brick_slab", SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BRICK_SLAB));
     public static final List<DeferredBlock<Block>> COLORED_BRICK_WALLS = registerColored("brick_wall", WallBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BRICK_WALL));
-    public static final List<DeferredBlock<Block>> COLORED_SLIME_BLOCKS = registerColored("slime_block", p -> new SlimeBlock(p) {
-        @Override
-        public boolean isSlimeBlock(BlockState state) {
-            return true;
-        }
-
-        @Override
-        public boolean isStickyBlock(BlockState state) {
-            return true;
-        }
-
-        @Override
-        public boolean canStickTo(BlockState state, BlockState other) {
-            if(other.is(Blocks.HONEY_BLOCK)) {
-                return false;
-            }
-            return super.canStickTo(state, other);
-        }
-    }, BlockBehaviour.Properties.ofFullCopy(Blocks.SLIME_BLOCK));
+    public static final List<DeferredBlock<Block>> COLORED_SLIME_BLOCKS = registerColored(
+            "slime_block",
+            ColoredSlimeBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.SLIME_BLOCK)
+    );
     public static final List<DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = registerPottedColoredSaplings();
     public static final List<DeferredBlock<FlowerPotBlock>> COLORED_FLOWER_POTS = registerColored("flower_pot", p -> new FlowerPotBlock(null, () -> Blocks.AIR, p), BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
     public static final Map<Supplier<Block>, List<DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
@@ -281,6 +267,16 @@ public class ModBlocks {
                     () -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GOLEM_STATUE).mapColor(color));
             ModItems.ITEMS.registerSimpleBlockItem(deferredBlock, p -> new Item.Properties()
                             .component(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(CopperGolemStatueBlock.POSE, CopperGolemStatueBlock.Pose.STANDING)));
+            blocks.add(deferredBlock);
+        }
+        return blocks;
+    }
+
+    private static <T extends Block> List<DeferredBlock<T>> registerColored(String key, BiFunction<DyeColor, BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties) {
+        List<DeferredBlock<T>> blocks = new ArrayList<>();
+        for (DyeColor color : COLORS) {
+            String name = color.getName() + "_" + key;
+            DeferredBlock<T> deferredBlock = registerBlock(name, p -> block.apply(color, p), () -> properties.mapColor(color));
             blocks.add(deferredBlock);
         }
         return blocks;
