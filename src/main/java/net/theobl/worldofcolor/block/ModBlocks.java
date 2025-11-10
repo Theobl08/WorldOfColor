@@ -114,7 +114,11 @@ public class ModBlocks {
             p -> new CopperChestBlock(WeatherState.OXIDIZED, SoundEvents.COPPER_CHEST_OPEN, SoundEvents.COPPER_CHEST_CLOSE, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHEST), "waxed_");
     public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_GOLEM_STATUES = registerColoredCopperGolemStatues(ColoredCopperGolemStatueBlock::new, "waxed_");
-    public static final List<DeferredBlock<Block>> COLORED_CAULDRONS = registerColoredCauldrons();
+    public static final List<DeferredBlock<Block>> COLORED_CAULDRONS = registerColored(
+            "cauldron",
+            ColoredCauldronBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)
+    );
     public static final List<DeferredBlock<Block>> COLORED_WATER_CAULDRONS = registerColored("water_cauldron", p -> new LayeredCauldronBlock(Biome.Precipitation.RAIN, CauldronInteraction.WATER, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.WATER_CAULDRON), false);
     public static final List<DeferredBlock<Block>> COLORED_LAVA_CAULDRONS = registerColored("lava_cauldron", LavaCauldronBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA_CAULDRON), false);
@@ -132,7 +136,11 @@ public class ModBlocks {
     public static final List<DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = registerPottedColoredSaplings();
     public static final List<DeferredBlock<FlowerPotBlock>> COLORED_FLOWER_POTS = registerColored("flower_pot", p -> new FlowerPotBlock(null, () -> Blocks.AIR, p), BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
     public static final Map<Supplier<Block>, List<DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
-    public static final List<DeferredBlock<ColoredDecoratedPotBlock>> COLORED_DECORATED_POTS = registerColoredDecoratedPots();
+    public static final List<DeferredBlock<ColoredDecoratedPotBlock>> COLORED_DECORATED_POTS = registerColored(
+            "decorated_pot",
+            ColoredDecoratedPotBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT)
+    );
     public static final List<DeferredBlock<Block>> COLORED_REDSTONE_LAMPS = registerColored(
             "redstone_lamp",
             RedstoneLampBlock::new,
@@ -198,17 +206,6 @@ public class ModBlocks {
         return pottedPlants;
     }
 
-    private static List<DeferredBlock<ColoredDecoratedPotBlock>> registerColoredDecoratedPots() {
-        List<DeferredBlock<ColoredDecoratedPotBlock>> blocks = new ArrayList<>();
-        for (DyeColor color : COLORS) {
-            DeferredBlock<ColoredDecoratedPotBlock> block = BLOCKS.registerBlock(color.getName() + "_decorated_pot",
-                    p -> new ColoredDecoratedPotBlock(color, p),
-                    () -> BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT));
-            blocks.add(block);
-        }
-        return blocks;
-    }
-
     private static List<DeferredBlock<Block>> registerColoredLeaves() {
         List<DeferredBlock<Block>> leaves = new ArrayList<>();
         for (DyeColor color : COLORS) {
@@ -247,17 +244,6 @@ public class ModBlocks {
         return signs;
     }
 
-    private static List<DeferredBlock<Block>> registerColoredCauldrons() {
-        List<DeferredBlock<Block>> blocks = new ArrayList<>();
-        for (DyeColor color : COLORS) {
-            String name = color.getName().concat("_").concat("cauldron");
-            DeferredBlock<Block> deferredBlock = BLOCKS.registerBlock(name,
-                    p -> new ColoredCauldronBlock(p, color), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON).mapColor(color));
-            blocks.add(deferredBlock);
-        }
-        return blocks;
-    }
-
     private static List<DeferredBlock<Block>> registerColoredCopperGolemStatues(TriFunction<WeatherState, DyeColor, BlockBehaviour.Properties, Block> func, String prefix) {
         List<DeferredBlock<Block>> blocks = new ArrayList<>();
         for (DyeColor color : COLORS) {
@@ -276,7 +262,9 @@ public class ModBlocks {
         List<DeferredBlock<T>> blocks = new ArrayList<>();
         for (DyeColor color : COLORS) {
             String name = color.getName() + "_" + key;
-            DeferredBlock<T> deferredBlock = registerBlock(name, p -> block.apply(color, p), () -> properties.mapColor(color));
+            DeferredBlock<T> deferredBlock = BLOCKS.registerBlock(name, p -> block.apply(color, p), () -> properties.mapColor(color));
+            if(key.contains("slime_block"))
+                ModItems.ITEMS.registerSimpleBlockItem(deferredBlock);
             blocks.add(deferredBlock);
         }
         return blocks;

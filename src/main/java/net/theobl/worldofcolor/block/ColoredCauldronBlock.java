@@ -13,7 +13,7 @@ import net.theobl.worldofcolor.util.ModUtil;
 
 public class ColoredCauldronBlock extends CauldronBlock {
     private final DyeColor color;
-    public ColoredCauldronBlock(Properties properties, DyeColor color) {
+    public ColoredCauldronBlock(DyeColor color, Properties properties) {
         super(properties);
         this.color = color;
     }
