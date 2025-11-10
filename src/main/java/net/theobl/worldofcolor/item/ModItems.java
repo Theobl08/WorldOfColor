@@ -14,6 +14,7 @@ import net.theobl.worldofcolor.entity.ModEntityType;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static net.theobl.worldofcolor.util.ModUtil.*;
 
@@ -21,89 +22,55 @@ public class ModItems {
     // Create a Deferred Register to hold Items which will all be registered under the "worldofcolor" namespace
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(WorldOfColor.MODID);
 
-    public static final List<DeferredItem<Item>> COLORED_SIGNS = registerColoredSign(false);
-    public static final List<DeferredItem<Item>> COLORED_HANGING_SIGNS = registerColoredSign(true);
-    public static final List<DeferredItem<Item>> COLORED_BOATS = registerColoredBoats(false);
-    public static final List<DeferredItem<Item>> COLORED_CHEST_BOATS = registerColoredBoats(true);
-    public static final List<DeferredItem<Item>> COLORED_CAULDRONS = registerColoredCauldron();
-    public static final List<DeferredItem<Item>> COLORED_DECORATED_POTS = registerColoredDecoratedPots();
-    public static final List<DeferredItem<Item>> COLORED_ITEM_FRAMES = registerColoredItemFrames();
+    public static final List<DeferredItem<Item>> COLORED_SIGNS = registerColored("sign");
+    public static final List<DeferredItem<Item>> COLORED_HANGING_SIGNS = registerColored("hanging_sign");
+    public static final List<DeferredItem<Item>> COLORED_BOATS = registerColored("boat");
+    public static final List<DeferredItem<Item>> COLORED_CHEST_BOATS = registerColored("chest_boat");
+    public static final List<DeferredItem<Item>> COLORED_CAULDRONS = registerColored("cauldron");
+    public static final List<DeferredItem<Item>> COLORED_DECORATED_POTS = registerColored("decorated_pot");
+    public static final List<DeferredItem<Item>> COLORED_ITEM_FRAMES = registerColored("item_frame");
 
-    private static List<DeferredItem<Item>> registerColoredSign(boolean hanging) {
-        List<DeferredItem<Item>> signs = new ArrayList<>();
-        for (DyeColor color : COLORS) {
+    private static List<DeferredItem<Item>> registerColored(String key) {
+        List<DeferredItem<Item>> items = new ArrayList<>();
+        for(DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
-            DeferredItem<Item> item;
-            if(!hanging) {
-                item = ITEMS.registerItem(color.getName() + "_sign",
+            String name = color.getName() + "_" + key;
+            DeferredItem<Item> item = switch (key) {
+                case "sign" -> ITEMS.registerItem(color.getName() + "_sign",
                         p -> new SignItem(ModBlocks.COLORED_SIGNS.get(index).get(), ModBlocks.COLORED_WALL_SIGNS.get(index).get(), p),
-                                p -> new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
-            }
-            else {
-                item = ITEMS.registerItem(color.getName() + "_hanging_sign",
+                        p -> p.stacksTo(16).useBlockDescriptionPrefix());
+
+                case "hanging_sign" -> ITEMS.registerItem(color.getName() + "_hanging_sign",
                         p -> new HangingSignItem(ModBlocks.COLORED_HANGING_SIGNS.get(index).get(), ModBlocks.COLORED_WALL_HANGING_SIGNS.get(index).get(), p),
-                                p -> new Item.Properties().stacksTo(16).useBlockDescriptionPrefix());
-            }
-            signs.add(item);
-        }
-        return signs;
-    }
+                        p -> p.stacksTo(16).useBlockDescriptionPrefix());
 
-    private static List<DeferredItem<Item>> registerColoredBoats(boolean hasChest) {
-        List<DeferredItem<Item>> boat = new ArrayList<>();
-        for (DyeColor color : COLORS) {
-            int index = COLORS.indexOf(color);
-            DeferredItem<Item> item;
-            if(hasChest) {
-                item = ITEMS.registerItem(color.getName() + "_chest_boat",
-                        p -> new BoatItem(ModEntityType.COLORED_CHEST_BOATS.get(index).get(), p), p -> new Item.Properties().stacksTo(1));
-            }
-            else {
-                item = ITEMS.registerItem(color.getName() + "_boat",
-                        p -> new BoatItem(ModEntityType.COLORED_BOATS.get(index).get(), p), p -> new Item.Properties().stacksTo(1));
-            }
-            boat.add(item);
-        }
-        return boat;
-    }
+                case "boat" -> ITEMS.registerItem(color.getName() + "_boat",
+                        p -> new BoatItem(ModEntityType.COLORED_BOATS.get(index).get(), p),
+                        p -> p.stacksTo(1));
 
-    private static List<DeferredItem<Item>> registerColoredCauldron() {
-        List<DeferredItem<Item>> cauldron = new ArrayList<>();
-        for (DyeColor color : COLORS) {
-            int index = COLORS.indexOf(color);
-            DeferredItem<Item> item = ITEMS.registerItem(color.getName() + "_cauldron", p ->
-                    new BlockItem(ModBlocks.COLORED_CAULDRONS.get(index).get(), p) {
-                        public void registerBlocks(java.util.Map<Block, Item> map, Item self) {
-                            super.registerBlocks(map, self);
-                            map.put(ModBlocks.COLORED_WATER_CAULDRONS.get(index).get(), self);
-                            map.put(ModBlocks.COLORED_LAVA_CAULDRONS.get(index).get(), self);
-                            map.put(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(index).get(), self);
-                        }
-                    },
-                    p -> new Item.Properties().useBlockDescriptionPrefix());
-            cauldron.add(item);
-        }
-        return cauldron;
-    }
+                case "chest_boat" -> ITEMS.registerItem(color.getName() + "_chest_boat",
+                        p -> new BoatItem(ModEntityType.COLORED_CHEST_BOATS.get(index).get(), p),
+                        p -> p.stacksTo(1));
 
-    private static List<DeferredItem<Item>> registerColoredDecoratedPots() {
-        List<DeferredItem<Item>> items = new ArrayList<>();
-        for (DyeColor color : COLORS) {
-            int index = COLORS.indexOf(color);
-            DeferredItem<Item> item = ITEMS.registerItem(color.getName() + "_decorated_pot",
-                    p -> new BlockItem(ModBlocks.COLORED_DECORATED_POTS.get(index).get(), p),
-                    p -> new Item.Properties().component(DataComponents.POT_DECORATIONS, PotDecorations.EMPTY).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix());
-            items.add(item);
-        }
-        return items;
-    }
+                case "cauldron" -> ITEMS.registerItem(color.getName() + "_cauldron",
+                        p -> new BlockItem(ModBlocks.COLORED_CAULDRONS.get(index).get(), p) {
+                                    public void registerBlocks(Map<Block, Item> map, Item self) {
+                                        super.registerBlocks(map, self);
+                                        map.put(ModBlocks.COLORED_WATER_CAULDRONS.get(index).get(), self);
+                                        map.put(ModBlocks.COLORED_LAVA_CAULDRONS.get(index).get(), self);
+                                        map.put(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(index).get(), self);
+                                    }
+                                }, Item.Properties::useBlockDescriptionPrefix);
 
-    private static List<DeferredItem<Item>> registerColoredItemFrames() {
-        List<DeferredItem<Item>> items = new ArrayList<>();
-        for (DyeColor color : COLORS) {
-            int index = COLORS.indexOf(color);
-            DeferredItem<Item> item = ITEMS.registerItem(color.getName() + "_item_frame",
-                    p -> new ItemFrameItem(ModEntityType.COLORED_ITEM_FRAMES.get(index).get(), p));
+                case "decorated_pot" -> ITEMS.registerItem(color.getName() + "_decorated_pot",
+                        p -> new BlockItem(ModBlocks.COLORED_DECORATED_POTS.get(index).get(), p),
+                        p -> p.component(DataComponents.POT_DECORATIONS, PotDecorations.EMPTY).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix());
+
+                case "item_frame" -> ITEMS.registerItem(color.getName() + "_item_frame",
+                        p -> new ItemFrameItem(ModEntityType.COLORED_ITEM_FRAMES.get(index).get(), p));
+
+                default -> ITEMS.registerSimpleItem(name);
+            };
             items.add(item);
         }
         return items;
