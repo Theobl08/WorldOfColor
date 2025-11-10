@@ -18,7 +18,7 @@ public class ColoredBlockList<T extends Block> implements Iterable<DeferredBlock
 
     private final DeferredBlock<?>[] values = new DeferredBlock<?>[COLOR_AMOUNT];
 
-    public ColoredBlockList(Function<DyeColor, DeferredBlock<? extends Block>> filler) {
+    public ColoredBlockList(Function<DyeColor, DeferredBlock<? extends T>> filler) {
         for (DyeColor color : ModUtil.COLORS) {
             values[ModUtil.COLORS.indexOf(color)] = filler.apply(color);
         }
