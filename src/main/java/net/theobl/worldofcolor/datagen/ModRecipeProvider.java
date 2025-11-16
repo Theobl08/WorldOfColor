@@ -186,6 +186,10 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
                 .save(output);
         SpecialRecipeBuilder.special(ColoredDecoratedPotRecipe::new).save(this.output, "colored_decorated_pot");
+
+        carpet(ModBlocks.RGB_CARPET, ModBlocks.RGB_WOOL);
+        smeltingResultFromBase(ModBlocks.RGB_GLAZED_TERRACOTTA, ModBlocks.RGB_TERRACOTTA);
+        stainedGlassPaneFromStainedGlass(ModBlocks.RGB_STAINED_GLASS_PANE, ModBlocks.RGB_STAINED_GLASS);
     }
 
     protected void generateForEnabledBlockFamilies(FeatureFlagSet set) {

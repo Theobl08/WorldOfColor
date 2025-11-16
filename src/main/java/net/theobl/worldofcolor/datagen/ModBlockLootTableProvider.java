@@ -44,9 +44,13 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 this.dropColoredPottedContents(block.get());
             } else if (block.get() instanceof DecoratedPotBlock) {
                 this.add(block.get(), this::createDecoratedPotTable);
-            } else
+            } else if (block.is(ModBlocks.RGB_STAINED_GLASS.getId()) || block.is(ModBlocks.RGB_STAINED_GLASS_PANE.getId())) {
+                this.dropWhenSilkTouch(block.get());
+            } else if(!(block.get() instanceof AbstractCandleBlock))
                 this.dropSelf(block.get());
         }
+        this.add(ModBlocks.RGB_CANDLE.get(), this::createCandleDrops);
+        this.add(ModBlocks.RGB_CANDLE_CAKE.get(), createCandleCakeDrops(ModBlocks.RGB_CANDLE.get()));
     }
 
     private LootTable.Builder createDecoratedPotTable(Block block) {

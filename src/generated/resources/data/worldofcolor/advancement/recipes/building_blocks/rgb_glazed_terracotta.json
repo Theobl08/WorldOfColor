@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_rgb_terracotta": {
+      "conditions": {
+        "items": [
+          {
+            "items": "worldofcolor:rgb_terracotta"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "worldofcolor:rgb_glazed_terracotta"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_rgb_terracotta"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "worldofcolor:rgb_glazed_terracotta"
+    ]
+  }
+}

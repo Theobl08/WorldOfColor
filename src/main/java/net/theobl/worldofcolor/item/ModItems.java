@@ -33,6 +33,10 @@ public class ModItems {
     public static final List<DeferredItem<Item>> COLORED_CAULDRONS = registerColored("cauldron");
     public static final List<DeferredItem<Item>> COLORED_DECORATED_POTS = registerColored("decorated_pot");
     public static final List<DeferredItem<Item>> COLORED_ITEM_FRAMES = registerColored("item_frame");
+    public static final DeferredItem<BlockItem> RGB_SHULKER_BOX = ITEMS.registerItem(
+            "rgb_shulker_box",
+            p -> new BlockItem(ModBlocks.RGB_SHULKER_BOX.get(), p),
+            p -> p.stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix());
 
     private static List<DeferredItem<Item>> registerColored(String key) {
         List<DeferredItem<Item>> items = new ArrayList<>();

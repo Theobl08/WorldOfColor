@@ -8,11 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static net.minecraft.client.renderer.Sheets.CHEST_MAPPER;
+import static net.minecraft.client.renderer.Sheets.SHULKER_MAPPER;
 
 public class ModMaterial {
     public static final List<Material> COPPER_CHEST_LOCATION = new ArrayList<>();
     public static final List<Material> COPPER_CHEST_LOCATION_LEFT = new ArrayList<>();
     public static final List<Material> COPPER_CHEST_LOCATION_RIGHT = new ArrayList<>();
+    public static final Material RGB_SHULKER_LOCATION = SHULKER_MAPPER.apply(WorldOfColor.asResource("shulker_rgb"));
 
     public static void bootstrap() {
         for (DyeColor color : ModUtil.COLORS) {

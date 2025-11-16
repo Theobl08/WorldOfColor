@@ -5,14 +5,18 @@ import com.google.common.collect.Maps;
 import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.MultiVariant;
+import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
 import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.block.model.SingleVariant;
 import net.minecraft.client.renderer.block.model.Variant;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
+import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.client.renderer.special.CopperGolemStatueSpecialRenderer;
+import net.minecraft.client.renderer.special.ShulkerBoxSpecialRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
+import net.minecraft.core.Direction;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.DyeColor;
@@ -354,6 +358,44 @@ public class ColoredBlockModelGenerators {
                                 )
                         )
                 );
+    }
+
+    public void createGlassBlocks(Block glassBlock, Block paneBlock) {
+        String translucent = ChunkSectionLayer.TRANSLUCENT.label();
+        this.createTrivialCubeWithRenderType(glassBlock, translucent);
+        TextureMapping texturemapping = TextureMapping.pane(glassBlock, paneBlock);
+        MultiVariant post = plainVariant(ModelTemplates.STAINED_GLASS_PANE_POST.extend().renderType(translucent).build().create(paneBlock, texturemapping, blockModels.modelOutput));
+        MultiVariant side = plainVariant(ModelTemplates.STAINED_GLASS_PANE_SIDE.extend().renderType(translucent).build().create(paneBlock, texturemapping, blockModels.modelOutput));
+        MultiVariant sideAlt = plainVariant(ModelTemplates.STAINED_GLASS_PANE_SIDE_ALT.extend().renderType(translucent).build().create(paneBlock, texturemapping, blockModels.modelOutput));
+        MultiVariant noSide = plainVariant(ModelTemplates.STAINED_GLASS_PANE_NOSIDE.extend().renderType(translucent).build().create(paneBlock, texturemapping, blockModels.modelOutput));
+        MultiVariant noSideAlt = plainVariant(ModelTemplates.STAINED_GLASS_PANE_NOSIDE_ALT.extend().renderType(translucent).build().create(paneBlock, texturemapping, blockModels.modelOutput));
+        Item paneItem = paneBlock.asItem();
+        blockModels.registerSimpleItemModel(paneItem,
+                ModelTemplates.FLAT_ITEM
+                        .extend()
+                        .renderType(translucent)
+                        .build()
+                        .create(ModelLocationUtils.getModelLocation(paneItem), TextureMapping.layer0(glassBlock), blockModels.modelOutput));
+        blockModels.blockStateOutput
+                .accept(
+                        MultiPartGenerator.multiPart(paneBlock)
+                                .with(post)
+                                .with(condition().term(BlockStateProperties.NORTH, true), side)
+                                .with(condition().term(BlockStateProperties.EAST, true), side.with(Y_ROT_90))
+                                .with(condition().term(BlockStateProperties.SOUTH, true), sideAlt)
+                                .with(condition().term(BlockStateProperties.WEST, true), sideAlt.with(Y_ROT_90))
+                                .with(condition().term(BlockStateProperties.NORTH, false), noSide)
+                                .with(condition().term(BlockStateProperties.EAST, false), noSideAlt)
+                                .with(condition().term(BlockStateProperties.SOUTH, false), noSideAlt.with(Y_ROT_90))
+                                .with(condition().term(BlockStateProperties.WEST, false), noSide.with(Y_ROT_270))
+                );
+    }
+    public void createShulkerBox(Block block) {
+        blockModels.createParticleOnlyBlock(block);
+        Item item = block.asItem();
+        ResourceLocation baseModel = ModelTemplates.SHULKER_BOX_INVENTORY.create(item, TextureMapping.particle(block), blockModels.modelOutput);
+        ItemModel.Unbaked itemModel = ItemModelUtils.specialModel(baseModel, new ShulkerBoxSpecialRenderer.Unbaked(WorldOfColor.asResource("shulker_rgb"), 0.0F, Direction.UP));
+        blockModels.itemModelOutput.accept(item, itemModel);
     }
 
     @ParametersAreNonnullByDefault

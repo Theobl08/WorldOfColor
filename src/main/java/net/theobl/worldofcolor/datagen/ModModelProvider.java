@@ -105,6 +105,14 @@ public class ModModelProvider extends ModelProvider {
                             .put(TextureSlot.BACK, WorldOfColor.asResource(color.getName() + "_item_frame").withPrefix("block/")),
                     blockModels.modelOutput);
         }
+        blockModels.createFullAndCarpetBlocks(ModBlocks.RGB_WOOL.get(), ModBlocks.RGB_CARPET.get());
+        blockModels.createTrivialCube(ModBlocks.RGB_TERRACOTTA.get());
+        blockModels.createTrivialCube(ModBlocks.RGB_CONCRETE.get());
+        blockModels.createColoredBlockWithRandomRotations(TexturedModel.CUBE, ModBlocks.RGB_CONCRETE_POWDER.get());
+        blockModels.createColoredBlockWithStateRotations(TexturedModel.GLAZED_TERRACOTTA, ModBlocks.RGB_GLAZED_TERRACOTTA.get());
+        coloredBlockModels.createGlassBlocks(ModBlocks.RGB_STAINED_GLASS.get(), ModBlocks.RGB_STAINED_GLASS_PANE.get());
+        blockModels.createCandleAndCandleCake(ModBlocks.RGB_CANDLE.get(), ModBlocks.RGB_CANDLE_CAKE.get());
+        coloredBlockModels.createShulkerBox(ModBlocks.RGB_SHULKER_BOX.get());
 
         ModItems.COLORED_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
         ModItems.COLORED_CHEST_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));

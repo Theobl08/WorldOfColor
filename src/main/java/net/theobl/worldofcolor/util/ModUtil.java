@@ -78,6 +78,9 @@ public class ModUtil {
         ModBlocks.CLASSIC_WOOLS.forEach(block -> registerFlammable(block.get(), 30, 60));
         ModBlocks.CLASSIC_CARPETS.forEach(block -> registerFlammable(block.get(), 60, 20));
 
+        registerFlammable(ModBlocks.RGB_WOOL.get(), 30, 60);
+        registerFlammable(ModBlocks.RGB_CARPET.get(), 60, 20);
+
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
             ModBlocks.COLORED_POTTED_PLANTS.forEach((block, deferredBlocks) ->

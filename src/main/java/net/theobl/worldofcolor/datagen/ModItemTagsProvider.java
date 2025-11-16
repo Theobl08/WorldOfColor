@@ -59,10 +59,18 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         this.copy(BlockTags.COPPER_CHESTS, ItemTags.COPPER_CHESTS);
         this.copy(BlockTags.COPPER_GOLEM_STATUES, ItemTags.COPPER_GOLEM_STATUES);
 
+        this.copy(BlockTags.TERRACOTTA, ItemTags.TERRACOTTA);
+        this.copy(BlockTags.CANDLES, ItemTags.CANDLES);
+        this.copy(BlockTags.CONCRETE_POWDER, Tags.Items.CONCRETE_POWDERS);
+
         this.copy(Tags.Blocks.STRIPPED_LOGS, Tags.Items.STRIPPED_LOGS);
         this.copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
         this.copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
         this.copy(Tags.Blocks.STORAGE_BLOCKS_SLIME, Tags.Items.STORAGE_BLOCKS_SLIME);
+        this.copy(Tags.Blocks.CONCRETES, Tags.Items.CONCRETES);
+        this.copy(Tags.Blocks.GLAZED_TERRACOTTAS, Tags.Items.GLAZED_TERRACOTTAS);
+        this.copy(Tags.Blocks.GLASS_BLOCKS_CHEAP, Tags.Items.GLASS_BLOCKS_CHEAP);
+        this.copy(Tags.Blocks.GLASS_PANES, Tags.Items.GLASS_PANES);
 
         for(TagKey<Item> tag : ModTags.Items.COLORED_LOGS) {
             int index = ModTags.Items.COLORED_LOGS.indexOf(tag);

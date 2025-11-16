@@ -151,6 +151,61 @@ public class ModBlocks {
             RedstoneLampBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_LAMP)
     );
+    public static final DeferredBlock<Block> RGB_WOOL = registerBlock(
+            "rgb_wool",
+            Block::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL)
+    );
+    public static final DeferredBlock<Block> RGB_CARPET = registerBlock(
+            "rgb_carpet",
+            CarpetBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CARPET)
+    );
+    public static final DeferredBlock<Block> RGB_TERRACOTTA = registerBlock(
+            "rgb_terracotta",
+            Block::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.TERRACOTTA)
+    );
+    public static final DeferredBlock<Block> RGB_CONCRETE = registerBlock(
+            "rgb_concrete",
+            Block::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE)
+    );
+    public static final DeferredBlock<Block> RGB_CONCRETE_POWDER = registerBlock(
+            "rgb_concrete_powder",
+            p -> new ConcretePowderBlock(RGB_CONCRETE.get(), p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE_POWDER)
+    );
+    public static final DeferredBlock<Block> RGB_GLAZED_TERRACOTTA = registerBlock(
+            "rgb_glazed_terracotta",
+            GlazedTerracottaBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_GLAZED_TERRACOTTA)
+    );
+    public static final DeferredBlock<Block> RGB_STAINED_GLASS = registerBlock(
+            "rgb_stained_glass",
+            TransparentBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS)
+    );
+    public static final DeferredBlock<Block> RGB_STAINED_GLASS_PANE = registerBlock(
+            "rgb_stained_glass_pane",
+            IronBarsBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS_PANE)
+    );
+    public static final DeferredBlock<Block> RGB_CANDLE = registerBlock(
+            "rgb_candle",
+            CandleBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CANDLE)
+    );
+    public static final DeferredBlock<Block> RGB_CANDLE_CAKE = BLOCKS.registerBlock(
+            "rgb_candle_cake",
+            p -> new CandleCakeBlock(RGB_CANDLE.get(), p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CANDLE_CAKE)
+    );
+    public static final DeferredBlock<Block> RGB_SHULKER_BOX = BLOCKS.registerBlock(
+            "rgb_shulker_box",
+            p -> new ShulkerBoxBlock(null, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.SHULKER_BOX)
+    );
 
     private static List<DeferredBlock<Block>> registerClassic(String key, Function<BlockBehaviour.Properties, Block> block, BlockBehaviour.Properties properties) {
         List<DeferredBlock<Block>> blocks = new ArrayList<>();

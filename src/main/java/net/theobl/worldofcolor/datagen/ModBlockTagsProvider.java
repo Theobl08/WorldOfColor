@@ -29,7 +29,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     @SuppressWarnings("unchecked")
     protected void addTags(HolderLookup.Provider provider) {
         for (DeferredHolder<Block, ? extends Block> block : ModBlocks.BLOCKS.getEntries()) {
-            if(mineableWithPickaxe((DeferredBlock<Block>) block)) {
+            if(mineableWithPickaxe((DeferredBlock<Block>) block) || block == ModBlocks.RGB_TERRACOTTA) {
                 this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block.get());
             }
             else if(ModBlocks.CLASSIC_WOOLS.contains(block)) {
@@ -136,6 +136,18 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             }
         }
 
+        this.tag(BlockTags.WOOL).add(ModBlocks.RGB_WOOL.get());
+        this.tag(BlockTags.WOOL_CARPETS).add(ModBlocks.RGB_CARPET.get());
+        this.tag(BlockTags.TERRACOTTA).add(ModBlocks.RGB_TERRACOTTA.get());
+        this.tag(BlockTags.CONCRETE_POWDER).add(ModBlocks.RGB_CONCRETE_POWDER.get());
+        this.tag(BlockTags.IMPERMEABLE).add(ModBlocks.RGB_STAINED_GLASS.get());
+        this.tag(BlockTags.CANDLES).add(ModBlocks.RGB_CANDLE.get());
+        this.tag(BlockTags.CANDLE_CAKES).add(ModBlocks.RGB_CANDLE_CAKE.get());
+        this.tag(Tags.Blocks.CONCRETES).add(ModBlocks.RGB_CONCRETE.get());
+        this.tag(Tags.Blocks.GLASS_BLOCKS_CHEAP).add(ModBlocks.RGB_STAINED_GLASS.get());
+        this.tag(Tags.Blocks.GLASS_PANES).add(ModBlocks.RGB_STAINED_GLASS_PANE.get());
+        this.tag(Tags.Blocks.GLAZED_TERRACOTTAS).add(ModBlocks.RGB_GLAZED_TERRACOTTA.get());
+
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
             this.tag(BlockTags.CAULDRONS).add(ModBlocks.COLORED_CAULDRONS.get(index).get())
@@ -206,10 +218,11 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 //        addColoredTags(tag(Tags.Blocks.DYED)::addTag, Tags.Blocks.DYED);
     }
     private boolean mineableWithPickaxe(DeferredBlock<Block> block) {
-        return block.get().toString().contains("concrete") ||
+        return (block.get().toString().contains("concrete") && !(block.get() instanceof ConcretePowderBlock)) ||
                 block.get().toString().contains("copper") ||
                 block.get().toString().contains("brick") ||
                 block.get() instanceof LightningRodBlock ||
+                block.get() instanceof GlazedTerracottaBlock ||
                 ModBlocks.SIMPLE_COLORED_BLOCKS.contains(block);
     }
 

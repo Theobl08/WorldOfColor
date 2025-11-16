@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "worldofcolor:block/rgb_glazed_terracotta",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "worldofcolor:block/rgb_glazed_terracotta",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "worldofcolor:block/rgb_glazed_terracotta"
+    },
+    "facing=west": {
+      "model": "worldofcolor:block/rgb_glazed_terracotta",
+      "y": 90
+    }
+  }
+}

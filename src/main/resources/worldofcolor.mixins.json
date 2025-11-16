@@ -19,7 +19,8 @@
     "BlockStateDefinitionsMixin",
     "ChestRendererMixin",
     "CopperGolemStatueBlockRendererMixin",
-    "ItemFrameRendererMixin"
+    "ItemFrameRendererMixin",
+    "ShulkerBoxRendererMixin"
   ],
   "injectors": {
     "defaultRequire": 1

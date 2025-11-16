@@ -1,4 +1,6 @@
-// 1.21.10	2025-11-06T17:54:55.1853837	Tags for minecraft:item mod id worldofcolor
+// 1.21.10	2025-11-15T20:26:17.1505153	Tags for minecraft:item mod id worldofcolor
+dfc2d872e0fc2643b4796b70c0d412bb7a6fc66f data/c/tags/item/concretes.json
+a3d90ab71d3131d2b36779dc6418aef9acd10bd2 data/c/tags/item/concrete_powders.json
 a1ef82cc6d6804e7a7a65800c859abbae4d821e9 data/c/tags/item/dyed/black.json
 ccb76dc892f60404b6907cd2f05a1e2b23b76a5d data/c/tags/item/dyed/blue.json
 9d689c41b40fca813fe4f6a01131fe71fc67a2bb data/c/tags/item/dyed/brown.json
@@ -16,11 +18,15 @@ eaa3bea956deda43eb9acae90ae5cabac134fc7a data/c/tags/item/dyed/red.json
 7e3641f3645ba8c9284d3b7610ad4399a905ce17 data/c/tags/item/dyed/white.json
 c8504ddf0dae638fdbcd2ac1a306fdaacb1e8abb data/c/tags/item/dyed/yellow.json
 eb78c48bba70dbc4b3b3f09510d0af4c186c77d4 data/c/tags/item/fence_gates/wooden.json
+cbb69e8c9a4ffb3c0aaa0ccd88fbad5c8519f82f data/c/tags/item/glass_blocks/cheap.json
+7b3ea449bb3d32237ba4aa799194b3fa229ffc84 data/c/tags/item/glass_panes.json
+5b226b41bed827157c713d0d42f33e2573076077 data/c/tags/item/glazed_terracottas.json
 696aab62b01cb4706c7c4eb526f34b11e2145535 data/c/tags/item/storage_blocks/slime.json
 10c99a4edef6e748c918eec5cba16f01f6e0dc9f data/c/tags/item/stripped_logs.json
 7c97a74d9f981d388ad9f2b9d6710813e9bbb6e0 data/c/tags/item/stripped_woods.json
-5f6761405822f52128b78e998f765c58f6ef181f data/minecraft/tags/item/bars.json
+b414c52fda9b7c6be8a2f0b69e57c0c0ecc64b55 data/minecraft/tags/item/bars.json
 a210f42bbba5263bfdfba95deb3192b6613773ca data/minecraft/tags/item/boats.json
+6db0381be080316686ed67e420467288ff7ff645 data/minecraft/tags/item/candles.json
 ef457a705be202f1e08bb88a8e908d1e927b238e data/minecraft/tags/item/chains.json
 2c670892192d2296df7edc6b62961af81bda9579 data/minecraft/tags/item/chest_boats.json
 5aeb214a999cdae0878ec2b7af703b0da264ee67 data/minecraft/tags/item/copper_chests.json
@@ -37,6 +43,7 @@ e0747f653629573aa91a5397dd01117d4661b50d data/minecraft/tags/item/planks.json
 106423e4f4a3a0011fbbfc76787b41641cccfd30 data/minecraft/tags/item/signs.json
 3402df65f407611a32bbf6658e9d06426972ec1f data/minecraft/tags/item/slabs.json
 74b5641d227c2351343268dabc5d879a3466c50f data/minecraft/tags/item/stairs.json
+169569cf6f631507781eb5cc5661f0984fd346d2 data/minecraft/tags/item/terracotta.json
 cfa0406a15b4967acddfb4147a30623dc255a8d7 data/minecraft/tags/item/trapdoors.json
 cf32bb13fce37ac597eee29756cba1df76eb5d62 data/minecraft/tags/item/walls.json
 a661b835ebe8addbd5662e2a481837132f503a45 data/minecraft/tags/item/wooden_buttons.json
@@ -46,8 +53,8 @@ c1829b6a83e0a415be31a3176fbb57135504e9c1 data/minecraft/tags/item/wooden_pressur
 04e49c6c88991c27cdcf1638f6a070f189db010e data/minecraft/tags/item/wooden_slabs.json
 e804b8cc759c6993960b21b134345370bbedaf31 data/minecraft/tags/item/wooden_stairs.json
 6a34eed736ef329fc193cb75c4d5bd0f3b8a4946 data/minecraft/tags/item/wooden_trapdoors.json
-5611ffd5aefc2345eb2db999ef6f7ff4d80bb560 data/minecraft/tags/item/wool.json
-dc1a4ed1471b6a73fee8af43980d7857987e5868 data/minecraft/tags/item/wool_carpets.json
+5ee0ea476dba35c9189174fd9ba0ae888f939851 data/minecraft/tags/item/wool.json
+7dca26a359390b690248847203d28539ba2fd7f2 data/minecraft/tags/item/wool_carpets.json
 3faff778a191beab0892f3e534222b8a98a4ecd0 data/worldofcolor/tags/item/black_logs.json
 c1de68176301ed3900150a3f139338217b7c2fda data/worldofcolor/tags/item/blue_logs.json
 adc75c57d6cee723479cb06625d3df86a5ff2c41 data/worldofcolor/tags/item/brown_logs.json

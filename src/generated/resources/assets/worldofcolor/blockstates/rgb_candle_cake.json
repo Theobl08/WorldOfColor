@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "worldofcolor:block/rgb_candle_cake"
+    },
+    "lit=true": {
+      "model": "worldofcolor:block/rgb_candle_cake_lit"
+    }
+  }
+}

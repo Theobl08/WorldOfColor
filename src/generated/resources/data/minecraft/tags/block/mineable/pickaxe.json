@@ -591,6 +591,9 @@
     "worldofcolor:blue_brick_wall",
     "worldofcolor:purple_brick_wall",
     "worldofcolor:magenta_brick_wall",
-    "worldofcolor:pink_brick_wall"
+    "worldofcolor:pink_brick_wall",
+    "worldofcolor:rgb_terracotta",
+    "worldofcolor:rgb_concrete",
+    "worldofcolor:rgb_glazed_terracotta"
   ]
 }
