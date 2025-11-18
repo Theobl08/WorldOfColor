@@ -61,6 +61,8 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
 
         this.copy(BlockTags.TERRACOTTA, ItemTags.TERRACOTTA);
         this.copy(BlockTags.CANDLES, ItemTags.CANDLES);
+        this.copy(BlockTags.SHULKER_BOXES, ItemTags.SHULKER_BOXES);
+        this.tag(Tags.Items.SHULKER_BOXES).add(ModBlocks.RGB_SHULKER_BOX.asItem());
         this.copy(BlockTags.CONCRETE_POWDER, Tags.Items.CONCRETE_POWDERS);
 
         this.copy(Tags.Blocks.STRIPPED_LOGS, Tags.Items.STRIPPED_LOGS);
@@ -80,7 +82,7 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         this.tag(ModTags.Items.CAULDRONS).add(Items.CAULDRON);
         ModBlocks.COLORED_CAULDRONS.forEach(block -> this.tag(ModTags.Items.CAULDRONS).add(block.asItem()));
 
-    ModItems.COLORED_BOATS.forEach(item -> tag(ItemTags.BOATS).add(item.asItem()));
+        ModItems.COLORED_BOATS.forEach(item -> tag(ItemTags.BOATS).add(item.asItem()));
         ModItems.COLORED_CHEST_BOATS.forEach(item -> tag(ItemTags.CHEST_BOATS).add(item.asItem()));
 
         addColored(Tags.Items.DYED, "{color}_block");

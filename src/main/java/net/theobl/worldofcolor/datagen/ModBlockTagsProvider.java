@@ -116,7 +116,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             else if (block.get() instanceof FlowerPotBlock) {
                 this.tag(BlockTags.FLOWER_POTS).add(block.get());
             }
-            else if (block.get() instanceof IronBarsBlock) {
+            else if (block.get() instanceof IronBarsBlock && !block.getId().getPath().contains("glass")) {
                 this.tag(BlockTags.BARS).add(block.get());
             }
             else if (block.get() instanceof ChainBlock) {
@@ -141,6 +141,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.TERRACOTTA).add(ModBlocks.RGB_TERRACOTTA.get());
         this.tag(BlockTags.CONCRETE_POWDER).add(ModBlocks.RGB_CONCRETE_POWDER.get());
         this.tag(BlockTags.IMPERMEABLE).add(ModBlocks.RGB_STAINED_GLASS.get());
+        this.tag(BlockTags.SHULKER_BOXES).add(ModBlocks.RGB_SHULKER_BOX.get());
         this.tag(BlockTags.CANDLES).add(ModBlocks.RGB_CANDLE.get());
         this.tag(BlockTags.CANDLE_CAKES).add(ModBlocks.RGB_CANDLE_CAKE.get());
         this.tag(Tags.Blocks.CONCRETES).add(ModBlocks.RGB_CONCRETE.get());

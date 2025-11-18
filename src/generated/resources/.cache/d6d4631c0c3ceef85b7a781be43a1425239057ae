@@ -1,4 +1,4 @@
-// 1.21.10	2025-11-15T20:26:17.1740162	Tags for minecraft:block mod id worldofcolor
+// 1.21.10	2025-11-18T15:28:24.8505474	Tags for minecraft:block mod id worldofcolor
 dfc2d872e0fc2643b4796b70c0d412bb7a6fc66f data/c/tags/block/concretes.json
 3d6c0b035c67e9cd0ddbf4a707ff7bcd3291dd4f data/c/tags/block/dyed/black.json
 3fc255a89a05737990876711691e7477845dfbe0 data/c/tags/block/dyed/blue.json
@@ -23,7 +23,7 @@ cbb69e8c9a4ffb3c0aaa0ccd88fbad5c8519f82f data/c/tags/block/glass_blocks/cheap.js
 696aab62b01cb4706c7c4eb526f34b11e2145535 data/c/tags/block/storage_blocks/slime.json
 10c99a4edef6e748c918eec5cba16f01f6e0dc9f data/c/tags/block/stripped_logs.json
 7c97a74d9f981d388ad9f2b9d6710813e9bbb6e0 data/c/tags/block/stripped_woods.json
-b414c52fda9b7c6be8a2f0b69e57c0c0ecc64b55 data/minecraft/tags/block/bars.json
+5f6761405822f52128b78e998f765c58f6ef181f data/minecraft/tags/block/bars.json
 6db0381be080316686ed67e420467288ff7ff645 data/minecraft/tags/block/candles.json
 f1669d5faed4e6249b38a92f22a0c5635b4c1a67 data/minecraft/tags/block/candle_cakes.json
 854c127296e15e333b04c035c4ac76bacc07d378 data/minecraft/tags/block/cauldrons.json
@@ -44,6 +44,7 @@ cbb69e8c9a4ffb3c0aaa0ccd88fbad5c8519f82f data/minecraft/tags/block/impermeable.j
 582e8199e378f5bf141f08f29815d7d9dc7aae30 data/minecraft/tags/block/needs_stone_tool.json
 e0747f653629573aa91a5397dd01117d4661b50d data/minecraft/tags/block/planks.json
 480520574b77f45104165aa524c5261ed9d0715d data/minecraft/tags/block/saplings.json
+1d6aac01dd8510ff15af2a9299e54704dbddd779 data/minecraft/tags/block/shulker_boxes.json
 3402df65f407611a32bbf6658e9d06426972ec1f data/minecraft/tags/block/slabs.json
 74b5641d227c2351343268dabc5d879a3466c50f data/minecraft/tags/block/stairs.json
 106423e4f4a3a0011fbbfc76787b41641cccfd30 data/minecraft/tags/block/standing_signs.json

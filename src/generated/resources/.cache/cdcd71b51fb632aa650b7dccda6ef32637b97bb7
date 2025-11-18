@@ -1,4 +1,4 @@
-// 1.21.10	2025-11-15T20:26:17.1505153	Tags for minecraft:item mod id worldofcolor
+// 1.21.10	2025-11-18T16:00:57.5555312	Tags for minecraft:item mod id worldofcolor
 dfc2d872e0fc2643b4796b70c0d412bb7a6fc66f data/c/tags/item/concretes.json
 a3d90ab71d3131d2b36779dc6418aef9acd10bd2 data/c/tags/item/concrete_powders.json
 a1ef82cc6d6804e7a7a65800c859abbae4d821e9 data/c/tags/item/dyed/black.json
@@ -21,10 +21,11 @@ eb78c48bba70dbc4b3b3f09510d0af4c186c77d4 data/c/tags/item/fence_gates/wooden.jso
 cbb69e8c9a4ffb3c0aaa0ccd88fbad5c8519f82f data/c/tags/item/glass_blocks/cheap.json
 7b3ea449bb3d32237ba4aa799194b3fa229ffc84 data/c/tags/item/glass_panes.json
 5b226b41bed827157c713d0d42f33e2573076077 data/c/tags/item/glazed_terracottas.json
+1d6aac01dd8510ff15af2a9299e54704dbddd779 data/c/tags/item/shulker_boxes.json
 696aab62b01cb4706c7c4eb526f34b11e2145535 data/c/tags/item/storage_blocks/slime.json
 10c99a4edef6e748c918eec5cba16f01f6e0dc9f data/c/tags/item/stripped_logs.json
 7c97a74d9f981d388ad9f2b9d6710813e9bbb6e0 data/c/tags/item/stripped_woods.json
-b414c52fda9b7c6be8a2f0b69e57c0c0ecc64b55 data/minecraft/tags/item/bars.json
+5f6761405822f52128b78e998f765c58f6ef181f data/minecraft/tags/item/bars.json
 a210f42bbba5263bfdfba95deb3192b6613773ca data/minecraft/tags/item/boats.json
 6db0381be080316686ed67e420467288ff7ff645 data/minecraft/tags/item/candles.json
 ef457a705be202f1e08bb88a8e908d1e927b238e data/minecraft/tags/item/chains.json
@@ -40,6 +41,7 @@ eb78c48bba70dbc4b3b3f09510d0af4c186c77d4 data/minecraft/tags/item/fence_gates.js
 56de79b538193a6ebe9bb005cce4460536d83aff data/minecraft/tags/item/logs_that_burn.json
 e0747f653629573aa91a5397dd01117d4661b50d data/minecraft/tags/item/planks.json
 480520574b77f45104165aa524c5261ed9d0715d data/minecraft/tags/item/saplings.json
+1d6aac01dd8510ff15af2a9299e54704dbddd779 data/minecraft/tags/item/shulker_boxes.json
 106423e4f4a3a0011fbbfc76787b41641cccfd30 data/minecraft/tags/item/signs.json
 3402df65f407611a32bbf6658e9d06426972ec1f data/minecraft/tags/item/slabs.json
 74b5641d227c2351343268dabc5d879a3466c50f data/minecraft/tags/item/stairs.json
