@@ -393,8 +393,11 @@ public class ColoredBlockModelGenerators {
     public void createShulkerBox(Block block) {
         blockModels.createParticleOnlyBlock(block);
         Item item = block.asItem();
-        ResourceLocation baseModel = ModelTemplates.SHULKER_BOX_INVENTORY.create(item, TextureMapping.particle(block), blockModels.modelOutput);
-        ItemModel.Unbaked itemModel = ItemModelUtils.specialModel(baseModel, new ShulkerBoxSpecialRenderer.Unbaked(WorldOfColor.asResource("shulker_rgb"), 0.0F, Direction.UP));
+//        ResourceLocation baseModel = ModelTemplates.SHULKER_BOX_INVENTORY.create(item, TextureMapping.particle(block), blockModels.modelOutput);
+        ResourceLocation baseModel = VanillaModelTemplates.SHULKER_BOX_ITEM.create(item,
+                new TextureMapping().put(TextureSlot.TEXTURE, WorldOfColor.asResource("entity/shulker/shulker_rgb")), blockModels.modelOutput);
+//        ItemModel.Unbaked itemModel = ItemModelUtils.specialModel(baseModel, new ShulkerBoxSpecialRenderer.Unbaked(WorldOfColor.asResource("shulker_rgb"), 0.0F, Direction.UP));
+        ItemModel.Unbaked itemModel = ItemModelUtils.plainModel(baseModel);
         blockModels.itemModelOutput.accept(item, itemModel);
     }
 

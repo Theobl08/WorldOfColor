@@ -1,6 +1,6 @@
 {
-  "parent": "minecraft:item/template_shulker_box",
+  "parent": "worldofcolor:item/shulker_box_item",
   "textures": {
-    "particle": "worldofcolor:block/rgb_shulker_box"
+    "texture": "worldofcolor:entity/shulker/shulker_rgb"
   }
 }

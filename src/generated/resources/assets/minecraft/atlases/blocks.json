@@ -63,6 +63,10 @@
     {
       "type": "minecraft:single",
       "resource": "worldofcolor:entity/decorated_pot/decorated_pot_side_pink"
+    },
+    {
+      "type": "minecraft:single",
+      "resource": "worldofcolor:entity/shulker/shulker_rgb"
     }
   ]
 }

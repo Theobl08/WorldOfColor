@@ -1,10 +1,6 @@
 {
   "model": {
-    "type": "minecraft:special",
-    "base": "worldofcolor:item/rgb_shulker_box",
-    "model": {
-      "type": "minecraft:shulker_box",
-      "texture": "worldofcolor:shulker_rgb"
-    }
+    "type": "minecraft:model",
+    "model": "worldofcolor:item/rgb_shulker_box"
   }
 }
