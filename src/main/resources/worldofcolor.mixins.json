@@ -13,7 +13,8 @@
     "HangingEntityItemMixin",
     "LayeredCauldronBlockMixin",
     "MapColorMixin",
-    "SheepMixin"
+    "SheepMixin",
+    "ShulkerBoxBlockMixin"
   ],
   "client": [
     "BlockStateDefinitionsMixin",

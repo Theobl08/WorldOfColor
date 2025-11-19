@@ -1,4 +1,4 @@
-// 1.21.10	2025-11-16T00:56:38.4197587	Loot Tables
+// 1.21.10	2025-11-19T16:46:40.8544658	Loot Tables
 953334714f1928d20c44ae722c0cf8c88cb69aea data/worldofcolor/loot_table/blocks/black_block.json
 3b0742a32847c5c37a7f89dba6b0b342d5f80781 data/worldofcolor/loot_table/blocks/black_bricks.json
 74a5d969206956fc8424651aca2a5172d8345bd5 data/worldofcolor/loot_table/blocks/black_brick_slab.json
@@ -1437,7 +1437,7 @@ d85da0e1572a40c81d8deef85e405e7465c3408d data/worldofcolor/loot_table/blocks/rgb
 66d69334583b25639c3dde31b46cbc89f90413d1 data/worldofcolor/loot_table/blocks/rgb_concrete.json
 90b65151ec53a41431901057210f6f0db0f2dc49 data/worldofcolor/loot_table/blocks/rgb_concrete_powder.json
 48e82ec00a513081d50249b992ad7c0bb14ad707 data/worldofcolor/loot_table/blocks/rgb_glazed_terracotta.json
-aa96735d5b16a7e730e926e519f295de02b9b149 data/worldofcolor/loot_table/blocks/rgb_shulker_box.json
+ad1b2cbc89133cb7ce31d92b76d0fbe512e7b4eb data/worldofcolor/loot_table/blocks/rgb_shulker_box.json
 1e2f87cec80f48cb6e66485e3b94569e69025a94 data/worldofcolor/loot_table/blocks/rgb_stained_glass.json
 8957737e0ac8154b32da0ec1d5e888fe8acfc175 data/worldofcolor/loot_table/blocks/rgb_stained_glass_pane.json
 4498c3514a5bf6ea2aba085eaaa2dc1f249e5c75 data/worldofcolor/loot_table/blocks/rgb_terracotta.json

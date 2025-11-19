@@ -25,7 +25,7 @@ import java.util.Set;
 
 public class ModBlockLootTableProvider extends BlockLootSubProvider {
     protected ModBlockLootTableProvider(HolderLookup.Provider registries) {
-        super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
+        super(Set.of(ModBlocks.RGB_SHULKER_BOX.asItem()), FeatureFlags.REGISTRY.allFlags(), registries);
     }
 
     @Override
@@ -49,6 +49,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
             } else if(!(block.get() instanceof AbstractCandleBlock))
                 this.dropSelf(block.get());
         }
+        this.add(ModBlocks.RGB_SHULKER_BOX.get(), this::createShulkerBoxDrop);
         this.add(ModBlocks.RGB_CANDLE.get(), this::createCandleDrops);
         this.add(ModBlocks.RGB_CANDLE_CAKE.get(), createCandleCakeDrops(ModBlocks.RGB_CANDLE.get()));
     }
