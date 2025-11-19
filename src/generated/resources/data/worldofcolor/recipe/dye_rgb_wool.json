@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "building",
+  "ingredients": [
+    "worldofcolor:rgb_dye",
+    "#minecraft:wool"
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:rgb_wool"
+  }
+}

@@ -37,6 +37,7 @@ public class ModItems {
             "rgb_shulker_box",
             p -> new BlockItem(ModBlocks.RGB_SHULKER_BOX.get(), p),
             p -> p.stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix());
+    public static final DeferredItem<Item> RGB_DYE = ITEMS.registerSimpleItem("rgb_dye");
 
     private static List<DeferredItem<Item>> registerColored(String key) {
         List<DeferredItem<Item>> items = new ArrayList<>();

@@ -1,4 +1,4 @@
-// 1.21.10	2025-11-18T16:00:57.5555312	Tags for minecraft:item mod id worldofcolor
+// 1.21.10	2025-11-19T13:56:33.9130831	Tags for minecraft:item mod id worldofcolor
 dfc2d872e0fc2643b4796b70c0d412bb7a6fc66f data/c/tags/item/concretes.json
 a3d90ab71d3131d2b36779dc6418aef9acd10bd2 data/c/tags/item/concrete_powders.json
 a1ef82cc6d6804e7a7a65800c859abbae4d821e9 data/c/tags/item/dyed/black.json
@@ -17,6 +17,7 @@ c960bbd75a700297e3150162c65bf0cbe629f94e data/c/tags/item/dyed/purple.json
 eaa3bea956deda43eb9acae90ae5cabac134fc7a data/c/tags/item/dyed/red.json
 7e3641f3645ba8c9284d3b7610ad4399a905ce17 data/c/tags/item/dyed/white.json
 c8504ddf0dae638fdbcd2ac1a306fdaacb1e8abb data/c/tags/item/dyed/yellow.json
+b594084363e39886ed9e3a7c9889fa21f0d79e13 data/c/tags/item/dyes.json
 eb78c48bba70dbc4b3b3f09510d0af4c186c77d4 data/c/tags/item/fence_gates/wooden.json
 cbb69e8c9a4ffb3c0aaa0ccd88fbad5c8519f82f data/c/tags/item/glass_blocks/cheap.json
 7b3ea449bb3d32237ba4aa799194b3fa229ffc84 data/c/tags/item/glass_panes.json

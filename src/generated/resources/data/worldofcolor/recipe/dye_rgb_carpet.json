@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "carpet_dye",
+  "ingredients": [
+    "worldofcolor:rgb_dye",
+    "#minecraft:wool_carpets"
+  ],
+  "result": {
+    "count": 1,
+    "id": "worldofcolor:rgb_carpet"
+  }
+}

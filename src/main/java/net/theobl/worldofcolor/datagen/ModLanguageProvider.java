@@ -3,6 +3,7 @@ package net.theobl.worldofcolor.datagen;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.common.Tags;
@@ -25,10 +26,11 @@ public class ModLanguageProvider extends LanguageProvider {
     protected void addTranslations() {
         add("itemGroup.worldofcolor", "World of Color");
         ModBlocks.BLOCKS.getEntries().forEach(this::lang);
+        ModItems.ITEMS.getEntries().stream().filter(item -> !(item.get() instanceof BlockItem)).forEach(this::lang);
 
-        ModItems.COLORED_BOATS.forEach(this::lang);
-        ModItems.COLORED_CHEST_BOATS.forEach(this::lang);
-        ModItems.COLORED_ITEM_FRAMES.forEach(this::lang);
+//        ModItems.COLORED_BOATS.forEach(this::lang);
+//        ModItems.COLORED_CHEST_BOATS.forEach(this::lang);
+//        ModItems.COLORED_ITEM_FRAMES.forEach(this::lang);
         ModEntityType.COLORED_BOATS.forEach(this::lang);
         ModEntityType.COLORED_CHEST_BOATS.forEach(this::lang);
         ModEntityType.COLORED_ITEM_FRAMES.forEach(this::lang);

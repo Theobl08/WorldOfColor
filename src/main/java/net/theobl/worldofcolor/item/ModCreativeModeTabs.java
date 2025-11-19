@@ -78,6 +78,7 @@ public class ModCreativeModeTabs {
                             if(block.get().asItem() != Blocks.AIR.asItem())
                                 output.accept(block.get());
                         }
+                        output.accept(ModItems.RGB_DYE);
                         ModItems.ITEMS.getEntries().stream().map(DeferredHolder::get).forEach(output::accept);
                     }).build());
 

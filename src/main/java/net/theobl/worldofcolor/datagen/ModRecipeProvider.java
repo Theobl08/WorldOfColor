@@ -15,6 +15,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.WorldOfColor;
@@ -151,9 +152,56 @@ public class ModRecipeProvider extends RecipeProvider {
         colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_GOLEM_STATUES.getFirst(), Blocks.COPPER_GOLEM_STATUE);
         SpecialRecipeBuilder.special(ColoredDecoratedPotRecipe::new).save(this.output, "colored_decorated_pot");
 
+        shapeless(RecipeCategory.MISC, ModItems.RGB_DYE, 7)
+                .requires(Items.BLACK_DYE)
+                .requires(Items.BLUE_DYE)
+                .requires(Items.BROWN_DYE)
+                .requires(Items.GREEN_DYE)
+                .requires(Items.RED_DYE)
+                .requires(Items.WHITE_DYE)
+                .requires(Items.YELLOW_DYE)
+                .unlockedBy(getHasName(Items.BLACK_DYE), has(Items.BLACK_DYE))
+                .unlockedBy(getHasName(Items.BLUE_DYE), has(Items.BLUE_DYE))
+                .unlockedBy(getHasName(Items.BROWN_DYE), has(Items.BROWN_DYE))
+                .unlockedBy(getHasName(Items.GREEN_DYE), has(Items.GREEN_DYE))
+                .unlockedBy(getHasName(Items.RED_DYE), has(Items.RED_DYE))
+                .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
+                .unlockedBy(getHasName(Items.YELLOW_DYE), has(Items.YELLOW_DYE))
+                .save(output);
+        shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RGB_WOOL)
+                .requires(ModItems.RGB_DYE)
+                .requires(ItemTags.WOOL)
+                .unlockedBy("has_needed_dye", has(ModItems.RGB_DYE))
+                .save(output, WorldOfColor.MODID + ":dye_" + getItemName(ModBlocks.RGB_WOOL));
+        shapeless(RecipeCategory.DECORATIONS, ModBlocks.RGB_CARPET)
+                .requires(ModItems.RGB_DYE)
+                .requires(ItemTags.WOOL_CARPETS)
+                .group("carpet_dye")
+                .unlockedBy("has_needed_dye", has(ModItems.RGB_DYE))
+                .save(output, WorldOfColor.MODID + ":dye_" + getItemName(ModBlocks.RGB_CARPET));
         carpet(ModBlocks.RGB_CARPET, ModBlocks.RGB_WOOL);
+        concretePowder(ModBlocks.RGB_CONCRETE_POWDER, ModItems.RGB_DYE);
+        coloredTerracottaFromTerracottaAndDye(ModBlocks.RGB_TERRACOTTA, ModItems.RGB_DYE);
         smeltingResultFromBase(ModBlocks.RGB_GLAZED_TERRACOTTA, ModBlocks.RGB_TERRACOTTA);
+        stainedGlassFromGlassAndDye(ModBlocks.RGB_STAINED_GLASS, ModItems.RGB_DYE);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.RGB_STAINED_GLASS_PANE, 8)
+                .define('#', Blocks.GLASS_PANE)
+                .define('$', ModItems.RGB_DYE)
+                .pattern("###")
+                .pattern("#$#")
+                .pattern("###")
+                .group("stained_glass_pane")
+                .unlockedBy("has_glass_pane", this.has(Blocks.GLASS_PANE))
+                .unlockedBy(getHasName(ModItems.RGB_DYE), this.has(ModItems.RGB_DYE))
+                .save(this.output, WorldOfColor.MODID + ":" + getConversionRecipeName(ModBlocks.RGB_STAINED_GLASS_PANE, Blocks.GLASS_PANE));
         stainedGlassPaneFromStainedGlass(ModBlocks.RGB_STAINED_GLASS_PANE, ModBlocks.RGB_STAINED_GLASS);
+        candle(ModBlocks.RGB_CANDLE, ModItems.RGB_DYE);
+        TransmuteRecipeBuilder.transmute(
+                        RecipeCategory.DECORATIONS, tag(ItemTags.SHULKER_BOXES), Ingredient.of(ModItems.RGB_DYE), ModBlocks.RGB_SHULKER_BOX.asItem()
+                )
+                .group("shulker_box_dye")
+                .unlockedBy("has_shulker_box", this.has(ItemTags.SHULKER_BOXES))
+                .save(this.output);
     }
 
     protected void generateForEnabledBlockFamilies(FeatureFlagSet set) {
