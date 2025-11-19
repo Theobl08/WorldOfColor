@@ -140,51 +140,15 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_brick", this.has(ItemTags.DECORATED_POT_INGREDIENTS))
                 .save(this.output, WorldOfColor.MODID + ":" + name(block) + "_simple"));
 
-        shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_COPPER_BLOCKS.getFirst())
-                .requires(Blocks.COPPER_BLOCK)
-                .requires(Items.WHITE_DYE)
-                .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
-                .save(output);
-        shapeless(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_DOORS.getFirst())
-                .requires(Blocks.COPPER_DOOR)
-                .requires(Items.WHITE_DYE)
-                .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
-                .save(output);
-        shapeless(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_TRAPDOORS.getFirst())
-                .requires(Blocks.COPPER_TRAPDOOR)
-                .requires(Items.WHITE_DYE)
-                .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
-                .save(output);
-        shapeless(RecipeCategory.REDSTONE, ModBlocks.COLORED_LIGHTNING_RODS.getFirst())
-                .requires(Blocks.LIGHTNING_ROD)
-                .requires(Items.WHITE_DYE)
-                .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
-                .save(output);
-        shapeless(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_BARS.getFirst())
-                .requires(Blocks.COPPER_BARS.unaffected())
-                .requires(Items.WHITE_DYE)
-                .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
-                .save(output);
-        shapeless(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_CHAINS.getFirst())
-                .requires(Blocks.COPPER_CHAIN.unaffected())
-                .requires(Items.WHITE_DYE)
-                .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
-                .save(output);
-        shapeless(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_LANTERNS.getFirst())
-                .requires(Blocks.COPPER_LANTERN.unaffected())
-                .requires(Items.WHITE_DYE)
-                .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
-                .save(output);
-        shapeless(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_CHESTS.getFirst())
-                .requires(Blocks.COPPER_CHEST)
-                .requires(Items.WHITE_DYE)
-                .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
-                .save(output);
-        shapeless(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_GOLEM_STATUES.getFirst())
-                .requires(Blocks.COPPER_GOLEM_STATUE)
-                .requires(Items.WHITE_DYE)
-                .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
-                .save(output);
+        colorCopper(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_COPPER_BLOCKS.getFirst(), Blocks.COPPER_BLOCK);
+        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_DOORS.getFirst(), Blocks.COPPER_DOOR);
+        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_TRAPDOORS.getFirst(), Blocks.COPPER_TRAPDOOR);
+        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_LIGHTNING_RODS.getFirst(), Blocks.LIGHTNING_ROD);
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_BARS.getFirst(), Blocks.COPPER_BARS.unaffected());
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_CHAINS.getFirst(), Blocks.COPPER_CHAIN.unaffected());
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_LANTERNS.getFirst(), Blocks.COPPER_LANTERN.unaffected());
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_CHESTS.getFirst(), Blocks.COPPER_CHEST);
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_GOLEM_STATUES.getFirst(), Blocks.COPPER_GOLEM_STATUE);
         SpecialRecipeBuilder.special(ColoredDecoratedPotRecipe::new).save(this.output, "colored_decorated_pot");
 
         carpet(ModBlocks.RGB_CARPET, ModBlocks.RGB_WOOL);
@@ -242,6 +206,14 @@ public class ModRecipeProvider extends RecipeProvider {
                      .unlockedBy(getHasName(block.get(index)), has(block.get(index)))
                      .save(recipeOutput, WorldOfColor.MODID + ":" + getConversionRecipeName(waxedBlock.get(index), Items.HONEYCOMB));
         });
+    }
+
+    protected void colorCopper(RecipeCategory category, ItemLike result, ItemLike base) {
+        shapeless(category, result)
+                .requires(base)
+                .requires(Items.WHITE_DYE)
+                .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
+                .save(output);
     }
 
     public static class Runner extends RecipeProvider.Runner {
