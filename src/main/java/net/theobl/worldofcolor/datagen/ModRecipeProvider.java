@@ -179,6 +179,12 @@ public class ModRecipeProvider extends RecipeProvider {
                 .group("carpet_dye")
                 .unlockedBy("has_needed_dye", has(ModItems.RGB_DYE))
                 .save(output, WorldOfColor.MODID + ":dye_" + getItemName(ModBlocks.RGB_CARPET));
+        shapeless(RecipeCategory.DECORATIONS, ModBlocks.RGB_BED)
+                .requires(ModItems.RGB_DYE)
+                .requires(ItemTags.BEDS)
+                .group("bed_dye")
+                .unlockedBy("has_needed_dye", has(ModItems.RGB_DYE))
+                .save(output, WorldOfColor.MODID + ":dye_" + getItemName(ModBlocks.RGB_BED));
         carpet(ModBlocks.RGB_CARPET, ModBlocks.RGB_WOOL);
         concretePowder(ModBlocks.RGB_CONCRETE_POWDER, ModItems.RGB_DYE);
         coloredTerracottaFromTerracottaAndDye(ModBlocks.RGB_TERRACOTTA, ModItems.RGB_DYE);
@@ -202,6 +208,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .group("shulker_box_dye")
                 .unlockedBy("has_shulker_box", this.has(ItemTags.SHULKER_BOXES))
                 .save(this.output);
+        bedFromPlanksAndWool(ModBlocks.RGB_BED, ModBlocks.RGB_WOOL);
     }
 
     protected void generateForEnabledBlockFamilies(FeatureFlagSet set) {

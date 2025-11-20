@@ -1,4 +1,4 @@
-// 1.21.10	2025-11-18T15:28:24.8505474	Tags for minecraft:block mod id worldofcolor
+// 1.21.10	2025-11-19T18:12:12.821372	Tags for minecraft:block mod id worldofcolor
 dfc2d872e0fc2643b4796b70c0d412bb7a6fc66f data/c/tags/block/concretes.json
 3d6c0b035c67e9cd0ddbf4a707ff7bcd3291dd4f data/c/tags/block/dyed/black.json
 3fc255a89a05737990876711691e7477845dfbe0 data/c/tags/block/dyed/blue.json
@@ -24,6 +24,7 @@ cbb69e8c9a4ffb3c0aaa0ccd88fbad5c8519f82f data/c/tags/block/glass_blocks/cheap.js
 10c99a4edef6e748c918eec5cba16f01f6e0dc9f data/c/tags/block/stripped_logs.json
 7c97a74d9f981d388ad9f2b9d6710813e9bbb6e0 data/c/tags/block/stripped_woods.json
 5f6761405822f52128b78e998f765c58f6ef181f data/minecraft/tags/block/bars.json
+f8b8a5bdea0dac372cde1d91d58741dac0fa3b38 data/minecraft/tags/block/beds.json
 6db0381be080316686ed67e420467288ff7ff645 data/minecraft/tags/block/candles.json
 f1669d5faed4e6249b38a92f22a0c5635b4c1a67 data/minecraft/tags/block/candle_cakes.json
 854c127296e15e333b04c035c4ac76bacc07d378 data/minecraft/tags/block/cauldrons.json

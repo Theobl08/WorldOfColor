@@ -401,6 +401,16 @@ public class ColoredBlockModelGenerators {
         blockModels.itemModelOutput.accept(item, itemModel);
     }
 
+    public void createBed(Block block) {
+        MultiVariant multivariant = plainVariant(ResourceLocation.parse("block/bed"));
+        blockModels.blockStateOutput.accept(createSimpleBlock(block, multivariant));
+        Item item = block.asItem();
+        ResourceLocation baseModel = VanillaModelTemplates.BED_ITEM.create(item,
+                new TextureMapping().put(TextureSlot.TEXTURE, WorldOfColor.asResource("entity/bed/rgb")), blockModels.modelOutput);
+        ItemModel.Unbaked itemModel = ItemModelUtils.plainModel(baseModel);
+        blockModels.itemModelOutput.accept(item, itemModel);
+    }
+
     @ParametersAreNonnullByDefault
     @MethodsReturnNonnullByDefault
     public class ModBlockFamilyProvider extends BlockModelGenerators.BlockFamilyProvider {

@@ -61,6 +61,7 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
 
         this.copy(BlockTags.TERRACOTTA, ItemTags.TERRACOTTA);
         this.copy(BlockTags.CANDLES, ItemTags.CANDLES);
+        this.copy(BlockTags.BEDS, ItemTags.BEDS);
         this.copy(BlockTags.SHULKER_BOXES, ItemTags.SHULKER_BOXES);
         this.tag(Tags.Items.SHULKER_BOXES).add(ModBlocks.RGB_SHULKER_BOX.asItem());
         this.copy(BlockTags.CONCRETE_POWDER, Tags.Items.CONCRETE_POWDERS);

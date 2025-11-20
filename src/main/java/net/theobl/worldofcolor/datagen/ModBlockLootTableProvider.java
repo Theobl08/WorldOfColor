@@ -9,6 +9,7 @@ import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.DynamicLoot;
@@ -50,6 +51,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 this.dropSelf(block.get());
         }
         this.add(ModBlocks.RGB_SHULKER_BOX.get(), this::createShulkerBoxDrop);
+        this.add(ModBlocks.RGB_BED.get(), block -> this.createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
         this.add(ModBlocks.RGB_CANDLE.get(), this::createCandleDrops);
         this.add(ModBlocks.RGB_CANDLE_CAKE.get(), createCandleCakeDrops(ModBlocks.RGB_CANDLE.get()));
     }

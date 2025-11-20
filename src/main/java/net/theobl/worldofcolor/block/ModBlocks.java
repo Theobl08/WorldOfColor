@@ -191,6 +191,11 @@ public class ModBlocks {
             IronBarsBlock::new,
             () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_STAINED_GLASS_PANE)
     );
+    public static final DeferredBlock<Block> RGB_BED = registerBlock(
+            "rgb_bed",
+            p -> new BedBlock(DyeColor.RED, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_BED)
+    );
     public static final DeferredBlock<Block> RGB_CANDLE = registerBlock(
             "rgb_candle",
             CandleBlock::new,

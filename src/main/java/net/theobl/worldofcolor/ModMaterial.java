@@ -7,14 +7,14 @@ import net.theobl.worldofcolor.util.ModUtil;
 import java.util.ArrayList;
 import java.util.List;
 
-import static net.minecraft.client.renderer.Sheets.CHEST_MAPPER;
-import static net.minecraft.client.renderer.Sheets.SHULKER_MAPPER;
+import static net.minecraft.client.renderer.Sheets.*;
 
 public class ModMaterial {
     public static final List<Material> COPPER_CHEST_LOCATION = new ArrayList<>();
     public static final List<Material> COPPER_CHEST_LOCATION_LEFT = new ArrayList<>();
     public static final List<Material> COPPER_CHEST_LOCATION_RIGHT = new ArrayList<>();
     public static final Material RGB_SHULKER_LOCATION = SHULKER_MAPPER.apply(WorldOfColor.asResource("shulker_rgb"));
+    public static final Material RGB_BED_TEXTURE = BED_MAPPER.apply(WorldOfColor.asResource("rgb"));
 
     public static void bootstrap() {
         for (DyeColor color : ModUtil.COLORS) {

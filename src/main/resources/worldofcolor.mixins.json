@@ -17,6 +17,7 @@
     "ShulkerBoxBlockMixin"
   ],
   "client": [
+    "BedRendererMixin",
     "BlockStateDefinitionsMixin",
     "ChestRendererMixin",
     "CopperGolemStatueBlockRendererMixin",

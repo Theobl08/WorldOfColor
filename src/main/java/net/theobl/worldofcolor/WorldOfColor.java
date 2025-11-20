@@ -1,5 +1,7 @@
 package net.theobl.worldofcolor;
 
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.multiplayer.ClientLevel;
@@ -17,8 +19,10 @@ import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.GrassColor;
+import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
@@ -56,6 +60,9 @@ import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.item.crafting.ModRecipeSerializer;
 import net.theobl.worldofcolor.util.ModUtil;
 import org.slf4j.Logger;
+
+import java.util.Set;
+import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(WorldOfColor.MODID)
@@ -122,6 +129,7 @@ public class WorldOfColor {
         ModBlocks.COLORED_COPPER_GOLEM_STATUES.forEach(block -> event.modify(BlockEntityType.COPPER_GOLEM_STATUE, block.get()));
         ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.forEach(block -> event.modify(BlockEntityType.COPPER_GOLEM_STATUE, block.get()));
         event.modify(BlockEntityType.SHULKER_BOX, ModBlocks.RGB_SHULKER_BOX.get());
+        event.modify(BlockEntityType.BED, ModBlocks.RGB_BED.get());
     }
 
     private void extendPoiTypes(ExtendPoiTypesEvent event) {
@@ -131,7 +139,13 @@ public class WorldOfColor {
         ModBlocks.COLORED_LAVA_CAULDRONS.forEach(block -> event.addBlockToPoi(PoiTypes.LEATHERWORKER, block.get()));
         ModBlocks.COLORED_WATER_CAULDRONS.forEach(block -> event.addBlockToPoi(PoiTypes.LEATHERWORKER, block.get()));
         ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.forEach(block -> event.addBlockToPoi(PoiTypes.LEATHERWORKER, block.get()));
-
+        event.addStatesToPoi(PoiTypes.HOME, ModBlocks.RGB_BED.get().getStateDefinition().getPossibleStates()
+                .stream().filter(state -> state.getValue(BedBlock.PART) == BedPart.HEAD).collect(ImmutableSet.toImmutableSet()));
+//        event.addStatesToPoi(PoiTypes.HOME, ImmutableList.of(ModBlocks.RGB_BED.get())
+//                .stream()
+//                .flatMap(block -> block.getStateDefinition().getPossibleStates().stream())
+//                .filter(state -> state.getValue(BedBlock.PART) == BedPart.HEAD)
+//                .collect(ImmutableSet.toImmutableSet()));
     }
 
     private void registerBlockColor(RegisterColorHandlersEvent.Block event) {

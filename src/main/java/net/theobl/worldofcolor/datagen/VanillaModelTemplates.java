@@ -16,6 +16,7 @@ public class VanillaModelTemplates {
     public static final ModelTemplate ITEM_FRAME = ModelTemplates.create("template_item_frame", TextureSlot.PARTICLE, ColoredTextureSlot.WOOD, TextureSlot.BACK);
     public static final ModelTemplate ITEM_FRAME_MAP = ModelTemplates.create("template_item_frame_map", TextureSlot.PARTICLE, ColoredTextureSlot.WOOD, TextureSlot.BACK);
     public static final ModelTemplate SHULKER_BOX_ITEM = ModelTemplates.createItem(WorldOfColor.MODID + ":shulker_box_item", TextureSlot.TEXTURE);
+    public static final ModelTemplate BED_ITEM = ModelTemplates.createItem(WorldOfColor.MODID + ":bed_item", TextureSlot.TEXTURE);
 
     public static ModelTemplate cauldronLevelX(int level) {
         final float y;

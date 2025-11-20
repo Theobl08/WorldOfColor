@@ -1,0 +1,6 @@
+{
+  "parent": "worldofcolor:item/bed_item",
+  "textures": {
+    "texture": "worldofcolor:entity/bed/rgb"
+  }
+}
