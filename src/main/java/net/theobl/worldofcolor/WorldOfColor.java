@@ -186,7 +186,7 @@ public class WorldOfColor {
             // LOGGER.info("HELLO FROM CLIENT SETUP");
             // LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
             for (WoodType type : ModWoodType.COLORED_WOODS)
-                Sheets.addWoodType(type);
+                event.enqueueWork(() -> Sheets.addWoodType(type));
 
             for (DyeColor color : ModUtil.COLORS) {
                 int index = ModUtil.COLORS.indexOf(color);
