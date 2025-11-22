@@ -3,6 +3,7 @@ package net.theobl.worldofcolor.item;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.BlockItemStateProperties;
+import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CopperGolemStatueBlock;
@@ -38,6 +39,8 @@ public class ModItems {
             p -> new BlockItem(ModBlocks.RGB_SHULKER_BOX.get(), p),
             p -> p.stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix());
     public static final DeferredItem<Item> RGB_DYE = ITEMS.registerSimpleItem("rgb_dye");
+    public static final DeferredItem<Item> RGB_BUNDLE = ITEMS.registerItem(
+            "rgb_bundle", BundleItem::new, p -> p.stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY));
 
     private static List<DeferredItem<Item>> registerColored(String key) {
         List<DeferredItem<Item>> items = new ArrayList<>();

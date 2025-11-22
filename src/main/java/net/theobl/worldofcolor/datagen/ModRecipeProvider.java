@@ -8,6 +8,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.BundleItem;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -207,6 +208,10 @@ public class ModRecipeProvider extends RecipeProvider {
                 )
                 .group("shulker_box_dye")
                 .unlockedBy("has_shulker_box", this.has(ItemTags.SHULKER_BOXES))
+                .save(this.output);
+        TransmuteRecipeBuilder.transmute(RecipeCategory.TOOLS, tag(ItemTags.BUNDLES), Ingredient.of(ModItems.RGB_DYE), ModItems.RGB_BUNDLE.get())
+                .group("bundle_dye")
+                .unlockedBy(getHasName(ModItems.RGB_DYE), has(ModItems.RGB_DYE))
                 .save(this.output);
         bedFromPlanksAndWool(ModBlocks.RGB_BED, ModBlocks.RGB_WOOL);
     }

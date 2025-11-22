@@ -1,4 +1,4 @@
-// 1.21.10	2025-11-20T09:45:27.9362442	World of Color Recipes
+// 1.21.10	2025-11-21T17:45:16.0599119	World of Color Recipes
 4ce788622d0a2b2d2531da640f1d7c60ddfe34e2 data/minecraft/recipe/colored_decorated_pot.json
 f1b616ef799698165193d6295bd535c589a4afa6 data/worldofcolor/advancement/recipes/building_blocks/black_block_from_black_concrete_stonecutting.json
 af599e46001fd63c7cfc1bdb3012d76a35e69629 data/worldofcolor/advancement/recipes/building_blocks/black_block_from_black_quilted_concrete_stonecutting.json
@@ -1223,6 +1223,7 @@ ea0bf1b48e29211d3e2f8c0c4888bf09fb52216c data/worldofcolor/advancement/recipes/r
 3b4e2e0b1f43715473447d4ca99efc6194047dd2 data/worldofcolor/advancement/recipes/redstone/yellow_fence_gate.json
 30b62fd770e3275eda972a27b50d5ccbf8930577 data/worldofcolor/advancement/recipes/redstone/yellow_pressure_plate.json
 4947dbbfdb2aee95cb8017a5340d8ba143c8b2c6 data/worldofcolor/advancement/recipes/redstone/yellow_trapdoor.json
+bbf87e8ea27f7589df355f598fade895071fe742 data/worldofcolor/advancement/recipes/tools/rgb_bundle.json
 1dacd69360ccfccedb8e5883ce3258a83072bd13 data/worldofcolor/advancement/recipes/transportation/black_boat.json
 b9e26213cefbf75a56e2de0713a02a6567630e3a data/worldofcolor/advancement/recipes/transportation/black_chest_boat.json
 a3a168810d01d12870d898627582cc17c45b85f0 data/worldofcolor/advancement/recipes/transportation/blue_boat.json
@@ -1917,6 +1918,7 @@ e4fff238a9257eb04ce3b6ec4eb0032664d5f28a data/worldofcolor/recipe/red_quilted_co
 da416782f1f69aa27f165cae5154ed3781695767 data/worldofcolor/recipe/red_trapdoor.json
 89ad23d7a794e5cb4760be2603158b968f683a62 data/worldofcolor/recipe/red_wood.json
 c4466d2ad2efe6358b8c877e3ec7b67b0f9e31a5 data/worldofcolor/recipe/rgb_bed.json
+65ef06ac0f571976ca7028071eb3a97daf76d3db data/worldofcolor/recipe/rgb_bundle.json
 967f4c0622876013889bb6edced37210321a20a8 data/worldofcolor/recipe/rgb_candle.json
 51ed4a3de7b2da95b790c5ed805ae22b486b9e1b data/worldofcolor/recipe/rgb_carpet.json
 65a70673991332b39e0c592e478ba261b11acc31 data/worldofcolor/recipe/rgb_concrete_powder.json

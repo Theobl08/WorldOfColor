@@ -1,4 +1,4 @@
-// 1.21.10	2025-11-19T19:24:27.976417	Model Definitions - worldofcolor
+// 1.21.10	2025-11-21T17:13:02.5762649	Model Definitions - worldofcolor
 a31101a419b44e9a513fb7452e79e831c6aca9eb assets/worldofcolor/blockstates/black_block.json
 a101a588d479d297254002806ef06584959b52c3 assets/worldofcolor/blockstates/black_bricks.json
 df15fc8cbab0c8d25b8411540f8bdb0886e1b314 assets/worldofcolor/blockstates/black_brick_slab.json
@@ -2578,6 +2578,7 @@ d19453e650d0ca6b39f08693851185af0a22bf30 assets/worldofcolor/items/red_slab.json
 a3fbaa52a437c03f674dfd634cbde828924db9a6 assets/worldofcolor/items/red_trapdoor.json
 d93638ae35b6a925f8dcdfee8678c877e772b950 assets/worldofcolor/items/red_wood.json
 4a591d284457f576d6d4e89b8bc4aae8b16a105e assets/worldofcolor/items/rgb_bed.json
+a13bea48ec8cf11b12a12ed83bc808bab6a15126 assets/worldofcolor/items/rgb_bundle.json
 73ef7508ffe1744e534b4188c2a7800808da56c4 assets/worldofcolor/items/rgb_candle.json
 f274b5200b148d83abaaf41381702a14ec0cb5a2 assets/worldofcolor/items/rgb_carpet.json
 2bc6bd15c7d9ac441d5559f05388796fd097edb7 assets/worldofcolor/items/rgb_concrete.json
@@ -5745,6 +5746,9 @@ bf91d56e52dc238df89b1380d7d9e34e6561be6b assets/worldofcolor/models/item/red_ite
 1c889ed071c9c5b040b63ae9ec6db342809435c0 assets/worldofcolor/models/item/red_sapling.json
 56c2c27b995c83b832fd731f9fc4ea2ba4167b9a assets/worldofcolor/models/item/red_sign.json
 da385d74458ea02060c0caeeba6acf6df9c6cbc8 assets/worldofcolor/models/item/rgb_bed.json
+64ce3cd19baaadd2300126ff2ae1b70c64a6425c assets/worldofcolor/models/item/rgb_bundle.json
+8a4dd571370ba74cda069b596aa5a357ca6bb811 assets/worldofcolor/models/item/rgb_bundle_open_back.json
+c84d52e869b7a214bf17eed139629619725e4bcc assets/worldofcolor/models/item/rgb_bundle_open_front.json
 80ee299985078f330b77ada490b381afda0b9cb1 assets/worldofcolor/models/item/rgb_candle.json
 e57ac4fc045dd7b4d42e12181017b073fe9a19d1 assets/worldofcolor/models/item/rgb_dye.json
 1177a52ac9f959921c29b861b1a01d0b7447321f assets/worldofcolor/models/item/rgb_shulker_box.json

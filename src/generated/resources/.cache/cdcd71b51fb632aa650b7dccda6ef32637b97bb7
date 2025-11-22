@@ -1,4 +1,4 @@
-// 1.21.10	2025-11-19T18:12:12.8063729	Tags for minecraft:item mod id worldofcolor
+// 1.21.10	2025-11-21T17:13:02.5682622	Tags for minecraft:item mod id worldofcolor
 dfc2d872e0fc2643b4796b70c0d412bb7a6fc66f data/c/tags/item/concretes.json
 a3d90ab71d3131d2b36779dc6418aef9acd10bd2 data/c/tags/item/concrete_powders.json
 a1ef82cc6d6804e7a7a65800c859abbae4d821e9 data/c/tags/item/dyed/black.json
@@ -29,6 +29,7 @@ cbb69e8c9a4ffb3c0aaa0ccd88fbad5c8519f82f data/c/tags/item/glass_blocks/cheap.jso
 5f6761405822f52128b78e998f765c58f6ef181f data/minecraft/tags/item/bars.json
 f8b8a5bdea0dac372cde1d91d58741dac0fa3b38 data/minecraft/tags/item/beds.json
 a210f42bbba5263bfdfba95deb3192b6613773ca data/minecraft/tags/item/boats.json
+7f1d55e22515060e7f8bd45b7fb7d07b53928e0b data/minecraft/tags/item/bundles.json
 6db0381be080316686ed67e420467288ff7ff645 data/minecraft/tags/item/candles.json
 ef457a705be202f1e08bb88a8e908d1e927b238e data/minecraft/tags/item/chains.json
 2c670892192d2296df7edc6b62961af81bda9579 data/minecraft/tags/item/chest_boats.json
