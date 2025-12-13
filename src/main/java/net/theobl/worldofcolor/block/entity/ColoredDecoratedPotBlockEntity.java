@@ -1,6 +1,5 @@
 package net.theobl.worldofcolor.block.entity;
 
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
@@ -25,13 +24,14 @@ import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.ticks.ContainerSingleItem;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.util.ModUtil;
+import org.jspecify.annotations.NullMarked;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 @ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
+@NullMarked
 public class ColoredDecoratedPotBlockEntity extends BlockEntity implements RandomizableContainer, ContainerSingleItem.BlockContainerSingleItem {
     public static final String TAG_SHERDS = "sherds";
     public static final String TAG_ITEM = "item";

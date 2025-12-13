@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/template_bars_post_ends",
-  "render_type": "minecraft:cutout_mipped",
+  "render_type": "minecraft:cutout",
   "textures": {
     "bars": "worldofcolor:block/lime_copper_bars",
     "edge": "worldofcolor:block/lime_copper_bars"

@@ -2,17 +2,17 @@ package net.theobl.worldofcolor.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
-import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.blockentity.state.DecoratedPotRenderState;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
+import net.minecraft.client.renderer.rendertype.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.client.renderer.state.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -20,7 +20,7 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.Material;
 import net.minecraft.client.resources.model.MaterialSet;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -31,15 +31,14 @@ import net.minecraft.world.phys.Vec3;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ColoredDecoratedPotBlock;
 import net.theobl.worldofcolor.block.entity.ColoredDecoratedPotBlockEntity;
-import org.joml.Vector3f;
+import org.joml.Vector3fc;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Optional;
-import java.util.Set;
+import java.util.function.Consumer;
 
 @ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
 public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredDecoratedPotBlockEntity, DecoratedPotRenderState> {
     private final MaterialSet materials;
     private static final String NECK = "neck";
@@ -93,7 +92,7 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
 
     private Material colorMaterial(Material material) {
         if(color != null) {
-            ResourceLocation newTexture = WorldOfColor.asResource(material.texture().getPath() + "_" + color.getName());
+            Identifier newTexture = WorldOfColor.asResource(material.texture().getPath() + "_" + color.getName());
             return new Material(material.atlasLocation(), newTexture);
         }
         else {
@@ -153,7 +152,7 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
     }
 
     public void submit(PoseStack poseStack, SubmitNodeCollector nodeCollector, int packedLight, int packedOverlay, PotDecorations decorations, int outlineColor) {
-        RenderType rendertype = Sheets.DECORATED_POT_BASE.renderType(RenderType::entitySolid);
+        RenderType rendertype = Sheets.DECORATED_POT_BASE.renderType(RenderTypes::entitySolid);
         TextureAtlasSprite textureatlassprite = this.materials.get(colorMaterial(Sheets.DECORATED_POT_BASE));
         nodeCollector.submitModelPart(this.neck, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, false, false, -1, null, outlineColor);
         nodeCollector.submitModelPart(this.top, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, false, false, -1, null, outlineColor);
@@ -162,7 +161,7 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
         nodeCollector.submitModelPart(
                 this.frontSide,
                 poseStack,
-                material.renderType(RenderType::entitySolid),
+                material.renderType(RenderTypes::entitySolid),
                 packedLight,
                 packedOverlay,
                 this.materials.get(material),
@@ -176,7 +175,7 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
         nodeCollector.submitModelPart(
                 this.backSide,
                 poseStack,
-                material1.renderType(RenderType::entitySolid),
+                material1.renderType(RenderTypes::entitySolid),
                 packedLight,
                 packedOverlay,
                 this.materials.get(material1),
@@ -190,7 +189,7 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
         nodeCollector.submitModelPart(
                 this.leftSide,
                 poseStack,
-                material2.renderType(RenderType::entitySolid),
+                material2.renderType(RenderTypes::entitySolid),
                 packedLight,
                 packedOverlay,
                 this.materials.get(material2),
@@ -204,7 +203,7 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
         nodeCollector.submitModelPart(
                 this.rightSide,
                 poseStack,
-                material3.renderType(RenderType::entitySolid),
+                material3.renderType(RenderTypes::entitySolid),
                 packedLight,
                 packedOverlay,
                 this.materials.get(material3),
@@ -216,7 +215,7 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
         );
     }
 
-    public void getExtents(Set<Vector3f> output) {
+    public void getExtents(Consumer<Vector3fc> output) {
         PoseStack posestack = new PoseStack();
         this.neck.getExtentsForGui(posestack, output);
         this.top.getExtentsForGui(posestack, output);

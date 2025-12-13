@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
+  "group": "blue_copper_bulb",
   "key": {
     "B": "minecraft:blaze_rod",
     "C": "worldofcolor:blue_copper_block",

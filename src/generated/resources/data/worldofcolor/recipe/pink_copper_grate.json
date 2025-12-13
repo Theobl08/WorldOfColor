@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "building",
+  "group": "pink_copper_grate",
   "key": {
     "M": "worldofcolor:pink_copper_block"
   },

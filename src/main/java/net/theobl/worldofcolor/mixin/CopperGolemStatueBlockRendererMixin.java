@@ -1,9 +1,10 @@
 package net.theobl.worldofcolor.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
-import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.blockentity.CopperGolemStatueBlockRenderer;
 import net.minecraft.client.renderer.blockentity.state.CopperGolemStatueRenderState;
+import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ColoredCopperGolemStatueBlock;
 import net.theobl.worldofcolor.block.ColoredWeatheringCopperGolemStatueBlock;
@@ -17,9 +18,9 @@ public abstract class CopperGolemStatueBlockRendererMixin {
             at = @At("STORE"))
     private RenderType submitColoredCopperGolemStatue(RenderType value, @Local(argsOnly = true) CopperGolemStatueRenderState renderState) {
         if(renderState.blockState.getBlock() instanceof ColoredWeatheringCopperGolemStatueBlock block)
-            return RenderType.entityCutoutNoCull(WorldOfColor.asResource("textures/entity/copper_golem/" + block.getColor().getName() + "_copper_golem.png"));
+            return RenderTypes.entityCutoutNoCull(WorldOfColor.asResource("textures/entity/copper_golem/" + block.getColor().getName() + "_copper_golem.png"));
         else if(renderState.blockState.getBlock() instanceof ColoredCopperGolemStatueBlock block)
-            return RenderType.entityCutoutNoCull(WorldOfColor.asResource("textures/entity/copper_golem/" + block.getColor().getName() + "_copper_golem.png"));
+            return RenderTypes.entityCutoutNoCull(WorldOfColor.asResource("textures/entity/copper_golem/" + block.getColor().getName() + "_copper_golem.png"));
         else
             return value;
     }

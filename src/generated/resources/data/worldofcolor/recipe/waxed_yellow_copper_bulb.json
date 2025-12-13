@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "redstone",
+  "group": "waxed_yellow_copper_bulb",
   "key": {
     "B": "minecraft:blaze_rod",
     "C": "worldofcolor:waxed_yellow_copper_block",

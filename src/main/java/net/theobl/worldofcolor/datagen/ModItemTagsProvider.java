@@ -3,7 +3,7 @@ package net.theobl.worldofcolor.datagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -141,7 +141,7 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
     private void addColored(TagKey<Item> group, String pattern) {
         String prefix = group.location().getPath().toUpperCase(Locale.ENGLISH) + '_';
         for (DyeColor color : DyeColor.values()) {
-            ResourceLocation key = WorldOfColor.asResource(pattern.replace("{color}", color.getName()));
+            Identifier key = WorldOfColor.asResource(pattern.replace("{color}", color.getName()));
             TagKey<Item> tag = getForgeItemTag(prefix + color.getName());
             Item item = BuiltInRegistries.ITEM.getValue(key);
             if (item == null || item == Items.AIR)

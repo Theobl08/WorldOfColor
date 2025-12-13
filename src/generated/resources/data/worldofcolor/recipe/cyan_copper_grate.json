@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "building",
+  "group": "cyan_copper_grate",
   "key": {
     "M": "worldofcolor:cyan_copper_block"
   },

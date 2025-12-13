@@ -1,9 +1,8 @@
 package net.theobl.worldofcolor;
 
-import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.logging.LogUtils;
-import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.object.boat.BoatModel;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.Sheets;
@@ -12,7 +11,7 @@ import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ItemFrameRenderer;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
@@ -60,9 +59,6 @@ import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.item.crafting.ModRecipeSerializer;
 import net.theobl.worldofcolor.util.ModUtil;
 import org.slf4j.Logger;
-
-import java.util.Set;
-import java.util.stream.Collectors;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(WorldOfColor.MODID)
@@ -173,8 +169,8 @@ public class WorldOfColor {
         LOGGER.info("HELLO from server starting");
     }
 
-    public static ResourceLocation asResource(String path) {
-        return ResourceLocation.fromNamespaceAndPath(MODID, path);
+    public static Identifier asResource(String path) {
+        return Identifier.fromNamespaceAndPath(MODID, path);
     }
 
     // You can use EventBusSubscriber to automatically register all static methods in the class annotated with @SubscribeEvent
@@ -211,7 +207,7 @@ public class WorldOfColor {
 
         @SubscribeEvent
         public static void addPackFinders(AddPackFindersEvent event) {
-            event.addPackFinders(ResourceLocation.fromNamespaceAndPath(MODID, "resourcepacks/accurate_stained_glass"), PackType.CLIENT_RESOURCES,
+            event.addPackFinders(Identifier.fromNamespaceAndPath(MODID, "resourcepacks/accurate_stained_glass"), PackType.CLIENT_RESOURCES,
                     Component.literal("Accurate stained glass color"), PackSource.DEFAULT, false, Pack.Position.TOP);
         }
 

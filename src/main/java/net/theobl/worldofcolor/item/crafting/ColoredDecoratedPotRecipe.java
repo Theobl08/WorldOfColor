@@ -1,6 +1,5 @@
 package net.theobl.worldofcolor.item.crafting;
 
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.DyeItem;
@@ -16,7 +15,6 @@ import net.theobl.worldofcolor.block.entity.ColoredDecoratedPotBlockEntity;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
 public class ColoredDecoratedPotRecipe extends CustomRecipe {
     public ColoredDecoratedPotRecipe(CraftingBookCategory category) {
         super(category);

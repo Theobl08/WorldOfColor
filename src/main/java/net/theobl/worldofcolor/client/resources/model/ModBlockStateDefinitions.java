@@ -1,6 +1,6 @@
 package net.theobl.worldofcolor.client.resources.model;
 
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ModBlockStateDefinitions {
     public static final List<StateDefinition<Block, BlockState>> COLORED_ITEM_FRAME_FAKE_DEFINITION = createItemFrameFakeState();
-    public static final List<ResourceLocation> COLORED_ITEM_FRAME_LOCATION = createItemFrameLocation();
+    public static final List<Identifier> COLORED_ITEM_FRAME_LOCATION = createItemFrameLocation();
 
     private static List<StateDefinition<Block, BlockState>> createItemFrameFakeState() {
         List<StateDefinition<Block, BlockState>> list = new ArrayList<>();
@@ -23,8 +23,8 @@ public class ModBlockStateDefinitions {
             list.add(new StateDefinition.Builder<Block, BlockState>(Blocks.AIR).add(BlockStateProperties.MAP).create(Block::defaultBlockState, BlockState::new));
         return list;
     }
-    private static List<ResourceLocation> createItemFrameLocation() {
-        List<ResourceLocation> list = new ArrayList<>();
+    private static List<Identifier> createItemFrameLocation() {
+        List<Identifier> list = new ArrayList<>();
         for(DyeColor color : ModUtil.COLORS)
             list.add(WorldOfColor.asResource(color.getName() + "_item_frame"));
         return list;

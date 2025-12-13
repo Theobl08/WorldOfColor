@@ -1,6 +1,5 @@
 package net.theobl.worldofcolor.block;
 
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -25,13 +24,14 @@ import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
 import net.theobl.worldofcolor.block.entity.ColoredDecoratedPotBlockEntity;
+import org.jspecify.annotations.NullMarked;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 @ParametersAreNonnullByDefault
-@MethodsReturnNonnullByDefault
+@NullMarked
 public class ColoredDecoratedPotBlock extends DecoratedPotBlock {
     private final DyeColor color;
     public ColoredDecoratedPotBlock(DyeColor color, Properties properties) {

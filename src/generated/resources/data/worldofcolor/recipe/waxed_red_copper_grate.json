@@ -1,6 +1,7 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "building",
+  "group": "waxed_red_copper_grate",
   "key": {
     "M": "worldofcolor:waxed_red_copper_block"
   },

@@ -2,7 +2,6 @@ package net.theobl.worldofcolor.datagen;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import net.minecraft.MethodsReturnNonnullByDefault;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.MultiVariant;
 import net.minecraft.client.data.models.blockstates.MultiPartGenerator;
@@ -18,7 +17,7 @@ import net.minecraft.client.renderer.special.ShulkerBoxSpecialRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.core.Direction;
 import net.minecraft.data.BlockFamily;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -66,7 +65,7 @@ public class ColoredBlockModelGenerators {
         this.blockModels = blockModels;
     }
 
-    public static MultiVariant createLayeredCauldron(ResourceLocation contentLevel, ResourceLocation emptyCauldron) {
+    public static MultiVariant createLayeredCauldron(Identifier contentLevel, Identifier emptyCauldron) {
         CompositeBlockStateModelBuilder compositeBlockStateModelBuilder = new CompositeBlockStateModelBuilder();
         compositeBlockStateModelBuilder.addPartModel(new SingleVariant.Unbaked(plainModel(contentLevel)));
         compositeBlockStateModelBuilder.addPartModel(new SingleVariant.Unbaked(plainModel(emptyCauldron)));
@@ -87,10 +86,10 @@ public class ColoredBlockModelGenerators {
 
     public void generateDecoratedPotItemModel(Block block, SpecialModelRenderer.Unbaked specialModel, DyeColor color) {
         Item item = block.asItem();
-        ResourceLocation resourcelocation = DECORATED_POT.create(ModelLocationUtils.getModelLocation(item),
+        Identifier identifier = DECORATED_POT.create(ModelLocationUtils.getModelLocation(item),
                 TextureMapping.particle(WorldOfColor.asResource("entity/decorated_pot/decorated_pot_side_" + color.getName())),
                 blockModels.modelOutput);
-        blockModels.itemModelOutput.accept(item, ItemModelUtils.specialModel(resourcelocation, specialModel));
+        blockModels.itemModelOutput.accept(item, ItemModelUtils.specialModel(identifier, specialModel));
     }
 
     public void createCauldrons(DyeColor color) {
@@ -99,7 +98,7 @@ public class ColoredBlockModelGenerators {
         Block lavaCauldron = ModBlocks.COLORED_LAVA_CAULDRONS.get(index).get();
         Block waterCauldron = ModBlocks.COLORED_WATER_CAULDRONS.get(index).get();
         Block powderSnowCauldron = ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(index).get();
-        ResourceLocation emptyCauldron = CAULDRON.create(cauldron, cauldronEmpty(color), blockModels.modelOutput);
+        Identifier emptyCauldron = CAULDRON.create(cauldron, cauldronEmpty(color), blockModels.modelOutput);
         blockModels.registerSimpleFlatItemModel(ModItems.COLORED_CAULDRONS.get(index).get());
         blockModels.blockStateOutput
                 .accept(
@@ -115,7 +114,7 @@ public class ColoredBlockModelGenerators {
                         createSimpleBlock(
                                 lavaCauldron,
                                 plainVariant(
-                                CAULDRON.extend().parent(ResourceLocation.parse("block/lava_cauldron")).build()
+                                CAULDRON.extend().parent(Identifier.parse("block/lava_cauldron")).build()
                                         .create(lavaCauldron, ColoredTextureMapping.cauldron(getBlockTexture(Blocks.LAVA, "_still"), color), blockModels.modelOutput)
                                 )
                         )
@@ -171,7 +170,7 @@ public class ColoredBlockModelGenerators {
                                                 .select(
                                                         1,
                                                         plainVariant(
-                                                                        CAULDRON.extend().parent(ResourceLocation.parse("block/powder_snow_cauldron_level1")).build()
+                                                                        CAULDRON.extend().parent(Identifier.parse("block/powder_snow_cauldron_level1")).build()
                                                                                 .createWithSuffix(
                                                                                         powderSnowCauldron,
                                                                                         "_level1",
@@ -183,7 +182,7 @@ public class ColoredBlockModelGenerators {
                                                 .select(
                                                         2,
                                                         plainVariant(
-                                                                        CAULDRON.extend().parent(ResourceLocation.parse("block/powder_snow_cauldron_level2")).build()
+                                                                        CAULDRON.extend().parent(Identifier.parse("block/powder_snow_cauldron_level2")).build()
                                                                                 .createWithSuffix(
                                                                                         powderSnowCauldron,
                                                                                         "_level2",
@@ -195,7 +194,7 @@ public class ColoredBlockModelGenerators {
                                                 .select(
                                                         3,
                                                         plainVariant(
-                                                                        CAULDRON.extend().parent(ResourceLocation.parse("block/powder_snow_cauldron_full")).build()
+                                                                        CAULDRON.extend().parent(Identifier.parse("block/powder_snow_cauldron_full")).build()
                                                                                 .createWithSuffix(
                                                                                         powderSnowCauldron,
                                                                                         "_full",
@@ -210,14 +209,14 @@ public class ColoredBlockModelGenerators {
 
     public void createDoorWithRenderType(Block doorBlock, String renderType) {
         TextureMapping texturemapping = TextureMapping.door(doorBlock);
-        ResourceLocation doorBottomLeft = ModelTemplates.DOOR_BOTTOM_LEFT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation doorBottomLeftOpen = ModelTemplates.DOOR_BOTTOM_LEFT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation doorBottomRight = ModelTemplates.DOOR_BOTTOM_RIGHT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation doorBottomRightOpen = ModelTemplates.DOOR_BOTTOM_RIGHT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation doorTopLeft = ModelTemplates.DOOR_TOP_LEFT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation doorTopLeftOpen = ModelTemplates.DOOR_TOP_LEFT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation doorTopRight = ModelTemplates.DOOR_TOP_RIGHT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation doorTopRightOpen = ModelTemplates.DOOR_TOP_RIGHT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        Identifier doorBottomLeft = ModelTemplates.DOOR_BOTTOM_LEFT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        Identifier doorBottomLeftOpen = ModelTemplates.DOOR_BOTTOM_LEFT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        Identifier doorBottomRight = ModelTemplates.DOOR_BOTTOM_RIGHT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        Identifier doorBottomRightOpen = ModelTemplates.DOOR_BOTTOM_RIGHT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        Identifier doorTopLeft = ModelTemplates.DOOR_TOP_LEFT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        Identifier doorTopLeftOpen = ModelTemplates.DOOR_TOP_LEFT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        Identifier doorTopRight = ModelTemplates.DOOR_TOP_RIGHT.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
+        Identifier doorTopRightOpen = ModelTemplates.DOOR_TOP_RIGHT_OPEN.extend().renderType(renderType).build().create(doorBlock, texturemapping, blockModels.modelOutput);
         blockModels.registerSimpleFlatItemModel(doorBlock.asItem());
         blockModels.blockStateOutput
                 .accept(
@@ -237,17 +236,17 @@ public class ColoredBlockModelGenerators {
 
     public void createOrientableTrapdoorWithRenderType(Block trapdoorBlock, String renderType) {
         TextureMapping texturemapping = TextureMapping.defaultTexture(trapdoorBlock);
-        ResourceLocation top = ModelTemplates.ORIENTABLE_TRAPDOOR_TOP.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation bottom = ModelTemplates.ORIENTABLE_TRAPDOOR_BOTTOM.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation open = ModelTemplates.ORIENTABLE_TRAPDOOR_OPEN.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
+        Identifier top = ModelTemplates.ORIENTABLE_TRAPDOOR_TOP.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
+        Identifier bottom = ModelTemplates.ORIENTABLE_TRAPDOOR_BOTTOM.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
+        Identifier open = ModelTemplates.ORIENTABLE_TRAPDOOR_OPEN.extend().renderType(renderType).build().create(trapdoorBlock, texturemapping, blockModels.modelOutput);
         blockModels.blockStateOutput.accept(createOrientableTrapdoor(trapdoorBlock, plainVariant(top), plainVariant(bottom), plainVariant(open)));
         blockModels.registerSimpleItemModel(trapdoorBlock, bottom);
     }
 
     public void createCrossBlock(Block block, BlockModelGenerators.PlantType plantType, String renderType) {
         TextureMapping texturemapping = plantType.getTextureMapping(block);
-        ResourceLocation resourcelocation = plantType.getCross().extend().renderType(renderType).build().create(block, texturemapping, blockModels.modelOutput);
-        blockModels.blockStateOutput.accept(createSimpleBlock(block, plainVariant(resourcelocation)));
+        Identifier identifier = plantType.getCross().extend().renderType(renderType).build().create(block, texturemapping, blockModels.modelOutput);
+        blockModels.blockStateOutput.accept(createSimpleBlock(block, plainVariant(identifier)));
     }
 
     public void createPlantWithDefaultItem(Block block, Block pottedBlock, BlockModelGenerators.PlantType plantType) {
@@ -272,7 +271,7 @@ public class ColoredBlockModelGenerators {
     public void createPottedPlant(Block pottedBlock, Block emptyPot, String parent) {
         TextureMapping textureMapping = ColoredTextureMapping.flowerPot(emptyPot);
         MultiVariant multivariant = plainVariant(VanillaModelTemplates.FLOWER_POT.extend()
-                .parent(ResourceLocation.parse("block/potted_" + parent))
+                .parent(Identifier.parse("block/potted_" + parent))
                 .renderType("cutout")
                 .build().create(pottedBlock, textureMapping, blockModels.modelOutput));
         blockModels.blockStateOutput.accept(createSimpleBlock(pottedBlock, multivariant));
@@ -284,14 +283,14 @@ public class ColoredBlockModelGenerators {
     }
 
     public void createBarsAndItem(Block weatheringBlock, Block waxedBlock) {
-        String renderType = ChunkSectionLayer.CUTOUT_MIPPED.label();
+        String renderType = ChunkSectionLayer.CUTOUT.label();
         TextureMapping texturemapping = TextureMapping.bars(weatheringBlock);
-        ResourceLocation postEnd = ModelTemplates.BARS_POST_ENDS.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation post = ModelTemplates.BARS_POST.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation cap = ModelTemplates.BARS_CAP.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation capAlt = ModelTemplates.BARS_CAP_ALT.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation postSide = ModelTemplates.BARS_POST_SIDE.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
-        ResourceLocation postSideAlt = ModelTemplates.BARS_POST_SIDE_ALT.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
+        Identifier postEnd = ModelTemplates.BARS_POST_ENDS.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
+        Identifier post = ModelTemplates.BARS_POST.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
+        Identifier cap = ModelTemplates.BARS_CAP.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
+        Identifier capAlt = ModelTemplates.BARS_CAP_ALT.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
+        Identifier postSide = ModelTemplates.BARS_POST_SIDE.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
+        Identifier postSideAlt = ModelTemplates.BARS_POST_SIDE_ALT.extend().renderType(renderType).build().create(weatheringBlock, texturemapping, blockModels.modelOutput);
         blockModels.createBars(weatheringBlock, postEnd, post, cap, capAlt, postSide, postSideAlt);
         blockModels.createBars(waxedBlock, postEnd, post, cap, capAlt, postSide, postSideAlt);
         blockModels.registerSimpleFlatItemModel(weatheringBlock);
@@ -308,15 +307,15 @@ public class ColoredBlockModelGenerators {
         MultiVariant model = plainVariant(TexturedModel.CHAIN.updateTemplate(template -> template.extend().renderType("cutout_mipped").build()).create(block, blockModels.modelOutput));
         blockModels.createAxisAlignedPillarBlockCustomModel(block, model);
         blockModels.createAxisAlignedPillarBlockCustomModel(waxed, model);
-        ResourceLocation resourcelocation = blockModels.createFlatItemModel(block.asItem());
-        blockModels.registerSimpleItemModel(block.asItem(), resourcelocation);
-        blockModels.registerSimpleItemModel(waxed.asItem(), resourcelocation);
+        Identifier identifier = blockModels.createFlatItemModel(block.asItem());
+        blockModels.registerSimpleItemModel(block.asItem(), identifier);
+        blockModels.registerSimpleItemModel(waxed.asItem(), identifier);
     }
 
     public void createCopperLantern(Block block, Block waxed) {
         String renderType = "cutout";
-        ResourceLocation ground = TexturedModel.LANTERN.updateTemplate(template -> template.extend().renderType(renderType).build()).create(block, blockModels.modelOutput);
-        ResourceLocation hanging = TexturedModel.HANGING_LANTERN.updateTemplate(template -> template.extend().renderType(renderType).build()).create(block, blockModels.modelOutput);
+        Identifier ground = TexturedModel.LANTERN.updateTemplate(template -> template.extend().renderType(renderType).build()).create(block, blockModels.modelOutput);
+        Identifier hanging = TexturedModel.HANGING_LANTERN.updateTemplate(template -> template.extend().renderType(renderType).build()).create(block, blockModels.modelOutput);
         blockModels.registerSimpleFlatItemModel(block.asItem());
         blockModels.itemModelOutput.copy(block.asItem(), waxed.asItem());
         blockModels.blockStateOutput
@@ -335,8 +334,8 @@ public class ColoredBlockModelGenerators {
         MultiVariant blockModel = plainVariant(
                 ModelTemplates.PARTICLE_ONLY.create(statueBlock, TextureMapping.particle(TextureMapping.getBlockTexture(copperBlock)), blockModels.modelOutput)
         );
-        ResourceLocation itemBase = ModelLocationUtils.decorateItemModelLocation("template_copper_golem_statue");
-        ResourceLocation texture = WorldOfColor.asResource("textures/entity/copper_golem/" + color.getName() + "_copper_golem.png");
+        Identifier itemBase = ModelLocationUtils.decorateItemModelLocation("template_copper_golem_statue");
+        Identifier texture = WorldOfColor.asResource("textures/entity/copper_golem/" + color.getName() + "_copper_golem.png");
         blockModels.blockStateOutput.accept(createSimpleBlock(statueBlock, blockModel));
         blockModels.itemModelOutput
                 .accept(
@@ -393,8 +392,8 @@ public class ColoredBlockModelGenerators {
     public void createShulkerBox(Block block) {
         blockModels.createParticleOnlyBlock(block);
         Item item = block.asItem();
-//        ResourceLocation baseModel = ModelTemplates.SHULKER_BOX_INVENTORY.create(item, TextureMapping.particle(block), blockModels.modelOutput);
-        ResourceLocation baseModel = VanillaModelTemplates.SHULKER_BOX_ITEM.create(item,
+//        Identifier baseModel = ModelTemplates.SHULKER_BOX_INVENTORY.create(item, TextureMapping.particle(block), blockModels.modelOutput);
+        Identifier baseModel = VanillaModelTemplates.SHULKER_BOX_ITEM.create(item,
                 new TextureMapping().put(TextureSlot.TEXTURE, WorldOfColor.asResource("entity/shulker/shulker_rgb")), blockModels.modelOutput);
 //        ItemModel.Unbaked itemModel = ItemModelUtils.specialModel(baseModel, new ShulkerBoxSpecialRenderer.Unbaked(WorldOfColor.asResource("shulker_rgb"), 0.0F, Direction.UP));
         ItemModel.Unbaked itemModel = ItemModelUtils.plainModel(baseModel);
@@ -402,20 +401,19 @@ public class ColoredBlockModelGenerators {
     }
 
     public void createBed(Block block) {
-        MultiVariant multivariant = plainVariant(ResourceLocation.parse("block/bed"));
+        MultiVariant multivariant = plainVariant(Identifier.parse("block/bed"));
         blockModels.blockStateOutput.accept(createSimpleBlock(block, multivariant));
         Item item = block.asItem();
-        ResourceLocation baseModel = VanillaModelTemplates.BED_ITEM.create(item,
+        Identifier baseModel = VanillaModelTemplates.BED_ITEM.create(item,
                 new TextureMapping().put(TextureSlot.TEXTURE, WorldOfColor.asResource("entity/bed/rgb")), blockModels.modelOutput);
         ItemModel.Unbaked itemModel = ItemModelUtils.plainModel(baseModel);
         blockModels.itemModelOutput.accept(item, itemModel);
     }
 
     @ParametersAreNonnullByDefault
-    @MethodsReturnNonnullByDefault
     public class ModBlockFamilyProvider extends BlockModelGenerators.BlockFamilyProvider {
         private final TextureMapping mapping;
-        private final Map<ModelTemplate, ResourceLocation> models = Maps.newHashMap();
+        private final Map<ModelTemplate, Identifier> models = Maps.newHashMap();
         @Nullable
         private BlockFamily family;
         @Nullable
@@ -450,9 +448,9 @@ public class ColoredBlockModelGenerators {
                 throw new IllegalStateException("Family not defined");
             } else {
                 Block block = this.family.getVariants().get(BlockFamily.Variant.WALL_SIGN);
-                ResourceLocation resourcelocation = ModelTemplates.PARTICLE_ONLY.create(signBlock, this.mapping, blockModels.modelOutput);
-                blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(signBlock, plainVariant(resourcelocation)));
-                blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, plainVariant(resourcelocation)));
+                Identifier identifier = ModelTemplates.PARTICLE_ONLY.create(signBlock, this.mapping, blockModels.modelOutput);
+                blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(signBlock, plainVariant(identifier)));
+                blockModels.blockStateOutput.accept(BlockModelGenerators.createSimpleBlock(block, plainVariant(identifier)));
                 blockModels.registerSimpleFlatItemModel(signBlock.asItem());
                 return this;
             }
@@ -462,8 +460,8 @@ public class ColoredBlockModelGenerators {
             if (this.fullBlock == null) {
                 throw new IllegalStateException("Full block not generated yet");
             } else {
-                ResourceLocation bottom = this.getOrCreateModel(ModelTemplates.SLAB_BOTTOM, slabBlock);
-                ResourceLocation top = this.getOrCreateModel(ModelTemplates.SLAB_TOP, slabBlock);
+                Identifier bottom = this.getOrCreateModel(ModelTemplates.SLAB_BOTTOM, slabBlock);
+                Identifier top = this.getOrCreateModel(ModelTemplates.SLAB_TOP, slabBlock);
                 blockModels.blockStateOutput
                         .accept(BlockModelGenerators.createSlab(slabBlock, plainVariant(bottom), plainVariant(top), variant(this.fullBlock)));
                 blockModels.registerSimpleItemModel(slabBlock, bottom);
@@ -484,7 +482,7 @@ public class ColoredBlockModelGenerators {
             }
         }
 
-        public ResourceLocation getOrCreateModel(ModelTemplate modelTemplate, Block block) {
+        public Identifier getOrCreateModel(ModelTemplate modelTemplate, Block block) {
             return this.models.computeIfAbsent(modelTemplate, template -> template.create(block, this.mapping, blockModels.modelOutput));
         }
 
