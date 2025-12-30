@@ -45,6 +45,7 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         this.copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
         this.copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
         this.copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
+        this.copy(BlockTags.WOODEN_SHELVES, ItemTags.WOODEN_SHELVES);
 
         this.copy(BlockTags.STAIRS, ItemTags.STAIRS);
         this.copy(BlockTags.SLABS, ItemTags.SLABS);

@@ -77,6 +77,7 @@ public class ModUtil {
         ModBlocks.COLORED_LEAVES.forEach(block -> registerFlammable(block.get(), 30, 60));
         ModBlocks.CLASSIC_WOOLS.forEach(block -> registerFlammable(block.get(), 30, 60));
         ModBlocks.CLASSIC_CARPETS.forEach(block -> registerFlammable(block.get(), 60, 20));
+        ModBlocks.COLORED_SHELVES.forEach(block -> registerFlammable(block.get(), 30, 20));
 
         registerFlammable(ModBlocks.RGB_WOOL.get(), 30, 60);
         registerFlammable(ModBlocks.RGB_CARPET.get(), 60, 20);

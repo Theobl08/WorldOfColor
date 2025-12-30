@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_shelf_body",
+  "textures": {
+    "all": "worldofcolor:block/yellow_shelf",
+    "particle": "worldofcolor:block/stripped_yellow_log"
+  }
+}

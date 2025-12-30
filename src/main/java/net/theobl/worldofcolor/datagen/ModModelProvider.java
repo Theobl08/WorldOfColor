@@ -104,6 +104,8 @@ public class ModModelProvider extends ModelProvider {
                             .put(ColoredTextureSlot.WOOD, getBlockTexture(Blocks.BIRCH_PLANKS))
                             .put(TextureSlot.BACK, WorldOfColor.asResource(color.getName() + "_item_frame").withPrefix("block/")),
                     blockModels.modelOutput);
+
+            blockModels.createShelf(ModBlocks.COLORED_SHELVES.get(index).get(), ModBlocks.COLORED_STRIPPED_LOGS.get(index).get());
         }
         blockModels.createFullAndCarpetBlocks(ModBlocks.RGB_WOOL.get(), ModBlocks.RGB_CARPET.get());
         blockModels.createTrivialCube(ModBlocks.RGB_TERRACOTTA.get());

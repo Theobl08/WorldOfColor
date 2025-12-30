@@ -63,6 +63,7 @@ public class ModBlocks {
     public static final List<DeferredBlock<Block>> COLORED_WALL_SIGNS = registerColoredSigns("wall_sign", WallSignBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN));
     public static final List<DeferredBlock<Block>> COLORED_HANGING_SIGNS = registerColoredSigns("hanging_sign", CeilingHangingSignBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN));
     public static final List<DeferredBlock<Block>> COLORED_WALL_HANGING_SIGNS = registerColoredSigns("wall_hanging_sign", WallHangingSignBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN));
+    public static final List<DeferredBlock<Block>> COLORED_SHELVES = registerColored("shelf", ShelfBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SHELF));
     public static final List<DeferredBlock<Block>> COLORED_COPPER_BLOCKS = registerColoredWeathering("copper_block", WeatheringCopperFullBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK));
     public static final List<DeferredBlock<Block>> COLORED_CHISELED_COPPER = registerColoredWeathering("chiseled_copper", WeatheringCopperFullBlock::new,

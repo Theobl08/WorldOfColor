@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_shelf_right",
+  "textures": {
+    "all": "worldofcolor:block/light_gray_shelf",
+    "particle": "worldofcolor:block/stripped_light_gray_log"
+  }
+}

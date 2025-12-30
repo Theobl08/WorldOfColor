@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_shelf_right",
+  "textures": {
+    "all": "worldofcolor:block/pink_shelf",
+    "particle": "worldofcolor:block/stripped_pink_log"
+  }
+}

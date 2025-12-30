@@ -120,6 +120,7 @@ public class WorldOfColor {
         ModBlocks.COLORED_WALL_SIGNS.forEach(sign -> event.modify(BlockEntityType.SIGN, sign.get()));
         ModBlocks.COLORED_HANGING_SIGNS.forEach(sign -> event.modify(BlockEntityType.HANGING_SIGN, sign.get()));
         ModBlocks.COLORED_WALL_HANGING_SIGNS.forEach(sign -> event.modify(BlockEntityType.HANGING_SIGN, sign.get()));
+        ModBlocks.COLORED_SHELVES.forEach(shelf -> event.modify(BlockEntityType.SHELF, shelf.get()));
         ModBlocks.COLORED_COPPER_CHESTS.forEach(block -> event.modify(BlockEntityType.CHEST, block.get()));
         ModBlocks.COLORED_WAXED_COPPER_CHESTS.forEach(block -> event.modify(BlockEntityType.CHEST, block.get()));
         ModBlocks.COLORED_COPPER_GOLEM_STATUES.forEach(block -> event.modify(BlockEntityType.COPPER_GOLEM_STATUE, block.get()));

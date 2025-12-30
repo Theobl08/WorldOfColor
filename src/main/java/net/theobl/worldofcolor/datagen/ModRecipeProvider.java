@@ -95,6 +95,7 @@ public class ModRecipeProvider extends RecipeProvider {
             hangingSign(ModBlocks.COLORED_HANGING_SIGNS.get(index), ModBlocks.COLORED_STRIPPED_LOGS.get(index));
             woodenBoat(ModItems.COLORED_BOATS.get(index).get(), planks);
             chestBoat(ModItems.COLORED_CHEST_BOATS.get(index).get(), ModItems.COLORED_BOATS.get(index).get());
+            shelf(ModBlocks.COLORED_SHELVES.get(index), ModBlocks.COLORED_STRIPPED_LOGS.get(index));
         }
 
         for (DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_BLOCKS) {

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_shelf_inventory",
+  "textures": {
+    "all": "worldofcolor:block/light_blue_shelf",
+    "particle": "worldofcolor:block/stripped_light_blue_log"
+  }
+}

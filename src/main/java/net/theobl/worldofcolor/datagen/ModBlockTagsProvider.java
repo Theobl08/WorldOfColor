@@ -136,6 +136,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             }
         }
 
+        ModBlocks.COLORED_SHELVES.forEach(block -> this.tag(BlockTags.WOODEN_SHELVES).add(block.get()));
+
         this.tag(BlockTags.WOOL).add(ModBlocks.RGB_WOOL.get());
         this.tag(BlockTags.WOOL_CARPETS).add(ModBlocks.RGB_CARPET.get());
         this.tag(BlockTags.TERRACOTTA).add(ModBlocks.RGB_TERRACOTTA.get());

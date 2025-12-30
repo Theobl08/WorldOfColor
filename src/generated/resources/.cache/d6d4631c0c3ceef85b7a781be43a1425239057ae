@@ -1,4 +1,4 @@
-// 1.21.11	2025-12-12T15:32:23.4711586	Tags for minecraft:block mod id worldofcolor
+// 1.21.11	2025-12-29T23:29:37.7982496	Tags for minecraft:block mod id worldofcolor
 dfc2d872e0fc2643b4796b70c0d412bb7a6fc66f data/c/tags/block/concretes.json
 3d6c0b035c67e9cd0ddbf4a707ff7bcd3291dd4f data/c/tags/block/dyed/black.json
 3fc255a89a05737990876711691e7477845dfbe0 data/c/tags/block/dyed/blue.json
@@ -58,6 +58,7 @@ a661b835ebe8addbd5662e2a481837132f503a45 data/minecraft/tags/block/wooden_button
 ba1c086c85f27bebb5b00b84d4df5cb5db8350e6 data/minecraft/tags/block/wooden_doors.json
 b2cb4d28a320a4b7382cc21efe120945e470243d data/minecraft/tags/block/wooden_fences.json
 c1829b6a83e0a415be31a3176fbb57135504e9c1 data/minecraft/tags/block/wooden_pressure_plates.json
+74b64f6b85c87c293b7f117f43a9d9a292b09268 data/minecraft/tags/block/wooden_shelves.json
 04e49c6c88991c27cdcf1638f6a070f189db010e data/minecraft/tags/block/wooden_slabs.json
 e804b8cc759c6993960b21b134345370bbedaf31 data/minecraft/tags/block/wooden_stairs.json
 6a34eed736ef329fc193cb75c4d5bd0f3b8a4946 data/minecraft/tags/block/wooden_trapdoors.json
