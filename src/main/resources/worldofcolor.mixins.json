@@ -8,6 +8,7 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "worldofcolor.refmap.json",
   "mixins": [
+    "BannerBlockMixin",
     "CauldronInteractionMixin",
     "CopperChestBlockMixin",
     "HangingEntityItemMixin",

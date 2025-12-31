@@ -116,6 +116,7 @@ public class ModModelProvider extends ModelProvider {
         blockModels.createCandleAndCandleCake(ModBlocks.RGB_CANDLE.get(), ModBlocks.RGB_CANDLE_CAKE.get());
         coloredBlockModels.createShulkerBox(ModBlocks.RGB_SHULKER_BOX.get());
         coloredBlockModels.createBed(ModBlocks.RGB_BED.get());
+        coloredBlockModels.createBanner(ModBlocks.RGB_BANNER.get(), ModBlocks.RGB_WALL_BANNER.get());
 
         ModItems.COLORED_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
         ModItems.COLORED_CHEST_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));

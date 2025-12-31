@@ -212,6 +212,18 @@ public class ModBlocks {
             p -> new ShulkerBoxBlock(null, p),
             () -> BlockBehaviour.Properties.ofFullCopy(Blocks.SHULKER_BOX)
     );
+    public static final DeferredBlock<Block> RGB_BANNER = BLOCKS.registerBlock(
+            "rgb_banner",
+            ColoredBannerBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_BANNER)
+    );
+    public static final DeferredBlock<Block> RGB_WALL_BANNER = BLOCKS.registerBlock(
+            "rgb_wall_banner",
+            ColoredWallBannerBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WALL_BANNER)
+                    .overrideLootTable(RGB_BANNER.get().getLootTable())
+                    .overrideDescription(RGB_BANNER.get().getDescriptionId())
+    );
 
     private static List<DeferredBlock<Block>> registerClassic(String key, Function<BlockBehaviour.Properties, Block> block, BlockBehaviour.Properties properties) {
         List<DeferredBlock<Block>> blocks = new ArrayList<>();

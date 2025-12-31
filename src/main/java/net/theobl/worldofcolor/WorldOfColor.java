@@ -50,7 +50,9 @@ import net.theobl.worldofcolor.block.ColoredCauldronInteraction;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.block.ModWoodType;
 import net.theobl.worldofcolor.block.entity.ModBlockEntityType;
+import net.theobl.worldofcolor.client.renderer.blockentity.ColoredBannerRenderer;
 import net.theobl.worldofcolor.client.renderer.blockentity.ColoredDecoratedPotRenderer;
+import net.theobl.worldofcolor.client.renderer.special.ColoredBannerSpecialRenderer;
 import net.theobl.worldofcolor.client.renderer.special.ColoredDecoratedPotSpecialRenderer;
 import net.theobl.worldofcolor.entity.ModEntityType;
 import net.theobl.worldofcolor.entity.client.ModModelLayers;
@@ -204,6 +206,7 @@ public class WorldOfColor {
         @SubscribeEvent
         public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerBlockEntityRenderer(ModBlockEntityType.COLORED_DECORATED_POT.get(), ColoredDecoratedPotRenderer::new);
+            event.registerBlockEntityRenderer(ModBlockEntityType.RGB_BANNER.get(), ColoredBannerRenderer::new);
         }
 
         @SubscribeEvent
@@ -225,12 +228,14 @@ public class WorldOfColor {
         @SubscribeEvent
         public static void registerSpecialModelRenderer(RegisterSpecialModelRendererEvent event) {
             event.register(asResource("decorated_pot"), ColoredDecoratedPotSpecialRenderer.Unbaked.MAP_CODEC);
+            event.register(asResource("rgb_banner"), ColoredBannerSpecialRenderer.Unbaked.MAP_CODEC);
         }
 
         @SubscribeEvent
         public static void registerSpecialBlockModelRenderer(RegisterSpecialBlockModelRendererEvent event) {
             ModBlocks.COLORED_DECORATED_POTS.forEach(block ->
                     event.register(block.get(), new ColoredDecoratedPotSpecialRenderer.Unbaked(block.get().getColor())));
+            event.register(ModBlocks.RGB_BANNER.get(), new ColoredBannerSpecialRenderer.Unbaked());
         }
     }
 }

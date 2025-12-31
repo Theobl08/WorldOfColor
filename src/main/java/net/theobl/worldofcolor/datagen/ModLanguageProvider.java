@@ -25,7 +25,7 @@ public class ModLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup.worldofcolor", "World of Color");
-        ModBlocks.BLOCKS.getEntries().forEach(this::lang);
+        ModBlocks.BLOCKS.getEntries().stream().filter(block -> !(block.get() instanceof WallBannerBlock)).forEach(this::lang);
         ModItems.ITEMS.getEntries().stream().filter(item -> !(item.get() instanceof BlockItem)).forEach(this::lang);
 
 //        ModItems.COLORED_BOATS.forEach(this::lang);

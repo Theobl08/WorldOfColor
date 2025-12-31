@@ -54,6 +54,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         this.add(ModBlocks.RGB_BED.get(), block -> this.createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
         this.add(ModBlocks.RGB_CANDLE.get(), this::createCandleDrops);
         this.add(ModBlocks.RGB_CANDLE_CAKE.get(), createCandleCakeDrops(ModBlocks.RGB_CANDLE.get()));
+        this.add(ModBlocks.RGB_BANNER.get(), this::createBannerDrop);
     }
 
     private LootTable.Builder createDecoratedPotTable(Block block) {

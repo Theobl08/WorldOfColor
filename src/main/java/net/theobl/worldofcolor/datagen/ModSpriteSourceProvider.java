@@ -22,5 +22,6 @@ public class ModSpriteSourceProvider extends SpriteSourceProvider {
         ModUtil.COLORS.forEach(color -> atlas(AtlasIds.BLOCKS).addSource(new SingleFile(WorldOfColor.asResource("entity/decorated_pot/decorated_pot_side_" + color.getName()))));
         atlas(AtlasIds.BLOCKS).addSource(new SingleFile(WorldOfColor.asResource("entity/shulker/shulker_rgb")));
         atlas(AtlasIds.BLOCKS).addSource(new SingleFile(WorldOfColor.asResource("entity/bed/rgb")));
+        atlas(AtlasIds.BANNER_PATTERNS).addSource(new SingleFile(WorldOfColor.asResource("entity/banner/rgb")));
     }
 }

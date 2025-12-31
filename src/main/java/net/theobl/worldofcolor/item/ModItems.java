@@ -41,6 +41,9 @@ public class ModItems {
     public static final DeferredItem<Item> RGB_DYE = ITEMS.registerSimpleItem("rgb_dye");
     public static final DeferredItem<Item> RGB_BUNDLE = ITEMS.registerItem(
             "rgb_bundle", BundleItem::new, p -> p.stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY));
+    public static final DeferredItem<Item> RGB_BANNER = ITEMS.registerItem("rgb_banner",
+            p -> new BannerItem(ModBlocks.RGB_BANNER.get(), ModBlocks.RGB_WALL_BANNER.get(), p),
+            p -> p.stacksTo(16).useBlockDescriptionPrefix());
 
     private static List<DeferredItem<Item>> registerColored(String key) {
         List<DeferredItem<Item>> items = new ArrayList<>();

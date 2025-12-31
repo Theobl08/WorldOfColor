@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.block.model.SingleVariant;
 import net.minecraft.client.renderer.block.model.Variant;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.item.ItemModel;
+import net.minecraft.client.renderer.special.BannerSpecialRenderer;
 import net.minecraft.client.renderer.special.CopperGolemStatueSpecialRenderer;
 import net.minecraft.client.renderer.special.ShulkerBoxSpecialRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
@@ -25,6 +26,7 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.neoforged.neoforge.client.model.generators.blockstate.CompositeBlockStateModelBuilder;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
+import net.theobl.worldofcolor.client.renderer.special.ColoredBannerSpecialRenderer;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.util.ModUtil;
 
@@ -280,6 +282,15 @@ public class ColoredBlockModelGenerators {
     public ModBlockFamilyProvider family(Block block) {
         TexturedModel texturedmodel = TEXTURED_MODELS.getOrDefault(block, TexturedModel.CUBE.get(block));
         return new ModBlockFamilyProvider(texturedmodel.getMapping(), blockModels).fullBlock(block, texturedmodel.getTemplate());
+    }
+
+    public void createBanner(Block block, Block wallBlock) {
+        MultiVariant multivariant = plainVariant(Identifier.parse("banner").withPrefix("block/"));
+        Identifier identifier = ModelLocationUtils.decorateItemModelLocation("template_banner");
+        blockModels.blockStateOutput.accept(createSimpleBlock(block, multivariant));
+        blockModels.blockStateOutput.accept(createSimpleBlock(wallBlock, multivariant));
+        Item item = block.asItem();
+        blockModels.itemModelOutput.accept(item, ItemModelUtils.specialModel(identifier, new ColoredBannerSpecialRenderer.Unbaked()));
     }
 
     public void createBarsAndItem(Block weatheringBlock, Block waxedBlock) {

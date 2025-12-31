@@ -18,6 +18,10 @@ public class ModBlockEntityType {
             BLOCK_ENTITY_TYPES.register("colored_decorated_pot",
                     () -> new BlockEntityType<>(ColoredDecoratedPotBlockEntity::new, ModUtil.asVarArgs(ModBlocks.COLORED_DECORATED_POTS)));
 
+    public static final Supplier<BlockEntityType<ColoredBannerBlockEntity>> RGB_BANNER =
+            BLOCK_ENTITY_TYPES.register("rgb_banner",
+                    () -> new BlockEntityType<>(ColoredBannerBlockEntity::new, ModBlocks.RGB_BANNER.get(), ModBlocks.RGB_WALL_BANNER.get()));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITY_TYPES.register(eventBus);
     }

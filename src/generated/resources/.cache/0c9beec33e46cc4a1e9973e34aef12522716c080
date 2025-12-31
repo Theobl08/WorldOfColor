@@ -1,4 +1,4 @@
-// 1.21.11	2025-12-29T23:29:37.6677274	Model Definitions - worldofcolor
+// 1.21.11	2025-12-31T10:10:18.0430989	Model Definitions - worldofcolor
 a31101a419b44e9a513fb7452e79e831c6aca9eb assets/worldofcolor/blockstates/black_block.json
 a101a588d479d297254002806ef06584959b52c3 assets/worldofcolor/blockstates/black_bricks.json
 df15fc8cbab0c8d25b8411540f8bdb0886e1b314 assets/worldofcolor/blockstates/black_brick_slab.json
@@ -1445,6 +1445,7 @@ bcea945a0972da71abd3b3390c6cf494e4ac2e06 assets/worldofcolor/blockstates/red_wal
 890ebf3bd77121afaa27760b23947045e945d185 assets/worldofcolor/blockstates/red_wall_sign.json
 1a78b8d81f3956c6452a601816844dd9bccbe7af assets/worldofcolor/blockstates/red_water_cauldron.json
 4f70b99fb29a4316b833b357820678896fbecd9f assets/worldofcolor/blockstates/red_wood.json
+07527a6ab7167dafdcd63fd5564a4a590454eaf2 assets/worldofcolor/blockstates/rgb_banner.json
 bbecaa7629473fa7615403878dd276e8a63251f7 assets/worldofcolor/blockstates/rgb_bed.json
 f80865c382ef7dcdf4da6fbf5299e3d5b06605ab assets/worldofcolor/blockstates/rgb_candle.json
 f674b7d56fac8dd4652cd07ab41db4e2b507ca35 assets/worldofcolor/blockstates/rgb_candle_cake.json
@@ -1456,6 +1457,7 @@ bfcba68a9636bc1231ea6fbffd777deaf10e78a3 assets/worldofcolor/blockstates/rgb_shu
 3e8bb3889ba3f708bea169a28f6d96754011f111 assets/worldofcolor/blockstates/rgb_stained_glass.json
 05033819fd12b726f2dc73ccca53cdfa5e28f8b6 assets/worldofcolor/blockstates/rgb_stained_glass_pane.json
 41f13b5d0816edc2bbb8315e60a869eb805ab02f assets/worldofcolor/blockstates/rgb_terracotta.json
+07527a6ab7167dafdcd63fd5564a4a590454eaf2 assets/worldofcolor/blockstates/rgb_wall_banner.json
 3875cd88e542f84b5a04ab344c19d9d20dc2b3b9 assets/worldofcolor/blockstates/rgb_wool.json
 a4a2d0dc3cde436623b0d35491feea8bf41bc4e8 assets/worldofcolor/blockstates/rose_carpet.json
 6fe901dd2c42e46998567d2c4bc5c3a502022643 assets/worldofcolor/blockstates/rose_wool.json
@@ -2607,6 +2609,7 @@ d19453e650d0ca6b39f08693851185af0a22bf30 assets/worldofcolor/items/red_slab.json
 1ee25fb1c2ffc2a7f45c48e9bbc2e6aee602aaf3 assets/worldofcolor/items/red_stairs.json
 a3fbaa52a437c03f674dfd634cbde828924db9a6 assets/worldofcolor/items/red_trapdoor.json
 d93638ae35b6a925f8dcdfee8678c877e772b950 assets/worldofcolor/items/red_wood.json
+28227f5adcafc1144ed024f0032c174f7a9596c1 assets/worldofcolor/items/rgb_banner.json
 4a591d284457f576d6d4e89b8bc4aae8b16a105e assets/worldofcolor/items/rgb_bed.json
 a13bea48ec8cf11b12a12ed83bc808bab6a15126 assets/worldofcolor/items/rgb_bundle.json
 73ef7508ffe1744e534b4188c2a7800808da56c4 assets/worldofcolor/items/rgb_candle.json
