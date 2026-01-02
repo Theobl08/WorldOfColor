@@ -147,6 +147,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.CANDLES).add(ModBlocks.RGB_CANDLE.get());
         this.tag(BlockTags.CANDLE_CAKES).add(ModBlocks.RGB_CANDLE_CAKE.get());
         this.tag(BlockTags.BEDS).add(ModBlocks.RGB_BED.get());
+        this.tag(BlockTags.BANNERS).add(ModBlocks.RGB_BANNER.get(), ModBlocks.RGB_WALL_BANNER.get());
         this.tag(Tags.Blocks.CONCRETES).add(ModBlocks.RGB_CONCRETE.get());
         this.tag(Tags.Blocks.GLASS_BLOCKS_CHEAP).add(ModBlocks.RGB_STAINED_GLASS.get());
         this.tag(Tags.Blocks.GLASS_PANES).add(ModBlocks.RGB_STAINED_GLASS_PANE.get());

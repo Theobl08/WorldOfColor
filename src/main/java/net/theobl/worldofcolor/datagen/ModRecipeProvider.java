@@ -215,6 +215,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ModItems.RGB_DYE), has(ModItems.RGB_DYE))
                 .save(this.output);
         bedFromPlanksAndWool(ModBlocks.RGB_BED, ModBlocks.RGB_WOOL);
+        banner(ModBlocks.RGB_BANNER, ModBlocks.RGB_WOOL);
     }
 
     protected void generateForEnabledBlockFamilies(FeatureFlagSet set) {

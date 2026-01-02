@@ -1,4 +1,4 @@
-// 1.21.11	2025-12-29T23:29:37.7364598	World of Color Recipes
+// 1.21.11	2026-01-02T15:52:57.5915721	World of Color Recipes
 4ce788622d0a2b2d2531da640f1d7c60ddfe34e2 data/minecraft/recipe/colored_decorated_pot.json
 f1b616ef799698165193d6295bd535c589a4afa6 data/worldofcolor/advancement/recipes/building_blocks/black_block_from_black_concrete_stonecutting.json
 af599e46001fd63c7cfc1bdb3012d76a35e69629 data/worldofcolor/advancement/recipes/building_blocks/black_block_from_black_quilted_concrete_stonecutting.json
@@ -1090,6 +1090,7 @@ db5def4d67c04551221c7ec17c07f4436e8483b3 data/worldofcolor/advancement/recipes/d
 a80f1d0e1f05064719e8ca8a75bb135042b4184a data/worldofcolor/advancement/recipes/decorations/red_hanging_sign.json
 706bc5c68826d36fa314d7ac219d724fddade604 data/worldofcolor/advancement/recipes/decorations/red_shelf.json
 4e53a18dbb9330a8e77e268c567c61264ed1f03e data/worldofcolor/advancement/recipes/decorations/red_sign.json
+6c6c12b91dbd38496d3ae0e105c485601846d2d4 data/worldofcolor/advancement/recipes/decorations/rgb_banner.json
 6c249ec094d93b74ebf2c994e5ff821d2b78bf76 data/worldofcolor/advancement/recipes/decorations/rgb_bed.json
 f39c4f2190fdd926493b7241756b47330fd53fa0 data/worldofcolor/advancement/recipes/decorations/rgb_candle.json
 7e939781acf1e277f58c67b68e8ff9acb5ce0525 data/worldofcolor/advancement/recipes/decorations/rgb_carpet.json
@@ -1947,6 +1948,7 @@ e4fff238a9257eb04ce3b6ec4eb0032664d5f28a data/worldofcolor/recipe/red_quilted_co
 5f98b98c18cfad925a886ce71c90234fadef722e data/worldofcolor/recipe/red_stairs.json
 da416782f1f69aa27f165cae5154ed3781695767 data/worldofcolor/recipe/red_trapdoor.json
 89ad23d7a794e5cb4760be2603158b968f683a62 data/worldofcolor/recipe/red_wood.json
+7090feb9e53a061b44cbe6397caddd79f9111994 data/worldofcolor/recipe/rgb_banner.json
 c4466d2ad2efe6358b8c877e3ec7b67b0f9e31a5 data/worldofcolor/recipe/rgb_bed.json
 65ef06ac0f571976ca7028071eb3a97daf76d3db data/worldofcolor/recipe/rgb_bundle.json
 967f4c0622876013889bb6edced37210321a20a8 data/worldofcolor/recipe/rgb_candle.json
