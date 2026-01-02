@@ -23,6 +23,7 @@
     "ChestRendererMixin",
     "CopperGolemStatueBlockRendererMixin",
     "ItemFrameRendererMixin",
+    "LoomScreenMixin",
     "ShulkerBoxRendererMixin"
   ],
   "injectors": {

@@ -2,6 +2,7 @@ package net.theobl.worldofcolor;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.logging.LogUtils;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.object.boat.BoatModel;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.renderer.BiomeColors;
@@ -33,10 +34,7 @@ import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent;
-import net.neoforged.neoforge.client.event.RegisterSpecialBlockModelRendererEvent;
-import net.neoforged.neoforge.client.event.RegisterSpecialModelRendererEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.client.extensions.common.IClientBlockExtensions;
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.common.NeoForge;
@@ -52,6 +50,8 @@ import net.theobl.worldofcolor.block.ModWoodType;
 import net.theobl.worldofcolor.block.entity.ModBlockEntityType;
 import net.theobl.worldofcolor.client.renderer.blockentity.ColoredBannerRenderer;
 import net.theobl.worldofcolor.client.renderer.blockentity.ColoredDecoratedPotRenderer;
+import net.theobl.worldofcolor.client.renderer.gui.GuiColoredBannerResultRenderer;
+import net.theobl.worldofcolor.client.renderer.gui.state.GuiColoredBannerResultRenderState;
 import net.theobl.worldofcolor.client.renderer.special.ColoredBannerSpecialRenderer;
 import net.theobl.worldofcolor.client.renderer.special.ColoredDecoratedPotSpecialRenderer;
 import net.theobl.worldofcolor.entity.ModEntityType;
@@ -236,6 +236,12 @@ public class WorldOfColor {
             ModBlocks.COLORED_DECORATED_POTS.forEach(block ->
                     event.register(block.get(), new ColoredDecoratedPotSpecialRenderer.Unbaked(block.get().getColor())));
             event.register(ModBlocks.RGB_BANNER.get(), new ColoredBannerSpecialRenderer.Unbaked());
+        }
+
+        @SubscribeEvent
+        public static void registerPictureInPictureRenderers(RegisterPictureInPictureRenderersEvent event) {
+            event.register(GuiColoredBannerResultRenderState.class,
+                    bufferSource -> new GuiColoredBannerResultRenderer(bufferSource, Minecraft.getInstance().getAtlasManager()));
         }
     }
 }
