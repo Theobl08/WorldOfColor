@@ -96,7 +96,6 @@ public class WorldOfColor {
         modEventBus.addListener(this::addCreative);
         modEventBus.addListener(this::addBlockToBlockEntity);
         modEventBus.addListener(this::extendPoiTypes);
-        modEventBus.addListener(this::registerBlockColor);
         modEventBus.addListener(this::registerCapabilities);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
@@ -145,20 +144,6 @@ public class WorldOfColor {
 //                .flatMap(block -> block.getStateDefinition().getPossibleStates().stream())
 //                .filter(state -> state.getValue(BedBlock.PART) == BedPart.HEAD)
 //                .collect(ImmutableSet.toImmutableSet()));
-    }
-
-    private void registerBlockColor(RegisterColorHandlersEvent.Block event) {
-        ModBlocks.COLORED_WATER_CAULDRONS.forEach(block ->
-                event.register((state, tintGetter, pos, i) ->
-                        tintGetter != null && pos != null ? BiomeColors.getAverageWaterColor(tintGetter, pos) : -1, block.get()));
-        ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.FERN).forEach(block ->
-                event.register(
-                        (state, level, pos, tintIndex) -> level != null && pos != null
-                                ? BiomeColors.getAverageGrassColor(level, pos)
-                                : GrassColor.getDefaultColor(),
-                        block.get()
-                )
-        );
     }
 
     public void registerCapabilities(RegisterCapabilitiesEvent event) {
@@ -213,6 +198,21 @@ public class WorldOfColor {
         public static void addPackFinders(AddPackFindersEvent event) {
             event.addPackFinders(Identifier.fromNamespaceAndPath(MODID, "resourcepacks/accurate_stained_glass"), PackType.CLIENT_RESOURCES,
                     Component.literal("Accurate stained glass color"), PackSource.DEFAULT, false, Pack.Position.TOP);
+        }
+
+        @SubscribeEvent
+        public static void registerBlockColor(RegisterColorHandlersEvent.Block event) {
+            ModBlocks.COLORED_WATER_CAULDRONS.forEach(block ->
+                    event.register((state, tintGetter, pos, i) ->
+                            tintGetter != null && pos != null ? BiomeColors.getAverageWaterColor(tintGetter, pos) : -1, block.get()));
+            ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.FERN).forEach(block ->
+                    event.register(
+                            (state, level, pos, tintIndex) -> level != null && pos != null
+                                    ? BiomeColors.getAverageGrassColor(level, pos)
+                                    : GrassColor.getDefaultColor(),
+                            block.get()
+                    )
+            );
         }
 
         @SubscribeEvent
