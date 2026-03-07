@@ -12,11 +12,8 @@ import net.minecraft.client.renderer.block.model.SingleVariant;
 import net.minecraft.client.renderer.block.model.Variant;
 import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.item.ItemModel;
-import net.minecraft.client.renderer.special.BannerSpecialRenderer;
 import net.minecraft.client.renderer.special.CopperGolemStatueSpecialRenderer;
-import net.minecraft.client.renderer.special.ShulkerBoxSpecialRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
-import net.minecraft.core.Direction;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.DyeColor;
@@ -65,6 +62,27 @@ public class ColoredBlockModelGenerators {
 
     public ColoredBlockModelGenerators(BlockModelGenerators blockModels) {
         this.blockModels = blockModels;
+    }
+
+    public void copyLayeredCauldronModel(Block sourceBlock, Block targetBlock) {
+        Identifier level1 = ModelLocationUtils.getModelLocation(sourceBlock, "_level1");
+        Identifier level2 = ModelLocationUtils.getModelLocation(sourceBlock, "_level2");
+        Identifier full = ModelLocationUtils.getModelLocation(sourceBlock, "_full");
+        blockModels.blockStateOutput
+                .accept(
+                        MultiVariantGenerator.dispatch(targetBlock)
+                                .with(
+                                        PropertyDispatch.initial(LayeredCauldronBlock.LEVEL)
+                                                .select(1, plainVariant(level1))
+                                                .select(2, plainVariant(level2))
+                                                .select(3, plainVariant(full))
+                                )
+                );
+    }
+
+    public void copyBlockModel(Block sourceBlock, Block targetBlock) {
+        MultiVariant multivariant = plainVariant(ModelLocationUtils.getModelLocation(sourceBlock));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(targetBlock, multivariant));
     }
 
     public static MultiVariant createLayeredCauldron(Identifier contentLevel, Identifier emptyCauldron) {

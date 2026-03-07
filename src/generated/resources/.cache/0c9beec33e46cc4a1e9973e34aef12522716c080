@@ -1,4 +1,4 @@
-// 1.21.11	2025-12-31T10:10:18.0430989	Model Definitions - worldofcolor
+// 1.21.11	2026-03-06T14:25:19.0895706	Model Definitions - worldofcolor
 a31101a419b44e9a513fb7452e79e831c6aca9eb assets/worldofcolor/blockstates/black_block.json
 a101a588d479d297254002806ef06584959b52c3 assets/worldofcolor/blockstates/black_bricks.json
 df15fc8cbab0c8d25b8411540f8bdb0886e1b314 assets/worldofcolor/blockstates/black_brick_slab.json
@@ -419,6 +419,7 @@ fd6dbca4dd351ad58be8a019c6799b38a1899b46 assets/worldofcolor/blockstates/cyan_pr
 d0bfe47bb00e233f10bd3525f6b9c8e4f537ee4f assets/worldofcolor/blockstates/dark_gray_wool.json
 abfb4f7b51881c8cc3c94f26b3275fcba2ab46d9 assets/worldofcolor/blockstates/dull_orange_carpet.json
 e78f487239d3ca933755acd2417542b0a3ef3686 assets/worldofcolor/blockstates/dull_orange_wool.json
+c12d7567fdfa06ce3cd78a13a224d6794375ac1b assets/worldofcolor/blockstates/dyed_water_cauldron.json
 f2e14862af22ae0c45f8b2421bbc544ca70c4077 assets/worldofcolor/blockstates/gray_block.json
 aa0d0ec1fdc20777d1466ed8b3ef817046551342 assets/worldofcolor/blockstates/gray_bricks.json
 1cf4b0634269fb22c2f3d838e884eadf361d5332 assets/worldofcolor/blockstates/gray_brick_slab.json

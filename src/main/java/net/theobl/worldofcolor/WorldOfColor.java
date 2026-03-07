@@ -50,6 +50,7 @@ import net.theobl.worldofcolor.block.ModWoodType;
 import net.theobl.worldofcolor.block.entity.ModBlockEntityType;
 import net.theobl.worldofcolor.client.renderer.blockentity.ColoredBannerRenderer;
 import net.theobl.worldofcolor.client.renderer.blockentity.ColoredDecoratedPotRenderer;
+import net.theobl.worldofcolor.client.renderer.blockentity.DyedWaterCauldronRenderer;
 import net.theobl.worldofcolor.client.renderer.gui.GuiColoredBannerResultRenderer;
 import net.theobl.worldofcolor.client.renderer.gui.state.GuiColoredBannerResultRenderState;
 import net.theobl.worldofcolor.client.renderer.special.ColoredBannerSpecialRenderer;
@@ -192,6 +193,7 @@ public class WorldOfColor {
         public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
             event.registerBlockEntityRenderer(ModBlockEntityType.COLORED_DECORATED_POT.get(), ColoredDecoratedPotRenderer::new);
             event.registerBlockEntityRenderer(ModBlockEntityType.RGB_BANNER.get(), ColoredBannerRenderer::new);
+            event.registerBlockEntityRenderer(ModBlockEntityType.DYED_WATER_CAULDRON.get(), DyedWaterCauldronRenderer::new);
         }
 
         @SubscribeEvent

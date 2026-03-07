@@ -22,6 +22,10 @@ public class ModBlockEntityType {
             BLOCK_ENTITY_TYPES.register("rgb_banner",
                     () -> new BlockEntityType<>(ColoredBannerBlockEntity::new, ModBlocks.RGB_BANNER.get(), ModBlocks.RGB_WALL_BANNER.get()));
 
+    public static final Supplier<BlockEntityType<DyedWaterCauldronBlockEntity>> DYED_WATER_CAULDRON =
+            BLOCK_ENTITY_TYPES.register("dyed_water_cauldron",
+                    () -> new BlockEntityType<>(DyedWaterCauldronBlockEntity::new, ModBlocks.DYED_WATER_CAULDRON.get()));
+
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITY_TYPES.register(eventBus);
     }

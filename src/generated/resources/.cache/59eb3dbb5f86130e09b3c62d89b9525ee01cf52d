@@ -1,4 +1,4 @@
-// 1.21.11	2025-12-30T22:08:36.6484921	Loot Tables
+// 1.21.11	2026-03-04T19:16:25.4944255	Loot Tables
 953334714f1928d20c44ae722c0cf8c88cb69aea data/worldofcolor/loot_table/blocks/black_block.json
 3b0742a32847c5c37a7f89dba6b0b342d5f80781 data/worldofcolor/loot_table/blocks/black_bricks.json
 74a5d969206956fc8424651aca2a5172d8345bd5 data/worldofcolor/loot_table/blocks/black_brick_slab.json
@@ -419,6 +419,7 @@ f1e5c0c9571b099d4348806afe2213eabfa1d4c8 data/worldofcolor/loot_table/blocks/cya
 2190af2c2fc81652805fb59922749640ca936523 data/worldofcolor/loot_table/blocks/dark_gray_wool.json
 a20d733e05a9906d1391a5183c5c13263a3dbdc9 data/worldofcolor/loot_table/blocks/dull_orange_carpet.json
 e488f67feab32c110d2a2b627728ba88cdfcad92 data/worldofcolor/loot_table/blocks/dull_orange_wool.json
+b91878eef7db32bc634562e93735123066f4a804 data/worldofcolor/loot_table/blocks/dyed_water_cauldron.json
 c1c3066c352d1221d729977beea6f4d0d96b4aac data/worldofcolor/loot_table/blocks/gray_block.json
 ae4fecf90dc77e13659e414d447bfc06f41b28df data/worldofcolor/loot_table/blocks/gray_bricks.json
 a7afa0493d61125041fb0049a89ad33218e8a0e8 data/worldofcolor/loot_table/blocks/gray_brick_slab.json

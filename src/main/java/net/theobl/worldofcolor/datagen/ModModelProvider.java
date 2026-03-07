@@ -118,6 +118,8 @@ public class ModModelProvider extends ModelProvider {
         coloredBlockModels.createBed(ModBlocks.RGB_BED.get());
         coloredBlockModels.createBanner(ModBlocks.RGB_BANNER.get(), ModBlocks.RGB_WALL_BANNER.get());
 
+        coloredBlockModels.copyBlockModel(Blocks.CAULDRON, ModBlocks.DYED_WATER_CAULDRON.get());
+
         ModItems.COLORED_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
         ModItems.COLORED_CHEST_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
         ModItems.COLORED_ITEM_FRAMES.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
