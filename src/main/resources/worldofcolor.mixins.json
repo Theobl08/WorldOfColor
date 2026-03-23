@@ -24,7 +24,8 @@
     "CopperGolemStatueBlockRendererMixin",
     "ItemFrameRendererMixin",
     "LoomScreenMixin",
-    "ShulkerBoxRendererMixin"
+    "ShulkerBoxRendererMixin",
+    "SpecialModelWrapperMixin"
   ],
   "injectors": {
     "defaultRequire": 1
