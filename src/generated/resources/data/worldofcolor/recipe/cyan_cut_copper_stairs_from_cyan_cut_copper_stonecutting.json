@@ -2,7 +2,6 @@
   "type": "minecraft:stonecutting",
   "ingredient": "worldofcolor:cyan_cut_copper",
   "result": {
-    "count": 1,
     "id": "worldofcolor:cyan_cut_copper_stairs"
   }
 }

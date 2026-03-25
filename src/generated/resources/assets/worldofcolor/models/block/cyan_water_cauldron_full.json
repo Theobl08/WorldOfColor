@@ -1,28 +1,11 @@
 {
-  "ambientocclusion": false,
-  "elements": [
-    {
-      "faces": {
-        "up": {
-          "texture": "#content",
-          "tintindex": 0
-        }
-      },
-      "from": [
-        2,
-        4,
-        2
-      ],
-      "to": [
-        14,
-        15,
-        14
-      ]
-    }
-  ],
-  "render_type": "minecraft:translucent",
+  "parent": "minecraft:block/template_cauldron_full",
   "textures": {
+    "bottom": "worldofcolor:block/cyan_cauldron_bottom",
     "content": "minecraft:block/water_still",
-    "particle": "worldofcolor:block/cyan_cauldron_side"
+    "inside": "worldofcolor:block/cyan_cauldron_inner",
+    "particle": "worldofcolor:block/cyan_cauldron_side",
+    "side": "worldofcolor:block/cyan_cauldron_side",
+    "top": "worldofcolor:block/cyan_cauldron_top"
   }
 }

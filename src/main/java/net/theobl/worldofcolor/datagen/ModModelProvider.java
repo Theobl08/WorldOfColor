@@ -4,13 +4,14 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.AzaleaBlock;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.RootsBlock;
+import net.minecraft.world.level.block.NetherRootsBlock;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.client.renderer.special.ColoredDecoratedPotSpecialRenderer;
@@ -30,15 +31,15 @@ public class ModModelProvider extends ModelProvider {
         ColoredBlockModelGenerators coloredBlockModels = new ColoredBlockModelGenerators(blockModels);
         ModBlockFamilies.getAllFamilies()
                 .filter(BlockFamily::shouldGenerateModel)
-                .forEach(blockFamily -> coloredBlockModels.family(blockFamily.getBaseBlock()).generateFor(blockFamily));
+                .forEach(blockFamily -> blockModels.family(blockFamily.getBaseBlock()).generateFor(blockFamily));
         ModBlocks.SIMPLE_COLORED_BLOCKS.forEach(block -> blockModels.createTrivialCube(block.get()));
         ModBlocks.GLAZED_CONCRETES.forEach(block -> blockModels.createColoredBlockWithStateRotations(TexturedModel.GLAZED_TERRACOTTA, block.get()));
         ModBlocks.COLORED_LEAVES.forEach(block -> blockModels.createTrivialCube(block.get()));
         ModBlocks.COLORED_COPPER_BLOCKS.forEach(block -> blockModels.createTrivialCube(block.get()));
-        ModBlocks.COLORED_COPPER_DOORS.forEach(block -> coloredBlockModels.createDoorWithRenderType(block.get(), "cutout"));
-        ModBlocks.COLORED_COPPER_TRAPDOORS.forEach(block -> coloredBlockModels.createOrientableTrapdoorWithRenderType(block.get(), "cutout"));
-        ModBlocks.COLORED_COPPER_GRATES.forEach(block -> coloredBlockModels.createTrivialCubeWithRenderType(block.get(), "cutout"));
-        ModBlocks.COLORED_SLIME_BLOCKS.forEach(block -> coloredBlockModels.createTrivialBlockWithRenderType(block.get(), TexturedModel.createDefault(TextureMapping::defaultTexture, SLIME_BLOCK), "translucent"));
+        ModBlocks.COLORED_COPPER_DOORS.forEach(block -> blockModels.createDoor(block.get()));
+        ModBlocks.COLORED_COPPER_TRAPDOORS.forEach(block -> blockModels.createOrientableTrapdoor(block.get()));
+        ModBlocks.COLORED_COPPER_GRATES.forEach(block -> blockModels.createTrivialCube(block.get()));
+        ModBlocks.COLORED_SLIME_BLOCKS.forEach(block -> blockModels.createTrivialBlock(block.get(), TexturedModel.createDefault(TextureMapping::defaultTexture, SLIME_BLOCK)));
         ModBlocks.COLORED_FLOWER_POTS.forEach(block -> {
             blockModels.registerSimpleFlatItemModel(block.asItem());
             coloredBlockModels.createTrivialBlock(block.get(), ColoredTextureMapping.flowerPot(block.get()), FLOWER_POT);
@@ -67,9 +68,10 @@ public class ModModelProvider extends ModelProvider {
             blockModels.copyDoorModel(ModBlocks.COLORED_COPPER_DOORS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_DOORS.get(index).get());
             blockModels.copyTrapdoorModel(ModBlocks.COLORED_COPPER_TRAPDOORS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS.get(index).get());
             blockModels.copyModel(ModBlocks.COLORED_COPPER_GRATES.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_GRATES.get(index).get());
-            coloredBlockModels.createBarsAndItem(ModBlocks.COLORED_COPPER_BARS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_BARS.get(index).get());
-            coloredBlockModels.createCopperChain(ModBlocks.COLORED_COPPER_CHAINS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_CHAINS.get(index).get());
-            coloredBlockModels.createCopperLantern(ModBlocks.COLORED_COPPER_LANTERNS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_LANTERNS.get(index).get());
+            blockModels.createBarsAndItem(ModBlocks.COLORED_COPPER_BARS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_BARS.get(index).get());
+            blockModels.createCopperChainItem(ModBlocks.COLORED_COPPER_CHAINS.get(index).asItem(), ModBlocks.COLORED_WAXED_COPPER_CHAINS.get(index).asItem());
+            blockModels.createCopperChain(ModBlocks.COLORED_COPPER_CHAINS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_CHAINS.get(index).get());
+            blockModels.createCopperLantern(ModBlocks.COLORED_COPPER_LANTERNS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_LANTERNS.get(index).get());
             blockModels.createLightningRod(ModBlocks.COLORED_LIGHTNING_RODS.get(index).get(), ModBlocks.COLORED_WAXED_LIGHTNING_RODS.get(index).get());
             blockModels.createChest(ModBlocks.COLORED_COPPER_CHESTS.get(index).get(), ModBlocks.COLORED_COPPER_BLOCKS.get(index).get(), WorldOfColor.asResource("copper_" + color.getName()), false);
             blockModels.copyModel(ModBlocks.COLORED_COPPER_CHESTS.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(index).get());
@@ -77,7 +79,7 @@ public class ModModelProvider extends ModelProvider {
             blockModels.copyModel(ModBlocks.COLORED_COPPER_GOLEM_STATUES.get(index).get(), ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.get(index).get());
             coloredBlockModels.createCauldrons(color);
             coloredBlockModels.createTrivialBlock(ModBlocks.QUILTED_CONCRETES.get(index).get(), cube(ModUtil.SHULKER_BOXES.get(index)), ModelTemplates.CUBE_ALL);
-            coloredBlockModels.createPlantWithDefaultItem(ModBlocks.COLORED_SAPLINGS.get(index).get(), ModBlocks.POTTED_COLORED_SAPLINGS.get(index).get(), BlockModelGenerators.PlantType.NOT_TINTED);
+            blockModels.createPlantWithDefaultItem(ModBlocks.COLORED_SAPLINGS.get(index).get(), ModBlocks.POTTED_COLORED_SAPLINGS.get(index).get(), BlockModelGenerators.PlantType.NOT_TINTED);
             ModBlocks.COLORED_POTTED_PLANTS.forEach((plant, pottedPlant) -> {
                 BlockModelGenerators.PlantType plantType = BlockModelGenerators.PlantType.NOT_TINTED;
                 if(plant.get() == Blocks.FERN) {
@@ -85,7 +87,7 @@ public class ModModelProvider extends ModelProvider {
                 } else if (plant.get() == Blocks.OPEN_EYEBLOSSOM) {
                     plantType = BlockModelGenerators.PlantType.EMISSIVE_NOT_TINTED;
                 }
-                if(plant.get() == Blocks.BAMBOO || plant.get() == Blocks.MANGROVE_PROPAGULE || plant.get() == Blocks.CACTUS || plant.get() instanceof AzaleaBlock || plant.get() instanceof RootsBlock) {
+                if(plant.get() == Blocks.BAMBOO || plant.get() == Blocks.MANGROVE_PROPAGULE || plant.get() == Blocks.CACTUS || plant.get() instanceof AzaleaBlock || plant.get() instanceof NetherRootsBlock) {
                     String suffix = plant.get() instanceof AzaleaBlock ? "_bush" : "";
                     coloredBlockModels.createPottedPlant(pottedPlant.get(index).get(), ModBlocks.COLORED_FLOWER_POTS.get(index).get(), BuiltInRegistries.BLOCK.getKey(plant.get()).getPath() + suffix);
                 } else {
@@ -96,13 +98,13 @@ public class ModModelProvider extends ModelProvider {
             ITEM_FRAME.create(WorldOfColor.asResource(color.getName() + "_item_frame").withPrefix("block/"),
                     new TextureMapping().put(TextureSlot.PARTICLE, getBlockTexture(Blocks.BIRCH_PLANKS))
                             .put(ColoredTextureSlot.WOOD, getBlockTexture(Blocks.BIRCH_PLANKS))
-                            .put(TextureSlot.BACK, WorldOfColor.asResource(color.getName() + "_item_frame").withPrefix("block/")),
+                            .put(TextureSlot.BACK, new Material(WorldOfColor.asResource(color.getName() + "_item_frame").withPrefix("block/"))),
                     blockModels.modelOutput);
 
             ITEM_FRAME_MAP.create(WorldOfColor.asResource(color.getName() + "_item_frame_map").withPrefix("block/"),
                     new TextureMapping().put(TextureSlot.PARTICLE, getBlockTexture(Blocks.BIRCH_PLANKS))
                             .put(ColoredTextureSlot.WOOD, getBlockTexture(Blocks.BIRCH_PLANKS))
-                            .put(TextureSlot.BACK, WorldOfColor.asResource(color.getName() + "_item_frame").withPrefix("block/")),
+                            .put(TextureSlot.BACK, new Material(WorldOfColor.asResource(color.getName() + "_item_frame").withPrefix("block/"))),
                     blockModels.modelOutput);
 
             blockModels.createShelf(ModBlocks.COLORED_SHELVES.get(index).get(), ModBlocks.COLORED_STRIPPED_LOGS.get(index).get());
@@ -112,7 +114,7 @@ public class ModModelProvider extends ModelProvider {
         blockModels.createTrivialCube(ModBlocks.RGB_CONCRETE.get());
         blockModels.createColoredBlockWithRandomRotations(TexturedModel.CUBE, ModBlocks.RGB_CONCRETE_POWDER.get());
         blockModels.createColoredBlockWithStateRotations(TexturedModel.GLAZED_TERRACOTTA, ModBlocks.RGB_GLAZED_TERRACOTTA.get());
-        coloredBlockModels.createGlassBlocks(ModBlocks.RGB_STAINED_GLASS.get(), ModBlocks.RGB_STAINED_GLASS_PANE.get());
+        blockModels.createGlassBlocks(ModBlocks.RGB_STAINED_GLASS.get(), ModBlocks.RGB_STAINED_GLASS_PANE.get());
         blockModels.createCandleAndCandleCake(ModBlocks.RGB_CANDLE.get(), ModBlocks.RGB_CANDLE_CAKE.get());
         coloredBlockModels.createShulkerBox(ModBlocks.RGB_SHULKER_BOX.get());
         coloredBlockModels.createBed(ModBlocks.RGB_BED.get());

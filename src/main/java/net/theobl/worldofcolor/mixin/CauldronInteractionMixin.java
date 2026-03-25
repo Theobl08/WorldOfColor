@@ -2,7 +2,7 @@ package net.theobl.worldofcolor.mixin;
 
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.core.cauldron.CauldronInteractions;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -19,8 +19,8 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 import java.util.List;
 
-@Mixin(value = CauldronInteraction.class, remap = false)
-public interface CauldronInteractionMixin {
+@Mixin(value = CauldronInteractions.class, remap = false)
+public abstract class CauldronInteractionMixin {
     @ModifyVariable(method = "emptyBucket", at = @At(value = "HEAD"), argsOnly = true)
     private static BlockState emptyBucketThatActuallyWorking(BlockState state, @Local(argsOnly = true)BlockPos pos,
                                                              @Local(argsOnly = true)Level level, @Local(argsOnly = true)ItemStack filledStack) {

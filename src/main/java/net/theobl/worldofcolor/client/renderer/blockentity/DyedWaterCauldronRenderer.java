@@ -2,18 +2,18 @@ package net.theobl.worldofcolor.client.renderer.blockentity;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
-import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlas;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.model.ModelBakery;
 import net.minecraft.util.ARGB;
+import net.minecraft.util.LightCoordsUtil;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.phys.Vec3;
 import net.theobl.worldofcolor.block.entity.DyedWaterCauldronBlockEntity;
@@ -42,7 +42,7 @@ public class DyedWaterCauldronRenderer implements BlockEntityRenderer<DyedWaterC
 
     @Override
     public void submit(DyedWaterCauldronRenderState renderState, PoseStack poseStack, SubmitNodeCollector nodeCollector, CameraRenderState cameraRenderState) {
-        TextureAtlasSprite water = Minecraft.getInstance().getAtlasManager().get(ModelBakery.WATER_STILL);
+        TextureAtlasSprite water = Minecraft.getInstance().getAtlasManager().get(Sheets.BLOCKS_MAPPER.defaultNamespaceApply("water_still"));
         poseStack.pushPose();
         poseStack.translate(0, HEIGHT_PER_LEVEL[renderState.waterLevel - 1], 0);
 
@@ -63,28 +63,28 @@ public class DyedWaterCauldronRenderer implements BlockEntityRenderer<DyedWaterC
             consumer.addVertex(matrix, 0.0f + sizeFactor, 0.0f, 1.0f - sizeFactor)
                     .setColor(red, green, blue, alpha)
                     .setUv(water.getU0() + maxU, water.getV0() + minV)
-                    .setLight(LightTexture.FULL_BRIGHT)
+                    .setLight(LightCoordsUtil.FULL_BRIGHT)
                     .setOverlay(OverlayTexture.NO_OVERLAY)
                     .setNormal(0, 1, 0);
 
             consumer.addVertex(matrix, 1.0f - sizeFactor, 0.0f, 1.0f - sizeFactor)
                     .setColor(red, green, blue, alpha)
                     .setUv(water.getU0() + minU, water.getV0() + minV)
-                    .setLight(LightTexture.FULL_BRIGHT)
+                    .setLight(LightCoordsUtil.FULL_BRIGHT)
                     .setOverlay(OverlayTexture.NO_OVERLAY)
                     .setNormal(0, 1, 0);
 
             consumer.addVertex(matrix, 1.0f - sizeFactor, 0.0f, 0.0f + sizeFactor)
                     .setColor(red, green, blue, alpha)
                     .setUv(water.getU0() + minU, water.getV0() + maxV)
-                    .setLight(LightTexture.FULL_BRIGHT)
+                    .setLight(LightCoordsUtil.FULL_BRIGHT)
                     .setOverlay(OverlayTexture.NO_OVERLAY)
                     .setNormal(0, 1, 0);
 
             consumer.addVertex(matrix, 0.0f + sizeFactor, 0.0f, 0.0f + sizeFactor)
                     .setColor(red, green, blue, alpha)
                     .setUv(water.getU0() + maxU, water.getV0() + maxV)
-                    .setLight(LightTexture.FULL_BRIGHT)
+                    .setLight(LightCoordsUtil.FULL_BRIGHT)
                     .setOverlay(OverlayTexture.NO_OVERLAY)
                     .setNormal(0, 1, 0);
         });

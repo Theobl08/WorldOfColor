@@ -1,8 +1,13 @@
 {
   "parent": "minecraft:block/template_glass_pane_post",
-  "render_type": "minecraft:translucent",
   "textures": {
-    "edge": "worldofcolor:block/rgb_stained_glass_pane_top",
-    "pane": "worldofcolor:block/rgb_stained_glass"
+    "edge": {
+      "force_translucent": true,
+      "sprite": "worldofcolor:block/rgb_stained_glass_pane_top"
+    },
+    "pane": {
+      "force_translucent": true,
+      "sprite": "worldofcolor:block/rgb_stained_glass"
+    }
   }
 }

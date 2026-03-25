@@ -14,11 +14,11 @@ import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
-import net.minecraft.client.renderer.state.CameraRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.model.Material;
-import net.minecraft.client.resources.model.MaterialSet;
+import net.minecraft.client.resources.model.sprite.SpriteGetter;
+import net.minecraft.client.resources.model.sprite.SpriteId;
 import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.Mth;
@@ -40,7 +40,7 @@ import java.util.function.Consumer;
 
 @ParametersAreNonnullByDefault
 public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredDecoratedPotBlockEntity, DecoratedPotRenderState> {
-    private final MaterialSet materials;
+    private final SpriteGetter sprites;
     private static final String NECK = "neck";
     private static final String FRONT = "front";
     private static final String BACK = "back";
@@ -59,15 +59,15 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
     public DyeColor color;
 
     public ColoredDecoratedPotRenderer(BlockEntityRendererProvider.Context context) {
-        this(context.entityModelSet(), context.materials());
+        this(context.entityModelSet(), context.sprites());
     }
 
     public ColoredDecoratedPotRenderer(SpecialModelRenderer.BakingContext context) {
-        this(context.entityModelSet(), context.materials());
+        this(context.entityModelSet(), context.sprites());
     }
 
-    public ColoredDecoratedPotRenderer(EntityModelSet modelSet, MaterialSet materials) {
-        this.materials = materials;
+    public ColoredDecoratedPotRenderer(EntityModelSet modelSet, SpriteGetter materials) {
+        this.sprites = materials;
         ModelPart base = modelSet.bakeLayer(ModelLayers.DECORATED_POT_BASE);
         this.neck = base.getChild(NECK);
         this.top = base.getChild(TOP);
@@ -79,9 +79,9 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
         this.rightSide = sides.getChild(RIGHT);
     }
 
-    private static Material getSideMaterial(Optional<Item> item) {
+    private static SpriteId getSideSprite(Optional<Item> item) {
         if (item.isPresent()) {
-            Material material = Sheets.getDecoratedPotMaterial(DecoratedPotPatterns.getPatternFromItem(item.get()));
+            SpriteId material = Sheets.getDecoratedPotSprite(DecoratedPotPatterns.getPatternFromItem(item.get()));
             if (material != null) {
                 return material;
             }
@@ -90,10 +90,10 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
         return Sheets.DECORATED_POT_SIDE;
     }
 
-    private Material colorMaterial(Material material) {
+    private SpriteId colorMaterial(SpriteId material) {
         if(color != null) {
             Identifier newTexture = WorldOfColor.asResource(material.texture().getPath() + "_" + color.getName());
-            return new Material(material.atlasLocation(), newTexture);
+            return new SpriteId(material.atlasLocation(), newTexture);
         }
         else {
             return material;
@@ -153,60 +153,60 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
 
     public void submit(PoseStack poseStack, SubmitNodeCollector nodeCollector, int packedLight, int packedOverlay, PotDecorations decorations, int outlineColor) {
         RenderType rendertype = Sheets.DECORATED_POT_BASE.renderType(RenderTypes::entitySolid);
-        TextureAtlasSprite textureatlassprite = this.materials.get(colorMaterial(Sheets.DECORATED_POT_BASE));
+        TextureAtlasSprite textureatlassprite = this.sprites.get(colorMaterial(Sheets.DECORATED_POT_BASE));
         nodeCollector.submitModelPart(this.neck, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, false, false, -1, null, outlineColor);
         nodeCollector.submitModelPart(this.top, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, false, false, -1, null, outlineColor);
         nodeCollector.submitModelPart(this.bottom, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, false, false, -1, null, outlineColor);
-        Material material = colorMaterial(getSideMaterial(decorations.front()));
+        SpriteId material = colorMaterial(getSideSprite(decorations.front()));
         nodeCollector.submitModelPart(
                 this.frontSide,
                 poseStack,
                 material.renderType(RenderTypes::entitySolid),
                 packedLight,
                 packedOverlay,
-                this.materials.get(material),
+                this.sprites.get(material),
                 false,
                 false,
                 -1,
                 null,
                 outlineColor
         );
-        Material material1 = colorMaterial(getSideMaterial(decorations.back()));
+        SpriteId material1 = colorMaterial(getSideSprite(decorations.back()));
         nodeCollector.submitModelPart(
                 this.backSide,
                 poseStack,
                 material1.renderType(RenderTypes::entitySolid),
                 packedLight,
                 packedOverlay,
-                this.materials.get(material1),
+                this.sprites.get(material1),
                 false,
                 false,
                 -1,
                 null,
                 outlineColor
         );
-        Material material2 = colorMaterial(getSideMaterial(decorations.left()));
+        SpriteId material2 = colorMaterial(getSideSprite(decorations.left()));
         nodeCollector.submitModelPart(
                 this.leftSide,
                 poseStack,
                 material2.renderType(RenderTypes::entitySolid),
                 packedLight,
                 packedOverlay,
-                this.materials.get(material2),
+                this.sprites.get(material2),
                 false,
                 false,
                 -1,
                 null,
                 outlineColor
         );
-        Material material3 = colorMaterial(getSideMaterial(decorations.right()));
+        SpriteId material3 = colorMaterial(getSideSprite(decorations.right()));
         nodeCollector.submitModelPart(
                 this.rightSide,
                 poseStack,
                 material3.renderType(RenderTypes::entitySolid),
                 packedLight,
                 packedOverlay,
-                this.materials.get(material3),
+                this.sprites.get(material3),
                 false,
                 false,
                 -1,

@@ -2,7 +2,6 @@
   "type": "minecraft:stonecutting",
   "ingredient": "worldofcolor:waxed_pink_cut_copper",
   "result": {
-    "count": 1,
     "id": "worldofcolor:waxed_pink_chiseled_copper"
   }
 }

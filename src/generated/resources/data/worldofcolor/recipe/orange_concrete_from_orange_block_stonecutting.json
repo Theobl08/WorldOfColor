@@ -2,7 +2,6 @@
   "type": "minecraft:stonecutting",
   "ingredient": "worldofcolor:orange_block",
   "result": {
-    "count": 1,
     "id": "minecraft:orange_concrete"
   }
 }

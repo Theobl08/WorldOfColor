@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/flower_pot_cross_emissive",
-  "render_type": "minecraft:cutout",
   "textures": {
     "cross_emissive": "minecraft:block/open_eyeblossom_emissive",
     "flowerpot": "worldofcolor:block/lime_flower_pot",

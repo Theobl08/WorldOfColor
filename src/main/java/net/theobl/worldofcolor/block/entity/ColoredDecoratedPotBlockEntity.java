@@ -5,6 +5,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponentGetter;
 import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
@@ -12,6 +13,7 @@ import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.RandomizableContainer;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.DecoratedPotBlockEntity;
@@ -90,10 +92,13 @@ public class ColoredDecoratedPotBlockEntity extends BlockEntity implements Rando
         return this.decorations;
     }
 
-    public static ItemStack createDecoratedPotItem(PotDecorations decorations, DyeColor color) {
-        ItemStack itemstack = ModBlocks.COLORED_DECORATED_POTS.get(ModUtil.COLORS.indexOf(color)).toStack();
-        itemstack.set(DataComponents.POT_DECORATIONS, decorations);
-        return itemstack;
+    public static ItemStackTemplate createDecoratedPotTemplate(PotDecorations decorations, DyeColor color) {
+        return new ItemStackTemplate(ModBlocks.COLORED_DECORATED_POTS.get(ModUtil.COLORS.indexOf(color)).asItem(),
+                DataComponentPatch.builder().set(DataComponents.POT_DECORATIONS, decorations).build());
+    }
+
+    public static ItemStack createDecoratedPotInstance(PotDecorations decorations, DyeColor color) {
+        return createDecoratedPotTemplate(decorations, color).create();
     }
 
     @Nullable

@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.renderer.blockentity.ChestRenderer;
 import net.minecraft.client.renderer.blockentity.state.ChestRenderState;
-import net.minecraft.client.resources.model.Material;
+import net.minecraft.client.resources.model.sprite.SpriteId;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.theobl.worldofcolor.ModMaterial;
@@ -15,8 +15,8 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(ChestRenderer.class)
 public abstract class ChestRendererMixin {
-    @ModifyReturnValue(method = "getCustomMaterial", at = @At("RETURN"))
-    private Material getCustomMaterial(Material original, @Local(argsOnly = true) BlockEntity blockEntity, @Local(argsOnly = true) ChestRenderState renderState) {
+    @ModifyReturnValue(method = "getCustomSprite", at = @At("RETURN"))
+    private SpriteId getCustomMaterial(SpriteId original, @Local(argsOnly = true) BlockEntity blockEntity, @Local(argsOnly = true) ChestRenderState renderState) {
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
             if(blockEntity.getBlockState().is(ModBlocks.COLORED_COPPER_CHESTS.get(index))

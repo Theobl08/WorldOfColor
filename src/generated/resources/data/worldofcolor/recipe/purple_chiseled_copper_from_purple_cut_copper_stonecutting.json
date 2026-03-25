@@ -2,7 +2,6 @@
   "type": "minecraft:stonecutting",
   "ingredient": "worldofcolor:purple_cut_copper",
   "result": {
-    "count": 1,
     "id": "worldofcolor:purple_chiseled_copper"
   }
 }

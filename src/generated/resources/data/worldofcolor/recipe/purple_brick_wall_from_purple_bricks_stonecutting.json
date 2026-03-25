@@ -2,7 +2,6 @@
   "type": "minecraft:stonecutting",
   "ingredient": "worldofcolor:purple_bricks",
   "result": {
-    "count": 1,
     "id": "worldofcolor:purple_brick_wall"
   }
 }

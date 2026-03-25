@@ -1,37 +1,13 @@
 {
   "variants": {
     "level=1": {
-      "type": "neoforge:composite",
-      "models": [
-        {
-          "model": "worldofcolor:block/cyan_water_cauldron_level1"
-        },
-        {
-          "model": "worldofcolor:block/cyan_cauldron"
-        }
-      ]
+      "model": "worldofcolor:block/cyan_water_cauldron_level1"
     },
     "level=2": {
-      "type": "neoforge:composite",
-      "models": [
-        {
-          "model": "worldofcolor:block/cyan_water_cauldron_level2"
-        },
-        {
-          "model": "worldofcolor:block/cyan_cauldron"
-        }
-      ]
+      "model": "worldofcolor:block/cyan_water_cauldron_level2"
     },
     "level=3": {
-      "type": "neoforge:composite",
-      "models": [
-        {
-          "model": "worldofcolor:block/cyan_water_cauldron_full"
-        },
-        {
-          "model": "worldofcolor:block/cyan_cauldron"
-        }
-      ]
+      "model": "worldofcolor:block/cyan_water_cauldron_full"
     }
   }
 }

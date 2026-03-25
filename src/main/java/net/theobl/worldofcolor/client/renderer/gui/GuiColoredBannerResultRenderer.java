@@ -5,20 +5,20 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.render.pip.PictureInPictureRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.SubmitNodeStorage;
 import net.minecraft.client.renderer.feature.FeatureRenderDispatcher;
 import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.resources.model.MaterialSet;
-import net.minecraft.client.resources.model.ModelBakery;
+import net.minecraft.client.resources.model.sprite.SpriteGetter;
 import net.theobl.worldofcolor.client.renderer.blockentity.ColoredBannerRenderer;
 import net.theobl.worldofcolor.client.renderer.gui.state.GuiColoredBannerResultRenderState;
 
 public class GuiColoredBannerResultRenderer extends PictureInPictureRenderer<GuiColoredBannerResultRenderState> {
-    private final MaterialSet materials;
+    private final SpriteGetter sprites;
 
-    public GuiColoredBannerResultRenderer(MultiBufferSource.BufferSource bufferSource, MaterialSet materials) {
+    public GuiColoredBannerResultRenderer(MultiBufferSource.BufferSource bufferSource, SpriteGetter materials) {
         super(bufferSource);
-        this.materials = materials;
+        this.sprites = materials;
     }
 
     @Override
@@ -32,21 +32,19 @@ public class GuiColoredBannerResultRenderer extends PictureInPictureRenderer<Gui
         poseStack.translate(0.0F, 0.25F, 0.0F);
         FeatureRenderDispatcher featurerenderdispatcher = Minecraft.getInstance().gameRenderer.getFeatureRenderDispatcher();
         SubmitNodeStorage submitnodestorage = featurerenderdispatcher.getSubmitNodeStorage();
+        submitnodestorage.submitModel(renderState.flag(), 0.0F, poseStack, 15728880, OverlayTexture.NO_OVERLAY, -1, Sheets.BANNER_BASE, this.sprites, 0, null);
         ColoredBannerRenderer.submitPatterns(
-                this.materials,
+                this.sprites,
                 poseStack,
                 submitnodestorage,
                 15728880,
                 OverlayTexture.NO_OVERLAY,
                 renderState.flag(),
                 0.0F,
-                ModelBakery.BANNER_BASE,
                 true,
                 renderState.baseColor(),
                 renderState.resultBannerPatterns(),
-                false,
-                null,
-                0
+                null
         );
         featurerenderdispatcher.renderAllFeatures();
     }

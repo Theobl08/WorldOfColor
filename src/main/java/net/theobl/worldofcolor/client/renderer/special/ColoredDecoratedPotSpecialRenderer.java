@@ -7,7 +7,6 @@ import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.PotDecorations;
 import net.theobl.worldofcolor.client.renderer.blockentity.ColoredDecoratedPotRenderer;
@@ -32,7 +31,7 @@ public class ColoredDecoratedPotSpecialRenderer implements SpecialModelRenderer<
     }
 
     @Override
-    public void submit(@Nullable PotDecorations argument, ItemDisplayContext displayContext, PoseStack poseStack, SubmitNodeCollector nodeCollector, int packedLight, int packedOverlay, boolean hasFoil, int outlineColor) {
+    public void submit(@Nullable PotDecorations argument, PoseStack poseStack, SubmitNodeCollector nodeCollector, int packedLight, int packedOverlay, boolean hasFoil, int outlineColor) {
         this.decoratedPotRenderer.color = this.color;
         this.decoratedPotRenderer.submit(poseStack, nodeCollector, packedLight, packedOverlay, Objects.requireNonNullElse(argument, PotDecorations.EMPTY), outlineColor);
     }
@@ -42,7 +41,7 @@ public class ColoredDecoratedPotSpecialRenderer implements SpecialModelRenderer<
         decoratedPotRenderer.getExtents(output);
     }
 
-    public record Unbaked(DyeColor color) implements SpecialModelRenderer.Unbaked {
+    public record Unbaked(DyeColor color) implements SpecialModelRenderer.Unbaked<PotDecorations> {
         public static final MapCodec<ColoredDecoratedPotSpecialRenderer.Unbaked> MAP_CODEC = RecordCodecBuilder.mapCodec(
                 instance -> instance.group(DyeColor.CODEC.fieldOf("color").forGetter(ColoredDecoratedPotSpecialRenderer.Unbaked::color))
                         .apply(instance, ColoredDecoratedPotSpecialRenderer.Unbaked::new)
@@ -54,7 +53,7 @@ public class ColoredDecoratedPotSpecialRenderer implements SpecialModelRenderer<
         }
 
         @Override
-        public SpecialModelRenderer<?> bake(SpecialModelRenderer.BakingContext context) {
+        public ColoredDecoratedPotSpecialRenderer bake(SpecialModelRenderer.BakingContext context) {
             return new ColoredDecoratedPotSpecialRenderer(new ColoredDecoratedPotRenderer(context), color());
         }
     }

@@ -1,4 +1,4 @@
-// 1.21.11	2026-01-02T15:52:57.6216357	Tags for minecraft:block mod id worldofcolor
+// 26.1	2026-03-25T17:03:54.6496487	Tags for minecraft:block mod id worldofcolor
 dfc2d872e0fc2643b4796b70c0d412bb7a6fc66f data/c/tags/block/concretes.json
 3d6c0b035c67e9cd0ddbf4a707ff7bcd3291dd4f data/c/tags/block/dyed/black.json
 3fc255a89a05737990876711691e7477845dfbe0 data/c/tags/block/dyed/blue.json
@@ -36,7 +36,7 @@ a3d90ab71d3131d2b36779dc6418aef9acd10bd2 data/minecraft/tags/block/concrete_powd
 217fd03c59bdddbf3d4466e0967ae0d138790d2e data/minecraft/tags/block/copper_golem_statues.json
 ad7ced8da31a25d498587d611f687a552d1cd450 data/minecraft/tags/block/doors.json
 eb78c48bba70dbc4b3b3f09510d0af4c186c77d4 data/minecraft/tags/block/fence_gates.json
-7a5f962519c47783f4a9b9ef580ef9b559e4d6b8 data/minecraft/tags/block/flower_pots.json
+8d775f51776e9caa8416c8c3ebb1fb14d2e840db data/minecraft/tags/block/flower_pots.json
 cbb69e8c9a4ffb3c0aaa0ccd88fbad5c8519f82f data/minecraft/tags/block/impermeable.json
 14ad5ec71df5d7d106f0fc34ea67dcd42640ce3d data/minecraft/tags/block/lanterns.json
 577a8c674e8e807d3b82949d8587fed069ee57d8 data/minecraft/tags/block/leaves.json

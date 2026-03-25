@@ -1,22 +1,18 @@
 package net.theobl.worldofcolor.datagen;
 
 import net.minecraft.core.HolderLookup;
-import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.BundleItem;
-import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ShulkerBoxBlock;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.WorldOfColor;
@@ -136,7 +132,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         ModBlocks.COLORED_DECORATED_POTS.forEach(block -> this.shaped(RecipeCategory.DECORATIONS, block.get().asItem())
                 .define('#', Items.BRICK)
-                .define('D', DyeItem.byColor(block.get().getColor()))
+                .define('D', DYES.get(COLORS.indexOf(block.get().getColor())))
                 .pattern(" # ")
                 .pattern("#D#")
                 .pattern(" # ")
@@ -152,7 +148,8 @@ public class ModRecipeProvider extends RecipeProvider {
         colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_LANTERNS.getFirst(), Blocks.COPPER_LANTERN.unaffected());
         colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_CHESTS.getFirst(), Blocks.COPPER_CHEST);
         colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_GOLEM_STATUES.getFirst(), Blocks.COPPER_GOLEM_STATUE);
-        SpecialRecipeBuilder.special(ColoredDecoratedPotRecipe::new).save(this.output, "colored_decorated_pot");
+        SpecialRecipeBuilder.special(() -> new ColoredDecoratedPotRecipe(this.tag(ItemTags.DECORATED_POT_INGREDIENTS), tag(ItemTags.DYES)))
+                .save(this.output, "colored_decorated_pot");
 
         shapeless(RecipeCategory.MISC, ModItems.RGB_DYE, 7)
                 .requires(Items.BLACK_DYE)
@@ -219,7 +216,7 @@ public class ModRecipeProvider extends RecipeProvider {
     }
 
     protected void generateForEnabledBlockFamilies(FeatureFlagSet set) {
-        ModBlockFamilies.getAllFamilies().filter(BlockFamily::shouldGenerateRecipe).forEach(family -> generateRecipes(family, set));
+        ModBlockFamilies.getAllFamilies().forEach(family -> generateRecipes(family, set));
     }
 
     protected void stonecutterResultFromBase(RecipeCategory category, ItemLike result, ItemLike material) {

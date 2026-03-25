@@ -2,12 +2,12 @@ package net.theobl.worldofcolor.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
+import net.minecraft.core.cauldron.CauldronInteractions;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ARGB;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -27,15 +27,13 @@ import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.entity.DyedWaterCauldronBlockEntity;
 import net.theobl.worldofcolor.util.ModUtil;
 
-import java.util.Map;
 import java.util.function.Predicate;
 
-public interface ColoredCauldronInteraction extends CauldronInteraction {
-    CauldronInteraction.InteractionMap DYED_WATER = CauldronInteraction.newInteractionMap("dyed_water");
-    static void bootStrap() {
+public class ColoredCauldronInteraction extends CauldronInteractions {
+    public static CauldronInteraction.Dispatcher DYED_WATER = newDispatcher("dyed_water");
+    public static void bootStrap() {
         WorldOfColor.LOGGER.info("ColoredCauldronInteraction bootstrap");
-        Map<Item, CauldronInteraction> empty = EMPTY.map();
-        empty.put(Items.POTION, (state, level, pos, player, hand, stack) -> {
+        EMPTY.put(Items.POTION, (state, level, pos, player, hand, stack) -> {
             PotionContents potioncontents = stack.get(DataComponents.POTION_CONTENTS);
             if (potioncontents != null && potioncontents.is(Potions.WATER)) {
                 if (!level.isClientSide()) {
@@ -59,8 +57,7 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
                 return InteractionResult.TRY_WITH_EMPTY_HAND;
             }
         });
-        Map<Item, CauldronInteraction> water = WATER.map();
-        water.put(
+        WATER.put(
                 Items.BUCKET,
                 (state, level, pos, player, hand, stack) -> fillBucket(
                         state,
@@ -74,9 +71,8 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
                         SoundEvents.BUCKET_FILL
                 )
         );
-        ModUtil.DYES.forEach(item -> water.put(item, ColoredCauldronInteraction::dyeWaterInteraction));
-        Map<Item, CauldronInteraction> lava = LAVA.map();
-        lava.put(
+        ModUtil.DYES.forEach(item -> WATER.put(item, ColoredCauldronInteraction::dyeWaterInteraction));
+        LAVA.put(
                 Items.BUCKET,
                 (state, level, pos, player, hand, stack) -> fillBucket(
                         state,
@@ -90,8 +86,7 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
                         SoundEvents.BUCKET_FILL_LAVA
                 )
         );
-        Map<Item, CauldronInteraction> powderSnow = POWDER_SNOW.map();
-        powderSnow.put(
+        POWDER_SNOW.put(
                 Items.BUCKET,
                 (state, level, pos, player, hand, stack) -> fillBucket(
                         state,
@@ -106,9 +101,8 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
                 )
         );
 
-        Map<Item, CauldronInteraction> dyedWater = DYED_WATER.map();
-        CauldronInteraction.addDefaultInteractions(dyedWater);
-        dyedWater.put(
+        addDefaultInteractions(DYED_WATER);
+        DYED_WATER.put(
                 Items.BUCKET,
                 (state, level, pos, player, hand, itemInHand) -> fillBucket(
                         state,
@@ -122,7 +116,7 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
                         SoundEvents.BUCKET_FILL
                 )
         );
-        dyedWater.put(
+        DYED_WATER.put(
                 Items.GLASS_BOTTLE,
                 (state, level, pos, player, hand, itemInHand) -> {
                     if (!level.isClientSide()) {
@@ -140,7 +134,7 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
                     return InteractionResult.SUCCESS;
                 }
         );
-        dyedWater.put(Items.POTION, (state, level, pos, player, hand, itemInHand) -> {
+        DYED_WATER.put(Items.POTION, (state, level, pos, player, hand, itemInHand) -> {
             if (state.getValue(LayeredCauldronBlock.LEVEL) == 3) {
                 return InteractionResult.TRY_WITH_EMPTY_HAND;
             } else {
@@ -161,13 +155,13 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
                 }
             }
         });
-        dyedWater.put(Items.LEATHER_BOOTS, ColoredCauldronInteraction::dyeableItemIteration);
-        dyedWater.put(Items.LEATHER_LEGGINGS, ColoredCauldronInteraction::dyeableItemIteration);
-        dyedWater.put(Items.LEATHER_CHESTPLATE, ColoredCauldronInteraction::dyeableItemIteration);
-        dyedWater.put(Items.LEATHER_HELMET, ColoredCauldronInteraction::dyeableItemIteration);
-        dyedWater.put(Items.LEATHER_HORSE_ARMOR, ColoredCauldronInteraction::dyeableItemIteration);
-        dyedWater.put(Items.WOLF_ARMOR, ColoredCauldronInteraction::dyeableItemIteration);
-        ModUtil.DYES.forEach(item -> dyedWater.put(item, ColoredCauldronInteraction::dyeInteraction));
+        DYED_WATER.put(Items.LEATHER_BOOTS, ColoredCauldronInteraction::dyeableItemIteration);
+        DYED_WATER.put(Items.LEATHER_LEGGINGS, ColoredCauldronInteraction::dyeableItemIteration);
+        DYED_WATER.put(Items.LEATHER_CHESTPLATE, ColoredCauldronInteraction::dyeableItemIteration);
+        DYED_WATER.put(Items.LEATHER_HELMET, ColoredCauldronInteraction::dyeableItemIteration);
+        DYED_WATER.put(Items.LEATHER_HORSE_ARMOR, ColoredCauldronInteraction::dyeableItemIteration);
+        DYED_WATER.put(Items.WOLF_ARMOR, ColoredCauldronInteraction::dyeableItemIteration);
+        ModUtil.DYES.forEach(item -> DYED_WATER.put(item, ColoredCauldronInteraction::dyeInteraction));
     }
 
     static InteractionResult fillBucket(
@@ -261,7 +255,7 @@ public interface ColoredCauldronInteraction extends CauldronInteraction {
     private static InteractionResult dyeableItemIteration(
             BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack itemInHand
     ) {
-        if (!itemInHand.is(ItemTags.DYEABLE)) {
+        if (!itemInHand.has(DataComponents.DYED_COLOR)) {
             return InteractionResult.TRY_WITH_EMPTY_HAND;
         } else if((level.getBlockEntity(pos) instanceof DyedWaterCauldronBlockEntity blockEntity)) {
             if (!level.isClientSide()) {

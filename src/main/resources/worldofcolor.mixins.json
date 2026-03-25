@@ -8,7 +8,6 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "worldofcolor.refmap.json",
   "mixins": [
-    "BannerBlockMixin",
     "CauldronInteractionMixin",
     "CopperChestBlockMixin",
     "HangingEntityItemMixin",
@@ -25,7 +24,8 @@
     "ItemFrameRendererMixin",
     "LoomScreenMixin",
     "ShulkerBoxRendererMixin",
-    "SpecialModelWrapperMixin"
+    "SpecialModelWrapperMixin",
+    "TerrainParticleMixin"
   ],
   "injectors": {
     "defaultRequire": 1

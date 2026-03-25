@@ -2,7 +2,6 @@
   "type": "minecraft:stonecutting",
   "ingredient": "worldofcolor:white_bricks",
   "result": {
-    "count": 1,
     "id": "worldofcolor:white_brick_wall"
   }
 }

@@ -1,8 +1,8 @@
 package net.theobl.worldofcolor.client.renderer.gui.state;
 
 import net.minecraft.client.gui.navigation.ScreenRectangle;
-import net.minecraft.client.gui.render.state.pip.PictureInPictureRenderState;
 import net.minecraft.client.model.object.banner.BannerFlagModel;
+import net.minecraft.client.renderer.state.gui.pip.PictureInPictureRenderState;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import org.jspecify.annotations.Nullable;
@@ -17,7 +17,7 @@ public record GuiColoredBannerResultRenderState(
         int y1,
         @Nullable ScreenRectangle scissorArea,
         @Nullable ScreenRectangle bounds
-) implements PictureInPictureRenderState {
+) implements net.minecraft.client.renderer.state.gui.pip.PictureInPictureRenderState {
     public GuiColoredBannerResultRenderState(
             BannerFlagModel flag,
             DyeColor baseColor,

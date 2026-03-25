@@ -5,7 +5,6 @@
   "experience": 0.1,
   "ingredient": "minecraft:purple_concrete",
   "result": {
-    "count": 1,
     "id": "worldofcolor:purple_glazed_concrete"
   }
 }

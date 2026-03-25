@@ -1,6 +1,5 @@
 {
   "parent": "minecraft:block/potted_crimson_roots",
-  "render_type": "minecraft:cutout",
   "textures": {
     "flowerpot": "worldofcolor:block/gray_flower_pot",
     "particle": "worldofcolor:block/gray_flower_pot"

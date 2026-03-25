@@ -1,7 +1,9 @@
 {
   "pack": {
     "pack_format": 34,
-    "supported_formats": [15, 46],
+    "min_format": 15,
+    "max_format": 99,
+    "supported_formats": [15, 99],
     "description": "Correct stained glass colors to use the 1.12+ color palette (MC-214641)."
   }
 }

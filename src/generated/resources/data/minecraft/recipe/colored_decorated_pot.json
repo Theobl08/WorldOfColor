@@ -1,4 +1,8 @@
 {
   "type": "worldofcolor:colored_decorated_pot",
-  "category": "misc"
+  "back": "#minecraft:decorated_pot_ingredients",
+  "dye": "#minecraft:dyes",
+  "front": "#minecraft:decorated_pot_ingredients",
+  "left": "#minecraft:decorated_pot_ingredients",
+  "right": "#minecraft:decorated_pot_ingredients"
 }

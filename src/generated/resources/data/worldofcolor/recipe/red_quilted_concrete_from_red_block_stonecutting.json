@@ -2,7 +2,6 @@
   "type": "minecraft:stonecutting",
   "ingredient": "worldofcolor:red_block",
   "result": {
-    "count": 1,
     "id": "worldofcolor:red_quilted_concrete"
   }
 }

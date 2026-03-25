@@ -6,7 +6,6 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
-import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BedPart;
@@ -21,6 +20,7 @@ import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.theobl.worldofcolor.block.ColoredDecoratedPotBlock;
 import net.theobl.worldofcolor.block.ModBlocks;
+import net.theobl.worldofcolor.util.ModUtil;
 
 import java.util.Set;
 
@@ -81,7 +81,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                         LootPool.lootPool()
                                 .setRolls(ConstantValue.exactly(1.0F))
                                 .add(
-                                        LootItem.lootTableItem(DyeItem.byColor(((ColoredDecoratedPotBlock) block).getColor()))
+                                        LootItem.lootTableItem(ModUtil.DYES.get(ModUtil.COLORS.indexOf(((ColoredDecoratedPotBlock) block).getColor())))
                                                 .when(
                                                         LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
                                                                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DecoratedPotBlock.CRACKED, true))

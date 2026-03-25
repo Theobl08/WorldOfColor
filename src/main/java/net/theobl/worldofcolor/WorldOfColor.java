@@ -3,14 +3,15 @@ package net.theobl.worldofcolor;
 import com.google.common.collect.ImmutableSet;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.color.block.BlockTintSources;
 import net.minecraft.client.model.object.boat.BoatModel;
-import net.minecraft.client.multiplayer.ClientLevel;
-import net.minecraft.client.renderer.BiomeColors;
 import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.block.BuiltInBlockModels;
+import net.minecraft.client.renderer.blockentity.BannerRenderer;
+import net.minecraft.client.renderer.blockentity.DecoratedPotRenderer;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ItemFrameRenderer;
-import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackType;
@@ -18,10 +19,11 @@ import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.level.GrassColor;
+import net.minecraft.world.level.block.BannerBlock;
 import net.minecraft.world.level.block.BedBlock;
+import net.minecraft.world.level.block.DecoratedPotBlock;
+import net.minecraft.world.level.block.WallBannerBlock;
 import net.minecraft.world.level.block.entity.BlockEntityType;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.api.distmarker.Dist;
@@ -35,8 +37,6 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.*;
-import net.neoforged.neoforge.client.extensions.common.IClientBlockExtensions;
-import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.world.poi.ExtendPoiTypesEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
@@ -62,6 +62,8 @@ import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.item.crafting.ModRecipeSerializer;
 import net.theobl.worldofcolor.util.ModUtil;
 import org.slf4j.Logger;
+
+import java.util.List;
 
 // The value here should match an entry in the META-INF/neoforge.mods.toml file
 @Mod(WorldOfColor.MODID)
@@ -203,28 +205,12 @@ public class WorldOfColor {
         }
 
         @SubscribeEvent
-        public static void registerBlockColor(RegisterColorHandlersEvent.Block event) {
+        public static void registerBlockColor(RegisterColorHandlersEvent.BlockTintSources event) {
             ModBlocks.COLORED_WATER_CAULDRONS.forEach(block ->
-                    event.register((state, tintGetter, pos, i) ->
-                            tintGetter != null && pos != null ? BiomeColors.getAverageWaterColor(tintGetter, pos) : -1, block.get()));
+                    event.register(List.of(BlockTintSources.water()), block.get()));
             ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.FERN).forEach(block ->
-                    event.register(
-                            (state, level, pos, tintIndex) -> level != null && pos != null
-                                    ? BiomeColors.getAverageGrassColor(level, pos)
-                                    : GrassColor.getDefaultColor(),
-                            block.get()
-                    )
+                    event.register(List.of(BlockTintSources.grass()), block.get())
             );
-        }
-
-        @SubscribeEvent
-        public static void registerClientExtensions(RegisterClientExtensionsEvent event) {
-            event.registerBlock(new IClientBlockExtensions() {
-                @Override
-                public boolean areBreakingParticlesTinted(BlockState state, ClientLevel level, BlockPos pos) {
-                    return false;
-                }
-            }, ModUtil.asVarArgs(ModBlocks.COLORED_WATER_CAULDRONS));
         }
 
         @SubscribeEvent
@@ -234,10 +220,30 @@ public class WorldOfColor {
         }
 
         @SubscribeEvent
-        public static void registerSpecialBlockModelRenderer(RegisterSpecialBlockModelRendererEvent event) {
+        public static void registerSpecialBlockModelRenderer(RegisterBlockModelsEvent event) {
             ModBlocks.COLORED_DECORATED_POTS.forEach(block ->
-                    event.register(block.get(), new ColoredDecoratedPotSpecialRenderer.Unbaked(block.get().getColor())));
-            event.register(ModBlocks.RGB_BANNER.get(), new ColoredBannerSpecialRenderer.Unbaked());
+                            event.register(BuiltInBlockModels.specialModelWithPropertyDispatch(
+                                    DecoratedPotBlock.HORIZONTAL_FACING, facing ->
+                                            BuiltInBlockModels.special(new ColoredDecoratedPotSpecialRenderer.Unbaked(block.get().getColor()),
+                                                    DecoratedPotRenderer.modelTransformation(facing))
+                            ), block.get())
+
+            );
+
+            event.register(BuiltInBlockModels.specialModelWithPropertyDispatch(
+                            BannerBlock.ROTATION,
+                            rotation -> BuiltInBlockModels.special(
+                                    new ColoredBannerSpecialRenderer.Unbaked(BannerBlock.AttachmentType.GROUND),
+                                    BannerRenderer.TRANSFORMATIONS.freeTransformations(rotation)
+                            )
+                    ), ModBlocks.RGB_BANNER.get());
+
+            event.register(BuiltInBlockModels.specialModelWithPropertyDispatch(
+                            WallBannerBlock.FACING,
+                            facing -> BuiltInBlockModels.special(
+                                    new ColoredBannerSpecialRenderer.Unbaked(BannerBlock.AttachmentType.WALL), BannerRenderer.TRANSFORMATIONS.wallTransformation(facing)
+                            )
+                    ), ModBlocks.RGB_WALL_BANNER.get());
         }
 
         @SubscribeEvent

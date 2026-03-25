@@ -124,7 +124,7 @@ public class ColoredDecoratedPotBlock extends DecoratedPotBlock {
     protected ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData) {
         if (level.getBlockEntity(pos) instanceof ColoredDecoratedPotBlockEntity blockEntity) {
             PotDecorations potdecorations = blockEntity.getDecorations();
-            return ColoredDecoratedPotBlockEntity.createDecoratedPotItem(potdecorations, this.color);
+            return ColoredDecoratedPotBlockEntity.createDecoratedPotInstance(potdecorations, this.color);
         } else {
             return super.getCloneItemStack(level, pos, state, includeData);
         }
