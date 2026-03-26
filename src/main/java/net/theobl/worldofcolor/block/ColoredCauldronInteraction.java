@@ -8,6 +8,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ARGB;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -155,12 +156,7 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                 }
             }
         });
-        DYED_WATER.put(Items.LEATHER_BOOTS, ColoredCauldronInteraction::dyeableItemIteration);
-        DYED_WATER.put(Items.LEATHER_LEGGINGS, ColoredCauldronInteraction::dyeableItemIteration);
-        DYED_WATER.put(Items.LEATHER_CHESTPLATE, ColoredCauldronInteraction::dyeableItemIteration);
-        DYED_WATER.put(Items.LEATHER_HELMET, ColoredCauldronInteraction::dyeableItemIteration);
-        DYED_WATER.put(Items.LEATHER_HORSE_ARMOR, ColoredCauldronInteraction::dyeableItemIteration);
-        DYED_WATER.put(Items.WOLF_ARMOR, ColoredCauldronInteraction::dyeableItemIteration);
+        DYED_WATER.put(ItemTags.CAULDRON_CAN_REMOVE_DYE, ColoredCauldronInteraction::dyeableItemIteration);
         ModUtil.DYES.forEach(item -> DYED_WATER.put(item, ColoredCauldronInteraction::dyeInteraction));
     }
 
@@ -255,9 +251,7 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
     private static InteractionResult dyeableItemIteration(
             BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack itemInHand
     ) {
-        if (!itemInHand.has(DataComponents.DYED_COLOR)) {
-            return InteractionResult.TRY_WITH_EMPTY_HAND;
-        } else if((level.getBlockEntity(pos) instanceof DyedWaterCauldronBlockEntity blockEntity)) {
+        if((level.getBlockEntity(pos) instanceof DyedWaterCauldronBlockEntity blockEntity)) {
             if (!level.isClientSide()) {
                 itemInHand.set(DataComponents.DYED_COLOR, new DyedItemColor(ARGB.transparent(blockEntity.getWaterColor())));
                 player.awardStat(Stats.CLEAN_ARMOR);
