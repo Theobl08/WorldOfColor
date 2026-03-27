@@ -108,6 +108,7 @@ public class ModModelProvider extends ModelProvider {
                     blockModels.modelOutput);
 
             blockModels.createShelf(ModBlocks.COLORED_SHELVES.get(index).get(), ModBlocks.COLORED_STRIPPED_LOGS.get(index).get());
+            coloredBlockModels.copyBlockModel(ModBlocks.COLORED_CAULDRONS.get(index).get(), ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(index).get());
         }
         blockModels.createFullAndCarpetBlocks(ModBlocks.RGB_WOOL.get(), ModBlocks.RGB_CARPET.get());
         blockModels.createTrivialCube(ModBlocks.RGB_TERRACOTTA.get());

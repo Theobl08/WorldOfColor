@@ -1,6 +1,7 @@
 package net.theobl.worldofcolor.block;
 
 import com.mojang.serialization.MapCodec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -8,6 +9,7 @@ import net.minecraft.util.Util;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.InsideBlockEffectType;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
@@ -22,12 +24,18 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.theobl.worldofcolor.block.entity.DyedWaterCauldronBlockEntity;
+import net.theobl.worldofcolor.util.ModUtil;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
+import java.util.Optional;
+
 @NullMarked
 public class DyedWaterCauldronBlock extends AbstractCauldronBlock implements EntityBlock {
-    public static final MapCodec<DyedWaterCauldronBlock> CODEC = simpleCodec(DyedWaterCauldronBlock::new);
+    public static final MapCodec<DyedWaterCauldronBlock> CODEC = RecordCodecBuilder.mapCodec(
+            i -> i.group(DyeColor.CODEC.optionalFieldOf("color").forGetter(b -> Optional.ofNullable(b.color)), propertiesCodec())
+                    .apply(i, (color, properties) -> new DyedWaterCauldronBlock(color.orElse(null), properties))
+    );
     public static final int MIN_FILL_LEVEL = 1;
     public static final int MAX_FILL_LEVEL = 3;
     public static final IntegerProperty LEVEL = LayeredCauldronBlock.LEVEL;
@@ -36,9 +44,11 @@ public class DyedWaterCauldronBlock extends AbstractCauldronBlock implements Ent
     private static final VoxelShape[] FILLED_SHAPES = Util.make(
             () -> Block.boxes(2, level -> Shapes.or(AbstractCauldronBlock.SHAPE, Block.column(12.0, 4.0, getPixelContentHeight(level + 1))))
     );
+    private final @Nullable DyeColor color;
 
-    public DyedWaterCauldronBlock(Properties properties) {
+    public DyedWaterCauldronBlock(@Nullable DyeColor color, Properties properties) {
         super(properties, ColoredCauldronInteraction.DYED_WATER);
+        this.color = color;
     }
 
     @Override
@@ -81,7 +91,11 @@ public class DyedWaterCauldronBlock extends AbstractCauldronBlock implements Ent
 
     public static void lowerFillLevel(BlockState state, Level level, BlockPos pos) {
         int newLevel = state.getValue(LEVEL) - 1;
-        BlockState newState = newLevel == 0 ? Blocks.CAULDRON.defaultBlockState() : state.setValue(LEVEL, newLevel);
+        BlockState emptyCauldron = Blocks.CAULDRON.defaultBlockState();
+        if(state.getBlock() instanceof DyedWaterCauldronBlock block && block.color != null) {
+            emptyCauldron = ModBlocks.COLORED_CAULDRONS.get(ModUtil.COLORS.indexOf(block.color)).get().defaultBlockState();
+        }
+        BlockState newState = newLevel == 0 ? emptyCauldron : state.setValue(LEVEL, newLevel);
         level.setBlockAndUpdate(pos, newState);
         level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(newState));
     }
@@ -98,7 +112,12 @@ public class DyedWaterCauldronBlock extends AbstractCauldronBlock implements Ent
 
     @Override
     public Item asItem() {
-        return Items.CAULDRON;
+        if(color == null) {
+            return Items.CAULDRON;
+        }
+        else  {
+            return super.asItem();
+        }
     }
 
     @Override

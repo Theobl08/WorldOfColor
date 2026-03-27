@@ -152,7 +152,12 @@ public class ModBlocks {
             RedstoneLampBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_LAMP)
     );
-    public static final DeferredBlock<Block> DYED_WATER_CAULDRON = BLOCKS.registerBlock("dyed_water_cauldron", DyedWaterCauldronBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON));
+    public static final DeferredBlock<Block> DYED_WATER_CAULDRON = BLOCKS.registerBlock("dyed_water_cauldron", p -> new DyedWaterCauldronBlock(null, p), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON));
+    public static final List<DeferredBlock<Block>> COLORED_DYED_WATER_CAULDRONS = registerColored(
+            "dyed_water_cauldron",
+            DyedWaterCauldronBlock::new,
+            BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)
+    );
     public static final DeferredBlock<Block> RGB_WOOL = registerBlock(
             "rgb_wool",
             Block::new,

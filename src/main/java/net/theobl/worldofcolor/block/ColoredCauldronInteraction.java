@@ -214,7 +214,14 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                 Item itemUsed = itemInHand.getItem();
                 player.awardStat(Stats.USE_CAULDRON);
                 player.awardStat(Stats.ITEM_USED.get(itemUsed));
-                level.setBlockAndUpdate(pos, ModBlocks.DYED_WATER_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, state.getValue(LayeredCauldronBlock.LEVEL)));
+                BlockState newState = ModBlocks.DYED_WATER_CAULDRON.get().defaultBlockState();
+                for (DyeColor dyeColor : ModUtil.COLORS) {
+                    int index = ModUtil.COLORS.indexOf(dyeColor);
+                    if(state.is(ModBlocks.COLORED_WATER_CAULDRONS.get(index))) {
+                        newState = ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(index).get().defaultBlockState();
+                    }
+                }
+                level.setBlockAndUpdate(pos, newState.setValue(LayeredCauldronBlock.LEVEL, state.getValue(LayeredCauldronBlock.LEVEL)));
                 DyedWaterCauldronBlockEntity cauldronBlockEntity = (DyedWaterCauldronBlockEntity) level.getBlockEntity(pos);
                 if (cauldronBlockEntity != null) {
                     cauldronBlockEntity.setWaterColor(color);
@@ -255,7 +262,7 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
             if (!level.isClientSide()) {
                 itemInHand.set(DataComponents.DYED_COLOR, new DyedItemColor(ARGB.transparent(blockEntity.getWaterColor())));
                 player.awardStat(Stats.CLEAN_ARMOR);
-                LayeredCauldronBlock.lowerFillLevel(state, level, pos);
+                DyedWaterCauldronBlock.lowerFillLevel(state, level, pos);
             }
 
             return InteractionResult.SUCCESS;

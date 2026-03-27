@@ -83,6 +83,7 @@ public class ModItems {
                                         map.put(ModBlocks.COLORED_WATER_CAULDRONS.get(index).get(), self);
                                         map.put(ModBlocks.COLORED_LAVA_CAULDRONS.get(index).get(), self);
                                         map.put(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(index).get(), self);
+                                        map.put(ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(index).get(), self);
                                     }
                                 }, Item.Properties::useBlockDescriptionPrefix);
 
