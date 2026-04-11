@@ -51,6 +51,7 @@ public class ModModelProvider extends ModelProvider {
             coloredBlockModels.generateDecoratedPotItemModel(block.get(), new ColoredDecoratedPotSpecialRenderer.Unbaked(color), color);
         });
         ModBlocks.COLORED_REDSTONE_LAMPS.forEach(block -> coloredBlockModels.createRedstoneLamp(block.get()));
+        ModBlocks.COLORED_POTATO_PEELS_BLOCK.values().forEach(block -> blockModels.createTrivialCube(block.get()));
         for(DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
             blockModels.family(ModBlocks.COLORED_CUT_COPPER.get(index).get())
@@ -126,6 +127,7 @@ public class ModModelProvider extends ModelProvider {
         ModItems.COLORED_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
         ModItems.COLORED_CHEST_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
         ModItems.COLORED_ITEM_FRAMES.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
+        ModItems.COLORED_POTATO_PEELS.values().forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
         itemModels.generateFlatItem(ModItems.RGB_DYE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateBundleModels(ModItems.RGB_BUNDLE.get());
     }

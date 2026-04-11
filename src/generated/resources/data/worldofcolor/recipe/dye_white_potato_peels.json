@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "potato_peels_dye",
+  "ingredients": [
+    "minecraft:red_dye",
+    [
+      "worldofcolor:pink_potato_peels",
+      "worldofcolor:orange_potato_peels",
+      "worldofcolor:yellow_potato_peels",
+      "worldofcolor:gray_potato_peels",
+      "worldofcolor:light_blue_potato_peels",
+      "worldofcolor:light_gray_potato_peels",
+      "worldofcolor:black_potato_peels",
+      "worldofcolor:green_potato_peels",
+      "worldofcolor:purple_potato_peels",
+      "worldofcolor:magenta_potato_peels",
+      "worldofcolor:red_potato_peels",
+      "worldofcolor:cyan_potato_peels",
+      "worldofcolor:brown_potato_peels",
+      "worldofcolor:lime_potato_peels",
+      "worldofcolor:blue_potato_peels",
+      "minecraft:potato"
+    ]
+  ],
+  "result": {
+    "id": "worldofcolor:white_potato_peels"
+  }
+}

@@ -25,5 +25,6 @@ public class DataGenerators {
         event.createProvider(ModModelProvider::new);
         event.createProvider(ModSpriteSourceProvider::new);
         event.createProvider(ModLanguageProvider::new);
+        event.createProvider(ModSoundDefinitionsProvider::new);
     }
 }

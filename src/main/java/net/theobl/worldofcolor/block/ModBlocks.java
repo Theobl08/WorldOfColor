@@ -11,6 +11,7 @@ import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.bus.api.IEventBus;
@@ -19,6 +20,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.grower.ModTreeGrower;
 import net.theobl.worldofcolor.item.ModItems;
+import net.theobl.worldofcolor.sounds.ModSoundType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -157,6 +159,18 @@ public class ModBlocks {
             "dyed_water_cauldron",
             DyedWaterCauldronBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)
+    );
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_POTATO_PEELS_BLOCK = registerColored(color ->
+            registerBlock(
+                    color.getName() + "_potato_peels_block",
+                    Block::new,
+                    () -> BlockBehaviour.Properties.of()
+                            .mapColor(color)
+                            .instrument(NoteBlockInstrument.BANJO)
+                            .strength(2.0F)
+                            .sound(ModSoundType.POTONE)
+                            .ignitedByLava()
+            )
     );
     public static final DeferredBlock<Block> RGB_WOOL = registerBlock(
             "rgb_wool",
@@ -340,6 +354,14 @@ public class ModBlocks {
             if(!key.contains("cauldron"))
                 registerBlockItem(name, deferredBlock);
             blocks.add(deferredBlock);
+        }
+        return blocks;
+    }
+
+    private static <T extends Block> Map<DyeColor, DeferredBlock<T>> registerColored(Function<DyeColor, DeferredBlock<T>> factory) {
+        HashMap<DyeColor, DeferredBlock<T>> blocks = new HashMap<>();
+        for (DyeColor color : COLORS) {
+            blocks.put(color, factory.apply(color));
         }
         return blocks;
     }

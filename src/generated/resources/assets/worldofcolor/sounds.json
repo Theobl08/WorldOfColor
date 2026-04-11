@@ -1,0 +1,52 @@
+{
+  "block.potone.break": {
+    "sounds": [
+      "worldofcolor:block/potone/break1",
+      "worldofcolor:block/potone/break2",
+      "worldofcolor:block/potone/break3",
+      "worldofcolor:block/potone/break4"
+    ],
+    "subtitle": "subtitles.block.generic.break"
+  },
+  "block.potone.fall": {
+    "sounds": [
+      "worldofcolor:block/potone/step1",
+      "worldofcolor:block/potone/step2",
+      "worldofcolor:block/potone/step3",
+      "worldofcolor:block/potone/step4",
+      "worldofcolor:block/potone/step5",
+      "worldofcolor:block/potone/step6"
+    ]
+  },
+  "block.potone.hit": {
+    "sounds": [
+      "worldofcolor:block/potone/step1",
+      "worldofcolor:block/potone/step2",
+      "worldofcolor:block/potone/step3",
+      "worldofcolor:block/potone/step4",
+      "worldofcolor:block/potone/step5",
+      "worldofcolor:block/potone/step6"
+    ],
+    "subtitle": "subtitles.block.generic.hit"
+  },
+  "block.potone.place": {
+    "sounds": [
+      "worldofcolor:block/potone/break1",
+      "worldofcolor:block/potone/break2",
+      "worldofcolor:block/potone/break3",
+      "worldofcolor:block/potone/break4"
+    ],
+    "subtitle": "subtitles.block.generic.place"
+  },
+  "block.potone.step": {
+    "sounds": [
+      "worldofcolor:block/potone/step1",
+      "worldofcolor:block/potone/step2",
+      "worldofcolor:block/potone/step3",
+      "worldofcolor:block/potone/step4",
+      "worldofcolor:block/potone/step5",
+      "worldofcolor:block/potone/step6"
+    ],
+    "subtitle": "subtitles.block.generic.footsteps"
+  }
+}

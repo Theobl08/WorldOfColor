@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "worldofcolor:red_potato_peels_block"
+  ],
+  "result": {
+    "count": 9,
+    "id": "worldofcolor:red_potato_peels"
+  }
+}

@@ -1,6 +1,7 @@
 package net.theobl.worldofcolor.item;
 
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.component.BundleContents;
@@ -17,8 +18,10 @@ import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.entity.ModEntityType;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 import static net.theobl.worldofcolor.util.ModUtil.*;
 
@@ -35,6 +38,9 @@ public class ModItems {
     public static final List<DeferredItem<Item>> COLORED_CAULDRONS = registerColored("cauldron");
     public static final List<DeferredItem<Item>> COLORED_DECORATED_POTS = registerColored("decorated_pot");
     public static final List<DeferredItem<Item>> COLORED_ITEM_FRAMES = registerColored("item_frame");
+    public static final Map<DyeColor, DeferredItem<Item>> COLORED_POTATO_PEELS = registerColored(color ->
+            ITEMS.registerSimpleItem(color.getName() + "_potato_peels", p -> p.food(Foods.POTATO))
+    );
     public static final DeferredItem<BlockItem> RGB_SHULKER_BOX = ITEMS.registerItem(
             "rgb_shulker_box",
             p -> new BlockItem(ModBlocks.RGB_SHULKER_BOX.get(), p),
@@ -99,6 +105,14 @@ public class ModItems {
             items.add(item);
         }
         return items;
+    }
+
+    private static <T extends Item> Map<DyeColor, DeferredItem<T>> registerColored(Function<DyeColor, DeferredItem<T>> factory) {
+        HashMap<DyeColor, DeferredItem<T>> blocks = new HashMap<>();
+        for (DyeColor color : COLORS) {
+            blocks.put(color, factory.apply(color));
+        }
+        return blocks;
     }
 
     public static void register(IEventBus eventBus) {

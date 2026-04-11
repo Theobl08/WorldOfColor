@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_pink_potato_peels_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": "worldofcolor:pink_potato_peels_block"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "worldofcolor:pink_potato_peels"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_pink_potato_peels_block"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "worldofcolor:pink_potato_peels"
+    ]
+  }
+}

@@ -7,6 +7,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -15,14 +16,18 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.neoforge.registries.DeferredItem;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.item.crafting.ColoredDecoratedPotRecipe;
 import net.theobl.worldofcolor.tags.ModTags;
+import net.theobl.worldofcolor.util.ModUtil;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
+import java.util.stream.Stream;
 
 import static net.theobl.worldofcolor.util.ModUtil.*;
 
@@ -151,6 +156,23 @@ public class ModRecipeProvider extends RecipeProvider {
         SpecialRecipeBuilder.special(() -> new ColoredDecoratedPotRecipe(this.tag(ItemTags.DECORATED_POT_INGREDIENTS), tag(ItemTags.DYES)))
                 .save(this.output, "colored_decorated_pot");
 
+        colorWithDye(DYES, ModBlocks.COLORED_POTATO_PEELS_BLOCK.values().stream().map(DeferredBlock::asItem).toList(), null,
+                "potato_peels_block_dye", RecipeCategory.MISC);
+        colorWithDye(DYES, ModItems.COLORED_POTATO_PEELS.values().stream().map(DeferredItem::get).toList(), Items.POTATO,
+                "potato_peels_dye", RecipeCategory.MISC);
+        for (DyeColor color : COLORS) {
+            nineBlockStorageRecipes(
+                    RecipeCategory.MISC,
+                    ModItems.COLORED_POTATO_PEELS.get(color),
+                    RecipeCategory.MISC,
+                    ModBlocks.COLORED_POTATO_PEELS_BLOCK.get(color),
+                    WorldOfColor.MODID + ":" + getItemName(ModBlocks.COLORED_POTATO_PEELS_BLOCK.get(color)),
+                    null,
+                    WorldOfColor.MODID + ":" + getItemName(ModItems.COLORED_POTATO_PEELS.get(color)),
+                    null
+            );
+        }
+
         shapeless(RecipeCategory.MISC, ModItems.RGB_DYE, 7)
                 .requires(Items.BLACK_DYE)
                 .requires(Items.BLUE_DYE)
@@ -227,6 +249,24 @@ public class ModRecipeProvider extends RecipeProvider {
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(material), category, result, resultCount)
                 .unlockedBy(getHasName(material), has(material))
                 .save(output, WorldOfColor.MODID + ":" + getConversionRecipeName(result, material) + "_stonecutting");
+    }
+
+    protected void colorWithDye(List<Item> dyes, List<Item> dyedItems, @Nullable Item uncoloredItem, String groupName, RecipeCategory category) {
+        for (int dyeIndex = 0; dyeIndex < dyes.size(); dyeIndex++) {
+            Item dye = dyes.get(dyeIndex);
+            Item dyedItem = dyedItems.get(dyeIndex);
+            Stream<Item> sourceItems = dyedItems.stream().filter(b -> !b.equals(dyedItem));
+            if (uncoloredItem != null) {
+                sourceItems = Stream.concat(sourceItems, Stream.of(uncoloredItem));
+            }
+
+            this.shapeless(category, dyedItem)
+                    .requires(dye)
+                    .requires(Ingredient.of(sourceItems))
+                    .group(groupName)
+                    .unlockedBy("has_needed_dye", this.has(dye))
+                    .save(this.output, WorldOfColor.MODID + ":dye_" + getItemName(dyedItem));
+        }
     }
 
     protected void colorBlockWithDye(List<DeferredBlock<Block>> results, List<Item> dyes, TagKey<Item> dyeableItems, String group) {

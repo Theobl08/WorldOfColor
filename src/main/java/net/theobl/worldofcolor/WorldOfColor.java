@@ -60,6 +60,7 @@ import net.theobl.worldofcolor.entity.client.ModModelLayers;
 import net.theobl.worldofcolor.item.ModCreativeModeTabs;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.item.crafting.ModRecipeSerializer;
+import net.theobl.worldofcolor.sounds.ModSoundEvents;
 import net.theobl.worldofcolor.util.ModUtil;
 import org.slf4j.Logger;
 
@@ -81,6 +82,7 @@ public class WorldOfColor {
 
         // Register the Deferred Register to the mod event bus so blocks get registered
         ModBlocks.register(modEventBus);
+        ModSoundEvents.register(modEventBus);
         ModBlockEntityType.register(modEventBus);
         ModEntityType.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
