@@ -14,7 +14,6 @@ import net.theobl.worldofcolor.block.ModBlocks;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.Supplier;
 
 public class ModUtil {
     public static final List<DyeColor> COLORS = new ArrayList<>(Arrays.asList(
@@ -59,10 +58,10 @@ public class ModUtil {
                     Items.LIME_DYE, Items.GREEN_DYE, Items.CYAN_DYE, Items.LIGHT_BLUE_DYE,
                     Items.BLUE_DYE, Items.PURPLE_DYE, Items.MAGENTA_DYE, Items.PINK_DYE);
 
-    public static final Supplier<Block> FERN = supplier(Blocks.FERN);
-    public static final Supplier<Block> OPEN_EYEBLOSSOM = supplier(Blocks.OPEN_EYEBLOSSOM);
-    public static final Supplier<Block> CLOSED_EYEBLOSSOM = supplier(Blocks.CLOSED_EYEBLOSSOM);
-    public static final List<Supplier<Block>> POTTABLE_PLANTS = new ArrayList<>();
+    public static final DeferredBlock<Block> FERN = deferredBlock(Blocks.FERN);
+    public static final DeferredBlock<Block> OPEN_EYEBLOSSOM = deferredBlock(Blocks.OPEN_EYEBLOSSOM);
+    public static final DeferredBlock<Block> CLOSED_EYEBLOSSOM = deferredBlock(Blocks.CLOSED_EYEBLOSSOM);
+    public static final List<DeferredBlock<Block>> POTTABLE_PLANTS = new ArrayList<>();
 
     public static void setup() {
         ModBlocks.COLORED_PLANKS.forEach(block -> registerFlammable(block.get(), 5, 20));
@@ -103,17 +102,12 @@ public class ModUtil {
         return false;
     }
 
-    public static <T extends Block> String name(Supplier<T> block) {
-        if(block instanceof DeferredBlock<T> deferredBlock) {
-            return deferredBlock.getId().getPath();
-        }
-        else {
-            return BuiltInRegistries.BLOCK.getKey(block.get()).getPath();
-        }
+    public static <T extends Block> String name(DeferredHolder<T, ? extends T> deferredHolder) {
+        return deferredHolder.getId().getPath();
     }
 
-    public static Supplier<Block> supplier(Block block) {
-        return () -> block;
+    private static <T extends Block> DeferredBlock<T> deferredBlock(T block) {
+        return DeferredBlock.createBlock(BuiltInRegistries.BLOCK.getKey(block));
     }
 
     @SafeVarargs
@@ -152,23 +146,23 @@ public class ModUtil {
                     POTTABLE_PLANTS.add(CLOSED_EYEBLOSSOM);
                 }
                 else {
-                    POTTABLE_PLANTS.add(supplier(block));
+                    POTTABLE_PLANTS.add(deferredBlock(block));
                 }
             }
         }
         POTTABLE_PLANTS.addAll(List.of(
                 FERN,
-                supplier(Blocks.RED_MUSHROOM),
-                supplier(Blocks.BROWN_MUSHROOM),
-                supplier(Blocks.DEAD_BUSH),
-                supplier(Blocks.CACTUS),
-                supplier(Blocks.BAMBOO),
-                supplier(Blocks.CRIMSON_FUNGUS),
-                supplier(Blocks.WARPED_FUNGUS),
-                supplier(Blocks.CRIMSON_ROOTS),
-                supplier(Blocks.WARPED_ROOTS),
-                supplier(Blocks.AZALEA),
-                supplier(Blocks.FLOWERING_AZALEA)
+                deferredBlock(Blocks.RED_MUSHROOM),
+                deferredBlock(Blocks.BROWN_MUSHROOM),
+                deferredBlock(Blocks.DEAD_BUSH),
+                deferredBlock(Blocks.CACTUS),
+                deferredBlock(Blocks.BAMBOO),
+                deferredBlock(Blocks.CRIMSON_FUNGUS),
+                deferredBlock(Blocks.WARPED_FUNGUS),
+                deferredBlock(Blocks.CRIMSON_ROOTS),
+                deferredBlock(Blocks.WARPED_ROOTS),
+                deferredBlock(Blocks.AZALEA),
+                deferredBlock(Blocks.FLOWERING_AZALEA)
         ));
     }
 }

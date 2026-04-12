@@ -1,10 +1,13 @@
 package net.theobl.worldofcolor.block;
 
 import net.minecraft.core.cauldron.CauldronInteractions;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
@@ -29,6 +32,7 @@ import java.util.Map;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 import static net.theobl.worldofcolor.util.ModUtil.*;
 
@@ -282,7 +286,7 @@ public class ModBlocks {
 
     private static Map<Supplier<Block>, List<DeferredBlock<Block>>> registerColoredPottedPlant() {
         Map<Supplier<Block>, List<DeferredBlock<Block>>> pottedPlants = new HashMap<>();
-        for (Supplier<Block> plant : POTTABLE_PLANTS) {
+        for (DeferredBlock<Block> plant : POTTABLE_PLANTS) {
             List<DeferredBlock<Block>> blockList = new ArrayList<>();
             for (DyeColor color : COLORS) {
                 int index = COLORS.indexOf(color);
