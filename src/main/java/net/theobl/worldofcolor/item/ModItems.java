@@ -17,10 +17,7 @@ import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.entity.ModEntityType;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.Function;
 
 import static net.theobl.worldofcolor.util.ModUtil.*;
@@ -108,7 +105,7 @@ public class ModItems {
     }
 
     private static <T extends Item> Map<DyeColor, DeferredItem<T>> registerColored(Function<DyeColor, DeferredItem<T>> factory) {
-        HashMap<DyeColor, DeferredItem<T>> blocks = new HashMap<>();
+        HashMap<DyeColor, DeferredItem<T>> blocks = new LinkedHashMap<>();
         for (DyeColor color : COLORS) {
             blocks.put(color, factory.apply(color));
         }

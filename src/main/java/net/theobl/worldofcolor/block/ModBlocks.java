@@ -25,10 +25,7 @@ import net.theobl.worldofcolor.block.grower.ModTreeGrower;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.sounds.ModSoundType;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -363,7 +360,7 @@ public class ModBlocks {
     }
 
     private static <T extends Block> Map<DyeColor, DeferredBlock<T>> registerColored(Function<DyeColor, DeferredBlock<T>> factory) {
-        HashMap<DyeColor, DeferredBlock<T>> blocks = new HashMap<>();
+        HashMap<DyeColor, DeferredBlock<T>> blocks = new LinkedHashMap<>();
         for (DyeColor color : COLORS) {
             blocks.put(color, factory.apply(color));
         }
