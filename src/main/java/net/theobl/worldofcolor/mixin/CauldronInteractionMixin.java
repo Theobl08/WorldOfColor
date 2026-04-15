@@ -1,8 +1,10 @@
 package net.theobl.worldofcolor.mixin;
 
+import com.google.common.collect.BiMap;
 import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteractions;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -16,8 +18,6 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
-
-import java.util.List;
 
 @Mixin(value = CauldronInteractions.class, remap = false)
 public abstract class CauldronInteractionMixin {
@@ -47,11 +47,11 @@ public abstract class CauldronInteractionMixin {
     }
 
     @Unique
-    private static BlockState worldOfColor$isColoredCauldron(List<DeferredBlock<Block>> checkedBlock, Level level, BlockPos pos, Item item) {
+    private static BlockState worldOfColor$isColoredCauldron(BiMap<DyeColor, DeferredBlock<Block>> checkedBlock, Level level, BlockPos pos, Item item) {
         BlockState blockState = null;
-        for (DeferredBlock<Block> block : checkedBlock) {
+        for (DeferredBlock<Block> block : checkedBlock.values()) {
             if (level.getBlockState(pos).is(block)) {
-                int index = checkedBlock.indexOf(block);
+                DyeColor index = checkedBlock.inverse().get(block);
                 if (item == Items.WATER_BUCKET)
                     blockState = ModBlocks.COLORED_WATER_CAULDRONS.get(index).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
                 else if (item == Items.LAVA_BUCKET) {

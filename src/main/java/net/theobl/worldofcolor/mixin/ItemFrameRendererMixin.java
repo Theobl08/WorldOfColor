@@ -33,7 +33,7 @@ public abstract class ItemFrameRendererMixin {
             at = @At("MIXINEXTRAS:EXPRESSION"))
     private void getColoredItemFrameFakeBlockstate(BlockModelResolver instance, BlockModelRenderState renderState, boolean isGlowFrame, boolean map, Operation<Void> original, @Local(argsOnly = true) ItemFrame entity, @Local(argsOnly = true) ItemFrameRenderState state) {
         for(DyeColor color : ModUtil.COLORS) {
-            if(entity.is(ModEntityType.COLORED_ITEM_FRAMES.get(ModUtil.COLORS.indexOf(color)).get())) {
+            if(entity.is(ModEntityType.COLORED_ITEM_FRAMES.get(color).get())) {
                 BlockState fakeState = ModBlockStateDefinitions.getItemFrameFakeState(color, state.mapId != null);
                 this.blockModelResolver.update(renderState, fakeState, ItemFrameRenderer.BLOCK_DISPLAY_CONTEXT);
                 return;

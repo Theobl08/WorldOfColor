@@ -35,7 +35,7 @@ public abstract class HangingEntityItemMixin {
     private boolean checkIfColoredItemFrame(boolean original) {
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
-            if(this.type == ModEntityType.COLORED_ITEM_FRAMES.get(index).get()) {
+            if(this.type == ModEntityType.COLORED_ITEM_FRAMES.get(color).get()) {
                 return false; // We want to continue on the "useOn" method, and when this boolean is true, the method is over
             }
         }
@@ -50,7 +50,7 @@ public abstract class HangingEntityItemMixin {
         Level level = context.getLevel();
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
-            if(this.type == ModEntityType.COLORED_ITEM_FRAMES.get(index).get()) {
+            if(this.type == ModEntityType.COLORED_ITEM_FRAMES.get(color).get()) {
                 return new ColoredItemFrame(level, blockPos1, direction, color);
             }
         }

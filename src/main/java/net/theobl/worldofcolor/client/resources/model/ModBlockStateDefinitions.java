@@ -10,27 +10,27 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.util.ModUtil;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class ModBlockStateDefinitions {
-    public static final List<StateDefinition<Block, BlockState>> COLORED_ITEM_FRAME_FAKE_DEFINITION = createItemFrameFakeState();
-    public static final List<Identifier> COLORED_ITEM_FRAME_LOCATION = createItemFrameLocation();
+    public static final Map<DyeColor, StateDefinition<Block, BlockState>> COLORED_ITEM_FRAME_FAKE_DEFINITION = createItemFrameFakeState();
+    public static final Map<DyeColor, Identifier> COLORED_ITEM_FRAME_LOCATION = createItemFrameLocation();
 
-    private static List<StateDefinition<Block, BlockState>> createItemFrameFakeState() {
-        List<StateDefinition<Block, BlockState>> list = new ArrayList<>();
+    private static Map<DyeColor, StateDefinition<Block, BlockState>> createItemFrameFakeState() {
+        Map<DyeColor, StateDefinition<Block, BlockState>> list = new LinkedHashMap<>();
         for(DyeColor color : ModUtil.COLORS)
-            list.add(new StateDefinition.Builder<Block, BlockState>(Blocks.AIR).add(BlockStateProperties.MAP).create(Block::defaultBlockState, BlockState::new));
+            list.put(color, new StateDefinition.Builder<Block, BlockState>(Blocks.AIR).add(BlockStateProperties.MAP).create(Block::defaultBlockState, BlockState::new));
         return list;
     }
-    private static List<Identifier> createItemFrameLocation() {
-        List<Identifier> list = new ArrayList<>();
+    private static Map<DyeColor, Identifier> createItemFrameLocation() {
+        Map<DyeColor, Identifier> list = new LinkedHashMap<>();
         for(DyeColor color : ModUtil.COLORS)
-            list.add(WorldOfColor.asResource(color.getName() + "_item_frame"));
+            list.put(color, WorldOfColor.asResource(color.getName() + "_item_frame"));
         return list;
     }
 
     public static BlockState getItemFrameFakeState(DyeColor color, boolean map) {
-        return COLORED_ITEM_FRAME_FAKE_DEFINITION.get(ModUtil.COLORS.indexOf(color)).any().setValue(BlockStateProperties.MAP, map);
+        return COLORED_ITEM_FRAME_FAKE_DEFINITION.get(color).any().setValue(BlockStateProperties.MAP, map);
     }
 }

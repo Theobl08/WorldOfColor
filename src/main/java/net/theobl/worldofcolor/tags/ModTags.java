@@ -1,5 +1,8 @@
 package net.theobl.worldofcolor.tags;
 
+import net.minecraft.core.Registry;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -8,20 +11,19 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.theobl.worldofcolor.WorldOfColor;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 import static net.theobl.worldofcolor.util.ModUtil.*;
 
 public class ModTags {
     public static class Blocks {
-        public static final List<TagKey<Block>> COLORED_LOGS = createColoredBlockTags();
+        public static final Map<DyeColor, TagKey<Block>> COLORED_LOGS = createColoredBlockTags();
 
-        private static List<TagKey<Block>> createColoredBlockTags() {
-            List<TagKey<Block>> coloredTag = new ArrayList<>();
+        private static Map<DyeColor, TagKey<Block>> createColoredBlockTags() {
+            Map<DyeColor, TagKey<Block>> coloredTag = new LinkedHashMap<>();
             for (DyeColor color : COLORS){
                 TagKey<Block> tagKey = createTag(color.getName() + "_logs");
-                coloredTag.add(tagKey);
+                coloredTag.put(color, tagKey);
             }
             return coloredTag;
         }
@@ -32,14 +34,14 @@ public class ModTags {
     }
 
     public static class Items {
-        public static final List<TagKey<Item>> COLORED_LOGS = createColoredBlockTags();
+        public static final Map<DyeColor, TagKey<Item>> COLORED_LOGS = createColoredBlockTags();
         public static final TagKey<Item> CAULDRONS = createTag("cauldrons");
 
-        private static List<TagKey<Item>> createColoredBlockTags() {
-            List<TagKey<Item>> coloredTag = new ArrayList<>();
+        private static Map<DyeColor, TagKey<Item>> createColoredBlockTags() {
+            Map<DyeColor, TagKey<Item>> coloredTag = new LinkedHashMap<>();
             for (DyeColor color : COLORS){
                 TagKey<Item> tagKey = createTag(color.getName() + "_logs");
-                coloredTag.add(tagKey);
+                coloredTag.put(color, tagKey);
             }
             return coloredTag;
         }

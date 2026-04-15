@@ -17,6 +17,7 @@ import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.tags.ModTags;
+import net.theobl.worldofcolor.util.ModUtil;
 
 import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
@@ -77,18 +78,17 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         this.copy(Tags.Blocks.GLASS_BLOCKS_CHEAP, Tags.Items.GLASS_BLOCKS_CHEAP);
         this.copy(Tags.Blocks.GLASS_PANES, Tags.Items.GLASS_PANES);
 
-        for(TagKey<Item> tag : ModTags.Items.COLORED_LOGS) {
-            int index = ModTags.Items.COLORED_LOGS.indexOf(tag);
-            this.copy(ModTags.Blocks.COLORED_LOGS.get(index), tag);
+        for(DyeColor color : ModUtil.COLORS) {
+            this.copy(ModTags.Blocks.COLORED_LOGS.get(color), ModTags.Items.COLORED_LOGS.get(color));
         }
 
         this.tag(ItemTags.BUNDLES).add(ModItems.RGB_BUNDLE.get());
         this.tag(Tags.Items.DYES).add(ModItems.RGB_DYE.get());
         this.tag(ModTags.Items.CAULDRONS).add(Items.CAULDRON);
-        ModBlocks.COLORED_CAULDRONS.forEach(block -> this.tag(ModTags.Items.CAULDRONS).add(block.asItem()));
+        ModBlocks.COLORED_CAULDRONS.values().forEach(block -> this.tag(ModTags.Items.CAULDRONS).add(block.asItem()));
 
-        ModItems.COLORED_BOATS.forEach(item -> tag(ItemTags.BOATS).add(item.asItem()));
-        ModItems.COLORED_CHEST_BOATS.forEach(item -> tag(ItemTags.CHEST_BOATS).add(item.asItem()));
+        ModItems.COLORED_BOATS.values().forEach(item -> tag(ItemTags.BOATS).add(item.asItem()));
+        ModItems.COLORED_CHEST_BOATS.values().forEach(item -> tag(ItemTags.CHEST_BOATS).add(item.asItem()));
 
         addColored(Tags.Items.DYED, "{color}_block");
         addColored(Tags.Items.DYED, "{color}_bricks");

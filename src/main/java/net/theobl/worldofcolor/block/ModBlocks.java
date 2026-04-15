@@ -1,5 +1,7 @@
 package net.theobl.worldofcolor.block;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
 import net.minecraft.core.cauldron.CauldronInteractions;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ColorParticleOption;
@@ -39,124 +41,124 @@ public class ModBlocks {
 
     public static final List<DeferredBlock<Block>> CLASSIC_WOOLS = registerClassic("wool", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_WOOL).mapColor(MapColor.WOOL));
     public static final List<DeferredBlock<Block>> CLASSIC_CARPETS = registerClassic("carpet", CarpetBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CARPET).mapColor(MapColor.WOOL));
-    public static final List<DeferredBlock<Block>> SIMPLE_COLORED_BLOCKS = registerColored("block", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE));
-    public static final List<DeferredBlock<Block>> QUILTED_CONCRETES = registerColored("quilted_concrete", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE));
-    public static final List<DeferredBlock<Block>> GLAZED_CONCRETES = registerColored("glazed_concrete", GlazedTerracottaBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_GLAZED_TERRACOTTA));
-    public static final List<DeferredBlock<Block>> COLORED_LIGHTNING_RODS = registerColored("lightning_rod", p -> new WeatheringLightningRodBlock(WeatherState.UNAFFECTED, p), BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHTNING_ROD));
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_LIGHTNING_RODS = registerColored("waxed_lightning_rod", LightningRodBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHTNING_ROD));
-    public static final List<DeferredBlock<Block>> COLORED_SAPLINGS = registerColoredSaplings();
-    public static final List<DeferredBlock<Block>> COLORED_LEAVES = registerColoredLeaves();
-    public static final List<DeferredBlock<Block>> COLORED_LOGS = registerColored("log", RotatedPillarBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG));
-    public static final List<DeferredBlock<Block>> COLORED_WOODS = registerColored("wood", RotatedPillarBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD));
-    public static final List<DeferredBlock<Block>> COLORED_STRIPPED_LOGS = registerColored("stripped_log", RotatedPillarBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG));
-    public static final List<DeferredBlock<Block>> COLORED_STRIPPED_WOODS = registerColored("stripped_wood", RotatedPillarBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD));
-    public static final List<DeferredBlock<Block>> COLORED_PLANKS = registerColored("planks", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
-    public static final List<DeferredBlock<Block>> COLORED_STAIRS = registerColoredStairs("stairs", COLORED_PLANKS, StairBlock::new);
-    public static final List<DeferredBlock<Block>> COLORED_SLABS = registerColored("slab", SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SLAB));
-    public static final List<DeferredBlock<Block>> COLORED_FENCES = registerColored("fence", FenceBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE));
-    public static final List<DeferredBlock<Block>> COLORED_FENCE_GATES = registerColored("fence_gate", p -> new FenceGateBlock(p, SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_CLOSE),
+    public static final Map<DyeColor, DeferredBlock<Block>> SIMPLE_COLORED_BLOCKS = registerColored("block", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE));
+    public static final Map<DyeColor, DeferredBlock<Block>> QUILTED_CONCRETES = registerColored("quilted_concrete", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_CONCRETE));
+    public static final Map<DyeColor, DeferredBlock<Block>> GLAZED_CONCRETES = registerColored("glazed_concrete", GlazedTerracottaBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.WHITE_GLAZED_TERRACOTTA));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_LIGHTNING_RODS = registerColored("lightning_rod", p -> new WeatheringLightningRodBlock(WeatherState.UNAFFECTED, p), BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHTNING_ROD));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WAXED_LIGHTNING_RODS = registerColored("waxed_lightning_rod", LightningRodBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHTNING_ROD));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_SAPLINGS = registerColoredSaplings();
+    public static final BiMap<DyeColor, DeferredBlock<Block>> COLORED_LEAVES = registerColoredLeaves();
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_LOGS = registerColored("log", RotatedPillarBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LOG));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WOODS = registerColored("wood", RotatedPillarBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_STRIPPED_LOGS = registerColored("stripped_log", RotatedPillarBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_STRIPPED_WOODS = registerColored("stripped_wood", RotatedPillarBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD));
+    public static final BiMap<DyeColor, DeferredBlock<Block>> COLORED_PLANKS = registerColored("planks", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_STAIRS = registerColoredStairs("stairs", COLORED_PLANKS, StairBlock::new);
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_SLABS = registerColored("slab", SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SLAB));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_FENCES = registerColored("fence", FenceBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_FENCE_GATES = registerColored("fence_gate", p -> new FenceGateBlock(p, SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_CLOSE),
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_FENCE_GATE));
-    public static final List<DeferredBlock<Block>> COLORED_DOORS = registerColored("door", p -> new DoorBlock(BlockSetType.OAK, p), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR));
-    public static final List<DeferredBlock<Block>> COLORED_TRAPDOORS = registerColored("trapdoor", p -> new TrapDoorBlock(BlockSetType.OAK, p), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR));
-    public static final List<DeferredBlock<Block>> COLORED_PRESSURE_PLATES = registerColored("pressure_plate", p -> new PressurePlateBlock(BlockSetType.OAK, p),
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_DOORS = registerColored("door", p -> new DoorBlock(BlockSetType.OAK, p), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_DOOR));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_TRAPDOORS = registerColored("trapdoor", p -> new TrapDoorBlock(BlockSetType.OAK, p), BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_TRAPDOOR));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_PRESSURE_PLATES = registerColored("pressure_plate", p -> new PressurePlateBlock(BlockSetType.OAK, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PRESSURE_PLATE));
-    public static final List<DeferredBlock<Block>> COLORED_BUTTONS = registerColored("button", p -> new ButtonBlock(BlockSetType.OAK, 30, p),
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_BUTTONS = registerColored("button", p -> new ButtonBlock(BlockSetType.OAK, 30, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_BUTTON));
-    public static final List<DeferredBlock<Block>> COLORED_SIGNS = registerColoredSigns("sign", StandingSignBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN));
-    public static final List<DeferredBlock<Block>> COLORED_WALL_SIGNS = registerColoredSigns("wall_sign", WallSignBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN));
-    public static final List<DeferredBlock<Block>> COLORED_HANGING_SIGNS = registerColoredSigns("hanging_sign", CeilingHangingSignBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN));
-    public static final List<DeferredBlock<Block>> COLORED_WALL_HANGING_SIGNS = registerColoredSigns("wall_hanging_sign", WallHangingSignBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN));
-    public static final List<DeferredBlock<Block>> COLORED_SHELVES = registerColored("shelf", ShelfBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SHELF));
-    public static final List<DeferredBlock<Block>> COLORED_COPPER_BLOCKS = registerColoredWeathering("copper_block", WeatheringCopperFullBlock::new,
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_SIGNS = registerColoredSigns("sign", StandingSignBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WALL_SIGNS = registerColoredSigns("wall_sign", WallSignBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_HANGING_SIGNS = registerColoredSigns("hanging_sign", CeilingHangingSignBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WALL_HANGING_SIGNS = registerColoredSigns("wall_hanging_sign", WallHangingSignBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_SHELVES = registerColored("shelf", ShelfBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SHELF));
+    public static final BiMap<DyeColor, DeferredBlock<Block>> COLORED_COPPER_BLOCKS = registerColoredWeathering("copper_block", WeatheringCopperFullBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK));
-    public static final List<DeferredBlock<Block>> COLORED_CHISELED_COPPER = registerColoredWeathering("chiseled_copper", WeatheringCopperFullBlock::new,
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_CHISELED_COPPER = registerColoredWeathering("chiseled_copper", WeatheringCopperFullBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK));
-    public static final List<DeferredBlock<Block>> COLORED_COPPER_GRATES = registerColoredWeathering("copper_grate", WeatheringCopperGrateBlock::new,
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_COPPER_GRATES = registerColoredWeathering("copper_grate", WeatheringCopperGrateBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GRATE));
-    public static final List<DeferredBlock<Block>> COLORED_CUT_COPPER = registerColoredWeathering("cut_copper", WeatheringCopperFullBlock::new,
+    public static final BiMap<DyeColor, DeferredBlock<Block>> COLORED_CUT_COPPER = registerColoredWeathering("cut_copper", WeatheringCopperFullBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK));
-    public static final List<DeferredBlock<Block>> COLORED_CUT_COPPER_STAIRS = registerColoredStairs("cut_copper_stairs", COLORED_CUT_COPPER,
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_CUT_COPPER_STAIRS = registerColoredStairs("cut_copper_stairs", COLORED_CUT_COPPER,
             (blockState, p) -> new WeatheringCopperStairBlock(WeatherState.UNAFFECTED, blockState, p));
-    public static final List<DeferredBlock<Block>> COLORED_CUT_COPPER_SLABS = registerColoredWeathering("cut_copper_slab", WeatheringCopperSlabBlock::new,
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_CUT_COPPER_SLABS = registerColoredWeathering("cut_copper_slab", WeatheringCopperSlabBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK));
-    public static final List<DeferredBlock<Block>> COLORED_COPPER_DOORS = registerColored("copper_door", p -> new WeatheringCopperDoorBlock(BlockSetType.COPPER, WeatherState.UNAFFECTED, p),
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_COPPER_DOORS = registerColored("copper_door", p -> new WeatheringCopperDoorBlock(BlockSetType.COPPER, WeatherState.UNAFFECTED, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_DOOR));
-    public static final List<DeferredBlock<Block>> COLORED_COPPER_TRAPDOORS = registerColored("copper_trapdoor", p -> new WeatheringCopperTrapDoorBlock(BlockSetType.COPPER, WeatherState.UNAFFECTED, p),
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_COPPER_TRAPDOORS = registerColored("copper_trapdoor", p -> new WeatheringCopperTrapDoorBlock(BlockSetType.COPPER, WeatherState.UNAFFECTED, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_TRAPDOOR));
-    public static final List<DeferredBlock<Block>> COLORED_COPPER_BULBS = registerColoredWeathering("copper_bulb", WeatheringCopperBulbBlock::new,
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_COPPER_BULBS = registerColoredWeathering("copper_bulb", WeatheringCopperBulbBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BULB));
-    public static final List<DeferredBlock<Block>> COLORED_COPPER_BARS = registerColoredWeathering("copper_bars", WeatheringCopperBarsBlock::new,
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_COPPER_BARS = registerColoredWeathering("copper_bars", WeatheringCopperBarsBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BARS.unaffected()));
-    public static final List<DeferredBlock<Block>> COLORED_COPPER_CHAINS = registerColoredWeathering("copper_chain", WeatheringCopperChainBlock::new,
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_COPPER_CHAINS = registerColoredWeathering("copper_chain", WeatheringCopperChainBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHAIN.unaffected()));
-    public static final List<DeferredBlock<Block>> COLORED_COPPER_LANTERNS = registerColoredWeathering("copper_lantern", WeatheringLanternBlock::new,
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_COPPER_LANTERNS = registerColoredWeathering("copper_lantern", WeatheringLanternBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_LANTERN.unaffected()));
-    public static final List<DeferredBlock<Block>> COLORED_COPPER_CHESTS = registerColored("copper_chest",
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_COPPER_CHESTS = registerColored("copper_chest",
             p -> new WeatheringCopperChestBlock(WeatherState.OXIDIZED, SoundEvents.COPPER_CHEST_OPEN, SoundEvents.COPPER_CHEST_CLOSE, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHEST));
-    public static final List<DeferredBlock<Block>> COLORED_COPPER_GOLEM_STATUES = registerColored(
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_COPPER_GOLEM_STATUES = registerColored(
             "copper_golem_statue",
             (color, p) -> new ColoredWeatheringCopperGolemStatueBlock(WeatherState.OXIDIZED, color, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GOLEM_STATUE)
     );
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_BLOCKS = registerColored("waxed_copper_block", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK));
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_CHISELED_COPPER = registerColored("waxed_chiseled_copper", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK));
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_GRATES = registerColored("waxed_copper_grate", WaterloggedTransparentBlock::new,
+    public static final BiMap<DyeColor, DeferredBlock<Block>> COLORED_WAXED_COPPER_BLOCKS = registerColored("waxed_copper_block", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WAXED_CHISELED_COPPER = registerColored("waxed_chiseled_copper", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WAXED_COPPER_GRATES = registerColored("waxed_copper_grate", WaterloggedTransparentBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GRATE));
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_CUT_COPPER = registerColored("waxed_cut_copper", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK));
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_CUT_COPPER_STAIRS = registerColoredStairs("waxed_cut_copper_stairs", COLORED_WAXED_CUT_COPPER,
+    public static final BiMap<DyeColor, DeferredBlock<Block>> COLORED_WAXED_CUT_COPPER = registerColored("waxed_cut_copper", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WAXED_CUT_COPPER_STAIRS = registerColoredStairs("waxed_cut_copper_stairs", COLORED_WAXED_CUT_COPPER,
             StairBlock::new);
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_CUT_COPPER_SLABS = registerColored("waxed_cut_copper_slab", SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK));
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_DOORS = registerColored("waxed_copper_door", p -> new DoorBlock(BlockSetType.COPPER, p),
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WAXED_CUT_COPPER_SLABS = registerColored("waxed_cut_copper_slab", SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WAXED_COPPER_DOORS = registerColored("waxed_copper_door", p -> new DoorBlock(BlockSetType.COPPER, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_DOOR));
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_TRAPDOORS = registerColored("waxed_copper_trapdoor", p -> new TrapDoorBlock(BlockSetType.COPPER, p),
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WAXED_COPPER_TRAPDOORS = registerColored("waxed_copper_trapdoor", p -> new TrapDoorBlock(BlockSetType.COPPER, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_TRAPDOOR));
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_BULBS = registerColored("waxed_copper_bulb", CopperBulbBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BULB));
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_BARS = registerColored("waxed_copper_bars", IronBarsBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BARS.waxed()));
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_CHAINS = registerColored("waxed_copper_chain", ChainBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHAIN.waxed()));
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_LANTERNS = registerColored("waxed_copper_lantern", LanternBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_LANTERN.waxed()));
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_CHESTS = registerColored("waxed_copper_chest",
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WAXED_COPPER_BULBS = registerColored("waxed_copper_bulb", CopperBulbBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BULB));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WAXED_COPPER_BARS = registerColored("waxed_copper_bars", IronBarsBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BARS.waxed()));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WAXED_COPPER_CHAINS = registerColored("waxed_copper_chain", ChainBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHAIN.waxed()));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WAXED_COPPER_LANTERNS = registerColored("waxed_copper_lantern", LanternBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_LANTERN.waxed()));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WAXED_COPPER_CHESTS = registerColored("waxed_copper_chest",
             p -> new CopperChestBlock(WeatherState.OXIDIZED, SoundEvents.COPPER_CHEST_OPEN, SoundEvents.COPPER_CHEST_CLOSE, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHEST));
-    public static final List<DeferredBlock<Block>> COLORED_WAXED_COPPER_GOLEM_STATUES = registerColored(
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_WAXED_COPPER_GOLEM_STATUES = registerColored(
             "waxed_copper_golem_statue",
             (color, p) -> new ColoredCopperGolemStatueBlock(WeatherState.OXIDIZED, color, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GOLEM_STATUE)
     );
-    public static final List<DeferredBlock<Block>> COLORED_CAULDRONS = registerColored(
+    public static final BiMap<DyeColor, DeferredBlock<Block>> COLORED_CAULDRONS = registerColored(
             "cauldron",
             ColoredCauldronBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)
     );
-    public static final List<DeferredBlock<Block>> COLORED_WATER_CAULDRONS = registerColored("water_cauldron", p -> new LayeredCauldronBlock(Biome.Precipitation.RAIN, CauldronInteractions.WATER, p),
+    public static final BiMap<DyeColor, DeferredBlock<Block>> COLORED_WATER_CAULDRONS = registerColored("water_cauldron", p -> new LayeredCauldronBlock(Biome.Precipitation.RAIN, CauldronInteractions.WATER, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.WATER_CAULDRON));
-    public static final List<DeferredBlock<Block>> COLORED_LAVA_CAULDRONS = registerColored("lava_cauldron", LavaCauldronBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA_CAULDRON));
-    public static final List<DeferredBlock<Block>> COLORED_POWDER_SNOW_CAULDRONS = registerColored("powder_snow_cauldron", p -> new LayeredCauldronBlock(Biome.Precipitation.SNOW, CauldronInteractions.POWDER_SNOW, p),
+    public static final BiMap<DyeColor, DeferredBlock<Block>> COLORED_LAVA_CAULDRONS = registerColored("lava_cauldron", LavaCauldronBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA_CAULDRON));
+    public static final BiMap<DyeColor, DeferredBlock<Block>> COLORED_POWDER_SNOW_CAULDRONS = registerColored("powder_snow_cauldron", p -> new LayeredCauldronBlock(Biome.Precipitation.SNOW, CauldronInteractions.POWDER_SNOW, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.POWDER_SNOW_CAULDRON));
-    public static final List<DeferredBlock<Block>> COLORED_BRICKS = registerColored("bricks", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS));
-    public static final List<DeferredBlock<Block>> COLORED_BRICK_STAIRS = registerColoredStairs("brick_stairs", COLORED_BRICKS, StairBlock::new);
-    public static final List<DeferredBlock<Block>> COLORED_BRICK_SLABS = registerColored("brick_slab", SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BRICK_SLAB));
-    public static final List<DeferredBlock<Block>> COLORED_BRICK_WALLS = registerColored("brick_wall", WallBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BRICK_WALL));
-    public static final List<DeferredBlock<Block>> COLORED_SLIME_BLOCKS = registerColored(
+    public static final BiMap<DyeColor, DeferredBlock<Block>> COLORED_BRICKS = registerColored("bricks", Block::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_BRICK_STAIRS = registerColoredStairs("brick_stairs", COLORED_BRICKS, StairBlock::new);
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_BRICK_SLABS = registerColored("brick_slab", SlabBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BRICK_SLAB));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_BRICK_WALLS = registerColored("brick_wall", WallBlock::new, BlockBehaviour.Properties.ofFullCopy(Blocks.BRICK_WALL));
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_SLIME_BLOCKS = registerColored(
             "slime_block",
             ColoredSlimeBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.SLIME_BLOCK)
     );
-    public static final List<DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = registerPottedColoredSaplings();
-    public static final List<DeferredBlock<FlowerPotBlock>> COLORED_FLOWER_POTS = registerColored("flower_pot", p -> new FlowerPotBlock(null, () -> Blocks.AIR, p), BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
-    public static final Map<Supplier<Block>, List<DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
-    public static final List<DeferredBlock<ColoredDecoratedPotBlock>> COLORED_DECORATED_POTS = registerColored(
+    public static final Map<DyeColor, DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = registerPottedColoredSaplings();
+    public static final Map<DyeColor, DeferredBlock<FlowerPotBlock>> COLORED_FLOWER_POTS = registerColored("flower_pot", p -> new FlowerPotBlock(null, () -> Blocks.AIR, p), BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
+    public static final Map<DeferredBlock<Block>, Map<DyeColor, DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
+    public static final Map<DyeColor, DeferredBlock<ColoredDecoratedPotBlock>> COLORED_DECORATED_POTS = registerColored(
             "decorated_pot",
             ColoredDecoratedPotBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT)
     );
-    public static final List<DeferredBlock<Block>> COLORED_REDSTONE_LAMPS = registerColored(
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_REDSTONE_LAMPS = registerColored(
             "redstone_lamp",
             RedstoneLampBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_LAMP)
     );
     public static final DeferredBlock<Block> DYED_WATER_CAULDRON = BLOCKS.registerBlock("dyed_water_cauldron", p -> new DyedWaterCauldronBlock(null, p), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON));
-    public static final List<DeferredBlock<Block>> COLORED_DYED_WATER_CAULDRONS = registerColored(
+    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_DYED_WATER_CAULDRONS = registerColored(
             "dyed_water_cauldron",
             DyedWaterCauldronBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)
@@ -256,105 +258,103 @@ public class ModBlocks {
         return blocks;
     }
 
-    private static List<DeferredBlock<Block>> registerColoredSaplings() {
-        List<DeferredBlock<Block>> saplings = new ArrayList<>();
+    private static Map<DyeColor, DeferredBlock<Block>> registerColoredSaplings() {
+        Map<DyeColor, DeferredBlock<Block>> saplings = new LinkedHashMap<>();
         for (DyeColor color : COLORS) {
-            int index = COLORS.indexOf(color);
             DeferredBlock<Block> block = registerBlock(color.getName() + "_sapling",
-                    p -> new SaplingBlock(ModTreeGrower.COLORED_TREES.get(index), p), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(color));
-            saplings.add(block);
+                    p -> new SaplingBlock(ModTreeGrower.COLORED_TREES.get(color), p), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(color));
+            saplings.put(color, block);
             POTTABLE_PLANTS.add(block);
         }
         return saplings;
     }
 
-    private static List<DeferredBlock<Block>> registerPottedColoredSaplings() {
-        List<DeferredBlock<Block>> saplings = new ArrayList<>();
+    private static Map<DyeColor, DeferredBlock<Block>> registerPottedColoredSaplings() {
+        Map<DyeColor, DeferredBlock<Block>> saplings = new LinkedHashMap<>();
         for (DyeColor color : COLORS) {
-            int index = COLORS.indexOf(color);
-            DeferredBlock<Block> block = BLOCKS.registerBlock("potted_" + COLORED_SAPLINGS.get(index).getId().getPath(),
-                    p -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, COLORED_SAPLINGS.get(index), p),
+            DeferredBlock<Block> block = BLOCKS.registerBlock("potted_" + COLORED_SAPLINGS.get(color).getId().getPath(),
+                    p -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, COLORED_SAPLINGS.get(color), p),
                     () -> BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
-            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(COLORED_SAPLINGS.get(index).getId(), block);
-            saplings.add(block);
+            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(COLORED_SAPLINGS.get(color).getId(), block);
+            saplings.put(color, block);
         }
         return saplings;
     }
 
-    private static Map<Supplier<Block>, List<DeferredBlock<Block>>> registerColoredPottedPlant() {
-        Map<Supplier<Block>, List<DeferredBlock<Block>>> pottedPlants = new HashMap<>();
+    private static Map<DeferredBlock<Block>, Map<DyeColor, DeferredBlock<Block>>> registerColoredPottedPlant() {
+        Map<DeferredBlock<Block>, Map<DyeColor, DeferredBlock<Block>>> pottedPlants = new HashMap<>();
         for (DeferredBlock<Block> plant : POTTABLE_PLANTS) {
-            List<DeferredBlock<Block>> blockList = new ArrayList<>();
+            Map<DyeColor, DeferredBlock<Block>> blockList = new LinkedHashMap<>();
             for (DyeColor color : COLORS) {
                 int index = COLORS.indexOf(color);
                 DeferredBlock<Block> block = BLOCKS.registerBlock(color.getName() + "_potted_" + name(plant),
-                        p -> new ColoredFlowerPotBlock(COLORED_FLOWER_POTS.get(index), plant, color, p),
+                        p -> new ColoredFlowerPotBlock(COLORED_FLOWER_POTS.get(color), plant, color, p),
                         () -> BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT).mapColor(color).randomTicks());
-                blockList.add(block);
+                blockList.put(color, block);
             }
             pottedPlants.put(plant, blockList);
         }
         return pottedPlants;
     }
 
-    private static List<DeferredBlock<Block>> registerColoredLeaves() {
-        List<DeferredBlock<Block>> leaves = new ArrayList<>();
+    private static BiMap<DyeColor, DeferredBlock<Block>> registerColoredLeaves() {
+        BiMap<DyeColor, DeferredBlock<Block>> leaves = HashBiMap.create();
         for (DyeColor color : COLORS) {
             DeferredBlock<Block> block = registerBlock(color.getName() + "_leaves",
                     p -> new UntintedParticleLeavesBlock(0.01F, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, color.getTextureDiffuseColor()), p),
                     () -> BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES).mapColor(color));
-            leaves.add(block);
+            leaves.put(color, block);
         }
         return leaves;
     }
 
-    private static List<DeferredBlock<Block>> registerColoredStairs(String key, List<DeferredBlock<Block>> baseState, BiFunction<BlockState, BlockBehaviour.Properties, Block> factory) {
-        List<DeferredBlock<Block>> stairs = new ArrayList<>();
+    private static Map<DyeColor, DeferredBlock<Block>> registerColoredStairs(String key, Map<DyeColor, DeferredBlock<Block>> baseState, BiFunction<BlockState, BlockBehaviour.Properties, Block> factory) {
+        Map<DyeColor, DeferredBlock<Block>> stairs = new LinkedHashMap<>();
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
             String name = formatName(key, color);
             DeferredBlock<Block> block = registerBlock(name,
-                    p -> factory.apply(baseState.get(index).get().defaultBlockState(), p),
-                    () -> BlockBehaviour.Properties.ofFullCopy(baseState.get(index).get()).mapColor(color));
-            stairs.add(block);
+                    p -> factory.apply(baseState.get(color).get().defaultBlockState(), p),
+                    () -> BlockBehaviour.Properties.ofFullCopy(baseState.get(color).get()).mapColor(color));
+            stairs.put(color, block);
         }
         return stairs;
     }
 
-    private static List<DeferredBlock<Block>> registerColoredSigns(String key, BiFunction<WoodType, BlockBehaviour.Properties, Block> block, BlockBehaviour.Properties properties) {
-        List<DeferredBlock<Block>> signs = new ArrayList<>();
+    private static Map<DyeColor, DeferredBlock<Block>> registerColoredSigns(String key, BiFunction<WoodType, BlockBehaviour.Properties, Block> block, BlockBehaviour.Properties properties) {
+        Map<DyeColor, DeferredBlock<Block>> signs = new LinkedHashMap<>();
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
-            DeferredBlock<Block> deferredBlock = BLOCKS.registerBlock(color.getName() + "_" + key, p -> block.apply(ModWoodType.COLORED_WOODS.get(index), p), () -> properties.mapColor(color));
-            signs.add(deferredBlock);
+            DeferredBlock<Block> deferredBlock = BLOCKS.registerBlock(color.getName() + "_" + key, p -> block.apply(ModWoodType.COLORED_WOODS.get(color), p), () -> properties.mapColor(color));
+            signs.put(color, deferredBlock);
         }
         return signs;
     }
 
-    private static <T extends Block> List<DeferredBlock<T>> registerColored(String key, BiFunction<DyeColor, BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties) {
-        List<DeferredBlock<T>> blocks = new ArrayList<>();
+    private static <T extends Block> BiMap<DyeColor, DeferredBlock<T>> registerColored(String key, BiFunction<DyeColor, BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties) {
+        BiMap<DyeColor, DeferredBlock<T>> blocks = HashBiMap.create();
         for (DyeColor color : COLORS) {
             String name = formatName(key, color);
             DeferredBlock<T> deferredBlock = BLOCKS.registerBlock(name, p -> block.apply(color, p), () -> properties.mapColor(color));
             if(key.contains("slime_block"))
                 ModItems.ITEMS.registerSimpleBlockItem(deferredBlock);
-            blocks.add(deferredBlock);
+            blocks.put(color, deferredBlock);
         }
         return blocks;
     }
 
-    private static <T extends Block> List<DeferredBlock<T>> registerColoredWeathering(String key, BiFunction<WeatherState, BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties) {
+    private static <T extends Block> BiMap<DyeColor, DeferredBlock<T>> registerColoredWeathering(String key, BiFunction<WeatherState, BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties) {
         return registerColored(key, p -> block.apply(WeatherState.UNAFFECTED, p), properties);
     }
 
-    private static <T extends Block> List<DeferredBlock<T>> registerColored(String key, Function<BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties) {
-        List<DeferredBlock<T>> blocks = new ArrayList<>();
+    private static <T extends Block> BiMap<DyeColor, DeferredBlock<T>> registerColored(String key, Function<BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties) {
+        BiMap<DyeColor, DeferredBlock<T>> blocks = HashBiMap.create();
         for (DyeColor color : COLORS) {
             String name = formatName(key, color);
             DeferredBlock<T> deferredBlock = BLOCKS.registerBlock(name, block, () -> properties.mapColor(color));
             if(!key.contains("cauldron"))
                 registerBlockItem(name, deferredBlock);
-            blocks.add(deferredBlock);
+            blocks.put(color, deferredBlock);
         }
         return blocks;
     }

@@ -12,66 +12,69 @@ import net.minecraft.world.entity.vehicle.boat.ChestBoat;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.util.ModUtil;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Supplier;
 
 public class ModEntityType {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, WorldOfColor.MODID);
 
-    public static final List<Supplier<EntityType<Boat>>> COLORED_BOATS = registerColoredBoats();
-    public static final List<Supplier<EntityType<ChestBoat>>> COLORED_CHEST_BOATS = registerColoredChestBoats();
-    public static final List<Supplier<EntityType<ColoredItemFrame>>> COLORED_ITEM_FRAMES = registerColoredItemFrames();
+    public static final Map<DyeColor, DeferredHolder<EntityType<?>, EntityType<Boat>>> COLORED_BOATS = registerColoredBoats();
+    public static final Map<DyeColor, DeferredHolder<EntityType<?>, EntityType<ChestBoat>>> COLORED_CHEST_BOATS = registerColoredChestBoats();
+    public static final Map<DyeColor, DeferredHolder<EntityType<?>, EntityType<ColoredItemFrame>>> COLORED_ITEM_FRAMES = registerColoredItemFrames();
 
-    public static List<Supplier<EntityType<Boat>>> registerColoredBoats() {
-        List<Supplier<EntityType<Boat>>> boats = new ArrayList<>();
+    public static Map<DyeColor, DeferredHolder<EntityType<?>, EntityType<Boat>>> registerColoredBoats() {
+        Map<DyeColor, DeferredHolder<EntityType<?>, EntityType<Boat>>> boats = new LinkedHashMap<>();
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
-            Supplier<EntityType<Boat>> entity = registerEntityType(color.getName() + "_boat", EntityType.Builder.of(boatFactory(ModItems.COLORED_BOATS.get(index)), MobCategory.MISC)
+            var entity = registerEntityType(color.getName() + "_boat", EntityType.Builder.of(boatFactory(ModItems.COLORED_BOATS.get(color)), MobCategory.MISC)
                     .noLootTable()
                     .sized(1.375F, 0.5625F)
                     .eyeHeight(0.5625F)
                     .clientTrackingRange(10));
-            boats.add(entity);
+            boats.put(color, entity);
         }
         return boats;
     }
 
-    public static List<Supplier<EntityType<ChestBoat>>> registerColoredChestBoats() {
-        List<Supplier<EntityType<ChestBoat>>> boats = new ArrayList<>();
+    public static Map<DyeColor, DeferredHolder<EntityType<?>, EntityType<ChestBoat>>> registerColoredChestBoats() {
+        Map<DyeColor, DeferredHolder<EntityType<?>, EntityType<ChestBoat>>> boats = new LinkedHashMap<>();
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
-            Supplier<EntityType<ChestBoat>> entity = registerEntityType(color.getName() + "_chest_boat", EntityType.Builder.of(chestBoatFactory(ModItems.COLORED_CHEST_BOATS.get(index)), MobCategory.MISC)
+            var entity = registerEntityType(color.getName() + "_chest_boat", EntityType.Builder.of(chestBoatFactory(ModItems.COLORED_CHEST_BOATS.get(color)), MobCategory.MISC)
                     .noLootTable()
                     .sized(1.375F, 0.5625F)
                     .eyeHeight(0.5625F)
                     .clientTrackingRange(10));
-            boats.add(entity);
+            boats.put(color, entity);
         }
         return boats;
     }
 
     @SuppressWarnings("unchecked")
-    public static <T extends ItemFrame> List<Supplier<EntityType<T>>> registerColoredItemFrames() {
-        List<Supplier<EntityType<T>>> boats = new ArrayList<>();
+    public static <T extends ItemFrame> Map<DyeColor, DeferredHolder<EntityType<?>, EntityType<T>>> registerColoredItemFrames() {
+        Map<DyeColor, DeferredHolder<EntityType<?>, EntityType<T>>> boats = new LinkedHashMap<>();
         for (DyeColor color : ModUtil.COLORS) {
-            Supplier<EntityType<T>> entity = registerEntityType(color.getName() + "_item_frame", (EntityType.Builder<T>) EntityType.Builder.of(itemFrameFactory(color), MobCategory.MISC)
+            DeferredHolder<EntityType<?>, EntityType<T>> entity = registerEntityType(color.getName() + "_item_frame", (EntityType.Builder<T>) EntityType.Builder.of(itemFrameFactory(color), MobCategory.MISC)
                     .noLootTable()
                     .sized(0.5F, 0.5F)
                     .eyeHeight(0.0F)
                     .clientTrackingRange(10)
                     .updateInterval(Integer.MAX_VALUE));
-            boats.add(entity);
+            boats.put(color, entity);
         }
         return boats;
     }
 
-    private static <T extends Entity> Supplier<EntityType<T>> registerEntityType(String key, EntityType.Builder<T> builder) {
+    private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> registerEntityType(String key, EntityType.Builder<T> builder) {
         return ENTITY_TYPES.register(key, () -> builder.build(coloredEntityId(key)));
     }
 

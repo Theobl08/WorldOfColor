@@ -64,19 +64,19 @@ public class ModUtil {
     public static final List<DeferredBlock<Block>> POTTABLE_PLANTS = new ArrayList<>();
 
     public static void setup() {
-        ModBlocks.COLORED_PLANKS.forEach(block -> registerFlammable(block.get(), 5, 20));
-        ModBlocks.COLORED_SLABS.forEach(block -> registerFlammable(block.get(), 5, 20));
-        ModBlocks.COLORED_FENCE_GATES.forEach(block -> registerFlammable(block.get(), 5, 20));
-        ModBlocks.COLORED_FENCES.forEach(block -> registerFlammable(block.get(), 5, 20));
-        ModBlocks.COLORED_STAIRS.forEach(block -> registerFlammable(block.get(), 5, 20));
-        ModBlocks.COLORED_LOGS.forEach(block -> registerFlammable(block.get(), 5, 5));
-        ModBlocks.COLORED_STRIPPED_LOGS.forEach(block -> registerFlammable(block.get(), 5, 5));
-        ModBlocks.COLORED_STRIPPED_WOODS.forEach(block -> registerFlammable(block.get(), 5, 5));
-        ModBlocks.COLORED_WOODS.forEach(block -> registerFlammable(block.get(), 5, 5));
-        ModBlocks.COLORED_LEAVES.forEach(block -> registerFlammable(block.get(), 30, 60));
+        ModBlocks.COLORED_PLANKS.values().forEach(block -> registerFlammable(block.get(), 5, 20));
+        ModBlocks.COLORED_SLABS.values().forEach(block -> registerFlammable(block.get(), 5, 20));
+        ModBlocks.COLORED_FENCE_GATES.values().forEach(block -> registerFlammable(block.get(), 5, 20));
+        ModBlocks.COLORED_FENCES.values().forEach(block -> registerFlammable(block.get(), 5, 20));
+        ModBlocks.COLORED_STAIRS.values().forEach(block -> registerFlammable(block.get(), 5, 20));
+        ModBlocks.COLORED_LOGS.values().forEach(block -> registerFlammable(block.get(), 5, 5));
+        ModBlocks.COLORED_STRIPPED_LOGS.values().forEach(block -> registerFlammable(block.get(), 5, 5));
+        ModBlocks.COLORED_STRIPPED_WOODS.values().forEach(block -> registerFlammable(block.get(), 5, 5));
+        ModBlocks.COLORED_WOODS.values().forEach(block -> registerFlammable(block.get(), 5, 5));
+        ModBlocks.COLORED_LEAVES.values().forEach(block -> registerFlammable(block.get(), 30, 60));
         ModBlocks.CLASSIC_WOOLS.forEach(block -> registerFlammable(block.get(), 30, 60));
         ModBlocks.CLASSIC_CARPETS.forEach(block -> registerFlammable(block.get(), 60, 20));
-        ModBlocks.COLORED_SHELVES.forEach(block -> registerFlammable(block.get(), 30, 20));
+        ModBlocks.COLORED_SHELVES.values().forEach(block -> registerFlammable(block.get(), 30, 20));
 
         registerFlammable(ModBlocks.RGB_WOOL.get(), 30, 60);
         registerFlammable(ModBlocks.RGB_CARPET.get(), 60, 20);
@@ -84,7 +84,7 @@ public class ModUtil {
         for (DyeColor color : COLORS) {
             int index = COLORS.indexOf(color);
             ModBlocks.COLORED_POTTED_PLANTS.forEach((block, deferredBlocks) ->
-                    ModBlocks.COLORED_FLOWER_POTS.get(index).get().addPlant(BuiltInRegistries.BLOCK.getKey(block.get()), deferredBlocks.get(index)));
+                    ModBlocks.COLORED_FLOWER_POTS.get(color).get().addPlant(block.getId(), deferredBlocks.get(color)));
         }
     }
 

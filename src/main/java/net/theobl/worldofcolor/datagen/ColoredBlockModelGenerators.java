@@ -75,14 +75,14 @@ public class ColoredBlockModelGenerators {
 
     public void createCauldrons(DyeColor color) {
         int index = ModUtil.COLORS.indexOf(color);
-        Block cauldron = ModBlocks.COLORED_CAULDRONS.get(index).get();
-        Block lavaCauldron = ModBlocks.COLORED_LAVA_CAULDRONS.get(index).get();
-        Block waterCauldron = ModBlocks.COLORED_WATER_CAULDRONS.get(index).get();
-        Block powderSnowCauldron = ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(index).get();
+        Block cauldron = ModBlocks.COLORED_CAULDRONS.get(color).get();
+        Block lavaCauldron = ModBlocks.COLORED_LAVA_CAULDRONS.get(color).get();
+        Block waterCauldron = ModBlocks.COLORED_WATER_CAULDRONS.get(color).get();
+        Block powderSnowCauldron = ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(color).get();
         Identifier emptyCauldron = CAULDRON.create(cauldron, cauldronEmpty(color), blockModels.modelOutput);
         Material water = TextureMapping.getBlockTexture(Blocks.WATER, "_still");
 
-        blockModels.registerSimpleFlatItemModel(ModItems.COLORED_CAULDRONS.get(index).get());
+        blockModels.registerSimpleFlatItemModel(ModItems.COLORED_CAULDRONS.get(color).get());
         blockModels.blockStateOutput
                 .accept(
                         createSimpleBlock(

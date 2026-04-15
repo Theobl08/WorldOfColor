@@ -8,7 +8,6 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.theobl.worldofcolor.item.ModItems;
-import net.theobl.worldofcolor.util.ModUtil;
 
 public class ColoredItemFrame extends ItemFrame {
     private final DyeColor color;
@@ -18,12 +17,12 @@ public class ColoredItemFrame extends ItemFrame {
     }
 
     public ColoredItemFrame(Level level, BlockPos pos, Direction facingDirection, DyeColor color) {
-        super(ModEntityType.COLORED_ITEM_FRAMES.get(ModUtil.COLORS.indexOf(color)).get(), level, pos, facingDirection);
+        super(ModEntityType.COLORED_ITEM_FRAMES.get(color).get(), level, pos, facingDirection);
         this.color = color;
     }
 
     @Override
     protected ItemStack getFrameItemStack() {
-        return new ItemStack(ModItems.COLORED_ITEM_FRAMES.get(ModUtil.COLORS.indexOf(this.color)).get());
+        return new ItemStack(ModItems.COLORED_ITEM_FRAMES.get(this.color).get());
     }
 }

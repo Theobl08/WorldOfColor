@@ -3,9 +3,11 @@ package net.theobl.worldofcolor.datagen;
 import com.google.common.collect.Maps;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.block.ModBlocks;
+import net.theobl.worldofcolor.util.ModUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,8 +27,8 @@ public class ModBlockFamilies {
 
     private static List<BlockFamily> coloredPlanksFamilyBuilder() {
         List<BlockFamily> families = new ArrayList<>();
-        for (DeferredBlock<Block> planks : ModBlocks.COLORED_PLANKS) {
-            int index = ModBlocks.COLORED_PLANKS.indexOf(planks);
+        for (DeferredBlock<Block> planks : ModBlocks.COLORED_PLANKS.values()) {
+            DyeColor index = ModBlocks.COLORED_PLANKS.inverse().get(planks);
             BlockFamily family = familyBuilder(planks.get())
                     .button(ModBlocks.COLORED_BUTTONS.get(index).get())
                     .fence(ModBlocks.COLORED_FENCES.get(index).get())
@@ -47,8 +49,8 @@ public class ModBlockFamilies {
 
     private static List<BlockFamily> coloredBricksFamilyBuilder() {
         List<BlockFamily> families = new ArrayList<>();
-        for (DeferredBlock<Block> block : ModBlocks.COLORED_BRICKS) {
-            int index = ModBlocks.COLORED_BRICKS.indexOf(block);
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_BRICKS.values()) {
+            DyeColor index = ModBlocks.COLORED_BRICKS.inverse().get(block);
             BlockFamily family = familyBuilder(block.get())
                     .wall(ModBlocks.COLORED_BRICK_WALLS.get(index).get())
                     .stairs(ModBlocks.COLORED_BRICK_STAIRS.get(index).get())
@@ -61,8 +63,8 @@ public class ModBlockFamilies {
 
     private static List<BlockFamily> coloredCopperBlockFamilyBuilder() {
         List<BlockFamily> families = new ArrayList<>();
-        for (DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_BLOCKS) {
-            int index = ModBlocks.COLORED_COPPER_BLOCKS.indexOf(block);
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_BLOCKS.values()) {
+            DyeColor index = ModBlocks.COLORED_COPPER_BLOCKS.inverse().get(block);
             BlockFamily family = familyBuilder(block.get()).cut(ModBlocks.COLORED_CUT_COPPER.get(index).get()).dontGenerateModel().getFamily();
             families.add(family);
         }
@@ -71,8 +73,8 @@ public class ModBlockFamilies {
 
     private static List<BlockFamily> coloredCutCopperFamilyBuilder() {
         List<BlockFamily> families = new ArrayList<>();
-        for (DeferredBlock<Block> block : ModBlocks.COLORED_CUT_COPPER) {
-            int index = ModBlocks.COLORED_CUT_COPPER.indexOf(block);
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_CUT_COPPER.values()) {
+            DyeColor index = ModBlocks.COLORED_CUT_COPPER.inverse().get(block);
             BlockFamily family = familyBuilder(block.get())
                     .slab(ModBlocks.COLORED_CUT_COPPER_SLABS.get(index).get())
                     .stairs(ModBlocks.COLORED_CUT_COPPER_STAIRS.get(index).get())
@@ -86,8 +88,8 @@ public class ModBlockFamilies {
 
     private static List<BlockFamily> coloredWaxedCopperBlockFamilyBuilder() {
         List<BlockFamily> families = new ArrayList<>();
-        for (DeferredBlock<Block> block : ModBlocks.COLORED_WAXED_COPPER_BLOCKS) {
-            int index = ModBlocks.COLORED_WAXED_COPPER_BLOCKS.indexOf(block);
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_WAXED_COPPER_BLOCKS.values()) {
+            DyeColor index = ModBlocks.COLORED_WAXED_COPPER_BLOCKS.inverse().get(block);
             BlockFamily family = familyBuilder(block.get())
                     .cut(ModBlocks.COLORED_WAXED_CUT_COPPER.get(index).get())
                     .recipeGroupPrefix("waxed_cut_copper")
@@ -100,8 +102,8 @@ public class ModBlockFamilies {
 
     private static List<BlockFamily> coloredWaxedCutCopperFamilyBuilder() {
         List<BlockFamily> families = new ArrayList<>();
-        for (DeferredBlock<Block> block : ModBlocks.COLORED_WAXED_CUT_COPPER) {
-            int index = ModBlocks.COLORED_WAXED_CUT_COPPER.indexOf(block);
+        for (DeferredBlock<Block> block : ModBlocks.COLORED_WAXED_CUT_COPPER.values()) {
+            DyeColor index = ModBlocks.COLORED_WAXED_CUT_COPPER.inverse().get(block);
             BlockFamily family = familyBuilder(block.get())
                     .slab(ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.get(index).get())
                     .stairs(ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.get(index).get())

@@ -38,38 +38,38 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             else if(ModBlocks.CLASSIC_CARPETS.contains(block)) {
                 this.tag(BlockTags.WOOL_CARPETS).add(block.get());
             }
-            else if (ModBlocks.COLORED_STRIPPED_LOGS.contains(block)) {
+            else if (ModBlocks.COLORED_STRIPPED_LOGS.containsValue(block)) {
                 this.tag(Tags.Blocks.STRIPPED_LOGS).add(block.get());
             }
-            else if (ModBlocks.COLORED_STRIPPED_WOODS.contains(block)) {
+            else if (ModBlocks.COLORED_STRIPPED_WOODS.containsValue(block)) {
                 this.tag(Tags.Blocks.STRIPPED_WOODS).add(block.get());
             }
-            else if (ModBlocks.COLORED_PLANKS.contains(block)) {
+            else if (ModBlocks.COLORED_PLANKS.containsValue(block)) {
                 this.tag(BlockTags.PLANKS).add(block.get());
             }
-            else if (ModBlocks.COLORED_STAIRS.contains(block)) {
+            else if (ModBlocks.COLORED_STAIRS.containsValue(block)) {
                 this.tag(BlockTags.WOODEN_STAIRS).add(block.get());
             }
-            else if (ModBlocks.COLORED_SLABS.contains(block)) {
+            else if (ModBlocks.COLORED_SLABS.containsValue(block)) {
                 this.tag(BlockTags.WOODEN_SLABS).add(block.get());
             }
-            else if (ModBlocks.COLORED_FENCES.contains(block)) {
+            else if (ModBlocks.COLORED_FENCES.containsValue(block)) {
                 this.tag(BlockTags.WOODEN_FENCES).add(block.get());
             }
-            else if (ModBlocks.COLORED_FENCE_GATES.contains(block)) {
+            else if (ModBlocks.COLORED_FENCE_GATES.containsValue(block)) {
                 this.tag(BlockTags.FENCE_GATES).add(block.get());
                 this.tag(Tags.Blocks.FENCE_GATES_WOODEN).add(block.get());
             }
-            else if (ModBlocks.COLORED_DOORS.contains(block)) {
+            else if (ModBlocks.COLORED_DOORS.containsValue(block)) {
                 this.tag(BlockTags.WOODEN_DOORS).add(block.get());
             }
-            else if (ModBlocks.COLORED_TRAPDOORS.contains(block)) {
+            else if (ModBlocks.COLORED_TRAPDOORS.containsValue(block)) {
                 this.tag(BlockTags.WOODEN_TRAPDOORS).add(block.get());
             }
-            else if (ModBlocks.COLORED_PRESSURE_PLATES.contains(block)) {
+            else if (ModBlocks.COLORED_PRESSURE_PLATES.containsValue(block)) {
                 this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(block.get());
             }
-            else if (ModBlocks.COLORED_BUTTONS.contains(block)) {
+            else if (ModBlocks.COLORED_BUTTONS.containsValue(block)) {
                 this.tag(BlockTags.WOODEN_BUTTONS).add(block.get());
             }
 
@@ -84,19 +84,19 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 this.tag(BlockTags.LEAVES).add(block.get());
             }
             else if (block.get() instanceof StairBlock) {
-                if(!ModBlocks.COLORED_STAIRS.contains(block)) this.tag(BlockTags.STAIRS).add(block.get());
+                if(!ModBlocks.COLORED_STAIRS.containsValue(block)) this.tag(BlockTags.STAIRS).add(block.get());
             }
             else if (block.get() instanceof SlabBlock) {
-                if(!ModBlocks.COLORED_SLABS.contains(block)) this.tag(BlockTags.SLABS).add(block.get());
+                if(!ModBlocks.COLORED_SLABS.containsValue(block)) this.tag(BlockTags.SLABS).add(block.get());
             }
             else if (block.get() instanceof WallBlock) {
                 this.tag(BlockTags.WALLS).add(block.get());
             }
             else if (block.get() instanceof DoorBlock) {
-                if(!ModBlocks.COLORED_DOORS.contains(block)) this.tag(BlockTags.DOORS).add(block.get());
+                if(!ModBlocks.COLORED_DOORS.containsValue(block)) this.tag(BlockTags.DOORS).add(block.get());
             }
             else if (block.get() instanceof TrapDoorBlock) {
-                if(!ModBlocks.COLORED_TRAPDOORS.contains(block)) this.tag(BlockTags.TRAPDOORS).add(block.get());
+                if(!ModBlocks.COLORED_TRAPDOORS.containsValue(block)) this.tag(BlockTags.TRAPDOORS).add(block.get());
             }
             else if (block.get() instanceof StandingSignBlock) {
                 this.tag(BlockTags.STANDING_SIGNS).add(block.get());
@@ -136,7 +136,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             }
         }
 
-        ModBlocks.COLORED_SHELVES.forEach(block -> this.tag(BlockTags.WOODEN_SHELVES).add(block.get()));
+        ModBlocks.COLORED_SHELVES.values().forEach(block -> this.tag(BlockTags.WOODEN_SHELVES).add(block.get()));
 
         this.tag(BlockTags.WOOL).add(ModBlocks.RGB_WOOL.get());
         this.tag(BlockTags.WOOL_CARPETS).add(ModBlocks.RGB_CARPET.get());
@@ -155,18 +155,16 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
-            this.tag(BlockTags.CAULDRONS).add(ModBlocks.COLORED_CAULDRONS.get(index).get())
-                    .add(ModBlocks.COLORED_WATER_CAULDRONS.get(index).get())
-                    .add(ModBlocks.COLORED_LAVA_CAULDRONS.get(index).get())
-                    .add(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(index).get());
-        }
+            this.tag(BlockTags.CAULDRONS).add(ModBlocks.COLORED_CAULDRONS.get(color).get())
+                    .add(ModBlocks.COLORED_WATER_CAULDRONS.get(color).get())
+                    .add(ModBlocks.COLORED_LAVA_CAULDRONS.get(color).get())
+                    .add(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(color).get());
 
-        for (TagKey<Block> tagKey : ModTags.Blocks.COLORED_LOGS) {
-            int index = ModTags.Blocks.COLORED_LOGS.indexOf(tagKey);
-            this.tag(tagKey).add(ModBlocks.COLORED_LOGS.get(index).get(),
-                    ModBlocks.COLORED_WOODS.get(index).get(),
-                    ModBlocks.COLORED_STRIPPED_LOGS.get(index).get(),
-                    ModBlocks.COLORED_STRIPPED_WOODS.get(index).get());
+            TagKey<Block> tagKey = ModTags.Blocks.COLORED_LOGS.get(color);
+            this.tag(tagKey).add(ModBlocks.COLORED_LOGS.get(color).get(),
+                    ModBlocks.COLORED_WOODS.get(color).get(),
+                    ModBlocks.COLORED_STRIPPED_LOGS.get(color).get(),
+                    ModBlocks.COLORED_STRIPPED_WOODS.get(color).get());
             this.tag(BlockTags.LOGS_THAT_BURN).addTag(tagKey);
         }
 
@@ -228,7 +226,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 block.get().toString().contains("brick") ||
                 block.get() instanceof LightningRodBlock ||
                 block.get() instanceof GlazedTerracottaBlock ||
-                ModBlocks.SIMPLE_COLORED_BLOCKS.contains(block);
+                ModBlocks.SIMPLE_COLORED_BLOCKS.containsValue(block);
     }
 
     private void addColored(TagKey<Block> group, String pattern) {

@@ -6,19 +6,17 @@ import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.util.ModUtil;
 import net.theobl.worldofcolor.worldgen.ModTreeFeatures;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 public class ModTreeGrower {
-    public static final List<TreeGrower> COLORED_TREES = registerColoredTrees();
+    public static final Map<DyeColor, TreeGrower> COLORED_TREES = registerColoredTrees();
 
-    private static List<TreeGrower> registerColoredTrees() {
-        List<TreeGrower> treeGrowers = new ArrayList<>();
+    private static Map<DyeColor, TreeGrower> registerColoredTrees() {
+        Map<DyeColor, TreeGrower> treeGrowers = new LinkedHashMap<>();
         for(DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
-            TreeGrower grower = new TreeGrower(WorldOfColor.MODID + ":" + color.getName(), Optional.empty(), Optional.of(ModTreeFeatures.COLORED_TREES.get(index)), Optional.empty());
-            treeGrowers.add(grower);
+            TreeGrower grower = new TreeGrower(WorldOfColor.MODID + ":" + color.getName(), Optional.empty(), Optional.of(ModTreeFeatures.COLORED_TREES.get(color)), Optional.empty());
+            treeGrowers.put(color, grower);
         }
         return treeGrowers;
     }

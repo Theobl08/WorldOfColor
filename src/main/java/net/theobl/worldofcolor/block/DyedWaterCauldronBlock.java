@@ -93,7 +93,7 @@ public class DyedWaterCauldronBlock extends AbstractCauldronBlock implements Ent
         int newLevel = state.getValue(LEVEL) - 1;
         BlockState emptyCauldron = Blocks.CAULDRON.defaultBlockState();
         if(state.getBlock() instanceof DyedWaterCauldronBlock block && block.color != null) {
-            emptyCauldron = ModBlocks.COLORED_CAULDRONS.get(ModUtil.COLORS.indexOf(block.color)).get().defaultBlockState();
+            emptyCauldron = ModBlocks.COLORED_CAULDRONS.get(block.color).get().defaultBlockState();
         }
         BlockState newState = newLevel == 0 ? emptyCauldron : state.setValue(LEVEL, newLevel);
         level.setBlockAndUpdate(pos, newState);

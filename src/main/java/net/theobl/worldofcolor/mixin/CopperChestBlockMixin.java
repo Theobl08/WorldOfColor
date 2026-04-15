@@ -45,10 +45,10 @@ public abstract class CopperChestBlockMixin {
 
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
-            if(blockstate2.is(ModBlocks.COLORED_COPPER_CHESTS.get(index))) {
+            if(blockstate2.is(ModBlocks.COLORED_COPPER_CHESTS.get(color))) {
                 for (DyeColor color1 : ModUtil.COLORS) {
                     int index1 = ModUtil.COLORS.indexOf(color1);
-                    if(blockstate1.is(ModBlocks.COLORED_COPPER_CHESTS.get(index1))) {
+                    if(blockstate1.is(ModBlocks.COLORED_COPPER_CHESTS.get(color1))) {
                         return index <= index1 ? blockstate2.getBlock() : blockstate1.getBlock();
                     }
                 }
@@ -57,10 +57,10 @@ public abstract class CopperChestBlockMixin {
 
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
-            if(blockstate2.is(ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(index))) {
+            if(blockstate2.is(ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(color))) {
                 for (DyeColor color1 : ModUtil.COLORS) {
                     int index1 = ModUtil.COLORS.indexOf(color1);
-                    if(blockstate1.is(ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(index1))) {
+                    if(blockstate1.is(ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(color1))) {
                         return index <= index1 ? blockstate2.getBlock() : blockstate1.getBlock();
                     }
                 }

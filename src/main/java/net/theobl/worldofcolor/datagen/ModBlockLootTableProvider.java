@@ -6,6 +6,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BedPart;
@@ -37,9 +38,9 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
             else if (block.get() instanceof DoorBlock)
                 this.add(block.get(), this::createDoorTable);
             else if (block.get() instanceof LeavesBlock) {
-                int index = ModBlocks.COLORED_LEAVES.indexOf(block);
-                if(index != -1)
-                    this.add(block.get(), createLeavesDrops(block.get(), ModBlocks.COLORED_SAPLINGS.get(index).get(), NORMAL_LEAVES_SAPLING_CHANCES));
+                DyeColor color = ModBlocks.COLORED_LEAVES.inverse().get(block);
+                if(color != null)
+                    this.add(block.get(), createLeavesDrops(block.get(), ModBlocks.COLORED_SAPLINGS.get(color).get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
             } else if(block.get() instanceof FlowerPotBlock flowerPotBlock && block.get().defaultBlockState() != flowerPotBlock.getEmptyPot().defaultBlockState()) {
                 this.dropColoredPottedContents(block.get());

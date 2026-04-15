@@ -31,13 +31,14 @@ public class ModLanguageProvider extends LanguageProvider {
 //        ModItems.COLORED_BOATS.forEach(this::lang);
 //        ModItems.COLORED_CHEST_BOATS.forEach(this::lang);
 //        ModItems.COLORED_ITEM_FRAMES.forEach(this::lang);
-        ModEntityType.COLORED_BOATS.forEach(this::lang);
-        ModEntityType.COLORED_CHEST_BOATS.forEach(this::lang);
-        ModEntityType.COLORED_ITEM_FRAMES.forEach(this::lang);
+//        ModEntityType.COLORED_BOATS.forEach(this::lang);
+//        ModEntityType.COLORED_CHEST_BOATS.forEach(this::lang);
+//        ModEntityType.COLORED_ITEM_FRAMES.forEach(this::lang);
+        ModEntityType.ENTITY_TYPES.getEntries().forEach(this::lang);
 
-        ModTags.Blocks.COLORED_LOGS.forEach(this::lang);
+        ModTags.Blocks.COLORED_LOGS.values().forEach(this::lang);
 
-        ModTags.Items.COLORED_LOGS.forEach(this::lang);
+        ModTags.Items.COLORED_LOGS.values().forEach(this::lang);
 
 //        for (Field field : BlockTags.class.getDeclaredFields()) {
 //            TagKey<Block> tag = null;

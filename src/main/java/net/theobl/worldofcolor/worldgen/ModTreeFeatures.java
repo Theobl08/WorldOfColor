@@ -18,28 +18,30 @@ import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.util.ModUtil;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ModTreeFeatures {
-    public static final List<ResourceKey<ConfiguredFeature<?, ?>>> COLORED_TREES = registerColoredKeys();
+    public static final Map<DyeColor, ResourceKey<ConfiguredFeature<?, ?>>> COLORED_TREES = registerColoredKeys();
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
-            register(context, COLORED_TREES.get(index), Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
-                    BlockStateProvider.simple(ModBlocks.COLORED_LOGS.get(index).get()),
+            register(context, COLORED_TREES.get(color), Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
+                    BlockStateProvider.simple(ModBlocks.COLORED_LOGS.get(color).get()),
                     new StraightTrunkPlacer(4, 2, 0),
 
-                    BlockStateProvider.simple(ModBlocks.COLORED_LEAVES.get(index).get()),
+                    BlockStateProvider.simple(ModBlocks.COLORED_LEAVES.get(color).get()),
                     new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
 
                     new TwoLayersFeatureSize(1, 0, 1)).build());
         }
     }
 
-    public static List<ResourceKey<ConfiguredFeature<?, ?>>> registerColoredKeys() {
-        List<ResourceKey<ConfiguredFeature<?, ?>>> keys = new ArrayList<>();
-        ModUtil.COLORS.forEach(color -> keys.add(registerKey(color.getName())));
+    public static Map<DyeColor, ResourceKey<ConfiguredFeature<?, ?>>> registerColoredKeys() {
+        Map<DyeColor, ResourceKey<ConfiguredFeature<?, ?>>> keys = new LinkedHashMap<>();
+        ModUtil.COLORS.forEach(color -> keys.put(color, registerKey(color.getName())));
         return keys;
     }
 
