@@ -1,2 +1,4 @@
-// 26.1	2026-03-25T17:03:54.5461304	Tags for minecraft:entity_type mod id worldofcolor
-f616d7b0f15439e3b31ee0f44c2a6cce3c6f0089 data/c/tags/entity_type/boats.json
+// 26.1	2026-04-16T13:32:10.3781043	Tags for minecraft:entity_type mod id worldofcolor
+2c670892192d2296df7edc6b62961af81bda9579 data/c/tags/entity_type/boats.json
+3f0e4fba92dbaf7b6996942ce507091974be1545 data/c/tags/entity_type/item_frames.json
+a210f42bbba5263bfdfba95deb3192b6613773ca data/minecraft/tags/entity_type/boat.json
