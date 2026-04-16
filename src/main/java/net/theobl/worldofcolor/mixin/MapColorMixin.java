@@ -8,8 +8,8 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(MapColor.class)
 public abstract class MapColorMixin {
-    @ModifyVariable(method = "<init>", argsOnly = true, ordinal = 1, at = @At("HEAD"), require = 0)
-    private static int correctDyeColorMapColor(int original, @Local(argsOnly = true, ordinal = 1) int col) {
+    @ModifyVariable(method = "<init>", argsOnly = true, name = "col", at = @At("HEAD"), require = 0)
+    private static int correctDyeColorMapColor(int original, @Local(argsOnly = true, name = "col") int col) {
         return switch (col) {
             case 16777215 -> 16383998; // white
             case 10066329 -> 10329495; // light gray

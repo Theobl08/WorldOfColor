@@ -11,11 +11,11 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(ShulkerBoxBlock.class)
 public class ShulkerBoxBlockMixin {
-    @ModifyVariable(method = "playerWillDestroy", at = @At("STORE"))
-    private ItemStack rgbShulkerBox(ItemStack original, @Local BlockEntity blockentity) {
-        if(blockentity.getBlockState().is(ModBlocks.RGB_SHULKER_BOX.get())) {
+    @ModifyVariable(method = "playerWillDestroy", at = @At("STORE"), name = "itemStack")
+    private ItemStack rgbShulkerBox(ItemStack itemStack, @Local(name = "blockEntity") BlockEntity blockEntity) {
+        if(blockEntity.getBlockState().is(ModBlocks.RGB_SHULKER_BOX.get())) {
             return new ItemStack(ModBlocks.RGB_SHULKER_BOX);
         }
-        return original;
+        return itemStack;
     }
 }

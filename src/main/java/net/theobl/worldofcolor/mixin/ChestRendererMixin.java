@@ -16,9 +16,8 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(ChestRenderer.class)
 public abstract class ChestRendererMixin {
     @ModifyReturnValue(method = "getCustomSprite", at = @At("RETURN"))
-    private SpriteId getCustomMaterial(SpriteId original, @Local(argsOnly = true) BlockEntity blockEntity, @Local(argsOnly = true) ChestRenderState renderState) {
+    private SpriteId getCustomSprite(SpriteId original, @Local(argsOnly = true) BlockEntity blockEntity, @Local(argsOnly = true) ChestRenderState renderState) {
         for (DyeColor color : ModUtil.COLORS) {
-            int index = ModUtil.COLORS.indexOf(color);
             if(blockEntity.getBlockState().is(ModBlocks.COLORED_COPPER_CHESTS.get(color))
                     || blockEntity.getBlockState().is(ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(color))) {
                 return switch (renderState.type) {

@@ -34,7 +34,6 @@ public abstract class HangingEntityItemMixin {
     @ModifyExpressionValue(method = "useOn", at = @At(value = "MIXINEXTRAS:EXPRESSION"))
     private boolean checkIfColoredItemFrame(boolean original) {
         for (DyeColor color : ModUtil.COLORS) {
-            int index = ModUtil.COLORS.indexOf(color);
             if(this.type == ModEntityType.COLORED_ITEM_FRAMES.get(color).get()) {
                 return false; // We want to continue on the "useOn" method, and when this boolean is true, the method is over
             }
@@ -45,15 +44,14 @@ public abstract class HangingEntityItemMixin {
     @Definition(id = "hangingentity", local = @Local(type = HangingEntity.class))
     @Definition(id = "GlowItemFrame", type = GlowItemFrame.class)
     @Expression("hangingentity = new GlowItemFrame(?, ?, ?)")
-    @ModifyVariable(method = "useOn", at = @At(value = "MIXINEXTRAS:EXPRESSION", shift = At.Shift.AFTER))
-    private HangingEntity placeColoredItemFrame(HangingEntity original, @Local(argsOnly = true) UseOnContext context, @Local(ordinal = 1) BlockPos blockPos1, @Local Direction direction) {
+    @ModifyVariable(method = "useOn", at = @At(value = "MIXINEXTRAS:EXPRESSION", shift = At.Shift.AFTER), name = "entity")
+    private HangingEntity placeColoredItemFrame(HangingEntity entity, @Local(argsOnly = true) UseOnContext context, @Local(name = "blockPos") BlockPos blockPos, @Local(name = "clickedFace") Direction clickedFace) {
         Level level = context.getLevel();
         for (DyeColor color : ModUtil.COLORS) {
-            int index = ModUtil.COLORS.indexOf(color);
             if(this.type == ModEntityType.COLORED_ITEM_FRAMES.get(color).get()) {
-                return new ColoredItemFrame(level, blockPos1, direction, color);
+                return new ColoredItemFrame(level, blockPos, clickedFace, color);
             }
         }
-        return original;
+        return entity;
     }
 }

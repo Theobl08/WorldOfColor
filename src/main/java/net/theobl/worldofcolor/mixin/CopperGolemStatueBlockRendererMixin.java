@@ -16,10 +16,10 @@ public abstract class CopperGolemStatueBlockRendererMixin {
     @ModifyArg(method = "submit(Lnet/minecraft/client/renderer/blockentity/state/CopperGolemStatueRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/level/CameraRenderState;)V",
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/SubmitNodeCollector;submitModel(Lnet/minecraft/client/model/Model;Ljava/lang/Object;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/resources/Identifier;IIILnet/minecraft/client/renderer/feature/ModelFeatureRenderer$CrumblingOverlay;)V"),
             index = 3)
-    private Identifier submitColoredCopperGolemStatue(Identifier value, @Local(argsOnly = true) CopperGolemStatueRenderState renderState) {
-        if(renderState.blockState.getBlock() instanceof ColoredWeatheringCopperGolemStatueBlock block)
+    private Identifier submitColoredCopperGolemStatue(Identifier value, @Local(argsOnly = true) CopperGolemStatueRenderState state) {
+        if(state.blockState.getBlock() instanceof ColoredWeatheringCopperGolemStatueBlock block)
             return WorldOfColor.asResource("textures/entity/copper_golem/" + block.getColor().getName() + "_copper_golem.png");
-        else if(renderState.blockState.getBlock() instanceof ColoredCopperGolemStatueBlock block)
+        else if(state.blockState.getBlock() instanceof ColoredCopperGolemStatueBlock block)
             return WorldOfColor.asResource("textures/entity/copper_golem/" + block.getColor().getName() + "_copper_golem.png");
         else
             return value;

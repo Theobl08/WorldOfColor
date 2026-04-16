@@ -13,11 +13,11 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(BedRenderer.class)
 public abstract class BedRendererMixin {
     @ModifyVariable(method = "submit(Lnet/minecraft/client/renderer/blockentity/state/BedRenderState;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/client/renderer/SubmitNodeCollector;Lnet/minecraft/client/renderer/state/level/CameraRenderState;)V",
-            at = @At("STORE"))
-    private SpriteId rgbBedMaterial(SpriteId original, @Local(argsOnly = true)BedRenderState renderState) {
-        if(renderState.blockState.is(ModBlocks.RGB_BED.get())) {
+            at = @At("STORE"), name = "sprite")
+    private SpriteId rgbBedSprite(SpriteId sprite, @Local(argsOnly = true)BedRenderState state) {
+        if(state.blockState.is(ModBlocks.RGB_BED.get())) {
             return ModMaterial.RGB_BED_TEXTURE;
         }
-        return original;
+        return sprite;
     }
 }

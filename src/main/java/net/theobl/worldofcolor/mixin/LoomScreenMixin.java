@@ -17,13 +17,13 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(LoomScreen.class)
 public class LoomScreenMixin {
     @WrapOperation(method = "extractBackground", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/GuiGraphicsExtractor;bannerPattern(Lnet/minecraft/client/model/object/banner/BannerFlagModel;Lnet/minecraft/world/item/DyeColor;Lnet/minecraft/world/level/block/entity/BannerPatternLayers;IIII)V"))
-    private void submitRGBBannerPatternRenderState(GuiGraphicsExtractor instance, BannerFlagModel flagModel, DyeColor baseColor, BannerPatternLayers resultBannerPatterns, int x0, int y0, int x1, int y1, Operation<Void> original,
-                                                   @Local(ordinal = 0) Slot bannerSlot) {
+    private void submitRGBBannerPatternRenderState(GuiGraphicsExtractor instance, BannerFlagModel flag, DyeColor baseColor, BannerPatternLayers resultBannerPatterns, int x0, int y0, int x1, int y1, Operation<Void> original,
+                                                   @Local(name = "bannerSlot") Slot bannerSlot) {
         if(bannerSlot.hasItem() && bannerSlot.getItem().is(ModItems.RGB_BANNER)) {
-            instance.submitPictureInPictureRenderState(new GuiColoredBannerResultRenderState(flagModel, baseColor, resultBannerPatterns, x0, y0, x1, y1, instance.peekScissorStack()));
+            instance.submitPictureInPictureRenderState(new GuiColoredBannerResultRenderState(flag, baseColor, resultBannerPatterns, x0, y0, x1, y1, instance.peekScissorStack()));
         }
         else {
-            original.call(instance, flagModel, baseColor, resultBannerPatterns, x0, y0, x1, y1);
+            original.call(instance, flag, baseColor, resultBannerPatterns, x0, y0, x1, y1);
         }
     }
 }

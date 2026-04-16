@@ -31,7 +31,7 @@ public abstract class ItemFrameRendererMixin {
     @Expression("this.blockModelResolver.updateForItemFrame(?, ?, ?)")
     @WrapOperation(method = "extractRenderState(Lnet/minecraft/world/entity/decoration/ItemFrame;Lnet/minecraft/client/renderer/entity/state/ItemFrameRenderState;F)V",
             at = @At("MIXINEXTRAS:EXPRESSION"))
-    private void getColoredItemFrameFakeBlockstate(BlockModelResolver instance, BlockModelRenderState renderState, boolean isGlowFrame, boolean map, Operation<Void> original, @Local(argsOnly = true) ItemFrame entity, @Local(argsOnly = true) ItemFrameRenderState state) {
+    private void getColoredItemFrameFakeBlockstate(BlockModelResolver instance, BlockModelRenderState renderState, boolean isGlowing, boolean map, Operation<Void> original, @Local(argsOnly = true) ItemFrame entity, @Local(argsOnly = true) ItemFrameRenderState state) {
         for(DyeColor color : ModUtil.COLORS) {
             if(entity.is(ModEntityType.COLORED_ITEM_FRAMES.get(color).get())) {
                 BlockState fakeState = ModBlockStateDefinitions.getItemFrameFakeState(color, state.mapId != null);
@@ -39,6 +39,6 @@ public abstract class ItemFrameRendererMixin {
                 return;
             }
         }
-        original.call(instance, renderState, isGlowFrame, map);
+        original.call(instance, renderState, isGlowing, map);
     }
 }

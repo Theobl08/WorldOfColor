@@ -10,9 +10,9 @@ import org.spongepowered.asm.mixin.injection.At;
 @Mixin(ColorLerper.class)
 public abstract class SheepMixin {
     @ModifyReturnValue(method = "getModifiedColor", at = @At(value = "RETURN"))
-    private static int bedrockEditionSheepColor(int original, @Local(argsOnly = true) DyeColor dyeColor, @Local(argsOnly = true) float brightness) {
+    private static int bedrockEditionSheepColor(int original, @Local(argsOnly = true) DyeColor color, @Local(argsOnly = true) float brightness) {
         if(brightness < 1.0F)
-            return dyeColor.getTextureDiffuseColor();
+            return color.getTextureDiffuseColor();
         return original;
     }
 }

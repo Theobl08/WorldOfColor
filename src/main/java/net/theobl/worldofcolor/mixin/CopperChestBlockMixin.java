@@ -20,36 +20,36 @@ import java.util.Optional;
 @Mixin(CopperChestBlock.class)
 public abstract class CopperChestBlockMixin {
     @Shadow
-    private static Optional<BlockState> unwaxBlock(CopperChestBlock block, BlockState state) {
+    private static Optional<BlockState> unwaxBlock(CopperChestBlock copperChestBlock, BlockState state) {
         throw new AssertionError();
     }
 
     @ModifyVariable(method = "getLeastOxidizedChestOfConnectedBlocks", at = @At(value = "LOAD"))
-    private static Block getLeastColoredChestOfConnectedBlocks(Block value, @Local(argsOnly = true) BlockState state, @Local(ordinal = 1) BlockState blockState) {
+    private static Block getLeastColoredChestOfConnectedBlocks(Block leastOxidizedBlock, @Local(argsOnly = true) BlockState state, @Local(name = "connectedState") BlockState connectedState) {
         CopperChestBlock copperChestBlock = (CopperChestBlock) state.getBlock();
-        CopperChestBlock copperChestBlock1 = (CopperChestBlock) blockState.getBlock();
-        if(copperChestBlock.getState().ordinal() != copperChestBlock1.getState().ordinal())
-            return value;
-        BlockState blockstate2 = state;
-        BlockState blockstate1 = blockState;
-        if (copperChestBlock.isWaxed() != copperChestBlock1.isWaxed()) {
-            blockstate2 = unwaxBlock(copperChestBlock, state).orElse(state);
-            blockstate1 = unwaxBlock(copperChestBlock1, blockState).orElse(blockState);
+        CopperChestBlock connectedCopperChestBlock = (CopperChestBlock) connectedState.getBlock();
+        if(copperChestBlock.getState().ordinal() != connectedCopperChestBlock.getState().ordinal())
+            return leastOxidizedBlock;
+        BlockState updatedBlockState = state;
+        BlockState connectedPredictedBlockState = connectedState;
+        if (copperChestBlock.isWaxed() != connectedCopperChestBlock.isWaxed()) {
+            updatedBlockState = unwaxBlock(copperChestBlock, state).orElse(state);
+            connectedPredictedBlockState = unwaxBlock(connectedCopperChestBlock, connectedState).orElse(connectedState);
         }
 
-        if(blockstate1.getBlock() == Blocks.OXIDIZED_COPPER_CHEST || blockstate2.getBlock() == Blocks.OXIDIZED_COPPER_CHEST)
+        if(connectedPredictedBlockState.getBlock() == Blocks.OXIDIZED_COPPER_CHEST || updatedBlockState.getBlock() == Blocks.OXIDIZED_COPPER_CHEST)
             return Blocks.OXIDIZED_COPPER_CHEST;
 
-        if(blockstate1.getBlock() == Blocks.WAXED_OXIDIZED_COPPER_CHEST || blockstate2.getBlock() == Blocks.WAXED_OXIDIZED_COPPER_CHEST)
+        if(connectedPredictedBlockState.getBlock() == Blocks.WAXED_OXIDIZED_COPPER_CHEST || updatedBlockState.getBlock() == Blocks.WAXED_OXIDIZED_COPPER_CHEST)
             return Blocks.WAXED_OXIDIZED_COPPER_CHEST;
 
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
-            if(blockstate2.is(ModBlocks.COLORED_COPPER_CHESTS.get(color))) {
+            if(updatedBlockState.is(ModBlocks.COLORED_COPPER_CHESTS.get(color))) {
                 for (DyeColor color1 : ModUtil.COLORS) {
                     int index1 = ModUtil.COLORS.indexOf(color1);
-                    if(blockstate1.is(ModBlocks.COLORED_COPPER_CHESTS.get(color1))) {
-                        return index <= index1 ? blockstate2.getBlock() : blockstate1.getBlock();
+                    if(connectedPredictedBlockState.is(ModBlocks.COLORED_COPPER_CHESTS.get(color1))) {
+                        return index <= index1 ? updatedBlockState.getBlock() : connectedPredictedBlockState.getBlock();
                     }
                 }
             }
@@ -57,21 +57,21 @@ public abstract class CopperChestBlockMixin {
 
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
-            if(blockstate2.is(ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(color))) {
+            if(updatedBlockState.is(ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(color))) {
                 for (DyeColor color1 : ModUtil.COLORS) {
                     int index1 = ModUtil.COLORS.indexOf(color1);
-                    if(blockstate1.is(ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(color1))) {
-                        return index <= index1 ? blockstate2.getBlock() : blockstate1.getBlock();
+                    if(connectedPredictedBlockState.is(ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(color1))) {
+                        return index <= index1 ? updatedBlockState.getBlock() : connectedPredictedBlockState.getBlock();
                     }
                 }
             }
         }
-        return value;
+        return leastOxidizedBlock;
     }
 
     @ModifyReturnValue(method = "unwaxBlock", at = @At("RETURN"))
-    private static Optional<BlockState> unwaxBlock(Optional<BlockState> original, @Local(argsOnly = true) CopperChestBlock block, @Local(argsOnly = true) BlockState state) {
-        return !block.isWaxed()
+    private static Optional<BlockState> unwaxBlock(Optional<BlockState> original, @Local(argsOnly = true) CopperChestBlock copperChestBlock, @Local(argsOnly = true) BlockState state) {
+        return !copperChestBlock.isWaxed()
                 ? Optional.of(state)
                 : Optional.ofNullable(DataMapHooks.getBlockUnwaxed(state.getBlock())).map(block1 -> block1.withPropertiesOf(state));
     }

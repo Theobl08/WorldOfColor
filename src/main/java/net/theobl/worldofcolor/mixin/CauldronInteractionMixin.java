@@ -22,10 +22,10 @@ import org.spongepowered.asm.mixin.injection.ModifyVariable;
 @Mixin(value = CauldronInteractions.class, remap = false)
 public abstract class CauldronInteractionMixin {
     @ModifyVariable(method = "emptyBucket", at = @At(value = "HEAD"), argsOnly = true)
-    private static BlockState emptyBucketThatActuallyWorking(BlockState state, @Local(argsOnly = true)BlockPos pos,
-                                                             @Local(argsOnly = true)Level level, @Local(argsOnly = true)ItemStack filledStack) {
+    private static BlockState emptyBucketThatActuallyWorking(BlockState newState, @Local(argsOnly = true)BlockPos pos,
+                                                             @Local(argsOnly = true)Level level, @Local(argsOnly = true)ItemStack itemInHand) {
         if(!level.isClientSide()) {
-            Item item = filledStack.getItem();
+            Item item = itemInHand.getItem();
             BlockState blockState = worldOfColor$isColoredCauldron(ModBlocks.COLORED_CAULDRONS, level, pos, item);
             if(blockState != null)
                 return blockState;
@@ -43,7 +43,7 @@ public abstract class CauldronInteractionMixin {
                 return blockState;
 
         }
-        return state;
+        return newState;
     }
 
     @Unique
@@ -51,13 +51,13 @@ public abstract class CauldronInteractionMixin {
         BlockState blockState = null;
         for (DeferredBlock<Block> block : checkedBlock.values()) {
             if (level.getBlockState(pos).is(block)) {
-                DyeColor index = checkedBlock.inverse().get(block);
+                DyeColor color = checkedBlock.inverse().get(block);
                 if (item == Items.WATER_BUCKET)
-                    blockState = ModBlocks.COLORED_WATER_CAULDRONS.get(index).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
+                    blockState = ModBlocks.COLORED_WATER_CAULDRONS.get(color).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
                 else if (item == Items.LAVA_BUCKET) {
-                    blockState = ModBlocks.COLORED_LAVA_CAULDRONS.get(index).get().defaultBlockState();
+                    blockState = ModBlocks.COLORED_LAVA_CAULDRONS.get(color).get().defaultBlockState();
                 } else
-                    blockState = ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(index).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
+                    blockState = ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(color).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
             }
         }
         return blockState;

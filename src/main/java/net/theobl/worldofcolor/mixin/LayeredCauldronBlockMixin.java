@@ -20,8 +20,8 @@ public abstract class LayeredCauldronBlockMixin {
     private static BlockState lowerFillLevel(BlockState original, @Local(argsOnly = true) BlockState state) {
         for (DeferredBlock<Block> block : ModBlocks.COLORED_WATER_CAULDRONS.values()) {
             if (state.is(block)) {
-                DyeColor index = ModBlocks.COLORED_WATER_CAULDRONS.inverse().get(block);
-                return ModBlocks.COLORED_CAULDRONS.get(index).get().defaultBlockState();
+                DyeColor color = ModBlocks.COLORED_WATER_CAULDRONS.inverse().get(block);
+                return ModBlocks.COLORED_CAULDRONS.get(color).get().defaultBlockState();
             }
         }
         return original;
@@ -30,8 +30,8 @@ public abstract class LayeredCauldronBlockMixin {
     private static BlockState handleEntityOnFireInside(BlockState original, @Local(argsOnly = true) BlockState state) {
         for (DeferredBlock<Block> block : ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.values()) {
             if (state.is(block)) {
-                DyeColor index = ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.inverse().get(block);
-                return ModBlocks.COLORED_WATER_CAULDRONS.get(index).get().defaultBlockState().setValue(LEVEL, state.getValue(LEVEL));
+                DyeColor color = ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.inverse().get(block);
+                return ModBlocks.COLORED_WATER_CAULDRONS.get(color).get().defaultBlockState().setValue(LEVEL, state.getValue(LEVEL));
             }
         }
         return original;
