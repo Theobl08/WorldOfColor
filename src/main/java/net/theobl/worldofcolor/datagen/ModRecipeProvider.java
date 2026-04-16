@@ -157,6 +157,12 @@ public class ModRecipeProvider extends RecipeProvider {
         SpecialRecipeBuilder.special(() -> new ColoredDecoratedPotRecipe(this.tag(ItemTags.DECORATED_POT_INGREDIENTS), tag(ItemTags.DYES)))
                 .save(this.output, "colored_decorated_pot");
 
+        colorWithDye(DYES, ModBlocks.COLORED_FLOWER_POTS.values().stream().map(DeferredBlock::asItem).toList(), Items.FLOWER_POT,
+                "flower_pot_dye", RecipeCategory.DECORATIONS);
+        colorWithDye(DYES, ModBlocks.COLORED_REDSTONE_LAMPS.values().stream().map(DeferredBlock::asItem).toList(), Items.REDSTONE_LAMP,
+                "redstone_lamp_dye", RecipeCategory.REDSTONE);
+        colorWithDye(DYES, ModItems.COLORED_ITEM_FRAMES.values().stream().map(DeferredItem::asItem).toList(), Items.ITEM_FRAME,
+                "item_frame_dye", RecipeCategory.DECORATIONS);
         colorWithDye(DYES, ModBlocks.COLORED_POTATO_PEELS_BLOCK.values().stream().map(DeferredBlock::asItem).toList(), null,
                 "potato_peels_block_dye", RecipeCategory.MISC);
         colorWithDye(DYES, ModItems.COLORED_POTATO_PEELS.values().stream().map(DeferredItem::get).toList(), Items.POTATO,

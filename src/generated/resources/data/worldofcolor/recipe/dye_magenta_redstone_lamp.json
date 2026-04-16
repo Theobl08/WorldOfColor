@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "group": "redstone_lamp_dye",
+  "ingredients": [
+    "minecraft:magenta_dye",
+    [
+      "worldofcolor:white_redstone_lamp",
+      "worldofcolor:light_gray_redstone_lamp",
+      "worldofcolor:gray_redstone_lamp",
+      "worldofcolor:black_redstone_lamp",
+      "worldofcolor:brown_redstone_lamp",
+      "worldofcolor:red_redstone_lamp",
+      "worldofcolor:orange_redstone_lamp",
+      "worldofcolor:yellow_redstone_lamp",
+      "worldofcolor:lime_redstone_lamp",
+      "worldofcolor:green_redstone_lamp",
+      "worldofcolor:cyan_redstone_lamp",
+      "worldofcolor:light_blue_redstone_lamp",
+      "worldofcolor:blue_redstone_lamp",
+      "worldofcolor:purple_redstone_lamp",
+      "worldofcolor:pink_redstone_lamp",
+      "minecraft:redstone_lamp"
+    ]
+  ],
+  "result": {
+    "id": "worldofcolor:magenta_redstone_lamp"
+  }
+}

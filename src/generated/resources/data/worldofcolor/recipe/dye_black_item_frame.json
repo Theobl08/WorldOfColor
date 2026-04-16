@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "item_frame_dye",
+  "ingredients": [
+    "minecraft:black_dye",
+    [
+      "worldofcolor:white_item_frame",
+      "worldofcolor:light_gray_item_frame",
+      "worldofcolor:gray_item_frame",
+      "worldofcolor:brown_item_frame",
+      "worldofcolor:red_item_frame",
+      "worldofcolor:orange_item_frame",
+      "worldofcolor:yellow_item_frame",
+      "worldofcolor:lime_item_frame",
+      "worldofcolor:green_item_frame",
+      "worldofcolor:cyan_item_frame",
+      "worldofcolor:light_blue_item_frame",
+      "worldofcolor:blue_item_frame",
+      "worldofcolor:purple_item_frame",
+      "worldofcolor:magenta_item_frame",
+      "worldofcolor:pink_item_frame",
+      "minecraft:item_frame"
+    ]
+  ],
+  "result": {
+    "id": "worldofcolor:black_item_frame"
+  }
+}

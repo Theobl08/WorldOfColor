@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "flower_pot_dye",
+  "ingredients": [
+    "minecraft:yellow_dye",
+    [
+      "worldofcolor:white_flower_pot",
+      "worldofcolor:light_gray_flower_pot",
+      "worldofcolor:gray_flower_pot",
+      "worldofcolor:black_flower_pot",
+      "worldofcolor:brown_flower_pot",
+      "worldofcolor:red_flower_pot",
+      "worldofcolor:orange_flower_pot",
+      "worldofcolor:lime_flower_pot",
+      "worldofcolor:green_flower_pot",
+      "worldofcolor:cyan_flower_pot",
+      "worldofcolor:light_blue_flower_pot",
+      "worldofcolor:blue_flower_pot",
+      "worldofcolor:purple_flower_pot",
+      "worldofcolor:magenta_flower_pot",
+      "worldofcolor:pink_flower_pot",
+      "minecraft:flower_pot"
+    ]
+  ],
+  "result": {
+    "id": "worldofcolor:yellow_flower_pot"
+  }
+}
