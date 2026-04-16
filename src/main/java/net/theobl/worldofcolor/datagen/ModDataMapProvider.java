@@ -2,11 +2,13 @@ package net.theobl.worldofcolor.datagen;
 
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.datamaps.builtin.*;
 import net.theobl.worldofcolor.block.ModBlocks;
+import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.util.ModUtil;
 
 import java.util.concurrent.CompletableFuture;
@@ -24,8 +26,10 @@ public class ModDataMapProvider extends DataMapProvider {
 
     @Override
     protected void gather(HolderLookup.Provider provider) {
-        final var compostables = builder(NeoForgeDataMaps.COMPOSTABLES);
+        final Builder<Compostable, Item> compostables = builder(NeoForgeDataMaps.COMPOSTABLES);
         ModBlocks.COLORED_LEAVES.values().forEach(block -> compostables.add(block.getId(), new Compostable(0.3F), false));
+        ModBlocks.COLORED_SAPLINGS.values().forEach(block -> compostables.add(block.getId(), new Compostable(0.3F), false));
+        ModItems.COLORED_POTATO_PEELS.values().forEach(block -> compostables.add(block.getId(), new Compostable(0.65F), false));
         final var oxidizables = builder(NeoForgeDataMaps.OXIDIZABLES);
         for(DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_BLOCKS.values()) {
             int index = ModBlocks.COLORED_COPPER_BLOCKS.values().stream().toList().indexOf(block);
