@@ -22,7 +22,7 @@ import net.minecraft.util.Unit;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.BannerBlock;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
-import net.theobl.worldofcolor.ModMaterial;
+import net.theobl.worldofcolor.client.renderer.ModSpriteId;
 import org.jspecify.annotations.Nullable;
 
 public class ColoredBannerRenderer extends BannerRenderer {
@@ -151,7 +151,7 @@ public class ColoredBannerRenderer extends BannerRenderer {
                 overlayCoords,
                 flag,
                 renderState,
-                banner ? ModMaterial.BANNER_RGB : Sheets.SHIELD_PATTERN_BASE,
+                banner ? ModSpriteId.BANNER_RGB : Sheets.SHIELD_PATTERN_BASE,
                 baseColor,
                 crumblingOverlay
         );

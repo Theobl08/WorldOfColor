@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.renderer.blockentity.ShulkerBoxRenderer;
 import net.minecraft.client.renderer.blockentity.state.ShulkerBoxRenderState;
 import net.minecraft.client.resources.model.sprite.SpriteId;
-import net.theobl.worldofcolor.ModMaterial;
+import net.theobl.worldofcolor.client.renderer.ModSpriteId;
 import net.theobl.worldofcolor.block.ModBlocks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,7 +16,7 @@ public abstract class ShulkerBoxRendererMixin {
             at = @At(value = "STORE"), name = "sprite")
     private SpriteId rgbSprite(SpriteId sprite, @Local(argsOnly = true)ShulkerBoxRenderState state) {
         if(state.blockState.is(ModBlocks.RGB_SHULKER_BOX.get())) {
-            return ModMaterial.RGB_SHULKER_LOCATION;
+            return ModSpriteId.RGB_SHULKER_LOCATION;
         }
         return sprite;
     }

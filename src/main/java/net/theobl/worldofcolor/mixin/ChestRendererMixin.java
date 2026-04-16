@@ -7,7 +7,7 @@ import net.minecraft.client.renderer.blockentity.state.ChestRenderState;
 import net.minecraft.client.resources.model.sprite.SpriteId;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.theobl.worldofcolor.ModMaterial;
+import net.theobl.worldofcolor.client.renderer.ModSpriteId;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.util.ModUtil;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,9 +21,9 @@ public abstract class ChestRendererMixin {
             if(blockEntity.getBlockState().is(ModBlocks.COLORED_COPPER_CHESTS.get(color))
                     || blockEntity.getBlockState().is(ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(color))) {
                 return switch (renderState.type) {
-                    case SINGLE -> ModMaterial.COPPER_CHEST_LOCATION.get(color);
-                    case LEFT -> ModMaterial.COPPER_CHEST_LOCATION_LEFT.get(color);
-                    case RIGHT -> ModMaterial.COPPER_CHEST_LOCATION_RIGHT.get(color);
+                    case SINGLE -> ModSpriteId.COPPER_CHEST_LOCATION.get(color);
+                    case LEFT -> ModSpriteId.COPPER_CHEST_LOCATION_LEFT.get(color);
+                    case RIGHT -> ModSpriteId.COPPER_CHEST_LOCATION_RIGHT.get(color);
                 };
             }
         }

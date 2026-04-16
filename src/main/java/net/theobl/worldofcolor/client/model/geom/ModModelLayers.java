@@ -1,4 +1,4 @@
-package net.theobl.worldofcolor.entity.client;
+package net.theobl.worldofcolor.client.model.geom;
 
 import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.world.item.DyeColor;

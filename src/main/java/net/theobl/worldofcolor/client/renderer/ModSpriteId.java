@@ -1,7 +1,8 @@
-package net.theobl.worldofcolor;
+package net.theobl.worldofcolor.client.renderer;
 
 import net.minecraft.client.resources.model.sprite.SpriteId;
 import net.minecraft.world.item.DyeColor;
+import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.util.ModUtil;
 
 import java.util.LinkedHashMap;
@@ -9,7 +10,7 @@ import java.util.Map;
 
 import static net.minecraft.client.renderer.Sheets.*;
 
-public class ModMaterial {
+public class ModSpriteId {
     public static final Map<DyeColor, SpriteId> COPPER_CHEST_LOCATION = new LinkedHashMap<>();
     public static final Map<DyeColor, SpriteId> COPPER_CHEST_LOCATION_LEFT = new LinkedHashMap<>();
     public static final Map<DyeColor, SpriteId> COPPER_CHEST_LOCATION_RIGHT = new LinkedHashMap<>();

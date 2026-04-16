@@ -8,12 +8,12 @@
   "compatibilityLevel": "JAVA_8",
   "refmap": "worldofcolor.refmap.json",
   "mixins": [
-    "CauldronInteractionMixin",
+    "CauldronInteractionsMixin",
     "CopperChestBlockMixin",
     "HangingEntityItemMixin",
     "LayeredCauldronBlockMixin",
     "MapColorMixin",
-    "SheepMixin",
+    "ColorLerperMixin",
     "ShulkerBoxBlockMixin"
   ],
   "client": [

@@ -5,7 +5,6 @@ import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.resources.model.sprite.Material;
-import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.DyeColor;
@@ -19,7 +18,7 @@ import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.util.ModUtil;
 
 import static net.minecraft.client.data.models.model.TextureMapping.*;
-import static net.theobl.worldofcolor.datagen.VanillaModelTemplates.*;
+import static net.theobl.worldofcolor.datagen.ColoredModelTemplates.*;
 
 public class ModModelProvider extends ModelProvider {
     public ModModelProvider(PackOutput output) {

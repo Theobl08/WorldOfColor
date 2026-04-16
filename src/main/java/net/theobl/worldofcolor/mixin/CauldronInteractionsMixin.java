@@ -20,7 +20,7 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(value = CauldronInteractions.class, remap = false)
-public abstract class CauldronInteractionMixin {
+public abstract class CauldronInteractionsMixin {
     @ModifyVariable(method = "emptyBucket", at = @At(value = "HEAD"), argsOnly = true)
     private static BlockState emptyBucketThatActuallyWorking(BlockState newState, @Local(argsOnly = true)BlockPos pos,
                                                              @Local(argsOnly = true)Level level, @Local(argsOnly = true)ItemStack itemInHand) {

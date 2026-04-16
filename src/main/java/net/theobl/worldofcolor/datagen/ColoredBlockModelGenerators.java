@@ -8,7 +8,6 @@ import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.blockentity.BannerRenderer;
-import net.minecraft.client.renderer.chunk.ChunkSectionLayer;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.client.renderer.special.CopperGolemStatueSpecialRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
@@ -30,8 +29,8 @@ import java.util.Map;
 import static net.minecraft.client.data.models.BlockModelGenerators.*;
 import static net.minecraft.client.data.models.model.TextureMapping.getBlockTexture;
 import static net.theobl.worldofcolor.datagen.ColoredTextureMapping.cauldronEmpty;
-import static net.theobl.worldofcolor.datagen.VanillaModelTemplates.CAULDRON;
-import static net.theobl.worldofcolor.datagen.VanillaModelTemplates.DECORATED_POT;
+import static net.theobl.worldofcolor.datagen.ColoredModelTemplates.CAULDRON;
+import static net.theobl.worldofcolor.datagen.ColoredModelTemplates.DECORATED_POT;
 
 public class ColoredBlockModelGenerators {
     private final BlockModelGenerators blockModels;
@@ -202,7 +201,7 @@ public class ColoredBlockModelGenerators {
 
     public void createPottedPlant(Block pottedBlock, Block emptyPot, String parent) {
         TextureMapping textureMapping = ColoredTextureMapping.flowerPot(emptyPot);
-        MultiVariant multivariant = plainVariant(VanillaModelTemplates.FLOWER_POT.extend()
+        MultiVariant multivariant = plainVariant(ColoredModelTemplates.FLOWER_POT.extend()
                 .parent(Identifier.parse("block/potted_" + parent))
                 .build().create(pottedBlock, textureMapping, blockModels.modelOutput));
         blockModels.blockStateOutput.accept(createSimpleBlock(pottedBlock, multivariant));
@@ -287,7 +286,7 @@ public class ColoredBlockModelGenerators {
         blockModels.createParticleOnlyBlock(block);
         Item item = block.asItem();
 //        Identifier baseModel = ModelTemplates.SHULKER_BOX_INVENTORY.create(item, TextureMapping.particle(block), blockModels.modelOutput);
-        Identifier baseModel = VanillaModelTemplates.SHULKER_BOX_ITEM.create(item,
+        Identifier baseModel = ColoredModelTemplates.SHULKER_BOX_ITEM.create(item,
                 new TextureMapping().put(TextureSlot.TEXTURE, new Material(WorldOfColor.asResource("entity/shulker/shulker_rgb"))), blockModels.modelOutput);
 //        ItemModel.Unbaked itemModel = ItemModelUtils.specialModel(baseModel, new ShulkerBoxSpecialRenderer.Unbaked(WorldOfColor.asResource("shulker_rgb"), 0.0F, Direction.UP));
         ItemModel.Unbaked itemModel = ItemModelUtils.plainModel(baseModel);
@@ -298,7 +297,7 @@ public class ColoredBlockModelGenerators {
         MultiVariant multivariant = plainVariant(Identifier.parse("block/bed"));
         blockModels.blockStateOutput.accept(createSimpleBlock(block, multivariant));
         Item item = block.asItem();
-        Identifier baseModel = VanillaModelTemplates.BED_ITEM.create(item,
+        Identifier baseModel = ColoredModelTemplates.BED_ITEM.create(item,
                 new TextureMapping().put(TextureSlot.TEXTURE, new Material(WorldOfColor.asResource("entity/bed/rgb"))), blockModels.modelOutput);
         ItemModel.Unbaked itemModel = ItemModelUtils.plainModel(baseModel);
         blockModels.itemModelOutput.accept(item, itemModel);

@@ -48,6 +48,7 @@ import net.theobl.worldofcolor.block.ColoredCauldronInteraction;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.block.ModWoodType;
 import net.theobl.worldofcolor.block.entity.ModBlockEntityType;
+import net.theobl.worldofcolor.client.renderer.ModSpriteId;
 import net.theobl.worldofcolor.client.renderer.blockentity.ColoredBannerRenderer;
 import net.theobl.worldofcolor.client.renderer.blockentity.ColoredDecoratedPotRenderer;
 import net.theobl.worldofcolor.client.renderer.blockentity.DyedWaterCauldronRenderer;
@@ -56,7 +57,7 @@ import net.theobl.worldofcolor.client.renderer.gui.state.GuiColoredBannerResultR
 import net.theobl.worldofcolor.client.renderer.special.ColoredBannerSpecialRenderer;
 import net.theobl.worldofcolor.client.renderer.special.ColoredDecoratedPotSpecialRenderer;
 import net.theobl.worldofcolor.entity.ModEntityType;
-import net.theobl.worldofcolor.entity.client.ModModelLayers;
+import net.theobl.worldofcolor.client.model.geom.ModModelLayers;
 import net.theobl.worldofcolor.item.ModCreativeModeTabs;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.item.crafting.ModRecipeSerializer;
@@ -184,7 +185,7 @@ public class WorldOfColor {
                 EntityRenderers.register(ModEntityType.COLORED_ITEM_FRAMES.get(color).get(), ItemFrameRenderer::new);
             }
 
-            ModMaterial.bootstrap();
+            ModSpriteId.bootstrap();
         }
 
         @SubscribeEvent

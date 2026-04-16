@@ -4,7 +4,7 @@ import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.renderer.blockentity.BedRenderer;
 import net.minecraft.client.renderer.blockentity.state.BedRenderState;
 import net.minecraft.client.resources.model.sprite.SpriteId;
-import net.theobl.worldofcolor.ModMaterial;
+import net.theobl.worldofcolor.client.renderer.ModSpriteId;
 import net.theobl.worldofcolor.block.ModBlocks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,7 +16,7 @@ public abstract class BedRendererMixin {
             at = @At("STORE"), name = "sprite")
     private SpriteId rgbBedSprite(SpriteId sprite, @Local(argsOnly = true)BedRenderState state) {
         if(state.blockState.is(ModBlocks.RGB_BED.get())) {
-            return ModMaterial.RGB_BED_TEXTURE;
+            return ModSpriteId.RGB_BED_TEXTURE;
         }
         return sprite;
     }

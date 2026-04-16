@@ -5,7 +5,7 @@ import net.minecraft.client.data.models.model.ModelTemplates;
 import net.minecraft.client.data.models.model.TextureSlot;
 import net.theobl.worldofcolor.WorldOfColor;
 
-public class VanillaModelTemplates {
+public class ColoredModelTemplates {
     public static final ModelTemplate CAULDRON = ModelTemplates.create(
             "cauldron", TextureSlot.INSIDE, TextureSlot.PARTICLE, TextureSlot.TOP, TextureSlot.BOTTOM, TextureSlot.SIDE
     );
