@@ -4,6 +4,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.common.Tags;
@@ -32,8 +33,17 @@ public class ModLanguageProvider extends LanguageProvider {
         ModTags.Blocks.COLORED_LOGS.values().forEach(this::lang);
 
         ModTags.Items.COLORED_LOGS.values().forEach(this::lang);
+
+        ModBlocks.COLORED_POTATO_PEELS_BLOCK.forEach((color, block) -> addBlock(block, "Block of " + colorLang(color) + " Potato Peels"));
+        addBlock(ModBlocks.RGB_CANDLE_CAKE, "Cake with RGB Candle");
     }
 
+    /**
+     * A method to capitalize a string and remove anything what's between it.
+     * <a href="https://stackoverflow.com/questions/1892765/how-to-capitalize-the-first-character-of-each-word-in-a-string">Source</a>
+     * @param string the string you want to capitalize.
+     * @return a capitalized string.
+     */
     private static @NotNull String capitalizeString(String string) {
         char[] chars = string.toLowerCase().toCharArray();
         boolean found = false;
@@ -46,6 +56,10 @@ public class ModLanguageProvider extends LanguageProvider {
             }
         }
         return String.valueOf(chars);
+    }
+
+    private static String colorLang(DyeColor color) {
+        return capitalizeString(color.getName().replace("_", ""));
     }
 
     private <T> void lang(T key) {
@@ -63,6 +77,7 @@ public class ModLanguageProvider extends LanguageProvider {
                 .replace("tag.", "")
                 .replace("chest_boat","boat_with_chest")
                 .replace("_"," "))
+                .replace("Rgb", "RGB")
                 .replace(" With "," with ");
 
         add(descriptionId, value);
