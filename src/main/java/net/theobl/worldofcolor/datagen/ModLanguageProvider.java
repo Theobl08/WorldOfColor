@@ -1,9 +1,9 @@
 package net.theobl.worldofcolor.datagen;
 
 import net.minecraft.data.PackOutput;
+import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
 import net.neoforged.neoforge.common.Tags;
@@ -25,30 +25,13 @@ public class ModLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup.worldofcolor", "World of Color");
-        ModBlocks.BLOCKS.getEntries().stream().filter(block -> !(block.get() instanceof WallBannerBlock)).forEach(this::lang);
-        ModItems.ITEMS.getEntries().stream().filter(item -> !(item.get() instanceof BlockItem)).forEach(this::lang);
-
-//        ModItems.COLORED_BOATS.forEach(this::lang);
-//        ModItems.COLORED_CHEST_BOATS.forEach(this::lang);
-//        ModItems.COLORED_ITEM_FRAMES.forEach(this::lang);
-//        ModEntityType.COLORED_BOATS.forEach(this::lang);
-//        ModEntityType.COLORED_CHEST_BOATS.forEach(this::lang);
-//        ModEntityType.COLORED_ITEM_FRAMES.forEach(this::lang);
+        ModBlocks.BLOCKS.getEntries().forEach(this::lang);
+        ModItems.ITEMS.getEntries().forEach(this::lang);
         ModEntityType.ENTITY_TYPES.getEntries().forEach(this::lang);
 
         ModTags.Blocks.COLORED_LOGS.values().forEach(this::lang);
 
         ModTags.Items.COLORED_LOGS.values().forEach(this::lang);
-
-//        for (Field field : BlockTags.class.getDeclaredFields()) {
-//            TagKey<Block> tag = null;
-//            try {
-//                tag = (TagKey<Block>) field.get(null);
-//            } catch (IllegalAccessException e) {
-//                throw new IllegalStateException(BlockTags.class.getName() + " is missing tag name: " + field.getName());
-//            }
-//            lang(tag);
-//        }
     }
 
     private static @NotNull String capitalizeString(String string) {
@@ -78,16 +61,22 @@ public class ModLanguageProvider extends LanguageProvider {
                 .replace("item.worldofcolor.","")
                 .replace("entity.worldofcolor.","")
                 .replace("tag.", "")
-                .replace("chest_boat","")
-                .replace("_"," "));
+                .replace("chest_boat","boat_with_chest")
+                .replace("_"," "))
+                .replace(" With "," with ");
 
-        if(descriptionId.contains("chest_boat")) {
-            value += "Boat with Chest";
-        }
         add(descriptionId, value);
     }
 
     private <T> void lang(Supplier<T> key) {
         lang(key.get());
+    }
+
+    // Override the base method to catch the Exception, to be consistent with the other data providers, which doesn't throw on duplicate value (either skip or replace)
+    @Override
+    public void add(String key, Component value) {
+        try {
+            super.add(key, value);
+        } catch (Exception _) {}
     }
 }

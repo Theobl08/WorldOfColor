@@ -102,7 +102,7 @@ public class ModUtil {
         return false;
     }
 
-    public static <T extends Block> String name(DeferredHolder<T, ? extends T> deferredHolder) {
+    public static <T> String name(DeferredHolder<T, ? extends T> deferredHolder) {
         return deferredHolder.getId().getPath();
     }
 

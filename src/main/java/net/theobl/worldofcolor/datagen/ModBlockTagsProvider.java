@@ -73,7 +73,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 this.tag(BlockTags.WOODEN_BUTTONS).add(block.get());
             }
 
-            if (block.get().toString().contains("copper") && !(block.get() instanceof LanternBlock)){
+            if (ModUtil.name(block).contains("copper") && !(block.get() instanceof LanternBlock)){
                 this.tag(BlockTags.NEEDS_STONE_TOOL).add(block.get());
             }
 
@@ -154,7 +154,6 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         this.tag(Tags.Blocks.GLAZED_TERRACOTTAS).add(ModBlocks.RGB_GLAZED_TERRACOTTA.get());
 
         for (DyeColor color : ModUtil.COLORS) {
-            int index = ModUtil.COLORS.indexOf(color);
             this.tag(BlockTags.CAULDRONS).add(ModBlocks.COLORED_CAULDRONS.get(color).get())
                     .add(ModBlocks.COLORED_WATER_CAULDRONS.get(color).get())
                     .add(ModBlocks.COLORED_LAVA_CAULDRONS.get(color).get())
@@ -221,9 +220,9 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 //        addColoredTags(tag(Tags.Blocks.DYED)::addTag, Tags.Blocks.DYED);
     }
     private boolean mineableWithPickaxe(DeferredBlock<Block> block) {
-        return (block.get().toString().contains("concrete") && !(block.get() instanceof ConcretePowderBlock)) ||
-                block.get().toString().contains("copper") ||
-                block.get().toString().contains("brick") ||
+        return (ModUtil.name(block).contains("concrete") && !(block.get() instanceof ConcretePowderBlock)) ||
+                ModUtil.name(block).contains("copper") ||
+                ModUtil.name(block).contains("brick") ||
                 block.get() instanceof LightningRodBlock ||
                 block.get() instanceof GlazedTerracottaBlock ||
                 ModBlocks.SIMPLE_COLORED_BLOCKS.containsValue(block);

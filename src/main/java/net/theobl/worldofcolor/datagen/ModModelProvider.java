@@ -54,10 +54,10 @@ public class ModModelProvider extends ModelProvider {
         for(DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
             blockModels.family(ModBlocks.COLORED_CUT_COPPER.get(color).get())
-                    .generateFor(ModBlockFamilies.COLORED_CUT_COPPER.get(index))
+                    .generateFor(ModBlockFamilies.COLORED_CUT_COPPER.get(color))
                     .donateModelTo(ModBlocks.COLORED_CUT_COPPER.get(color).get(), ModBlocks.COLORED_WAXED_CUT_COPPER.get(color).get())
                     .donateModelTo(ModBlocks.COLORED_CHISELED_COPPER.get(color).get(), ModBlocks.COLORED_WAXED_CHISELED_COPPER.get(color).get())
-                    .generateFor(ModBlockFamilies.COLORED_WAXED_CUT_COPPER.get(index));
+                    .generateFor(ModBlockFamilies.COLORED_WAXED_CUT_COPPER.get(color));
             blockModels.createCopperBulb(ModBlocks.COLORED_COPPER_BULBS.get(color).get());
             blockModels.copyCopperBulbModel(ModBlocks.COLORED_COPPER_BULBS.get(color).get(), ModBlocks.COLORED_WAXED_COPPER_BULBS.get(color).get());
             blockModels.createFullAndCarpetBlocks(ModBlocks.CLASSIC_WOOLS.get(index).get(), ModBlocks.CLASSIC_CARPETS.get(index).get());
