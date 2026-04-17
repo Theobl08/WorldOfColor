@@ -5,7 +5,7 @@
     "minVersion": "0.5.0"
   },
   "package": "net.theobl.worldofcolor.mixin",
-  "compatibilityLevel": "JAVA_8",
+  "compatibilityLevel": "JAVA_25",
   "refmap": "worldofcolor.refmap.json",
   "mixins": [
     "CauldronInteractionsMixin",
