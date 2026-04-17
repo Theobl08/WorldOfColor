@@ -158,7 +158,7 @@ public class ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_LAMP)
     );
     public static final DeferredBlock<Block> DYED_WATER_CAULDRON = BLOCKS.registerBlock("dyed_water_cauldron", p -> new DyedWaterCauldronBlock(null, p), () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON));
-    public static final Map<DyeColor, DeferredBlock<Block>> COLORED_DYED_WATER_CAULDRONS = registerColored(
+    public static final BiMap<DyeColor, DeferredBlock<Block>> COLORED_DYED_WATER_CAULDRONS = registerColored(
             "dyed_water_cauldron",
             DyedWaterCauldronBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)

@@ -42,6 +42,10 @@ public abstract class CauldronInteractionsMixin {
             if(blockState != null)
                 return blockState;
 
+            blockState = worldOfColor$isColoredCauldron(ModBlocks.COLORED_DYED_WATER_CAULDRONS, level, pos, item);
+            if(blockState != null)
+                return blockState;
+
         }
         return newState;
     }

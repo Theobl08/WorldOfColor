@@ -75,7 +75,7 @@ public class ModCreativeModeTabs {
                             output.accept(ModBlocks.COLORED_BRICK_WALLS.get(color));
                         }
                         for (DeferredHolder<Block, ? extends Block> block : ModBlocks.BLOCKS.getEntries()) {
-                            if(block.get().asItem() != Blocks.AIR.asItem())
+                            if(block.get().asItem() != Blocks.AIR.asItem() && block.get().asItem() != Items.CAULDRON)
                                 output.accept(block.get());
                         }
                         output.accept(ModItems.RGB_BUNDLE);
