@@ -63,28 +63,28 @@ public class DyedWaterCauldronRenderer implements BlockEntityRenderer<DyedWaterC
             consumer.addVertex(matrix, 0.0f + sizeFactor, 0.0f, 1.0f - sizeFactor)
                     .setColor(red, green, blue, alpha)
                     .setUv(water.getU0() + maxU, water.getV0() + minV)
-                    .setLight(LightCoordsUtil.FULL_BRIGHT)
+                    .setLight(renderState.lightCoords)
                     .setOverlay(OverlayTexture.NO_OVERLAY)
                     .setNormal(0, 1, 0);
 
             consumer.addVertex(matrix, 1.0f - sizeFactor, 0.0f, 1.0f - sizeFactor)
                     .setColor(red, green, blue, alpha)
                     .setUv(water.getU0() + minU, water.getV0() + minV)
-                    .setLight(LightCoordsUtil.FULL_BRIGHT)
+                    .setLight(renderState.lightCoords)
                     .setOverlay(OverlayTexture.NO_OVERLAY)
                     .setNormal(0, 1, 0);
 
             consumer.addVertex(matrix, 1.0f - sizeFactor, 0.0f, 0.0f + sizeFactor)
                     .setColor(red, green, blue, alpha)
                     .setUv(water.getU0() + minU, water.getV0() + maxV)
-                    .setLight(LightCoordsUtil.FULL_BRIGHT)
+                    .setLight(renderState.lightCoords)
                     .setOverlay(OverlayTexture.NO_OVERLAY)
                     .setNormal(0, 1, 0);
 
             consumer.addVertex(matrix, 0.0f + sizeFactor, 0.0f, 0.0f + sizeFactor)
                     .setColor(red, green, blue, alpha)
                     .setUv(water.getU0() + maxU, water.getV0() + maxV)
-                    .setLight(LightCoordsUtil.FULL_BRIGHT)
+                    .setLight(renderState.lightCoords)
                     .setOverlay(OverlayTexture.NO_OVERLAY)
                     .setNormal(0, 1, 0);
         });
