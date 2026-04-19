@@ -1997,6 +1997,7 @@
   "block.worldofcolor.yellow_wall_sign": "Yellow Wall Sign",
   "block.worldofcolor.yellow_water_cauldron": "Yellow Water Cauldron",
   "block.worldofcolor.yellow_wood": "Yellow Wood",
+  "config.jade.plugin_worldofcolor.dyed_water_cauldron": "Dyed Water Cauldron Water Color",
   "entity.worldofcolor.black_boat": "Black Boat",
   "entity.worldofcolor.black_chest_boat": "Black Boat with Chest",
   "entity.worldofcolor.black_item_frame": "Black Item Frame",

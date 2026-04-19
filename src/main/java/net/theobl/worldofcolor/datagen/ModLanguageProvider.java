@@ -26,6 +26,7 @@ public class ModLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         add("itemGroup.worldofcolor", "World of Color");
+        add("config.jade.plugin_worldofcolor.dyed_water_cauldron", "Dyed Water Cauldron Water Color");
         ModBlocks.BLOCKS.getEntries().forEach(this::lang);
         ModItems.ITEMS.getEntries().forEach(this::lang);
         ModEntityType.ENTITY_TYPES.getEntries().forEach(this::lang);
