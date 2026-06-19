@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_attached_hanging_sign_rot_1",
+  "textures": {
+    "all": "worldofcolor:block/light_blue_hanging_sign",
+    "particle": "worldofcolor:block/stripped_light_blue_log"
+  }
+}

@@ -1,5 +1,6 @@
 package net.theobl.worldofcolor.client.renderer.blockentity;
 
+import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.EntityModelSet;
@@ -20,11 +21,16 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.SpriteGetter;
 import net.minecraft.client.resources.model.sprite.SpriteId;
 import net.minecraft.core.Direction;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.Mth;
+import net.minecraft.util.Util;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.entity.DecoratedPotBlockEntity;
+import net.minecraft.world.level.block.entity.DecoratedPotPattern;
 import net.minecraft.world.level.block.entity.DecoratedPotPatterns;
 import net.minecraft.world.level.block.entity.PotDecorations;
 import net.minecraft.world.phys.Vec3;
@@ -35,11 +41,20 @@ import org.joml.Vector3fc;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Map;
 import java.util.Optional;
 import java.util.function.Consumer;
 
 @ParametersAreNonnullByDefault
 public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredDecoratedPotBlockEntity, DecoratedPotRenderState> {
+    private static final Map<ResourceKey<Item>, SpriteId> DECORATED_POT_SPRITES = Util.make(() -> {
+        ImmutableMap.Builder<ResourceKey<Item>, SpriteId> builder = ImmutableMap.builder();
+        DecoratedPotPatterns.itemToPatternMappings((itemId, patternId) -> {
+            Holder.Reference<DecoratedPotPattern> pattern = BuiltInRegistries.DECORATED_POT_PATTERN.getOrThrow(patternId);
+            builder.put(itemId, Sheets.DECORATED_POT_MAPPER.apply(pattern.value().assetId()));
+        });
+        return builder.buildOrThrow();
+    });
     private final SpriteGetter sprites;
     private static final String NECK = "neck";
     private static final String FRONT = "front";
@@ -79,9 +94,10 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
         this.rightSide = sides.getChild(RIGHT);
     }
 
+    @SuppressWarnings("deprecation")
     private static SpriteId getSideSprite(Optional<Item> item) {
         if (item.isPresent()) {
-            SpriteId material = Sheets.getDecoratedPotSprite(DecoratedPotPatterns.getPatternFromItem(item.get()));
+            SpriteId material = DECORATED_POT_SPRITES.get(item.get().builtInRegistryHolder().key());
             if (material != null) {
                 return material;
             }
@@ -154,9 +170,9 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
     public void submit(PoseStack poseStack, SubmitNodeCollector nodeCollector, int packedLight, int packedOverlay, PotDecorations decorations, int outlineColor) {
         RenderType rendertype = Sheets.DECORATED_POT_BASE.renderType(RenderTypes::entitySolid);
         TextureAtlasSprite textureatlassprite = this.sprites.get(colorMaterial(Sheets.DECORATED_POT_BASE));
-        nodeCollector.submitModelPart(this.neck, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, false, false, -1, null, outlineColor);
-        nodeCollector.submitModelPart(this.top, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, false, false, -1, null, outlineColor);
-        nodeCollector.submitModelPart(this.bottom, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, false, false, -1, null, outlineColor);
+        nodeCollector.submitModelPart(this.neck, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, -1, null, outlineColor);
+        nodeCollector.submitModelPart(this.top, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, -1, null, outlineColor);
+        nodeCollector.submitModelPart(this.bottom, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, -1, null, outlineColor);
         SpriteId material = colorMaterial(getSideSprite(decorations.front()));
         nodeCollector.submitModelPart(
                 this.frontSide,
@@ -165,8 +181,6 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
                 packedLight,
                 packedOverlay,
                 this.sprites.get(material),
-                false,
-                false,
                 -1,
                 null,
                 outlineColor
@@ -179,8 +193,6 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
                 packedLight,
                 packedOverlay,
                 this.sprites.get(material1),
-                false,
-                false,
                 -1,
                 null,
                 outlineColor
@@ -193,8 +205,6 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
                 packedLight,
                 packedOverlay,
                 this.sprites.get(material2),
-                false,
-                false,
                 -1,
                 null,
                 outlineColor
@@ -207,8 +217,6 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
                 packedLight,
                 packedOverlay,
                 this.sprites.get(material3),
-                false,
-                false,
                 -1,
                 null,
                 outlineColor

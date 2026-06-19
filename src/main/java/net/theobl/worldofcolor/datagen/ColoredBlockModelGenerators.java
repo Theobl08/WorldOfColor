@@ -16,6 +16,7 @@ import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.state.properties.BedPart;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
@@ -294,12 +295,14 @@ public class ColoredBlockModelGenerators {
     }
 
     public void createBed(Block block) {
-        MultiVariant multivariant = plainVariant(Identifier.parse("block/bed"));
-        blockModels.blockStateOutput.accept(createSimpleBlock(block, multivariant));
-        Item item = block.asItem();
-        Identifier baseModel = ColoredModelTemplates.BED_ITEM.create(item,
-                new TextureMapping().put(TextureSlot.TEXTURE, new Material(WorldOfColor.asResource("entity/bed/rgb"))), blockModels.modelOutput);
-        ItemModel.Unbaked itemModel = ItemModelUtils.plainModel(baseModel);
-        blockModels.itemModelOutput.accept(item, itemModel);
+        Identifier head = ModelTemplates.BED_HEAD.createWithSuffix(block, "_" + BedPart.HEAD, TextureMapping.bed(block, BedPart.HEAD), blockModels.modelOutput);
+        Identifier foot = ModelTemplates.BED_FOOT.createWithSuffix(block, "_" + BedPart.FOOT, TextureMapping.bed(block, BedPart.FOOT), blockModels.modelOutput);
+        MultiVariant blockModelHead = plainVariant(head);
+        MultiVariant blockModelFoot = plainVariant(foot);
+        blockModels.blockStateOutput.accept(BlockModelGenerators.createBed(block, blockModelHead, blockModelFoot));
+        Transformation footTransformation = new Transformation(new Vector3f(0.0F, 0.0F, 1.0F), null, null, null);
+        ItemModel.Unbaked itemModelHead = ItemModelUtils.plainModel(head);
+        ItemModel.Unbaked itemModelFoot = ItemModelUtils.plainModel(foot, footTransformation);
+        this.blockModels.itemModelOutput.accept(block.asItem(), ItemModelUtils.composite(itemModelHead, itemModelFoot));
     }
 }

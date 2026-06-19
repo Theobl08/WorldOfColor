@@ -63,7 +63,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         for (DeferredBlock<Block> block : ModBlocks.COLORED_BRICKS.values()) {
             DyeColor color = ModBlocks.COLORED_BRICKS.inverse().get(block);
-            coloredBricksFromBricksAndDye(block, DYES.get(COLORS.indexOf(color)));
+            coloredBricksFromBricksAndDye(block, Items.DYE.pick(color));
             stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_BRICK_SLABS.get(color), block, 2);
             stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_BRICK_STAIRS.get(color), block);
             stonecutterResultFromBase(RecipeCategory.DECORATIONS, ModBlocks.COLORED_BRICK_WALLS.get(color), block);
@@ -94,7 +94,6 @@ public class ModRecipeProvider extends RecipeProvider {
             planksFromLogs(planks, ModTags.Items.COLORED_LOGS.get(color), 4);
             woodFromLogs(ModBlocks.COLORED_WOODS.get(color), ModBlocks.COLORED_LOGS.get(color));
             woodFromLogs(ModBlocks.COLORED_STRIPPED_WOODS.get(color), ModBlocks.COLORED_STRIPPED_LOGS.get(color));
-            hangingSign(ModBlocks.COLORED_HANGING_SIGNS.get(color), ModBlocks.COLORED_STRIPPED_LOGS.get(color));
             woodenBoat(ModItems.COLORED_BOATS.get(color).get(), planks);
             chestBoat(ModItems.COLORED_CHEST_BOATS.get(color).get(), ModItems.COLORED_BOATS.get(color).get());
             shelf(ModBlocks.COLORED_SHELVES.get(color), ModBlocks.COLORED_STRIPPED_LOGS.get(color));
@@ -138,22 +137,22 @@ public class ModRecipeProvider extends RecipeProvider {
 
         ModBlocks.COLORED_DECORATED_POTS.values().forEach(block -> this.shaped(RecipeCategory.DECORATIONS, block.get().asItem())
                 .define('#', Items.BRICK)
-                .define('D', DYES.get(COLORS.indexOf(block.get().getColor())))
+                .define('D', Items.DYE.pick(block.get().getColor()))
                 .pattern(" # ")
                 .pattern("#D#")
                 .pattern(" # ")
                 .unlockedBy("has_brick", this.has(ItemTags.DECORATED_POT_INGREDIENTS))
                 .save(this.output, WorldOfColor.MODID + ":" + name(block) + "_simple"));
 
-        colorCopper(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_COPPER_BLOCKS.get(DyeColor.WHITE), Blocks.COPPER_BLOCK);
-        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_DOORS.get(DyeColor.WHITE), Blocks.COPPER_DOOR);
-        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_TRAPDOORS.get(DyeColor.WHITE), Blocks.COPPER_TRAPDOOR);
-        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_LIGHTNING_RODS.get(DyeColor.WHITE), Blocks.LIGHTNING_ROD);
-        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_BARS.get(DyeColor.WHITE), Blocks.COPPER_BARS.unaffected());
-        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_CHAINS.get(DyeColor.WHITE), Blocks.COPPER_CHAIN.unaffected());
-        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_LANTERNS.get(DyeColor.WHITE), Blocks.COPPER_LANTERN.unaffected());
-        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_CHESTS.get(DyeColor.WHITE), Blocks.COPPER_CHEST);
-        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_GOLEM_STATUES.get(DyeColor.WHITE), Blocks.COPPER_GOLEM_STATUE);
+        colorCopper(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_COPPER_BLOCKS.get(DyeColor.WHITE), Blocks.COPPER_BLOCK.weathering().unaffected());
+        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_DOORS.get(DyeColor.WHITE), Blocks.COPPER_DOOR.weathering().unaffected());
+        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_TRAPDOORS.get(DyeColor.WHITE), Blocks.COPPER_TRAPDOOR.weathering().unaffected());
+        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_LIGHTNING_RODS.get(DyeColor.WHITE), Blocks.LIGHTNING_ROD.weathering().unaffected());
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_BARS.get(DyeColor.WHITE), Blocks.COPPER_BARS.weathering().unaffected());
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_CHAINS.get(DyeColor.WHITE), Blocks.COPPER_CHAIN.weathering().unaffected());
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_LANTERNS.get(DyeColor.WHITE), Blocks.COPPER_LANTERN.weathering().unaffected());
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_CHESTS.get(DyeColor.WHITE), Blocks.COPPER_CHEST.weathering().unaffected());
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_GOLEM_STATUES.get(DyeColor.WHITE), Blocks.COPPER_GOLEM_STATUE.weathering().unaffected());
         SpecialRecipeBuilder.special(() -> new ColoredDecoratedPotRecipe(this.tag(ItemTags.DECORATED_POT_INGREDIENTS), tag(ItemTags.DYES)))
                 .save(this.output, "colored_decorated_pot");
 
@@ -181,20 +180,20 @@ public class ModRecipeProvider extends RecipeProvider {
         }
 
         shapeless(RecipeCategory.MISC, ModItems.RGB_DYE, 7)
-                .requires(Items.BLACK_DYE)
-                .requires(Items.BLUE_DYE)
-                .requires(Items.BROWN_DYE)
-                .requires(Items.GREEN_DYE)
-                .requires(Items.RED_DYE)
-                .requires(Items.WHITE_DYE)
-                .requires(Items.YELLOW_DYE)
-                .unlockedBy(getHasName(Items.BLACK_DYE), has(Items.BLACK_DYE))
-                .unlockedBy(getHasName(Items.BLUE_DYE), has(Items.BLUE_DYE))
-                .unlockedBy(getHasName(Items.BROWN_DYE), has(Items.BROWN_DYE))
-                .unlockedBy(getHasName(Items.GREEN_DYE), has(Items.GREEN_DYE))
-                .unlockedBy(getHasName(Items.RED_DYE), has(Items.RED_DYE))
-                .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
-                .unlockedBy(getHasName(Items.YELLOW_DYE), has(Items.YELLOW_DYE))
+                .requires(Items.DYE.black())
+                .requires(Items.DYE.blue())
+                .requires(Items.DYE.brown())
+                .requires(Items.DYE.green())
+                .requires(Items.DYE.red())
+                .requires(Items.DYE.white())
+                .requires(Items.DYE.yellow())
+                .unlockedBy(getHasName(Items.DYE.black()), has(Items.DYE.black()))
+                .unlockedBy(getHasName(Items.DYE.blue()), has(Items.DYE.blue()))
+                .unlockedBy(getHasName(Items.DYE.brown()), has(Items.DYE.brown()))
+                .unlockedBy(getHasName(Items.DYE.green()), has(Items.DYE.green()))
+                .unlockedBy(getHasName(Items.DYE.red()), has(Items.DYE.red()))
+                .unlockedBy(getHasName(Items.DYE.white()), has(Items.DYE.white()))
+                .unlockedBy(getHasName(Items.DYE.yellow()), has(Items.DYE.yellow()))
                 .save(output);
         shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RGB_WOOL)
                 .requires(ModItems.RGB_DYE)
@@ -316,8 +315,8 @@ public class ModRecipeProvider extends RecipeProvider {
     protected void colorCopper(RecipeCategory category, ItemLike result, ItemLike base) {
         shapeless(category, result)
                 .requires(base)
-                .requires(Items.WHITE_DYE)
-                .unlockedBy(getHasName(Items.WHITE_DYE), has(Items.WHITE_DYE))
+                .requires(Items.DYE.white())
+                .unlockedBy(getHasName(Items.DYE.white()), has(Items.DYE.white()))
                 .save(output);
     }
 

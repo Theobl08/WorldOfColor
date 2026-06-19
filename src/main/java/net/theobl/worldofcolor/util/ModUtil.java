@@ -34,29 +34,9 @@ public class ModUtil {
                     MapColor.COLOR_LIGHT_BLUE, MapColor.COLOR_PURPLE, MapColor.COLOR_PURPLE, MapColor.COLOR_MAGENTA,
                     MapColor.COLOR_PINK, MapColor.STONE, MapColor.METAL, MapColor.SNOW);
 
-    public static final List<Item> CONCRETES =
-            List.of(Items.WHITE_CONCRETE, Items.LIGHT_GRAY_CONCRETE, Items.GRAY_CONCRETE, Items.BLACK_CONCRETE,
-                    Items.BROWN_CONCRETE, Items.RED_CONCRETE, Items.ORANGE_CONCRETE, Items.YELLOW_CONCRETE,
-                    Items.LIME_CONCRETE, Items.GREEN_CONCRETE, Items.CYAN_CONCRETE, Items.LIGHT_BLUE_CONCRETE,
-                    Items.BLUE_CONCRETE, Items.PURPLE_CONCRETE, Items.MAGENTA_CONCRETE, Items.PINK_CONCRETE);
+    public static final List<Item> CONCRETES = new ArrayList<>();
 
-    public static final List<Block> TERRACOTTAS =
-            List.of(Blocks.WHITE_TERRACOTTA, Blocks.LIGHT_GRAY_TERRACOTTA, Blocks.GRAY_TERRACOTTA, Blocks.BLACK_TERRACOTTA,
-                    Blocks.BROWN_TERRACOTTA, Blocks.RED_TERRACOTTA, Blocks.ORANGE_TERRACOTTA, Blocks.YELLOW_TERRACOTTA,
-                    Blocks.LIME_TERRACOTTA, Blocks.GREEN_TERRACOTTA, Blocks.CYAN_TERRACOTTA, Blocks.LIGHT_BLUE_TERRACOTTA,
-                    Blocks.BLUE_TERRACOTTA, Blocks.PURPLE_TERRACOTTA, Blocks.MAGENTA_TERRACOTTA, Blocks.PINK_TERRACOTTA);
-
-    public static final List<Block> SHULKER_BOXES =
-            List.of(Blocks.WHITE_SHULKER_BOX, Blocks.LIGHT_GRAY_SHULKER_BOX, Blocks.GRAY_SHULKER_BOX, Blocks.BLACK_SHULKER_BOX,
-                    Blocks.BROWN_SHULKER_BOX, Blocks.RED_SHULKER_BOX, Blocks.ORANGE_SHULKER_BOX, Blocks.YELLOW_SHULKER_BOX,
-                    Blocks.LIME_SHULKER_BOX, Blocks.GREEN_SHULKER_BOX, Blocks.CYAN_SHULKER_BOX, Blocks.LIGHT_BLUE_SHULKER_BOX,
-                    Blocks.BLUE_SHULKER_BOX, Blocks.PURPLE_SHULKER_BOX, Blocks.MAGENTA_SHULKER_BOX, Blocks.PINK_SHULKER_BOX);
-
-    public static final List<Item> DYES =
-            List.of(Items.WHITE_DYE, Items.LIGHT_GRAY_DYE, Items.GRAY_DYE, Items.BLACK_DYE,
-                    Items.BROWN_DYE, Items.RED_DYE, Items.ORANGE_DYE, Items.YELLOW_DYE,
-                    Items.LIME_DYE, Items.GREEN_DYE, Items.CYAN_DYE, Items.LIGHT_BLUE_DYE,
-                    Items.BLUE_DYE, Items.PURPLE_DYE, Items.MAGENTA_DYE, Items.PINK_DYE);
+    public static final List<Item> DYES = new ArrayList<>();
 
     public static final DeferredBlock<Block> FERN = deferredBlock(Blocks.FERN);
     public static final DeferredBlock<Block> OPEN_EYEBLOSSOM = deferredBlock(Blocks.OPEN_EYEBLOSSOM);
@@ -125,6 +105,10 @@ public class ModUtil {
     }
 
     static {
+        COLORS.forEach(color -> {
+            CONCRETES.add(Items.CONCRETE.pick(color));
+            DYES.add(Items.DYE.pick(color));
+        });
 //        for(Field field : Blocks.class.getDeclaredFields()) {
 //            try {
 //                if(field.getType() != Block.class)

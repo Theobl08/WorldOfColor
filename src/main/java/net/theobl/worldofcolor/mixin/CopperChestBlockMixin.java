@@ -37,11 +37,11 @@ public abstract class CopperChestBlockMixin {
             connectedPredictedBlockState = unwaxBlock(connectedCopperChestBlock, connectedState).orElse(connectedState);
         }
 
-        if(connectedPredictedBlockState.getBlock() == Blocks.OXIDIZED_COPPER_CHEST || updatedBlockState.getBlock() == Blocks.OXIDIZED_COPPER_CHEST)
-            return Blocks.OXIDIZED_COPPER_CHEST;
+        if(connectedPredictedBlockState.getBlock() == Blocks.COPPER_CHEST.weathering().oxidized() || updatedBlockState.getBlock() == Blocks.COPPER_CHEST.weathering().oxidized())
+            return Blocks.COPPER_CHEST.weathering().oxidized();
 
-        if(connectedPredictedBlockState.getBlock() == Blocks.WAXED_OXIDIZED_COPPER_CHEST || updatedBlockState.getBlock() == Blocks.WAXED_OXIDIZED_COPPER_CHEST)
-            return Blocks.WAXED_OXIDIZED_COPPER_CHEST;
+        if(connectedPredictedBlockState.getBlock() == Blocks.COPPER_CHEST.waxed().oxidized() || updatedBlockState.getBlock() == Blocks.COPPER_CHEST.waxed().oxidized())
+            return Blocks.COPPER_CHEST.waxed().oxidized();
 
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);

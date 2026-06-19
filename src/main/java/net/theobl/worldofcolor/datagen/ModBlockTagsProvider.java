@@ -4,6 +4,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.BlockItemTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.DyeColor;
@@ -30,141 +31,141 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider provider) {
         for (DeferredHolder<Block, ? extends Block> block : ModBlocks.BLOCKS.getEntries()) {
             if(mineableWithPickaxe((DeferredBlock<Block>) block) || block == ModBlocks.RGB_TERRACOTTA) {
-                this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block.get());
+                this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(block.getKey());
             }
             else if(ModBlocks.CLASSIC_WOOLS.contains(block)) {
-                this.tag(BlockTags.WOOL).add(block.get());
+                this.tag(BlockTags.WOOL).add(block.getKey());
             }
             else if(ModBlocks.CLASSIC_CARPETS.contains(block)) {
-                this.tag(BlockTags.WOOL_CARPETS).add(block.get());
+                this.tag(BlockTags.WOOL_CARPETS).add(block.getKey());
             }
             else if (ModBlocks.COLORED_STRIPPED_LOGS.containsValue(block)) {
-                this.tag(Tags.Blocks.STRIPPED_LOGS).add(block.get());
+                this.tag(Tags.Blocks.STRIPPED_LOGS).add(block.getKey());
             }
             else if (ModBlocks.COLORED_STRIPPED_WOODS.containsValue(block)) {
-                this.tag(Tags.Blocks.STRIPPED_WOODS).add(block.get());
+                this.tag(Tags.Blocks.STRIPPED_WOODS).add(block.getKey());
             }
             else if (ModBlocks.COLORED_PLANKS.containsValue(block)) {
-                this.tag(BlockTags.PLANKS).add(block.get());
+                this.tag(BlockTags.PLANKS).add(block.getKey());
             }
             else if (ModBlocks.COLORED_STAIRS.containsValue(block)) {
-                this.tag(BlockTags.WOODEN_STAIRS).add(block.get());
+                this.tag(BlockTags.WOODEN_STAIRS).add(block.getKey());
             }
             else if (ModBlocks.COLORED_SLABS.containsValue(block)) {
-                this.tag(BlockTags.WOODEN_SLABS).add(block.get());
+                this.tag(BlockTags.WOODEN_SLABS).add(block.getKey());
             }
             else if (ModBlocks.COLORED_FENCES.containsValue(block)) {
-                this.tag(BlockTags.WOODEN_FENCES).add(block.get());
+                this.tag(BlockTags.WOODEN_FENCES).add(block.getKey());
             }
             else if (ModBlocks.COLORED_FENCE_GATES.containsValue(block)) {
-                this.tag(BlockTags.FENCE_GATES).add(block.get());
-                this.tag(Tags.Blocks.FENCE_GATES_WOODEN).add(block.get());
+                this.tag(BlockTags.FENCE_GATES).add(block.getKey());
+                this.tag(Tags.Blocks.FENCE_GATES_WOODEN).add(block.getKey());
             }
             else if (ModBlocks.COLORED_DOORS.containsValue(block)) {
-                this.tag(BlockTags.WOODEN_DOORS).add(block.get());
+                this.tag(BlockTags.WOODEN_DOORS).add(block.getKey());
             }
             else if (ModBlocks.COLORED_TRAPDOORS.containsValue(block)) {
-                this.tag(BlockTags.WOODEN_TRAPDOORS).add(block.get());
+                this.tag(BlockTags.WOODEN_TRAPDOORS).add(block.getKey());
             }
             else if (ModBlocks.COLORED_PRESSURE_PLATES.containsValue(block)) {
-                this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(block.get());
+                this.tag(BlockTags.WOODEN_PRESSURE_PLATES).add(block.getKey());
             }
             else if (ModBlocks.COLORED_BUTTONS.containsValue(block)) {
-                this.tag(BlockTags.WOODEN_BUTTONS).add(block.get());
+                this.tag(BlockTags.WOODEN_BUTTONS).add(block.getKey());
             }
 
             if (ModUtil.name(block).contains("copper") && !(block.get() instanceof LanternBlock)){
-                this.tag(BlockTags.NEEDS_STONE_TOOL).add(block.get());
+                this.tag(BlockTags.NEEDS_STONE_TOOL).add(block.getKey());
             }
 
             if(block.get() instanceof SaplingBlock) {
-                this.tag(BlockTags.SAPLINGS).add(block.get());
+                this.tag(BlockItemTags.SAPLINGS.block()).add(block.getKey());
             }
             else if(block.get() instanceof LeavesBlock) {
-                this.tag(BlockTags.LEAVES).add(block.get());
+                this.tag(BlockTags.LEAVES).add(block.getKey());
             }
             else if (block.get() instanceof StairBlock) {
-                if(!ModBlocks.COLORED_STAIRS.containsValue(block)) this.tag(BlockTags.STAIRS).add(block.get());
+                if(!ModBlocks.COLORED_STAIRS.containsValue(block)) this.tag(BlockTags.STAIRS).add(block.getKey());
             }
             else if (block.get() instanceof SlabBlock) {
-                if(!ModBlocks.COLORED_SLABS.containsValue(block)) this.tag(BlockTags.SLABS).add(block.get());
+                if(!ModBlocks.COLORED_SLABS.containsValue(block)) this.tag(BlockTags.SLABS).add(block.getKey());
             }
             else if (block.get() instanceof WallBlock) {
-                this.tag(BlockTags.WALLS).add(block.get());
+                this.tag(BlockTags.WALLS).add(block.getKey());
             }
             else if (block.get() instanceof DoorBlock) {
-                if(!ModBlocks.COLORED_DOORS.containsValue(block)) this.tag(BlockTags.DOORS).add(block.get());
+                if(!ModBlocks.COLORED_DOORS.containsValue(block)) this.tag(BlockTags.DOORS).add(block.getKey());
             }
             else if (block.get() instanceof TrapDoorBlock) {
-                if(!ModBlocks.COLORED_TRAPDOORS.containsValue(block)) this.tag(BlockTags.TRAPDOORS).add(block.get());
+                if(!ModBlocks.COLORED_TRAPDOORS.containsValue(block)) this.tag(BlockTags.TRAPDOORS).add(block.getKey());
             }
             else if (block.get() instanceof StandingSignBlock) {
-                this.tag(BlockTags.STANDING_SIGNS).add(block.get());
+                this.tag(BlockTags.STANDING_SIGNS).add(block.getKey());
             }
             else if (block.get() instanceof WallSignBlock) {
-                this.tag(BlockTags.WALL_SIGNS).add(block.get());
+                this.tag(BlockTags.WALL_SIGNS).add(block.getKey());
             }
             else if (block.get() instanceof CeilingHangingSignBlock) {
-                this.tag(BlockTags.CEILING_HANGING_SIGNS).add(block.get());
+                this.tag(BlockTags.CEILING_HANGING_SIGNS).add(block.getKey());
             }
             else if (block.get() instanceof WallHangingSignBlock) {
-                this.tag(BlockTags.WALL_HANGING_SIGNS).add(block.get());
+                this.tag(BlockTags.WALL_HANGING_SIGNS).add(block.getKey());
             }
             else if (block.get() instanceof SlimeBlock) {
-                this.tag(Tags.Blocks.STORAGE_BLOCKS_SLIME).add(block.get());
+                this.tag(Tags.Blocks.STORAGE_BLOCKS_SLIME).add(block.getKey());
             }
             else if (block.get() instanceof FlowerPotBlock) {
-                this.tag(BlockTags.FLOWER_POTS).add(block.get());
+                this.tag(BlockTags.FLOWER_POTS).add(block.getKey());
             }
             else if (block.get() instanceof IronBarsBlock && !block.getId().getPath().contains("glass")) {
-                this.tag(BlockTags.BARS).add(block.get());
+                this.tag(BlockTags.BARS).add(block.getKey());
             }
             else if (block.get() instanceof ChainBlock) {
-                this.tag(BlockTags.CHAINS).add(block.get());
+                this.tag(BlockTags.CHAINS).add(block.getKey());
             }
             else if (block.get() instanceof LanternBlock) {
-                this.tag(BlockTags.LANTERNS).add(block.get());
+                this.tag(BlockTags.LANTERNS).add(block.getKey());
             }
             else if(block.get() instanceof LightningRodBlock) {
-                this.tag(BlockTags.LIGHTNING_RODS).add(block.get());
+                this.tag(BlockTags.LIGHTNING_RODS).add(block.getKey());
             }
             else if(block.get() instanceof CopperChestBlock) {
-                this.tag(BlockTags.COPPER_CHESTS).add(block.get());
+                this.tag(BlockTags.COPPER_CHESTS).add(block.getKey());
             }
             else if(block.get() instanceof CopperGolemStatueBlock) {
-                this.tag(BlockTags.COPPER_GOLEM_STATUES).add(block.get());
+                this.tag(BlockTags.COPPER_GOLEM_STATUES).add(block.getKey());
             }
         }
 
-        ModBlocks.COLORED_SHELVES.values().forEach(block -> this.tag(BlockTags.WOODEN_SHELVES).add(block.get()));
+        ModBlocks.COLORED_SHELVES.values().forEach(block -> this.tag(BlockTags.WOODEN_SHELVES).add(block.getKey()));
 
-        this.tag(BlockTags.WOOL).add(ModBlocks.RGB_WOOL.get());
-        this.tag(BlockTags.WOOL_CARPETS).add(ModBlocks.RGB_CARPET.get());
-        this.tag(BlockTags.TERRACOTTA).add(ModBlocks.RGB_TERRACOTTA.get());
-        this.tag(BlockTags.CONCRETE_POWDER).add(ModBlocks.RGB_CONCRETE_POWDER.get());
-        this.tag(BlockTags.IMPERMEABLE).add(ModBlocks.RGB_STAINED_GLASS.get());
-        this.tag(BlockTags.SHULKER_BOXES).add(ModBlocks.RGB_SHULKER_BOX.get());
-        this.tag(BlockTags.CANDLES).add(ModBlocks.RGB_CANDLE.get());
-        this.tag(BlockTags.CANDLE_CAKES).add(ModBlocks.RGB_CANDLE_CAKE.get());
-        this.tag(BlockTags.BEDS).add(ModBlocks.RGB_BED.get());
-        this.tag(BlockTags.BANNERS).add(ModBlocks.RGB_BANNER.get(), ModBlocks.RGB_WALL_BANNER.get());
-        this.tag(Tags.Blocks.CONCRETES).add(ModBlocks.RGB_CONCRETE.get());
-        this.tag(Tags.Blocks.GLASS_BLOCKS_CHEAP).add(ModBlocks.RGB_STAINED_GLASS.get());
-        this.tag(Tags.Blocks.GLASS_PANES).add(ModBlocks.RGB_STAINED_GLASS_PANE.get());
-        this.tag(Tags.Blocks.GLAZED_TERRACOTTAS).add(ModBlocks.RGB_GLAZED_TERRACOTTA.get());
+        this.tag(BlockTags.WOOL).add(ModBlocks.RGB_WOOL.getKey());
+        this.tag(BlockTags.WOOL_CARPETS).add(ModBlocks.RGB_CARPET.getKey());
+        this.tag(BlockTags.TERRACOTTA).add(ModBlocks.RGB_TERRACOTTA.getKey());
+        this.tag(BlockTags.CONCRETE_POWDERS).add(ModBlocks.RGB_CONCRETE_POWDER.getKey());
+        this.tag(BlockTags.IMPERMEABLE).add(ModBlocks.RGB_STAINED_GLASS.getKey());
+        this.tag(BlockTags.SHULKER_BOXES).add(ModBlocks.RGB_SHULKER_BOX.getKey());
+        this.tag(BlockTags.CANDLES).add(ModBlocks.RGB_CANDLE.getKey());
+        this.tag(BlockTags.CANDLE_CAKES).add(ModBlocks.RGB_CANDLE_CAKE.getKey());
+        this.tag(BlockTags.BEDS).add(ModBlocks.RGB_BED.getKey());
+        this.tag(BlockTags.BANNERS).add(ModBlocks.RGB_BANNER.getKey(), ModBlocks.RGB_WALL_BANNER.getKey());
+        this.tag(Tags.Blocks.CONCRETES).add(ModBlocks.RGB_CONCRETE.getKey());
+        this.tag(Tags.Blocks.GLASS_BLOCKS_CHEAP).add(ModBlocks.RGB_STAINED_GLASS.getKey());
+        this.tag(Tags.Blocks.GLASS_PANES).add(ModBlocks.RGB_STAINED_GLASS_PANE.getKey());
+        this.tag(Tags.Blocks.GLAZED_TERRACOTTAS).add(ModBlocks.RGB_GLAZED_TERRACOTTA.getKey());
 
         for (DyeColor color : ModUtil.COLORS) {
-            this.tag(BlockTags.CAULDRONS).add(ModBlocks.COLORED_CAULDRONS.get(color).get())
-                    .add(ModBlocks.COLORED_WATER_CAULDRONS.get(color).get())
-                    .add(ModBlocks.COLORED_LAVA_CAULDRONS.get(color).get())
-                    .add(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(color).get());
+            this.tag(BlockTags.CAULDRONS).add(ModBlocks.COLORED_CAULDRONS.get(color).getKey())
+                    .add(ModBlocks.COLORED_WATER_CAULDRONS.get(color).getKey())
+                    .add(ModBlocks.COLORED_LAVA_CAULDRONS.get(color).getKey())
+                    .add(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(color).getKey());
 
             TagKey<Block> tagKey = ModTags.Blocks.COLORED_LOGS.get(color);
-            this.tag(tagKey).add(ModBlocks.COLORED_LOGS.get(color).get(),
-                    ModBlocks.COLORED_WOODS.get(color).get(),
-                    ModBlocks.COLORED_STRIPPED_LOGS.get(color).get(),
-                    ModBlocks.COLORED_STRIPPED_WOODS.get(color).get());
-            this.tag(BlockTags.LOGS_THAT_BURN).addTag(tagKey);
+            this.tag(tagKey).add(ModBlocks.COLORED_LOGS.get(color).getKey(),
+                    ModBlocks.COLORED_WOODS.get(color).getKey(),
+                    ModBlocks.COLORED_STRIPPED_LOGS.get(color).getKey(),
+                    ModBlocks.COLORED_STRIPPED_WOODS.get(color).getKey());
+            this.tag(BlockItemTags.LOGS_THAT_BURN.block()).addTag(tagKey);
         }
 
         addColored(Tags.Blocks.DYED, "{color}_block");
@@ -236,7 +237,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             Block block = BuiltInRegistries.BLOCK.getValue(key);
             if (block == null || block == Blocks.AIR)
                 throw new IllegalStateException("Unknown block: " + key);
-            tag(tag).add(block);
+            tag(tag).add(block.builtInRegistryHolder().key());
         }
     }
 

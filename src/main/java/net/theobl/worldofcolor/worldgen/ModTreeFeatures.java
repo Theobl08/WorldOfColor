@@ -1,10 +1,12 @@
 package net.theobl.worldofcolor.worldgen;
 
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.util.valueproviders.ConstantInt;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
@@ -26,6 +28,8 @@ public class ModTreeFeatures {
     public static final Map<DyeColor, ResourceKey<ConfiguredFeature<?, ?>>> COLORED_TREES = registerColoredKeys();
 
     public static void bootstrap(BootstrapContext<ConfiguredFeature<?, ?>> context) {
+        HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
+        BlockStateProvider belowTrunkProvider = TreeConfiguration.defaultPlaceBelowTreeTrunkProvider(biomes);
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
             register(context, COLORED_TREES.get(color), Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
@@ -35,7 +39,8 @@ public class ModTreeFeatures {
                     BlockStateProvider.simple(ModBlocks.COLORED_LEAVES.get(color).get()),
                     new BlobFoliagePlacer(ConstantInt.of(2), ConstantInt.of(0), 3),
 
-                    new TwoLayersFeatureSize(1, 0, 1)).build());
+                    new TwoLayersFeatureSize(1, 0, 1),
+                    belowTrunkProvider).build());
         }
     }
 

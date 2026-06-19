@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_sign_rot_1",
+  "textures": {
+    "all": "worldofcolor:block/magenta_sign",
+    "particle": "worldofcolor:block/magenta_planks"
+  }
+}

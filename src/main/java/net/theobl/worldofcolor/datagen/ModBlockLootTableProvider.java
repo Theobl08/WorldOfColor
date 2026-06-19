@@ -1,12 +1,13 @@
 package net.theobl.worldofcolor.datagen;
 
-import net.minecraft.advancements.criterion.StatePropertiesPredicate;
+import net.minecraft.advancements.predicates.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.properties.BedPart;
@@ -82,7 +83,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                         LootPool.lootPool()
                                 .setRolls(ConstantValue.exactly(1.0F))
                                 .add(
-                                        LootItem.lootTableItem(ModUtil.DYES.get(ModUtil.COLORS.indexOf(((ColoredDecoratedPotBlock) block).getColor())))
+                                        LootItem.lootTableItem(Items.DYE.pick(((ColoredDecoratedPotBlock) block).getColor()))
                                                 .when(
                                                         LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
                                                                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DecoratedPotBlock.CRACKED, true))

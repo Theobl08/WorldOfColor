@@ -3,7 +3,9 @@ package net.theobl.worldofcolor.datagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.references.BlockItemIds;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.BlockItemTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -28,13 +30,14 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         super(output, lookupProvider, blockTags, WorldOfColor.MODID);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     protected void addTags(HolderLookup.Provider provider) {
         this.copy(BlockTags.WOOL, ItemTags.WOOL);
         this.copy(BlockTags.WOOL_CARPETS, ItemTags.WOOL_CARPETS);
-        this.copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
+        this.copy(BlockItemTags.SAPLINGS.block(), ItemTags.SAPLINGS);
         this.copy(BlockTags.LEAVES, ItemTags.LEAVES);
-        this.copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
+        this.copy(BlockItemTags.LOGS_THAT_BURN.block(), ItemTags.LOGS_THAT_BURN);
         this.copy(BlockTags.PLANKS, ItemTags.PLANKS);
         this.copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
         this.copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
@@ -48,26 +51,27 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         this.copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
         this.copy(BlockTags.WOODEN_SHELVES, ItemTags.WOODEN_SHELVES);
 
-        this.copy(BlockTags.STAIRS, ItemTags.STAIRS);
-        this.copy(BlockTags.SLABS, ItemTags.SLABS);
+        this.copy(BlockTags.STAIRS, BlockItemTags.STAIRS.item());
+        this.copy(BlockTags.SLABS, BlockItemTags.SLABS.item());
         this.copy(BlockTags.WALLS, ItemTags.WALLS);
-        this.copy(BlockTags.DOORS, ItemTags.DOORS);
-        this.copy(BlockTags.TRAPDOORS, ItemTags.TRAPDOORS);
+        this.copy(BlockTags.DOORS, BlockItemTags.DOORS.item());
+        this.copy(BlockTags.TRAPDOORS, BlockItemTags.TRAPDOORS.item());
 
-        this.copy(BlockTags.BARS, ItemTags.BARS);
-        this.copy(BlockTags.CHAINS, ItemTags.CHAINS);
-        this.copy(BlockTags.LANTERNS, ItemTags.LANTERNS);
-        this.copy(BlockTags.LIGHTNING_RODS, ItemTags.LIGHTNING_RODS);
-        this.copy(BlockTags.COPPER_CHESTS, ItemTags.COPPER_CHESTS);
-        this.copy(BlockTags.COPPER_GOLEM_STATUES, ItemTags.COPPER_GOLEM_STATUES);
+        this.copy(BlockTags.BARS, BlockItemTags.BARS.item());
+        this.copy(BlockTags.CHAINS, BlockItemTags.CHAINS.item());
+        this.copy(BlockTags.LANTERNS, BlockItemTags.LANTERNS.item());
+        this.copy(BlockTags.LIGHTNING_RODS, BlockItemTags.LIGHTNING_RODS.item());
+        this.copy(BlockTags.COPPER_CHESTS, BlockItemTags.COPPER_CHESTS.item());
+        this.copy(BlockTags.COPPER_GOLEM_STATUES, BlockItemTags.COPPER_GOLEM_STATUES.item());
 
         this.copy(BlockTags.TERRACOTTA, ItemTags.TERRACOTTA);
         this.copy(BlockTags.CANDLES, ItemTags.CANDLES);
         this.copy(BlockTags.BEDS, ItemTags.BEDS);
-        this.tag(ItemTags.BANNERS).add(ModItems.RGB_BANNER.get());
+        this.tag(ItemTags.BANNERS).add(ModItems.RGB_BANNER.getKey());
         this.copy(BlockTags.SHULKER_BOXES, ItemTags.SHULKER_BOXES);
-        this.tag(Tags.Items.SHULKER_BOXES).add(ModBlocks.RGB_SHULKER_BOX.asItem());
-        this.copy(BlockTags.CONCRETE_POWDER, Tags.Items.CONCRETE_POWDERS);
+        this.tag(Tags.Items.SHULKER_BOXES).add(ModBlocks.RGB_SHULKER_BOX.asItem().builtInRegistryHolder().key());
+        this.copy(BlockTags.CONCRETE_POWDERS, ItemTags.CONCRETE_POWDERS);
+        this.tag(Tags.Items.CONCRETE_POWDERS).add(ModBlocks.RGB_CONCRETE_POWDER.asItem().builtInRegistryHolder().key());
 
         this.copy(Tags.Blocks.STRIPPED_LOGS, Tags.Items.STRIPPED_LOGS);
         this.copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
@@ -82,13 +86,13 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
             this.copy(ModTags.Blocks.COLORED_LOGS.get(color), ModTags.Items.COLORED_LOGS.get(color));
         }
 
-        this.tag(ItemTags.BUNDLES).add(ModItems.RGB_BUNDLE.get());
-        this.tag(Tags.Items.DYES).add(ModItems.RGB_DYE.get());
-        this.tag(ModTags.Items.CAULDRONS).add(Items.CAULDRON);
-        ModBlocks.COLORED_CAULDRONS.values().forEach(block -> this.tag(ModTags.Items.CAULDRONS).add(block.asItem()));
+        this.tag(ItemTags.BUNDLES).add(ModItems.RGB_BUNDLE.getKey());
+        this.tag(Tags.Items.DYES).add(ModItems.RGB_DYE.getKey());
+        this.tag(ModTags.Items.CAULDRONS).add(BlockItemIds.CAULDRON.item());
+        ModBlocks.COLORED_CAULDRONS.values().forEach(block -> this.tag(ModTags.Items.CAULDRONS).add(block.asItem().builtInRegistryHolder().key()));
 
-        ModItems.COLORED_BOATS.values().forEach(item -> tag(ItemTags.BOATS).add(item.asItem()));
-        ModItems.COLORED_CHEST_BOATS.values().forEach(item -> tag(ItemTags.CHEST_BOATS).add(item.asItem()));
+        ModItems.COLORED_BOATS.values().forEach(item -> tag(ItemTags.BOATS).add(item.asItem().builtInRegistryHolder().key()));
+        ModItems.COLORED_CHEST_BOATS.values().forEach(item -> tag(ItemTags.CHEST_BOATS).add(item.asItem().builtInRegistryHolder().key()));
 
         addColored(Tags.Items.DYED, "{color}_block");
         addColored(Tags.Items.DYED, "{color}_bricks");
@@ -148,7 +152,7 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
             Item item = BuiltInRegistries.ITEM.getValue(key);
             if (item == null || item == Items.AIR)
                 throw new IllegalStateException("Unknown vanilla item: " + key);
-            tag(tag).add(item);
+            tag(tag).add(item.builtInRegistryHolder().key());
         }
     }
 

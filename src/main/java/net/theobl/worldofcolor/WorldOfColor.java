@@ -5,7 +5,6 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockTintSources;
 import net.minecraft.client.model.object.boat.BoatModel;
-import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.block.BuiltInBlockModels;
 import net.minecraft.client.renderer.blockentity.BannerRenderer;
 import net.minecraft.client.renderer.blockentity.DecoratedPotRenderer;
@@ -23,9 +22,8 @@ import net.minecraft.world.level.block.BannerBlock;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.DecoratedPotBlock;
 import net.minecraft.world.level.block.WallBannerBlock;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.entity.BlockEntityTypes;
 import net.minecraft.world.level.block.state.properties.BedPart;
-import net.minecraft.world.level.block.state.properties.WoodType;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -46,7 +44,6 @@ import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.transfer.item.VanillaContainerWrapper;
 import net.theobl.worldofcolor.block.ColoredCauldronInteraction;
 import net.theobl.worldofcolor.block.ModBlocks;
-import net.theobl.worldofcolor.block.ModWoodType;
 import net.theobl.worldofcolor.block.entity.ModBlockEntityType;
 import net.theobl.worldofcolor.client.renderer.ModSpriteId;
 import net.theobl.worldofcolor.client.renderer.blockentity.ColoredBannerRenderer;
@@ -123,17 +120,16 @@ public class WorldOfColor {
     }
 
     private void addBlockToBlockEntity(BlockEntityTypeAddBlocksEvent event) {
-        ModBlocks.COLORED_SIGNS.values().forEach(sign -> event.modify(BlockEntityType.SIGN, sign.get()));
-        ModBlocks.COLORED_WALL_SIGNS.values().forEach(sign -> event.modify(BlockEntityType.SIGN, sign.get()));
-        ModBlocks.COLORED_HANGING_SIGNS.values().forEach(sign -> event.modify(BlockEntityType.HANGING_SIGN, sign.get()));
-        ModBlocks.COLORED_WALL_HANGING_SIGNS.values().forEach(sign -> event.modify(BlockEntityType.HANGING_SIGN, sign.get()));
-        ModBlocks.COLORED_SHELVES.values().forEach(shelf -> event.modify(BlockEntityType.SHELF, shelf.get()));
-        ModBlocks.COLORED_COPPER_CHESTS.values().forEach(block -> event.modify(BlockEntityType.CHEST, block.get()));
-        ModBlocks.COLORED_WAXED_COPPER_CHESTS.values().forEach(block -> event.modify(BlockEntityType.CHEST, block.get()));
-        ModBlocks.COLORED_COPPER_GOLEM_STATUES.values().forEach(block -> event.modify(BlockEntityType.COPPER_GOLEM_STATUE, block.get()));
-        ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.values().forEach(block -> event.modify(BlockEntityType.COPPER_GOLEM_STATUE, block.get()));
-        event.modify(BlockEntityType.SHULKER_BOX, ModBlocks.RGB_SHULKER_BOX.get());
-        event.modify(BlockEntityType.BED, ModBlocks.RGB_BED.get());
+        ModBlocks.COLORED_SIGNS.values().forEach(sign -> event.modify(BlockEntityTypes.SIGN, sign.get()));
+        ModBlocks.COLORED_WALL_SIGNS.values().forEach(sign -> event.modify(BlockEntityTypes.SIGN, sign.get()));
+        ModBlocks.COLORED_HANGING_SIGNS.values().forEach(sign -> event.modify(BlockEntityTypes.HANGING_SIGN, sign.get()));
+        ModBlocks.COLORED_WALL_HANGING_SIGNS.values().forEach(sign -> event.modify(BlockEntityTypes.HANGING_SIGN, sign.get()));
+        ModBlocks.COLORED_SHELVES.values().forEach(shelf -> event.modify(BlockEntityTypes.SHELF, shelf.get()));
+        ModBlocks.COLORED_COPPER_CHESTS.values().forEach(block -> event.modify(BlockEntityTypes.CHEST, block.get()));
+        ModBlocks.COLORED_WAXED_COPPER_CHESTS.values().forEach(block -> event.modify(BlockEntityTypes.CHEST, block.get()));
+        ModBlocks.COLORED_COPPER_GOLEM_STATUES.values().forEach(block -> event.modify(BlockEntityTypes.COPPER_GOLEM_STATUE, block.get()));
+        ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.values().forEach(block -> event.modify(BlockEntityTypes.COPPER_GOLEM_STATUE, block.get()));
+        event.modify(BlockEntityTypes.SHULKER_BOX, ModBlocks.RGB_SHULKER_BOX.get());
     }
 
     private void extendPoiTypes(ExtendPoiTypesEvent event) {
@@ -175,8 +171,6 @@ public class WorldOfColor {
             // Some client setup code
             // LOGGER.info("HELLO FROM CLIENT SETUP");
             // LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
-            for (WoodType type : ModWoodType.COLORED_WOODS.values())
-                event.enqueueWork(() -> Sheets.addWoodType(type));
 
             for (DyeColor color : ModUtil.COLORS) {
                 int index = ModUtil.COLORS.indexOf(color);
@@ -252,7 +246,7 @@ public class WorldOfColor {
         @SubscribeEvent
         public static void registerPictureInPictureRenderers(RegisterPictureInPictureRenderersEvent event) {
             event.register(GuiColoredBannerResultRenderState.class,
-                    bufferSource -> new GuiColoredBannerResultRenderer(bufferSource, Minecraft.getInstance().getAtlasManager()));
+                    () -> new GuiColoredBannerResultRenderer(Minecraft.getInstance().getAtlasManager()));
         }
     }
 }

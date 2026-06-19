@@ -22,9 +22,12 @@ public class ModBlockFamilies {
     private static final String RECIPE_UNLOCKED_BY_HAS_PLANKS = "has_planks";
     public static final Map<DyeColor, BlockFamily> COLORED_PLANKS = familyBuilderColored(color ->
             familyBuilder(ModBlocks.COLORED_PLANKS.get(color).get())
+                    .log(ModBlocks.COLORED_LOGS.get(color).get())
+                    .strippedLog(ModBlocks.COLORED_STRIPPED_LOGS.get(color).get())
                     .button(ModBlocks.COLORED_BUTTONS.get(color).get())
                     .fence(ModBlocks.COLORED_FENCES.get(color).get())
                     .fenceGate(ModBlocks.COLORED_FENCE_GATES.get(color).get())
+                    .hangingSign(ModBlocks.COLORED_HANGING_SIGNS.get(color).get(), ModBlocks.COLORED_WALL_HANGING_SIGNS.get(color).get())
                     .pressurePlate(ModBlocks.COLORED_PRESSURE_PLATES.get(color).get())
                     .sign(ModBlocks.COLORED_SIGNS.get(color).get(), ModBlocks.COLORED_WALL_SIGNS.get(color).get())
                     .slab(ModBlocks.COLORED_SLABS.get(color).get())

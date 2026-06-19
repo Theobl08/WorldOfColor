@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
-      "model": "worldofcolor:block/pink_sign"
+    "facing=east": {
+      "model": "worldofcolor:block/pink_wall_sign",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "worldofcolor:block/pink_wall_sign",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "worldofcolor:block/pink_wall_sign"
+    },
+    "facing=west": {
+      "model": "worldofcolor:block/pink_wall_sign",
+      "y": 90
     }
   }
 }

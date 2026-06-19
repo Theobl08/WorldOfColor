@@ -72,7 +72,7 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                         SoundEvents.BUCKET_FILL
                 )
         );
-        ModUtil.DYES.forEach(item -> WATER.put(item, ColoredCauldronInteraction::dyeWaterInteraction));
+        Items.DYE.forEach(item -> WATER.put(item, ColoredCauldronInteraction::dyeWaterInteraction));
         LAVA.put(
                 Items.BUCKET,
                 (state, level, pos, player, hand, stack) -> fillBucket(
@@ -157,10 +157,10 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
             }
         });
         DYED_WATER.put(ItemTags.CAULDRON_CAN_REMOVE_DYE, ColoredCauldronInteraction::dyeableItemIteration);
-        ModUtil.DYES.forEach(item -> DYED_WATER.put(item, ColoredCauldronInteraction::dyeInteraction));
+        Items.DYE.forEach(item -> DYED_WATER.put(item, ColoredCauldronInteraction::dyeInteraction));
     }
 
-    static InteractionResult fillBucket(
+    public static InteractionResult fillBucket(
             BlockState state,
             Level level,
             BlockPos pos,

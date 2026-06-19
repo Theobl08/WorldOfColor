@@ -1,6 +1,5 @@
 {
   "type": "minecraft:crafting_shapeless",
-  "category": "misc",
   "group": "flower_pot_dye",
   "ingredients": [
     "minecraft:green_dye",

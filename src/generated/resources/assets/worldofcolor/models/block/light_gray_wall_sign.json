@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/template_wall_sign",
+  "textures": {
+    "all": "worldofcolor:block/light_gray_sign",
+    "particle": "worldofcolor:block/light_gray_planks"
+  }
+}

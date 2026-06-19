@@ -1,7 +1,19 @@
 {
   "variants": {
-    "": {
-      "model": "worldofcolor:block/yellow_hanging_sign"
+    "facing=east": {
+      "model": "worldofcolor:block/yellow_wall_hanging_sign",
+      "y": 270
+    },
+    "facing=north": {
+      "model": "worldofcolor:block/yellow_wall_hanging_sign",
+      "y": 180
+    },
+    "facing=south": {
+      "model": "worldofcolor:block/yellow_wall_hanging_sign"
+    },
+    "facing=west": {
+      "model": "worldofcolor:block/yellow_wall_hanging_sign",
+      "y": 90
     }
   }
 }

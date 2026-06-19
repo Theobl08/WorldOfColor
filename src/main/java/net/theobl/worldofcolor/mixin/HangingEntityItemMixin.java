@@ -29,7 +29,7 @@ public abstract class HangingEntityItemMixin {
     private EntityType<? extends HangingEntity> type;
 
     @Definition(id = "type", field = "Lnet/minecraft/world/item/HangingEntityItem;type:Lnet/minecraft/world/entity/EntityType;")
-    @Definition(id = "GLOW_ITEM_FRAME", field = "Lnet/minecraft/world/entity/EntityType;GLOW_ITEM_FRAME:Lnet/minecraft/world/entity/EntityType;")
+    @Definition(id = "GLOW_ITEM_FRAME", field = "Lnet/minecraft/world/entity/EntityTypes;GLOW_ITEM_FRAME:Lnet/minecraft/world/entity/EntityType;")
     @Expression("this.type != GLOW_ITEM_FRAME")
     @ModifyExpressionValue(method = "useOn", at = @At(value = "MIXINEXTRAS:EXPRESSION"))
     private boolean checkIfColoredItemFrame(boolean original) {
