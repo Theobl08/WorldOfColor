@@ -130,6 +130,7 @@ public class ModModelProvider extends ModelProvider {
         ModItems.COLORED_ITEM_FRAMES.values().forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
         ModItems.COLORED_POTATO_PEELS.values().forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
         itemModels.generateFlatItem(ModItems.RGB_DYE.get(), ModelTemplates.FLAT_ITEM);
+        itemModels.generateFlatItem(ModItems.RGB_HARNESS.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateBundleModels(ModItems.RGB_BUNDLE.get());
     }
 }

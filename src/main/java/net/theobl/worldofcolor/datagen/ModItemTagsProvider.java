@@ -87,6 +87,7 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         }
 
         this.tag(ItemTags.BUNDLES).add(ModItems.RGB_BUNDLE.getKey());
+        this.tag(ItemTags.HARNESSES).add(ModItems.RGB_HARNESS.getKey());
         this.tag(Tags.Items.DYES).add(ModItems.RGB_DYE.getKey());
         this.tag(ModTags.Items.CAULDRONS).add(BlockItemIds.CAULDRON.item());
         ModBlocks.COLORED_CAULDRONS.values().forEach(block -> this.tag(ModTags.Items.CAULDRONS).add(block.asItem().builtInRegistryHolder().key()));

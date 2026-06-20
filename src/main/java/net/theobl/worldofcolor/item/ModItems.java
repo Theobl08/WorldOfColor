@@ -1,11 +1,17 @@
 package net.theobl.worldofcolor.item;
 
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.tags.EntityTypeTags;
+import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.component.BundleContents;
 import net.minecraft.world.item.component.ItemContainerContents;
+import net.minecraft.world.item.equipment.EquipmentAssets;
+import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.CopperGolemStatueBlock;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
@@ -16,6 +22,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.entity.ModEntityType;
+import net.theobl.worldofcolor.item.equipement.ModEquipmentAssets;
 
 import java.util.*;
 import java.util.function.Function;
@@ -48,6 +55,18 @@ public class ModItems {
     public static final DeferredItem<Item> RGB_BANNER = ITEMS.registerItem("rgb_banner",
             p -> new BannerItem(ModBlocks.RGB_BANNER.get(), ModBlocks.RGB_WALL_BANNER.get(), p),
             p -> p.stacksTo(16).component(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY).useBlockDescriptionPrefix());
+    public static final DeferredItem<Item> RGB_HARNESS = ITEMS.registerSimpleItem("rgb_harness",
+            p -> p.stacksTo(1)
+                    .component(DataComponents.EQUIPPABLE,
+                            Equippable.builder(EquipmentSlot.BODY)
+                                    .setEquipSound(SoundEvents.HARNESS_EQUIP)
+                                    .setAsset(ModEquipmentAssets.RGB_HARNESS)
+                                    .setAllowedEntities(BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.ENTITY_TYPE).getOrThrow(EntityTypeTags.CAN_EQUIP_HARNESS))
+                                    .setEquipOnInteract(true)
+                                    .setCanBeSheared(true)
+                                    .setShearingSound(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.HARNESS_UNEQUIP))
+                                    .build())
+    );
 
     private static Map<DyeColor, DeferredItem<Item>> registerColored(String key) {
         Map<DyeColor, DeferredItem<Item>> items = new LinkedHashMap<>();

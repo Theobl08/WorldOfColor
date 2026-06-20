@@ -1,4 +1,4 @@
-// 26.2	2026-06-19T09:52:50.632424	Model Definitions - worldofcolor
+// 26.2	2026-06-19T20:40:21.1527259	Model Definitions - worldofcolor
 a31101a419b44e9a513fb7452e79e831c6aca9eb assets/worldofcolor/blockstates/black_block.json
 a101a588d479d297254002806ef06584959b52c3 assets/worldofcolor/blockstates/black_bricks.json
 df15fc8cbab0c8d25b8411540f8bdb0886e1b314 assets/worldofcolor/blockstates/black_brick_slab.json
@@ -2695,6 +2695,7 @@ f274b5200b148d83abaaf41381702a14ec0cb5a2 assets/worldofcolor/items/rgb_carpet.js
 085294ba12f878e2d8c10d08712eab3b00e3af09 assets/worldofcolor/items/rgb_concrete_powder.json
 08ca34452d3071a28255d84b5fb8bbf919082180 assets/worldofcolor/items/rgb_dye.json
 432714013f2753d3c97477a53fb3d905955af742 assets/worldofcolor/items/rgb_glazed_terracotta.json
+a65988015784760b891a5e4bbc97058dd88e449e assets/worldofcolor/items/rgb_harness.json
 3d17f97e3af6b31f3d2bbbf2facc69c72e13ceab assets/worldofcolor/items/rgb_shulker_box.json
 11f6583b17f25964e0318a2b68072fe84e12f3d4 assets/worldofcolor/items/rgb_stained_glass.json
 64e1b129211475ad14f829aa20560fa832812096 assets/worldofcolor/items/rgb_stained_glass_pane.json
@@ -6218,6 +6219,7 @@ bf91d56e52dc238df89b1380d7d9e34e6561be6b assets/worldofcolor/models/item/red_ite
 c84d52e869b7a214bf17eed139629619725e4bcc assets/worldofcolor/models/item/rgb_bundle_open_front.json
 80ee299985078f330b77ada490b381afda0b9cb1 assets/worldofcolor/models/item/rgb_candle.json
 e57ac4fc045dd7b4d42e12181017b073fe9a19d1 assets/worldofcolor/models/item/rgb_dye.json
+3c58dd13b14787936d333044678f7771cc1128c6 assets/worldofcolor/models/item/rgb_harness.json
 1177a52ac9f959921c29b861b1a01d0b7447321f assets/worldofcolor/models/item/rgb_shulker_box.json
 933b2b05b45387685ccf05beabd4a04c7749df66 assets/worldofcolor/models/item/rgb_stained_glass_pane.json
 2828aa81c1b3f9283d3e90f75c35da50aa662f97 assets/worldofcolor/models/item/white_boat.json

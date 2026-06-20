@@ -9,11 +9,11 @@
   "refmap": "worldofcolor.refmap.json",
   "mixins": [
     "CauldronInteractionsMixin",
+    "ColorLerperMixin",
     "CopperChestBlockMixin",
     "HangingEntityItemMixin",
     "LayeredCauldronBlockMixin",
     "MapColorMixin",
-    "ColorLerperMixin",
     "ShulkerBoxBlockMixin"
   ],
   "client": [
@@ -24,7 +24,8 @@
     "LoomScreenMixin",
     "ShulkerBoxRendererMixin",
     "SpecialModelWrapperMixin",
-    "TerrainParticleMixin"
+    "TerrainParticleMixin",
+    "TextureManagerMixin"
   ],
   "injectors": {
     "defaultRequire": 1

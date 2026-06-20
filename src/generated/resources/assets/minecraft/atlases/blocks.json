@@ -67,10 +67,6 @@
     {
       "type": "minecraft:single",
       "resource": "worldofcolor:entity/shulker/shulker_rgb"
-    },
-    {
-      "type": "minecraft:single",
-      "resource": "worldofcolor:entity/bed/rgb"
     }
   ]
 }

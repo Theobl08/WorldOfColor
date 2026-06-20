@@ -79,6 +79,7 @@ public class ModCreativeModeTabs {
                                 output.accept(block.get());
                         }
                         output.accept(ModItems.RGB_BUNDLE);
+                        output.accept(ModItems.RGB_HARNESS);
                         output.accept(ModItems.RGB_DYE);
                         ModItems.ITEMS.getEntries().stream().map(DeferredHolder::get).forEach(output::accept);
                     }).build());
