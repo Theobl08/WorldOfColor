@@ -39,6 +39,7 @@ public class ModBlockFamilies {
                     .wall(ModBlocks.COLORED_BRICK_WALLS.pick(color).get())
                     .stairs(ModBlocks.COLORED_BRICK_STAIRS.pick(color).get())
                     .slab(ModBlocks.COLORED_BRICK_SLABS.pick(color).get())
+                    .generateStonecutterRecipe()
                     .getFamily()
     );
     public static final ColorCollection<BlockFamily> COLORED_COPPER_BLOCK = createFamily(color ->
@@ -50,6 +51,7 @@ public class ModBlockFamilies {
                     .stairs(ModBlocks.COLORED_CUT_COPPER_STAIRS.pick(color).get())
                     .chiseled(ModBlocks.COLORED_CHISELED_COPPER.pick(color).get())
                     .dontGenerateModel()
+                    .generateStonecutterRecipe()
                     .getFamily()
     );
     public static final ColorCollection<BlockFamily> COLORED_WAXED_COPPER_BLOCK = createFamily(color ->
@@ -66,6 +68,7 @@ public class ModBlockFamilies {
                     .chiseled(ModBlocks.COLORED_WAXED_CHISELED_COPPER.pick(color).get())
                     .recipeGroupPrefix("waxed_cut_copper")
                     .dontGenerateModel()
+                    .generateStonecutterRecipe()
                     .getFamily()
     );
 
