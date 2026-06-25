@@ -120,25 +120,25 @@ public class WorldOfColor {
     }
 
     private void addBlockToBlockEntity(BlockEntityTypeAddBlocksEvent event) {
-        ModBlocks.COLORED_SIGNS.values().forEach(sign -> event.modify(BlockEntityTypes.SIGN, sign.get()));
-        ModBlocks.COLORED_WALL_SIGNS.values().forEach(sign -> event.modify(BlockEntityTypes.SIGN, sign.get()));
-        ModBlocks.COLORED_HANGING_SIGNS.values().forEach(sign -> event.modify(BlockEntityTypes.HANGING_SIGN, sign.get()));
-        ModBlocks.COLORED_WALL_HANGING_SIGNS.values().forEach(sign -> event.modify(BlockEntityTypes.HANGING_SIGN, sign.get()));
-        ModBlocks.COLORED_SHELVES.values().forEach(shelf -> event.modify(BlockEntityTypes.SHELF, shelf.get()));
-        ModBlocks.COLORED_COPPER_CHESTS.values().forEach(block -> event.modify(BlockEntityTypes.CHEST, block.get()));
-        ModBlocks.COLORED_WAXED_COPPER_CHESTS.values().forEach(block -> event.modify(BlockEntityTypes.CHEST, block.get()));
-        ModBlocks.COLORED_COPPER_GOLEM_STATUES.values().forEach(block -> event.modify(BlockEntityTypes.COPPER_GOLEM_STATUE, block.get()));
-        ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.values().forEach(block -> event.modify(BlockEntityTypes.COPPER_GOLEM_STATUE, block.get()));
+        ModBlocks.COLORED_SIGNS.forEach(sign -> event.modify(BlockEntityTypes.SIGN, sign.get()));
+        ModBlocks.COLORED_WALL_SIGNS.forEach(sign -> event.modify(BlockEntityTypes.SIGN, sign.get()));
+        ModBlocks.COLORED_HANGING_SIGNS.forEach(sign -> event.modify(BlockEntityTypes.HANGING_SIGN, sign.get()));
+        ModBlocks.COLORED_WALL_HANGING_SIGNS.forEach(sign -> event.modify(BlockEntityTypes.HANGING_SIGN, sign.get()));
+        ModBlocks.COLORED_SHELVES.forEach(shelf -> event.modify(BlockEntityTypes.SHELF, shelf.get()));
+        ModBlocks.COLORED_COPPER_CHESTS.forEach(block -> event.modify(BlockEntityTypes.CHEST, block.get()));
+        ModBlocks.COLORED_WAXED_COPPER_CHESTS.forEach(block -> event.modify(BlockEntityTypes.CHEST, block.get()));
+        ModBlocks.COLORED_COPPER_GOLEM_STATUES.forEach(block -> event.modify(BlockEntityTypes.COPPER_GOLEM_STATUE, block.get()));
+        ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.forEach(block -> event.modify(BlockEntityTypes.COPPER_GOLEM_STATUE, block.get()));
         event.modify(BlockEntityTypes.SHULKER_BOX, ModBlocks.RGB_SHULKER_BOX.get());
     }
 
     private void extendPoiTypes(ExtendPoiTypesEvent event) {
-        ModBlocks.COLORED_LIGHTNING_RODS.values().forEach(block -> event.addBlockToPoi(PoiTypes.LIGHTNING_ROD, block.get()));
-        ModBlocks.COLORED_WAXED_LIGHTNING_RODS.values().forEach(block -> event.addBlockToPoi(PoiTypes.LIGHTNING_ROD, block.get()));
-        ModBlocks.COLORED_CAULDRONS.values().forEach(block -> event.addBlockToPoi(PoiTypes.LEATHERWORKER, block.get()));
-        ModBlocks.COLORED_LAVA_CAULDRONS.values().forEach(block -> event.addBlockToPoi(PoiTypes.LEATHERWORKER, block.get()));
-        ModBlocks.COLORED_WATER_CAULDRONS.values().forEach(block -> event.addBlockToPoi(PoiTypes.LEATHERWORKER, block.get()));
-        ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.values().forEach(block -> event.addBlockToPoi(PoiTypes.LEATHERWORKER, block.get()));
+        ModBlocks.COLORED_LIGHTNING_RODS.forEach(block -> event.addBlockToPoi(PoiTypes.LIGHTNING_ROD, block.get()));
+        ModBlocks.COLORED_WAXED_LIGHTNING_RODS.forEach(block -> event.addBlockToPoi(PoiTypes.LIGHTNING_ROD, block.get()));
+        ModBlocks.COLORED_CAULDRONS.forEach(block -> event.addBlockToPoi(PoiTypes.LEATHERWORKER, block.get()));
+        ModBlocks.COLORED_LAVA_CAULDRONS.forEach(block -> event.addBlockToPoi(PoiTypes.LEATHERWORKER, block.get()));
+        ModBlocks.COLORED_WATER_CAULDRONS.forEach(block -> event.addBlockToPoi(PoiTypes.LEATHERWORKER, block.get()));
+        ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.forEach(block -> event.addBlockToPoi(PoiTypes.LEATHERWORKER, block.get()));
         event.addStatesToPoi(PoiTypes.HOME, ModBlocks.RGB_BED.get().getStateDefinition().getPossibleStates()
                 .stream().filter(state -> state.getValue(BedBlock.PART) == BedPart.HEAD).collect(ImmutableSet.toImmutableSet()));
 //        event.addStatesToPoi(PoiTypes.HOME, ImmutableList.of(ModBlocks.RGB_BED.get())
@@ -174,9 +174,9 @@ public class WorldOfColor {
 
             for (DyeColor color : ModUtil.COLORS) {
                 int index = ModUtil.COLORS.indexOf(color);
-                EntityRenderers.register(ModEntityType.COLORED_BOATS.get(color).get(), context -> new BoatRenderer(context, ModModelLayers.COLORED_BOATS.get(color)));
-                EntityRenderers.register(ModEntityType.COLORED_CHEST_BOATS.get(color).get(), context -> new BoatRenderer(context, ModModelLayers.COLORED_CHEST_BOATS.get(color)));
-                EntityRenderers.register(ModEntityType.COLORED_ITEM_FRAMES.get(color).get(), ItemFrameRenderer::new);
+                EntityRenderers.register(ModEntityType.COLORED_BOATS.pick(color).get(), context -> new BoatRenderer(context, ModModelLayers.COLORED_BOATS.pick(color)));
+                EntityRenderers.register(ModEntityType.COLORED_CHEST_BOATS.pick(color).get(), context -> new BoatRenderer(context, ModModelLayers.COLORED_CHEST_BOATS.pick(color)));
+                EntityRenderers.register(ModEntityType.COLORED_ITEM_FRAMES.pick(color).get(), ItemFrameRenderer::new);
             }
 
             ModSpriteId.bootstrap();
@@ -184,8 +184,8 @@ public class WorldOfColor {
 
         @SubscribeEvent
         public static void registerLayerDefinitions(EntityRenderersEvent.RegisterLayerDefinitions event) {
-            ModModelLayers.COLORED_BOATS.values().forEach(layer -> event.registerLayerDefinition(layer, BoatModel::createBoatModel));
-            ModModelLayers.COLORED_CHEST_BOATS.values().forEach(layer -> event.registerLayerDefinition(layer, BoatModel::createChestBoatModel));
+            ModModelLayers.COLORED_BOATS.forEach(layer -> event.registerLayerDefinition(layer, BoatModel::createBoatModel));
+            ModModelLayers.COLORED_CHEST_BOATS.forEach(layer -> event.registerLayerDefinition(layer, BoatModel::createChestBoatModel));
         }
 
         @SubscribeEvent
@@ -203,7 +203,7 @@ public class WorldOfColor {
 
         @SubscribeEvent
         public static void registerBlockColor(RegisterColorHandlersEvent.BlockTintSources event) {
-            ModBlocks.COLORED_WATER_CAULDRONS.values().forEach(block ->
+            ModBlocks.COLORED_WATER_CAULDRONS.forEach(block ->
                     event.register(List.of(BlockTintSources.water()), block.get()));
             ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.FERN).values().forEach(block ->
                     event.register(List.of(BlockTintSources.grass()), block.get())
@@ -218,7 +218,7 @@ public class WorldOfColor {
 
         @SubscribeEvent
         public static void registerSpecialBlockModelRenderer(RegisterBlockModelsEvent event) {
-            ModBlocks.COLORED_DECORATED_POTS.values().forEach(block ->
+            ModBlocks.COLORED_DECORATED_POTS.forEach(block ->
                             event.register(BuiltInBlockModels.specialModelWithPropertyDispatch(
                                     DecoratedPotBlock.HORIZONTAL_FACING, facing ->
                                             BuiltInBlockModels.special(new ColoredDecoratedPotSpecialRenderer.Unbaked(block.get().getColor()),

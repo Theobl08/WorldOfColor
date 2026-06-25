@@ -22,7 +22,7 @@ public abstract class BlockStateDefinitionsMixin {
     @Inject(method = "definitionLocationToBlockStateMapper", at = @At("RETURN"))
     private static void addColoredItemFrames(CallbackInfoReturnable<Function<Identifier, StateDefinition<Block, BlockState>>> cir, @Local(name = "result") Map<Identifier, StateDefinition<Block, BlockState>> result) {
         for(DyeColor color : ModUtil.COLORS) {
-            result.put(ModBlockStateDefinitions.COLORED_ITEM_FRAME_LOCATION.get(color), ModBlockStateDefinitions.COLORED_ITEM_FRAME_FAKE_DEFINITION.get(color));
+            result.put(ModBlockStateDefinitions.COLORED_ITEM_FRAME_LOCATION.pick(color), ModBlockStateDefinitions.COLORED_ITEM_FRAME_FAKE_DEFINITION.pick(color));
         }
     }
 }

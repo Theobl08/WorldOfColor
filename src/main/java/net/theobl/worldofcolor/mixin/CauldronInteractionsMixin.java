@@ -10,6 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ColorCollection;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -51,17 +52,16 @@ public abstract class CauldronInteractionsMixin {
     }
 
     @Unique
-    private static BlockState worldOfColor$isColoredCauldron(BiMap<DyeColor, DeferredBlock<Block>> checkedBlock, Level level, BlockPos pos, Item item) {
+    private static BlockState worldOfColor$isColoredCauldron(ColorCollection<DeferredBlock<Block>> checkedBlock, Level level, BlockPos pos, Item item) {
         BlockState blockState = null;
-        for (DeferredBlock<Block> block : checkedBlock.values()) {
-            if (level.getBlockState(pos).is(block)) {
-                DyeColor color = checkedBlock.inverse().get(block);
+        for (DyeColor color : DyeColor.values()) {
+            if (level.getBlockState(pos).is(checkedBlock.pick(color))) {
                 if (item == Items.WATER_BUCKET)
-                    blockState = ModBlocks.COLORED_WATER_CAULDRONS.get(color).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
+                    blockState = ModBlocks.COLORED_WATER_CAULDRONS.pick(color).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
                 else if (item == Items.LAVA_BUCKET) {
-                    blockState = ModBlocks.COLORED_LAVA_CAULDRONS.get(color).get().defaultBlockState();
+                    blockState = ModBlocks.COLORED_LAVA_CAULDRONS.pick(color).get().defaultBlockState();
                 } else
-                    blockState = ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.get(color).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
+                    blockState = ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.pick(color).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
             }
         }
         return blockState;

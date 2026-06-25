@@ -43,10 +43,9 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                     player.awardStat(Stats.USE_CAULDRON);
                     player.awardStat(Stats.ITEM_USED.get(item));
                     BlockState blockState = Blocks.WATER_CAULDRON.defaultBlockState();
-                    for (DeferredBlock<Block> block : ModBlocks.COLORED_CAULDRONS.values()) {
-                        if(state.is(block)) {
-                            DyeColor index = ModBlocks.COLORED_CAULDRONS.inverse().get(block);
-                            blockState = ModBlocks.COLORED_WATER_CAULDRONS.get(index).get().defaultBlockState();
+                    for (DyeColor color : ModUtil.COLORS) {
+                        if(state.is(ModBlocks.COLORED_CAULDRONS.pick(color))) {
+                            blockState = ModBlocks.COLORED_WATER_CAULDRONS.pick(color).get().defaultBlockState();
                         }
                     }
                     level.setBlockAndUpdate(pos, blockState);
@@ -176,22 +175,17 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
         } else {
             if (!level.isClientSide()) {
                 BlockState blockState = Blocks.CAULDRON.defaultBlockState();
-                for (DeferredBlock<Block> block : ModBlocks.COLORED_WATER_CAULDRONS.values()) {
-                    if(state.is(block)) {
-                        DyeColor index = ModBlocks.COLORED_WATER_CAULDRONS.inverse().get(block);
-                        blockState = ModBlocks.COLORED_CAULDRONS.get(index).get().defaultBlockState();
+                for (DyeColor color : ModUtil.COLORS) {
+                    if(state.is(ModBlocks.COLORED_WATER_CAULDRONS.pick(color))) {
+                        blockState = ModBlocks.COLORED_CAULDRONS.pick(color).get().defaultBlockState();
                     }
-                }
-                for (DeferredBlock<Block> block : ModBlocks.COLORED_LAVA_CAULDRONS.values()) {
-                    if(state.is(block)) {
-                        DyeColor index = ModBlocks.COLORED_LAVA_CAULDRONS.inverse().get(block);
-                        blockState = ModBlocks.COLORED_CAULDRONS.get(index).get().defaultBlockState();
+
+                    else if(state.is(ModBlocks.COLORED_LAVA_CAULDRONS.pick(color))) {
+                        blockState = ModBlocks.COLORED_CAULDRONS.pick(color).get().defaultBlockState();
                     }
-                }
-                for (DeferredBlock<Block> block : ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.values()) {
-                    if(state.is(block)) {
-                        DyeColor index = ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.inverse().get(block);
-                        blockState = ModBlocks.COLORED_CAULDRONS.get(index).get().defaultBlockState();
+
+                    else if(state.is(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.pick(color))) {
+                        blockState = ModBlocks.COLORED_CAULDRONS.pick(color).get().defaultBlockState();
                     }
                 }
                 Item item = emptyStack.getItem();
@@ -217,8 +211,8 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                 BlockState newState = ModBlocks.DYED_WATER_CAULDRON.get().defaultBlockState();
                 for (DyeColor dyeColor : ModUtil.COLORS) {
                     int index = ModUtil.COLORS.indexOf(dyeColor);
-                    if(state.is(ModBlocks.COLORED_WATER_CAULDRONS.get(dyeColor))) {
-                        newState = ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(dyeColor).get().defaultBlockState();
+                    if(state.is(ModBlocks.COLORED_WATER_CAULDRONS.pick(dyeColor))) {
+                        newState = ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(dyeColor).get().defaultBlockState();
                     }
                 }
                 level.setBlockAndUpdate(pos, newState.setValue(LayeredCauldronBlock.LEVEL, state.getValue(LayeredCauldronBlock.LEVEL)));

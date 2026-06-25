@@ -7,11 +7,11 @@
       },
       "trigger": "minecraft:recipe_unlocked"
     },
-    "has_yellow_copper_golem_statue": {
+    "has_yellow__copper_golem_statue": {
       "conditions": {
         "items": [
           {
-            "items": "worldofcolor:yellow_copper_golem_statue"
+            "items": "worldofcolor:yellow__copper_golem_statue"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_yellow_copper_golem_statue"
+      "has_yellow__copper_golem_statue"
     ]
   ],
   "rewards": {

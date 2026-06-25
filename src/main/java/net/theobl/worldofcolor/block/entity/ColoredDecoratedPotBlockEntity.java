@@ -93,7 +93,7 @@ public class ColoredDecoratedPotBlockEntity extends BlockEntity implements Rando
     }
 
     public static ItemStackTemplate createDecoratedPotTemplate(PotDecorations decorations, DyeColor color) {
-        return new ItemStackTemplate(ModBlocks.COLORED_DECORATED_POTS.get((color)).asItem(),
+        return new ItemStackTemplate(ModBlocks.COLORED_DECORATED_POTS.pick(color).asItem(),
                 DataComponentPatch.builder().set(DataComponents.POT_DECORATIONS, decorations).build());
     }
 

@@ -83,17 +83,17 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         this.copy(Tags.Blocks.GLASS_PANES, Tags.Items.GLASS_PANES);
 
         for(DyeColor color : ModUtil.COLORS) {
-            this.copy(ModTags.Blocks.COLORED_LOGS.get(color), ModTags.Items.COLORED_LOGS.get(color));
+            this.copy(ModTags.Blocks.COLORED_LOGS.pick(color), ModTags.Items.COLORED_LOGS.pick(color));
         }
 
         this.tag(ItemTags.BUNDLES).add(ModItems.RGB_BUNDLE.getKey());
         this.tag(ItemTags.HARNESSES).add(ModItems.RGB_HARNESS.getKey());
         this.tag(Tags.Items.DYES).add(ModItems.RGB_DYE.getKey());
         this.tag(ModTags.Items.CAULDRONS).add(BlockItemIds.CAULDRON.item());
-        ModBlocks.COLORED_CAULDRONS.values().forEach(block -> this.tag(ModTags.Items.CAULDRONS).add(block.asItem().builtInRegistryHolder().key()));
+        ModBlocks.COLORED_CAULDRONS.forEach(block -> this.tag(ModTags.Items.CAULDRONS).add(block.asItem().builtInRegistryHolder().key()));
 
-        ModItems.COLORED_BOATS.values().forEach(item -> tag(ItemTags.BOATS).add(item.asItem().builtInRegistryHolder().key()));
-        ModItems.COLORED_CHEST_BOATS.values().forEach(item -> tag(ItemTags.CHEST_BOATS).add(item.asItem().builtInRegistryHolder().key()));
+        ModItems.COLORED_BOATS.forEach(item -> tag(ItemTags.BOATS).add(item.asItem().builtInRegistryHolder().key()));
+        ModItems.COLORED_CHEST_BOATS.forEach(item -> tag(ItemTags.CHEST_BOATS).add(item.asItem().builtInRegistryHolder().key()));
 
         addColored(Tags.Items.DYED, "{color}_block");
         addColored(Tags.Items.DYED, "{color}_bricks");

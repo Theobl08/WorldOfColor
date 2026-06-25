@@ -17,8 +17,8 @@ public class ModEntityTypeTagsProvider extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        ModEntityType.COLORED_BOATS.values().forEach(boat -> tag(EntityTypeTags.BOAT).add(boat.getKey()));
-        ModEntityType.COLORED_CHEST_BOATS.values().forEach(boat -> tag(Tags.EntityTypes.BOATS).add(boat.getKey()));
-        ModEntityType.COLORED_ITEM_FRAMES.values().forEach(boat -> tag(Tags.EntityTypes.ITEM_FRAMES).add(boat.getKey()));
+        ModEntityType.COLORED_BOATS.forEach(boat -> tag(EntityTypeTags.BOAT).add(boat.getKey()));
+        ModEntityType.COLORED_CHEST_BOATS.forEach(boat -> tag(Tags.EntityTypes.BOATS).add(boat.getKey()));
+        ModEntityType.COLORED_ITEM_FRAMES.forEach(boat -> tag(Tags.EntityTypes.ITEM_FRAMES).add(boat.getKey()));
     }
 }

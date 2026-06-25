@@ -20,59 +20,59 @@ public class ModCreativeModeTabs {
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab",
             () -> CreativeModeTab.builder().title(Component.translatable("itemGroup.worldofcolor"))
                     .withTabsBefore(CreativeModeTabs.SPAWN_EGGS)
-                    .icon(() -> ModBlocks.QUILTED_CONCRETES.get(DyeColor.WHITE).asItem().getDefaultInstance())
+                    .icon(() -> ModBlocks.QUILTED_CONCRETES.pick(DyeColor.WHITE).asItem().getDefaultInstance())
                     .displayItems((parameters, output) -> {
                         for (DyeColor color : ModUtil.COLORS) {
                             int index = ModUtil.COLORS.indexOf(color);
-                            output.accept(ModBlocks.COLORED_LEAVES.get(color));
-                            output.accept(ModBlocks.COLORED_LOGS.get(color));
-                            output.accept(ModBlocks.COLORED_WOODS.get(color));
-                            output.accept(ModBlocks.COLORED_STRIPPED_LOGS.get(color));
-                            output.accept(ModBlocks.COLORED_STRIPPED_WOODS.get(color));
-                            output.accept(ModBlocks.COLORED_PLANKS.get(color));
-                            output.accept(ModBlocks.COLORED_STAIRS.get(color));
-                            output.accept(ModBlocks.COLORED_SLABS.get(color));
-                            output.accept(ModBlocks.COLORED_FENCES.get(color));
-                            output.accept(ModBlocks.COLORED_FENCE_GATES.get(color));
-                            output.accept(ModBlocks.COLORED_DOORS.get(color));
-                            output.accept(ModBlocks.COLORED_TRAPDOORS.get(color));
-                            output.accept(ModBlocks.COLORED_PRESSURE_PLATES.get(color));
-                            output.accept(ModBlocks.COLORED_BUTTONS.get(color));
-                            output.accept(ModBlocks.COLORED_SIGNS.get(color));
-                            output.accept(ModBlocks.COLORED_HANGING_SIGNS.get(color));
-                            output.accept(ModItems.COLORED_BOATS.get(color));
-                            output.accept(ModItems.COLORED_CHEST_BOATS.get(color));
+                            output.accept(ModBlocks.COLORED_LEAVES.pick(color));
+                            output.accept(ModBlocks.COLORED_LOGS.pick(color));
+                            output.accept(ModBlocks.COLORED_WOODS.pick(color));
+                            output.accept(ModBlocks.COLORED_STRIPPED_LOGS.pick(color));
+                            output.accept(ModBlocks.COLORED_STRIPPED_WOODS.pick(color));
+                            output.accept(ModBlocks.COLORED_PLANKS.pick(color));
+                            output.accept(ModBlocks.COLORED_STAIRS.pick(color));
+                            output.accept(ModBlocks.COLORED_SLABS.pick(color));
+                            output.accept(ModBlocks.COLORED_FENCES.pick(color));
+                            output.accept(ModBlocks.COLORED_FENCE_GATES.pick(color));
+                            output.accept(ModBlocks.COLORED_DOORS.pick(color));
+                            output.accept(ModBlocks.COLORED_TRAPDOORS.pick(color));
+                            output.accept(ModBlocks.COLORED_PRESSURE_PLATES.pick(color));
+                            output.accept(ModBlocks.COLORED_BUTTONS.pick(color));
+                            output.accept(ModBlocks.COLORED_SIGNS.pick(color));
+                            output.accept(ModBlocks.COLORED_HANGING_SIGNS.pick(color));
+                            output.accept(ModItems.COLORED_BOATS.pick(color));
+                            output.accept(ModItems.COLORED_CHEST_BOATS.pick(color));
                         }
                         for (DyeColor color : ModUtil.COLORS) {
                             int index = ModUtil.COLORS.indexOf(color);
-                            output.accept(ModBlocks.COLORED_COPPER_BLOCKS.get(color));
-                            output.accept(ModBlocks.COLORED_CHISELED_COPPER.get(color));
-                            output.accept(ModBlocks.COLORED_COPPER_GRATES.get(color));
-                            output.accept(ModBlocks.COLORED_CUT_COPPER.get(color));
-                            output.accept(ModBlocks.COLORED_CUT_COPPER_STAIRS.get(color));
-                            output.accept(ModBlocks.COLORED_CUT_COPPER_SLABS.get(color));
-                            output.accept(ModBlocks.COLORED_COPPER_DOORS.get(color));
-                            output.accept(ModBlocks.COLORED_COPPER_TRAPDOORS.get(color));
-                            output.accept(ModBlocks.COLORED_COPPER_BULBS.get(color));
+                            output.accept(ModBlocks.COLORED_COPPER_BLOCKS.pick(color));
+                            output.accept(ModBlocks.COLORED_CHISELED_COPPER.pick(color));
+                            output.accept(ModBlocks.COLORED_COPPER_GRATES.pick(color));
+                            output.accept(ModBlocks.COLORED_CUT_COPPER.pick(color));
+                            output.accept(ModBlocks.COLORED_CUT_COPPER_STAIRS.pick(color));
+                            output.accept(ModBlocks.COLORED_CUT_COPPER_SLABS.pick(color));
+                            output.accept(ModBlocks.COLORED_COPPER_DOORS.pick(color));
+                            output.accept(ModBlocks.COLORED_COPPER_TRAPDOORS.pick(color));
+                            output.accept(ModBlocks.COLORED_COPPER_BULBS.pick(color));
                         }
                         for (DyeColor color : ModUtil.COLORS) {
                             int index = ModUtil.COLORS.indexOf(color);
-                            output.accept(ModBlocks.COLORED_WAXED_COPPER_BLOCKS.get(color));
-                            output.accept(ModBlocks.COLORED_WAXED_CHISELED_COPPER.get(color));
-                            output.accept(ModBlocks.COLORED_WAXED_COPPER_GRATES.get(color));
-                            output.accept(ModBlocks.COLORED_WAXED_CUT_COPPER.get(color));
-                            output.accept(ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.get(color));
-                            output.accept(ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.get(color));
-                            output.accept(ModBlocks.COLORED_WAXED_COPPER_DOORS.get(color));
-                            output.accept(ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS.get(color));
-                            output.accept(ModBlocks.COLORED_WAXED_COPPER_BULBS.get(color));
+                            output.accept(ModBlocks.COLORED_WAXED_COPPER_BLOCKS.pick(color));
+                            output.accept(ModBlocks.COLORED_WAXED_CHISELED_COPPER.pick(color));
+                            output.accept(ModBlocks.COLORED_WAXED_COPPER_GRATES.pick(color));
+                            output.accept(ModBlocks.COLORED_WAXED_CUT_COPPER.pick(color));
+                            output.accept(ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.pick(color));
+                            output.accept(ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.pick(color));
+                            output.accept(ModBlocks.COLORED_WAXED_COPPER_DOORS.pick(color));
+                            output.accept(ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS.pick(color));
+                            output.accept(ModBlocks.COLORED_WAXED_COPPER_BULBS.pick(color));
                         }
                         for (DyeColor color : ModUtil.COLORS) {
                             int index = ModUtil.COLORS.indexOf(color);
-                            output.accept(ModBlocks.COLORED_BRICKS.get(color));
-                            output.accept(ModBlocks.COLORED_BRICK_STAIRS.get(color));
-                            output.accept(ModBlocks.COLORED_BRICK_SLABS.get(color));
-                            output.accept(ModBlocks.COLORED_BRICK_WALLS.get(color));
+                            output.accept(ModBlocks.COLORED_BRICKS.pick(color));
+                            output.accept(ModBlocks.COLORED_BRICK_STAIRS.pick(color));
+                            output.accept(ModBlocks.COLORED_BRICK_SLABS.pick(color));
+                            output.accept(ModBlocks.COLORED_BRICK_WALLS.pick(color));
                         }
                         for (DeferredHolder<Block, ? extends Block> block : ModBlocks.BLOCKS.getEntries()) {
                             if(block.get().asItem() != Blocks.AIR.asItem() && block.get().asItem() != Items.CAULDRON)

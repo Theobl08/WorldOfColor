@@ -30,53 +30,53 @@ public class ModDataMapProvider extends DataMapProvider {
     @Override
     protected void gather(HolderLookup.Provider provider) {
         final Builder<Compostable, Item> compostables = builder(NeoForgeDataMaps.COMPOSTABLES);
-        ModBlocks.COLORED_LEAVES.values().forEach(block -> compostables.add(block.getId(), new Compostable(0.3F), false));
-        ModBlocks.COLORED_SAPLINGS.values().forEach(block -> compostables.add(block.getId(), new Compostable(0.3F), false));
-        ModItems.COLORED_POTATO_PEELS.values().forEach(block -> compostables.add(block.getId(), new Compostable(0.65F), false));
+        ModBlocks.COLORED_LEAVES.forEach(block -> compostables.add(block.getId(), new Compostable(0.3F), false));
+        ModBlocks.COLORED_SAPLINGS.forEach(block -> compostables.add(block.getId(), new Compostable(0.3F), false));
+        ModItems.COLORED_POTATO_PEELS.forEach(block -> compostables.add(block.getId(), new Compostable(0.65F), false));
 
         final var oxidizables = builder(NeoForgeDataMaps.OXIDIZABLES);
         final var waxables = builder(NeoForgeDataMaps.WAXABLES);
         final var strippable = builder(NeoForgeDataMaps.STRIPPABLES);
         for (DyeColor color : ModUtil.COLORS) {
-            waxables.add(ModBlocks.COLORED_COPPER_BLOCKS.get(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_BLOCKS.get(color).get()), false);
-            waxables.add(ModBlocks.COLORED_CHISELED_COPPER.get(color), new Waxable(ModBlocks.COLORED_WAXED_CHISELED_COPPER.get(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_GRATES.get(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_GRATES.get(color).get()), false);
-            waxables.add(ModBlocks.COLORED_CUT_COPPER.get(color), new Waxable(ModBlocks.COLORED_WAXED_CUT_COPPER.get(color).get()), false);
-            waxables.add(ModBlocks.COLORED_CUT_COPPER_STAIRS.get(color), new Waxable(ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.get(color).get()), false);
-            waxables.add(ModBlocks.COLORED_CUT_COPPER_SLABS.get(color), new Waxable(ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.get(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_DOORS.get(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_DOORS.get(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_TRAPDOORS.get(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS.get(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_BULBS.get(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_BULBS.get(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_BARS.get(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_BARS.get(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_CHAINS.get(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_CHAINS.get(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_LANTERNS.get(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_LANTERNS.get(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_CHESTS.get(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_GOLEM_STATUES.get(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.get(color).get()), false);
-            waxables.add(ModBlocks.COLORED_LIGHTNING_RODS.get(color), new Waxable(ModBlocks.COLORED_WAXED_LIGHTNING_RODS.get(color).get()), false);
+            waxables.add(ModBlocks.COLORED_COPPER_BLOCKS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_BLOCKS.pick(color).get()), false);
+            waxables.add(ModBlocks.COLORED_CHISELED_COPPER.pick(color), new Waxable(ModBlocks.COLORED_WAXED_CHISELED_COPPER.pick(color).get()), false);
+            waxables.add(ModBlocks.COLORED_COPPER_GRATES.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_GRATES.pick(color).get()), false);
+            waxables.add(ModBlocks.COLORED_CUT_COPPER.pick(color), new Waxable(ModBlocks.COLORED_WAXED_CUT_COPPER.pick(color).get()), false);
+            waxables.add(ModBlocks.COLORED_CUT_COPPER_STAIRS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.pick(color).get()), false);
+            waxables.add(ModBlocks.COLORED_CUT_COPPER_SLABS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.pick(color).get()), false);
+            waxables.add(ModBlocks.COLORED_COPPER_DOORS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_DOORS.pick(color).get()), false);
+            waxables.add(ModBlocks.COLORED_COPPER_TRAPDOORS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS.pick(color).get()), false);
+            waxables.add(ModBlocks.COLORED_COPPER_BULBS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_BULBS.pick(color).get()), false);
+            waxables.add(ModBlocks.COLORED_COPPER_BARS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_BARS.pick(color).get()), false);
+            waxables.add(ModBlocks.COLORED_COPPER_CHAINS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_CHAINS.pick(color).get()), false);
+            waxables.add(ModBlocks.COLORED_COPPER_LANTERNS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_LANTERNS.pick(color).get()), false);
+            waxables.add(ModBlocks.COLORED_COPPER_CHESTS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_CHESTS.pick(color).get()), false);
+            waxables.add(ModBlocks.COLORED_COPPER_GOLEM_STATUES.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.pick(color).get()), false);
+            waxables.add(ModBlocks.COLORED_LIGHTNING_RODS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_LIGHTNING_RODS.pick(color).get()), false);
 
-            strippable.add(ModBlocks.COLORED_LOGS.get(color), new Strippable(ModBlocks.COLORED_STRIPPED_LOGS.get(color).get()), false);
-            strippable.add(ModBlocks.COLORED_WOODS.get(color), new Strippable(ModBlocks.COLORED_STRIPPED_WOODS.get(color).get()), false);
+            strippable.add(ModBlocks.COLORED_LOGS.pick(color), new Strippable(ModBlocks.COLORED_STRIPPED_LOGS.pick(color).get()), false);
+            strippable.add(ModBlocks.COLORED_WOODS.pick(color), new Strippable(ModBlocks.COLORED_STRIPPED_WOODS.pick(color).get()), false);
 
             if (color == DyeColor.PINK) {
                 continue;
             }
             int colorIndex = ModUtil.COLORS.indexOf(color);
             DyeColor nextColor = ModUtil.COLORS.get(colorIndex + 1);
-            oxidizables.add(ModBlocks.COLORED_COPPER_BLOCKS.get(color), new Oxidizable(ModBlocks.COLORED_COPPER_BLOCKS.get(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_CHISELED_COPPER.get(color), new Oxidizable(ModBlocks.COLORED_CHISELED_COPPER.get(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_GRATES.get(color), new Oxidizable(ModBlocks.COLORED_COPPER_GRATES.get(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_CUT_COPPER.get(color), new Oxidizable(ModBlocks.COLORED_CUT_COPPER.get(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_CUT_COPPER_STAIRS.get(color), new Oxidizable(ModBlocks.COLORED_CUT_COPPER_STAIRS.get(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_CUT_COPPER_SLABS.get(color), new Oxidizable(ModBlocks.COLORED_CUT_COPPER_SLABS.get(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_DOORS.get(color), new Oxidizable(ModBlocks.COLORED_COPPER_DOORS.get(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_TRAPDOORS.get(color), new Oxidizable(ModBlocks.COLORED_COPPER_TRAPDOORS.get(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_BULBS.get(color), new Oxidizable(ModBlocks.COLORED_COPPER_BULBS.get(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_BARS.get(color), new Oxidizable(ModBlocks.COLORED_COPPER_BARS.get(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_CHAINS.get(color), new Oxidizable(ModBlocks.COLORED_COPPER_CHAINS.get(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_LANTERNS.get(color), new Oxidizable(ModBlocks.COLORED_COPPER_LANTERNS.get(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_CHESTS.get(color), new Oxidizable(ModBlocks.COLORED_COPPER_CHESTS.get(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_GOLEM_STATUES.get(color), new Oxidizable(ModBlocks.COLORED_COPPER_GOLEM_STATUES.get(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_LIGHTNING_RODS.get(color), new Oxidizable(ModBlocks.COLORED_LIGHTNING_RODS.get(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_COPPER_BLOCKS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_BLOCKS.pick(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_CHISELED_COPPER.pick(color), new Oxidizable(ModBlocks.COLORED_CHISELED_COPPER.pick(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_COPPER_GRATES.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_GRATES.pick(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_CUT_COPPER.pick(color), new Oxidizable(ModBlocks.COLORED_CUT_COPPER.pick(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_CUT_COPPER_STAIRS.pick(color), new Oxidizable(ModBlocks.COLORED_CUT_COPPER_STAIRS.pick(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_CUT_COPPER_SLABS.pick(color), new Oxidizable(ModBlocks.COLORED_CUT_COPPER_SLABS.pick(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_COPPER_DOORS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_DOORS.pick(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_COPPER_TRAPDOORS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_TRAPDOORS.pick(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_COPPER_BULBS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_BULBS.pick(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_COPPER_BARS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_BARS.pick(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_COPPER_CHAINS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_CHAINS.pick(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_COPPER_LANTERNS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_LANTERNS.pick(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_COPPER_CHESTS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_CHESTS.pick(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_COPPER_GOLEM_STATUES.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_GOLEM_STATUES.pick(nextColor).get()), false);
+            oxidizables.add(ModBlocks.COLORED_LIGHTNING_RODS.pick(color), new Oxidizable(ModBlocks.COLORED_LIGHTNING_RODS.pick(nextColor).get()), false);
         }
     }
 

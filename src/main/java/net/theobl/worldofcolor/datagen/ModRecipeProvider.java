@@ -14,6 +14,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ColorCollection;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -25,6 +26,7 @@ import net.theobl.worldofcolor.tags.ModTags;
 import net.theobl.worldofcolor.util.ModUtil;
 import org.jspecify.annotations.Nullable;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -57,85 +59,73 @@ public class ModRecipeProvider extends RecipeProvider {
         waxRecipes(ModBlocks.COLORED_COPPER_GOLEM_STATUES, ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES);
         waxRecipes(ModBlocks.COLORED_LIGHTNING_RODS, ModBlocks.COLORED_WAXED_LIGHTNING_RODS);
 
-        colorBlockWithDye(ModBlocks.COLORED_SAPLINGS.values().stream().toList(), DYES, ItemTags.SAPLINGS, "sapling");
-        colorBlockWithDye(ModBlocks.COLORED_CAULDRONS.values().stream().toList(), DYES, ModTags.Items.CAULDRONS, "dyed_cauldron");
-        colorBlockWithDye(ModBlocks.COLORED_SLIME_BLOCKS.values().stream().toList(), DYES, Tags.Items.STORAGE_BLOCKS_SLIME, "dyed_slime_blocks");
+        colorBlockWithDye(ModBlocks.COLORED_SAPLINGS, Items.DYE, ItemTags.SAPLINGS, "sapling");
+        colorBlockWithDye(ModBlocks.COLORED_CAULDRONS, Items.DYE, ModTags.Items.CAULDRONS, "dyed_cauldron");
+        colorBlockWithDye(ModBlocks.COLORED_SLIME_BLOCKS, Items.DYE, Tags.Items.STORAGE_BLOCKS_SLIME, "dyed_slime_blocks");
 
-        for (DeferredBlock<Block> block : ModBlocks.COLORED_BRICKS.values()) {
-            DyeColor color = ModBlocks.COLORED_BRICKS.inverse().get(block);
-            coloredBricksFromBricksAndDye(block, Items.DYE.pick(color));
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_BRICK_SLABS.get(color), block, 2);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_BRICK_STAIRS.get(color), block);
-            stonecutterResultFromBase(RecipeCategory.DECORATIONS, ModBlocks.COLORED_BRICK_WALLS.get(color), block);
+        for (DyeColor color : COLORS) {
+            coloredBricksFromBricksAndDye(ModBlocks.COLORED_BRICKS.pick(color), Items.DYE.pick(color));
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_BRICK_SLABS.pick(color), ModBlocks.COLORED_BRICKS.pick(color), 2);
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_BRICK_STAIRS.pick(color), ModBlocks.COLORED_BRICKS.pick(color));
+            stonecutterResultFromBase(RecipeCategory.DECORATIONS, ModBlocks.COLORED_BRICK_WALLS.pick(color), ModBlocks.COLORED_BRICKS.pick(color));
         }
-        for (DeferredBlock<Block> quiltedConcrete : ModBlocks.QUILTED_CONCRETES.values()) {
-            int index = ModBlocks.QUILTED_CONCRETES.values().stream().toList().indexOf(quiltedConcrete);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, quiltedConcrete.get(), CONCRETES.get(index));
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, CONCRETES.get(index), quiltedConcrete.get());
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SIMPLE_COLORED_BLOCKS.get(COLORS.get(index)), quiltedConcrete.get());
-        }
-        for (DeferredBlock<Block> block : ModBlocks.SIMPLE_COLORED_BLOCKS.values()) {
-            int index = ModBlocks.SIMPLE_COLORED_BLOCKS.values().stream().toList().indexOf(block);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, block.get(), CONCRETES.get(index));
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, CONCRETES.get(index), block.get());
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.QUILTED_CONCRETES.get(COLORS.get(index)), block.get());
-        }
-        for (DeferredBlock<Block> glazedConcrete : ModBlocks.GLAZED_CONCRETES.values()) {
-            int index = ModBlocks.GLAZED_CONCRETES.values().stream().toList().indexOf(glazedConcrete);
-            smeltingResultFromBase(glazedConcrete.get(), CONCRETES.get(index));
-        }
+
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.QUILTED_CONCRETES, Blocks.CONCRETE);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, Blocks.CONCRETE, ModBlocks.QUILTED_CONCRETES);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SIMPLE_COLORED_BLOCKS, ModBlocks.QUILTED_CONCRETES);
+
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.SIMPLE_COLORED_BLOCKS, Blocks.CONCRETE);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, Blocks.CONCRETE, ModBlocks.SIMPLE_COLORED_BLOCKS);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.QUILTED_CONCRETES, ModBlocks.SIMPLE_COLORED_BLOCKS);
+
+        ColorCollection.zipApply(ModBlocks.GLAZED_CONCRETES, Blocks.CONCRETE, this::smeltingResultFromBase);
         for (DeferredBlock<Block> carpet : ModBlocks.CLASSIC_CARPETS) {
             int index = ModBlocks.CLASSIC_CARPETS.indexOf(carpet);
             carpet(carpet.get(), ModBlocks.CLASSIC_WOOLS.get(index));
         }
 
-        for (DeferredBlock<Block> planks : ModBlocks.COLORED_PLANKS.values()) {
-            DyeColor color = ModBlocks.COLORED_PLANKS.inverse().get(planks);
-            planksFromLogs(planks, ModTags.Items.COLORED_LOGS.get(color), 4);
-            woodFromLogs(ModBlocks.COLORED_WOODS.get(color), ModBlocks.COLORED_LOGS.get(color));
-            woodFromLogs(ModBlocks.COLORED_STRIPPED_WOODS.get(color), ModBlocks.COLORED_STRIPPED_LOGS.get(color));
-            woodenBoat(ModItems.COLORED_BOATS.get(color).get(), planks);
-            chestBoat(ModItems.COLORED_CHEST_BOATS.get(color).get(), ModItems.COLORED_BOATS.get(color).get());
-            shelf(ModBlocks.COLORED_SHELVES.get(color), ModBlocks.COLORED_STRIPPED_LOGS.get(color));
+        for (DyeColor color : COLORS) {
+            planksFromLogs(ModBlocks.COLORED_PLANKS.pick(color), ModTags.Items.COLORED_LOGS.pick(color), 4);
+            woodFromLogs(ModBlocks.COLORED_WOODS.pick(color), ModBlocks.COLORED_LOGS.pick(color));
+            woodFromLogs(ModBlocks.COLORED_STRIPPED_WOODS.pick(color), ModBlocks.COLORED_STRIPPED_LOGS.pick(color));
+            woodenBoat(ModItems.COLORED_BOATS.pick(color).get(), ModBlocks.COLORED_PLANKS.pick(color));
+            chestBoat(ModItems.COLORED_CHEST_BOATS.pick(color).get(), ModItems.COLORED_BOATS.pick(color).get());
+            shelf(ModBlocks.COLORED_SHELVES.pick(color), ModBlocks.COLORED_STRIPPED_LOGS.pick(color));
         }
 
-        for (DeferredBlock<Block> block : ModBlocks.COLORED_COPPER_BLOCKS.values()) {
-            DyeColor color = ModBlocks.COLORED_COPPER_BLOCKS.inverse().get(block);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER.get(color), block, 4);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_STAIRS.get(color), block, 4);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_SLABS.get(color), block, 8);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CHISELED_COPPER.get(color), block, 4);
-            grate(ModBlocks.COLORED_COPPER_GRATES.get(color).get(), block.get());
-            copperBulb(ModBlocks.COLORED_COPPER_BULBS.get(color).get(), block.get());
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_COPPER_GRATES.get(color), block, 4);
+        for (DyeColor color : COLORS) {
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER.pick(color), ModBlocks.COLORED_COPPER_BLOCKS.pick(color), 4);
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_STAIRS.pick(color), ModBlocks.COLORED_COPPER_BLOCKS.pick(color), 4);
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_SLABS.pick(color), ModBlocks.COLORED_COPPER_BLOCKS.pick(color), 8);
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CHISELED_COPPER.pick(color), ModBlocks.COLORED_COPPER_BLOCKS.pick(color), 4);
+            grate(ModBlocks.COLORED_COPPER_GRATES.pick(color).get(), ModBlocks.COLORED_COPPER_BLOCKS.pick(color).get());
+            copperBulb(ModBlocks.COLORED_COPPER_BULBS.pick(color).get(), ModBlocks.COLORED_COPPER_BLOCKS.pick(color).get());
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_COPPER_GRATES.pick(color), ModBlocks.COLORED_COPPER_BLOCKS.pick(color), 4);
         }
 
-        for (DeferredBlock<Block> block : ModBlocks.COLORED_WAXED_COPPER_BLOCKS.values()) {
-            DyeColor color = ModBlocks.COLORED_WAXED_COPPER_BLOCKS.inverse().get(block);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CUT_COPPER.get(color), block, 4);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.get(color), block, 4);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.get(color), block, 8);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CHISELED_COPPER.get(color), block, 4);
-            grate(ModBlocks.COLORED_WAXED_COPPER_GRATES.get(color).get(), block.get());
-            copperBulb(ModBlocks.COLORED_WAXED_COPPER_BULBS.get(color).get(), block.get());
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_COPPER_GRATES.get(color), block, 4);
+        for (DyeColor color : COLORS) {
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CUT_COPPER.pick(color), ModBlocks.COLORED_WAXED_COPPER_BLOCKS.pick(color), 4);
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.pick(color), ModBlocks.COLORED_WAXED_COPPER_BLOCKS.pick(color), 4);
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.pick(color), ModBlocks.COLORED_WAXED_COPPER_BLOCKS.pick(color), 8);
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CHISELED_COPPER.pick(color), ModBlocks.COLORED_WAXED_COPPER_BLOCKS.pick(color), 4);
+            grate(ModBlocks.COLORED_WAXED_COPPER_GRATES.pick(color).get(), ModBlocks.COLORED_WAXED_COPPER_BLOCKS.pick(color).get());
+            copperBulb(ModBlocks.COLORED_WAXED_COPPER_BULBS.pick(color).get(), ModBlocks.COLORED_WAXED_COPPER_BLOCKS.pick(color).get());
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_COPPER_GRATES.pick(color), ModBlocks.COLORED_WAXED_COPPER_BLOCKS.pick(color), 4);
         }
 
-        for (DeferredBlock<Block> block : ModBlocks.COLORED_CUT_COPPER.values()) {
-            DyeColor color = ModBlocks.COLORED_CUT_COPPER.inverse().get(block);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_SLABS.get(color), block, 2);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_STAIRS.get(color), block);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CHISELED_COPPER.get(color), block);
+        for (DyeColor color : COLORS) {
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_SLABS.pick(color), ModBlocks.COLORED_CUT_COPPER.pick(color), 2);
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_STAIRS.pick(color), ModBlocks.COLORED_CUT_COPPER.pick(color));
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CHISELED_COPPER.pick(color), ModBlocks.COLORED_CUT_COPPER.pick(color));
         }
 
-        for (DeferredBlock<Block> block : ModBlocks.COLORED_WAXED_CUT_COPPER.values()) {
-            DyeColor color = ModBlocks.COLORED_WAXED_CUT_COPPER.inverse().get(block);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.get(color), block, 2);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.get(color), block);
-            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CHISELED_COPPER.get(color), block);
+        for (DyeColor color : COLORS) {
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.pick(color), ModBlocks.COLORED_WAXED_CUT_COPPER.pick(color), 2);
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.pick(color), ModBlocks.COLORED_WAXED_CUT_COPPER.pick(color));
+            stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_WAXED_CHISELED_COPPER.pick(color), ModBlocks.COLORED_WAXED_CUT_COPPER.pick(color));
         }
 
-        ModBlocks.COLORED_DECORATED_POTS.values().forEach(block -> this.shaped(RecipeCategory.DECORATIONS, block.get().asItem())
+        ModBlocks.COLORED_DECORATED_POTS.forEach(block -> this.shaped(RecipeCategory.DECORATIONS, block.get().asItem())
                 .define('#', Items.BRICK)
                 .define('D', Items.DYE.pick(block.get().getColor()))
                 .pattern(" # ")
@@ -144,37 +134,37 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy("has_brick", this.has(ItemTags.DECORATED_POT_INGREDIENTS))
                 .save(this.output, WorldOfColor.MODID + ":" + name(block) + "_simple"));
 
-        colorCopper(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_COPPER_BLOCKS.get(DyeColor.WHITE), Blocks.COPPER_BLOCK.weathering().unaffected());
-        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_DOORS.get(DyeColor.WHITE), Blocks.COPPER_DOOR.weathering().unaffected());
-        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_TRAPDOORS.get(DyeColor.WHITE), Blocks.COPPER_TRAPDOOR.weathering().unaffected());
-        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_LIGHTNING_RODS.get(DyeColor.WHITE), Blocks.LIGHTNING_ROD.weathering().unaffected());
-        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_BARS.get(DyeColor.WHITE), Blocks.COPPER_BARS.weathering().unaffected());
-        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_CHAINS.get(DyeColor.WHITE), Blocks.COPPER_CHAIN.weathering().unaffected());
-        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_LANTERNS.get(DyeColor.WHITE), Blocks.COPPER_LANTERN.weathering().unaffected());
-        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_CHESTS.get(DyeColor.WHITE), Blocks.COPPER_CHEST.weathering().unaffected());
-        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_GOLEM_STATUES.get(DyeColor.WHITE), Blocks.COPPER_GOLEM_STATUE.weathering().unaffected());
+        colorCopper(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_COPPER_BLOCKS.pick(DyeColor.WHITE), Blocks.COPPER_BLOCK.weathering().unaffected());
+        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_DOORS.white(), Blocks.COPPER_DOOR.weathering().unaffected());
+        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_COPPER_TRAPDOORS.white(), Blocks.COPPER_TRAPDOOR.weathering().unaffected());
+        colorCopper(RecipeCategory.REDSTONE, ModBlocks.COLORED_LIGHTNING_RODS.white(), Blocks.LIGHTNING_ROD.weathering().unaffected());
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_BARS.pick(DyeColor.WHITE), Blocks.COPPER_BARS.weathering().unaffected());
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_CHAINS.pick(DyeColor.WHITE), Blocks.COPPER_CHAIN.weathering().unaffected());
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_LANTERNS.pick(DyeColor.WHITE), Blocks.COPPER_LANTERN.weathering().unaffected());
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_CHESTS.white(), Blocks.COPPER_CHEST.weathering().unaffected());
+        colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_GOLEM_STATUES.pick(DyeColor.WHITE), Blocks.COPPER_GOLEM_STATUE.weathering().unaffected());
         SpecialRecipeBuilder.special(() -> new ColoredDecoratedPotRecipe(this.tag(ItemTags.DECORATED_POT_INGREDIENTS), tag(ItemTags.DYES)))
                 .save(this.output, "colored_decorated_pot");
 
-        colorWithDye(DYES, ModBlocks.COLORED_FLOWER_POTS.values().stream().map(DeferredBlock::asItem).toList(), Items.FLOWER_POT,
+        colorWithDye(Items.DYE, ModBlocks.COLORED_FLOWER_POTS.map(DeferredBlock::asItem), Items.FLOWER_POT,
                 "flower_pot_dye", RecipeCategory.DECORATIONS);
-        colorWithDye(DYES, ModBlocks.COLORED_REDSTONE_LAMPS.values().stream().map(DeferredBlock::asItem).toList(), Items.REDSTONE_LAMP,
+        colorWithDye(Items.DYE, ModBlocks.COLORED_REDSTONE_LAMPS.map(DeferredBlock::asItem), Items.REDSTONE_LAMP,
                 "redstone_lamp_dye", RecipeCategory.REDSTONE);
-        colorWithDye(DYES, ModItems.COLORED_ITEM_FRAMES.values().stream().map(DeferredItem::asItem).toList(), Items.ITEM_FRAME,
+        colorWithDye(Items.DYE, ModItems.COLORED_ITEM_FRAMES.map(DeferredItem::asItem), Items.ITEM_FRAME,
                 "item_frame_dye", RecipeCategory.DECORATIONS);
-        colorWithDye(DYES, ModBlocks.COLORED_POTATO_PEELS_BLOCK.values().stream().map(DeferredBlock::asItem).toList(), null,
+        colorWithDye(Items.DYE, ModBlocks.COLORED_POTATO_PEELS_BLOCK.map(DeferredBlock::asItem), null,
                 "potato_peels_block_dye", RecipeCategory.MISC);
-        colorWithDye(DYES, ModItems.COLORED_POTATO_PEELS.values().stream().map(DeferredItem::get).toList(), Items.POTATO,
+        colorWithDye(Items.DYE, ModItems.COLORED_POTATO_PEELS.map(DeferredItem::get), Items.POTATO,
                 "potato_peels_dye", RecipeCategory.MISC);
         for (DyeColor color : COLORS) {
             nineBlockStorageRecipes(
                     RecipeCategory.MISC,
-                    ModItems.COLORED_POTATO_PEELS.get(color),
+                    ModItems.COLORED_POTATO_PEELS.pick(color),
                     RecipeCategory.MISC,
-                    ModBlocks.COLORED_POTATO_PEELS_BLOCK.get(color),
-                    WorldOfColor.MODID + ":" + getItemName(ModBlocks.COLORED_POTATO_PEELS_BLOCK.get(color)),
+                    ModBlocks.COLORED_POTATO_PEELS_BLOCK.pick(color),
+                    WorldOfColor.MODID + ":" + getItemName(ModBlocks.COLORED_POTATO_PEELS_BLOCK.pick(color)),
                     null,
-                    WorldOfColor.MODID + ":" + getItemName(ModItems.COLORED_POTATO_PEELS.get(color)),
+                    WorldOfColor.MODID + ":" + getItemName(ModItems.COLORED_POTATO_PEELS.pick(color)),
                     null
             );
         }
@@ -251,17 +241,21 @@ public class ModRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(category, result, material, 1);
     }
 
+    protected <T extends ItemLike, U extends ItemLike> void stonecutterResultFromBase(RecipeCategory category, ColorCollection<T> result, ColorCollection<U> material) {
+        ColorCollection.zipApply(result, material, (res, mat) -> stonecutterResultFromBase(category, res, mat, 1));
+    }
+
     protected void stonecutterResultFromBase(RecipeCategory category, ItemLike result, ItemLike material, int resultCount) {
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(material), category, result, resultCount)
                 .unlockedBy(getHasName(material), has(material))
                 .save(output, WorldOfColor.MODID + ":" + getConversionRecipeName(result, material) + "_stonecutting");
     }
 
-    protected void colorWithDye(List<Item> dyes, List<Item> dyedItems, @Nullable Item uncoloredItem, String groupName, RecipeCategory category) {
-        for (int dyeIndex = 0; dyeIndex < dyes.size(); dyeIndex++) {
-            Item dye = dyes.get(dyeIndex);
-            Item dyedItem = dyedItems.get(dyeIndex);
-            Stream<Item> sourceItems = dyedItems.stream().filter(b -> !b.equals(dyedItem));
+    protected void colorWithDye(ColorCollection<Item> dyes, ColorCollection<Item> dyedItems, @Nullable Item uncoloredItem, String groupName, RecipeCategory category) {
+        for (DyeColor color : COLORS) {
+            Item dye = dyes.pick(color);
+            Item dyedItem = dyedItems.pick(color);
+            Stream<Item> sourceItems = dyedItems.asList().stream().filter(b -> !b.equals(dyedItem));
             if (uncoloredItem != null) {
                 sourceItems = Stream.concat(sourceItems, Stream.of(uncoloredItem));
             }
@@ -275,10 +269,10 @@ public class ModRecipeProvider extends RecipeProvider {
         }
     }
 
-    protected void colorBlockWithDye(List<DeferredBlock<Block>> results, List<Item> dyes, TagKey<Item> dyeableItems, String group) {
-        for (int i = 0; i < dyes.size(); i++) {
-            Item dye = dyes.get(i);
-            Item dyedItem = results.get(i).asItem();
+    protected void colorBlockWithDye(ColorCollection<DeferredBlock<Block>> results, ColorCollection<Item> dyes, TagKey<Item> dyeableItems, String group) {
+        for (DyeColor color : COLORS) {
+            Item dye = dyes.pick(color);
+            Item dyedItem = results.pick(color).asItem();
             shapeless(RecipeCategory.BUILDING_BLOCKS, dyedItem)
                     .requires(dye)
                     .requires(dyeableItems)
@@ -300,16 +294,14 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(output);
     }
 
-    protected void waxRecipes(Map<DyeColor, DeferredBlock<Block>> block, Map<DyeColor, DeferredBlock<Block>> waxedBlock) {
-        COLORS.forEach(color ->
-        {
-             shapeless(RecipeCategory.BUILDING_BLOCKS, waxedBlock.get(color))
-                     .requires(block.get(color))
-                     .requires(Items.HONEYCOMB)
-                     .group(getItemName(waxedBlock.get(color)))
-                     .unlockedBy(getHasName(block.get(color)), has(block.get(color)))
-                     .save(output, WorldOfColor.MODID + ":" + getConversionRecipeName(waxedBlock.get(color), Items.HONEYCOMB));
-        });
+    protected void waxRecipes(ColorCollection<DeferredBlock<Block>> block, ColorCollection<DeferredBlock<Block>> waxedBlock) {
+        ColorCollection.zipApply(block, waxedBlock, (weathering, waxed) ->
+                shapeless(RecipeCategory.BUILDING_BLOCKS, waxed)
+                        .requires(weathering)
+                        .requires(Items.HONEYCOMB)
+                        .group(getItemName(waxed))
+                        .unlockedBy(getHasName(weathering), has(weathering))
+                        .save(output, WorldOfColor.MODID + ":" + getConversionRecipeName(waxed, Items.HONEYCOMB)));
     }
 
     protected void colorCopper(RecipeCategory category, ItemLike result, ItemLike base) {

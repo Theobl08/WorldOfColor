@@ -5,13 +5,9 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.registries.DeferredBlock;
+import net.minecraft.world.level.block.ColorCollection;
 import net.theobl.worldofcolor.block.ModBlocks;
-import net.theobl.worldofcolor.util.ModUtil;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 import java.util.stream.Stream;
@@ -20,65 +16,61 @@ public class ModBlockFamilies {
     private static final Map<Block, BlockFamily> MAP = Maps.newHashMap();
     private static final String RECIPE_GROUP_PREFIX_WOODEN = "wooden";
     private static final String RECIPE_UNLOCKED_BY_HAS_PLANKS = "has_planks";
-    public static final Map<DyeColor, BlockFamily> COLORED_PLANKS = familyBuilderColored(color ->
-            familyBuilder(ModBlocks.COLORED_PLANKS.get(color).get())
-                    .log(ModBlocks.COLORED_LOGS.get(color).get())
-                    .strippedLog(ModBlocks.COLORED_STRIPPED_LOGS.get(color).get())
-                    .button(ModBlocks.COLORED_BUTTONS.get(color).get())
-                    .fence(ModBlocks.COLORED_FENCES.get(color).get())
-                    .fenceGate(ModBlocks.COLORED_FENCE_GATES.get(color).get())
-                    .hangingSign(ModBlocks.COLORED_HANGING_SIGNS.get(color).get(), ModBlocks.COLORED_WALL_HANGING_SIGNS.get(color).get())
-                    .pressurePlate(ModBlocks.COLORED_PRESSURE_PLATES.get(color).get())
-                    .sign(ModBlocks.COLORED_SIGNS.get(color).get(), ModBlocks.COLORED_WALL_SIGNS.get(color).get())
-                    .slab(ModBlocks.COLORED_SLABS.get(color).get())
-                    .stairs(ModBlocks.COLORED_STAIRS.get(color).get())
-                    .door(ModBlocks.COLORED_DOORS.get(color).get())
-                    .trapdoor(ModBlocks.COLORED_TRAPDOORS.get(color).get())
+    public static final ColorCollection<BlockFamily> COLORED_PLANKS = createFamily(color ->
+            familyBuilder(ModBlocks.COLORED_PLANKS.pick(color).get())
+                    .log(ModBlocks.COLORED_LOGS.pick(color).get())
+                    .strippedLog(ModBlocks.COLORED_STRIPPED_LOGS.pick(color).get())
+                    .button(ModBlocks.COLORED_BUTTONS.pick(color).get())
+                    .fence(ModBlocks.COLORED_FENCES.pick(color).get())
+                    .fenceGate(ModBlocks.COLORED_FENCE_GATES.pick(color).get())
+                    .hangingSign(ModBlocks.COLORED_HANGING_SIGNS.pick(color).get(), ModBlocks.COLORED_WALL_HANGING_SIGNS.pick(color).get())
+                    .pressurePlate(ModBlocks.COLORED_PRESSURE_PLATES.pick(color).get())
+                    .sign(ModBlocks.COLORED_SIGNS.pick(color).get(), ModBlocks.COLORED_WALL_SIGNS.pick(color).get())
+                    .slab(ModBlocks.COLORED_SLABS.pick(color).get())
+                    .stairs(ModBlocks.COLORED_STAIRS.pick(color).get())
+                    .door(ModBlocks.COLORED_DOORS.pick(color).get())
+                    .trapdoor(ModBlocks.COLORED_TRAPDOORS.pick(color).get())
                     .recipeGroupPrefix(RECIPE_GROUP_PREFIX_WOODEN)
                     .recipeUnlockedBy(RECIPE_UNLOCKED_BY_HAS_PLANKS)
                     .getFamily()
     );
-    public static final Map<DyeColor, BlockFamily> COLORED_BRICKS = familyBuilderColored(color ->
-            familyBuilder(ModBlocks.COLORED_BRICKS.get(color).get())
-                    .wall(ModBlocks.COLORED_BRICK_WALLS.get(color).get())
-                    .stairs(ModBlocks.COLORED_BRICK_STAIRS.get(color).get())
-                    .slab(ModBlocks.COLORED_BRICK_SLABS.get(color).get())
+    public static final ColorCollection<BlockFamily> COLORED_BRICKS = createFamily(color ->
+            familyBuilder(ModBlocks.COLORED_BRICKS.pick(color).get())
+                    .wall(ModBlocks.COLORED_BRICK_WALLS.pick(color).get())
+                    .stairs(ModBlocks.COLORED_BRICK_STAIRS.pick(color).get())
+                    .slab(ModBlocks.COLORED_BRICK_SLABS.pick(color).get())
                     .getFamily()
     );
-    public static final Map<DyeColor, BlockFamily> COLORED_COPPER_BLOCK = familyBuilderColored(color ->
-            familyBuilder(ModBlocks.COLORED_COPPER_BLOCKS.get(color).get()).cut(ModBlocks.COLORED_CUT_COPPER.get(color).get()).dontGenerateModel().getFamily()
+    public static final ColorCollection<BlockFamily> COLORED_COPPER_BLOCK = createFamily(color ->
+            familyBuilder(ModBlocks.COLORED_COPPER_BLOCKS.pick(color).get()).cut(ModBlocks.COLORED_CUT_COPPER.pick(color).get()).dontGenerateModel().getFamily()
     );
-    public static final Map<DyeColor, BlockFamily> COLORED_CUT_COPPER = familyBuilderColored(color ->
-            familyBuilder(ModBlocks.COLORED_CUT_COPPER.get(color).get())
-                    .slab(ModBlocks.COLORED_CUT_COPPER_SLABS.get(color).get())
-                    .stairs(ModBlocks.COLORED_CUT_COPPER_STAIRS.get(color).get())
-                    .chiseled(ModBlocks.COLORED_CHISELED_COPPER.get(color).get())
+    public static final ColorCollection<BlockFamily> COLORED_CUT_COPPER = createFamily(color ->
+            familyBuilder(ModBlocks.COLORED_CUT_COPPER.pick(color).get())
+                    .slab(ModBlocks.COLORED_CUT_COPPER_SLABS.pick(color).get())
+                    .stairs(ModBlocks.COLORED_CUT_COPPER_STAIRS.pick(color).get())
+                    .chiseled(ModBlocks.COLORED_CHISELED_COPPER.pick(color).get())
                     .dontGenerateModel()
                     .getFamily()
     );
-    public static final Map<DyeColor, BlockFamily> COLORED_WAXED_COPPER_BLOCK = familyBuilderColored(color ->
-            familyBuilder(ModBlocks.COLORED_WAXED_COPPER_BLOCKS.get(color).get())
-                    .cut(ModBlocks.COLORED_WAXED_CUT_COPPER.get(color).get())
+    public static final ColorCollection<BlockFamily> COLORED_WAXED_COPPER_BLOCK = createFamily(color ->
+            familyBuilder(ModBlocks.COLORED_WAXED_COPPER_BLOCKS.pick(color).get())
+                    .cut(ModBlocks.COLORED_WAXED_CUT_COPPER.pick(color).get())
                     .recipeGroupPrefix("waxed_cut_copper")
                     .dontGenerateModel()
                     .getFamily()
     );
-    public static final Map<DyeColor, BlockFamily> COLORED_WAXED_CUT_COPPER = familyBuilderColored(color ->
-            familyBuilder(ModBlocks.COLORED_WAXED_CUT_COPPER.get(color).get())
-                    .slab(ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.get(color).get())
-                    .stairs(ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.get(color).get())
-                    .chiseled(ModBlocks.COLORED_WAXED_CHISELED_COPPER.get(color).get())
+    public static final ColorCollection<BlockFamily> COLORED_WAXED_CUT_COPPER = createFamily(color ->
+            familyBuilder(ModBlocks.COLORED_WAXED_CUT_COPPER.pick(color).get())
+                    .slab(ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.pick(color).get())
+                    .stairs(ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.pick(color).get())
+                    .chiseled(ModBlocks.COLORED_WAXED_CHISELED_COPPER.pick(color).get())
                     .recipeGroupPrefix("waxed_cut_copper")
                     .dontGenerateModel()
                     .getFamily()
     );
 
-    private static Map<DyeColor, BlockFamily> familyBuilderColored(Function<DyeColor, BlockFamily> factory) {
-        Map<DyeColor, BlockFamily> families = new LinkedHashMap<>();
-        for (DyeColor color : ModUtil.COLORS) {
-            families.put(color, factory.apply(color));
-        }
-        return families;
+    public static ColorCollection<BlockFamily> createFamily(Function<DyeColor, BlockFamily> colorProvider) {
+        return ColorCollection.VALUES.map(colorProvider);
     }
 
     private static BlockFamily.Builder familyBuilder(Block baseBlock) {

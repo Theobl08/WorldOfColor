@@ -18,12 +18,12 @@ public abstract class ChestRendererMixin {
     @ModifyReturnValue(method = "getCustomSprite", at = @At("RETURN"))
     private SpriteId getCustomSprite(SpriteId original, @Local(argsOnly = true) BlockEntity blockEntity, @Local(argsOnly = true) ChestRenderState renderState) {
         for (DyeColor color : ModUtil.COLORS) {
-            if(blockEntity.getBlockState().is(ModBlocks.COLORED_COPPER_CHESTS.get(color))
-                    || blockEntity.getBlockState().is(ModBlocks.COLORED_WAXED_COPPER_CHESTS.get(color))) {
+            if(blockEntity.getBlockState().is(ModBlocks.COLORED_COPPER_CHESTS.pick(color))
+                    || blockEntity.getBlockState().is(ModBlocks.COLORED_WAXED_COPPER_CHESTS.pick(color))) {
                 return switch (renderState.type) {
-                    case SINGLE -> ModSpriteId.COPPER_CHEST_LOCATION.get(color);
-                    case LEFT -> ModSpriteId.COPPER_CHEST_LOCATION_LEFT.get(color);
-                    case RIGHT -> ModSpriteId.COPPER_CHEST_LOCATION_RIGHT.get(color);
+                    case SINGLE -> ModSpriteId.COPPER_CHEST_LOCATION.pick(color);
+                    case LEFT -> ModSpriteId.COPPER_CHEST_LOCATION_LEFT.pick(color);
+                    case RIGHT -> ModSpriteId.COPPER_CHEST_LOCATION_RIGHT.pick(color);
                 };
             }
         }

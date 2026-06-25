@@ -31,11 +31,11 @@ public class ModLanguageProvider extends LanguageProvider {
         ModItems.ITEMS.getEntries().forEach(this::lang);
         ModEntityType.ENTITY_TYPES.getEntries().forEach(this::lang);
 
-        ModTags.Blocks.COLORED_LOGS.values().forEach(this::lang);
+        ModTags.Blocks.COLORED_LOGS.forEach(this::lang);
 
-        ModTags.Items.COLORED_LOGS.values().forEach(this::lang);
+        ModTags.Items.COLORED_LOGS.forEach(this::lang);
 
-        ModBlocks.COLORED_POTATO_PEELS_BLOCK.forEach((color, block) -> addBlock(block, "Block of " + colorLang(color) + " Potato Peels"));
+        ColorCollection.zipApply(ColorCollection.VALUES, ModBlocks.COLORED_POTATO_PEELS_BLOCK, (color, block) -> addBlock(block, "Block of " + colorLang(color) + " Potato Peels"));
         addBlock(ModBlocks.RGB_CANDLE_CAKE, "Cake with RGB Candle");
     }
 

@@ -38,12 +38,8 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 this.add(block.get(), this::createSlabItemTable);
             else if (block.get() instanceof DoorBlock)
                 this.add(block.get(), this::createDoorTable);
-            else if (block.get() instanceof LeavesBlock) {
-                DyeColor color = ModBlocks.COLORED_LEAVES.inverse().get(block);
-                if(color != null)
-                    this.add(block.get(), createLeavesDrops(block.get(), ModBlocks.COLORED_SAPLINGS.get(color).get(), NORMAL_LEAVES_SAPLING_CHANCES));
 
-            } else if(block.get() instanceof FlowerPotBlock flowerPotBlock && block.get().defaultBlockState() != flowerPotBlock.getEmptyPot().defaultBlockState()) {
+            else if(block.get() instanceof FlowerPotBlock flowerPotBlock && block.get().defaultBlockState() != flowerPotBlock.getEmptyPot().defaultBlockState()) {
                 this.dropColoredPottedContents(block.get());
             } else if (block.get() instanceof DecoratedPotBlock) {
                 this.add(block.get(), this::createDecoratedPotTable);
@@ -51,6 +47,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 this.dropWhenSilkTouch(block.get());
             } else if(!(block.get() instanceof AbstractCandleBlock))
                 this.dropSelf(block.get());
+        }
+
+        for (DyeColor color : ModUtil.COLORS) {
+            if(color != null)
+                this.add(ModBlocks.COLORED_LEAVES.pick(color).get(), createLeavesDrops(ModBlocks.COLORED_LEAVES.pick(color).get(), ModBlocks.COLORED_SAPLINGS.pick(color).get(), NORMAL_LEAVES_SAPLING_CHANCES));
         }
         this.add(ModBlocks.RGB_SHULKER_BOX.get(), this::createShulkerBoxDrop);
         this.add(ModBlocks.RGB_BED.get(), block -> this.createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));

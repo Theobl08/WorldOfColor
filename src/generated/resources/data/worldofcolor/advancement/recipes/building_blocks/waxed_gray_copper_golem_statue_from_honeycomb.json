@@ -1,11 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_gray_copper_golem_statue": {
+    "has_gray__copper_golem_statue": {
       "conditions": {
         "items": [
           {
-            "items": "worldofcolor:gray_copper_golem_statue"
+            "items": "worldofcolor:gray__copper_golem_statue"
           }
         ]
       },
@@ -21,7 +21,7 @@
   "requirements": [
     [
       "has_the_recipe",
-      "has_gray_copper_golem_statue"
+      "has_gray__copper_golem_statue"
     ]
   ],
   "rewards": {

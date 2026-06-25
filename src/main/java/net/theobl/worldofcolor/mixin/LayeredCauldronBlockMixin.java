@@ -18,20 +18,18 @@ import static net.minecraft.world.level.block.LayeredCauldronBlock.LEVEL;
 public abstract class LayeredCauldronBlockMixin {
     @ModifyExpressionValue(method = "lowerFillLevel", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/Block;defaultBlockState()Lnet/minecraft/world/level/block/state/BlockState;"))
     private static BlockState lowerFillLevel(BlockState original, @Local(argsOnly = true) BlockState state) {
-        for (DeferredBlock<Block> block : ModBlocks.COLORED_WATER_CAULDRONS.values()) {
-            if (state.is(block)) {
-                DyeColor color = ModBlocks.COLORED_WATER_CAULDRONS.inverse().get(block);
-                return ModBlocks.COLORED_CAULDRONS.get(color).get().defaultBlockState();
+        for (DyeColor color : ModUtil.COLORS) {
+            if (state.is(ModBlocks.COLORED_WATER_CAULDRONS.pick(color))) {
+                return ModBlocks.COLORED_CAULDRONS.pick(color).get().defaultBlockState();
             }
         }
         return original;
     }
     @ModifyExpressionValue(method = "handleEntityOnFireInside", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/Block;defaultBlockState()Lnet/minecraft/world/level/block/state/BlockState;"))
     private static BlockState handleEntityOnFireInside(BlockState original, @Local(argsOnly = true) BlockState state) {
-        for (DeferredBlock<Block> block : ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.values()) {
-            if (state.is(block)) {
-                DyeColor color = ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.inverse().get(block);
-                return ModBlocks.COLORED_WATER_CAULDRONS.get(color).get().defaultBlockState().setValue(LEVEL, state.getValue(LEVEL));
+        for (DyeColor color : ModUtil.COLORS) {
+            if (state.is(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.pick(color))) {
+                return ModBlocks.COLORED_WATER_CAULDRONS.pick(color).get().defaultBlockState().setValue(LEVEL, state.getValue(LEVEL));
             }
         }
         return original;

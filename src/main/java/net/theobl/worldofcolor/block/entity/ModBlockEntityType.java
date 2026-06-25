@@ -21,7 +21,7 @@ public class ModBlockEntityType {
 
     public static final Supplier<BlockEntityType<ColoredDecoratedPotBlockEntity>> COLORED_DECORATED_POT =
             BLOCK_ENTITY_TYPES.register("colored_decorated_pot",
-                    () -> new BlockEntityType<>(ColoredDecoratedPotBlockEntity::new, ModUtil.asVarArgs(ModBlocks.COLORED_DECORATED_POTS.values().stream().toList())));
+                    () -> new BlockEntityType<>(ColoredDecoratedPotBlockEntity::new, ModUtil.asVarArgs(ModBlocks.COLORED_DECORATED_POTS.asList())));
 
     public static final Supplier<BlockEntityType<ColoredBannerBlockEntity>> RGB_BANNER =
             BLOCK_ENTITY_TYPES.register("rgb_banner",
@@ -31,22 +31,22 @@ public class ModBlockEntityType {
             register("dyed_water_cauldron",
             DyedWaterCauldronBlockEntity::new,
             ModBlocks.DYED_WATER_CAULDRON,
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.WHITE),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.LIGHT_GRAY),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.GRAY),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.BLACK),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.BROWN),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.RED),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.ORANGE),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.YELLOW),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.LIME),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.GREEN),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.CYAN),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.LIGHT_BLUE),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.BLUE),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.PURPLE),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.MAGENTA),
-            ModBlocks.COLORED_DYED_WATER_CAULDRONS.get(DyeColor.PINK)
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.WHITE),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.LIGHT_GRAY),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.GRAY),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.BLACK),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.BROWN),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.RED),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.ORANGE),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.YELLOW),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.LIME),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.GREEN),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.CYAN),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.LIGHT_BLUE),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.BLUE),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.PURPLE),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.MAGENTA),
+            ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(DyeColor.PINK)
         );
 
     private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> factory, DeferredBlock<?>... validBlocks) {

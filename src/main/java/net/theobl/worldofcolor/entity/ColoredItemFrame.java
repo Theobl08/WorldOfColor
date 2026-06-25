@@ -17,12 +17,12 @@ public class ColoredItemFrame extends ItemFrame {
     }
 
     public ColoredItemFrame(Level level, BlockPos pos, Direction facingDirection, DyeColor color) {
-        super(ModEntityType.COLORED_ITEM_FRAMES.get(color).get(), level, pos, facingDirection);
+        super(ModEntityType.COLORED_ITEM_FRAMES.pick(color).get(), level, pos, facingDirection);
         this.color = color;
     }
 
     @Override
     protected ItemStack getFrameItemStack() {
-        return new ItemStack(ModItems.COLORED_ITEM_FRAMES.get(this.color).get());
+        return new ItemStack(ModItems.COLORED_ITEM_FRAMES.pick(this.color).get());
     }
 }

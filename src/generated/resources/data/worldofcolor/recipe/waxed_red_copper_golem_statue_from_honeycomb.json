@@ -3,7 +3,7 @@
   "category": "building",
   "group": "waxed_red_copper_golem_statue",
   "ingredients": [
-    "worldofcolor:red_copper_golem_statue",
+    "worldofcolor:red__copper_golem_statue",
     "minecraft:honeycomb"
   ],
   "result": {
