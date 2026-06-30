@@ -1,8 +1,5 @@
 package net.theobl.worldofcolor.entity;
 
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -21,44 +18,36 @@ import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 public class ModEntityType {
-    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(BuiltInRegistries.ENTITY_TYPE, WorldOfColor.MODID);
+    public static final DeferredRegister.Entities ENTITY_TYPES = DeferredRegister.createEntities(WorldOfColor.MODID);
 
     public static final ColorCollection<DeferredHolder<EntityType<?>, EntityType<Boat>>> COLORED_BOATS = registerEntityTypes(
             createSimpleColored("boat"),
-            (name, color) -> registerEntityType(name,
-                    EntityType.Builder.of(boatFactory(ModItems.COLORED_BOATS.pick(color)), MobCategory.MISC)
-                    .noLootTable()
+            (name, color) -> ENTITY_TYPES.registerEntityType(name,
+                    boatFactory(ModItems.COLORED_BOATS.pick(color)), MobCategory.MISC,
+                    b-> b.noLootTable()
                     .sized(1.375F, 0.5625F)
                     .eyeHeight(0.5625F)
                     .clientTrackingRange(10))
     );
     public static final ColorCollection<DeferredHolder<EntityType<?>, EntityType<ChestBoat>>> COLORED_CHEST_BOATS = registerEntityTypes(
             createSimpleColored("chest_boat"),
-            (name, color) -> registerEntityType(name,
-                    EntityType.Builder.of(chestBoatFactory(ModItems.COLORED_CHEST_BOATS.pick(color)), MobCategory.MISC)
-                    .noLootTable()
+            (name, color) -> ENTITY_TYPES.registerEntityType(name,
+                    chestBoatFactory(ModItems.COLORED_CHEST_BOATS.pick(color)), MobCategory.MISC,
+                    b -> b.noLootTable()
                     .sized(1.375F, 0.5625F)
                     .eyeHeight(0.5625F)
                     .clientTrackingRange(10))
     );
     public static final ColorCollection<DeferredHolder<EntityType<?>, EntityType<ColoredItemFrame>>> COLORED_ITEM_FRAMES = registerEntityTypes(
             createSimpleColored("item_frame"),
-            (name, color) -> registerEntityType(name,
-                    EntityType.Builder.of(itemFrameFactory(color), MobCategory.MISC)
-                    .noLootTable()
+            (name, color) -> ENTITY_TYPES.registerEntityType(name,
+                    itemFrameFactory(color), MobCategory.MISC,
+                    b -> b.noLootTable()
                     .sized(0.5F, 0.5F)
                     .eyeHeight(0.0F)
                     .clientTrackingRange(10)
                     .updateInterval(Integer.MAX_VALUE))
     );
-
-    private static <T extends Entity> DeferredHolder<EntityType<?>, EntityType<T>> registerEntityType(String key, EntityType.Builder<T> builder) {
-        return ENTITY_TYPES.register(key, () -> builder.build(coloredEntityId(key)));
-    }
-
-    private static ResourceKey<EntityType<?>> coloredEntityId(String name) {
-        return ResourceKey.create(Registries.ENTITY_TYPE, WorldOfColor.asResource(name));
-    }
 
     private static EntityType.EntityFactory<Boat> boatFactory(Supplier<Item> boatItemGetter) {
         return (boat, level) -> new Boat(boat, level, boatItemGetter);
