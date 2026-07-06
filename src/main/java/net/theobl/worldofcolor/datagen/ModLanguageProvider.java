@@ -60,7 +60,7 @@ public class ModLanguageProvider extends LanguageProvider {
     }
 
     private static String colorLang(DyeColor color) {
-        return capitalizeString(color.getName().replace("_", ""));
+        return capitalizeString(color.getName().replace("_", " "));
     }
 
     private <T> void lang(T key) {
