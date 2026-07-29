@@ -19,17 +19,16 @@ public class ColoredFlowerPotBlock extends FlowerPotBlock {
     @Override
     protected boolean isRandomlyTicking(BlockState state) {
         int index = ModUtil.COLORS.indexOf(this.color);
-        return state.is(ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.OPEN_EYEBLOSSOM).get(this.color))
-                || state.is(ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.CLOSED_EYEBLOSSOM).get(this.color));
+        return state.is(ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.OPEN_EYEBLOSSOM).pick(this.color))
+                || state.is(ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.CLOSED_EYEBLOSSOM).pick(this.color));
     }
 
     public BlockState opposite(BlockState state) {
-        int index = ModUtil.COLORS.indexOf(this.color);
-        if (state.is(ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.OPEN_EYEBLOSSOM).get(this.color))) {
-            return ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.CLOSED_EYEBLOSSOM).get(this.color).get().defaultBlockState();
+        if (state.is(ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.OPEN_EYEBLOSSOM).pick(this.color))) {
+            return ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.CLOSED_EYEBLOSSOM).pick(this.color).get().defaultBlockState();
         } else {
-            return state.is(ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.CLOSED_EYEBLOSSOM).get(this.color))
-                    ? ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.OPEN_EYEBLOSSOM).get(this.color).get().defaultBlockState()
+            return state.is(ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.CLOSED_EYEBLOSSOM).pick(this.color))
+                    ? ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.OPEN_EYEBLOSSOM).pick(this.color).get().defaultBlockState()
                     : state;
         }
     }

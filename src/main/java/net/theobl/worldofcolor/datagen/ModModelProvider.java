@@ -80,7 +80,7 @@ public class ModModelProvider extends ModelProvider {
             blockModels.copyModel(ModBlocks.COLORED_COPPER_GOLEM_STATUES.pick(color).get(), ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.pick(color).get());
             coloredBlockModels.createCauldrons(color);
             coloredBlockModels.createTrivialBlock(ModBlocks.QUILTED_CONCRETES.pick(color).get(), cube(Blocks.DYED_SHULKER_BOX.pick(color)), ModelTemplates.CUBE_ALL);
-            blockModels.createPlantWithDefaultItem(ModBlocks.COLORED_SAPLINGS.pick(color).get(), ModBlocks.POTTED_COLORED_SAPLINGS.get(color).get(), BlockModelGenerators.PlantType.NOT_TINTED);
+            blockModels.createPlantWithDefaultItem(ModBlocks.COLORED_SAPLINGS.pick(color).get(), ModBlocks.POTTED_COLORED_SAPLINGS.pick(color).get(), BlockModelGenerators.PlantType.NOT_TINTED);
             ModBlocks.COLORED_POTTED_PLANTS.forEach((plant, pottedPlant) -> {
                 BlockModelGenerators.PlantType plantType = BlockModelGenerators.PlantType.NOT_TINTED;
                 if(plant.get() == Blocks.FERN) {
@@ -90,9 +90,9 @@ public class ModModelProvider extends ModelProvider {
                 }
                 if(plant.get() == Blocks.BAMBOO || plant.get() == Blocks.MANGROVE_PROPAGULE || plant.get() == Blocks.CACTUS || plant.get() instanceof AzaleaBlock || plant.get() instanceof NetherRootsBlock) {
                     String suffix = plant.get() instanceof AzaleaBlock ? "_bush" : "";
-                    coloredBlockModels.createPottedPlant(pottedPlant.get(color).get(), ModBlocks.COLORED_FLOWER_POTS.pick(color).get(), plant.getId().getPath() + suffix);
+                    coloredBlockModels.createPottedPlant(pottedPlant.pick(color).get(), ModBlocks.COLORED_FLOWER_POTS.pick(color).get(), plant.getId().getPath() + suffix);
                 } else {
-                    coloredBlockModels.createPottedPlant(plant.get(), pottedPlant.get(color).get(), ModBlocks.COLORED_FLOWER_POTS.pick(color).get(), plantType);
+                    coloredBlockModels.createPottedPlant(plant.get(), pottedPlant.pick(color).get(), ModBlocks.COLORED_FLOWER_POTS.pick(color).get(), plantType);
                 }
             });
 

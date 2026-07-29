@@ -159,9 +159,9 @@ public class ModBlocks {
             ColoredSlimeBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.SLIME_BLOCK)
     );
-    public static final Map<DyeColor, DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = registerPottedColoredSaplings();
+    public static final ColorCollection<DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = registerPottedColoredSaplings();
     public static final ColorCollection<DeferredBlock<FlowerPotBlock>> COLORED_FLOWER_POTS = registerColored("flower_pot", p -> new FlowerPotBlock(null, () -> Blocks.AIR, p), BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
-    public static final Map<DeferredBlock<Block>, Map<DyeColor, DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
+    public static final Map<DeferredBlock<Block>, ColorCollection<DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
     public static final ColorCollection<DeferredBlock<ColoredDecoratedPotBlock>> COLORED_DECORATED_POTS = registerColored(
             "decorated_pot",
             ColoredDecoratedPotBlock::new,
@@ -280,30 +280,26 @@ public class ModBlocks {
         return saplings;
     }
 
-    private static Map<DyeColor, DeferredBlock<Block>> registerPottedColoredSaplings() {
-        Map<DyeColor, DeferredBlock<Block>> saplings = new LinkedHashMap<>();
-        for (DyeColor color : COLORS) {
-            DeferredBlock<Block> block = BLOCKS.registerBlock("potted_" + COLORED_SAPLINGS.pick(color).getId().getPath(),
-                    p -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, COLORED_SAPLINGS.pick(color), p),
-                    () -> BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
-            ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(COLORED_SAPLINGS.pick(color).getId(), block);
-            saplings.put(color, block);
-        }
+    private static ColorCollection<DeferredBlock<Block>> registerPottedColoredSaplings() {
+        ColorCollection<DeferredBlock<Block>> saplings = ColorCollectionUtil.registerBlocks(
+                ColorCollection.VALUES.map(color -> "potted_" + COLORED_SAPLINGS.pick(color).getId().getPath()),
+                BLOCKS::registerBlock,
+                (color, p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, COLORED_SAPLINGS.pick(color), p),
+                color -> BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
+            ColorCollection.zipApply(ColorCollection.VALUES, saplings, (color, block) ->
+                    ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(COLORED_SAPLINGS.pick(color).getId(), block));
         return saplings;
     }
 
-    private static Map<DeferredBlock<Block>, Map<DyeColor, DeferredBlock<Block>>> registerColoredPottedPlant() {
-        Map<DeferredBlock<Block>, Map<DyeColor, DeferredBlock<Block>>> pottedPlants = new HashMap<>();
+    private static Map<DeferredBlock<Block>, ColorCollection<DeferredBlock<Block>>> registerColoredPottedPlant() {
+        Map<DeferredBlock<Block>, ColorCollection<DeferredBlock<Block>>> pottedPlants = new HashMap<>();
         for (DeferredBlock<Block> plant : POTTABLE_PLANTS) {
-            Map<DyeColor, DeferredBlock<Block>> blockList = new LinkedHashMap<>();
-            for (DyeColor color : COLORS) {
-                int index = COLORS.indexOf(color);
-                DeferredBlock<Block> block = BLOCKS.registerBlock(color.getName() + "_potted_" + name(plant),
-                        p -> new ColoredFlowerPotBlock(COLORED_FLOWER_POTS.pick(color), plant, color, p),
-                        () -> BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT).mapColor(color).randomTicks());
-                blockList.put(color, block);
-            }
-            pottedPlants.put(plant, blockList);
+            pottedPlants.put(plant, ColorCollectionUtil.registerBlocks(
+                    createSimpleColored("potted_" + name(plant)),
+                    BLOCKS::registerBlock,
+                    (color, p) -> new ColoredFlowerPotBlock(COLORED_FLOWER_POTS.pick(color), plant, color, p),
+                    color -> BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT).mapColor(color).randomTicks()
+            ));
         }
         return pottedPlants;
     }

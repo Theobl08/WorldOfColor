@@ -205,7 +205,7 @@ public class WorldOfColor {
         public static void registerBlockColor(RegisterColorHandlersEvent.BlockTintSources event) {
             ModBlocks.COLORED_WATER_CAULDRONS.forEach(block ->
                     event.register(List.of(BlockTintSources.water()), block.get()));
-            ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.FERN).values().forEach(block ->
+            ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.FERN).forEach(block ->
                     event.register(List.of(BlockTintSources.grass()), block.get())
             );
         }
