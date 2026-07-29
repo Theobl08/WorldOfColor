@@ -20,6 +20,7 @@ import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.grower.ModTreeGrower;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.sounds.ModSoundType;
+import net.theobl.worldofcolor.util.ColorCollectionUtil;
 import org.apache.commons.lang3.function.TriFunction;
 
 import java.util.*;
@@ -308,7 +309,7 @@ public class ModBlocks {
     }
 
     private static ColorCollection<DeferredBlock<Block>> registerColoredStairs(String key, ColorCollection<DeferredBlock<Block>> baseState, BiFunction<BlockState, BlockBehaviour.Properties, Block> factory) {
-        return registerBlocks(
+        return ColorCollectionUtil.registerBlocks(
                 createSimpleColored(key),
                 ModBlocks::registerBlock,
                 (color, p) -> factory.apply(baseState.pick(color).get().defaultBlockState(), p),
@@ -318,7 +319,7 @@ public class ModBlocks {
 
     private static <T extends Block> ColorCollection<DeferredBlock<T>> registerColored(String key,  BiFunction<DyeColor, BlockBehaviour.Properties, T> block, BlockBehaviour.Properties properties) {
         boolean shouldAlsoRegisterItem = !(key.contains("cauldron") || key.contains("copper") || key.contains("decorated_pot") || key.contains("sign"));
-        return registerBlocks(
+        return ColorCollectionUtil.registerBlocks(
                 createSimpleColored(key),
                 shouldAlsoRegisterItem ? ModBlocks::registerBlock : BLOCKS::registerBlock,
                 block,
@@ -331,7 +332,7 @@ public class ModBlocks {
     }
 
     private static <T extends Block> ColorCollection<DeferredBlock<T>> registerColored(String key, Function<BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties) {
-        return registerBlocks(
+        return ColorCollectionUtil.registerBlocks(
                 createSimpleColored(key),
                 key.contains("cauldron") ? BLOCKS::registerBlock : ModBlocks::registerBlock,
                 (color, p) -> block.apply(p),
@@ -361,15 +362,6 @@ public class ModBlocks {
 
     private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
         ModItems.ITEMS.registerSimpleBlockItem(name, block);
-    }
-
-    private static <B extends Block, Id> ColorCollection<DeferredBlock<B>> registerBlocks(
-            ColorCollection<Id> ids,
-            TriFunction<Id, Function<BlockBehaviour.Properties, B>, Supplier<BlockBehaviour.Properties>, DeferredBlock<B>> register,
-            BiFunction<DyeColor, BlockBehaviour.Properties, B> colorBlockFactory,
-            Function<DyeColor, BlockBehaviour.Properties> propertiesSupplier
-    ) {
-        return ColorCollection.zipMap(ColorCollection.VALUES, ids, (color, id) -> register.apply(id, p -> colorBlockFactory.apply(color, p), () -> propertiesSupplier.apply(color)));
     }
 
     private static ColorCollection<String> createSimpleColored(String baseName) {
