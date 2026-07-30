@@ -314,7 +314,7 @@ public class ModBlocks {
     }
 
     private static <T extends Block> ColorCollection<DeferredBlock<T>> registerColored(String key,  BiFunction<DyeColor, BlockBehaviour.Properties, T> block, BlockBehaviour.Properties properties) {
-        boolean shouldAlsoRegisterItem = !(key.contains("cauldron") || key.contains("copper") || key.contains("decorated_pot") || key.contains("sign"));
+        boolean shouldAlsoRegisterItem = !(key.contains("cauldron") || key.contains("copper_golem") || key.contains("decorated_pot") || key.contains("sign"));
         return ColorCollectionUtil.registerBlocks(
                 createSimpleColored(key),
                 shouldAlsoRegisterItem ? ModBlocks::registerBlock : BLOCKS::registerBlock,
@@ -328,12 +328,7 @@ public class ModBlocks {
     }
 
     private static <T extends Block> ColorCollection<DeferredBlock<T>> registerColored(String key, Function<BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties) {
-        return ColorCollectionUtil.registerBlocks(
-                createSimpleColored(key),
-                key.contains("cauldron") ? BLOCKS::registerBlock : ModBlocks::registerBlock,
-                (color, p) -> block.apply(p),
-                properties::mapColor
-        );
+        return registerColored(key, (color, p) -> block.apply(p), properties);
     }
 
     private static String formatName(String key, DyeColor color) {
