@@ -4,6 +4,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
@@ -12,6 +13,7 @@ import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.entity.ModEntityType;
+import net.theobl.worldofcolor.item.ModCreativeModeTabs;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.tags.ModTags;
 import org.jetbrains.annotations.NotNull;
@@ -25,7 +27,7 @@ public class ModLanguageProvider extends LanguageProvider {
 
     @Override
     protected void addTranslations() {
-        add("itemGroup.worldofcolor", "World of Color");
+        addCreativeModeTab(ModCreativeModeTabs.MAIN_TAB, "World of Color");
         add("config.jade.plugin_worldofcolor.dyed_water_cauldron", "Dyed Water Cauldron Water Color");
         ModBlocks.BLOCKS.getEntries().forEach(this::lang);
         ModItems.ITEMS.getEntries().forEach(this::lang);
@@ -86,6 +88,10 @@ public class ModLanguageProvider extends LanguageProvider {
 
     private <T> void lang(Supplier<T> key) {
         lang(key.get());
+    }
+
+    public void addCreativeModeTab(Supplier<? extends CreativeModeTab> key, String name) {
+        add(key.get().getDisplayName().getString(), name);
     }
 
     // Override the base method to catch the Exception, to be consistent with the other data providers, which doesn't throw on duplicate value (either skip or replace)
