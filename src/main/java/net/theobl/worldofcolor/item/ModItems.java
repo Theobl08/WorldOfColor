@@ -23,51 +23,51 @@ import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.entity.ModEntityType;
 import net.theobl.worldofcolor.item.equipement.ModEquipmentAssets;
+import net.theobl.worldofcolor.util.ColorCollectionUtil;
 
 import java.util.*;
-import java.util.function.BiFunction;
 
 public class ModItems {
     // Create a Deferred Register to hold Items which will all be registered under the "worldofcolor" namespace
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(WorldOfColor.MODID);
 
-    public static final ColorCollection<DeferredItem<Item>> COLORED_SIGNS = registerItems(
+    public static final ColorCollection<DeferredItem<Item>> COLORED_SIGNS = ColorCollectionUtil.register(
             createSimpleColored("sign"),
             (name, color) -> ITEMS.registerItem(name,
                     p -> new SignItem(ModBlocks.COLORED_SIGNS.pick(color).get(), ModBlocks.COLORED_WALL_SIGNS.pick(color).get(), p),
                     p -> p.stacksTo(16).useBlockDescriptionPrefix())
     );
-    public static final ColorCollection<DeferredItem<Item>> COLORED_HANGING_SIGNS = registerItems(
+    public static final ColorCollection<DeferredItem<Item>> COLORED_HANGING_SIGNS = ColorCollectionUtil.register(
             createSimpleColored("hanging_sign"),
             (name, color) -> ITEMS.registerItem(name,
                     p -> new HangingSignItem(ModBlocks.COLORED_HANGING_SIGNS.pick(color).get(), ModBlocks.COLORED_WALL_HANGING_SIGNS.pick(color).get(), p),
                     p -> p.stacksTo(16).useBlockDescriptionPrefix())
     );
-    public static final ColorCollection<DeferredItem<Item>> COLORED_BOATS = registerItems(
+    public static final ColorCollection<DeferredItem<Item>> COLORED_BOATS = ColorCollectionUtil.register(
             createSimpleColored("boat"),
             (name, color) -> ITEMS.registerItem(name,
                     p -> new BoatItem(ModEntityType.COLORED_BOATS.pick(color).get(), p),
                     p -> p.stacksTo(1))
     );
-    public static final ColorCollection<DeferredItem<Item>> COLORED_CHEST_BOATS = registerItems(
+    public static final ColorCollection<DeferredItem<Item>> COLORED_CHEST_BOATS = ColorCollectionUtil.register(
             createSimpleColored("chest_boat"),
             (name, color) -> ITEMS.registerItem(name,
                     p -> new BoatItem(ModEntityType.COLORED_CHEST_BOATS.pick(color).get(), p),
                     p -> p.stacksTo(1))
     );
-    public static final ColorCollection<DeferredItem<Item>> COLORED_COPPER_GOLEM_STATUES = registerItems(
+    public static final ColorCollection<DeferredItem<Item>> COLORED_COPPER_GOLEM_STATUES = ColorCollectionUtil.register(
             createSimpleColored("copper_golem_statue"),
             (name, color) -> ITEMS.registerItem(name,
                     p -> new BlockItem(ModBlocks.COLORED_COPPER_GOLEM_STATUES.pick(color).get(), p),
                     p -> p.component(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(CopperGolemStatueBlock.POSE, CopperGolemStatueBlock.Pose.STANDING)).useBlockDescriptionPrefix())
     );
-    public static final ColorCollection<DeferredItem<Item>> COLORED_WAXED_COPPER_GOLEM_STATUES = registerItems(
+    public static final ColorCollection<DeferredItem<Item>> COLORED_WAXED_COPPER_GOLEM_STATUES = ColorCollectionUtil.register(
             createSimpleColored("copper_golem_statue").map(((name) -> "waxed_" + name)),
             (name, color) -> ITEMS.registerItem(name,
                     p -> new BlockItem(ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.pick(color).get(), p),
                     p -> p.component(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(CopperGolemStatueBlock.POSE, CopperGolemStatueBlock.Pose.STANDING)).useBlockDescriptionPrefix())
     );
-    public static final ColorCollection<DeferredItem<Item>> COLORED_CAULDRONS = registerItems(
+    public static final ColorCollection<DeferredItem<Item>> COLORED_CAULDRONS = ColorCollectionUtil.register(
             createSimpleColored("cauldron"),
             (name, color) -> ITEMS.registerItem(name,
                     p -> new BlockItem(ModBlocks.COLORED_CAULDRONS.pick(color).get(), p) {
@@ -80,17 +80,17 @@ public class ModItems {
                         }
                     }, Item.Properties::useBlockDescriptionPrefix)
     );
-    public static final ColorCollection<DeferredItem<Item>> COLORED_DECORATED_POTS = registerItems(
+    public static final ColorCollection<DeferredItem<Item>> COLORED_DECORATED_POTS = ColorCollectionUtil.register(
             createSimpleColored("decorated_pot"),
             (name, color) -> ITEMS.registerItem(name,
                     p -> new BlockItem(ModBlocks.COLORED_DECORATED_POTS.pick(color).get(), p),
                     p -> p.component(DataComponents.POT_DECORATIONS, PotDecorations.EMPTY).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix())
     );
-    public static final ColorCollection<DeferredItem<Item>> COLORED_ITEM_FRAMES = registerItems(
+    public static final ColorCollection<DeferredItem<Item>> COLORED_ITEM_FRAMES = ColorCollectionUtil.register(
             createSimpleColored("item_frame"),
             (name, color) -> ITEMS.registerItem(name,p -> new ItemFrameItem(ModEntityType.COLORED_ITEM_FRAMES.pick(color).get(), p))
     );
-    public static final ColorCollection<DeferredItem<Item>> COLORED_POTATO_PEELS = registerItems(
+    public static final ColorCollection<DeferredItem<Item>> COLORED_POTATO_PEELS = ColorCollectionUtil.register(
             createSimpleColored("potato_peels"),
             (name, color) -> ITEMS.registerSimpleItem(name, p -> p.food(Foods.POTATO))
     );
@@ -116,10 +116,6 @@ public class ModItems {
                                     .setShearingSound(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.HARNESS_UNEQUIP))
                                     .build())
     );
-
-    public static <Id> ColorCollection<DeferredItem<Item>> registerItems(ColorCollection<Id> ids, BiFunction<Id, DyeColor, DeferredItem<Item>> itemFactory) {
-        return ColorCollection.zipMap(ColorCollection.VALUES, ids, (color, id) -> itemFactory.apply(id, color));
-    }
 
     private static ColorCollection<String> createSimpleColored(String baseName) {
         return ColorCollection.prefixWithColor(ColorCollection.create(baseName));
