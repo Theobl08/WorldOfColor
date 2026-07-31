@@ -3,7 +3,11 @@
   "group": "bed_dye",
   "ingredients": [
     "worldofcolor:rgb_dye",
-    "#minecraft:beds"
+    {
+      "neoforge:ingredient_type": "neoforge:difference",
+      "base": "#minecraft:beds",
+      "subtracted": "worldofcolor:rgb_bed"
+    }
   ],
   "result": {
     "id": "worldofcolor:rgb_bed"

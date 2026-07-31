@@ -16,6 +16,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ColorCollection;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.crafting.DifferenceIngredient;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.theobl.worldofcolor.WorldOfColor;
@@ -164,28 +165,10 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(Items.DYE.white()), has(Items.DYE.white()))
                 .unlockedBy(getHasName(Items.DYE.yellow()), has(Items.DYE.yellow()))
                 .save(output);
-        shapeless(RecipeCategory.COMBAT, ModItems.RGB_HARNESS)
-                .requires(ModItems.RGB_DYE)
-                .requires(ItemTags.HARNESSES)
-                .unlockedBy("has_needed_dye", has(ModItems.RGB_DYE))
-                .save(output, WorldOfColor.MODID + ":dye_" + getItemName(ModItems.RGB_HARNESS));
-        shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RGB_WOOL)
-                .requires(ModItems.RGB_DYE)
-                .requires(ItemTags.WOOL)
-                .unlockedBy("has_needed_dye", has(ModItems.RGB_DYE))
-                .save(output, WorldOfColor.MODID + ":dye_" + getItemName(ModBlocks.RGB_WOOL));
-        shapeless(RecipeCategory.DECORATIONS, ModBlocks.RGB_CARPET)
-                .requires(ModItems.RGB_DYE)
-                .requires(ItemTags.WOOL_CARPETS)
-                .group("carpet_dye")
-                .unlockedBy("has_needed_dye", has(ModItems.RGB_DYE))
-                .save(output, WorldOfColor.MODID + ":dye_" + getItemName(ModBlocks.RGB_CARPET));
-        shapeless(RecipeCategory.DECORATIONS, ModBlocks.RGB_BED)
-                .requires(ModItems.RGB_DYE)
-                .requires(ItemTags.BEDS)
-                .group("bed_dye")
-                .unlockedBy("has_needed_dye", has(ModItems.RGB_DYE))
-                .save(output, WorldOfColor.MODID + ":dye_" + getItemName(ModBlocks.RGB_BED));
+        dyeRGB(RecipeCategory.COMBAT, ModItems.RGB_HARNESS, ItemTags.HARNESSES, "harness_dye");
+        dyeRGB(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RGB_WOOL, ItemTags.WOOL, "wool");
+        dyeRGB(RecipeCategory.DECORATIONS, ModBlocks.RGB_CARPET, ItemTags.WOOL_CARPETS, "carpet_dye");
+        dyeRGB(RecipeCategory.DECORATIONS, ModBlocks.RGB_BED, ItemTags.BEDS, "bed_dye");
         carpet(ModBlocks.RGB_CARPET, ModBlocks.RGB_WOOL);
         concretePowder(ModBlocks.RGB_CONCRETE_POWDER, ModItems.RGB_DYE);
         coloredTerracottaFromTerracottaAndDye(ModBlocks.RGB_TERRACOTTA, ModItems.RGB_DYE);
@@ -265,6 +248,15 @@ public class ModRecipeProvider extends RecipeProvider {
                     .unlockedBy("has_needed_dye", has(dye))
                     .save(output, WorldOfColor.MODID + ":dye_" + getItemName(dyedItem));
         }
+    }
+
+    protected void dyeRGB(RecipeCategory category, ItemLike result, TagKey<Item> material, String groupName) {
+        shapeless(category, result)
+                .requires(ModItems.RGB_DYE)
+                .requires(DifferenceIngredient.of(Ingredient.of(this.items.getOrThrow(material)), Ingredient.of(result)))
+                .group(groupName)
+                .unlockedBy("has_needed_dye", has(ModItems.RGB_DYE))
+                .save(output, WorldOfColor.MODID + ":dye_" + getItemName(result));
     }
 
     protected void coloredBricksFromBricksAndDye(ItemLike bricks, ItemLike dye) {

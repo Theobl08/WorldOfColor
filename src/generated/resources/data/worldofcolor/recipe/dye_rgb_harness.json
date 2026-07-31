@@ -1,9 +1,14 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "equipment",
+  "group": "harness_dye",
   "ingredients": [
     "worldofcolor:rgb_dye",
-    "#minecraft:harnesses"
+    {
+      "neoforge:ingredient_type": "neoforge:difference",
+      "base": "#minecraft:harnesses",
+      "subtracted": "worldofcolor:rgb_harness"
+    }
   ],
   "result": {
     "id": "worldofcolor:rgb_harness"

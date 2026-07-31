@@ -1,9 +1,14 @@
 {
   "type": "minecraft:crafting_shapeless",
   "category": "building",
+  "group": "wool",
   "ingredients": [
     "worldofcolor:rgb_dye",
-    "#minecraft:wool"
+    {
+      "neoforge:ingredient_type": "neoforge:difference",
+      "base": "#minecraft:wool",
+      "subtracted": "worldofcolor:rgb_wool"
+    }
   ],
   "result": {
     "id": "worldofcolor:rgb_wool"

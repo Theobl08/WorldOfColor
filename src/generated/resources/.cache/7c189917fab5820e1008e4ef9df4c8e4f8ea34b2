@@ -1,4 +1,4 @@
-// 26.2	2026-07-31T12:55:16.3358177	World of Color Recipes
+// 26.2	2026-07-31T17:03:27.5101126	World of Color Recipes
 69a3cd3c881209c39ac46f4f6798e7021e085adc data/minecraft/recipe/colored_decorated_pot.json
 046caf573df715310e65f6967a1af6d3a6c0404c data/minecraft/recipe/rgb_banner_duplicate.json
 f1b616ef799698165193d6295bd535c589a4afa6 data/worldofcolor/advancement/recipes/building_blocks/black_block_from_black_concrete_stonecutting.json
@@ -1692,10 +1692,10 @@ ff4f65ef0edc37576a531a308b2e9e993cfb0bf5 data/worldofcolor/recipe/dye_red_potato
 94a67d1d47e6408eee6ae1f932bbb9b97841aaa1 data/worldofcolor/recipe/dye_red_redstone_lamp.json
 ff5927acdbb75261a1394a154d28961269c3f131 data/worldofcolor/recipe/dye_red_sapling.json
 48172f756d79aaaac472a3ced9fad407423f34ee data/worldofcolor/recipe/dye_red_slime_block.json
-d73f3b42127271acfdc1cb5d74e189ddaa8f2afb data/worldofcolor/recipe/dye_rgb_bed.json
-a0e583f80b9e2ad0173c1478294d80ddb8e68daa data/worldofcolor/recipe/dye_rgb_carpet.json
-c44d8bc8e28c3e7f81e7089c814b0ade8e10cd5c data/worldofcolor/recipe/dye_rgb_harness.json
-2e58fbfcc2499f52f88e8343043ac315d0c31776 data/worldofcolor/recipe/dye_rgb_wool.json
+5b9339c981356f58cd7dd049de8b8d31f059b87a data/worldofcolor/recipe/dye_rgb_bed.json
+16a83d4a214dc57b44d127d32642ca318f28655b data/worldofcolor/recipe/dye_rgb_carpet.json
+6e2b0254aaee69665ef6cd76478010913668f098 data/worldofcolor/recipe/dye_rgb_harness.json
+89e0389d67bc188ea2bfc7907754a8bb28947f73 data/worldofcolor/recipe/dye_rgb_wool.json
 086c4db2fd28ebfbb6e71ec7df12eb34f60d3a89 data/worldofcolor/recipe/dye_white_cauldron.json
 a5dbc97c1201642f2a398436b3168afa681be1a6 data/worldofcolor/recipe/dye_white_flower_pot.json
 4c0c2cf3975e39c65132379b95936afd7fc163fa data/worldofcolor/recipe/dye_white_item_frame.json
