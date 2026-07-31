@@ -1,8 +1,10 @@
 package net.theobl.worldofcolor.item;
 
+import net.minecraft.core.Holder;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.neoforged.bus.api.IEventBus;
@@ -11,6 +13,10 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.util.ModUtil;
+import org.apache.commons.lang3.ArrayUtils;
+
+import java.util.Arrays;
+import java.util.List;
 
 public class ModCreativeModeTabs {
     // Create a Deferred Register to hold CreativeModeTabs which will all be registered under the "worldofcolor" namespace
@@ -72,14 +78,34 @@ public class ModCreativeModeTabs {
                             output.accept(ModBlocks.COLORED_BRICK_WALLS.pick(color));
                         }
                         for (DeferredHolder<Block, ? extends Block> block : ModBlocks.BLOCKS.getEntries()) {
-                            if(block.get().asItem() != Blocks.AIR.asItem() && block.get().asItem() != Items.CAULDRON)
+                            if(block.get().asItem() != Blocks.AIR.asItem() && block.get().asItem() != Items.CAULDRON && !block.getId().getPath().contains("rgb"))
                                 output.accept(block.get());
                         }
-                        output.accept(ModItems.RGB_BUNDLE);
-                        output.accept(ModItems.RGB_HARNESS);
-                        output.accept(ModItems.RGB_DYE);
-                        ModItems.ITEMS.getEntries().stream().map(DeferredHolder::get).forEach(output::accept);
+                        ModItems.ITEMS.getEntries().stream().filter(i -> !i.getId().getPath().contains("rgb_")).map(DeferredHolder::get).forEach(output::accept);
                     }).build());
+
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RGB_TAB = CREATIVE_MODE_TABS.register("rgb_tab",
+            () -> CreativeModeTab.builder()
+                    .title(Component.translatable("itemGroup.worldofcolor.rgb_tab"))
+                    .withTabsBefore(MAIN_TAB.getId())
+                    .icon(ModBlocks.RGB_WOOL::toStack)
+                    .displayItems((parameters, output) -> {
+                        ModBlocks.BLOCKS.getEntries().stream()
+                                .filter(b -> b.getId().getPath().contains("rgb_"))
+                                .map(net.minecraft.core.Holder::value)
+                                .map(ItemLike::asItem)
+                                .filter(i -> i != Items.AIR)
+                                .filter(i -> i.isEnabled(parameters.enabledFeatures()))
+                                .forEach(output::accept);
+                        ModItems.ITEMS.getEntries().stream()
+                                .filter(i -> i.getId().getPath().contains("rgb_"))
+                                .map(net.minecraft.core.Holder::value)
+                                .map(ItemLike::asItem)
+                                .filter(i -> i != Items.AIR)
+                                .filter(i -> i.isEnabled(parameters.enabledFeatures()))
+                                .forEach(output::accept);
+                    })
+                    .build());
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);

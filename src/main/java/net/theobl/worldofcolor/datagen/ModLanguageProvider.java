@@ -28,6 +28,7 @@ public class ModLanguageProvider extends LanguageProvider {
     @Override
     protected void addTranslations() {
         addCreativeModeTab(ModCreativeModeTabs.MAIN_TAB, "World of Color");
+        addCreativeModeTab(ModCreativeModeTabs.RGB_TAB, "RGB Blocks");
         add("config.jade.plugin_worldofcolor.dyed_water_cauldron", "Dyed Water Cauldron Water Color");
         ModBlocks.BLOCKS.getEntries().forEach(this::lang);
         ModItems.ITEMS.getEntries().forEach(this::lang);
