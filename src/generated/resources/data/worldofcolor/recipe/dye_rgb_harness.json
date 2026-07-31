@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "equipment",
+  "ingredients": [
+    "worldofcolor:rgb_dye",
+    "#minecraft:harnesses"
+  ],
+  "result": {
+    "id": "worldofcolor:rgb_harness"
+  }
+}

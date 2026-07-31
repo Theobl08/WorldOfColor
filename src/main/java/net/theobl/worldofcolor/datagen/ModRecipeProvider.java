@@ -164,6 +164,11 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(Items.DYE.white()), has(Items.DYE.white()))
                 .unlockedBy(getHasName(Items.DYE.yellow()), has(Items.DYE.yellow()))
                 .save(output);
+        shapeless(RecipeCategory.COMBAT, ModItems.RGB_HARNESS)
+                .requires(ModItems.RGB_DYE)
+                .requires(ItemTags.HARNESSES)
+                .unlockedBy("has_needed_dye", has(ModItems.RGB_DYE))
+                .save(output, WorldOfColor.MODID + ":dye_" + getItemName(ModItems.RGB_HARNESS));
         shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RGB_WOOL)
                 .requires(ModItems.RGB_DYE)
                 .requires(ItemTags.WOOL)
@@ -210,6 +215,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(this.output);
         bedFromPlanksAndWool(ModBlocks.RGB_BED, ModBlocks.RGB_WOOL);
         banner(ModBlocks.RGB_BANNER, ModBlocks.RGB_WOOL);
+        harness(ModItems.RGB_HARNESS, ModBlocks.RGB_WOOL);
     }
 
     protected void generateForEnabledBlockFamilies(FeatureFlagSet set) {
