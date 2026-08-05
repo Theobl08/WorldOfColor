@@ -97,14 +97,21 @@ public class ModItems {
     public static final DeferredItem<BlockItem> RGB_SHULKER_BOX = ITEMS.registerItem(
             "rgb_shulker_box",
             p -> new BlockItem(ModBlocks.RGB_SHULKER_BOX.get(), p),
-            p -> p.stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix());
+            p -> p.stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix()
+    );
     public static final DeferredItem<Item> RGB_DYE = ITEMS.registerItem("rgb_dye", RgbDyeItem::new);
     public static final DeferredItem<Item> RGB_BUNDLE = ITEMS.registerItem(
-            "rgb_bundle", BundleItem::new, p -> p.stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY));
-    public static final DeferredItem<Item> RGB_BANNER = ITEMS.registerItem("rgb_banner",
+            "rgb_bundle",
+            BundleItem::new,
+            p -> p.stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)
+    );
+    public static final DeferredItem<Item> RGB_BANNER = ITEMS.registerItem(
+            "rgb_banner",
             p -> new BannerItem(ModBlocks.RGB_BANNER.get(), ModBlocks.RGB_WALL_BANNER.get(), p),
-            p -> p.stacksTo(16).component(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY).useBlockDescriptionPrefix());
-    public static final DeferredItem<Item> RGB_HARNESS = ITEMS.registerSimpleItem("rgb_harness",
+            p -> p.stacksTo(16).component(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY).useBlockDescriptionPrefix()
+    );
+    public static final DeferredItem<Item> RGB_HARNESS = ITEMS.registerSimpleItem(
+            "rgb_harness",
             p -> p.stacksTo(1)
                     .component(DataComponents.EQUIPPABLE,
                             Equippable.builder(EquipmentSlot.BODY)
