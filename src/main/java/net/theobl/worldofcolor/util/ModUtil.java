@@ -92,20 +92,6 @@ public class ModUtil {
         return DeferredBlock.createBlock(BuiltInRegistries.BLOCK.getKey(block));
     }
 
-    @SafeVarargs
-    public static <T extends Block> Block[] asVarArgs(List<DeferredBlock<T>> deferredBlocks, List<DeferredBlock<T>>... optionals) {
-        // https://stackoverflow.com/questions/9863742/how-to-pass-an-arraylist-to-a-varargs-method-parameter
-        if(optionals.length == 0)
-            return deferredBlocks.stream().map(DeferredHolder::get).toArray(Block[]::new);
-        else {
-            List<DeferredBlock<T>> copy = new ArrayList<>(deferredBlocks);
-            for (List<DeferredBlock<T>> list : optionals) {
-                copy.addAll(list);
-            }
-            return copy.stream().map(DeferredHolder::get).toArray(Block[]::new);
-        }
-    }
-
     static {
 //        for(Field field : Blocks.class.getDeclaredFields()) {
 //            try {
