@@ -1,4 +1,18 @@
-// 26.2	2026-08-06T10:33:22.9484315	Resource Metadata
+// 26.2	2026-08-06T10:47:25.3568547	Resource Metadata
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/black_leaves.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/blue_leaves.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/brown_leaves.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/cyan_leaves.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/gray_leaves.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/green_leaves.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/light_blue_leaves.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/light_gray_leaves.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/lime_leaves.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/magenta_leaves.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/orange_leaves.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/pink_leaves.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/purple_leaves.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/red_leaves.png.mcmeta
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/block/rgb_bed_foot_east.png.mcmeta
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/block/rgb_bed_foot_south.png.mcmeta
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/block/rgb_bed_foot_up.png.mcmeta
@@ -14,6 +28,8 @@
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/block/rgb_stained_glass_pane_top.png.mcmeta
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/block/rgb_terracotta.png.mcmeta
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/block/rgb_wool.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/white_leaves.png.mcmeta
+fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/yellow_leaves.png.mcmeta
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/entity/banner/rgb.png.mcmeta
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/entity/equipment/happy_ghast_body/rgb_harness.png.mcmeta
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/entity/shulker/shulker_rgb.png.mcmeta

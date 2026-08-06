@@ -37,6 +37,22 @@ public class ResourceMetadataProvider implements DataProvider {
     }
 
     protected void add() {
+        // Add metadata here.
+        ModBlocks.COLORED_LEAVES.forEach(block ->
+                this.textureMetadata(block.getId().withPrefix("block/"))
+                        // Can chain multiple `add` calls.
+                        .add(
+                                // The metadata section to add.
+                                TextureMetadataSection.TYPE,
+                                // The value of the metadata section.
+                                new TextureMetadataSection(
+                                        TextureMetadataSection.DEFAULT_BLUR,
+                                        TextureMetadataSection.DEFAULT_CLAMP,
+                                        MipmapStrategy.DARK_CUTOUT,
+                                        TextureMetadataSection.DEFAULT_ALPHA_CUTOFF_BIAS
+                                )
+                        )
+        );
         this.addSimpleRGB(ModBlocks.RGB_WOOL.getId().withPrefix("block/"));
         this.addSimpleRGB(ModBlocks.RGB_TERRACOTTA.getId().withPrefix("block/"));
         this.addSimpleRGB(ModBlocks.RGB_CONCRETE.getId().withPrefix("block/"));
