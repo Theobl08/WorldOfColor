@@ -111,6 +111,19 @@ public class ModModelProvider extends ModelProvider {
             blockModels.createShelf(ModBlocks.COLORED_SHELVES.pick(color).get(), ModBlocks.COLORED_STRIPPED_LOGS.pick(color).get());
             coloredBlockModels.copyBlockModel(ModBlocks.COLORED_CAULDRONS.pick(color).get(), ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(color).get());
         }
+        blockModels.createPlantWithDefaultItem(ModBlocks.LIGHT_GRAY_TULIP.get(), ModBlocks.POTTED_LIGHT_GRAY_TULIP.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        blockModels.createPlantWithDefaultItem(ModBlocks.GRAY_TULIP.get(), ModBlocks.POTTED_GRAY_TULIP.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        blockModels.createPlantWithDefaultItem(ModBlocks.BLACK_TULIP.get(), ModBlocks.POTTED_BLACK_TULIP.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        blockModels.createPlantWithDefaultItem(ModBlocks.BROWN_TULIP.get(), ModBlocks.POTTED_BROWN_TULIP.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        blockModels.createPlantWithDefaultItem(ModBlocks.YELLOW_TULIP.get(), ModBlocks.POTTED_YELLOW_TULIP.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        blockModels.createPlantWithDefaultItem(ModBlocks.LIME_TULIP.get(), ModBlocks.POTTED_LIME_TULIP.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        blockModels.createPlantWithDefaultItem(ModBlocks.GREEN_TULIP.get(), ModBlocks.POTTED_GREEN_TULIP.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        blockModels.createPlantWithDefaultItem(ModBlocks.CYAN_TULIP.get(), ModBlocks.POTTED_CYAN_TULIP.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        blockModels.createPlantWithDefaultItem(ModBlocks.LIGHT_BLUE_TULIP.get(), ModBlocks.POTTED_LIGHT_BLUE_TULIP.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        blockModels.createPlantWithDefaultItem(ModBlocks.BLUE_TULIP.get(), ModBlocks.POTTED_BLUE_TULIP.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        blockModels.createPlantWithDefaultItem(ModBlocks.PURPLE_TULIP.get(), ModBlocks.POTTED_PURPLE_TULIP.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+        blockModels.createPlantWithDefaultItem(ModBlocks.MAGENTA_TULIP.get(), ModBlocks.POTTED_MAGENTA_TULIP.get(), BlockModelGenerators.PlantType.NOT_TINTED);
+
         blockModels.createFullAndCarpetBlocks(ModBlocks.RGB_WOOL.get(), ModBlocks.RGB_CARPET.get());
         blockModels.createTrivialCube(ModBlocks.RGB_TERRACOTTA.get());
         blockModels.createTrivialCube(ModBlocks.RGB_CONCRETE.get());

@@ -53,6 +53,18 @@ public class ResourceMetadataProvider implements DataProvider {
                                 )
                         )
         );
+        this.addSimpleFlower(ModBlocks.LIGHT_GRAY_TULIP.getId());
+        this.addSimpleFlower(ModBlocks.GRAY_TULIP.getId());
+        this.addSimpleFlower(ModBlocks.BLACK_TULIP.getId());
+        this.addSimpleFlower(ModBlocks.BROWN_TULIP.getId());
+        this.addSimpleFlower(ModBlocks.YELLOW_TULIP.getId());
+        this.addSimpleFlower(ModBlocks.LIME_TULIP.getId());
+        this.addSimpleFlower(ModBlocks.GREEN_TULIP.getId());
+        this.addSimpleFlower(ModBlocks.CYAN_TULIP.getId());
+        this.addSimpleFlower(ModBlocks.LIGHT_BLUE_TULIP.getId());
+        this.addSimpleFlower(ModBlocks.BLUE_TULIP.getId());
+        this.addSimpleFlower(ModBlocks.PURPLE_TULIP.getId());
+        this.addSimpleFlower(ModBlocks.MAGENTA_TULIP.getId());
         this.addSimpleRGB(ModBlocks.RGB_WOOL.getId().withPrefix("block/"));
         this.addSimpleRGB(ModBlocks.RGB_TERRACOTTA.getId().withPrefix("block/"));
         this.addSimpleRGB(ModBlocks.RGB_CONCRETE.getId().withPrefix("block/"));
@@ -87,6 +99,19 @@ public class ResourceMetadataProvider implements DataProvider {
                                 Optional.empty(),
                                 25,
                                 true
+                        )
+                );
+    }
+
+    private void addSimpleFlower(Identifier identifier) {
+        this.textureMetadata(identifier)
+                .add(
+                        TextureMetadataSection.TYPE,
+                        new TextureMetadataSection(
+                                TextureMetadataSection.DEFAULT_BLUR,
+                                TextureMetadataSection.DEFAULT_CLAMP,
+                                MipmapStrategy.STRICT_CUTOUT,
+                                TextureMetadataSection.DEFAULT_ALPHA_CUTOFF_BIAS
                         )
                 );
     }

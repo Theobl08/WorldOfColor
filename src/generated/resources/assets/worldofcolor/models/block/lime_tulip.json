@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cross",
+  "textures": {
+    "cross": "worldofcolor:block/lime_tulip"
+  }
+}

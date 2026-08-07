@@ -61,6 +61,19 @@ public class ModUtil {
         ModBlocks.CLASSIC_CARPETS.forEach(block -> registerFlammable(block.get(), 60, 20));
         ModBlocks.COLORED_SHELVES.forEach(block -> registerFlammable(block.get(), 30, 20));
 
+        registerFlammable(ModBlocks.LIGHT_GRAY_TULIP.get(), 60, 100);
+        registerFlammable(ModBlocks.GRAY_TULIP.get(), 60, 100);
+        registerFlammable(ModBlocks.BLACK_TULIP.get(), 60, 100);
+        registerFlammable(ModBlocks.BROWN_TULIP.get(), 60, 100);
+        registerFlammable(ModBlocks.YELLOW_TULIP.get(), 60, 100);
+        registerFlammable(ModBlocks.LIME_TULIP.get(), 60, 100);
+        registerFlammable(ModBlocks.GREEN_TULIP.get(), 60, 100);
+        registerFlammable(ModBlocks.CYAN_TULIP.get(), 60, 100);
+        registerFlammable(ModBlocks.LIGHT_BLUE_TULIP.get(), 60, 100);
+        registerFlammable(ModBlocks.BLUE_TULIP.get(), 60, 100);
+        registerFlammable(ModBlocks.PURPLE_TULIP.get(), 60, 100);
+        registerFlammable(ModBlocks.MAGENTA_TULIP.get(), 60, 100);
+
         registerFlammable(ModBlocks.RGB_WOOL.get(), 30, 60);
         registerFlammable(ModBlocks.RGB_CARPET.get(), 60, 20);
 

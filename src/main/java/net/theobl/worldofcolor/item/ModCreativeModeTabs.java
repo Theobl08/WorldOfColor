@@ -78,8 +78,18 @@ public class ModCreativeModeTabs {
                             output.accept(ModBlocks.COLORED_BRICK_WALLS.pick(color));
                         }
                         for (DeferredHolder<Block, ? extends Block> block : ModBlocks.BLOCKS.getEntries()) {
-                            if(block.get().asItem() != Blocks.AIR.asItem() && block.get().asItem() != Items.CAULDRON && !block.getId().getPath().contains("rgb"))
+                            if(block.get().asItem() != Blocks.AIR.asItem() && block.get().asItem() != Items.CAULDRON && !block.getId().getPath().contains("rgb")) {
+                                if(block.is(ModBlocks.LIGHT_GRAY_TULIP.getId())) {
+                                    output.accept(Blocks.WHITE_TULIP);
+                                } else if (block.is(ModBlocks.YELLOW_TULIP.getId())) {
+                                    output.accept(Blocks.RED_TULIP);
+                                    output.accept(Blocks.ORANGE_TULIP);
+                                }
                                 output.accept(block.get());
+                                if(block.is(ModBlocks.MAGENTA_TULIP.getId())) {
+                                    output.accept(Blocks.PINK_TULIP);
+                                }
+                            }
                         }
                         ModItems.ITEMS.getEntries().stream().filter(i -> !i.getId().getPath().contains("rgb_")).map(DeferredHolder::get).forEach(output::accept);
                     }).build());
