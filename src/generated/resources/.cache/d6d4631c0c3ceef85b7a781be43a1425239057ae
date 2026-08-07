@@ -1,4 +1,4 @@
-// 26.2	2026-08-06T18:29:46.1074858	Tags for minecraft:block mod id worldofcolor
+// 26.2	2026-08-07T11:15:44.1177797	Tags for minecraft:block mod id worldofcolor
 dfc2d872e0fc2643b4796b70c0d412bb7a6fc66f data/c/tags/block/concretes.json
 3d6c0b035c67e9cd0ddbf4a707ff7bcd3291dd4f data/c/tags/block/dyed/black.json
 3fc255a89a05737990876711691e7477845dfbe0 data/c/tags/block/dyed/blue.json
@@ -26,6 +26,7 @@ b2ec1e1fc18c9dc0ac99b8f1c8d2311338b48c51 data/c/tags/block/stripped_woods.json
 00fc59e660d3fef094f1d39d8deb914cccb72008 data/minecraft/tags/block/banners.json
 1fa716b8a515b795c185aaf44ea037241cb1b22e data/minecraft/tags/block/bars.json
 f8b8a5bdea0dac372cde1d91d58741dac0fa3b38 data/minecraft/tags/block/beds.json
+c4c6fc1f01ba8edd049865dc43ddbc84bd0dc6b6 data/minecraft/tags/block/bee_attractive.json
 6db0381be080316686ed67e420467288ff7ff645 data/minecraft/tags/block/candles.json
 f1669d5faed4e6249b38a92f22a0c5635b4c1a67 data/minecraft/tags/block/candle_cakes.json
 854c127296e15e333b04c035c4ac76bacc07d378 data/minecraft/tags/block/cauldrons.json
@@ -48,6 +49,7 @@ f09f854164959ba68b725a563d8262edd70b66d8 data/minecraft/tags/block/mineable/pick
 2351f26121bc68d6a820bb3dcbef4fba48958d3f data/minecraft/tags/block/saplings.json
 1d6aac01dd8510ff15af2a9299e54704dbddd779 data/minecraft/tags/block/shulker_boxes.json
 e44d2232bab9d4b3e8744ee3b5e7484cbbfcc1dd data/minecraft/tags/block/slabs.json
+c4c6fc1f01ba8edd049865dc43ddbc84bd0dc6b6 data/minecraft/tags/block/small_flowers.json
 9913faadb1efe7ad4fa8c11fe138ad4d3313ae4e data/minecraft/tags/block/stairs.json
 7afb8d0ed6a635c2735ea2d04f8a24483c02ab84 data/minecraft/tags/block/standing_signs.json
 169569cf6f631507781eb5cc5661f0984fd346d2 data/minecraft/tags/block/terracotta.json

@@ -135,6 +135,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
             else if(block.get() instanceof CopperGolemStatueBlock) {
                 this.tag(BlockTags.COPPER_GOLEM_STATUES).add(block.getKey());
             }
+            else if(block.get() instanceof FlowerBlock) {
+                this.tag(BlockTags.SMALL_FLOWERS).add(block.getKey());
+                this.tag(BlockItemTags.BEE_FOOD.block()).add(block.getKey());
+            }
         }
 
         ModBlocks.COLORED_SHELVES.forEach(block -> this.tag(BlockTags.WOODEN_SHELVES).add(block.getKey()));

@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "group": "brown_dye",
+  "ingredients": [
+    "worldofcolor:brown_tulip"
+  ],
+  "result": {
+    "id": "minecraft:brown_dye"
+  }
+}

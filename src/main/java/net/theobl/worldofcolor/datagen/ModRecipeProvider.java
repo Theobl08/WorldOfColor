@@ -149,6 +149,19 @@ public class ModRecipeProvider extends RecipeProvider {
             );
         }
 
+        oneToOneConversionRecipe(Items.DYE.lightGray(), ModBlocks.LIGHT_GRAY_TULIP, "light_gray_dye");
+        oneToOneConversionRecipe(Items.DYE.gray(), ModBlocks.GRAY_TULIP, "gray_dye");
+        oneToOneConversionRecipe(Items.DYE.black(), ModBlocks.BLACK_TULIP, "black_dye");
+        oneToOneConversionRecipe(Items.DYE.brown(), ModBlocks.BROWN_TULIP, "brown_dye");
+        oneToOneConversionRecipe(Items.DYE.yellow(), ModBlocks.YELLOW_TULIP, "yellow_dye");
+        oneToOneConversionRecipe(Items.DYE.lime(), ModBlocks.LIME_TULIP, "lime_dye");
+        oneToOneConversionRecipe(Items.DYE.green(), ModBlocks.GREEN_TULIP, "green_dye");
+        oneToOneConversionRecipe(Items.DYE.cyan(), ModBlocks.CYAN_TULIP, "cyan_dye");
+        oneToOneConversionRecipe(Items.DYE.lightBlue(), ModBlocks.LIGHT_BLUE_TULIP, "light_blue_dye");
+        oneToOneConversionRecipe(Items.DYE.blue(), ModBlocks.BLUE_TULIP, "blue_dye");
+        oneToOneConversionRecipe(Items.DYE.purple(), ModBlocks.PURPLE_TULIP, "purple_dye");
+        oneToOneConversionRecipe(Items.DYE.magenta(), ModBlocks.MAGENTA_TULIP, "magenta_dye");
+
         shapeless(RecipeCategory.MISC, ModItems.RGB_DYE, 7)
                 .requires(Items.DYE.black())
                 .requires(Items.DYE.blue())
@@ -203,6 +216,14 @@ public class ModRecipeProvider extends RecipeProvider {
 
     protected void generateForEnabledBlockFamilies(FeatureFlagSet set) {
         ModBlockFamilies.getAllFamilies().forEach(family -> generateRecipes(family, set));
+    }
+
+    protected void oneToOneConversionRecipe(ItemLike product, ItemLike resource, @Nullable String group, int productCount) {
+        this.shapeless(RecipeCategory.MISC, product, productCount)
+                .requires(resource)
+                .group(group)
+                .unlockedBy(getHasName(resource), this.has(resource))
+                .save(this.output, WorldOfColor.MODID + ":" + getConversionRecipeName(product, resource));
     }
 
     protected void stonecutterResultFromBase(RecipeCategory category, ItemLike result, ItemLike material) {
