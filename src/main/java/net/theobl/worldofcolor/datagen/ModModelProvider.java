@@ -5,8 +5,10 @@ import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.resources.model.sprite.Material;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
+import net.minecraft.references.BlockItemIds;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.AzaleaBlock;
 import net.minecraft.world.level.block.Blocks;
@@ -83,16 +85,16 @@ public class ModModelProvider extends ModelProvider {
             blockModels.createPlantWithDefaultItem(ModBlocks.COLORED_SAPLINGS.pick(color).get(), ModBlocks.POTTED_COLORED_SAPLINGS.pick(color).get(), BlockModelGenerators.PlantType.NOT_TINTED);
             ModBlocks.COLORED_POTTED_PLANTS.forEach((plant, pottedPlant) -> {
                 BlockModelGenerators.PlantType plantType = BlockModelGenerators.PlantType.NOT_TINTED;
-                if(plant.get() == Blocks.FERN) {
+                if(plant == BlockItemIds.FERN.block()) {
                     plantType = BlockModelGenerators.PlantType.TINTED;
-                } else if (plant.get() == Blocks.OPEN_EYEBLOSSOM) {
+                } else if (plant == BlockItemIds.OPEN_EYEBLOSSOM.block()) {
                     plantType = BlockModelGenerators.PlantType.EMISSIVE_NOT_TINTED;
                 }
-                if(plant.get() == Blocks.BAMBOO || plant.get() == Blocks.MANGROVE_PROPAGULE || plant.get() == Blocks.CACTUS || plant.get() instanceof AzaleaBlock || plant.get() instanceof NetherRootsBlock) {
-                    String suffix = plant.get() instanceof AzaleaBlock ? "_bush" : "";
-                    coloredBlockModels.createPottedPlant(pottedPlant.pick(color).get(), ModBlocks.COLORED_FLOWER_POTS.pick(color).get(), plant.getId().getPath() + suffix);
+                if(plant == BlockItemIds.BAMBOO.block() || plant == BlockItemIds.MANGROVE_PROPAGULE.block() || plant == BlockItemIds.CACTUS.block() || ModUtil.getBlock(plant) instanceof AzaleaBlock || ModUtil.getBlock(plant) instanceof NetherRootsBlock) {
+                    String suffix = ModUtil.getBlock(plant) instanceof AzaleaBlock ? "_bush" : "";
+                    coloredBlockModels.createPottedPlant(pottedPlant.pick(color).get(), ModBlocks.COLORED_FLOWER_POTS.pick(color).get(), plant.identifier().getPath() + suffix);
                 } else {
-                    coloredBlockModels.createPottedPlant(plant.get(), pottedPlant.pick(color).get(), ModBlocks.COLORED_FLOWER_POTS.pick(color).get(), plantType);
+                    coloredBlockModels.createPottedPlant(ModUtil.getBlock(plant), pottedPlant.pick(color).get(), ModBlocks.COLORED_FLOWER_POTS.pick(color).get(), plantType);
                 }
             });
 

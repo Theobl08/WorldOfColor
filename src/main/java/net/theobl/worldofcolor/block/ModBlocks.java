@@ -3,6 +3,7 @@ package net.theobl.worldofcolor.block;
 import net.minecraft.core.cauldron.CauldronInteractions;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
@@ -421,7 +422,7 @@ public class ModBlocks {
             p -> new FlowerPotBlock(null, () -> Blocks.AIR, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)
     );
-    public static final Map<DeferredBlock<Block>, ColorCollection<DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
+    public static final Map<ResourceKey<Block>, ColorCollection<DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
     public static final ColorCollection<DeferredBlock<ColoredDecoratedPotBlock>> COLORED_DECORATED_POTS = registerColored(
             "decorated_pot",
             ColoredDecoratedPotBlock::new,
@@ -534,13 +535,13 @@ public class ModBlocks {
         return blocks;
     }
 
-    private static Map<DeferredBlock<Block>, ColorCollection<DeferredBlock<Block>>> registerColoredPottedPlant() {
-        Map<DeferredBlock<Block>, ColorCollection<DeferredBlock<Block>>> pottedPlants = new HashMap<>();
-        for (DeferredBlock<Block> plant : POTTABLE_PLANTS) {
+    private static Map<ResourceKey<Block>, ColorCollection<DeferredBlock<Block>>> registerColoredPottedPlant() {
+        Map<ResourceKey<Block>, ColorCollection<DeferredBlock<Block>>> pottedPlants = new HashMap<>();
+        for (ResourceKey<Block> plant : POTTABLE_PLANTS) {
             pottedPlants.put(plant, ColorCollectionUtil.registerBlocks(
-                    createSimpleColored("potted_" + name(plant)),
+                    createSimpleColored("potted_" + plant.identifier().getPath()),
                     BLOCKS::registerBlock,
-                    (color, p) -> new ColoredFlowerPotBlock(COLORED_FLOWER_POTS.pick(color), plant, color, p),
+                    (color, p) -> new ColoredFlowerPotBlock(COLORED_FLOWER_POTS.pick(color), DeferredBlock.createBlock(plant), color, p),
                     color -> BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT).mapColor(color).randomTicks()
             ));
         }
@@ -590,7 +591,7 @@ public class ModBlocks {
 
     private static DeferredBlock<Block> registerFlowerBlock(String name, Function<BlockBehaviour.Properties, ? extends Block> block, Supplier<BlockBehaviour.Properties> properties) {
         DeferredBlock<Block> deferredBlock = registerBlock(name, block, properties);
-        POTTABLE_PLANTS.add(deferredBlock);
+        POTTABLE_PLANTS.add(deferredBlock.getKey());
         return deferredBlock;
     }
 

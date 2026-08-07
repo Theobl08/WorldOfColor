@@ -1,26 +1,19 @@
 package net.theobl.worldofcolor.util;
 
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.references.BlockItemIds;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.*;
-import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.neoforged.neoforge.registries.DeferredItem;
 import net.theobl.worldofcolor.block.ModBlocks;
-import org.apache.commons.lang3.function.TriFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.function.BiFunction;
-import java.util.function.Function;
-import java.util.function.Supplier;
-import java.util.function.UnaryOperator;
 
 public class ModUtil {
     public static final List<DyeColor> COLORS = new ArrayList<>(Arrays.asList(
@@ -41,10 +34,7 @@ public class ModUtil {
                     MapColor.COLOR_LIGHT_BLUE, MapColor.COLOR_PURPLE, MapColor.COLOR_PURPLE, MapColor.COLOR_MAGENTA,
                     MapColor.COLOR_PINK, MapColor.STONE, MapColor.METAL, MapColor.SNOW);
 
-    public static final DeferredBlock<Block> FERN = deferredBlock(Blocks.FERN);
-    public static final DeferredBlock<Block> OPEN_EYEBLOSSOM = deferredBlock(Blocks.OPEN_EYEBLOSSOM);
-    public static final DeferredBlock<Block> CLOSED_EYEBLOSSOM = deferredBlock(Blocks.CLOSED_EYEBLOSSOM);
-    public static final List<DeferredBlock<Block>> POTTABLE_PLANTS = new ArrayList<>();
+    public static final List<ResourceKey<Block>> POTTABLE_PLANTS = new ArrayList<>();
 
     public static void setup() {
         ModBlocks.COLORED_PLANKS.forEach(block -> registerFlammable(block.get(), 5, 20));
@@ -79,7 +69,7 @@ public class ModUtil {
 
         for (DyeColor color : COLORS) {
             ModBlocks.COLORED_POTTED_PLANTS.forEach((block, deferredBlocks) ->
-                    ModBlocks.COLORED_FLOWER_POTS.pick(color).get().addPlant(block.getId(), deferredBlocks.pick(color)));
+                    ModBlocks.COLORED_FLOWER_POTS.pick(color).get().addPlant(block.identifier(), deferredBlocks.pick(color)));
         }
     }
 
@@ -101,8 +91,8 @@ public class ModUtil {
         return deferredHolder.getId().getPath();
     }
 
-    private static <T extends Block> DeferredBlock<T> deferredBlock(T block) {
-        return DeferredBlock.createBlock(BuiltInRegistries.BLOCK.getKey(block));
+    public static Block getBlock(ResourceKey<Block> id) {
+        return BuiltInRegistries.BLOCK.getValue(id);
     }
 
     static {
@@ -121,29 +111,29 @@ public class ModUtil {
         for (Block block : BuiltInRegistries.BLOCK) {
             if(block instanceof FlowerBlock || block instanceof SaplingBlock) {
                 if (block == Blocks.OPEN_EYEBLOSSOM) {
-                    POTTABLE_PLANTS.add(OPEN_EYEBLOSSOM);
+                    POTTABLE_PLANTS.add(BlockItemIds.OPEN_EYEBLOSSOM.block());
                 }
                 else if (block == Blocks.CLOSED_EYEBLOSSOM) {
-                    POTTABLE_PLANTS.add(CLOSED_EYEBLOSSOM);
+                    POTTABLE_PLANTS.add(BlockItemIds.CLOSED_EYEBLOSSOM.block());
                 }
                 else {
-                    POTTABLE_PLANTS.add(deferredBlock(block));
+                    POTTABLE_PLANTS.add(block.builtInRegistryHolder().getKey());
                 }
             }
         }
         POTTABLE_PLANTS.addAll(List.of(
-                FERN,
-                deferredBlock(Blocks.RED_MUSHROOM),
-                deferredBlock(Blocks.BROWN_MUSHROOM),
-                deferredBlock(Blocks.DEAD_BUSH),
-                deferredBlock(Blocks.CACTUS),
-                deferredBlock(Blocks.BAMBOO),
-                deferredBlock(Blocks.CRIMSON_FUNGUS),
-                deferredBlock(Blocks.WARPED_FUNGUS),
-                deferredBlock(Blocks.CRIMSON_ROOTS),
-                deferredBlock(Blocks.WARPED_ROOTS),
-                deferredBlock(Blocks.AZALEA),
-                deferredBlock(Blocks.FLOWERING_AZALEA)
+                BlockItemIds.FERN.block(),
+                BlockItemIds.RED_MUSHROOM.block(),
+                BlockItemIds.BROWN_MUSHROOM.block(),
+                BlockItemIds.DEAD_BUSH.block(),
+                BlockItemIds.CACTUS.block(),
+                BlockItemIds.BAMBOO.block(),
+                BlockItemIds.CRIMSON_FUNGUS.block(),
+                BlockItemIds.WARPED_FUNGUS.block(),
+                BlockItemIds.CRIMSON_ROOTS.block(),
+                BlockItemIds.WARPED_ROOTS.block(),
+                BlockItemIds.AZALEA.block(),
+                BlockItemIds.FLOWERING_AZALEA.block()
         ));
     }
 }

@@ -12,6 +12,7 @@ import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ItemFrameRenderer;
 import net.minecraft.network.chat.Component;
+import net.minecraft.references.BlockItemIds;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
@@ -205,7 +206,7 @@ public class WorldOfColor {
         public static void registerBlockColor(RegisterColorHandlersEvent.BlockTintSources event) {
             ModBlocks.COLORED_WATER_CAULDRONS.forEach(block ->
                     event.register(List.of(BlockTintSources.water()), block.get()));
-            ModBlocks.COLORED_POTTED_PLANTS.get(ModUtil.FERN).forEach(block ->
+            ModBlocks.COLORED_POTTED_PLANTS.get(BlockItemIds.FERN.block()).forEach(block ->
                     event.register(List.of(BlockTintSources.grass()), block.get())
             );
         }
