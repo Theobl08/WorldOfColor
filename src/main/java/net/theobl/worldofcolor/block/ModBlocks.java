@@ -71,6 +71,66 @@ public class ModBlocks {
             LightningRodBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHTNING_ROD.weathering().unaffected())
     );
+    public static final DeferredBlock<Block> LIGHT_GRAY_TULIP = registerFlowerBlock(
+            "light_gray_tulip",
+            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
+    );
+    public static final DeferredBlock<Block> GRAY_TULIP = registerFlowerBlock(
+            "gray_tulip",
+            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
+    );
+    public static final DeferredBlock<Block> BLACK_TULIP = registerFlowerBlock(
+            "black_tulip",
+            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
+    );
+    public static final DeferredBlock<Block> BROWN_TULIP = registerFlowerBlock(
+            "brown_tulip",
+            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
+    );
+    public static final DeferredBlock<Block> YELLOW_TULIP = registerFlowerBlock(
+            "yellow_tulip",
+            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
+    );
+    public static final DeferredBlock<Block> LIME_TULIP = registerFlowerBlock(
+            "lime_tulip",
+            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
+    );
+    public static final DeferredBlock<Block> GREEN_TULIP = registerFlowerBlock(
+            "green_tulip",
+            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
+    );
+    public static final DeferredBlock<Block> CYAN_TULIP = registerFlowerBlock(
+            "cyan_tulip",
+            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
+    );
+    public static final DeferredBlock<Block> LIGHT_BLUE_TULIP = registerFlowerBlock(
+            "light_blue_tulip",
+            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
+    );
+    public static final DeferredBlock<Block> BLUE_TULIP = registerFlowerBlock(
+            "blue_tulip",
+            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
+    );
+    public static final DeferredBlock<Block> PURPLE_TULIP = registerFlowerBlock(
+            "purple_tulip",
+            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
+    );
+    public static final DeferredBlock<Block> MAGENTA_TULIP = registerFlowerBlock(
+            "magenta_tulip",
+            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
+    );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_SAPLINGS = ColorCollectionUtil.registerBlocks(
             createSimpleColored("sapling"),
             ModBlocks::registerFlowerBlock,
@@ -343,72 +403,6 @@ public class ModBlocks {
             ColoredSlimeBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.SLIME_BLOCK)
     );
-    public static final ColorCollection<DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = COLORED_SAPLINGS.map(ModBlocks::registerPottedFlowerBlock);
-    public static final ColorCollection<DeferredBlock<FlowerPotBlock>> COLORED_FLOWER_POTS = registerColored(
-            "flower_pot",
-            p -> new FlowerPotBlock(null, () -> Blocks.AIR, p),
-            BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)
-    );
-    public static final DeferredBlock<Block> LIGHT_GRAY_TULIP = registerFlowerBlock(
-            "light_gray_tulip",
-            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
-            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
-    );
-    public static final DeferredBlock<Block> GRAY_TULIP = registerFlowerBlock(
-            "gray_tulip",
-            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
-            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
-    );
-    public static final DeferredBlock<Block> BLACK_TULIP = registerFlowerBlock(
-            "black_tulip",
-            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
-            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
-    );
-    public static final DeferredBlock<Block> BROWN_TULIP = registerFlowerBlock(
-            "brown_tulip",
-            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
-            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
-    );
-    public static final DeferredBlock<Block> YELLOW_TULIP = registerFlowerBlock(
-            "yellow_tulip",
-            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
-            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
-    );
-    public static final DeferredBlock<Block> LIME_TULIP = registerFlowerBlock(
-            "lime_tulip",
-            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
-            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
-    );
-    public static final DeferredBlock<Block> GREEN_TULIP = registerFlowerBlock(
-            "green_tulip",
-            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
-            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
-    );
-    public static final DeferredBlock<Block> CYAN_TULIP = registerFlowerBlock(
-            "cyan_tulip",
-            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
-            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
-    );
-    public static final DeferredBlock<Block> LIGHT_BLUE_TULIP = registerFlowerBlock(
-            "light_blue_tulip",
-            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
-            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
-    );
-    public static final DeferredBlock<Block> BLUE_TULIP = registerFlowerBlock(
-            "blue_tulip",
-            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
-            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
-    );
-    public static final DeferredBlock<Block> PURPLE_TULIP = registerFlowerBlock(
-            "purple_tulip",
-            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
-            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
-    );
-    public static final DeferredBlock<Block> MAGENTA_TULIP = registerFlowerBlock(
-            "magenta_tulip",
-            p -> new FlowerBlock(MobEffects.WEAKNESS, 7.0F, p),
-            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.RED_TULIP)
-    );
     public static final DeferredBlock<Block> POTTED_LIGHT_GRAY_TULIP = registerPottedFlowerBlock(LIGHT_GRAY_TULIP);
     public static final DeferredBlock<Block> POTTED_GRAY_TULIP = registerPottedFlowerBlock(GRAY_TULIP);
     public static final DeferredBlock<Block> POTTED_BLACK_TULIP = registerPottedFlowerBlock(BLACK_TULIP);
@@ -421,6 +415,12 @@ public class ModBlocks {
     public static final DeferredBlock<Block> POTTED_BLUE_TULIP = registerPottedFlowerBlock(BLUE_TULIP);
     public static final DeferredBlock<Block> POTTED_PURPLE_TULIP = registerPottedFlowerBlock(PURPLE_TULIP);
     public static final DeferredBlock<Block> POTTED_MAGENTA_TULIP = registerPottedFlowerBlock(MAGENTA_TULIP);
+    public static final ColorCollection<DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = COLORED_SAPLINGS.map(ModBlocks::registerPottedFlowerBlock);
+    public static final ColorCollection<DeferredBlock<FlowerPotBlock>> COLORED_FLOWER_POTS = registerColored(
+            "flower_pot",
+            p -> new FlowerPotBlock(null, () -> Blocks.AIR, p),
+            BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)
+    );
     public static final Map<DeferredBlock<Block>, ColorCollection<DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
     public static final ColorCollection<DeferredBlock<ColoredDecoratedPotBlock>> COLORED_DECORATED_POTS = registerColored(
             "decorated_pot",
