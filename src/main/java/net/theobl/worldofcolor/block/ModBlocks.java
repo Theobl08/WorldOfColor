@@ -71,7 +71,12 @@ public class ModBlocks {
             LightningRodBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHTNING_ROD.weathering().unaffected())
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_SAPLINGS = registerColoredSaplings();
+    public static final ColorCollection<DeferredBlock<Block>> COLORED_SAPLINGS = ColorCollectionUtil.registerBlocks(
+            createSimpleColored("sapling"),
+            ModBlocks::registerFlowerBlock,
+            (color, p) -> new SaplingBlock(ModTreeGrower.COLORED_TREES.pick(color), p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING).mapColor(color)
+    );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_LEAVES = registerColored(
             "leaves",
             (color, p) -> new UntintedParticleLeavesBlock(0.01F, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, color.getTextureDiffuseColor()), p),
@@ -338,7 +343,7 @@ public class ModBlocks {
             ColoredSlimeBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.SLIME_BLOCK)
     );
-    public static final ColorCollection<DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = registerPottedColoredSaplings();
+    public static final ColorCollection<DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = COLORED_SAPLINGS.map(ModBlocks::registerPottedFlowerBlock);
     public static final ColorCollection<DeferredBlock<FlowerPotBlock>> COLORED_FLOWER_POTS = registerColored(
             "flower_pot",
             p -> new FlowerPotBlock(null, () -> Blocks.AIR, p),
@@ -529,27 +534,6 @@ public class ModBlocks {
         return blocks;
     }
 
-    private static ColorCollection<DeferredBlock<Block>> registerColoredSaplings() {
-        ColorCollection<DeferredBlock<Block>> saplings = registerColored(
-                "sapling",
-                (color, p) -> new SaplingBlock(ModTreeGrower.COLORED_TREES.pick(color), p),
-                BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SAPLING)
-        );
-        saplings.forEach(POTTABLE_PLANTS::add);
-        return saplings;
-    }
-
-    private static ColorCollection<DeferredBlock<Block>> registerPottedColoredSaplings() {
-        ColorCollection<DeferredBlock<Block>> saplings = ColorCollectionUtil.registerBlocks(
-                ColorCollection.VALUES.map(color -> "potted_" + COLORED_SAPLINGS.pick(color).getId().getPath()),
-                BLOCKS::registerBlock,
-                (color, p) -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, COLORED_SAPLINGS.pick(color), p),
-                color -> BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT));
-            ColorCollection.zipApply(ColorCollection.VALUES, saplings, (color, block) ->
-                    ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(COLORED_SAPLINGS.pick(color).getId(), block));
-        return saplings;
-    }
-
     private static Map<DeferredBlock<Block>, ColorCollection<DeferredBlock<Block>>> registerColoredPottedPlant() {
         Map<DeferredBlock<Block>, ColorCollection<DeferredBlock<Block>>> pottedPlants = new HashMap<>();
         for (DeferredBlock<Block> plant : POTTABLE_PLANTS) {
@@ -622,12 +606,8 @@ public class ModBlocks {
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends T> block, Supplier<BlockBehaviour.Properties> properties) {
         DeferredBlock<T> deferredBlock = BLOCKS.registerBlock(name, block, properties);
-        registerBlockItem(name, deferredBlock);
+        ModItems.ITEMS.registerSimpleBlockItem(deferredBlock);
         return deferredBlock;
-    }
-
-    private static <T extends Block> void registerBlockItem(String name, DeferredBlock<T> block) {
-        ModItems.ITEMS.registerSimpleBlockItem(name, block);
     }
 
     private static ColorCollection<String> createSimpleColored(String baseName) {
