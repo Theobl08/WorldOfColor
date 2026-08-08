@@ -210,7 +210,6 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                 player.awardStat(Stats.ITEM_USED.get(itemUsed));
                 BlockState newState = ModBlocks.DYED_WATER_CAULDRON.get().defaultBlockState();
                 for (DyeColor dyeColor : ModUtil.COLORS) {
-                    int index = ModUtil.COLORS.indexOf(dyeColor);
                     if(state.is(ModBlocks.COLORED_WATER_CAULDRONS.pick(dyeColor))) {
                         newState = ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(dyeColor).get().defaultBlockState();
                     }

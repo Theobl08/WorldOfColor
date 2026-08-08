@@ -28,7 +28,6 @@ public class ModTreeFeatures {
         HolderGetter<Biome> biomes = context.lookup(Registries.BIOME);
         BlockStateProvider belowTrunkProvider = TreeConfiguration.defaultPlaceBelowTreeTrunkProvider(biomes);
         for (DyeColor color : ModUtil.COLORS) {
-            int index = ModUtil.COLORS.indexOf(color);
             register(context, COLORED_TREES.pick(color), Feature.TREE, new TreeConfiguration.TreeConfigurationBuilder(
                     BlockStateProvider.simple(ModBlocks.COLORED_LOGS.pick(color).get()),
                     new StraightTrunkPlacer(4, 2, 0),

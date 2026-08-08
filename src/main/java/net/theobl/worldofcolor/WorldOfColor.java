@@ -174,7 +174,6 @@ public class WorldOfColor {
             // LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
 
             for (DyeColor color : ModUtil.COLORS) {
-                int index = ModUtil.COLORS.indexOf(color);
                 EntityRenderers.register(ModEntityType.COLORED_BOATS.pick(color).get(), context -> new BoatRenderer(context, ModModelLayers.COLORED_BOATS.pick(color)));
                 EntityRenderers.register(ModEntityType.COLORED_CHEST_BOATS.pick(color).get(), context -> new BoatRenderer(context, ModModelLayers.COLORED_CHEST_BOATS.pick(color)));
                 EntityRenderers.register(ModEntityType.COLORED_ITEM_FRAMES.pick(color).get(), ItemFrameRenderer::new);

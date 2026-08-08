@@ -23,7 +23,6 @@ public class ColoredFlowerPotBlock extends FlowerPotBlock {
 
     @Override
     protected boolean isRandomlyTicking(BlockState state) {
-        int index = ModUtil.COLORS.indexOf(this.color);
         return state.is(ModBlocks.COLORED_POTTED_PLANTS.get(BlockItemIds.OPEN_EYEBLOSSOM.block()).pick(this.color))
                 || state.is(ModBlocks.COLORED_POTTED_PLANTS.get(BlockItemIds.CLOSED_EYEBLOSSOM.block()).pick(this.color));
     }

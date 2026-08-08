@@ -12,7 +12,6 @@ import static net.minecraft.client.data.models.model.TextureMapping.getBlockText
 
 public class ColoredTextureMapping {
     public static TextureMapping cauldron(Material contentTextureLoc, DyeColor color) {
-        int index = ModUtil.COLORS.indexOf(color);
         Block cauldron = ModBlocks.COLORED_CAULDRONS.pick(color).get();
         return new TextureMapping()
                 .put(TextureSlot.PARTICLE, getBlockTexture(cauldron, "_side"))
@@ -24,7 +23,6 @@ public class ColoredTextureMapping {
     }
 
     public static TextureMapping cauldronEmpty(DyeColor color) {
-        int index = ModUtil.COLORS.indexOf(color);
         Block cauldron = ModBlocks.COLORED_CAULDRONS.pick(color).get();
         return new TextureMapping()
                 .put(TextureSlot.PARTICLE, getBlockTexture(cauldron, "_side"))

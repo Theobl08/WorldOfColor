@@ -74,7 +74,6 @@ public class ColoredBlockModelGenerators {
     }
 
     public void createCauldrons(DyeColor color) {
-        int index = ModUtil.COLORS.indexOf(color);
         Block cauldron = ModBlocks.COLORED_CAULDRONS.pick(color).get();
         Block lavaCauldron = ModBlocks.COLORED_LAVA_CAULDRONS.pick(color).get();
         Block waterCauldron = ModBlocks.COLORED_WATER_CAULDRONS.pick(color).get();
