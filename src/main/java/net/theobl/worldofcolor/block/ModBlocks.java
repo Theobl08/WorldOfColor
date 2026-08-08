@@ -5,7 +5,6 @@ import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.biome.Biome;
@@ -153,15 +152,17 @@ public class ModBlocks {
             RotatedPillarBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_WOOD)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_STRIPPED_LOGS = registerColored(
-            "stripped_log",
-            RotatedPillarBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG)
+    public static final ColorCollection<DeferredBlock<Block>> COLORED_STRIPPED_LOGS = ColorCollectionUtil.registerBlocks(
+            createSimpleColored("log").map(name -> "stripped_" + name),
+            ModBlocks::registerBlock,
+            (color, p) -> new RotatedPillarBlock(p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_LOG).mapColor(color)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_STRIPPED_WOODS = registerColored(
-            "stripped_wood",
-            RotatedPillarBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD)
+    public static final ColorCollection<DeferredBlock<Block>> COLORED_STRIPPED_WOODS = ColorCollectionUtil.registerBlocks(
+            createSimpleColored("wood").map(name -> "stripped_" + name),
+            ModBlocks::registerBlock,
+            (color, p) -> new RotatedPillarBlock(p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.STRIPPED_OAK_WOOD).mapColor(color)
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_PLANKS = registerColored(
             "planks",
@@ -579,10 +580,6 @@ public class ModBlocks {
         String prefix = "";
         if(key.startsWith("waxed_")) {
             prefix = "waxed_";
-            key = key.replace(prefix, "");
-        }
-        else if(key.startsWith("stripped_")) {
-            prefix = "stripped_";
             key = key.replace(prefix, "");
         }
 
