@@ -66,11 +66,6 @@ public class ModUtil {
 
         registerFlammable(ModBlocks.RGB_WOOL.get(), 30, 60);
         registerFlammable(ModBlocks.RGB_CARPET.get(), 60, 20);
-
-        for (DyeColor color : COLORS) {
-            ModBlocks.COLORED_POTTED_PLANTS.forEach((block, deferredBlocks) ->
-                    ModBlocks.COLORED_FLOWER_POTS.pick(color).get().addPlant(block.identifier(), deferredBlocks.pick(color)));
-        }
     }
 
     public static void registerFlammable(Block block, int encouragement, int flammability) {

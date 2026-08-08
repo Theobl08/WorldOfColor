@@ -4,6 +4,7 @@ import net.minecraft.references.BlockItemIds;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.util.ModUtil;
 import org.jetbrains.annotations.Nullable;
 
@@ -12,9 +13,12 @@ import java.util.function.Supplier;
 public class ColoredFlowerPotBlock extends FlowerPotBlock {
     private final DyeColor color;
 
-    public ColoredFlowerPotBlock(@Nullable Supplier<FlowerPotBlock> emptyPot, Supplier<? extends Block> flower, DyeColor color, Properties properties) {
+    public ColoredFlowerPotBlock(@Nullable Supplier<FlowerPotBlock> emptyPot, DeferredBlock<? extends Block> flower, DyeColor color, Properties properties) {
         super(emptyPot, flower, properties);
         this.color = color;
+        if(emptyPot != null) {
+            emptyPot.get().addPlant(flower.getId(), () -> this);
+        }
     }
 
     @Override
