@@ -6,6 +6,7 @@ import net.minecraft.data.BlockFamily;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ColorCollection;
+import net.theobl.worldofcolor.block.ColoringColorCollection;
 import net.theobl.worldofcolor.block.ModBlocks;
 
 import java.util.Map;
@@ -42,31 +43,30 @@ public class ModBlockFamilies {
                     .generateStonecutterRecipe()
                     .getFamily()
     );
-    public static final ColorCollection<BlockFamily> COLORED_COPPER_BLOCK = createFamily(color ->
-            familyBuilder(ModBlocks.COLORED_COPPER_BLOCKS.pick(color).get()).cut(ModBlocks.COLORED_CUT_COPPER.pick(color).get()).dontGenerateModel().getFamily()
+    public static final ColoringColorCollection<BlockFamily> COLORED_COPPER_BLOCK = ColoringColorCollection.createFamily(
+            (prefix, color) -> familyBuilder(ModBlocks.COLORED_COPPER_BLOCKS.waxed().pick(color).get())
+                    .cut(ModBlocks.COLORED_CUT_COPPER.waxed().pick(color).get())
+                    .recipeGroupPrefix("waxed_cut_copper")
+                    .dontGenerateModel()
+                    .getFamily(),
+            (prefix, color) -> familyBuilder(ModBlocks.COLORED_COPPER_BLOCKS.coloring().pick(color).get())
+                    .cut(ModBlocks.COLORED_CUT_COPPER.coloring().pick(color).get())
+                    .dontGenerateModel()
+                    .getFamily()
     );
-    public static final ColorCollection<BlockFamily> COLORED_CUT_COPPER = createFamily(color ->
-            familyBuilder(ModBlocks.COLORED_CUT_COPPER.pick(color).get())
-                    .slab(ModBlocks.COLORED_CUT_COPPER_SLABS.pick(color).get())
-                    .stairs(ModBlocks.COLORED_CUT_COPPER_STAIRS.pick(color).get())
-                    .chiseled(ModBlocks.COLORED_CHISELED_COPPER.pick(color).get())
+    public static final ColoringColorCollection<BlockFamily> COLORED_CUT_COPPER = ColoringColorCollection.createFamily(
+            (prefix, color) -> familyBuilder(ModBlocks.COLORED_CUT_COPPER.waxed().pick(color).get())
+                    .slab(ModBlocks.COLORED_CUT_COPPER_SLABS.waxed().pick(color).get())
+                    .stairs(ModBlocks.COLORED_CUT_COPPER_STAIRS.waxed().pick(color).get())
+                    .chiseled(ModBlocks.COLORED_CHISELED_COPPER.waxed().pick(color).get())
+                    .recipeGroupPrefix("waxed_cut_copper")
                     .dontGenerateModel()
                     .generateStonecutterRecipe()
-                    .getFamily()
-    );
-    public static final ColorCollection<BlockFamily> COLORED_WAXED_COPPER_BLOCK = createFamily(color ->
-            familyBuilder(ModBlocks.COLORED_WAXED_COPPER_BLOCKS.pick(color).get())
-                    .cut(ModBlocks.COLORED_WAXED_CUT_COPPER.pick(color).get())
-                    .recipeGroupPrefix("waxed_cut_copper")
-                    .dontGenerateModel()
-                    .getFamily()
-    );
-    public static final ColorCollection<BlockFamily> COLORED_WAXED_CUT_COPPER = createFamily(color ->
-            familyBuilder(ModBlocks.COLORED_WAXED_CUT_COPPER.pick(color).get())
-                    .slab(ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.pick(color).get())
-                    .stairs(ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.pick(color).get())
-                    .chiseled(ModBlocks.COLORED_WAXED_CHISELED_COPPER.pick(color).get())
-                    .recipeGroupPrefix("waxed_cut_copper")
+                    .getFamily(),
+            (prefix, color) -> familyBuilder(ModBlocks.COLORED_CUT_COPPER.coloring().pick(color).get())
+                    .slab(ModBlocks.COLORED_CUT_COPPER_SLABS.coloring().pick(color).get())
+                    .stairs(ModBlocks.COLORED_CUT_COPPER_STAIRS.coloring().pick(color).get())
+                    .chiseled(ModBlocks.COLORED_CHISELED_COPPER.coloring().pick(color).get())
                     .dontGenerateModel()
                     .generateStonecutterRecipe()
                     .getFamily()

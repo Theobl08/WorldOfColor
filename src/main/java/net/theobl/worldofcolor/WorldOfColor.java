@@ -127,15 +127,12 @@ public class WorldOfColor {
         ModBlocks.COLORED_WALL_HANGING_SIGNS.forEach(sign -> event.modify(BlockEntityTypes.HANGING_SIGN, sign.get()));
         ModBlocks.COLORED_SHELVES.forEach(shelf -> event.modify(BlockEntityTypes.SHELF, shelf.get()));
         ModBlocks.COLORED_COPPER_CHESTS.forEach(block -> event.modify(BlockEntityTypes.CHEST, block.get()));
-        ModBlocks.COLORED_WAXED_COPPER_CHESTS.forEach(block -> event.modify(BlockEntityTypes.CHEST, block.get()));
         ModBlocks.COLORED_COPPER_GOLEM_STATUES.forEach(block -> event.modify(BlockEntityTypes.COPPER_GOLEM_STATUE, block.get()));
-        ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.forEach(block -> event.modify(BlockEntityTypes.COPPER_GOLEM_STATUE, block.get()));
         event.modify(BlockEntityTypes.SHULKER_BOX, ModBlocks.RGB_SHULKER_BOX.get());
     }
 
     private void extendPoiTypes(ExtendPoiTypesEvent event) {
         ModBlocks.COLORED_LIGHTNING_RODS.forEach(block -> event.addBlockToPoi(PoiTypes.LIGHTNING_ROD, block.get()));
-        ModBlocks.COLORED_WAXED_LIGHTNING_RODS.forEach(block -> event.addBlockToPoi(PoiTypes.LIGHTNING_ROD, block.get()));
         ModBlocks.COLORED_CAULDRONS.forEach(block -> event.addBlockToPoi(PoiTypes.LEATHERWORKER, block.get()));
         ModBlocks.COLORED_LAVA_CAULDRONS.forEach(block -> event.addBlockToPoi(PoiTypes.LEATHERWORKER, block.get()));
         ModBlocks.COLORED_WATER_CAULDRONS.forEach(block -> event.addBlockToPoi(PoiTypes.LEATHERWORKER, block.get()));

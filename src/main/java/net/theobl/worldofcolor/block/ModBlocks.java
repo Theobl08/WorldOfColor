@@ -61,15 +61,12 @@ public class ModBlocks {
             GlazedTerracottaBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.GLAZED_TERRACOTTA.white())
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_LIGHTNING_RODS = registerColored(
-            "lightning_rod",
-            p -> new WeatheringLightningRodBlock(WeatherState.UNAFFECTED, p),
-            BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHTNING_ROD.weathering().unaffected())
-    );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_LIGHTNING_RODS = registerColored(
-            "waxed_lightning_rod",
-            LightningRodBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHTNING_ROD.weathering().unaffected())
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_LIGHTNING_RODS = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("lightning_rod"),
+            ModBlocks::registerBlock,
+            (color, p) -> new LightningRodBlock(p),
+            (color, p) -> new WeatheringLightningRodBlock(WeatherState.UNAFFECTED, p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.LIGHTNING_ROD.weathering().unaffected()).mapColor(color)
     );
     public static final DeferredBlock<Block> LIGHT_GRAY_TULIP = registerFlowerBlock(
             "light_gray_tulip",
@@ -230,140 +227,103 @@ public class ModBlocks {
             ShelfBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SHELF)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_COPPER_BLOCKS = registerColoredWeathering(
-            "copper_block",
-            WeatheringCopperFullBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK.weathering().unaffected())
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_COPPER_BLOCKS = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("copper_block"),
+            ModBlocks::registerBlock,
+            (color, p) -> new Block(p),
+            (color, p) -> new WeatheringCopperFullBlock(WeatherState.UNAFFECTED, p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK.weathering().unaffected()).mapColor(color)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_CHISELED_COPPER = registerColoredWeathering(
-            "chiseled_copper",
-            WeatheringCopperFullBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK.weathering().unaffected())
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_CHISELED_COPPER = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("chiseled_copper"),
+            ModBlocks::registerBlock,
+            (color, p) -> new Block(p),
+            (color, p) -> new WeatheringCopperFullBlock(WeatherState.UNAFFECTED, p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK.weathering().unaffected()).mapColor(color)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_COPPER_GRATES = registerColoredWeathering(
-            "copper_grate",
-            WeatheringCopperGrateBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GRATE.weathering().unaffected())
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_COPPER_GRATES = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("copper_grate"),
+            ModBlocks::registerBlock,
+            (color, p) -> new WaterloggedTransparentBlock(p),
+            (color, p) -> new WeatheringCopperGrateBlock(WeatherState.UNAFFECTED, p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GRATE.weathering().unaffected()).mapColor(color)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_CUT_COPPER = registerColoredWeathering(
-            "cut_copper",
-            WeatheringCopperFullBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK.weathering().unaffected())
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_CUT_COPPER = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("cut_copper"),
+            ModBlocks::registerBlock,
+            (color, p) -> new Block(p),
+            (color, p) -> new WeatheringCopperFullBlock(WeatherState.UNAFFECTED, p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK.weathering().unaffected()).mapColor(color)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_CUT_COPPER_STAIRS = registerColoredStairs("cut_copper_stairs", COLORED_CUT_COPPER,
-            (blockState, p) -> new WeatheringCopperStairBlock(WeatherState.UNAFFECTED, blockState, p)
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_CUT_COPPER_STAIRS = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("cut_copper_stairs"),
+            ModBlocks::registerBlock,
+            (color, p) -> new StairBlock(COLORED_CUT_COPPER.waxed().pick(color).get().defaultBlockState(), p),
+            (color, p) -> new WeatheringCopperStairBlock(WeatherState.UNAFFECTED, COLORED_CUT_COPPER.coloring().pick(color).get().defaultBlockState(), p),
+            color -> BlockBehaviour.Properties.ofFullCopy(COLORED_CUT_COPPER.coloring().pick(color).get()).mapColor(color)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_CUT_COPPER_SLABS = registerColoredWeathering(
-            "cut_copper_slab",
-            WeatheringCopperSlabBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK.weathering().unaffected())
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_CUT_COPPER_SLABS = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("cut_copper_slab"),
+            ModBlocks::registerBlock,
+            (color, p) -> new SlabBlock(p),
+            (color, p) -> new WeatheringCopperSlabBlock(WeatherState.UNAFFECTED, p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK.weathering().unaffected()).mapColor(color)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_COPPER_DOORS = registerColored(
-            "copper_door",
-            p -> new WeatheringCopperDoorBlock(BlockSetType.COPPER, WeatherState.UNAFFECTED, p),
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_DOOR.weathering().unaffected())
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_COPPER_DOORS = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("copper_door"),
+            ModBlocks::registerBlock,
+            (color, p) -> new DoorBlock(BlockSetType.COPPER, p),
+            (color, p) -> new WeatheringCopperDoorBlock(BlockSetType.COPPER, WeatherState.UNAFFECTED, p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_DOOR.weathering().unaffected()).mapColor(color)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_COPPER_TRAPDOORS = registerColored(
-            "copper_trapdoor",
-            p -> new WeatheringCopperTrapDoorBlock(BlockSetType.COPPER, WeatherState.UNAFFECTED, p),
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_TRAPDOOR.weathering().unaffected())
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_COPPER_TRAPDOORS = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("copper_trapdoor"),
+            ModBlocks::registerBlock,
+            (color, p) -> new TrapDoorBlock(BlockSetType.COPPER, p),
+            (color, p) -> new WeatheringCopperTrapDoorBlock(BlockSetType.COPPER, WeatherState.UNAFFECTED, p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_TRAPDOOR.weathering().unaffected()).mapColor(color)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_COPPER_BULBS = registerColoredWeathering(
-            "copper_bulb",
-            WeatheringCopperBulbBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BULB.weathering().unaffected())
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_COPPER_BULBS = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("copper_bulb"),
+            ModBlocks::registerBlock,
+            (color, p) -> new CopperBulbBlock(p),
+            (color, p) -> new WeatheringCopperBulbBlock(WeatherState.UNAFFECTED, p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BULB.weathering().unaffected()).mapColor(color)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_COPPER_BARS = registerColoredWeathering(
-            "copper_bars",
-            WeatheringCopperBarsBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BARS.weathering().unaffected())
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_COPPER_BARS = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("copper_bars"),
+            ModBlocks::registerBlock,
+            (color, p) -> new IronBarsBlock(p),
+            (color, p) -> new WeatheringCopperBarsBlock(WeatherState.UNAFFECTED, p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BARS.weathering().unaffected()).mapColor(color)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_COPPER_CHAINS = registerColoredWeathering(
-            "copper_chain",
-            WeatheringCopperChainBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHAIN.weathering().unaffected())
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_COPPER_CHAINS = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("copper_chain"),
+            ModBlocks::registerBlock,
+            (color, p) -> new ChainBlock(p),
+            (color, p) -> new WeatheringCopperChainBlock(WeatherState.UNAFFECTED, p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHAIN.weathering().unaffected()).mapColor(color)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_COPPER_LANTERNS = registerColoredWeathering(
-            "copper_lantern",
-            WeatheringLanternBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_LANTERN.weathering().unaffected())
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_COPPER_LANTERNS = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("copper_lantern"),
+            ModBlocks::registerBlock,
+            (color, p) -> new LanternBlock(p),
+            (color, p) -> new WeatheringLanternBlock(WeatherState.UNAFFECTED, p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_LANTERN.weathering().unaffected()).mapColor(color)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_COPPER_CHESTS = registerColored(
-            "copper_chest",
-            p -> new WeatheringCopperChestBlock(WeatherState.OXIDIZED, SoundEvents.COPPER_CHEST_OPEN, SoundEvents.COPPER_CHEST_CLOSE, p),
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHEST.weathering().unaffected())
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_COPPER_CHESTS = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("copper_chest"),
+            ModBlocks::registerBlock,
+            (color, p) -> new CopperChestBlock(WeatherState.OXIDIZED, SoundEvents.COPPER_CHEST_OPEN, SoundEvents.COPPER_CHEST_CLOSE, p),
+            (color, p) -> new WeatheringCopperChestBlock(WeatherState.OXIDIZED, SoundEvents.COPPER_CHEST_OPEN, SoundEvents.COPPER_CHEST_CLOSE, p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHEST.weathering().unaffected()).mapColor(color)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_COPPER_GOLEM_STATUES = registerColored(
-            "copper_golem_statue",
-            (color, p) -> new ColoredWeatheringCopperGolemStatueBlock(WeatherState.OXIDIZED, color, p),
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GOLEM_STATUE.weathering().unaffected())
-    );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_COPPER_BLOCKS = registerColored(
-            "waxed_copper_block",
-            Block::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK.weathering().unaffected())
-    );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_CHISELED_COPPER = registerColored(
-            "waxed_chiseled_copper",
-            Block::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK.weathering().unaffected())
-    );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_COPPER_GRATES = registerColored(
-            "waxed_copper_grate",
-            WaterloggedTransparentBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GRATE.weathering().unaffected())
-    );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_CUT_COPPER = registerColored(
-            "waxed_cut_copper",
-            Block::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK.weathering().unaffected())
-    );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_CUT_COPPER_STAIRS = registerColoredStairs("waxed_cut_copper_stairs", COLORED_WAXED_CUT_COPPER,
-            StairBlock::new);
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_CUT_COPPER_SLABS = registerColored(
-            "waxed_cut_copper_slab",
-            SlabBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BLOCK.weathering().unaffected())
-    );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_COPPER_DOORS = registerColored(
-            "waxed_copper_door",
-            p -> new DoorBlock(BlockSetType.COPPER, p),
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_DOOR.weathering().unaffected())
-    );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_COPPER_TRAPDOORS = registerColored(
-            "waxed_copper_trapdoor",
-            p -> new TrapDoorBlock(BlockSetType.COPPER, p),
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_TRAPDOOR.weathering().unaffected())
-    );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_COPPER_BULBS = registerColored(
-            "waxed_copper_bulb",
-            CopperBulbBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BULB.weathering().unaffected())
-    );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_COPPER_BARS = registerColored(
-            "waxed_copper_bars",
-            IronBarsBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_BARS.waxed().unaffected())
-    );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_COPPER_CHAINS = registerColored(
-            "waxed_copper_chain",
-            ChainBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHAIN.waxed().unaffected())
-    );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_COPPER_LANTERNS = registerColored(
-            "waxed_copper_lantern",
-            LanternBlock::new,
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_LANTERN.waxed().unaffected())
-    );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_COPPER_CHESTS = registerColored(
-            "waxed_copper_chest",
-            p -> new CopperChestBlock(WeatherState.OXIDIZED, SoundEvents.COPPER_CHEST_OPEN, SoundEvents.COPPER_CHEST_CLOSE, p),
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_CHEST.weathering().unaffected())
-    );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_WAXED_COPPER_GOLEM_STATUES = registerColored(
-            "waxed_copper_golem_statue",
+    public static final ColoringColorCollection<DeferredBlock<Block>> COLORED_COPPER_GOLEM_STATUES = ColoringColorCollection.registerBlocks(
+            createSimpleCopper("copper_golem_statue"),
+            BLOCKS::registerBlock,
             (color, p) -> new ColoredCopperGolemStatueBlock(WeatherState.OXIDIZED, color, p),
-            BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GOLEM_STATUE.weathering().unaffected())
+            (color, p) -> new ColoredWeatheringCopperGolemStatueBlock(WeatherState.OXIDIZED, color, p),
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.COPPER_GOLEM_STATUE.weathering().unaffected()).mapColor(color)
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_CAULDRONS = registerColored(
             "cauldron",
@@ -610,6 +570,10 @@ public class ModBlocks {
 
     private static ColorCollection<String> createSimpleColored(String baseName) {
         return ColorCollection.zipMap(ColorCollection.VALUES, ColorCollection.create(baseName), (color, id) -> formatName(id, color));
+    }
+
+    private static ColoringColorCollection<String> createSimpleCopper(String baseName) {
+        return ColoringColorCollection.prefixWithState(ColoringColorCollection.create(baseName));
     }
 
     public static void register(IEventBus eventBus) {

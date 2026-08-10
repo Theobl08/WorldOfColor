@@ -58,13 +58,13 @@ public class ModItems {
     public static final ColorCollection<DeferredItem<Item>> COLORED_COPPER_GOLEM_STATUES = ColorCollectionUtil.register(
             createSimpleColored("copper_golem_statue"),
             (name, color) -> ITEMS.registerItem(name,
-                    p -> new BlockItem(ModBlocks.COLORED_COPPER_GOLEM_STATUES.pick(color).get(), p),
+                    p -> new BlockItem(ModBlocks.COLORED_COPPER_GOLEM_STATUES.coloring().pick(color).get(), p),
                     p -> p.component(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(CopperGolemStatueBlock.POSE, CopperGolemStatueBlock.Pose.STANDING)).useBlockDescriptionPrefix())
     );
     public static final ColorCollection<DeferredItem<Item>> COLORED_WAXED_COPPER_GOLEM_STATUES = ColorCollectionUtil.register(
             createSimpleColored("copper_golem_statue").map(((name) -> "waxed_" + name)),
             (name, color) -> ITEMS.registerItem(name,
-                    p -> new BlockItem(ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.pick(color).get(), p),
+                    p -> new BlockItem(ModBlocks.COLORED_COPPER_GOLEM_STATUES.waxed().pick(color).get(), p),
                     p -> p.component(DataComponents.BLOCK_STATE, BlockItemStateProperties.EMPTY.with(CopperGolemStatueBlock.POSE, CopperGolemStatueBlock.Pose.STANDING)).useBlockDescriptionPrefix())
     );
     public static final ColorCollection<DeferredItem<Item>> COLORED_CAULDRONS = ColorCollectionUtil.register(

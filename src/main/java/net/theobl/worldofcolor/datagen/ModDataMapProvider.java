@@ -1,5 +1,7 @@
 package net.theobl.worldofcolor.datagen;
 
+import com.google.common.collect.ImmutableBiMap;
+import com.google.common.collect.ImmutableList;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
@@ -9,12 +11,16 @@ import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.DataMapProvider;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.datamaps.builtin.*;
+import net.theobl.worldofcolor.block.ColoringColorCollection;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
+import net.theobl.worldofcolor.util.ColorCollectionUtil;
 import net.theobl.worldofcolor.util.ModUtil;
 
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 public class ModDataMapProvider extends DataMapProvider {
     /**
@@ -38,46 +44,32 @@ public class ModDataMapProvider extends DataMapProvider {
         final var waxables = builder(NeoForgeDataMaps.WAXABLES);
         final var strippable = builder(NeoForgeDataMaps.STRIPPABLES);
         for (DyeColor color : ModUtil.COLORS) {
-            waxables.add(ModBlocks.COLORED_COPPER_BLOCKS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_BLOCKS.pick(color).get()), false);
-            waxables.add(ModBlocks.COLORED_CHISELED_COPPER.pick(color), new Waxable(ModBlocks.COLORED_WAXED_CHISELED_COPPER.pick(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_GRATES.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_GRATES.pick(color).get()), false);
-            waxables.add(ModBlocks.COLORED_CUT_COPPER.pick(color), new Waxable(ModBlocks.COLORED_WAXED_CUT_COPPER.pick(color).get()), false);
-            waxables.add(ModBlocks.COLORED_CUT_COPPER_STAIRS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.pick(color).get()), false);
-            waxables.add(ModBlocks.COLORED_CUT_COPPER_SLABS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.pick(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_DOORS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_DOORS.pick(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_TRAPDOORS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS.pick(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_BULBS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_BULBS.pick(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_BARS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_BARS.pick(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_CHAINS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_CHAINS.pick(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_LANTERNS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_LANTERNS.pick(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_CHESTS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_CHESTS.pick(color).get()), false);
-            waxables.add(ModBlocks.COLORED_COPPER_GOLEM_STATUES.pick(color), new Waxable(ModBlocks.COLORED_WAXED_COPPER_GOLEM_STATUES.pick(color).get()), false);
-            waxables.add(ModBlocks.COLORED_LIGHTNING_RODS.pick(color), new Waxable(ModBlocks.COLORED_WAXED_LIGHTNING_RODS.pick(color).get()), false);
-
             strippable.add(ModBlocks.COLORED_LOGS.pick(color), new Strippable(ModBlocks.COLORED_STRIPPED_LOGS.pick(color).get()), false);
             strippable.add(ModBlocks.COLORED_WOODS.pick(color), new Strippable(ModBlocks.COLORED_STRIPPED_WOODS.pick(color).get()), false);
-
-            if (color == DyeColor.PINK) {
-                continue;
-            }
-            int colorIndex = ModUtil.COLORS.indexOf(color);
-            DyeColor nextColor = ModUtil.COLORS.get(colorIndex + 1);
-            oxidizables.add(ModBlocks.COLORED_COPPER_BLOCKS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_BLOCKS.pick(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_CHISELED_COPPER.pick(color), new Oxidizable(ModBlocks.COLORED_CHISELED_COPPER.pick(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_GRATES.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_GRATES.pick(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_CUT_COPPER.pick(color), new Oxidizable(ModBlocks.COLORED_CUT_COPPER.pick(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_CUT_COPPER_STAIRS.pick(color), new Oxidizable(ModBlocks.COLORED_CUT_COPPER_STAIRS.pick(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_CUT_COPPER_SLABS.pick(color), new Oxidizable(ModBlocks.COLORED_CUT_COPPER_SLABS.pick(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_DOORS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_DOORS.pick(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_TRAPDOORS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_TRAPDOORS.pick(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_BULBS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_BULBS.pick(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_BARS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_BARS.pick(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_CHAINS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_CHAINS.pick(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_LANTERNS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_LANTERNS.pick(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_CHESTS.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_CHESTS.pick(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_COPPER_GOLEM_STATUES.pick(color), new Oxidizable(ModBlocks.COLORED_COPPER_GOLEM_STATUES.pick(nextColor).get()), false);
-            oxidizables.add(ModBlocks.COLORED_LIGHTNING_RODS.pick(color), new Oxidizable(ModBlocks.COLORED_LIGHTNING_RODS.pick(nextColor).get()), false);
         }
+        var coloringBlocks = List.of(
+                ModBlocks.COLORED_COPPER_BLOCKS,
+                ModBlocks.COLORED_CHISELED_COPPER,
+                ModBlocks.COLORED_COPPER_GRATES,
+                ModBlocks.COLORED_CUT_COPPER,
+                ModBlocks.COLORED_CUT_COPPER_STAIRS,
+                ModBlocks.COLORED_CUT_COPPER_SLABS,
+                ModBlocks.COLORED_COPPER_DOORS,
+                ModBlocks.COLORED_COPPER_TRAPDOORS,
+                ModBlocks.COLORED_COPPER_BULBS,
+                ModBlocks.COLORED_COPPER_BARS,
+                ModBlocks.COLORED_COPPER_CHAINS,
+                ModBlocks.COLORED_COPPER_LANTERNS,
+                ModBlocks.COLORED_COPPER_CHESTS,
+                ModBlocks.COLORED_COPPER_GOLEM_STATUES,
+                ModBlocks.COLORED_LIGHTNING_RODS
+        );
+        ImmutableBiMap.Builder<DeferredBlock<Block>, DeferredBlock<Block>> waxedBuilder =  ImmutableBiMap.builder(), coloringBuilder =  ImmutableBiMap.builder();
+        coloringBlocks.forEach(collection -> collection.zipUnwaxedWaxed(waxedBuilder::put));
+        coloringBlocks.forEach(collection -> ColorCollectionUtil.progressMapping(collection.coloring(), coloringBuilder::put));
+        waxedBuilder.build().forEach((now, after) -> waxables.add(now, new Waxable(after.get()), false));
+//        coloringBuilder.build().forEach((now, after) -> oxidizables.add(now, new Oxidizable(after.get()), false));
+        coloringBuilder.build().forEach((now, after) -> add(oxidizables, now, after, Oxidizable::new));
     }
 
     private <T, R> void add(Builder<T, R> builder, Holder<R> object, Holder<R> other, Function<R, T> value) {

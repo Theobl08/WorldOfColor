@@ -50,26 +50,26 @@ public class ModCreativeModeTabs {
                             output.accept(ModItems.COLORED_CHEST_BOATS.pick(color));
                         }
                         for (DyeColor color : ModUtil.COLORS) {
-                            output.accept(ModBlocks.COLORED_COPPER_BLOCKS.pick(color));
-                            output.accept(ModBlocks.COLORED_CHISELED_COPPER.pick(color));
-                            output.accept(ModBlocks.COLORED_COPPER_GRATES.pick(color));
-                            output.accept(ModBlocks.COLORED_CUT_COPPER.pick(color));
-                            output.accept(ModBlocks.COLORED_CUT_COPPER_STAIRS.pick(color));
-                            output.accept(ModBlocks.COLORED_CUT_COPPER_SLABS.pick(color));
-                            output.accept(ModBlocks.COLORED_COPPER_DOORS.pick(color));
-                            output.accept(ModBlocks.COLORED_COPPER_TRAPDOORS.pick(color));
-                            output.accept(ModBlocks.COLORED_COPPER_BULBS.pick(color));
+                            output.accept(ModBlocks.COLORED_COPPER_BLOCKS.coloring().pick(color));
+                            output.accept(ModBlocks.COLORED_CHISELED_COPPER.coloring().pick(color));
+                            output.accept(ModBlocks.COLORED_COPPER_GRATES.coloring().pick(color));
+                            output.accept(ModBlocks.COLORED_CUT_COPPER.coloring().pick(color));
+                            output.accept(ModBlocks.COLORED_CUT_COPPER_STAIRS.coloring().pick(color));
+                            output.accept(ModBlocks.COLORED_CUT_COPPER_SLABS.coloring().pick(color));
+                            output.accept(ModBlocks.COLORED_COPPER_DOORS.coloring().pick(color));
+                            output.accept(ModBlocks.COLORED_COPPER_TRAPDOORS.coloring().pick(color));
+                            output.accept(ModBlocks.COLORED_COPPER_BULBS.coloring().pick(color));
                         }
                         for (DyeColor color : ModUtil.COLORS) {
-                            output.accept(ModBlocks.COLORED_WAXED_COPPER_BLOCKS.pick(color));
-                            output.accept(ModBlocks.COLORED_WAXED_CHISELED_COPPER.pick(color));
-                            output.accept(ModBlocks.COLORED_WAXED_COPPER_GRATES.pick(color));
-                            output.accept(ModBlocks.COLORED_WAXED_CUT_COPPER.pick(color));
-                            output.accept(ModBlocks.COLORED_WAXED_CUT_COPPER_STAIRS.pick(color));
-                            output.accept(ModBlocks.COLORED_WAXED_CUT_COPPER_SLABS.pick(color));
-                            output.accept(ModBlocks.COLORED_WAXED_COPPER_DOORS.pick(color));
-                            output.accept(ModBlocks.COLORED_WAXED_COPPER_TRAPDOORS.pick(color));
-                            output.accept(ModBlocks.COLORED_WAXED_COPPER_BULBS.pick(color));
+                            output.accept(ModBlocks.COLORED_COPPER_BLOCKS.waxed().pick(color));
+                            output.accept(ModBlocks.COLORED_CHISELED_COPPER.waxed().pick(color));
+                            output.accept(ModBlocks.COLORED_COPPER_GRATES.waxed().pick(color));
+                            output.accept(ModBlocks.COLORED_CUT_COPPER.waxed().pick(color));
+                            output.accept(ModBlocks.COLORED_CUT_COPPER_STAIRS.waxed().pick(color));
+                            output.accept(ModBlocks.COLORED_CUT_COPPER_SLABS.waxed().pick(color));
+                            output.accept(ModBlocks.COLORED_COPPER_DOORS.waxed().pick(color));
+                            output.accept(ModBlocks.COLORED_COPPER_TRAPDOORS.waxed().pick(color));
+                            output.accept(ModBlocks.COLORED_COPPER_BULBS.waxed().pick(color));
                         }
                         for (DyeColor color : ModUtil.COLORS) {
                             output.accept(ModBlocks.COLORED_BRICKS.pick(color));

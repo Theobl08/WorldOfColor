@@ -45,10 +45,10 @@ public abstract class CopperChestBlockMixin {
 
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
-            if(updatedBlockState.is(ModBlocks.COLORED_COPPER_CHESTS.pick(color))) {
+            if(updatedBlockState.is(ModBlocks.COLORED_COPPER_CHESTS.coloring().pick(color))) {
                 for (DyeColor color1 : ModUtil.COLORS) {
                     int index1 = ModUtil.COLORS.indexOf(color1);
-                    if(connectedPredictedBlockState.is(ModBlocks.COLORED_COPPER_CHESTS.pick(color1))) {
+                    if(connectedPredictedBlockState.is(ModBlocks.COLORED_COPPER_CHESTS.coloring().pick(color1))) {
                         return index <= index1 ? updatedBlockState.getBlock() : connectedPredictedBlockState.getBlock();
                     }
                 }
@@ -57,10 +57,10 @@ public abstract class CopperChestBlockMixin {
 
         for (DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
-            if(updatedBlockState.is(ModBlocks.COLORED_WAXED_COPPER_CHESTS.pick(color))) {
+            if(updatedBlockState.is(ModBlocks.COLORED_COPPER_CHESTS.waxed().pick(color))) {
                 for (DyeColor color1 : ModUtil.COLORS) {
                     int index1 = ModUtil.COLORS.indexOf(color1);
-                    if(connectedPredictedBlockState.is(ModBlocks.COLORED_WAXED_COPPER_CHESTS.pick(color1))) {
+                    if(connectedPredictedBlockState.is(ModBlocks.COLORED_COPPER_CHESTS.waxed().pick(color1))) {
                         return index <= index1 ? updatedBlockState.getBlock() : connectedPredictedBlockState.getBlock();
                     }
                 }
