@@ -1,0 +1,6 @@
+{
+  "type": "neoforge:add_features",
+  "biomes": "minecraft:flower_forest",
+  "features": "worldofcolor:tulip_flower_forest",
+  "step": "vegetal_decoration"
+}

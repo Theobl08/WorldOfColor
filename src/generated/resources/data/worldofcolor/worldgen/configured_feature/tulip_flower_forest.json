@@ -1,0 +1,54 @@
+{
+  "type": "minecraft:simple_block",
+  "config": {
+    "to_place": {
+      "type": "minecraft:noise_provider",
+      "noise": {
+        "amplitudes": [
+          1.0
+        ],
+        "firstOctave": 0
+      },
+      "scale": 0.020833334,
+      "seed": 2345,
+      "states": [
+        {
+          "Name": "worldofcolor:light_gray_tulip"
+        },
+        {
+          "Name": "worldofcolor:gray_tulip"
+        },
+        {
+          "Name": "worldofcolor:black_tulip"
+        },
+        {
+          "Name": "worldofcolor:brown_tulip"
+        },
+        {
+          "Name": "worldofcolor:yellow_tulip"
+        },
+        {
+          "Name": "worldofcolor:lime_tulip"
+        },
+        {
+          "Name": "worldofcolor:green_tulip"
+        },
+        {
+          "Name": "worldofcolor:cyan_tulip"
+        },
+        {
+          "Name": "worldofcolor:light_blue_tulip"
+        },
+        {
+          "Name": "worldofcolor:blue_tulip"
+        },
+        {
+          "Name": "worldofcolor:purple_tulip"
+        },
+        {
+          "Name": "worldofcolor:magenta_tulip"
+        }
+      ]
+    }
+  }
+}
