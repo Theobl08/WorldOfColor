@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.cauldron.CauldronInteractions;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -18,23 +19,33 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.neoforged.neoforge.registries.DeferredBlock;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.RegisterCauldronInteractionEvent;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.entity.DyedWaterCauldronBlockEntity;
 import net.theobl.worldofcolor.util.ModUtil;
 
 import java.util.function.Predicate;
 
+@EventBusSubscriber
 public class ColoredCauldronInteraction extends CauldronInteractions {
-    public static CauldronInteraction.Dispatcher DYED_WATER = newDispatcher("dyed_water");
-    public static void bootStrap() {
+    public static CauldronInteraction.Dispatcher DYED_WATER = new CauldronInteraction.Dispatcher();
+
+    @SubscribeEvent
+    private static void registerCauldronInteractionDispatcher(RegisterCauldronInteractionEvent.Dispatcher event) {
+        event.register(WorldOfColor.asResource("dyed_water"), DYED_WATER);
+    }
+
+    @SubscribeEvent
+    private static void registerCauldronInteraction(RegisterCauldronInteractionEvent.Interaction event) {
+        final Identifier dyedWater = WorldOfColor.asResource("dyed_water");
         WorldOfColor.LOGGER.info("ColoredCauldronInteraction bootstrap");
-        EMPTY.put(Items.POTION, (state, level, pos, player, hand, stack) -> {
+        event.register(Identifier.withDefaultNamespace("empty"), Items.POTION, (state, level, pos, player, hand, stack) -> {
             PotionContents potioncontents = stack.get(DataComponents.POTION_CONTENTS);
             if (potioncontents != null && potioncontents.is(Potions.WATER)) {
                 if (!level.isClientSide()) {
@@ -57,7 +68,7 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                 return InteractionResult.TRY_WITH_EMPTY_HAND;
             }
         });
-        WATER.put(
+        event.register(Identifier.withDefaultNamespace("water"),
                 Items.BUCKET,
                 (state, level, pos, player, hand, stack) -> fillBucket(
                         state,
@@ -71,8 +82,8 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                         SoundEvents.BUCKET_FILL
                 )
         );
-        Items.DYE.forEach(item -> WATER.put(item, ColoredCauldronInteraction::dyeWaterInteraction));
-        LAVA.put(
+        Items.DYE.forEach(item -> event.register(Identifier.withDefaultNamespace("water"), item, ColoredCauldronInteraction::dyeWaterInteraction));
+        event.register(Identifier.withDefaultNamespace("lava"),
                 Items.BUCKET,
                 (state, level, pos, player, hand, stack) -> fillBucket(
                         state,
@@ -86,7 +97,7 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                         SoundEvents.BUCKET_FILL_LAVA
                 )
         );
-        POWDER_SNOW.put(
+        event.register(Identifier.withDefaultNamespace("powder_snow"),
                 Items.BUCKET,
                 (state, level, pos, player, hand, stack) -> fillBucket(
                         state,
@@ -101,8 +112,10 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                 )
         );
 
-        addDefaultInteractions(DYED_WATER);
-        DYED_WATER.put(
+        event.register(dyedWater, Items.LAVA_BUCKET, CauldronInteractions::fillLavaInteraction);
+        event.register(dyedWater, Items.WATER_BUCKET, CauldronInteractions::fillWaterInteraction);
+        event.register(dyedWater, Items.POWDER_SNOW_BUCKET, CauldronInteractions::fillPowderSnowInteraction);
+        event.register(dyedWater,
                 Items.BUCKET,
                 (state, level, pos, player, hand, itemInHand) -> fillBucket(
                         state,
@@ -116,7 +129,7 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                         SoundEvents.BUCKET_FILL
                 )
         );
-        DYED_WATER.put(
+        event.register(dyedWater,
                 Items.GLASS_BOTTLE,
                 (state, level, pos, player, hand, itemInHand) -> {
                     if (!level.isClientSide()) {
@@ -134,7 +147,7 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                     return InteractionResult.SUCCESS;
                 }
         );
-        DYED_WATER.put(Items.POTION, (state, level, pos, player, hand, itemInHand) -> {
+        event.register(dyedWater, Items.POTION, (state, level, pos, player, hand, itemInHand) -> {
             if (state.getValue(LayeredCauldronBlock.LEVEL) == 3) {
                 return InteractionResult.TRY_WITH_EMPTY_HAND;
             } else {
@@ -155,8 +168,8 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                 }
             }
         });
-        DYED_WATER.put(ItemTags.CAULDRON_CAN_REMOVE_DYE, ColoredCauldronInteraction::dyeableItemIteration);
-        Items.DYE.forEach(item -> DYED_WATER.put(item, ColoredCauldronInteraction::dyeInteraction));
+        event.register(dyedWater, ItemTags.CAULDRON_CAN_REMOVE_DYE, ColoredCauldronInteraction::dyeableItemIteration);
+        Items.DYE.forEach(item -> event.register(dyedWater, item, ColoredCauldronInteraction::dyeInteraction));
     }
 
     public static InteractionResult fillBucket(

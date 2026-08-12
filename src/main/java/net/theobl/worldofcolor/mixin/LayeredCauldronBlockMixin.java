@@ -19,7 +19,7 @@ public abstract class LayeredCauldronBlockMixin {
     @ModifyExpressionValue(method = "lowerFillLevel", at = @At(value = "INVOKE", target = "Lnet/minecraft/world/level/block/Block;defaultBlockState()Lnet/minecraft/world/level/block/state/BlockState;"))
     private static BlockState lowerFillLevel(BlockState original, @Local(argsOnly = true) BlockState state) {
         for (DyeColor color : ModUtil.COLORS) {
-            if (state.is(ModBlocks.COLORED_WATER_CAULDRONS.pick(color))) {
+            if (state.is(ModBlocks.COLORED_WATER_CAULDRONS.pick(color)) || state.is(ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(color))) {
                 return ModBlocks.COLORED_CAULDRONS.pick(color).get().defaultBlockState();
             }
         }

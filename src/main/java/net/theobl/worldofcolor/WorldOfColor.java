@@ -43,7 +43,6 @@ import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.transfer.item.VanillaContainerWrapper;
-import net.theobl.worldofcolor.block.ColoredCauldronInteraction;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.block.entity.ModBlockEntityType;
 import net.theobl.worldofcolor.client.renderer.ModSpriteId;
@@ -89,7 +88,6 @@ public class WorldOfColor {
         ModRecipeSerializer.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         ModCreativeModeTabs.register(modEventBus);
-        ColoredCauldronInteraction.bootStrap();
 
         // Register ourselves for server and other game events we are interested in.
         // Note that this is necessary if and only if we want *this* class (WorldOfColor) to respond directly to events.
