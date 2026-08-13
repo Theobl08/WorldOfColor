@@ -2,51 +2,41 @@ package net.theobl.worldofcolor.client.renderer.blockentity;
 
 import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.math.Axis;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.ModelPart;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.SubmitNodeCollector;
-import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
+import net.minecraft.client.renderer.blockentity.DecoratedPotRenderer;
 import net.minecraft.client.renderer.blockentity.state.DecoratedPotRenderState;
-import net.minecraft.client.renderer.feature.ModelFeatureRenderer;
 import net.minecraft.client.renderer.rendertype.RenderType;
 import net.minecraft.client.renderer.rendertype.RenderTypes;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.client.renderer.state.level.CameraRenderState;
-import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.SpriteGetter;
 import net.minecraft.client.resources.model.sprite.SpriteId;
-import net.minecraft.core.Direction;
 import net.minecraft.core.Holder;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.Mth;
 import net.minecraft.util.Util;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.level.block.entity.DecoratedPotBlockEntity;
 import net.minecraft.world.level.block.entity.DecoratedPotPattern;
 import net.minecraft.world.level.block.entity.DecoratedPotPatterns;
 import net.minecraft.world.level.block.entity.PotDecorations;
-import net.minecraft.world.phys.Vec3;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ColoredDecoratedPotBlock;
-import net.theobl.worldofcolor.block.entity.ColoredDecoratedPotBlockEntity;
 import org.joml.Vector3fc;
 
-import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.Map;
-import java.util.Optional;
 import java.util.function.Consumer;
 
 @ParametersAreNonnullByDefault
-public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredDecoratedPotBlockEntity, DecoratedPotRenderState> {
+public class ColoredDecoratedPotRenderer extends DecoratedPotRenderer {
     private static final Map<ResourceKey<Item>, SpriteId> DECORATED_POT_SPRITES = Util.make(() -> {
         ImmutableMap.Builder<ResourceKey<Item>, SpriteId> builder = ImmutableMap.builder();
         DecoratedPotPatterns.itemToPatternMappings((itemId, patternId) -> {
@@ -82,6 +72,7 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
     }
 
     public ColoredDecoratedPotRenderer(EntityModelSet modelSet, SpriteGetter materials) {
+        super(modelSet, materials);
         this.sprites = materials;
         ModelPart base = modelSet.bakeLayer(ModelLayers.DECORATED_POT_BASE);
         this.neck = base.getChild(NECK);
@@ -94,18 +85,6 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
         this.rightSide = sides.getChild(RIGHT);
     }
 
-    @SuppressWarnings("deprecation")
-    private static SpriteId getSideSprite(Optional<Item> item) {
-        if (item.isPresent()) {
-            SpriteId material = DECORATED_POT_SPRITES.get(item.get().builtInRegistryHolder().key());
-            if (material != null) {
-                return material;
-            }
-        }
-
-        return Sheets.DECORATED_POT_SIDE;
-    }
-
     private SpriteId colorMaterial(SpriteId material) {
         if(color != null) {
             Identifier newTexture = WorldOfColor.asResource(material.texture().getPath() + "_" + color.getName());
@@ -116,55 +95,11 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
         }
     }
 
-    public DecoratedPotRenderState createRenderState() {
-        return new DecoratedPotRenderState();
-    }
-
-    public void extractRenderState(
-            ColoredDecoratedPotBlockEntity blockEntity,
-            DecoratedPotRenderState renderState,
-            float partialTick,
-            Vec3 cameraPosition,
-            @Nullable ModelFeatureRenderer.CrumblingOverlay breakProgress
-    ) {
-        BlockEntityRenderer.super.extractRenderState(blockEntity, renderState, partialTick, cameraPosition, breakProgress);
-        renderState.decorations = blockEntity.getDecorations();
-        renderState.direction = blockEntity.getDirection();
-        DecoratedPotBlockEntity.WobbleStyle decoratedpotblockentity$wobblestyle = blockEntity.lastWobbleStyle;
-        if (decoratedpotblockentity$wobblestyle != null && blockEntity.getLevel() != null) {
-            renderState.wobbleProgress = ((float)(blockEntity.getLevel().getGameTime() - blockEntity.wobbleStartedAtTick) + partialTick)
-                    / decoratedpotblockentity$wobblestyle.duration;
-        } else {
-            renderState.wobbleProgress = 0.0F;
-        }
-    }
-
     public void submit(DecoratedPotRenderState renderState, PoseStack poseStack, SubmitNodeCollector nodeCollector, CameraRenderState cameraRenderState) {
         if(renderState.blockState.getBlock() instanceof ColoredDecoratedPotBlock block) {
             this.color = block.getColor();
         }
-        poseStack.pushPose();
-        Direction direction = renderState.direction;
-        poseStack.translate(0.5, 0.0, 0.5);
-        poseStack.mulPose(Axis.YP.rotationDegrees(180.0F - direction.toYRot()));
-        poseStack.translate(-0.5, 0.0, -0.5);
-        if (renderState.wobbleProgress >= 0.0F && renderState.wobbleProgress <= 1.0F) {
-            if (renderState.wobbleStyle == DecoratedPotBlockEntity.WobbleStyle.POSITIVE) {
-                float amplitude = 0.015625F;
-                float deltaTime = renderState.wobbleProgress * (float) (Math.PI * 2);
-                float tiltX = -1.5F * (Mth.cos(deltaTime) + 0.5F) * Mth.sin(deltaTime / 2.0F);
-                poseStack.rotateAround(Axis.XP.rotation(tiltX * amplitude), 0.5F, 0.0F, 0.5F);
-                float tiltZ = Mth.sin(deltaTime);
-                poseStack.rotateAround(Axis.ZP.rotation(tiltZ * amplitude), 0.5F, 0.0F, 0.5F);
-            } else {
-                float turnAngle = Mth.sin(-renderState.wobbleProgress * 3.0F * (float) Math.PI) * WOBBLE_AMPLITUDE;
-                float linearDecayFactor = 1.0F - renderState.wobbleProgress;
-                poseStack.rotateAround(Axis.YP.rotation(turnAngle * linearDecayFactor), 0.5F, 0.0F, 0.5F);
-            }
-        }
-
-        this.submit(poseStack, nodeCollector, renderState.lightCoords, OverlayTexture.NO_OVERLAY, renderState.decorations, 0);
-        poseStack.popPose();
+        super.submit(renderState, poseStack, nodeCollector, cameraRenderState);
     }
 
     public void submit(PoseStack poseStack, SubmitNodeCollector nodeCollector, int packedLight, int packedOverlay, PotDecorations decorations, int outlineColor) {
@@ -173,50 +108,50 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
         nodeCollector.submitModelPart(this.neck, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, -1, null, outlineColor);
         nodeCollector.submitModelPart(this.top, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, -1, null, outlineColor);
         nodeCollector.submitModelPart(this.bottom, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, -1, null, outlineColor);
-        SpriteId material = colorMaterial(getSideSprite(decorations.front()));
+        SpriteId frontSprite = colorMaterial(getSideSprite(decorations.front()));
         nodeCollector.submitModelPart(
                 this.frontSide,
                 poseStack,
-                material.renderType(RenderTypes::entitySolid),
+                frontSprite.renderType(RenderTypes::entitySolid),
                 packedLight,
                 packedOverlay,
-                this.sprites.get(material),
+                this.sprites.get(frontSprite),
                 -1,
                 null,
                 outlineColor
         );
-        SpriteId material1 = colorMaterial(getSideSprite(decorations.back()));
+        SpriteId backSprite = colorMaterial(getSideSprite(decorations.back()));
         nodeCollector.submitModelPart(
                 this.backSide,
                 poseStack,
-                material1.renderType(RenderTypes::entitySolid),
+                backSprite.renderType(RenderTypes::entitySolid),
                 packedLight,
                 packedOverlay,
-                this.sprites.get(material1),
+                this.sprites.get(backSprite),
                 -1,
                 null,
                 outlineColor
         );
-        SpriteId material2 = colorMaterial(getSideSprite(decorations.left()));
+        SpriteId leftSprite = colorMaterial(getSideSprite(decorations.left()));
         nodeCollector.submitModelPart(
                 this.leftSide,
                 poseStack,
-                material2.renderType(RenderTypes::entitySolid),
+                leftSprite.renderType(RenderTypes::entitySolid),
                 packedLight,
                 packedOverlay,
-                this.sprites.get(material2),
+                this.sprites.get(leftSprite),
                 -1,
                 null,
                 outlineColor
         );
-        SpriteId material3 = colorMaterial(getSideSprite(decorations.right()));
+        SpriteId rightSprite = colorMaterial(getSideSprite(decorations.right()));
         nodeCollector.submitModelPart(
                 this.rightSide,
                 poseStack,
-                material3.renderType(RenderTypes::entitySolid),
+                rightSprite.renderType(RenderTypes::entitySolid),
                 packedLight,
                 packedOverlay,
-                this.sprites.get(material3),
+                this.sprites.get(rightSprite),
                 -1,
                 null,
                 outlineColor
@@ -228,11 +163,5 @@ public class ColoredDecoratedPotRenderer implements BlockEntityRenderer<ColoredD
         this.neck.getExtentsForGui(posestack, output);
         this.top.getExtentsForGui(posestack, output);
         this.bottom.getExtentsForGui(posestack, output);
-    }
-
-    @Override
-    public net.minecraft.world.phys.AABB getRenderBoundingBox(ColoredDecoratedPotBlockEntity blockEntity) {
-        net.minecraft.core.BlockPos pos = blockEntity.getBlockPos();
-        return new net.minecraft.world.phys.AABB(pos.getX(), pos.getY(), pos.getZ(), pos.getX() + 1.0, pos.getY() + 1.3, pos.getZ() + 1.0);
     }
 }
