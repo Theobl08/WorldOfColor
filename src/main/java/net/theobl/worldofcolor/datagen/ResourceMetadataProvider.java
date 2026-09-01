@@ -53,18 +53,18 @@ public class ResourceMetadataProvider implements DataProvider {
                                 )
                         )
         );
-        this.addSimpleFlower(ModBlocks.LIGHT_GRAY_TULIP.getId());
-        this.addSimpleFlower(ModBlocks.GRAY_TULIP.getId());
-        this.addSimpleFlower(ModBlocks.BLACK_TULIP.getId());
-        this.addSimpleFlower(ModBlocks.BROWN_TULIP.getId());
-        this.addSimpleFlower(ModBlocks.YELLOW_TULIP.getId());
-        this.addSimpleFlower(ModBlocks.LIME_TULIP.getId());
-        this.addSimpleFlower(ModBlocks.GREEN_TULIP.getId());
-        this.addSimpleFlower(ModBlocks.CYAN_TULIP.getId());
-        this.addSimpleFlower(ModBlocks.LIGHT_BLUE_TULIP.getId());
-        this.addSimpleFlower(ModBlocks.BLUE_TULIP.getId());
-        this.addSimpleFlower(ModBlocks.PURPLE_TULIP.getId());
-        this.addSimpleFlower(ModBlocks.MAGENTA_TULIP.getId());
+        this.addSimpleFlower(ModBlocks.LIGHT_GRAY_TULIP.getId().withPrefix("block/"));
+        this.addSimpleFlower(ModBlocks.GRAY_TULIP.getId().withPrefix("block/"));
+        this.addSimpleFlower(ModBlocks.BLACK_TULIP.getId().withPrefix("block/"));
+        this.addSimpleFlower(ModBlocks.BROWN_TULIP.getId().withPrefix("block/"));
+        this.addSimpleFlower(ModBlocks.YELLOW_TULIP.getId().withPrefix("block/"));
+        this.addSimpleFlower(ModBlocks.LIME_TULIP.getId().withPrefix("block/"));
+        this.addSimpleFlower(ModBlocks.GREEN_TULIP.getId().withPrefix("block/"));
+        this.addSimpleFlower(ModBlocks.CYAN_TULIP.getId().withPrefix("block/"));
+        this.addSimpleFlower(ModBlocks.LIGHT_BLUE_TULIP.getId().withPrefix("block/"));
+        this.addSimpleFlower(ModBlocks.BLUE_TULIP.getId().withPrefix("block/"));
+        this.addSimpleFlower(ModBlocks.PURPLE_TULIP.getId().withPrefix("block/"));
+        this.addSimpleFlower(ModBlocks.MAGENTA_TULIP.getId().withPrefix("block/"));
         this.addSimpleRGB(ModBlocks.RGB_WOOL.getId().withPrefix("block/"));
         this.addSimpleRGB(ModBlocks.RGB_TERRACOTTA.getId().withPrefix("block/"));
         this.addSimpleRGB(ModBlocks.RGB_CONCRETE.getId().withPrefix("block/"));
@@ -72,6 +72,7 @@ public class ResourceMetadataProvider implements DataProvider {
         this.addSimpleRGB(ModBlocks.RGB_GLAZED_TERRACOTTA.getId().withPrefix("block/"));
         this.addSimpleRGB(ModBlocks.RGB_STAINED_GLASS.getId().withPrefix("block/"));
         this.addSimpleRGB(ModBlocks.RGB_STAINED_GLASS_PANE.getId().withPrefix("block/").withSuffix("_top"));
+        this.addSimpleRGB(ModBlocks.RGB_SHULKER_BOX.getId().withPrefix("block/"));
         this.addSimpleRGB(WorldOfColor.asResource("entity/shulker/shulker_rgb"));
         this.addSimpleRGB(ModBlocks.RGB_BED.getId().withPrefix("block/").withSuffix("_foot_east"));
         this.addSimpleRGB(ModBlocks.RGB_BED.getId().withPrefix("block/").withSuffix("_foot_south"));
