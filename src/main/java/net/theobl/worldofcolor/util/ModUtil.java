@@ -1,5 +1,7 @@
 package net.theobl.worldofcolor.util;
 
+import net.minecraft.core.dispenser.BoatDispenseItemBehavior;
+import net.minecraft.core.dispenser.ShulkerBoxDispenseBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.references.BlockItemIds;
 import net.minecraft.resources.ResourceKey;
@@ -10,6 +12,8 @@ import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.theobl.worldofcolor.block.ModBlocks;
+import net.theobl.worldofcolor.entity.ModEntityType;
+import net.theobl.worldofcolor.item.ModItems;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -66,6 +70,12 @@ public class ModUtil {
 
         registerFlammable(ModBlocks.RGB_WOOL.get(), 30, 60);
         registerFlammable(ModBlocks.RGB_CARPET.get(), 60, 20);
+
+        ColorCollection.zipApply(ModItems.COLORED_BOATS, ModEntityType.COLORED_BOATS.map(DeferredHolder::get),
+                (item, entityType) -> DispenserBlock.registerBehavior(item, new BoatDispenseItemBehavior(entityType)));
+        ColorCollection.zipApply(ModItems.COLORED_CHEST_BOATS, ModEntityType.COLORED_CHEST_BOATS.map(DeferredHolder::get),
+                (item, entityType) -> DispenserBlock.registerBehavior(item, new BoatDispenseItemBehavior(entityType)));
+        DispenserBlock.registerBehavior(ModItems.RGB_SHULKER_BOX, new ShulkerBoxDispenseBehavior());
     }
 
     public static void registerFlammable(Block block, int encouragement, int flammability) {
