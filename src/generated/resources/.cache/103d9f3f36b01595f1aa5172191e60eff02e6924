@@ -1,4 +1,8 @@
-// 26.2	2026-08-11T15:39:43.4614728	Registries
+// 26.2	2026-09-01T14:58:08.3484514	Registries
+cf2395ffeb197dc1fd643c0b52c4a8f2e2dd0deb data/worldofcolor/banner_pattern/bottom_left.json
+f8e7658716cfc8a47e1830f8edf35e120df2078d data/worldofcolor/banner_pattern/bottom_right.json
+b1ef3f7881eacf039b44a94fdc0980acc7229ec5 data/worldofcolor/banner_pattern/top_left.json
+8cb3d7f1c46d730f6a12131ccf6c18233ca8f63c data/worldofcolor/banner_pattern/top_right.json
 46adcffff4ef5c67f29d3ad6eaccab78a4e121f1 data/worldofcolor/neoforge/biome_modifier/tulip_flower_forest_modifier.json
 933bb0d1d9d4502fde57ef3dcf48c4603df6f003 data/worldofcolor/worldgen/configured_feature/black.json
 49a285aec7b7acb2f6d4db51c63c5a55be397af8 data/worldofcolor/worldgen/configured_feature/blue.json

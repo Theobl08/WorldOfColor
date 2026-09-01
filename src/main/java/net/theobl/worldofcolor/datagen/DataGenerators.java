@@ -16,6 +16,7 @@ public class DataGenerators {
     public static void gatherData(GatherDataEvent.Client event) {
         event.createProvider(ModRecipeProvider.Runner::new);
         event.createBlockAndItemTags(ModBlockTagsProvider::new, ModItemTagsProvider::new);
+        event.createProvider(ModBannerPatternTagsProvider::new);
         event.createProvider(ModEntityTypeTagsProvider::new);
         event.createProvider(ModFeatureTagsProvider::new);
         event.createProvider((output, lookupProvider) -> new LootTableProvider(output, Collections.emptySet(),

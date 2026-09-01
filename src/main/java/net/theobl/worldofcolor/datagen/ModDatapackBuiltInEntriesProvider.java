@@ -7,6 +7,7 @@ import net.minecraft.data.PackOutput;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.registries.NeoForgeRegistries;
 import net.theobl.worldofcolor.WorldOfColor;
+import net.theobl.worldofcolor.block.entity.ModBannerPatterns;
 import net.theobl.worldofcolor.worldgen.ModBiomeModifiers;
 import net.theobl.worldofcolor.worldgen.ModTreeFeatures;
 import net.theobl.worldofcolor.worldgen.ModVegetationFeatures;
@@ -22,6 +23,7 @@ public class ModDatapackBuiltInEntriesProvider extends DatapackBuiltinEntriesPro
                 ModVegetationFeatures.bootstrap(context);
             })
             .add(Registries.PLACED_FEATURE, ModVegetationPlacements::bootstrap)
+            .add(Registries.BANNER_PATTERN, ModBannerPatterns::bootstrap)
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, ModBiomeModifiers::bootstrap);
 
     public ModDatapackBuiltInEntriesProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {

@@ -2,16 +2,19 @@ package net.theobl.worldofcolor.datagen;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BannerPattern;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.LanguageProvider;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
+import net.theobl.worldofcolor.block.entity.ModBannerPatterns;
 import net.theobl.worldofcolor.entity.ModEntityType;
 import net.theobl.worldofcolor.item.ModCreativeModeTabs;
 import net.theobl.worldofcolor.item.ModItems;
@@ -40,6 +43,10 @@ public class ModLanguageProvider extends LanguageProvider {
 
         ColorCollection.zipApply(ColorCollection.VALUES, ModBlocks.COLORED_POTATO_PEELS_BLOCK, (color, block) -> addBlock(block, "Block of " + colorLang(color) + " Potato Peels"));
         addBlock(ModBlocks.RGB_CANDLE_CAKE, "Cake with RGB Candle");
+        addBannerPattern(ModBannerPatterns.BOTTOM_LEFT, "Per Base Dexter Canton");
+        addBannerPattern(ModBannerPatterns.BOTTOM_RIGHT, "Per Base Sinister Canton");
+        addBannerPattern(ModBannerPatterns.TOP_LEFT, "Per Chief Dexter Canton");
+        addBannerPattern(ModBannerPatterns.TOP_RIGHT, "Per Chief Sinister Canton");
     }
 
     /**
@@ -93,6 +100,12 @@ public class ModLanguageProvider extends LanguageProvider {
 
     public void addCreativeModeTab(Supplier<? extends CreativeModeTab> key, String name) {
         add(key.get().getDisplayName().getString(), name);
+    }
+
+    private void addBannerPattern(ResourceKey<? extends BannerPattern> key, String name) {
+        DyeColor.VALUES.forEach(color ->
+                add("block.minecraft.banner." + key.identifier().toShortLanguageKey() + "." + color.getName(), colorLang(color) + " " + name)
+        );
     }
 
     // Override the base method to catch the Exception, to be consistent with the other data providers, which doesn't throw on duplicate value (either skip or replace)
