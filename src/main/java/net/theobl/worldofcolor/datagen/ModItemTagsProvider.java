@@ -3,6 +3,7 @@ package net.theobl.worldofcolor.datagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.tags.TagAppender;
 import net.minecraft.references.BlockItemIds;
 import net.minecraft.resources.Identifier;
 import net.minecraft.tags.BlockItemTags;
@@ -13,6 +14,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ColorCollection;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagCopyingItemTagProvider;
 import net.theobl.worldofcolor.WorldOfColor;
@@ -28,6 +30,11 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
     public ModItemTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider,
                                CompletableFuture<TagLookup<Block>> blockTags) {
         super(output, lookupProvider, blockTags, WorldOfColor.MODID);
+    }
+
+    @Override
+    protected IntrinsicHolderTagAppender<Item> tag(TagKey<Item> tag) {
+        return new IntrinsicHolderTagAppender<>(super.tag(tag));
     }
 
     @SuppressWarnings("deprecation")
@@ -70,9 +77,9 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         this.copy(BlockTags.TERRACOTTA, ItemTags.TERRACOTTA);
         this.copy(BlockTags.CANDLES, ItemTags.CANDLES);
         this.copy(BlockTags.BEDS, ItemTags.BEDS);
-        this.tag(ItemTags.BANNERS).add(ModItems.RGB_BANNER.getKey());
+        this.tag(ItemTags.BANNERS).add(ModItems.RGB_BANNER);
         this.copy(BlockTags.SHULKER_BOXES, ItemTags.SHULKER_BOXES);
-        this.tag(Tags.Items.SHULKER_BOXES).add(ModBlocks.RGB_SHULKER_BOX.asItem().builtInRegistryHolder().key());
+        this.tag(Tags.Items.SHULKER_BOXES).add(ModItems.RGB_SHULKER_BOX);
         this.copy(BlockTags.CONCRETE_POWDERS, ItemTags.CONCRETE_POWDERS);
         this.tag(Tags.Items.CONCRETE_POWDERS).add(ModBlocks.RGB_CONCRETE_POWDER.asItem().builtInRegistryHolder().key());
 
@@ -89,14 +96,14 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
             this.copy(ModTags.Blocks.COLORED_LOGS.pick(color), ModTags.Items.COLORED_LOGS.pick(color));
         }
 
-        this.tag(ItemTags.BUNDLES).add(ModItems.RGB_BUNDLE.getKey());
-        this.tag(ItemTags.HARNESSES).add(ModItems.RGB_HARNESS.getKey());
-        this.tag(Tags.Items.DYES).add(ModItems.RGB_DYE.getKey());
+        this.tag(ItemTags.BUNDLES).add(ModItems.RGB_BUNDLE);
+        this.tag(ItemTags.HARNESSES).add(ModItems.RGB_HARNESS);
+        this.tag(Tags.Items.DYES).add(ModItems.RGB_DYE);
         this.tag(ModTags.Items.CAULDRONS).add(BlockItemIds.CAULDRON.item());
-        ModBlocks.COLORED_CAULDRONS.forEach(block -> this.tag(ModTags.Items.CAULDRONS).add(block.asItem().builtInRegistryHolder().key()));
+        this.tag(ModTags.Items.CAULDRONS).addAll(ModItems.COLORED_CAULDRONS);
 
-        ModItems.COLORED_BOATS.forEach(item -> tag(ItemTags.BOATS).add(item.asItem().builtInRegistryHolder().key()));
-        ModItems.COLORED_CHEST_BOATS.forEach(item -> tag(ItemTags.CHEST_BOATS).add(item.asItem().builtInRegistryHolder().key()));
+        tag(ItemTags.BOATS).addAll(ModItems.COLORED_BOATS);
+        tag(ItemTags.CHEST_BOATS).addAll(ModItems.COLORED_CHEST_BOATS);
 
         addColored(Tags.Items.DYED, "{color}_block");
         addColored(Tags.Items.DYED, "{color}_bricks");
