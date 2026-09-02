@@ -1,4 +1,4 @@
-// 26.2	2026-08-06T18:29:45.9953619	Model Definitions - worldofcolor
+// 26.2	2026-09-01T18:40:11.9964044	Model Definitions - worldofcolor
 a31101a419b44e9a513fb7452e79e831c6aca9eb assets/worldofcolor/blockstates/black_block.json
 a101a588d479d297254002806ef06584959b52c3 assets/worldofcolor/blockstates/black_bricks.json
 df15fc8cbab0c8d25b8411540f8bdb0886e1b314 assets/worldofcolor/blockstates/black_brick_slab.json
@@ -1186,6 +1186,7 @@ f5b1d1af253588439501e1f1da90642174c95a46 assets/worldofcolor/blockstates/magenta
 33358e1b5f1df16657743b460303da03659fc90b assets/worldofcolor/blockstates/magenta_wall_sign.json
 8606cd491a8ba4a583fbed0eec934593d99af98d assets/worldofcolor/blockstates/magenta_water_cauldron.json
 366848867840524befb4c7189f51ecc885243083 assets/worldofcolor/blockstates/magenta_wood.json
+a9651df656c7770a944771ec9ec9bf730d63cf5b assets/worldofcolor/blockstates/missingno.json
 e9015d7b2531d3b793ab841f0b745dc6d1dc089d assets/worldofcolor/blockstates/orange_block.json
 4ff090764ad675b044432cbf2d6a7cbdf1c93b2b assets/worldofcolor/blockstates/orange_bricks.json
 365880765cc2347d0ad5b0fc504297773997fb15 assets/worldofcolor/blockstates/orange_brick_slab.json
@@ -2720,6 +2721,7 @@ b888a5bd8d8aed40c71a6a27691a67b94be5a63d assets/worldofcolor/items/magenta_slime
 362419b3b757a87db911c81163cf9acadcf4bd4c assets/worldofcolor/items/magenta_trapdoor.json
 bb0a4a96fde082f89925e60e9a719340b2f2ac17 assets/worldofcolor/items/magenta_tulip.json
 5b32fc393fc4bff066f74d7df0ab0188323d6920 assets/worldofcolor/items/magenta_wood.json
+d3cdf9f4f8e70e96e3d9c5c73f1122e7f2bca9d0 assets/worldofcolor/items/missingno.json
 4097c90d0acd706b3659a2e43b0edbf612675794 assets/worldofcolor/items/orange_block.json
 41a253206dc87b8d72bd2340f03c255f975c555b assets/worldofcolor/items/orange_boat.json
 e1cb3e76a38d4e2c398560444cdbe6344125dae8 assets/worldofcolor/items/orange_bricks.json
@@ -5199,6 +5201,7 @@ fc71e0af2a8f1ae1455d4c1fac127c69de9fb033 assets/worldofcolor/models/block/magent
 0c6699c619a6a1a0afeb050d6cbe3cc0a780411a assets/worldofcolor/models/block/magenta_water_cauldron_level1.json
 7185756e07ed92a3ba33ca8e0965c64fc3e89b34 assets/worldofcolor/models/block/magenta_water_cauldron_level2.json
 4050792787788ae1905ff61698c54969684b7945 assets/worldofcolor/models/block/magenta_wood.json
+2cb9d5960acb4afdc98b7a73603e5ec8f823434a assets/worldofcolor/models/block/missingno.json
 4b99b9655ff3e8e293b9c545fbfda3f1d6b0bd8c assets/worldofcolor/models/block/orange_block.json
 4ff4acf5a72cc10f1728d24ac865a1757a3d6a00 assets/worldofcolor/models/block/orange_bricks.json
 52c0e0aaa3877ada0b42164d8b78c0f37821f5b5 assets/worldofcolor/models/block/orange_brick_slab.json

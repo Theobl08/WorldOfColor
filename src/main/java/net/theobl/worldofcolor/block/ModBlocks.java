@@ -5,6 +5,7 @@ import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Util;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.biome.Biome;
@@ -484,6 +485,11 @@ public class ModBlocks {
             () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WALL_BANNER.white())
                     .overrideLootTable(RGB_BANNER.get().getLootTable())
                     .overrideDescription(RGB_BANNER.get().getDescriptionId())
+    );
+    public static final DeferredBlock<Block> MISSINGNO = registerBlock(
+            "missingno",
+            Block::new,
+            BlockBehaviour.Properties::of
     );
 
     private static List<DeferredBlock<Block>> registerClassic(String key, Function<BlockBehaviour.Properties, Block> block, BlockBehaviour.Properties properties) {

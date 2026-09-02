@@ -4,6 +4,7 @@ import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.*;
+import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
@@ -138,6 +139,8 @@ public class ModModelProvider extends ModelProvider {
         coloredBlockModels.createShulkerBox(ModBlocks.RGB_SHULKER_BOX.get());
         coloredBlockModels.createBed(ModBlocks.RGB_BED.get());
         coloredBlockModels.createBanner(ModBlocks.RGB_BANNER.get(), ModBlocks.RGB_WALL_BANNER.get());
+
+        coloredBlockModels.createTrivialBlock(ModBlocks.MISSINGNO.get(), cube(new Material(MissingTextureAtlasSprite.getLocation())), ModelTemplates.CUBE_ALL);
 
         coloredBlockModels.copyBlockModel(Blocks.CAULDRON, ModBlocks.DYED_WATER_CAULDRON.get());
 

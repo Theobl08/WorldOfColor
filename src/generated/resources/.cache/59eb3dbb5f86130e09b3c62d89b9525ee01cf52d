@@ -1,4 +1,4 @@
-// 26.2	2026-08-06T18:29:46.0839475	Loot Tables
+// 26.2	2026-09-01T18:29:40.1565236	Loot Tables
 49f29dd4efc9f2cc09bc877c191d3bbc9de15c14 data/worldofcolor/loot_table/blocks/black_block.json
 d2a64aaf7c7df0b4ea7812ed816a9e0837fbb01f data/worldofcolor/loot_table/blocks/black_bricks.json
 417382df9420ebd2e176c8ac3e613201b613faed data/worldofcolor/loot_table/blocks/black_brick_slab.json
@@ -1186,6 +1186,7 @@ bfeab9e234fb89820fbe4c8e1a37ebe2e63bbf08 data/worldofcolor/loot_table/blocks/mag
 654034ef21121920cb7d107c3ce08e03cd4fb9e7 data/worldofcolor/loot_table/blocks/magenta_wall_sign.json
 484077146f4e823e4317af737953eafa29c95ac3 data/worldofcolor/loot_table/blocks/magenta_water_cauldron.json
 44f2bf9588efafddf7bc30e81968735e91815d35 data/worldofcolor/loot_table/blocks/magenta_wood.json
+53eff48387d7bba37cc0ad34f4aee99d7945b9be data/worldofcolor/loot_table/blocks/missingno.json
 b4bb2d77f8c45b7059016a386b6df745736be216 data/worldofcolor/loot_table/blocks/orange_block.json
 1a33daffc51d8d781005eea63b167c13ee8259d7 data/worldofcolor/loot_table/blocks/orange_bricks.json
 24292f51978e3915f7d8de68f5d18fc7f7c12b93 data/worldofcolor/loot_table/blocks/orange_brick_slab.json
