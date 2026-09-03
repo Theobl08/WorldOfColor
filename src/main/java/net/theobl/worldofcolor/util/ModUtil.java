@@ -76,6 +76,7 @@ public class ModUtil {
         ColorCollection.zipApply(ModItems.COLORED_CHEST_BOATS, ModEntityType.COLORED_CHEST_BOATS.map(DeferredHolder::get),
                 (item, entityType) -> DispenserBlock.registerBehavior(item, new BoatDispenseItemBehavior(entityType)));
         DispenserBlock.registerBehavior(ModItems.RGB_SHULKER_BOX, new ShulkerBoxDispenseBehavior());
+        DispenserBlock.registerBehavior(ModItems.MISSINGNO_SHULKER_BOX, new ShulkerBoxDispenseBehavior());
     }
 
     public static void registerFlammable(Block block, int encouragement, int flammability) {
