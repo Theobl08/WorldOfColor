@@ -45,6 +45,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 this.add(block.get(), this::createDecoratedPotTable);
             } else if (block.is(ModBlocks.RGB_STAINED_GLASS.getId()) || block.is(ModBlocks.RGB_STAINED_GLASS_PANE.getId())) {
                 this.dropWhenSilkTouch(block.get());
+            } else if(block.get() instanceof ShulkerBoxBlock) {
+                this.add(block.get(), this::createShulkerBoxDrop);
+            } else if(block.get() instanceof BedBlock) {
+                this.add(block.get(), bed -> this.createSinglePropConditionTable(bed, BedBlock.PART, BedPart.HEAD));
             } else if(!(block.get() instanceof AbstractCandleBlock))
                 this.dropSelf(block.get());
         }
@@ -53,11 +57,11 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
             if(color != null)
                 this.add(ModBlocks.COLORED_LEAVES.pick(color).get(), createLeavesDrops(ModBlocks.COLORED_LEAVES.pick(color).get(), ModBlocks.COLORED_SAPLINGS.pick(color).get(), NORMAL_LEAVES_SAPLING_CHANCES));
         }
-        this.add(ModBlocks.RGB_SHULKER_BOX.get(), this::createShulkerBoxDrop);
-        this.add(ModBlocks.RGB_BED.get(), block -> this.createSinglePropConditionTable(block, BedBlock.PART, BedPart.HEAD));
         this.add(ModBlocks.RGB_CANDLE.get(), this::createCandleDrops);
         this.add(ModBlocks.RGB_CANDLE_CAKE.get(), createCandleCakeDrops(ModBlocks.RGB_CANDLE.get()));
         this.add(ModBlocks.RGB_BANNER.get(), this::createBannerDrop);
+        this.add(ModBlocks.MISSINGNO_CANDLE.get(), this::createCandleDrops);
+        this.add(ModBlocks.MISSINGNO_CANDLE_CAKE.get(), createCandleCakeDrops(ModBlocks.MISSINGNO_CANDLE.get()));
     }
 
     private LootTable.Builder createDecoratedPotTable(Block block) {

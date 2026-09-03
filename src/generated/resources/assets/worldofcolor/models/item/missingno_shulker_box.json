@@ -1,0 +1,6 @@
+{
+  "parent": "worldofcolor:item/shulker_box_item",
+  "textures": {
+    "texture": "worldofcolor:entity/shulker/shulker_missingno"
+  }
+}

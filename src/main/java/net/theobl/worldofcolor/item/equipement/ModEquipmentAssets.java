@@ -7,4 +7,5 @@ import net.theobl.worldofcolor.WorldOfColor;
 
 public interface ModEquipmentAssets {
     ResourceKey<EquipmentAsset> RGB_HARNESS = ResourceKey.create(EquipmentAssets.ROOT_ID, WorldOfColor.asResource("rgb_harness"));
+    ResourceKey<EquipmentAsset> MISSINGNO_HARNESS = ResourceKey.create(EquipmentAssets.ROOT_ID, WorldOfColor.asResource("missingno_harness"));
 }

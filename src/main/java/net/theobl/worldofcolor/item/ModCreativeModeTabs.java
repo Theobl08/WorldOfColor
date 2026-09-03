@@ -1,17 +1,25 @@
 package net.theobl.worldofcolor.item;
 
 import net.minecraft.core.Holder;
+import net.minecraft.core.HolderGetter;
+import net.minecraft.core.component.DataComponentPatch;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.entity.BannerPattern;
+import net.minecraft.world.level.block.entity.BannerPatternLayers;
+import net.minecraft.world.level.block.entity.BannerPatterns;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
+import net.theobl.worldofcolor.block.entity.ModBannerPatterns;
 import net.theobl.worldofcolor.util.ModUtil;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -78,7 +86,7 @@ public class ModCreativeModeTabs {
                             output.accept(ModBlocks.COLORED_BRICK_WALLS.pick(color));
                         }
                         for (DeferredHolder<Block, ? extends Block> block : ModBlocks.BLOCKS.getEntries()) {
-                            if(block.get().asItem() != Blocks.AIR.asItem() && block.get().asItem() != Items.CAULDRON && !block.getId().getPath().contains("rgb")) {
+                            if(block.get().asItem() != Blocks.AIR.asItem() && block.get().asItem() != Items.CAULDRON && !block.getId().getPath().contains("rgb") && !block.getId().getPath().contains("missingno")) {
                                 if(block.is(ModBlocks.LIGHT_GRAY_TULIP.getId())) {
                                     output.accept(Blocks.WHITE_TULIP);
                                 } else if (block.is(ModBlocks.YELLOW_TULIP.getId())) {
@@ -91,7 +99,9 @@ public class ModCreativeModeTabs {
                                 }
                             }
                         }
-                        ModItems.ITEMS.getEntries().stream().filter(i -> !i.getId().getPath().contains("rgb_")).map(DeferredHolder::get).forEach(output::accept);
+                        ModItems.ITEMS.getEntries().stream()
+                                .filter(i -> !i.getId().getPath().contains("rgb_") && !i.getId().getPath().contains("missingno"))
+                                .map(DeferredHolder::get).forEach(output::accept);
                     }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RGB_TAB = CREATIVE_MODE_TABS.register("rgb_tab",
@@ -114,8 +124,45 @@ public class ModCreativeModeTabs {
                                 .filter(i -> i != Items.AIR)
                                 .filter(i -> i.isEnabled(parameters.enabledFeatures()))
                                 .forEach(output::accept);
+                        ModBlocks.BLOCKS.getEntries().stream()
+                                .filter(i -> i.getId().getPath().contains("missingno"))
+                                .map(net.minecraft.core.Holder::value)
+                                .map(ItemLike::asItem)
+                                .filter(i -> i != Items.AIR)
+                                .filter(i -> i.isEnabled(parameters.enabledFeatures()))
+                                .forEach(item -> {
+                                    output.accept(item);
+                                    if(item == ModBlocks.MISSINGNO_CANDLE.asItem())
+                                        generateMissingnoBanner(output, parameters.holders().lookupOrThrow(Registries.BANNER_PATTERN));
+                                });
+                        ModItems.ITEMS.getEntries().stream()
+                                .filter(i -> i.getId().getPath().contains("missingno"))
+                                .map(net.minecraft.core.Holder::value)
+                                .map(ItemLike::asItem)
+                                .filter(i -> i != Items.AIR)
+                                .filter(i -> i.isEnabled(parameters.enabledFeatures()))
+                                .forEach(output::accept);
                     })
                     .build());
+
+    @SuppressWarnings("deprecation")
+    private static void generateMissingnoBanner(CreativeModeTab.Output output, HolderGetter<BannerPattern> patternGetter) {
+        DataComponentPatch.Builder builder = DataComponentPatch.builder();
+        BannerPatternLayers patterns = new BannerPatternLayers.Builder()
+                .addIfRegistered(patternGetter, BannerPatterns.SQUARE_BOTTOM_RIGHT, DyeColor.BLACK)
+                .addIfRegistered(patternGetter, BannerPatterns.SQUARE_BOTTOM_LEFT, DyeColor.MAGENTA)
+                .addIfRegistered(patternGetter, BannerPatterns.SQUARE_TOP_RIGHT, DyeColor.MAGENTA)
+                .addIfRegistered(patternGetter, BannerPatterns.SQUARE_TOP_LEFT, DyeColor.BLACK)
+                .addIfRegistered(patternGetter, ModBannerPatterns.BOTTOM_RIGHT, DyeColor.BLACK)
+                .addIfRegistered(patternGetter, ModBannerPatterns.BOTTOM_LEFT, DyeColor.MAGENTA)
+                .addIfRegistered(patternGetter, ModBannerPatterns.TOP_RIGHT, DyeColor.MAGENTA)
+                .addIfRegistered(patternGetter, ModBannerPatterns.TOP_LEFT, DyeColor.BLACK)
+                .build();
+        builder.set(DataComponents.BANNER_PATTERNS, patterns)
+                .set(DataComponents.TOOLTIP_DISPLAY, TooltipDisplay.DEFAULT.withHidden(DataComponents.BANNER_PATTERNS, true))
+                .set(DataComponents.ITEM_NAME, Component.translatable("block.worldofcolor.missingno_banner"));
+        output.accept(new ItemStackTemplate(Items.BANNER.white(), builder.build()).create());
+    }
 
     public static void register(IEventBus eventBus) {
         CREATIVE_MODE_TABS.register(eventBus);

@@ -24,5 +24,11 @@ public class ModEquipmentAssetProvider extends EquipmentAssetProvider {
                         .addLayers(EquipmentClientInfo.LayerType.HAPPY_GHAST_BODY, new EquipmentClientInfo.Layer(WorldOfColor.asResource("rgb_harness")))
                         .build()
         );
+        output.accept(
+                ModEquipmentAssets.MISSINGNO_HARNESS,
+                EquipmentClientInfo.builder()
+                        .addLayers(EquipmentClientInfo.LayerType.HAPPY_GHAST_BODY, new EquipmentClientInfo.Layer(WorldOfColor.asResource("missingno_harness")))
+                        .build()
+        );
     }
 }

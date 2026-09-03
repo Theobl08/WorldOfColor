@@ -136,11 +136,20 @@ public class ModModelProvider extends ModelProvider {
         blockModels.createColoredBlockWithStateRotations(TexturedModel.GLAZED_TERRACOTTA, List.of(ModBlocks.RGB_GLAZED_TERRACOTTA.get()));
         blockModels.createGlassBlocks(ModBlocks.RGB_STAINED_GLASS.get(), ModBlocks.RGB_STAINED_GLASS_PANE.get());
         blockModels.createCandleAndCandleCake(ModBlocks.RGB_CANDLE.get(), ModBlocks.RGB_CANDLE_CAKE.get());
-        coloredBlockModels.createShulkerBox(ModBlocks.RGB_SHULKER_BOX.get());
+        coloredBlockModels.createShulkerBox(ModBlocks.RGB_SHULKER_BOX.get(), WorldOfColor.asResource("entity/shulker/shulker_rgb"));
         coloredBlockModels.createBed(ModBlocks.RGB_BED.get());
         coloredBlockModels.createBanner(ModBlocks.RGB_BANNER.get(), ModBlocks.RGB_WALL_BANNER.get());
 
         coloredBlockModels.createTrivialBlock(ModBlocks.MISSINGNO.get(), cube(new Material(MissingTextureAtlasSprite.getLocation())), ModelTemplates.CUBE_ALL);
+        blockModels.createFullAndCarpetBlocks(ModBlocks.MISSINGNO_WOOL.get(), ModBlocks.MISSINGNO_CARPET.get());
+        blockModels.createTrivialCube(ModBlocks.MISSINGNO_TERRACOTTA.get());
+        blockModels.createTrivialCube(ModBlocks.MISSINGNO_CONCRETE.get());
+        blockModels.createColoredBlockWithRandomRotations(TexturedModel.CUBE, List.of(ModBlocks.MISSINGNO_CONCRETE_POWDER.get()));
+        blockModels.createColoredBlockWithStateRotations(TexturedModel.GLAZED_TERRACOTTA, List.of(ModBlocks.MISSINGNO_GLAZED_TERRACOTTA.get()));
+        blockModels.createGlassBlocks(ModBlocks.MISSINGNO_STAINED_GLASS.get(), ModBlocks.MISSINGNO_STAINED_GLASS_PANE.get());
+        blockModels.createCandleAndCandleCake(ModBlocks.MISSINGNO_CANDLE.get(), ModBlocks.MISSINGNO_CANDLE_CAKE.get());
+        coloredBlockModels.createShulkerBox(ModBlocks.MISSINGNO_SHULKER_BOX.get(), WorldOfColor.asResource("entity/shulker/shulker_missingno"));
+        coloredBlockModels.createBed(ModBlocks.MISSINGNO_BED.get());
 
         coloredBlockModels.copyBlockModel(Blocks.CAULDRON, ModBlocks.DYED_WATER_CAULDRON.get());
 
@@ -151,5 +160,7 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateFlatItem(ModItems.RGB_DYE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.RGB_HARNESS.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateBundleModels(ModItems.RGB_BUNDLE.get());
+        itemModels.generateBundleModels(ModItems.MISSINGNO_BUNDLE.get());
+        itemModels.generateFlatItem(ModItems.MISSINGNO_HARNESS.get(), ModelTemplates.FLAT_ITEM);
     }
 }

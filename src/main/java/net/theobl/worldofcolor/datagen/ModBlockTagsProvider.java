@@ -113,8 +113,8 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 this.tag(BlockItemTags.BEE_FOOD.block()).add(block);
             }
         }
-        this.tag(BlockTags.WOOL).addAll(ModBlocks.CLASSIC_WOOLS).add(ModBlocks.RGB_WOOL);
-        this.tag(BlockTags.WOOL_CARPETS).addAll(ModBlocks.CLASSIC_CARPETS).add(ModBlocks.RGB_CARPET);
+        this.tag(BlockTags.WOOL).addAll(ModBlocks.CLASSIC_WOOLS).add(ModBlocks.RGB_WOOL).add(ModBlocks.MISSINGNO_WOOL);
+        this.tag(BlockTags.WOOL_CARPETS).addAll(ModBlocks.CLASSIC_CARPETS).add(ModBlocks.RGB_CARPET).add(ModBlocks.MISSINGNO_CARPET);
         this.tag(Tags.Blocks.STRIPPED_LOGS).addAll(ModBlocks.COLORED_STRIPPED_LOGS);
         this.tag(Tags.Blocks.STRIPPED_WOODS).addAll(ModBlocks.COLORED_STRIPPED_WOODS);
         this.tag(BlockTags.PLANKS).addAll(ModBlocks.COLORED_PLANKS);
@@ -127,18 +127,18 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.WOODEN_TRAPDOORS).addAll(ModBlocks.COLORED_TRAPDOORS);
         this.tag(BlockTags.WOODEN_PRESSURE_PLATES).addAll(ModBlocks.COLORED_PRESSURE_PLATES);
         this.tag(BlockTags.WOODEN_BUTTONS).addAll(ModBlocks.COLORED_BUTTONS);
-        this.tag(BlockTags.TERRACOTTA).add(ModBlocks.RGB_TERRACOTTA);
-        this.tag(BlockTags.CONCRETE_POWDERS).add(ModBlocks.RGB_CONCRETE_POWDER);
-        this.tag(BlockTags.IMPERMEABLE).add(ModBlocks.RGB_STAINED_GLASS);
-        this.tag(BlockTags.SHULKER_BOXES).add(ModBlocks.RGB_SHULKER_BOX);
-        this.tag(BlockTags.CANDLES).add(ModBlocks.RGB_CANDLE);
-        this.tag(BlockTags.CANDLE_CAKES).add(ModBlocks.RGB_CANDLE_CAKE);
-        this.tag(BlockTags.BEDS).add(ModBlocks.RGB_BED);
+        this.tag(BlockTags.TERRACOTTA).add(ModBlocks.RGB_TERRACOTTA).add(ModBlocks.MISSINGNO_TERRACOTTA);
+        this.tag(BlockTags.CONCRETE_POWDERS).add(ModBlocks.RGB_CONCRETE_POWDER).add(ModBlocks.MISSINGNO_CONCRETE_POWDER);
+        this.tag(BlockTags.IMPERMEABLE).add(ModBlocks.RGB_STAINED_GLASS).add(ModBlocks.MISSINGNO_STAINED_GLASS);
+        this.tag(BlockTags.SHULKER_BOXES).add(ModBlocks.RGB_SHULKER_BOX).add(ModBlocks.MISSINGNO_SHULKER_BOX);
+        this.tag(BlockTags.CANDLES).add(ModBlocks.RGB_CANDLE).add(ModBlocks.MISSINGNO_CANDLE);
+        this.tag(BlockTags.CANDLE_CAKES).add(ModBlocks.RGB_CANDLE_CAKE).add(ModBlocks.MISSINGNO_CANDLE_CAKE);
+        this.tag(BlockTags.BEDS).add(ModBlocks.RGB_BED).add(ModBlocks.MISSINGNO_BED);
         this.tag(BlockTags.BANNERS).add(ModBlocks.RGB_BANNER, ModBlocks.RGB_WALL_BANNER);
-        this.tag(Tags.Blocks.CONCRETES).add(ModBlocks.RGB_CONCRETE);
-        this.tag(Tags.Blocks.GLASS_BLOCKS_CHEAP).add(ModBlocks.RGB_STAINED_GLASS);
-        this.tag(Tags.Blocks.GLASS_PANES).add(ModBlocks.RGB_STAINED_GLASS_PANE);
-        this.tag(Tags.Blocks.GLAZED_TERRACOTTAS).add(ModBlocks.RGB_GLAZED_TERRACOTTA);
+        this.tag(Tags.Blocks.CONCRETES).add(ModBlocks.RGB_CONCRETE).add(ModBlocks.MISSINGNO_CONCRETE);
+        this.tag(Tags.Blocks.GLASS_BLOCKS_CHEAP).add(ModBlocks.RGB_STAINED_GLASS).add(ModBlocks.MISSINGNO_STAINED_GLASS);
+        this.tag(Tags.Blocks.GLASS_PANES).add(ModBlocks.RGB_STAINED_GLASS_PANE).add(ModBlocks.MISSINGNO_STAINED_GLASS_PANE);
+        this.tag(Tags.Blocks.GLAZED_TERRACOTTAS).add(ModBlocks.RGB_GLAZED_TERRACOTTA).add(ModBlocks.MISSINGNO_GLAZED_TERRACOTTA);
 
         for (DyeColor color : ModUtil.COLORS) {
             this.tag(BlockTags.CAULDRONS)
@@ -211,6 +211,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         return (ModUtil.name(block).contains("concrete") && !(block.get() instanceof ConcretePowderBlock)) ||
                 ModUtil.name(block).contains("copper") ||
                 ModUtil.name(block).contains("brick") ||
+                ModUtil.name(block).contains("terracotta") ||
                 block.get() instanceof LightningRodBlock ||
                 block.get() instanceof GlazedTerracottaBlock ||
                 ModBlocks.SIMPLE_COLORED_BLOCKS.asList().contains(block);

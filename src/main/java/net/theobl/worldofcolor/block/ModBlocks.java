@@ -1,13 +1,16 @@
 package net.theobl.worldofcolor.block;
 
 import net.minecraft.core.cauldron.CauldronInteractions;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Util;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
@@ -490,6 +493,66 @@ public class ModBlocks {
             "missingno",
             Block::new,
             BlockBehaviour.Properties::of
+    );
+    public static final DeferredBlock<Block> MISSINGNO_WOOL = registerBlock(
+            "missingno_wool",
+            Block::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WOOL.black())
+    );
+    public static final DeferredBlock<Block> MISSINGNO_CARPET = registerBlock(
+            "missingno_carpet",
+            CarpetBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CARPET.black())
+    );
+    public static final DeferredBlock<Block> MISSINGNO_TERRACOTTA = registerBlock(
+            "missingno_terracotta",
+            Block::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.DYED_TERRACOTTA.black())
+    );
+    public static final DeferredBlock<Block> MISSINGNO_CONCRETE = registerBlock(
+            "missingno_concrete",
+            Block::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CONCRETE.black())
+    );
+    public static final DeferredBlock<Block> MISSINGNO_CONCRETE_POWDER = registerBlock(
+            "missingno_concrete_powder",
+            p -> new ConcretePowderBlock(MISSINGNO_CONCRETE.get(), p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CONCRETE_POWDER.black())
+    );
+    public static final DeferredBlock<Block> MISSINGNO_GLAZED_TERRACOTTA = registerBlock(
+            "missingno_glazed_terracotta",
+            GlazedTerracottaBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.GLAZED_TERRACOTTA.black())
+    );
+    public static final DeferredBlock<Block> MISSINGNO_STAINED_GLASS = registerBlock(
+            "missingno_stained_glass",
+            TransparentBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.STAINED_GLASS.black())
+    );
+    public static final DeferredBlock<Block> MISSINGNO_STAINED_GLASS_PANE = registerBlock(
+            "missingno_stained_glass_pane",
+            IronBarsBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.STAINED_GLASS_PANE.black())
+    );
+    public static final DeferredBlock<Block> MISSINGNO_SHULKER_BOX = BLOCKS.registerBlock(
+            "missingno_shulker_box",
+            p -> new ShulkerBoxBlock(null, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.SHULKER_BOX)
+    );
+    public static final DeferredBlock<Block> MISSINGNO_BED = registerBlock(
+            "missingno_bed",
+            p -> new BedBlock(DyeColor.RED, p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.BED.black())
+    );
+    public static final DeferredBlock<Block> MISSINGNO_CANDLE = registerBlock(
+            "missingno_candle",
+            CandleBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.DYED_CANDLE.black())
+    );
+    public static final DeferredBlock<Block> MISSINGNO_CANDLE_CAKE = BLOCKS.registerBlock(
+            "missingno_candle_cake",
+            p -> new CandleCakeBlock(MISSINGNO_CANDLE.get(), p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.DYED_CANDLE_CAKE.black())
     );
 
     private static List<DeferredBlock<Block>> registerClassic(String key, Function<BlockBehaviour.Properties, Block> block, BlockBehaviour.Properties properties) {

@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/template_bed_foot",
+  "textures": {
+    "east": "worldofcolor:block/missingno_bed_foot_east",
+    "south": "worldofcolor:block/missingno_bed_foot_south",
+    "up": "worldofcolor:block/missingno_bed_foot_up",
+    "west": "worldofcolor:block/missingno_bed_foot_west"
+  }
+}

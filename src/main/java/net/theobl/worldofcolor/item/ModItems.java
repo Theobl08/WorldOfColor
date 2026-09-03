@@ -123,6 +123,29 @@ public class ModItems {
                                     .setShearingSound(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.HARNESS_UNEQUIP))
                                     .build())
     );
+    public static final DeferredItem<BlockItem> MISSINGNO_SHULKER_BOX = ITEMS.registerItem(
+            "missingno_shulker_box",
+            p -> new BlockItem(ModBlocks.MISSINGNO_SHULKER_BOX.get(), p),
+            p -> p.stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix()
+    );
+    public static final DeferredItem<Item> MISSINGNO_BUNDLE = ITEMS.registerItem(
+            "missingno_bundle",
+            BundleItem::new,
+            p -> p.stacksTo(1).component(DataComponents.BUNDLE_CONTENTS, BundleContents.EMPTY)
+    );
+    public static final DeferredItem<Item> MISSINGNO_HARNESS = ITEMS.registerSimpleItem(
+            "missingno_harness",
+            p -> p.stacksTo(1)
+                    .component(DataComponents.EQUIPPABLE,
+                            Equippable.builder(EquipmentSlot.BODY)
+                                    .setEquipSound(SoundEvents.HARNESS_EQUIP)
+                                    .setAsset(ModEquipmentAssets.MISSINGNO_HARNESS)
+                                    .setAllowedEntities(BuiltInRegistries.acquireBootstrapRegistrationLookup(BuiltInRegistries.ENTITY_TYPE).getOrThrow(EntityTypeTags.CAN_EQUIP_HARNESS))
+                                    .setEquipOnInteract(true)
+                                    .setCanBeSheared(true)
+                                    .setShearingSound(BuiltInRegistries.SOUND_EVENT.wrapAsHolder(SoundEvents.HARNESS_UNEQUIP))
+                                    .build())
+    );
 
     private static ColorCollection<String> createSimpleColored(String baseName) {
         return ColorCollection.prefixWithColor(ColorCollection.create(baseName));

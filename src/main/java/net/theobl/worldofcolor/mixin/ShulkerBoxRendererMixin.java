@@ -4,11 +4,14 @@ import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.renderer.blockentity.ShulkerBoxRenderer;
 import net.minecraft.client.renderer.blockentity.state.ShulkerBoxRenderState;
 import net.minecraft.client.resources.model.sprite.SpriteId;
+import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.client.renderer.ModSpriteId;
 import net.theobl.worldofcolor.block.ModBlocks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
+
+import static net.minecraft.client.renderer.Sheets.SHULKER_MAPPER;
 
 @Mixin(ShulkerBoxRenderer.class)
 public abstract class ShulkerBoxRendererMixin {
@@ -17,6 +20,9 @@ public abstract class ShulkerBoxRendererMixin {
     private SpriteId rgbSprite(SpriteId sprite, @Local(argsOnly = true)ShulkerBoxRenderState state) {
         if(state.blockState.is(ModBlocks.RGB_SHULKER_BOX.get())) {
             return ModSpriteId.RGB_SHULKER_LOCATION;
+        }
+        if(state.blockState.is(ModBlocks.MISSINGNO_SHULKER_BOX.get())) {
+            return SHULKER_MAPPER.apply(WorldOfColor.asResource("shulker_missingno"));
         }
         return sprite;
     }

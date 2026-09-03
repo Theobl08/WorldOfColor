@@ -126,7 +126,7 @@ public class WorldOfColor {
         ModBlocks.COLORED_SHELVES.forEach(shelf -> event.modify(BlockEntityTypes.SHELF, shelf.get()));
         ModBlocks.COLORED_COPPER_CHESTS.forEach(block -> event.modify(BlockEntityTypes.CHEST, block.get()));
         ModBlocks.COLORED_COPPER_GOLEM_STATUES.forEach(block -> event.modify(BlockEntityTypes.COPPER_GOLEM_STATUE, block.get()));
-        event.modify(BlockEntityTypes.SHULKER_BOX, ModBlocks.RGB_SHULKER_BOX.get());
+        event.modify(BlockEntityTypes.SHULKER_BOX, ModBlocks.RGB_SHULKER_BOX.get(), ModBlocks.MISSINGNO_SHULKER_BOX.get());
     }
 
     private void extendPoiTypes(ExtendPoiTypesEvent event) {

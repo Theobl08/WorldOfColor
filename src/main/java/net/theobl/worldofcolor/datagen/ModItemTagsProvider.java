@@ -79,9 +79,9 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         this.copy(BlockTags.BEDS, ItemTags.BEDS);
         this.tag(ItemTags.BANNERS).add(ModItems.RGB_BANNER);
         this.copy(BlockTags.SHULKER_BOXES, ItemTags.SHULKER_BOXES);
-        this.tag(Tags.Items.SHULKER_BOXES).add(ModItems.RGB_SHULKER_BOX);
+        this.tag(Tags.Items.SHULKER_BOXES).add(ModItems.RGB_SHULKER_BOX).add(ModItems.MISSINGNO_SHULKER_BOX);
         this.copy(BlockTags.CONCRETE_POWDERS, ItemTags.CONCRETE_POWDERS);
-        this.tag(Tags.Items.CONCRETE_POWDERS).add(ModBlocks.RGB_CONCRETE_POWDER.asItem().builtInRegistryHolder().key());
+        this.tag(Tags.Items.CONCRETE_POWDERS).add(ModBlocks.RGB_CONCRETE_POWDER.asItem().builtInRegistryHolder().key()).add(ModBlocks.MISSINGNO_CONCRETE_POWDER.asItem().builtInRegistryHolder().key());
 
         this.copy(Tags.Blocks.STRIPPED_LOGS, Tags.Items.STRIPPED_LOGS);
         this.copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
@@ -96,8 +96,8 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
             this.copy(ModTags.Blocks.COLORED_LOGS.pick(color), ModTags.Items.COLORED_LOGS.pick(color));
         }
 
-        this.tag(ItemTags.BUNDLES).add(ModItems.RGB_BUNDLE);
-        this.tag(ItemTags.HARNESSES).add(ModItems.RGB_HARNESS);
+        this.tag(ItemTags.BUNDLES).add(ModItems.RGB_BUNDLE).add(ModItems.MISSINGNO_BUNDLE);
+        this.tag(ItemTags.HARNESSES).add(ModItems.RGB_HARNESS).add(ModItems.MISSINGNO_HARNESS);
         this.tag(Tags.Items.DYES).add(ModItems.RGB_DYE);
         this.tag(ModTags.Items.CAULDRONS).add(BlockItemIds.CAULDRON.item());
         this.tag(ModTags.Items.CAULDRONS).addAll(ModItems.COLORED_CAULDRONS);

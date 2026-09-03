@@ -16,6 +16,9 @@ public class ShulkerBoxBlockMixin {
         if(blockEntity.getBlockState().is(ModBlocks.RGB_SHULKER_BOX.get())) {
             return new ItemStack(ModBlocks.RGB_SHULKER_BOX);
         }
+        if(blockEntity.getBlockState().is(ModBlocks.MISSINGNO_SHULKER_BOX.get())) {
+            return new ItemStack(ModBlocks.MISSINGNO_SHULKER_BOX);
+        }
         return itemStack;
     }
 }

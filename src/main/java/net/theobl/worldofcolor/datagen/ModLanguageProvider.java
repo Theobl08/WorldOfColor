@@ -47,6 +47,7 @@ public class ModLanguageProvider extends LanguageProvider {
         addBannerPattern(ModBannerPatterns.BOTTOM_RIGHT, "Per Base Sinister Canton");
         addBannerPattern(ModBannerPatterns.TOP_LEFT, "Per Chief Dexter Canton");
         addBannerPattern(ModBannerPatterns.TOP_RIGHT, "Per Chief Sinister Canton");
+        add("block.worldofcolor.missingno_banner", "Missingno Banner");
     }
 
     /**

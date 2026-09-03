@@ -1,5 +1,6 @@
 {
   "values": [
-    "worldofcolor:rgb_bed"
+    "worldofcolor:rgb_bed",
+    "worldofcolor:missingno_bed"
   ]
 }

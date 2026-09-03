@@ -594,6 +594,9 @@
     "worldofcolor:black_brick_wall",
     "worldofcolor:rgb_terracotta",
     "worldofcolor:rgb_concrete",
-    "worldofcolor:rgb_glazed_terracotta"
+    "worldofcolor:rgb_glazed_terracotta",
+    "worldofcolor:missingno_terracotta",
+    "worldofcolor:missingno_concrete",
+    "worldofcolor:missingno_glazed_terracotta"
   ]
 }
