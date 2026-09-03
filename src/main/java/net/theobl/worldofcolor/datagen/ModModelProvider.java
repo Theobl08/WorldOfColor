@@ -136,7 +136,7 @@ public class ModModelProvider extends ModelProvider {
         blockModels.createColoredBlockWithStateRotations(TexturedModel.GLAZED_TERRACOTTA, List.of(ModBlocks.RGB_GLAZED_TERRACOTTA.get()));
         blockModels.createGlassBlocks(ModBlocks.RGB_STAINED_GLASS.get(), ModBlocks.RGB_STAINED_GLASS_PANE.get());
         blockModels.createCandleAndCandleCake(ModBlocks.RGB_CANDLE.get(), ModBlocks.RGB_CANDLE_CAKE.get());
-        coloredBlockModels.createShulkerBox(ModBlocks.RGB_SHULKER_BOX.get(), WorldOfColor.asResource("entity/shulker/shulker_rgb"));
+        coloredBlockModels.createShulkerBox(ModBlocks.RGB_SHULKER_BOX.get(), WorldOfColor.asResource("shulker_rgb"));
         coloredBlockModels.createBed(ModBlocks.RGB_BED.get());
         coloredBlockModels.createBanner(ModBlocks.RGB_BANNER.get(), ModBlocks.RGB_WALL_BANNER.get());
 
@@ -148,7 +148,7 @@ public class ModModelProvider extends ModelProvider {
         blockModels.createColoredBlockWithStateRotations(TexturedModel.GLAZED_TERRACOTTA, List.of(ModBlocks.MISSINGNO_GLAZED_TERRACOTTA.get()));
         blockModels.createGlassBlocks(ModBlocks.MISSINGNO_STAINED_GLASS.get(), ModBlocks.MISSINGNO_STAINED_GLASS_PANE.get());
         blockModels.createCandleAndCandleCake(ModBlocks.MISSINGNO_CANDLE.get(), ModBlocks.MISSINGNO_CANDLE_CAKE.get());
-        coloredBlockModels.createShulkerBox(ModBlocks.MISSINGNO_SHULKER_BOX.get(), WorldOfColor.asResource("entity/shulker/shulker_missingno"));
+        coloredBlockModels.createShulkerBox(ModBlocks.MISSINGNO_SHULKER_BOX.get(), WorldOfColor.asResource("shulker_missingno"));
         coloredBlockModels.createBed(ModBlocks.MISSINGNO_BED.get());
 
         coloredBlockModels.copyBlockModel(Blocks.CAULDRON, ModBlocks.DYED_WATER_CAULDRON.get());

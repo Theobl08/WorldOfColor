@@ -8,10 +8,13 @@ import net.minecraft.client.data.models.blockstates.MultiVariantGenerator;
 import net.minecraft.client.data.models.blockstates.PropertyDispatch;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.blockentity.BannerRenderer;
+import net.minecraft.client.renderer.blockentity.ShulkerBoxRenderer;
 import net.minecraft.client.renderer.item.ItemModel;
 import net.minecraft.client.renderer.special.CopperGolemStatueSpecialRenderer;
+import net.minecraft.client.renderer.special.ShulkerBoxSpecialRenderer;
 import net.minecraft.client.renderer.special.SpecialModelRenderer;
 import net.minecraft.client.resources.model.sprite.Material;
+import net.minecraft.core.Direction;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
@@ -22,7 +25,6 @@ import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.client.renderer.special.ColoredBannerSpecialRenderer;
 import net.theobl.worldofcolor.item.ModItems;
-import net.theobl.worldofcolor.util.ModUtil;
 import org.joml.Vector3f;
 
 import java.util.Map;
@@ -68,7 +70,7 @@ public class ColoredBlockModelGenerators {
     public void generateDecoratedPotItemModel(Block block, SpecialModelRenderer.Unbaked<?> specialModel, DyeColor color) {
         Item item = block.asItem();
         Identifier identifier = DECORATED_POT.create(ModelLocationUtils.getModelLocation(item),
-                TextureMapping.particle(new Material(WorldOfColor.asResource("entity/decorated_pot/decorated_pot_side_" + color.getName()))),
+                TextureMapping.particle(getBlockTexture(Blocks.DYED_TERRACOTTA.pick(color))),
                 blockModels.modelOutput);
         blockModels.itemModelOutput.accept(item, ItemModelUtils.specialModel(identifier, specialModel));
     }
@@ -285,11 +287,9 @@ public class ColoredBlockModelGenerators {
     public void createShulkerBox(Block block, Identifier texture) {
         blockModels.createParticleOnlyBlock(block);
         Item item = block.asItem();
-//        Identifier baseModel = ModelTemplates.SHULKER_BOX_INVENTORY.create(item, TextureMapping.particle(block), blockModels.modelOutput);
-        Identifier baseModel = ColoredModelTemplates.SHULKER_BOX_ITEM.create(item,
-                new TextureMapping().put(TextureSlot.TEXTURE, new Material(texture)), blockModels.modelOutput);
-//        ItemModel.Unbaked itemModel = ItemModelUtils.specialModel(baseModel, new ShulkerBoxSpecialRenderer.Unbaked(WorldOfColor.asResource("shulker_rgb"), 0.0F, Direction.UP));
-        ItemModel.Unbaked itemModel = ItemModelUtils.plainModel(baseModel);
+        Identifier baseModel = ModelTemplates.SHULKER_BOX_INVENTORY.create(item, TextureMapping.particle(block), blockModels.modelOutput);
+        Transformation transformation = ShulkerBoxRenderer.modelTransform(Direction.UP);
+        ItemModel.Unbaked itemModel = ItemModelUtils.specialModel(baseModel, transformation, new ShulkerBoxSpecialRenderer.Unbaked(texture, 0.0F));
         blockModels.itemModelOutput.accept(item, itemModel);
     }
 

@@ -19,8 +19,8 @@ public class ModSpriteSourceProvider extends SpriteSourceProvider {
     @Override
     protected void gather() {
         //atlas(BLOCKS_ATLAS).addSource(new NamespacedDirectoryLister(WorldOfColor.MODID, "entity/decorated_pot/side", "entity/decorated_pot/side/"));
-        ModUtil.COLORS.forEach(color -> atlas(AtlasIds.BLOCKS).addSource(new SingleFile(WorldOfColor.asResource("entity/decorated_pot/decorated_pot_side_" + color.getName()))));
-        atlas(AtlasIds.BLOCKS).addSource(new SingleFile(WorldOfColor.asResource("entity/shulker/shulker_rgb")));
+//        ModUtil.COLORS.forEach(color -> atlas(AtlasIds.BLOCKS).addSource(new SingleFile(WorldOfColor.asResource("entity/decorated_pot/decorated_pot_side_" + color.getName()))));
+//        atlas(AtlasIds.BLOCKS).addSource(new SingleFile(WorldOfColor.asResource("entity/shulker/shulker_rgb")));
         atlas(AtlasIds.BANNER_PATTERNS).addSource(new SingleFile(WorldOfColor.asResource("entity/banner/rgb")));
     }
 }

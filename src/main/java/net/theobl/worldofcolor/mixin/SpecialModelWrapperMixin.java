@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class SpecialModelWrapperMixin {
     @Inject(method = "update", at = @At("HEAD"))
     private void updateMixin(ItemStackRenderState output, ItemStack item, ItemModelResolver resolver, ItemDisplayContext displayContext, ClientLevel level, ItemOwner owner, int seed, CallbackInfo ci) {
-        if(item.is(ModBlocks.RGB_BANNER.asItem())) {
+        if(item.toString().contains("rgb")) {
             output.setAnimated();
         }
     }
