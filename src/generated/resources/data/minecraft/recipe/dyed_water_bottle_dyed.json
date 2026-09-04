@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:crafting_dye",
+  "dye": "#minecraft:dyes",
+  "group": "dyed_water_bottle",
+  "result": {
+    "id": "worldofcolor:dyed_water_bottle"
+  },
+  "target": "worldofcolor:dyed_water_bottle"
+}

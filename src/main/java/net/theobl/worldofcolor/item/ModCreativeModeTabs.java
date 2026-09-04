@@ -6,7 +6,9 @@ import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
@@ -99,8 +101,10 @@ public class ModCreativeModeTabs {
                                 }
                             }
                         }
+                        generateDyedWaterBottle(output);
                         ModItems.ITEMS.getEntries().stream()
                                 .filter(i -> !i.getId().getPath().contains("rgb_") && !i.getId().getPath().contains("missingno"))
+                                .filter(i -> !i.is(ModItems.DYED_WATER_BOTTLE.getId()))
                                 .map(DeferredHolder::get).forEach(output::accept);
                     }).build());
 
@@ -162,6 +166,15 @@ public class ModCreativeModeTabs {
                 .set(DataComponents.TOOLTIP_DISPLAY, TooltipDisplay.DEFAULT.withHidden(DataComponents.BANNER_PATTERNS, true))
                 .set(DataComponents.ITEM_NAME, Component.translatable("block.worldofcolor.missingno_banner"));
         output.accept(new ItemStackTemplate(Items.BANNER.white(), builder.build()).create());
+    }
+
+    private static void generateDyedWaterBottle(CreativeModeTab.Output output) {
+        ModUtil.COLORS.forEach(color -> {
+            ItemStack stack = new ItemStack(ModItems.DYED_WATER_BOTTLE.get());
+            stack.set(DataComponents.DYED_COLOR, new DyedItemColor(ARGB.transparent(color.getTextureDiffuseColor())));
+            stack.set(DataComponents.ITEM_NAME, Component.translatable("item.worldofcolor." + color.getName() + "_water_bottle"));
+            output.accept(stack);
+        });
     }
 
     public static void register(IEventBus eventBus) {

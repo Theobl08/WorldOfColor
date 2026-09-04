@@ -9,6 +9,7 @@ import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.component.BlockItemStateProperties;
 import net.minecraft.world.item.component.BundleContents;
+import net.minecraft.world.item.component.Consumables;
 import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.level.block.Block;
@@ -89,6 +90,12 @@ public class ModItems {
     public static final ColorCollection<DeferredItem<Item>> COLORED_ITEM_FRAMES = ColorCollectionUtil.register(
             createSimpleColored("item_frame"),
             (name, color) -> ITEMS.registerItem(name,p -> new ItemFrameItem(ModEntityType.COLORED_ITEM_FRAMES.pick(color).get(), p))
+    );
+    public static final DeferredItem<Item> DYED_WATER_BOTTLE = ITEMS.registerSimpleItem(
+            "dyed_water_bottle",
+            p -> p.stacksTo(1)
+                    .component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK)
+                    .usingConvertsTo(Items.GLASS_BOTTLE)
     );
     public static final ColorCollection<DeferredItem<Item>> COLORED_POTATO_PEELS = ColorCollectionUtil.register(
             createSimpleColored("potato_peels"),

@@ -21,6 +21,7 @@ import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
+import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -28,6 +29,7 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.RegisterCauldronInteractionEvent;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.entity.DyedWaterCauldronBlockEntity;
+import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.util.ModUtil;
 
 import java.util.function.Predicate;
@@ -67,6 +69,32 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
             } else {
                 return InteractionResult.TRY_WITH_EMPTY_HAND;
             }
+        });
+        event.register(Identifier.withDefaultNamespace("empty"), ModItems.DYED_WATER_BOTTLE.get(), (state, level, pos, player, hand, itemInHand) -> {
+            DyedItemColor waterColor = itemInHand.get(DataComponents.DYED_COLOR);
+            if(waterColor != null) {
+                if (!level.isClientSide()) {
+                    Item item = itemInHand.getItem();
+                    player.setItemInHand(hand, ItemUtils.createFilledResult(itemInHand, player, new ItemStack(Items.GLASS_BOTTLE)));
+                    player.awardStat(Stats.USE_CAULDRON);
+                    player.awardStat(Stats.ITEM_USED.get(item));
+                    BlockState blockState = ModBlocks.DYED_WATER_CAULDRON.get().defaultBlockState();
+                    for (DyeColor color : ModUtil.COLORS) {
+                        if (state.is(ModBlocks.COLORED_CAULDRONS.pick(color))) {
+                            blockState = ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(color).get().defaultBlockState();
+                        }
+                    }
+                    level.setBlockAndUpdate(pos, blockState);
+                    BlockEntity blockEntity = level.getBlockEntity(pos);
+                    if(blockEntity instanceof DyedWaterCauldronBlockEntity cauldronBlockEntity) {
+                        cauldronBlockEntity.setWaterColor(waterColor.rgb());
+                    }
+                    level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    level.gameEvent(null, GameEvent.FLUID_PLACE, pos);
+                }
+                return InteractionResult.SUCCESS;
+            }
+            return InteractionResult.TRY_WITH_EMPTY_HAND;
         });
         event.register(Identifier.withDefaultNamespace("water"),
                 Items.BUCKET,
@@ -166,6 +194,32 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                 } else {
                     return InteractionResult.TRY_WITH_EMPTY_HAND;
                 }
+            }
+        });
+        event.register(dyedWater, ModItems.DYED_WATER_BOTTLE.get(), (state, level, pos, player, hand, itemInHand) -> {
+            BlockEntity blockEntity = level.getBlockEntity(pos);
+            if(blockEntity instanceof DyedWaterCauldronBlockEntity cauldronBlockEntity) {
+                if (state.getValue(LayeredCauldronBlock.LEVEL) == 3) {
+                    return InteractionResult.TRY_WITH_EMPTY_HAND;
+                } else {
+                    DyedItemColor waterColor = itemInHand.get(DataComponents.DYED_COLOR);
+                    if (waterColor != null && ARGB.opaque(cauldronBlockEntity.getWaterColor()) == ARGB.opaque(waterColor.rgb())) {
+                        if (!level.isClientSide()) {
+                            player.setItemInHand(hand, ItemUtils.createFilledResult(itemInHand, player, new ItemStack(Items.GLASS_BOTTLE)));
+                            player.awardStat(Stats.USE_CAULDRON);
+                            player.awardStat(Stats.ITEM_USED.get(itemInHand.getItem()));
+                            level.setBlockAndUpdate(pos, state.cycle(LayeredCauldronBlock.LEVEL));
+                            level.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+                            level.gameEvent(null, GameEvent.FLUID_PLACE, pos);
+                        }
+
+                        return InteractionResult.SUCCESS;
+                    } else {
+                        return InteractionResult.TRY_WITH_EMPTY_HAND;
+                    }
+                }
+            } else  {
+                return InteractionResult.TRY_WITH_EMPTY_HAND;
             }
         });
         event.register(dyedWater, ItemTags.CAULDRON_CAN_REMOVE_DYE, ColoredCauldronInteraction::dyeableItemIteration);

@@ -1,5 +1,7 @@
 package net.theobl.worldofcolor.datagen;
 
+import net.minecraft.client.color.item.Dye;
+import net.minecraft.client.color.item.Potion;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
@@ -9,7 +11,12 @@ import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.references.BlockItemIds;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.block.AzaleaBlock;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.NetherRootsBlock;
@@ -27,6 +34,8 @@ import static net.minecraft.client.data.models.model.TextureMapping.*;
 import static net.theobl.worldofcolor.datagen.ColoredModelTemplates.*;
 
 public class ModModelProvider extends ModelProvider {
+    ///Pre-1.21 uncraftable {@link net.minecraft.world.item.alchemy.Potion} color
+    private static final int EMPTY_COLOR = 16253176;
     public ModModelProvider(PackOutput output) {
         super(output, WorldOfColor.MODID);
     }
@@ -162,5 +171,11 @@ public class ModModelProvider extends ModelProvider {
         itemModels.generateBundleModels(ModItems.RGB_BUNDLE.get());
         itemModels.generateBundleModels(ModItems.MISSINGNO_BUNDLE.get());
         itemModels.generateFlatItem(ModItems.MISSINGNO_HARNESS.get(), ModelTemplates.FLAT_ITEM);
+        Identifier model = itemModels.generateLayeredItem(
+                ModItems.DYED_WATER_BOTTLE.get(),
+                new Material(Identifier.withDefaultNamespace("item/potion_overlay")),
+                TextureMapping.getItemTexture(Items.POTION)
+        );
+        itemModels.itemModelOutput.accept(ModItems.DYED_WATER_BOTTLE.get(), ItemModelUtils.tintedModel(model, new Dye(ARGB.opaque(EMPTY_COLOR))));
     }
 }

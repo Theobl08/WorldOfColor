@@ -1,6 +1,7 @@
 package net.theobl.worldofcolor.datagen;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
 import net.minecraft.tags.ItemTags;
@@ -9,13 +10,18 @@ import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionContents;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.DyeRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ColorCollection;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import net.neoforged.neoforge.common.crafting.DifferenceIngredient;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -147,6 +153,20 @@ public class ModRecipeProvider extends RecipeProvider {
                     null
             );
         }
+        CustomCraftingRecipeBuilder.customCrafting(
+                        RecipeCategory.MISC,
+                        (commonInfo, bookInfo) ->
+                                new DyeRecipe(
+                                        commonInfo,
+                                        bookInfo,
+                                        DataComponentIngredient.of(DataComponents.POTION_CONTENTS, new PotionContents(Potions.WATER), Items.POTION),
+                                        this.tag(ItemTags.DYES),
+                                        new ItemStackTemplate(ModItems.DYED_WATER_BOTTLE.get()))
+                )
+                .unlockedBy(getHasName(ModItems.DYED_WATER_BOTTLE.get()), this.has(ModItems.DYED_WATER_BOTTLE.get()))
+                .group("dyed_water_bottle")
+                .save(this.output, getItemName(ModItems.DYED_WATER_BOTTLE.get()) + "_dyed_from_water_bottle");
+        dyedItem(ModItems.DYED_WATER_BOTTLE.get(), "dyed_water_bottle");
 
         oneToOneConversionRecipe(Items.DYE.lightGray(), ModBlocks.LIGHT_GRAY_TULIP, "light_gray_dye");
         oneToOneConversionRecipe(Items.DYE.gray(), ModBlocks.GRAY_TULIP, "gray_dye");

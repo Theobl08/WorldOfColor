@@ -43,6 +43,7 @@ public class ModLanguageProvider extends LanguageProvider {
 
         ColorCollection.zipApply(ColorCollection.VALUES, ModBlocks.COLORED_POTATO_PEELS_BLOCK, (color, block) -> addBlock(block, "Block of " + colorLang(color) + " Potato Peels"));
         addBlock(ModBlocks.RGB_CANDLE_CAKE, "Cake with RGB Candle");
+        DyeColor.VALUES.forEach(color -> add("item.worldofcolor." + color.getName() + "_water_bottle", colorLang(color) + " Water Bottle"));
         addBannerPattern(ModBannerPatterns.BOTTOM_LEFT, "Per Base Dexter Canton");
         addBannerPattern(ModBannerPatterns.BOTTOM_RIGHT, "Per Base Sinister Canton");
         addBannerPattern(ModBannerPatterns.TOP_LEFT, "Per Chief Dexter Canton");

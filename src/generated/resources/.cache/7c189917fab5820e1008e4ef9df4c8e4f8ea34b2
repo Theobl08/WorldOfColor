@@ -1,5 +1,9 @@
-// 26.2	2026-08-07T11:54:16.3816559	World of Color Recipes
+// 26.2	2026-09-04T15:14:35.7099546	World of Color Recipes
+a390ab8db061d246e321ff992d136cbbb10385ff data/minecraft/advancement/recipes/misc/dyed_water_bottle_dyed.json
+e42cee14682f96afc6fdf2e8ab2629d1bc48beda data/minecraft/advancement/recipes/misc/dyed_water_bottle_dyed_from_water_bottle.json
 69a3cd3c881209c39ac46f4f6798e7021e085adc data/minecraft/recipe/colored_decorated_pot.json
+bb5971534998c6924c6d6e3785324584f77f8f50 data/minecraft/recipe/dyed_water_bottle_dyed.json
+00b889c771cb13eca70a4c289aeeafaf88ab03c8 data/minecraft/recipe/dyed_water_bottle_dyed_from_water_bottle.json
 046caf573df715310e65f6967a1af6d3a6c0404c data/minecraft/recipe/rgb_banner_duplicate.json
 f1b616ef799698165193d6295bd535c589a4afa6 data/worldofcolor/advancement/recipes/building_blocks/black_block_from_black_concrete_stonecutting.json
 af599e46001fd63c7cfc1bdb3012d76a35e69629 data/worldofcolor/advancement/recipes/building_blocks/black_block_from_black_quilted_concrete_stonecutting.json

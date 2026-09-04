@@ -68,6 +68,10 @@ public class DyedWaterCauldronBlockEntity extends BlockEntity {
         return waterColor;
     }
 
+    public void setWaterColor(int waterColor) {
+        this.waterColor = ARGB.opaque(waterColor);
+    }
+
     public void setWaterColor(DyeColor dyeColor) {
         this.waterColor = dyeColor.getTextureDiffuseColor();
         this.setChanged();
