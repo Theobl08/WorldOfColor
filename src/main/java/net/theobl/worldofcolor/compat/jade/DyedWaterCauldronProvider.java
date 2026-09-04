@@ -1,11 +1,14 @@
 package net.theobl.worldofcolor.compat.jade;
 
+import net.minecraft.core.component.DataComponentMap;
 import net.minecraft.network.RegistryFriendlyByteBuf;
-import net.minecraft.network.chat.Component;
 import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.theobl.worldofcolor.block.entity.DyedWaterCauldronBlockEntity;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
@@ -15,21 +18,19 @@ import snownee.jade.api.ITooltip;
 import snownee.jade.api.StreamServerDataProvider;
 import snownee.jade.api.config.IPluginConfig;
 
-import java.util.Locale;
-
 @NullMarked
-public class DyedWaterCauldronProvider implements StreamServerDataProvider<BlockAccessor, String> {
+public class DyedWaterCauldronProvider implements StreamServerDataProvider<BlockAccessor, Integer> {
     protected static final DyedWaterCauldronProvider INSTANCE = new DyedWaterCauldronProvider();
 
     @Override
-    public @Nullable String streamData(BlockAccessor accessor) {
+    public @Nullable Integer streamData(BlockAccessor accessor) {
         DyedWaterCauldronBlockEntity entity = accessor.typedBlockEntity();
-        return Integer.toHexString(ARGB.transparent(entity.getWaterColor())).toUpperCase(Locale.ROOT);
+        return ARGB.transparent(entity.getWaterColor());
     }
 
     @Override
-    public StreamCodec<RegistryFriendlyByteBuf, String> streamCodec() {
-        return ByteBufCodecs.STRING_UTF8.cast();
+    public StreamCodec<RegistryFriendlyByteBuf, Integer> streamCodec() {
+        return ByteBufCodecs.INT.cast();
     }
 
     @Override
@@ -42,9 +43,9 @@ public class DyedWaterCauldronProvider implements StreamServerDataProvider<Block
 
         @Override
         public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
-            String data = DyedWaterCauldronProvider.INSTANCE.decodeFromData(accessor).orElse(null);
+            Integer data = DyedWaterCauldronProvider.INSTANCE.decodeFromData(accessor).orElse(null);
             if(data == null) return;
-            tooltip.add(Component.literal("Color: #" + data));
+            new DyedItemColor(data).addToTooltip(Item.TooltipContext.EMPTY, tooltip::add, TooltipFlag.ADVANCED, DataComponentMap.EMPTY);
         }
 
         @Override
