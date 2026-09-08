@@ -168,6 +168,19 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(this.output, getItemName(ModItems.DYED_WATER_BOTTLE.get()) + "_dyed_from_water_bottle");
         dyedItem(ModItems.DYED_WATER_BOTTLE.get(), "dyed_water_bottle");
 
+        CustomCraftingRecipeBuilder.customCrafting(
+                        RecipeCategory.MISC,
+                        (commonInfo, bookInfo) -> new DyeRecipe(
+                                commonInfo,
+                                bookInfo,
+                                Ingredient.of(ModItems.DYED_WATER_BUCKET, Items.WATER_BUCKET),
+                                this.tag(ItemTags.DYES),
+                                new ItemStackTemplate(ModItems.DYED_WATER_BUCKET))
+                )
+                .unlockedBy(getHasName(ModItems.DYED_WATER_BUCKET), this.has(ModItems.DYED_WATER_BUCKET))
+                .group("dyed_water_bucket")
+                .save(this.output, getItemName(ModItems.DYED_WATER_BUCKET) + "_dyed");
+
         oneToOneConversionRecipe(Items.DYE.lightGray(), ModBlocks.LIGHT_GRAY_TULIP, "light_gray_dye");
         oneToOneConversionRecipe(Items.DYE.gray(), ModBlocks.GRAY_TULIP, "gray_dye");
         oneToOneConversionRecipe(Items.DYE.black(), ModBlocks.BLACK_TULIP, "black_dye");

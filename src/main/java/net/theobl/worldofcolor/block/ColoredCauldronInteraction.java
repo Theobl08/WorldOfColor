@@ -4,11 +4,13 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.cauldron.CauldronInteraction;
 import net.minecraft.core.cauldron.CauldronInteractions;
 import net.minecraft.core.component.DataComponents;
+import net.minecraft.data.worldgen.biome.OverworldBiomes;
 import net.minecraft.resources.Identifier;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
+import net.minecraft.tags.FluidTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ARGB;
 import net.minecraft.world.InteractionHand;
@@ -19,14 +21,18 @@ import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ColorCollection;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
+import net.minecraft.world.level.material.FluidState;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.RegisterCauldronInteractionEvent;
+import net.neoforged.neoforge.registries.DeferredBlock;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.entity.DyedWaterCauldronBlockEntity;
 import net.theobl.worldofcolor.item.ModItems;
@@ -224,6 +230,8 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
         });
         event.register(dyedWater, ItemTags.CAULDRON_CAN_REMOVE_DYE, ColoredCauldronInteraction::dyeableItemIteration);
         Items.DYE.forEach(item -> event.register(dyedWater, item, ColoredCauldronInteraction::dyeInteraction));
+
+        event.registerToAll(ModItems.DYED_WATER_BUCKET.get(), ColoredCauldronInteraction::fillDyedWaterInteraction);
     }
 
     public static InteractionResult fillBucket(
@@ -262,6 +270,37 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
                 level.setBlockAndUpdate(pos, blockState);
                 level.playSound(null, pos, fillSound, SoundSource.BLOCKS, 1.0F, 1.0F);
                 level.gameEvent(null, GameEvent.FLUID_PICKUP, pos);
+            }
+
+            return InteractionResult.SUCCESS;
+        }
+    }
+
+    static InteractionResult fillDyedWaterInteraction(
+            BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, ItemStack itemInHand
+    ) {
+        if(isUnderWater(level, pos))
+            return InteractionResult.CONSUME;
+        else {
+            if (!level.isClientSide()) {
+                DyedItemColor dyedItemColor = itemInHand.getOrDefault(DataComponents.DYED_COLOR, new DyedItemColor(OverworldBiomes.NORMAL_WATER_COLOR));
+                Item itemUsed = itemInHand.getItem();
+                player.setItemInHand(hand, ItemUtils.createFilledResult(itemInHand, player, new ItemStack(Items.BUCKET)));
+                player.awardStat(Stats.FILL_CAULDRON);
+                player.awardStat(Stats.ITEM_USED.get(itemUsed));
+                BlockState newState = getColoredCauldron(
+                        state,
+                        ModBlocks.DYED_WATER_CAULDRON.get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, LayeredCauldronBlock.MAX_FILL_LEVEL),
+                        ModBlocks.COLORED_DYED_WATER_CAULDRONS
+                                .map(DeferredBlock::get)
+                                .map(b -> b.defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, LayeredCauldronBlock.MAX_FILL_LEVEL))
+                );
+                level.setBlockAndUpdate(pos, newState);
+                if(level.getBlockEntity(pos) instanceof DyedWaterCauldronBlockEntity blockEntity) {
+                    blockEntity.setWaterColor(dyedItemColor.rgb());
+                }
+                level.playSound(null, pos, SoundEvents.BUCKET_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+                level.gameEvent(null, GameEvent.FLUID_PLACE, pos);
             }
 
             return InteractionResult.SUCCESS;
@@ -329,5 +368,27 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
         } else {
             return InteractionResult.TRY_WITH_EMPTY_HAND;
         }
+    }
+
+    static BlockState getColoredCauldron(BlockState currentCauldron, BlockState uncoloredCauldron, ColorCollection<BlockState> coloredCauldron) {
+        for(DyeColor color : DyeColor.values()) {
+            if(currentCauldron.is(ModBlocks.COLORED_CAULDRONS.pick(color))) {
+                return coloredCauldron.pick(color);
+            } else if (currentCauldron.is(ModBlocks.COLORED_WATER_CAULDRONS.pick(color))) {
+                return coloredCauldron.pick(color);
+            } else if (currentCauldron.is(ModBlocks.COLORED_LAVA_CAULDRONS.pick(color))) {
+                return coloredCauldron.pick(color);
+            } else if (currentCauldron.is(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.pick(color))) {
+                return coloredCauldron.pick(color);
+            } else if (currentCauldron.is(ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(color))) {
+                return coloredCauldron.pick(color);
+            }
+        }
+        return uncoloredCauldron;
+    }
+
+    private static boolean isUnderWater(Level level, BlockPos pos) {
+        FluidState fluidState = level.getFluidState(pos.above());
+        return fluidState.is(FluidTags.WATER);
     }
 }

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_dye",
+  "dye": "#minecraft:dyes",
+  "group": "dyed_water_bucket",
+  "result": {
+    "id": "worldofcolor:dyed_water_bucket"
+  },
+  "target": [
+    "worldofcolor:dyed_water_bucket",
+    "minecraft:water_bucket"
+  ]
+}

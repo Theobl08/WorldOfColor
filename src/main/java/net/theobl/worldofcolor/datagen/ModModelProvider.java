@@ -8,12 +8,15 @@ import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.Material;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.worldgen.biome.OverworldBiomes;
 import net.minecraft.references.BlockItemIds;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.component.DyedItemColor;
@@ -177,5 +180,12 @@ public class ModModelProvider extends ModelProvider {
                 TextureMapping.getItemTexture(Items.POTION)
         );
         itemModels.itemModelOutput.accept(ModItems.DYED_WATER_BOTTLE.get(), ItemModelUtils.tintedModel(model, new Dye(ARGB.opaque(EMPTY_COLOR))));
+        itemModels.itemModelOutput.accept(ModItems.DYED_WATER_BUCKET.get(), ItemModelUtils.tintedModel(
+                itemModels.generateLayeredItem(
+                        ModItems.DYED_WATER_BUCKET.get(),
+                        TextureMapping.getItemTexture(Items.BUCKET),
+                        TextureMapping.getItemTexture(ModItems.DYED_WATER_BUCKET.get(), "_overlay")),
+                ItemModelGenerators.BLANK_LAYER,
+                new Dye(ARGB.opaque(OverworldBiomes.NORMAL_WATER_COLOR))));
     }
 }

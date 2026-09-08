@@ -101,10 +101,12 @@ public class ModCreativeModeTabs {
                                 }
                             }
                         }
+                        generateDyedWaterBucket(output);
                         generateDyedWaterBottle(output);
                         ModItems.ITEMS.getEntries().stream()
                                 .filter(i -> !i.getId().getPath().contains("rgb_") && !i.getId().getPath().contains("missingno"))
                                 .filter(i -> !i.is(ModItems.DYED_WATER_BOTTLE.getId()))
+                                .filter(i -> !i.is(ModItems.DYED_WATER_BUCKET.getId()))
                                 .map(DeferredHolder::get).forEach(output::accept);
                     }).build());
 
@@ -173,6 +175,15 @@ public class ModCreativeModeTabs {
             ItemStack stack = new ItemStack(ModItems.DYED_WATER_BOTTLE.get());
             stack.set(DataComponents.DYED_COLOR, new DyedItemColor(ARGB.transparent(color.getTextureDiffuseColor())));
             stack.set(DataComponents.ITEM_NAME, Component.translatable("item.worldofcolor." + color.getName() + "_water_bottle"));
+            output.accept(stack);
+        });
+    }
+
+    private static void generateDyedWaterBucket(CreativeModeTab.Output output) {
+        ModUtil.COLORS.forEach(color -> {
+            ItemStack stack = new ItemStack(ModItems.DYED_WATER_BUCKET.get());
+            stack.set(DataComponents.DYED_COLOR, new DyedItemColor(ARGB.transparent(color.getTextureDiffuseColor())));
+            stack.set(DataComponents.ITEM_NAME, Component.translatable("item.worldofcolor." + color.getName() + "_water_bucket"));
             output.accept(stack);
         });
     }

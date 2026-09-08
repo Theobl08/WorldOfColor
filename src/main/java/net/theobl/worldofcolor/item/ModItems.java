@@ -91,6 +91,11 @@ public class ModItems {
             createSimpleColored("item_frame"),
             (name, color) -> ITEMS.registerItem(name,p -> new ItemFrameItem(ModEntityType.COLORED_ITEM_FRAMES.pick(color).get(), p))
     );
+    public static final DeferredItem<Item> DYED_WATER_BUCKET = ITEMS.registerSimpleItem(
+            "dyed_water_bucket",
+            p -> p.stacksTo(1)
+                    .craftRemainder(Items.BUCKET)
+    );
     public static final DeferredItem<Item> DYED_WATER_BOTTLE = ITEMS.registerSimpleItem(
             "dyed_water_bottle",
             p -> p.stacksTo(1)
