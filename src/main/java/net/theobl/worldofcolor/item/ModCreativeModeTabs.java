@@ -95,7 +95,7 @@ public class ModCreativeModeTabs {
                                     output.accept(Blocks.RED_TULIP);
                                     output.accept(Blocks.ORANGE_TULIP);
                                 }
-                                output.accept(block.get());
+                                acceptWithoutThrowing(output, block.get());
                                 if(block.is(ModBlocks.MAGENTA_TULIP.getId())) {
                                     output.accept(Blocks.PINK_TULIP);
                                 }
@@ -107,7 +107,7 @@ public class ModCreativeModeTabs {
                                 .filter(i -> !i.getId().getPath().contains("rgb_") && !i.getId().getPath().contains("missingno"))
                                 .filter(i -> !i.is(ModItems.DYED_WATER_BOTTLE.getId()))
                                 .filter(i -> !i.is(ModItems.DYED_WATER_BUCKET.getId()))
-                                .map(DeferredHolder::get).forEach(output::accept);
+                                .map(DeferredHolder::get).forEach(i -> acceptWithoutThrowing(output, i));
                     }).build());
 
     public static final DeferredHolder<CreativeModeTab, CreativeModeTab> RGB_TAB = CREATIVE_MODE_TABS.register("rgb_tab",
@@ -122,14 +122,14 @@ public class ModCreativeModeTabs {
                                 .map(ItemLike::asItem)
                                 .filter(i -> i != Items.AIR)
                                 .filter(i -> i.isEnabled(parameters.enabledFeatures()))
-                                .forEach(output::accept);
+                                .forEach(i -> acceptWithoutThrowing(output, i));
                         ModItems.ITEMS.getEntries().stream()
                                 .filter(i -> i.getId().getPath().contains("rgb_"))
                                 .map(net.minecraft.core.Holder::value)
                                 .map(ItemLike::asItem)
                                 .filter(i -> i != Items.AIR)
                                 .filter(i -> i.isEnabled(parameters.enabledFeatures()))
-                                .forEach(output::accept);
+                                .forEach(i -> acceptWithoutThrowing(output, i));
                         ModBlocks.BLOCKS.getEntries().stream()
                                 .filter(i -> i.getId().getPath().contains("missingno"))
                                 .map(net.minecraft.core.Holder::value)
@@ -137,7 +137,7 @@ public class ModCreativeModeTabs {
                                 .filter(i -> i != Items.AIR)
                                 .filter(i -> i.isEnabled(parameters.enabledFeatures()))
                                 .forEach(item -> {
-                                    output.accept(item);
+                                    acceptWithoutThrowing(output, item);
                                     if(item == ModBlocks.MISSINGNO_CANDLE.asItem())
                                         generateMissingnoBanner(output, parameters.holders().lookupOrThrow(Registries.BANNER_PATTERN));
                                 });
@@ -147,7 +147,7 @@ public class ModCreativeModeTabs {
                                 .map(ItemLike::asItem)
                                 .filter(i -> i != Items.AIR)
                                 .filter(i -> i.isEnabled(parameters.enabledFeatures()))
-                                .forEach(output::accept);
+                                .forEach(i -> acceptWithoutThrowing(output, i));
                     })
                     .build());
 
@@ -186,6 +186,12 @@ public class ModCreativeModeTabs {
             stack.set(DataComponents.ITEM_NAME, Component.translatable("item.worldofcolor." + color.getName() + "_water_bucket"));
             output.accept(stack);
         });
+    }
+
+    private static void acceptWithoutThrowing(CreativeModeTab.Output output, ItemLike item) {
+        try {
+            output.accept(item);
+        } catch (Exception _) {}
     }
 
     public static void register(IEventBus eventBus) {
