@@ -16,7 +16,8 @@
       "worldofcolor:block/potone/step4",
       "worldofcolor:block/potone/step5",
       "worldofcolor:block/potone/step6"
-    ]
+    ],
+    "subtitle": "subtitles.block.generic.fall"
   },
   "block.potone.hit": {
     "sounds": [

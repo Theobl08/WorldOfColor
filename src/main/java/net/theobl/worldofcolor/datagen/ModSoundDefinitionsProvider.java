@@ -15,7 +15,7 @@ public class ModSoundDefinitionsProvider extends SoundDefinitionsProvider {
         this.add(ModSoundEvents.POTONE_BREAK, definition().subtitle("subtitles.block.generic.break")
                 .with(sound(WorldOfColor.asResource("block/potone/break1")), sound(WorldOfColor.asResource("block/potone/break2")),
                         sound(WorldOfColor.asResource("block/potone/break3")), sound(WorldOfColor.asResource("block/potone/break4"))));
-        this.add(ModSoundEvents.POTONE_FALL, definition()
+        this.add(ModSoundEvents.POTONE_FALL, definition().subtitle("subtitles.block.generic.fall")
                 .with(sound(WorldOfColor.asResource("block/potone/step1")),
                         sound(WorldOfColor.asResource("block/potone/step2")),
                         sound(WorldOfColor.asResource("block/potone/step3")),
