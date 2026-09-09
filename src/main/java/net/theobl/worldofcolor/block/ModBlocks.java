@@ -1,16 +1,12 @@
 package net.theobl.worldofcolor.block;
 
 import net.minecraft.core.cauldron.CauldronInteractions;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.particles.ColorParticleOption;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.util.Util;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.component.ItemContainerContents;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
@@ -384,7 +380,7 @@ public class ModBlocks {
     public static final ColorCollection<DeferredBlock<Block>> POTTED_COLORED_SAPLINGS = COLORED_SAPLINGS.map(ModBlocks::registerPottedFlowerBlock);
     public static final ColorCollection<DeferredBlock<FlowerPotBlock>> COLORED_FLOWER_POTS = registerColored(
             "flower_pot",
-            p -> new FlowerPotBlock(null, () -> Blocks.AIR, p),
+            p -> new FlowerPotBlock(p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.FLOWER_POT)
     );
     public static final Map<ResourceKey<Block>, ColorCollection<DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
@@ -622,13 +618,11 @@ public class ModBlocks {
     }
 
     private static DeferredBlock<Block> registerPottedFlowerBlock(DeferredBlock<? extends Block> flower) {
-        DeferredBlock<Block> block = BLOCKS.registerBlock(
+        return BLOCKS.registerBlock(
                 "potted_" + name(flower),
                 p -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, flower, p),
                 p -> p.instabreak().noOcclusion().pushReaction(PushReaction.DESTROY)
         );
-        ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(flower.getId(), block);
-        return block;
     }
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends T> block, Supplier<BlockBehaviour.Properties> properties) {
