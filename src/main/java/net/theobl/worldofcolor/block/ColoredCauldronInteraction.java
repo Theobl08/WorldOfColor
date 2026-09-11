@@ -20,6 +20,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.component.DyedItemColor;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -149,20 +150,28 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
         event.register(dyedWater, Items.LAVA_BUCKET, CauldronInteractions::fillLavaInteraction);
         event.register(dyedWater, Items.WATER_BUCKET, CauldronInteractions::fillWaterInteraction);
         event.register(dyedWater, Items.POWDER_SNOW_BUCKET, CauldronInteractions::fillPowderSnowInteraction);
-        event.register(dyedWater,
-                Items.BUCKET,
-                (state, level, pos, player, hand, itemInHand) -> fillBucket(
-                        state,
-                        level,
-                        pos,
-                        player,
-                        hand,
-                        itemInHand,
-                        new ItemStack(Items.WATER_BUCKET),
-                        s -> s.getValue(LayeredCauldronBlock.LEVEL) == 3,
-                        SoundEvents.BUCKET_FILL
-                )
-        );
+        event.register(dyedWater, Items.BUCKET, (state, level, pos, player, hand, itemInHand) -> {
+            Predicate<BlockState> canFill = s -> s.getValue(LayeredCauldronBlock.LEVEL) == 3;
+            if (!canFill.test(state)) {
+                return InteractionResult.TRY_WITH_EMPTY_HAND;
+            } else {
+                if (!level.isClientSide()) {
+                    Item item = itemInHand.getItem();
+                    ItemStack newItem = new ItemStack(ModItems.DYED_WATER_BUCKET.get());
+                    if(level.getBlockEntity(pos) instanceof DyedWaterCauldronBlockEntity cauldronBlockEntity) {
+                        newItem.set(DataComponents.DYED_COLOR, new DyedItemColor(ARGB.transparent(cauldronBlockEntity.getWaterColor())));
+                    }
+                    player.setItemInHand(hand, ItemUtils.createFilledResult(itemInHand, player, newItem));
+                    player.awardStat(Stats.USE_CAULDRON);
+                    player.awardStat(Stats.ITEM_USED.get(item));
+                    level.setBlockAndUpdate(pos, getColoredCauldron(state, Blocks.CAULDRON.defaultBlockState(), ModBlocks.COLORED_CAULDRONS.map(DeferredBlock::get).map(Block::defaultBlockState)));
+                    level.playSound(null, pos, SoundEvents.BUCKET_FILL, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    level.gameEvent(null, GameEvent.FLUID_PICKUP, pos);
+                }
+
+                return InteractionResult.SUCCESS;
+            }
+        });
         event.register(dyedWater,
                 Items.GLASS_BOTTLE,
                 (state, level, pos, player, hand, itemInHand) -> {
@@ -240,34 +249,20 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
             BlockPos pos,
             Player player,
             InteractionHand hand,
-            ItemStack emptyStack,
-            ItemStack filledStack,
-            Predicate<BlockState> statePredicate,
+            ItemStack itemInHand,
+            ItemStack newItem,
+            Predicate<BlockState> canFill,
             SoundEvent fillSound
     ) {
-        if (!statePredicate.test(state)) {
+        if (!canFill.test(state)) {
             return InteractionResult.TRY_WITH_EMPTY_HAND;
         } else {
             if (!level.isClientSide()) {
-                BlockState blockState = Blocks.CAULDRON.defaultBlockState();
-                for (DyeColor color : ModUtil.COLORS) {
-                    if(state.is(ModBlocks.COLORED_WATER_CAULDRONS.pick(color))) {
-                        blockState = ModBlocks.COLORED_CAULDRONS.pick(color).get().defaultBlockState();
-                    }
-
-                    else if(state.is(ModBlocks.COLORED_LAVA_CAULDRONS.pick(color))) {
-                        blockState = ModBlocks.COLORED_CAULDRONS.pick(color).get().defaultBlockState();
-                    }
-
-                    else if(state.is(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.pick(color))) {
-                        blockState = ModBlocks.COLORED_CAULDRONS.pick(color).get().defaultBlockState();
-                    }
-                }
-                Item item = emptyStack.getItem();
-                player.setItemInHand(hand, ItemUtils.createFilledResult(emptyStack, player, filledStack));
+                Item item = itemInHand.getItem();
+                player.setItemInHand(hand, ItemUtils.createFilledResult(itemInHand, player, newItem));
                 player.awardStat(Stats.USE_CAULDRON);
                 player.awardStat(Stats.ITEM_USED.get(item));
-                level.setBlockAndUpdate(pos, blockState);
+                level.setBlockAndUpdate(pos, getColoredCauldron(state, Blocks.CAULDRON.defaultBlockState(), ModBlocks.COLORED_CAULDRONS.map(DeferredBlock::get).map(Block::defaultBlockState)));
                 level.playSound(null, pos, fillSound, SoundSource.BLOCKS, 1.0F, 1.0F);
                 level.gameEvent(null, GameEvent.FLUID_PICKUP, pos);
             }
