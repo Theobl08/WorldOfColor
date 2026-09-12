@@ -21,6 +21,7 @@ import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredRegister;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.grower.ModTreeGrower;
+import net.theobl.worldofcolor.fluids.ModFluids;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.sounds.ModSoundType;
 import net.theobl.worldofcolor.util.ColorCollectionUtil;
@@ -393,6 +394,11 @@ public class ModBlocks {
             "redstone_lamp",
             RedstoneLampBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.REDSTONE_LAMP)
+    );
+    public static final DeferredBlock<LiquidBlock> DYED_WATER = BLOCKS.registerBlock(
+            "dyed_water",
+            p -> new DyedWaterLiquidBlock(ModFluids.DYED_WATER.get(), p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)
     );
     public static final DeferredBlock<Block> DYED_WATER_CAULDRON = BLOCKS.registerBlock(
             "dyed_water_cauldron",

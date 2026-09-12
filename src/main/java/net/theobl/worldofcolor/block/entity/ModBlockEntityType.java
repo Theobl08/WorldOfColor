@@ -31,11 +31,17 @@ public class ModBlockEntityType {
             ModBlocks.RGB_WALL_BANNER
     );
 
+    public static final Supplier<BlockEntityType<DyedWaterLiquidBlockEntity>> DYED_WATER = register(
+            "dyed_water",
+            DyedWaterLiquidBlockEntity::new,
+            ModBlocks.DYED_WATER
+    );
+
     public static final Supplier<BlockEntityType<DyedWaterCauldronBlockEntity>> DYED_WATER_CAULDRON = register(
             "dyed_water_cauldron",
             DyedWaterCauldronBlockEntity::new,
             Util.copyAndAdd(ModBlocks.COLORED_DYED_WATER_CAULDRONS.asList(), ModBlocks.DYED_WATER_CAULDRON).toArray(DeferredBlock[]::new)
-        );
+    );
 
     private static <T extends BlockEntity> Supplier<BlockEntityType<T>> register(String name, BlockEntityType.BlockEntitySupplier<T> factory, DeferredBlock<?>... validBlocks) {
         return BLOCK_ENTITY_TYPES.register(name,

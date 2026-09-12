@@ -5,18 +5,24 @@ import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockTintSources;
 import net.minecraft.client.model.object.boat.BoatModel;
+import net.minecraft.client.renderer.BiomeColors;
+import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.client.renderer.block.BuiltInBlockModels;
+import net.minecraft.client.renderer.block.FluidModel;
 import net.minecraft.client.renderer.blockentity.BannerRenderer;
 import net.minecraft.client.renderer.blockentity.DecoratedPotRenderer;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ItemFrameRenderer;
+import net.minecraft.client.resources.model.sprite.Material;
+import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.references.BlockItemIds;
 import net.minecraft.resources.Identifier;
 import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
+import net.minecraft.util.ARGB;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.BannerBlock;
@@ -24,7 +30,10 @@ import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.DecoratedPotBlock;
 import net.minecraft.world.level.block.WallBannerBlock;
 import net.minecraft.world.level.block.entity.BlockEntityTypes;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BedPart;
+import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.phys.BlockHitResult;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -36,14 +45,25 @@ import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
+import net.neoforged.neoforge.client.fluid.FluidTintSource;
+import net.neoforged.neoforge.client.fluid.FluidTintSources;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.world.poi.ExtendPoiTypesEvent;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
+import net.neoforged.neoforge.fluids.FluidStack;
+import net.neoforged.neoforge.fluids.FluidType;
+import net.neoforged.neoforge.fluids.RegisterCauldronFluidContentEvent;
 import net.neoforged.neoforge.transfer.item.VanillaContainerWrapper;
+import net.theobl.worldofcolor.block.DyedWaterCauldronBlock;
+import net.theobl.worldofcolor.block.DyedWaterLiquidBlock;
 import net.theobl.worldofcolor.block.ModBlocks;
+import net.theobl.worldofcolor.block.entity.DyedWaterCauldronBlockEntity;
+import net.theobl.worldofcolor.block.entity.DyedWaterLiquidBlockEntity;
 import net.theobl.worldofcolor.block.entity.ModBlockEntityType;
 import net.theobl.worldofcolor.client.renderer.ModSpriteId;
 import net.theobl.worldofcolor.client.renderer.blockentity.ColoredBannerRenderer;
@@ -55,11 +75,13 @@ import net.theobl.worldofcolor.client.renderer.special.ColoredBannerSpecialRende
 import net.theobl.worldofcolor.client.renderer.special.ColoredDecoratedPotSpecialRenderer;
 import net.theobl.worldofcolor.entity.ModEntityType;
 import net.theobl.worldofcolor.client.model.geom.ModModelLayers;
+import net.theobl.worldofcolor.fluids.ModFluids;
 import net.theobl.worldofcolor.item.ModCreativeModeTabs;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.item.crafting.ModRecipeSerializer;
 import net.theobl.worldofcolor.sounds.ModSoundEvents;
 import net.theobl.worldofcolor.util.ModUtil;
+import org.jspecify.annotations.Nullable;
 import org.slf4j.Logger;
 
 import java.util.List;
@@ -85,6 +107,7 @@ public class WorldOfColor {
         ModEntityType.register(modEventBus);
         // Register the Deferred Register to the mod event bus so items get registered
         ModItems.register(modEventBus);
+        ModFluids.register(modEventBus);
         ModRecipeSerializer.register(modEventBus);
         // Register the Deferred Register to the mod event bus so tabs get registered
         ModCreativeModeTabs.register(modEventBus);
@@ -99,6 +122,7 @@ public class WorldOfColor {
         modEventBus.addListener(this::addBlockToBlockEntity);
         modEventBus.addListener(this::extendPoiTypes);
         modEventBus.addListener(this::registerCapabilities);
+        modEventBus.addListener(this::registerCauldronFluidContents);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         //modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -146,6 +170,10 @@ public class WorldOfColor {
 
     public void registerCapabilities(RegisterCapabilitiesEvent event) {
         event.registerBlockEntity(Capabilities.Item.BLOCK, ModBlockEntityType.COLORED_DECORATED_POT.get(), (container, side) -> VanillaContainerWrapper.of(container));
+    }
+
+    public void registerCauldronFluidContents(RegisterCauldronFluidContentEvent event) {
+        event.register(ModBlocks.DYED_WATER_CAULDRON.get(), ModFluids.DYED_WATER.get(), FluidType.BUCKET_VOLUME, DyedWaterCauldronBlock.LEVEL);
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call
@@ -236,6 +264,37 @@ public class WorldOfColor {
                                     new ColoredBannerSpecialRenderer.Unbaked(BannerBlock.AttachmentType.WALL), BannerRenderer.TRANSFORMATIONS.wallTransformation(facing)
                             )
                     ), ModBlocks.RGB_WALL_BANNER.get());
+        }
+
+        @SubscribeEvent
+        public static void registerFluidModels(RegisterFluidModelsEvent event) {
+            event.register(
+                    new FluidModel.Unbaked(
+                            new Material(Identifier.withDefaultNamespace("block/water_still")),
+                            new Material(Identifier.withDefaultNamespace("block/water_flow")),
+                            new Material(Identifier.withDefaultNamespace("block/water_overlay")),
+                            new FluidTintSource() {
+                                @Override
+                                public int color(FluidState state) {
+                                    if(Minecraft.getInstance().hitResult instanceof BlockHitResult hitResult) {
+                                        if(Minecraft.getInstance().level != null && Minecraft.getInstance().level.getBlockEntity(hitResult.getBlockPos()) instanceof DyedWaterCauldronBlockEntity blockEntity) {
+                                            return ARGB.opaque(blockEntity.getWaterColor());
+                                        }
+                                    }
+                                    return FluidTintSources.water().color(state);
+                                }
+
+                                @Override
+                                public int colorInWorld(FluidState fluidState, BlockState blockState, BlockAndTintGetter level, BlockPos pos) {
+                                    if (level.getBlockEntity(pos) instanceof DyedWaterLiquidBlockEntity blockEntity) {
+                                        return ARGB.opaque(blockEntity.getColor().rgb());
+                                    }
+                                    return FluidTintSource.super.colorInWorld(fluidState, blockState, level, pos);
+                                }
+                            }),
+                    ModFluids.DYED_WATER,
+                    ModFluids.FLOWING_DYED_WATER
+            );
         }
 
         @SubscribeEvent

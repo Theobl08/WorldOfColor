@@ -2,15 +2,13 @@ package net.theobl.worldofcolor.item;
 
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.worldgen.biome.OverworldBiomes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.component.BlockItemStateProperties;
-import net.minecraft.world.item.component.BundleContents;
-import net.minecraft.world.item.component.Consumables;
-import net.minecraft.world.item.component.ItemContainerContents;
+import net.minecraft.world.item.component.*;
 import net.minecraft.world.item.equipment.Equippable;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ColorCollection;
@@ -23,6 +21,7 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.entity.ModEntityType;
+import net.theobl.worldofcolor.fluids.ModFluids;
 import net.theobl.worldofcolor.item.equipement.ModEquipmentAssets;
 import net.theobl.worldofcolor.util.ColorCollectionUtil;
 
@@ -91,8 +90,9 @@ public class ModItems {
             createSimpleColored("item_frame"),
             (name, color) -> ITEMS.registerItem(name,p -> new ItemFrameItem(ModEntityType.COLORED_ITEM_FRAMES.pick(color).get(), p))
     );
-    public static final DeferredItem<Item> DYED_WATER_BUCKET = ITEMS.registerSimpleItem(
+    public static final DeferredItem<Item> DYED_WATER_BUCKET = ITEMS.registerItem(
             "dyed_water_bucket",
+            p -> new DyedWaterBucketItem(ModFluids.DYED_WATER.get(), p),
             p -> p.stacksTo(1)
                     .craftRemainder(Items.BUCKET)
     );

@@ -49,7 +49,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 this.add(block.get(), this::createShulkerBoxDrop);
             } else if(block.get() instanceof BedBlock) {
                 this.add(block.get(), bed -> this.createSinglePropConditionTable(bed, BedBlock.PART, BedPart.HEAD));
-            } else if(!(block.get() instanceof AbstractCandleBlock))
+            } else if(!(block.get() instanceof AbstractCandleBlock) && block.get().getLootTable().isPresent())
                 this.dropSelf(block.get());
         }
 

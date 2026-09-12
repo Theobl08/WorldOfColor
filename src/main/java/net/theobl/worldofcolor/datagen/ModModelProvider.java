@@ -163,6 +163,7 @@ public class ModModelProvider extends ModelProvider {
         coloredBlockModels.createShulkerBox(ModBlocks.MISSINGNO_SHULKER_BOX.get(), WorldOfColor.asResource("shulker_missingno"));
         coloredBlockModels.createBed(ModBlocks.MISSINGNO_BED.get());
 
+        blockModels.createNonTemplateModelBlock(ModBlocks.DYED_WATER.get());
         coloredBlockModels.copyBlockModel(Blocks.CAULDRON, ModBlocks.DYED_WATER_CAULDRON.get());
 
         ModItems.COLORED_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
