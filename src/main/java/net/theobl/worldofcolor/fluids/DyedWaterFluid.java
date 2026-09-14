@@ -33,14 +33,14 @@ public abstract class DyedWaterFluid extends BaseFlowingFluid {
                 if (belowFluid.canBeReplacedWith(level, belowPos, newBelowFluidType, Direction.DOWN)
                         && canHoldSpecificFluid(level, belowPos, belowState, newBelowFluidType)) {
                     this.spreadTo(level, belowPos, belowState, Direction.DOWN, newBelowFluid);
+                    if (this.sourceNeighborCount(level, pos) >= 3) {
+                        this.spreadToSides(level, pos, fluidState, state);
+                    }
+
                     if(level.getBlockEntity(pos) instanceof DyedWaterLiquidBlockEntity blockEntity
                             && level.getBlockEntity(belowPos) instanceof DyedWaterLiquidBlockEntity belowBlockEntity
                             && belowBlockEntity.getColor() == DyedWaterLiquidBlockEntity.NORMAL_WATER_COLOR) {
                         belowBlockEntity.setColor(blockEntity.getColor());
-                    }
-
-                    if (this.sourceNeighborCount(level, pos) >= 3) {
-                        this.spreadToSides(level, pos, fluidState, state);
                     }
 
                     return;
