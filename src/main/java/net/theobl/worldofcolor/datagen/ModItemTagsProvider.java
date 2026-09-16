@@ -96,6 +96,7 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
             this.copy(ModTags.Blocks.COLORED_LOGS.pick(color), ModTags.Items.COLORED_LOGS.pick(color));
         }
 
+        this.tag(ItemTags.CUSHIONS).add(ModItems.RGB_CUSHION).add(ModItems.MISSINGNO_CUSHION);
         this.tag(ItemTags.BUNDLES).add(ModItems.RGB_BUNDLE).add(ModItems.MISSINGNO_BUNDLE);
         this.tag(ItemTags.HARNESSES).add(ModItems.RGB_HARNESS).add(ModItems.MISSINGNO_HARNESS);
         this.tag(Tags.Items.DYES).add(ModItems.RGB_DYE);

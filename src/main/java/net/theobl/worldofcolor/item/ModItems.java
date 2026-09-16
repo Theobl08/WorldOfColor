@@ -3,7 +3,6 @@ package net.theobl.worldofcolor.item;
 import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.data.worldgen.biome.OverworldBiomes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.tags.EntityTypeTags;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -16,7 +15,6 @@ import net.minecraft.world.level.block.ColorCollection;
 import net.minecraft.world.level.block.CopperGolemStatueBlock;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.level.block.entity.PotDecorations;
-import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider;
 import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -114,6 +112,11 @@ public class ModItems {
             p -> new BlockItem(ModBlocks.RGB_SHULKER_BOX.get(), p),
             p -> p.stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix()
     );
+    public static final DeferredItem<Item> RGB_CUSHION = ITEMS.registerItem(
+            "rgb_cushion",
+            p -> new ModCushionItem(ModEntityType.RGB_CUSHION.get(), p),
+            p -> p.stacksTo(16).cookingFuel(ContextIntProviders.COOKING_TIME_WOOL_SLABS)
+    );
     public static final DeferredItem<Item> RGB_DYE = ITEMS.registerItem("rgb_dye", RgbDyeItem::new);
     public static final DeferredItem<Item> RGB_BUNDLE = ITEMS.registerItem(
             "rgb_bundle",
@@ -142,6 +145,11 @@ public class ModItems {
             "missingno_shulker_box",
             p -> new BlockItem(ModBlocks.MISSINGNO_SHULKER_BOX.get(), p),
             p -> p.stacksTo(1).component(DataComponents.CONTAINER, ItemContainerContents.EMPTY).useBlockDescriptionPrefix()
+    );
+    public static final DeferredItem<Item> MISSINGNO_CUSHION = ITEMS.registerItem(
+            "missingno_cushion",
+            p -> new ModCushionItem(ModEntityType.MISSINGNO_CUSHION.get(), p),
+            p -> p.stacksTo(16).cookingFuel(ContextIntProviders.COOKING_TIME_WOOL_SLABS)
     );
     public static final DeferredItem<Item> MISSINGNO_BUNDLE = ITEMS.registerItem(
             "missingno_bundle",

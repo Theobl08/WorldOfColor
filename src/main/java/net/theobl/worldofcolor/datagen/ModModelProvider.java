@@ -166,9 +166,11 @@ public class ModModelProvider extends ModelProvider {
         ModItems.COLORED_CHEST_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
         ModItems.COLORED_ITEM_FRAMES.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
         ModItems.COLORED_POTATO_PEELS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
+        itemModels.generateFlatItem(ModItems.RGB_CUSHION.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.RGB_DYE.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateFlatItem(ModItems.RGB_HARNESS.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateBundleModels(ModItems.RGB_BUNDLE.get());
+        itemModels.generateFlatItem(ModItems.MISSINGNO_CUSHION.get(), ModelTemplates.FLAT_ITEM);
         itemModels.generateBundleModels(ModItems.MISSINGNO_BUNDLE.get());
         itemModels.generateFlatItem(ModItems.MISSINGNO_HARNESS.get(), ModelTemplates.FLAT_ITEM);
         Identifier model = itemModels.generateLayeredItem(

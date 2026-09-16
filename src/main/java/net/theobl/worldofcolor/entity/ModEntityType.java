@@ -1,7 +1,9 @@
 package net.theobl.worldofcolor.entity;
 
+import com.azure.json.implementation.jackson.core.TreeNode;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.entity.decoration.Cushion;
 import net.minecraft.world.entity.vehicle.boat.Boat;
 import net.minecraft.world.entity.vehicle.boat.ChestBoat;
 import net.minecraft.world.item.DyeColor;
@@ -46,6 +48,27 @@ public class ModEntityType {
                     .eyeHeight(0.0F)
                     .clientTrackingRange(10)
                     .updateInterval(Integer.MAX_VALUE))
+    );
+
+    public static final DeferredHolder<EntityType<?>, EntityType<Cushion>> RGB_CUSHION = ENTITY_TYPES.registerEntityType(
+            "rgb_cushion",
+            RgbCushion::new,
+            MobCategory.MISC,
+            b -> b.noLootTable()
+                    .sized(1.0F, 0.25F)
+                    .clientTrackingRange(10)
+                    .updateInterval(Integer.MAX_VALUE)
+                    .dontTrackDeltas()
+    );
+    public static final DeferredHolder<EntityType<?>, EntityType<Cushion>> MISSINGNO_CUSHION = ENTITY_TYPES.registerEntityType(
+            "missingno_cushion",
+            MissingnoCushion::new,
+            MobCategory.MISC,
+            b -> b.noLootTable()
+                    .sized(1.0F, 0.25F)
+                    .clientTrackingRange(10)
+                    .updateInterval(Integer.MAX_VALUE)
+                    .dontTrackDeltas()
     );
 
     private static EntityType.EntityFactory<Boat> boatFactory(Supplier<Item> boatItemGetter) {

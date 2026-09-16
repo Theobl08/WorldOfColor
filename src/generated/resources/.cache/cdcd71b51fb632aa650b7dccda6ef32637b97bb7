@@ -1,4 +1,4 @@
-// 26.3	2026-09-16T15:54:28.1295452	Tags for minecraft:item mod id worldofcolor
+// 26.3	2026-09-16T20:25:41.5976299	Tags for minecraft:item mod id worldofcolor
 db245252eb0be16ddfea2e7c10c1b2c19fc2734b data/c/tags/item/concretes.json
 0b220826d89647f5e377b0df732396ff1f4c9d35 data/c/tags/item/concrete_powders.json
 a1ef82cc6d6804e7a7a65800c859abbae4d821e9 data/c/tags/item/dyed/black.json
@@ -38,6 +38,7 @@ be430eb53879c08fe5ae5105bacbb1a2c9f23bcf data/minecraft/tags/item/boats.json
 0b220826d89647f5e377b0df732396ff1f4c9d35 data/minecraft/tags/item/concrete_powders.json
 3180cf7b84a3cb5c0c21c2c95425ba6abc360973 data/minecraft/tags/item/copper_chests.json
 c4e0f1d02fe632b70e8ca9ca538e652b890c0df6 data/minecraft/tags/item/copper_golem_statues.json
+1591386911b8be3f5c7c6a39ef1d8d3653f1f520 data/minecraft/tags/item/cushions.json
 3b6aad40c7748b760ec5e4baa8c6fce14b0c0a78 data/minecraft/tags/item/doors.json
 980cbcedf631b76124da987c44a2b5e21c0112c8 data/minecraft/tags/item/fence_gates.json
 1faef4e7326419d07dbcad3cbe8b7f5af0d930fc data/minecraft/tags/item/hanging_signs.json

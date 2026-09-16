@@ -84,6 +84,8 @@ public class ResourceMetadataProvider implements DataProvider {
         this.addSimpleRGB(ModBlocks.RGB_CANDLE.getId().withPrefix("block/"));
         this.addSimpleRGB(ModBlocks.RGB_CANDLE.getId().withPrefix("item/"));
         this.addSimpleRGB(WorldOfColor.asResource("entity/banner/rgb"));
+        this.addSimpleRGB(ModItems.RGB_CUSHION.getId().withPrefix("item/"));
+        this.addSimpleRGB(WorldOfColor.asResource("entity/cushion/rgb_cushion"));
         this.addSimpleRGB(ModItems.RGB_BUNDLE.getId().withPrefix("item/"));
         this.addSimpleRGB(ModItems.RGB_HARNESS.getId().withPrefix("item/"));
         this.addSimpleRGB(ModItems.RGB_HARNESS.getId().withPrefix("entity/equipment/happy_ghast_body/"));

@@ -45,6 +45,8 @@ import net.theobl.worldofcolor.client.renderer.ModSpriteId;
 import net.theobl.worldofcolor.client.renderer.blockentity.ColoredBannerRenderer;
 import net.theobl.worldofcolor.client.renderer.blockentity.ColoredDecoratedPotRenderer;
 import net.theobl.worldofcolor.client.renderer.blockentity.DyedWaterCauldronRenderer;
+import net.theobl.worldofcolor.client.renderer.entity.MissingnoCushionRenderer;
+import net.theobl.worldofcolor.client.renderer.entity.RgbCushionRenderer;
 import net.theobl.worldofcolor.client.renderer.gui.GuiColoredBannerResultRenderer;
 import net.theobl.worldofcolor.client.renderer.gui.state.GuiColoredBannerResultRenderState;
 import net.theobl.worldofcolor.client.renderer.special.ColoredBannerSpecialRenderer;
@@ -79,6 +81,9 @@ public class WorldOfColorClient {
 
     @SubscribeEvent
     public static void registerBlockEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
+        event.registerEntityRenderer(ModEntityType.RGB_CUSHION.get(), RgbCushionRenderer::new);
+        event.registerEntityRenderer(ModEntityType.MISSINGNO_CUSHION.get(), MissingnoCushionRenderer::new);
+
         event.registerBlockEntityRenderer(ModBlockEntityType.COLORED_DECORATED_POT.get(), ColoredDecoratedPotRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntityType.RGB_BANNER.get(), ColoredBannerRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntityType.DYED_WATER_CAULDRON.get(), DyedWaterCauldronRenderer::new);
