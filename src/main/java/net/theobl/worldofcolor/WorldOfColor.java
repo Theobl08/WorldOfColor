@@ -2,11 +2,16 @@ package net.theobl.worldofcolor;
 
 import com.google.common.collect.ImmutableSet;
 import com.mojang.logging.LogUtils;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.ai.village.poi.PoiTypes;
+import net.minecraft.world.item.component.Compostable;
+import net.minecraft.world.item.component.CookingFuel;
 import net.minecraft.world.level.block.BedBlock;
 import net.minecraft.world.level.block.entity.BlockEntityTypes;
 import net.minecraft.world.level.block.state.properties.BedPart;
+import net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProviders;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.ModContainer;
@@ -18,6 +23,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.world.poi.ExtendPoiTypesEvent;
 import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
 import net.neoforged.neoforge.event.BuildCreativeModeTabContentsEvent;
+import net.neoforged.neoforge.event.ModifyDefaultComponentsEvent;
 import net.neoforged.neoforge.event.server.ServerStartingEvent;
 import net.neoforged.neoforge.fluids.FluidType;
 import net.neoforged.neoforge.fluids.RegisterCauldronFluidContentEvent;
@@ -71,6 +77,7 @@ public class WorldOfColor {
         modEventBus.addListener(this::extendPoiTypes);
         modEventBus.addListener(this::registerCapabilities);
         modEventBus.addListener(this::registerCauldronFluidContents);
+        modEventBus.addListener(this::modifyDefaultComponents);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         //modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -122,6 +129,17 @@ public class WorldOfColor {
 
     public void registerCauldronFluidContents(RegisterCauldronFluidContentEvent event) {
         event.register(ModBlocks.DYED_WATER_CAULDRON.get(), ModFluids.DYED_WATER.get(), FluidType.BUCKET_VOLUME, DyedWaterCauldronBlock.LEVEL);
+    }
+
+    public void modifyDefaultComponents(ModifyDefaultComponentsEvent event) {
+        ModBlocks.COLORED_LEAVES.forEach(block ->
+                event.modify(block, ((components, context, item) ->
+                        components.set(DataComponents.COMPOSTABLE, new Compostable(ContextIntProviders.COMPOSTABLE_LOW)))));
+        ModBlocks.COLORED_SAPLINGS.forEach(block ->
+                event.modify(block, ((components, context, item) -> {
+                    components.set(DataComponents.COMPOSTABLE, new Compostable(ContextIntProviders.COMPOSTABLE_LOW));
+                    components.set(DataComponents.COOKING_FUEL, new CookingFuel(ContextIntProviders.COOKING_TIME_DRY_PLANTS, ContextFloatProviders.COOKING_DEFAULT_SPEED_MULTIPLIER));
+                })));
     }
 
     // You can use SubscribeEvent and let the Event Bus discover methods to call

@@ -16,6 +16,8 @@ import net.minecraft.world.level.block.ColorCollection;
 import net.minecraft.world.level.block.CopperGolemStatueBlock;
 import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.level.block.entity.PotDecorations;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProvider;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
@@ -36,25 +38,25 @@ public class ModItems {
             createSimpleColored("sign"),
             (name, color) -> ITEMS.registerItem(name,
                     p -> new StandingAndWallBlockItem(ModBlocks.COLORED_SIGNS.pick(color).get(), ModBlocks.COLORED_WALL_SIGNS.pick(color).get(), Direction.DOWN, p),
-                    p -> p.stacksTo(16).useBlockDescriptionPrefix().signText())
+                    p -> p.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_ITEMS_LARGE).stacksTo(16).useBlockDescriptionPrefix().signText())
     );
     public static final ColorCollection<DeferredItem<Item>> COLORED_HANGING_SIGNS = ColorCollectionUtil.register(
             createSimpleColored("hanging_sign"),
             (name, color) -> ITEMS.registerItem(name,
                     p -> new HangingSignItem(ModBlocks.COLORED_HANGING_SIGNS.pick(color).get(), ModBlocks.COLORED_WALL_HANGING_SIGNS.pick(color).get(), p),
-                    p -> p.stacksTo(16).useBlockDescriptionPrefix().signText())
+                    p -> p.cookingFuel(ContextIntProviders.COOKING_TIME_HANGING_SIGNS).stacksTo(16).useBlockDescriptionPrefix().signText())
     );
     public static final ColorCollection<DeferredItem<Item>> COLORED_BOATS = ColorCollectionUtil.register(
             createSimpleColored("boat"),
             (name, color) -> ITEMS.registerItem(name,
                     p -> new BoatItem(ModEntityType.COLORED_BOATS.pick(color).get(), p),
-                    p -> p.stacksTo(1))
+                    p -> p.cookingFuel(ContextIntProviders.COOKING_TIME_BOATS).stacksTo(1))
     );
     public static final ColorCollection<DeferredItem<Item>> COLORED_CHEST_BOATS = ColorCollectionUtil.register(
             createSimpleColored("chest_boat"),
             (name, color) -> ITEMS.registerItem(name,
                     p -> new BoatItem(ModEntityType.COLORED_CHEST_BOATS.pick(color).get(), p),
-                    p -> p.stacksTo(1))
+                    p -> p.cookingFuel(ContextIntProviders.COOKING_TIME_BOATS).stacksTo(1))
     );
     public static final ColorCollection<DeferredItem<Item>> COLORED_COPPER_GOLEM_STATUES = ColorCollectionUtil.register(
             createSimpleColored("copper_golem_statue"),
@@ -105,7 +107,7 @@ public class ModItems {
     );
     public static final ColorCollection<DeferredItem<Item>> COLORED_POTATO_PEELS = ColorCollectionUtil.register(
             createSimpleColored("potato_peels"),
-            (name, color) -> ITEMS.registerSimpleItem(name, p -> p.food(Foods.POTATO))
+            (name, color) -> ITEMS.registerSimpleItem(name, p -> p.food(Foods.POTATO).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM))
     );
     public static final DeferredItem<BlockItem> RGB_SHULKER_BOX = ITEMS.registerItem(
             "rgb_shulker_box",
@@ -121,7 +123,7 @@ public class ModItems {
     public static final DeferredItem<Item> RGB_BANNER = ITEMS.registerItem(
             "rgb_banner",
             p -> new BannerItem(ModBlocks.RGB_BANNER.get(), ModBlocks.RGB_WALL_BANNER.get(), p),
-            p -> p.stacksTo(16).component(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY).useBlockDescriptionPrefix()
+            p -> p.cookingFuel(ContextIntProviders.COOKING_TIME_WOOD_BLOCKS).stacksTo(16).component(DataComponents.BANNER_PATTERNS, BannerPatternLayers.EMPTY).useBlockDescriptionPrefix()
     );
     public static final DeferredItem<Item> RGB_HARNESS = ITEMS.registerSimpleItem(
             "rgb_harness",
