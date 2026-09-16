@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:pink_slab"
+        "recipes": "worldofcolor:pink_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -10,6 +10,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
+import net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -137,7 +138,7 @@ public class ModBlocks {
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_LEAVES = registerColored(
             "leaves",
-            (color, p) -> new UntintedParticleLeavesBlock(0.01F, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, color.getTextureDiffuseColor()), p),
+            (color, p) -> new UntintedParticleLeavesBlock(0.01F, ColorParticleOption.create(ParticleTypes.TINTED_LEAVES, color.getTextureDiffuseColor()), AmbientLeavesBlockSoundPlayer.noAmbientSound(), p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_LEAVES)
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_LOGS = registerColored(
@@ -627,7 +628,7 @@ public class ModBlocks {
         return BLOCKS.registerBlock(
                 "potted_" + name(flower),
                 p -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, flower, p),
-                p -> p.instabreak().noOcclusion().pushReaction(PushReaction.DESTROY)
+                p -> p.instabreak().noOcclusion().pushReaction(PushReaction.POPPED)
         );
     }
 

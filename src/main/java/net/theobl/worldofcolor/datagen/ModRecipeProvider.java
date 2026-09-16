@@ -1,9 +1,13 @@
 package net.theobl.worldofcolor.datagen;
 
-import net.minecraft.core.HolderLookup;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
-import net.minecraft.data.PackOutput;
+import net.minecraft.core.registries.MultiRegistryBootstrap;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.recipes.*;
+import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.flag.FeatureFlagSet;
@@ -14,8 +18,10 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.BannerDuplicateRecipe;
 import net.minecraft.world.item.crafting.DyeRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -33,15 +39,29 @@ import net.theobl.worldofcolor.item.crafting.ColoredDecoratedPotRecipe;
 import net.theobl.worldofcolor.tags.ModTags;
 import org.jspecify.annotations.Nullable;
 
-import java.util.concurrent.CompletableFuture;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import static net.theobl.worldofcolor.util.ModUtil.*;
 
 public class ModRecipeProvider extends RecipeProvider {
 
-    public ModRecipeProvider(HolderLookup.Provider provider, RecipeOutput output) {
-        super(provider, output);
+    public ModRecipeProvider(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
+        super(recipeOutput, advancementOutput);
+    }
+
+    public static MultiRegistryBootstrap create() {
+        return new MultiRegistryBootstrap() {
+            @Override
+            public Set<ResourceKey<? extends Registry<?>>> requestedRegistries() {
+                return Set.of(Registries.RECIPE, Registries.ADVANCEMENT);
+            }
+
+            @Override
+            public void run(MultiRegistryBootstrap.BootstrapGetter registries) {
+                new ModRecipeProvider(registries.get(Registries.RECIPE), registries.get(Registries.ADVANCEMENT)).buildRecipes();
+            }
+        };
     }
 
     @Override
@@ -128,8 +148,9 @@ public class ModRecipeProvider extends RecipeProvider {
         colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_LANTERNS.coloring().white(), Blocks.COPPER_LANTERN.weathering().unaffected());
         colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_CHESTS.coloring().white(), Blocks.COPPER_CHEST.weathering().unaffected());
         colorCopper(RecipeCategory.DECORATIONS, ModBlocks.COLORED_COPPER_GOLEM_STATUES.coloring().white(), Blocks.COPPER_GOLEM_STATUE.weathering().unaffected());
+
         SpecialRecipeBuilder.special(() -> new ColoredDecoratedPotRecipe(this.tag(ItemTags.DECORATED_POT_INGREDIENTS), tag(ItemTags.DYES)))
-                .save(this.output, "colored_decorated_pot");
+                .save(this.output, WorldOfColor.MODID + ":colored_decorated_pot");
 
         colorWithDye(Items.DYE, ModBlocks.COLORED_FLOWER_POTS.map(DeferredBlock::asItem), Items.FLOWER_POT,
                 "flower_pot_dye", RecipeCategory.DECORATIONS);
@@ -165,7 +186,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 )
                 .unlockedBy(getHasName(ModItems.DYED_WATER_BOTTLE.get()), this.has(ModItems.DYED_WATER_BOTTLE.get()))
                 .group("dyed_water_bottle")
-                .save(this.output, getItemName(ModItems.DYED_WATER_BOTTLE.get()) + "_dyed_from_water_bottle");
+                .save(this.output, WorldOfColor.MODID + ":" + getItemName(ModItems.DYED_WATER_BOTTLE.get()) + "_dyed_from_water_bottle");
         dyedItem(ModItems.DYED_WATER_BOTTLE.get(), "dyed_water_bottle");
 
         CustomCraftingRecipeBuilder.customCrafting(
@@ -179,7 +200,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 )
                 .unlockedBy(getHasName(ModItems.DYED_WATER_BUCKET), this.has(ModItems.DYED_WATER_BUCKET))
                 .group("dyed_water_bucket")
-                .save(this.output, getItemName(ModItems.DYED_WATER_BUCKET) + "_dyed");
+                .save(this.output, WorldOfColor.MODID + ":" + getItemName(ModItems.DYED_WATER_BUCKET) + "_dyed");
 
         oneToOneConversionRecipe(Items.DYE.lightGray(), ModBlocks.LIGHT_GRAY_TULIP, "light_gray_dye");
         oneToOneConversionRecipe(Items.DYE.gray(), ModBlocks.GRAY_TULIP, "gray_dye");
@@ -246,10 +267,12 @@ public class ModRecipeProvider extends RecipeProvider {
         harness(ModItems.RGB_HARNESS, ModBlocks.RGB_WOOL);
     }
 
+    @Override
     protected void generateForEnabledBlockFamilies(FeatureFlagSet set) {
         ModBlockFamilies.getAllFamilies().forEach(family -> generateRecipes(family, set));
     }
 
+    @Override
     protected void oneToOneConversionRecipe(ItemLike product, ItemLike resource, @Nullable String group, int productCount) {
         this.shapeless(RecipeCategory.MISC, product, productCount)
                 .requires(resource)
@@ -258,6 +281,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(this.output, WorldOfColor.MODID + ":" + getConversionRecipeName(product, resource));
     }
 
+    @Override
     protected void stonecutterResultFromBase(RecipeCategory category, ItemLike result, ItemLike material) {
         stonecutterResultFromBase(category, result, material, 1);
     }
@@ -266,10 +290,37 @@ public class ModRecipeProvider extends RecipeProvider {
         ColorCollection.zipApply(result, material, (res, mat) -> stonecutterResultFromBase(category, res, mat, 1));
     }
 
+    @Override
     protected void stonecutterResultFromBase(RecipeCategory category, ItemLike result, ItemLike material, int resultCount) {
         SingleItemRecipeBuilder.stonecutting(Ingredient.of(material), category, result, resultCount)
                 .unlockedBy(getHasName(material), has(material))
                 .save(output, WorldOfColor.MODID + ":" + getConversionRecipeName(result, material) + "_stonecutting");
+    }
+
+    @Override
+    protected void dyedItem(Item target, String group) {
+        CustomCraftingRecipeBuilder.customCrafting(
+                        RecipeCategory.MISC,
+                        (commonInfo, bookInfo) -> new DyeRecipe(commonInfo, bookInfo, Ingredient.of(target), this.tag(ItemTags.DYES), new ItemStackTemplate(target))
+                )
+                .unlockedBy(getHasName(target), this.has(target))
+                .group(group)
+                .save(this.output, WorldOfColor.MODID + ":" + getItemName(target) + "_dyed");
+    }
+
+    @Override
+    protected void banner(ItemLike result, ItemLike wool) {
+        this.shaped(RecipeCategory.DECORATIONS, result)
+                .define('#', wool)
+                .define('|', Items.STICK)
+                .pattern("###")
+                .pattern("###")
+                .pattern(" | ")
+                .group("banner")
+                .unlockedBy(getHasName(wool), this.has(wool))
+                .save(this.output);
+        SpecialRecipeBuilder.special(() -> new BannerDuplicateRecipe(Ingredient.of(result), new ItemStackTemplate(result.asItem())))
+                .save(this.output, WorldOfColor.MODID + ":" + getItemName(result) + "_duplicate");
     }
 
     protected void colorWithDye(ColorCollection<Item> dyes, ColorCollection<Item> dyedItems, @Nullable Item uncoloredItem, String groupName, RecipeCategory category) {
@@ -340,21 +391,5 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(Items.DYE.white())
                 .unlockedBy(getHasName(Items.DYE.white()), has(Items.DYE.white()))
                 .save(output);
-    }
-
-    public static class Runner extends RecipeProvider.Runner {
-        public Runner(PackOutput output, CompletableFuture<HolderLookup.Provider> registries) {
-            super(output, registries);
-        }
-
-        @Override
-        protected RecipeProvider createRecipeProvider(HolderLookup.Provider provider, RecipeOutput output) {
-            return new ModRecipeProvider(provider, output);
-        }
-
-        @Override
-        public String getName() {
-            return "World of Color Recipes";
-        }
     }
 }

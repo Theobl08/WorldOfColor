@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:light_gray_decorated_pot_simple"
+        "recipes": "worldofcolor:light_gray_decorated_pot_simple"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:lime_bricks"
+        "recipes": "worldofcolor:lime_bricks"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:yellow_cut_copper_from_yellow_copper_block_stonecutting"
+        "recipes": "worldofcolor:yellow_cut_copper_from_yellow_copper_block_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

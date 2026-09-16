@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:magenta_dye_from_magenta_tulip"
+        "recipes": "worldofcolor:magenta_dye_from_magenta_tulip"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

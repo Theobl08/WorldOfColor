@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:waxed_orange_copper_door_from_honeycomb"
+        "recipes": "worldofcolor:waxed_orange_copper_door_from_honeycomb"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

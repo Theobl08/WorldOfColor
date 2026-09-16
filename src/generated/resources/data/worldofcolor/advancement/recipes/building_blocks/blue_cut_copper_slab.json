@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:blue_cut_copper_slab"
+        "recipes": "worldofcolor:blue_cut_copper_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

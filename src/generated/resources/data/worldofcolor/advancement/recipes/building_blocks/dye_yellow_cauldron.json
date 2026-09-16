@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:dye_yellow_cauldron"
+        "recipes": "worldofcolor:dye_yellow_cauldron"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

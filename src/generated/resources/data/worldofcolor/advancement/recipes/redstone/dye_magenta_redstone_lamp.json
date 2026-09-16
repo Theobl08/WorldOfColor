@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:dye_magenta_redstone_lamp"
+        "recipes": "worldofcolor:dye_magenta_redstone_lamp"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

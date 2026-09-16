@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:dye_brown_sapling"
+        "recipes": "worldofcolor:dye_brown_sapling"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

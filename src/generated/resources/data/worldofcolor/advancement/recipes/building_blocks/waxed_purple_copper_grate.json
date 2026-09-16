@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:waxed_purple_copper_grate"
+        "recipes": "worldofcolor:waxed_purple_copper_grate"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:waxed_blue_copper_grate_from_waxed_blue_copper_block_stonecutting"
+        "recipes": "worldofcolor:waxed_blue_copper_grate_from_waxed_blue_copper_block_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:red_potato_peels"
+        "recipes": "worldofcolor:red_potato_peels"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

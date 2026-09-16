@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:red_concrete_from_red_block_stonecutting"
+        "recipes": "worldofcolor:red_concrete_from_red_block_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

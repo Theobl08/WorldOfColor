@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:lime_dye_from_lime_tulip"
+        "recipes": "worldofcolor:lime_dye_from_lime_tulip"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

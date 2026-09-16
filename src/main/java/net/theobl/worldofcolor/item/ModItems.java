@@ -1,5 +1,6 @@
 package net.theobl.worldofcolor.item;
 
+import net.minecraft.core.Direction;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.worldgen.biome.OverworldBiomes;
@@ -34,14 +35,14 @@ public class ModItems {
     public static final ColorCollection<DeferredItem<Item>> COLORED_SIGNS = ColorCollectionUtil.register(
             createSimpleColored("sign"),
             (name, color) -> ITEMS.registerItem(name,
-                    p -> new SignItem(ModBlocks.COLORED_SIGNS.pick(color).get(), ModBlocks.COLORED_WALL_SIGNS.pick(color).get(), p),
-                    p -> p.stacksTo(16).useBlockDescriptionPrefix())
+                    p -> new StandingAndWallBlockItem(ModBlocks.COLORED_SIGNS.pick(color).get(), ModBlocks.COLORED_WALL_SIGNS.pick(color).get(), Direction.DOWN, p),
+                    p -> p.stacksTo(16).useBlockDescriptionPrefix().signText())
     );
     public static final ColorCollection<DeferredItem<Item>> COLORED_HANGING_SIGNS = ColorCollectionUtil.register(
             createSimpleColored("hanging_sign"),
             (name, color) -> ITEMS.registerItem(name,
                     p -> new HangingSignItem(ModBlocks.COLORED_HANGING_SIGNS.pick(color).get(), ModBlocks.COLORED_WALL_HANGING_SIGNS.pick(color).get(), p),
-                    p -> p.stacksTo(16).useBlockDescriptionPrefix())
+                    p -> p.stacksTo(16).useBlockDescriptionPrefix().signText())
     );
     public static final ColorCollection<DeferredItem<Item>> COLORED_BOATS = ColorCollectionUtil.register(
             createSimpleColored("boat"),

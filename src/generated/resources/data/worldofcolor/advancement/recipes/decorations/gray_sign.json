@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:gray_sign"
+        "recipes": "worldofcolor:gray_sign"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

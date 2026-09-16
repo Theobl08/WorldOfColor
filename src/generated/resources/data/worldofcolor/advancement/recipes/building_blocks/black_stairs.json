@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:black_stairs"
+        "recipes": "worldofcolor:black_stairs"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

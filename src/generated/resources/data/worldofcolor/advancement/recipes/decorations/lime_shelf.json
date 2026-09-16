@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:lime_shelf"
+        "recipes": "worldofcolor:lime_shelf"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:blue_decorated_pot_simple"
+        "recipes": "worldofcolor:blue_decorated_pot_simple"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

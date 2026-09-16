@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:rgb_glazed_terracotta"
+        "recipes": "worldofcolor:rgb_glazed_terracotta"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

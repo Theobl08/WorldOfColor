@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:dye_light_blue_cauldron"
+        "recipes": "worldofcolor:dye_light_blue_cauldron"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

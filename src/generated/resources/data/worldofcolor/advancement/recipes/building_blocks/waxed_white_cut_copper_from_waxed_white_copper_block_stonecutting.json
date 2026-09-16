@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:waxed_white_cut_copper_from_waxed_white_copper_block_stonecutting"
+        "recipes": "worldofcolor:waxed_white_cut_copper_from_waxed_white_copper_block_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

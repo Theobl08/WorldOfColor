@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:cyan_slab"
+        "recipes": "worldofcolor:cyan_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

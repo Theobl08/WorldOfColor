@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:waxed_white_cut_copper_stairs"
+        "recipes": "worldofcolor:waxed_white_cut_copper_stairs"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

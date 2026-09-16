@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:cyan_sign"
+        "recipes": "worldofcolor:cyan_sign"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

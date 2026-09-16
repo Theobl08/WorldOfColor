@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:pink_bricks"
+        "recipes": "worldofcolor:pink_bricks"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

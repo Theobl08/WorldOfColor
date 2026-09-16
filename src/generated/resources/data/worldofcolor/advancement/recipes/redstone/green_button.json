@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:green_button"
+        "recipes": "worldofcolor:green_button"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

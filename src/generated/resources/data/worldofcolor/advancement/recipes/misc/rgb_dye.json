@@ -53,7 +53,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:rgb_dye"
+        "recipes": "worldofcolor:rgb_dye"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

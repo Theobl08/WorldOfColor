@@ -14,15 +14,13 @@ import java.util.List;
 public class DataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent.Client event) {
-        event.createProvider(ModRecipeProvider.Runner::new);
         event.createBlockAndItemTags(ModBlockTagsProvider::new, ModItemTagsProvider::new);
         event.createProvider(ModBannerPatternTagsProvider::new);
         event.createProvider(ModEntityTypeTagsProvider::new);
         event.createProvider(ModFeatureTagsProvider::new);
-        event.createProvider((output, lookupProvider) -> new LootTableProvider(output, Collections.emptySet(),
-                List.of(new LootTableProvider.SubProviderEntry(ModBlockLootTableProvider::new, LootContextParamSets.BLOCK)), lookupProvider));
         event.createProvider(ModDataMapProvider::new);
-        event.createProvider(ModDatapackBuiltInEntriesProvider::new);
+        event.createWorldRegistryObjects(ModDatapackBuiltInEntriesProvider.WORLD_BUILDER);
+        event.createReloadableRegistryObjects(ModDatapackBuiltInEntriesProvider.RELOADABLE_BUILDER);
 
         event.createProvider(ModModelProvider::new);
         event.createProvider(ModSpriteSourceProvider::new);

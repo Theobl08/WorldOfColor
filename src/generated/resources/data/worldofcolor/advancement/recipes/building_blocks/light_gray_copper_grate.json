@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:light_gray_copper_grate"
+        "recipes": "worldofcolor:light_gray_copper_grate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

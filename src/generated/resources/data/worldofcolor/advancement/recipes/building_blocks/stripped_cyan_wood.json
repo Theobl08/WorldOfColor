@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:stripped_cyan_wood"
+        "recipes": "worldofcolor:stripped_cyan_wood"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

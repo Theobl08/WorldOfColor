@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:pink_fence"
+        "recipes": "worldofcolor:pink_fence"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

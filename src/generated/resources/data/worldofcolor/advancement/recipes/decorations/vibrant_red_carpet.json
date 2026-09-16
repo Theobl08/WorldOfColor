@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:vibrant_red_carpet"
+        "recipes": "worldofcolor:vibrant_red_carpet"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

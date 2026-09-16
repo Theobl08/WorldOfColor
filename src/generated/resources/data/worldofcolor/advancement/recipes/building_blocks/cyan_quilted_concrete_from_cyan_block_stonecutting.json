@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:cyan_quilted_concrete_from_cyan_block_stonecutting"
+        "recipes": "worldofcolor:cyan_quilted_concrete_from_cyan_block_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:black_bricks"
+        "recipes": "worldofcolor:black_bricks"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

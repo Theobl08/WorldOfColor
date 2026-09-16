@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:pink_door"
+        "recipes": "worldofcolor:pink_door"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

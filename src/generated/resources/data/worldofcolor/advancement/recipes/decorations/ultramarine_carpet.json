@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:ultramarine_carpet"
+        "recipes": "worldofcolor:ultramarine_carpet"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

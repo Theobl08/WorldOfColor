@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:capri_carpet"
+        "recipes": "worldofcolor:capri_carpet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

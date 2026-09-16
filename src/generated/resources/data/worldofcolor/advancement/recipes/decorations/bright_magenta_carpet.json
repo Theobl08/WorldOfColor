@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:bright_magenta_carpet"
+        "recipes": "worldofcolor:bright_magenta_carpet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

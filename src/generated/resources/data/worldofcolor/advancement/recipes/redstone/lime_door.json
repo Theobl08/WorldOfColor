@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:lime_door"
+        "recipes": "worldofcolor:lime_door"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:white_potato_peels"
+        "recipes": "worldofcolor:white_potato_peels"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

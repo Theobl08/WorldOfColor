@@ -125,9 +125,17 @@ public class ColoredBannerRenderer extends BannerRenderer {
             int outlineColor
     ) {
         SpriteId sprite = Sheets.BANNER_BASE;
-        submitNodeCollector.submitModel(model, Unit.INSTANCE, poseStack, lightCoords, overlayCoords, -1, sprite, sprites, outlineColor, breakProgress);
-        submitNodeCollector.submitModel(flagModel, phase, poseStack, lightCoords, overlayCoords, -1, sprite, sprites, outlineColor, breakProgress);
-        submitPatterns(sprites, poseStack, submitNodeCollector, lightCoords, overlayCoords, flagModel, phase, true, color, patternLayers, breakProgress);
+        submitNodeCollector.submitModel(model, Unit.INSTANCE, poseStack, lightCoords, overlayCoords, -1, sprite, sprites, outlineColor);
+        submitNodeCollector.submitModel(flagModel, phase, poseStack, lightCoords, overlayCoords, -1, sprite, sprites, outlineColor);
+        if (breakProgress != null) {
+            int overlayOrder = patternLayers.layers().size() + 2;
+            submitNodeCollector.order(overlayOrder)
+                    .submitCrumblingOverlay(model, Unit.INSTANCE, poseStack, sprite.renderType(model.renderType()), lightCoords, overlayCoords, -1, breakProgress);
+            submitNodeCollector.order(overlayOrder)
+                    .submitCrumblingOverlay(flagModel, phase, poseStack, sprite.renderType(flagModel.renderType()), lightCoords, overlayCoords, -1, breakProgress);
+        }
+
+        submitPatterns(sprites, poseStack, submitNodeCollector, lightCoords, overlayCoords, flagModel, phase, true, color, patternLayers);
     }
 
     public static <S> void submitPatterns(
@@ -140,8 +148,7 @@ public class ColoredBannerRenderer extends BannerRenderer {
             S renderState,
             boolean banner,
             DyeColor baseColor,
-            BannerPatternLayers patterns,
-            ModelFeatureRenderer.@Nullable CrumblingOverlay crumblingOverlay
+            BannerPatternLayers patterns
     ) {
         submitPatternLayer(
                 materials,
@@ -152,8 +159,7 @@ public class ColoredBannerRenderer extends BannerRenderer {
                 flag,
                 renderState,
                 banner ? ModSpriteId.BANNER_RGB : Sheets.SHIELD_PATTERN_BASE,
-                baseColor,
-                crumblingOverlay
+                baseColor
         );
 
         for (int maskIndex = 0; maskIndex < 16 && maskIndex < patterns.layers().size(); maskIndex++) {
@@ -161,7 +167,7 @@ public class ColoredBannerRenderer extends BannerRenderer {
             SpriteId sprite = banner
                     ? Sheets.getBannerSprite(layer.pattern())
                     : Sheets.getShieldSprite(layer.pattern());
-            submitPatternLayer(materials, poseStack, nodeCollector, lightCoords, overlayCoords, flag, renderState, sprite, layer.color(), null);
+            submitPatternLayer(materials, poseStack, nodeCollector, lightCoords, overlayCoords, flag, renderState, sprite, layer.color());
         }
     }
 
@@ -174,8 +180,7 @@ public class ColoredBannerRenderer extends BannerRenderer {
             Model<S> flagModel,
             S sway,
             SpriteId sprite,
-            DyeColor color,
-            ModelFeatureRenderer.@Nullable CrumblingOverlay crumblingOverlay
+            DyeColor color
     ) {
         int i = color.getTextureDiffuseColor();
         nodeCollector.submitModel(
@@ -187,8 +192,7 @@ public class ColoredBannerRenderer extends BannerRenderer {
                 packedOverlay,
                 i,
                 sprites.get(sprite),
-                0,
-                crumblingOverlay
+                0
         );
     }
 }

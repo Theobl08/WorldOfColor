@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:dye_light_gray_potato_peels_block"
+        "recipes": "worldofcolor:dye_light_gray_potato_peels_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

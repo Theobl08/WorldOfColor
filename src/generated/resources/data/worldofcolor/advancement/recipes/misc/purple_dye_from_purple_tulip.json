@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:purple_dye_from_purple_tulip"
+        "recipes": "worldofcolor:purple_dye_from_purple_tulip"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

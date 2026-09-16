@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:light_blue_slab"
+        "recipes": "worldofcolor:light_blue_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

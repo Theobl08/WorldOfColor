@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:dye_cyan_item_frame"
+        "recipes": "worldofcolor:dye_cyan_item_frame"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:waxed_light_blue_copper_golem_statue_from_honeycomb"
+        "recipes": "worldofcolor:waxed_light_blue_copper_golem_statue_from_honeycomb"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

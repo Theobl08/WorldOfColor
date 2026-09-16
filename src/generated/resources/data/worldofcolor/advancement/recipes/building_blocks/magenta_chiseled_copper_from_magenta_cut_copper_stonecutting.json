@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:magenta_chiseled_copper_from_magenta_cut_copper_stonecutting"
+        "recipes": "worldofcolor:magenta_chiseled_copper_from_magenta_cut_copper_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

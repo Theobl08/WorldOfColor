@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:lime_potato_peels_block"
+        "recipes": "worldofcolor:lime_potato_peels_block"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

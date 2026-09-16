@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:purple_glazed_concrete"
+        "recipes": "worldofcolor:purple_glazed_concrete"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:white_chiseled_copper_from_white_cut_copper_stonecutting"
+        "recipes": "worldofcolor:white_chiseled_copper_from_white_cut_copper_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

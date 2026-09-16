@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:white_glazed_concrete"
+        "recipes": "worldofcolor:white_glazed_concrete"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

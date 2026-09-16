@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:yellow_dye_from_yellow_tulip"
+        "recipes": "worldofcolor:yellow_dye_from_yellow_tulip"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

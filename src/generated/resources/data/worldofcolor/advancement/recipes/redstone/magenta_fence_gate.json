@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:magenta_fence_gate"
+        "recipes": "worldofcolor:magenta_fence_gate"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

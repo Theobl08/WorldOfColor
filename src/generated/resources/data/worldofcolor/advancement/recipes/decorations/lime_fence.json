@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:lime_fence"
+        "recipes": "worldofcolor:lime_fence"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:lime_brick_slab_from_lime_bricks_stonecutting"
+        "recipes": "worldofcolor:lime_brick_slab_from_lime_bricks_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

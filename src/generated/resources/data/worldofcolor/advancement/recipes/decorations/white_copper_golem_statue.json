@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:white_copper_golem_statue"
+        "recipes": "worldofcolor:white_copper_golem_statue"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

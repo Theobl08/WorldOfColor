@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:spring_green_carpet"
+        "recipes": "worldofcolor:spring_green_carpet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

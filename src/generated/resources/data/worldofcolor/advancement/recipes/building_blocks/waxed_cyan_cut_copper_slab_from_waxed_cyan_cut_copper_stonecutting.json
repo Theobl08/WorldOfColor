@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:waxed_cyan_cut_copper_slab_from_waxed_cyan_cut_copper_stonecutting"
+        "recipes": "worldofcolor:waxed_cyan_cut_copper_slab_from_waxed_cyan_cut_copper_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

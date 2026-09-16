@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:pink_sign"
+        "recipes": "worldofcolor:pink_sign"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

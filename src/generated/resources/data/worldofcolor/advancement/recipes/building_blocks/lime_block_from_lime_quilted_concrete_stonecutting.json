@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:lime_block_from_lime_quilted_concrete_stonecutting"
+        "recipes": "worldofcolor:lime_block_from_lime_quilted_concrete_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

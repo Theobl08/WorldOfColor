@@ -2,9 +2,9 @@ package net.theobl.worldofcolor.datagen;
 
 import net.minecraft.advancements.predicates.StatePropertiesPredicate;
 import net.minecraft.core.Holder;
-import net.minecraft.core.HolderLookup;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.data.loot.BlockLootSubProvider;
+import net.minecraft.data.loot.LootTableSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Items;
@@ -17,8 +17,8 @@ import net.minecraft.world.level.storage.loot.entries.DynamicLoot;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.CopyComponentsFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
-import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraft.world.level.storage.loot.predicates.MatchBlock;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 import net.neoforged.neoforge.registries.DeferredHolder;
 import net.theobl.worldofcolor.block.ColoredDecoratedPotBlock;
 import net.theobl.worldofcolor.block.ModBlocks;
@@ -27,8 +27,8 @@ import net.theobl.worldofcolor.util.ModUtil;
 import java.util.Set;
 
 public class ModBlockLootTableProvider extends BlockLootSubProvider {
-    protected ModBlockLootTableProvider(HolderLookup.Provider registries) {
-        super(Set.of(ModBlocks.RGB_SHULKER_BOX.asItem()), FeatureFlags.REGISTRY.allFlags(), registries);
+    protected ModBlockLootTableProvider(LootTableSubProvider.Context output) {
+        super(Set.of(ModBlocks.RGB_SHULKER_BOX.asItem()), FeatureFlags.REGISTRY.allFlags(), output);
     }
 
     @Override
@@ -68,12 +68,13 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         return LootTable.lootTable()
                 .withPool(
                         LootPool.lootPool()
-                                .setRolls(ConstantValue.exactly(1.0F))
+                                .setRolls(ContextIntProviders.exactly(1))
                                 .add(
                                         DynamicLoot.dynamicEntry(DecoratedPotBlock.SHERDS_DYNAMIC_DROP_ID)
                                                 .when(
-                                                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
-                                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DecoratedPotBlock.CRACKED, true))
+                                                        MatchBlock.blockMatches(
+                                                                        this.blocks, block, StatePropertiesPredicate.Builder.properties().hasProperty(DecoratedPotBlock.CRACKED, true)
+                                                        )
                                                 )
                                                 .otherwise(
                                                         LootItem.lootTableItem(block)
@@ -86,12 +87,13 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
                 )
                 .withPool(
                         LootPool.lootPool()
-                                .setRolls(ConstantValue.exactly(1.0F))
+                                .setRolls(ContextIntProviders.exactly(1))
                                 .add(
                                         LootItem.lootTableItem(Items.DYE.pick(((ColoredDecoratedPotBlock) block).getColor()))
                                                 .when(
-                                                        LootItemBlockStatePropertyCondition.hasBlockStateProperties(block)
-                                                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(DecoratedPotBlock.CRACKED, true))
+                                                        MatchBlock.blockMatches(
+                                                                this.blocks, block, StatePropertiesPredicate.Builder.properties().hasProperty(DecoratedPotBlock.CRACKED, true)
+                                                        )
                                                 )
                                 )
                 );
@@ -102,10 +104,10 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         return LootTable.lootTable()
                 .withPool(
                         this.applyExplosionCondition(
-                                fullPot.getEmptyPot(), LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(fullPot.getEmptyPot()))
+                                fullPot.getEmptyPot(), LootPool.lootPool().setRolls(ContextIntProviders.exactly(1)).add(LootItem.lootTableItem(fullPot.getEmptyPot()))
                         )
                 )
-                .withPool(this.applyExplosionCondition(item, LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F)).add(LootItem.lootTableItem(item))));
+                .withPool(this.applyExplosionCondition(item, LootPool.lootPool().setRolls(ContextIntProviders.exactly(1)).add(LootItem.lootTableItem(item))));
     }
 
     protected void dropColoredPottedContents(Block flowerPot) {

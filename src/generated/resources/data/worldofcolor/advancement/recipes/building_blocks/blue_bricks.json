@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:blue_bricks"
+        "recipes": "worldofcolor:blue_bricks"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

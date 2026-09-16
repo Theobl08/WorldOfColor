@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:red_wood"
+        "recipes": "worldofcolor:red_wood"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

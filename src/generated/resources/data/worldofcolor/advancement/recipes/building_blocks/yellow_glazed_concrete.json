@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:yellow_glazed_concrete"
+        "recipes": "worldofcolor:yellow_glazed_concrete"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:green_cut_copper"
+        "recipes": "worldofcolor:green_cut_copper"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

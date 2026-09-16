@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:brown_dye_from_brown_tulip"
+        "recipes": "worldofcolor:brown_dye_from_brown_tulip"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

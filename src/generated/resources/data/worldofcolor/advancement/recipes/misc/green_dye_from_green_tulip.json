@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:green_dye_from_green_tulip"
+        "recipes": "worldofcolor:green_dye_from_green_tulip"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

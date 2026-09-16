@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:orange_planks"
+        "recipes": "worldofcolor:orange_planks"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

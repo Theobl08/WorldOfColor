@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:light_gray_brick_slab_from_light_gray_bricks_stonecutting"
+        "recipes": "worldofcolor:light_gray_brick_slab_from_light_gray_bricks_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -35,10 +35,11 @@ public class ModDataMapProvider extends DataMapProvider {
 
     @Override
     protected void gather(HolderLookup.Provider provider) {
-        final Builder<Compostable, Item> compostables = builder(NeoForgeDataMaps.COMPOSTABLES);
-        ModBlocks.COLORED_LEAVES.forEach(block -> compostables.add(block.getId(), new Compostable(0.3F), false));
-        ModBlocks.COLORED_SAPLINGS.forEach(block -> compostables.add(block.getId(), new Compostable(0.3F), false));
-        ModItems.COLORED_POTATO_PEELS.forEach(block -> compostables.add(block.getId(), new Compostable(0.65F), false));
+        //TODO 26.3: Use the vanilla data component that replace this now-gone data map
+//        final Builder<Compostable, Item> compostables = builder(NeoForgeDataMaps.COMPOSTABLES);
+//        ModBlocks.COLORED_LEAVES.forEach(block -> compostables.add(block.getId(), new Compostable(0.3F), false));
+//        ModBlocks.COLORED_SAPLINGS.forEach(block -> compostables.add(block.getId(), new Compostable(0.3F), false));
+//        ModItems.COLORED_POTATO_PEELS.forEach(block -> compostables.add(block.getId(), new Compostable(0.65F), false));
 
         final var oxidizables = builder(NeoForgeDataMaps.OXIDIZABLES);
         final var waxables = builder(NeoForgeDataMaps.WAXABLES);

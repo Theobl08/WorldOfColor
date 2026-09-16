@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:pink_shelf"
+        "recipes": "worldofcolor:pink_shelf"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -1,7 +1,5 @@
 package net.theobl.worldofcolor.block;
 
-import com.mojang.serialization.MapCodec;
-import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -18,24 +16,16 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.theobl.worldofcolor.block.entity.DyedWaterCauldronBlockEntity;
-import net.theobl.worldofcolor.util.ModUtil;
 import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
-import java.util.Optional;
-
 @NullMarked
 public class DyedWaterCauldronBlock extends AbstractCauldronBlock implements EntityBlock {
-    public static final MapCodec<DyedWaterCauldronBlock> CODEC = RecordCodecBuilder.mapCodec(
-            i -> i.group(DyeColor.CODEC.optionalFieldOf("color").forGetter(b -> Optional.ofNullable(b.color)), propertiesCodec())
-                    .apply(i, (color, properties) -> new DyedWaterCauldronBlock(color.orElse(null), properties))
-    );
     public static final int MIN_FILL_LEVEL = 1;
     public static final int MAX_FILL_LEVEL = 3;
     public static final IntegerProperty LEVEL = LayeredCauldronBlock.LEVEL;
@@ -49,11 +39,6 @@ public class DyedWaterCauldronBlock extends AbstractCauldronBlock implements Ent
     public DyedWaterCauldronBlock(@Nullable DyeColor color, Properties properties) {
         super(properties, ColoredCauldronInteraction.DYED_WATER);
         this.color = color;
-    }
-
-    @Override
-    protected MapCodec<DyedWaterCauldronBlock> codec() {
-        return CODEC;
     }
 
     @Override

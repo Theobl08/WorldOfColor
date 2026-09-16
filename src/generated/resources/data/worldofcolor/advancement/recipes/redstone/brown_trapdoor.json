@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:brown_trapdoor"
+        "recipes": "worldofcolor:brown_trapdoor"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

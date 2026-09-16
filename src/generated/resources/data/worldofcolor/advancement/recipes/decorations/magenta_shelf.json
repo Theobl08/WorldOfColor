@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:magenta_shelf"
+        "recipes": "worldofcolor:magenta_shelf"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

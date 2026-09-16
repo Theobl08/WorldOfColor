@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:dye_black_flower_pot"
+        "recipes": "worldofcolor:dye_black_flower_pot"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

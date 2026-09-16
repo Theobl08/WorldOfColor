@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:chartreuse_carpet"
+        "recipes": "worldofcolor:chartreuse_carpet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

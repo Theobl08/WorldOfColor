@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:black_door"
+        "recipes": "worldofcolor:black_door"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

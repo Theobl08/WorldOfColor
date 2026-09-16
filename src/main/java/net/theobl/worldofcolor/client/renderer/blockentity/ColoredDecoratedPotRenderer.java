@@ -1,6 +1,5 @@
 package net.theobl.worldofcolor.client.renderer.blockentity;
 
-import com.google.common.collect.ImmutableMap;
 import com.mojang.blaze3d.vertex.PoseStack;
 import net.minecraft.client.model.geom.EntityModelSet;
 import net.minecraft.client.model.geom.ModelLayers;
@@ -18,34 +17,29 @@ import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.SpriteGetter;
 import net.minecraft.client.resources.model.sprite.SpriteId;
 import net.minecraft.core.Holder;
-import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.util.Util;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.level.block.entity.DecoratedPotPattern;
-import net.minecraft.world.level.block.entity.DecoratedPotPatterns;
 import net.minecraft.world.level.block.entity.PotDecorations;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ColoredDecoratedPotBlock;
 import org.joml.Vector3fc;
+import org.jspecify.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.function.Consumer;
 
 @ParametersAreNonnullByDefault
 public class ColoredDecoratedPotRenderer extends DecoratedPotRenderer {
-    private static final Map<ResourceKey<Item>, SpriteId> DECORATED_POT_SPRITES = Util.make(() -> {
-        ImmutableMap.Builder<ResourceKey<Item>, SpriteId> builder = ImmutableMap.builder();
-        DecoratedPotPatterns.itemToPatternMappings((itemId, patternId) -> {
-            Holder.Reference<DecoratedPotPattern> pattern = BuiltInRegistries.DECORATED_POT_PATTERN.getOrThrow(patternId);
-            builder.put(itemId, Sheets.DECORATED_POT_MAPPER.apply(pattern.value().assetId()));
-        });
-        return builder.buildOrThrow();
-    });
     private final SpriteGetter sprites;
+    private DecoratedPotRenderer.@Nullable SideSprite blankSide;
+    private DyeColor blankSideColor;
+    private final Map<Identifier, DecoratedPotRenderer.SideSprite> sideCache = new HashMap<>();
     private static final String NECK = "neck";
     private static final String FRONT = "front";
     private static final String BACK = "back";
@@ -95,6 +89,30 @@ public class ColoredDecoratedPotRenderer extends DecoratedPotRenderer {
         }
     }
 
+    @Override
+    protected DecoratedPotRenderer.SideSprite getSideSprite(Optional<? extends ItemInstance> item) {
+        if (item.isPresent()) {
+            Holder<DecoratedPotPattern> pattern = item.get().get(DataComponents.PROVIDES_POTTERY_PATTERN);
+            if (pattern != null) {
+                Identifier patternId = pattern.value().assetId();
+                if(color != null) {
+                    patternId = WorldOfColor.asResource(pattern.value().assetId().getPath() + "_" + color.getName());
+                }
+                return this.sideCache
+                        .computeIfAbsent(
+                                patternId, id -> DecoratedPotRenderer.SideSprite.create(this.sprites, Sheets.DECORATED_POT_MAPPER.apply(id))
+                        );
+            }
+        }
+
+        if (this.blankSide == null || this.blankSideColor != this.color) {
+            this.blankSide = DecoratedPotRenderer.SideSprite.create(this.sprites, colorMaterial(Sheets.DECORATED_POT_SIDE));
+            this.blankSideColor = this.color;
+        }
+
+        return this.blankSide;
+    }
+
     public void submit(DecoratedPotRenderState renderState, PoseStack poseStack, SubmitNodeCollector nodeCollector, CameraRenderState cameraRenderState) {
         if(renderState.blockState.getBlock() instanceof ColoredDecoratedPotBlock block) {
             this.color = block.getColor();
@@ -105,55 +123,51 @@ public class ColoredDecoratedPotRenderer extends DecoratedPotRenderer {
     public void submit(PoseStack poseStack, SubmitNodeCollector nodeCollector, int packedLight, int packedOverlay, PotDecorations decorations, int outlineColor) {
         RenderType rendertype = Sheets.DECORATED_POT_BASE.renderType(RenderTypes::entitySolid);
         TextureAtlasSprite textureatlassprite = this.sprites.get(colorMaterial(Sheets.DECORATED_POT_BASE));
-        nodeCollector.submitModelPart(this.neck, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, -1, null, outlineColor);
-        nodeCollector.submitModelPart(this.top, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, -1, null, outlineColor);
-        nodeCollector.submitModelPart(this.bottom, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, -1, null, outlineColor);
-        SpriteId frontSprite = colorMaterial(getSideSprite(decorations.front()));
+        nodeCollector.submitModelPart(this.neck, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, -1, outlineColor);
+        nodeCollector.submitModelPart(this.top, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, -1, outlineColor);
+        nodeCollector.submitModelPart(this.bottom, poseStack, rendertype, packedLight, packedOverlay, textureatlassprite, -1, outlineColor);
+        DecoratedPotRenderer.SideSprite frontSprite = getSideSprite(decorations.front());
         nodeCollector.submitModelPart(
                 this.frontSide,
                 poseStack,
-                frontSprite.renderType(RenderTypes::entitySolid),
+                frontSprite.renderType(),
                 packedLight,
                 packedOverlay,
-                this.sprites.get(frontSprite),
+                frontSprite.sprite(),
                 -1,
-                null,
                 outlineColor
         );
-        SpriteId backSprite = colorMaterial(getSideSprite(decorations.back()));
+        DecoratedPotRenderer.SideSprite backSprite = getSideSprite(decorations.back());
         nodeCollector.submitModelPart(
                 this.backSide,
                 poseStack,
-                backSprite.renderType(RenderTypes::entitySolid),
+                backSprite.renderType(),
                 packedLight,
                 packedOverlay,
-                this.sprites.get(backSprite),
+                backSprite.sprite(),
                 -1,
-                null,
                 outlineColor
         );
-        SpriteId leftSprite = colorMaterial(getSideSprite(decorations.left()));
+        DecoratedPotRenderer.SideSprite leftSprite = getSideSprite(decorations.left());
         nodeCollector.submitModelPart(
                 this.leftSide,
                 poseStack,
-                leftSprite.renderType(RenderTypes::entitySolid),
+                leftSprite.renderType(),
                 packedLight,
                 packedOverlay,
-                this.sprites.get(leftSprite),
+                leftSprite.sprite(),
                 -1,
-                null,
                 outlineColor
         );
-        SpriteId rightSprite = colorMaterial(getSideSprite(decorations.right()));
+        DecoratedPotRenderer.SideSprite rightSprite = getSideSprite(decorations.right());
         nodeCollector.submitModelPart(
                 this.rightSide,
                 poseStack,
-                rightSprite.renderType(RenderTypes::entitySolid),
+                rightSprite.renderType(),
                 packedLight,
                 packedOverlay,
-                this.sprites.get(rightSprite),
+                rightSprite.sprite(),
                 -1,
-                null,
                 outlineColor
         );
     }

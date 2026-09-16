@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:waxed_white_copper_chest_from_honeycomb"
+        "recipes": "worldofcolor:waxed_white_copper_chest_from_honeycomb"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

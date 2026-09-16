@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:light_blue_cut_copper_slab_from_light_blue_cut_copper_stonecutting"
+        "recipes": "worldofcolor:light_blue_cut_copper_slab_from_light_blue_cut_copper_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

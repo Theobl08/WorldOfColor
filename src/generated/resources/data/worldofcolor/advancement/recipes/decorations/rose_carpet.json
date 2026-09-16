@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:rose_carpet"
+        "recipes": "worldofcolor:rose_carpet"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

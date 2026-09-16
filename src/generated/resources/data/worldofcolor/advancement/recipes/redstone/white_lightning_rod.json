@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:white_lightning_rod"
+        "recipes": "worldofcolor:white_lightning_rod"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

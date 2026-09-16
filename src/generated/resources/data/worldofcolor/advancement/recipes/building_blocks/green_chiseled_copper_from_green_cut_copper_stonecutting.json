@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:green_chiseled_copper_from_green_cut_copper_stonecutting"
+        "recipes": "worldofcolor:green_chiseled_copper_from_green_cut_copper_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

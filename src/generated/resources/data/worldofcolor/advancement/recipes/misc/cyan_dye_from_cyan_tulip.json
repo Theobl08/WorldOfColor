@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:cyan_dye_from_cyan_tulip"
+        "recipes": "worldofcolor:cyan_dye_from_cyan_tulip"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

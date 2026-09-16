@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:waxed_cyan_copper_bulb"
+        "recipes": "worldofcolor:waxed_cyan_copper_bulb"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

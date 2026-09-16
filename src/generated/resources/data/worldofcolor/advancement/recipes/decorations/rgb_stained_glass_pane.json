@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:rgb_stained_glass_pane"
+        "recipes": "worldofcolor:rgb_stained_glass_pane"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

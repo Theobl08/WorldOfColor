@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:black_slab"
+        "recipes": "worldofcolor:black_slab"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

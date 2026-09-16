@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:pink_planks"
+        "recipes": "worldofcolor:pink_planks"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:light_blue_concrete_from_light_blue_quilted_concrete_stonecutting"
+        "recipes": "worldofcolor:light_blue_concrete_from_light_blue_quilted_concrete_stonecutting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

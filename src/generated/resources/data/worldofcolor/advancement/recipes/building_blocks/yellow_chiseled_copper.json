@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:yellow_chiseled_copper"
+        "recipes": "worldofcolor:yellow_chiseled_copper"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

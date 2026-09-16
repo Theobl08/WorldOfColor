@@ -9,12 +9,14 @@ import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.DyeItem;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.PotDecorations;
 import net.theobl.worldofcolor.block.entity.ColoredDecoratedPotBlockEntity;
 
 import javax.annotation.ParametersAreNonnullByDefault;
+import java.util.Optional;
 
 @ParametersAreNonnullByDefault
 public class ColoredDecoratedPotRecipe extends CustomRecipe {
@@ -94,11 +96,15 @@ public class ColoredDecoratedPotRecipe extends CustomRecipe {
     @Override
     public ItemStack assemble(CraftingInput input) {
         PotDecorations potdecorations = new PotDecorations(
-                back(input).getItem(), left(input).getItem(), right(input).getItem(), front(input).getItem()
+                convertToOptional(back(input)), convertToOptional(left(input)), convertToOptional(right(input)), convertToOptional(front(input))
         );
         DataComponentPatch components = DataComponentPatch.builder().set(DataComponents.POT_DECORATIONS, potdecorations).build();
         return ColoredDecoratedPotBlockEntity.createDecoratedPotTemplate(potdecorations, dye(input).getOrDefault(DataComponents.DYE, DyeColor.WHITE))
                 .apply(components);
+    }
+
+    private static Optional<ItemStackTemplate> convertToOptional(ItemStack input) {
+        return input.isEmpty() ? Optional.empty() : Optional.of(ItemStackTemplate.fromNonEmptyStack(input, 1));
     }
 
     @Override

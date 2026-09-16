@@ -7,7 +7,7 @@ import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.data.worldgen.placement.PlacementUtils;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
-import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
+import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.theobl.worldofcolor.WorldOfColor;
 
@@ -16,8 +16,8 @@ public class ModVegetationPlacements {
             ResourceKey.create(Registries.PLACED_FEATURE, WorldOfColor.asResource("tulip_flower_forest"));
 
     public static void bootstrap(BootstrapContext<PlacedFeature> context) {
-        HolderGetter<ConfiguredFeature<?, ?>> configuredFeatures = context.lookup(Registries.CONFIGURED_FEATURE);
-        Holder<ConfiguredFeature<?, ?>> flowerFlowerForest = configuredFeatures.getOrThrow(ModVegetationFeatures.TULIP_FLOWER_FOREST);
+        HolderGetter<Feature> configuredFeatures = context.lookup(Registries.FEATURE);
+        Holder<Feature> flowerFlowerForest = configuredFeatures.getOrThrow(ModVegetationFeatures.TULIP_FLOWER_FOREST);
         PlacementUtils.register(
                 context,
                 TULIP_FLOWER_FOREST,
@@ -28,7 +28,7 @@ public class ModVegetationPlacements {
                 PlacementUtils.HEIGHTMAP,
                 BiomeFilter.biome(),
                 CountPlacement.of(96),
-                RandomOffsetPlacement.ofTriangle(6, 2),
+                OffsetPlacement.ofTriangle(6, 2),
                 BlockPredicateFilter.forPredicate(BlockPredicate.ONLY_IN_AIR_PREDICATE)
         );
     }

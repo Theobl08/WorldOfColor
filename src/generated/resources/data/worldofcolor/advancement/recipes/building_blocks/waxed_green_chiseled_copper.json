@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:waxed_green_chiseled_copper"
+        "recipes": "worldofcolor:waxed_green_chiseled_copper"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:black_shelf"
+        "recipes": "worldofcolor:black_shelf"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

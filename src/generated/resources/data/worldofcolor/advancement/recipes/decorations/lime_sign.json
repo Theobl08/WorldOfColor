@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "worldofcolor:lime_sign"
+        "recipes": "worldofcolor:lime_sign"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
