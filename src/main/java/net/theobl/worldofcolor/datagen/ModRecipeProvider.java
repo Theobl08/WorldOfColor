@@ -235,7 +235,6 @@ public class ModRecipeProvider extends RecipeProvider {
         dyeRGB(RecipeCategory.BUILDING_BLOCKS, ModBlocks.RGB_WOOL, ItemTags.WOOL, "wool");
         dyeRGB(RecipeCategory.DECORATIONS, ModBlocks.RGB_CARPET, ItemTags.WOOL_CARPETS, "carpet_dye");
         dyeRGB(RecipeCategory.DECORATIONS, ModBlocks.RGB_BED, ItemTags.BEDS, "bed_dye");
-        carpet(ModBlocks.RGB_CARPET, ModBlocks.RGB_WOOL);
         concretePowder(ModBlocks.RGB_CONCRETE_POWDER, ModItems.RGB_DYE);
         coloredTerracottaFromTerracottaAndDye(ModBlocks.RGB_TERRACOTTA, ModItems.RGB_DYE);
         smeltingResultFromBase(ModBlocks.RGB_GLAZED_TERRACOTTA, ModBlocks.RGB_TERRACOTTA);

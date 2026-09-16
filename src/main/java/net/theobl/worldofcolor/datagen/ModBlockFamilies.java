@@ -16,6 +16,8 @@ import java.util.stream.Stream;
 public class ModBlockFamilies {
     private static final Map<Block, BlockFamily> MAP = Maps.newHashMap();
     private static final String RECIPE_GROUP_PREFIX_WOODEN = "wooden";
+    private static final String RECIPE_GROUP_PREFIX_WOOLEN = "woolen";
+    private static final String RECIPE_GROUP_PREFIX_CONCRETE = "concrete";
     private static final String RECIPE_UNLOCKED_BY_HAS_PLANKS = "has_planks";
     public static final ColorCollection<BlockFamily> COLORED_PLANKS = createFamily(color ->
             familyBuilder(ModBlocks.COLORED_PLANKS.pick(color).get())
@@ -71,6 +73,30 @@ public class ModBlockFamilies {
                     .generateStonecutterRecipe()
                     .getFamily()
     );
+    public static final BlockFamily RGB_WOOL = familyBuilder(ModBlocks.RGB_WOOL.get())
+            .carpet(ModBlocks.RGB_CARPET.get())
+            .stairs(ModBlocks.RGB_WOOL_STAIRS.get())
+            .slab(ModBlocks.RGB_WOOL_SLAB.get())
+            .recipeGroupPrefix(RECIPE_GROUP_PREFIX_WOOLEN)
+            .getFamily();
+    public static final BlockFamily RGB_CONCRETE = familyBuilder(ModBlocks.RGB_CONCRETE.get())
+            .stairs(ModBlocks.RGB_CONCRETE_STAIRS.get())
+            .slab(ModBlocks.RGB_CONCRETE_SLAB.get())
+            .recipeGroupPrefix(RECIPE_GROUP_PREFIX_CONCRETE)
+            .generateStonecutterRecipe()
+            .getFamily();
+    public static final BlockFamily MISSINGNO_WOOL = familyBuilder(ModBlocks.MISSINGNO_WOOL.get())
+            .carpet(ModBlocks.MISSINGNO_CARPET.get())
+            .stairs(ModBlocks.MISSINGNO_WOOL_STAIRS.get())
+            .slab(ModBlocks.MISSINGNO_WOOL_SLAB.get())
+            .recipeGroupPrefix(RECIPE_GROUP_PREFIX_WOOLEN)
+            .getFamily();
+    public static final BlockFamily MISSINGNO_CONCRETE = familyBuilder(ModBlocks.MISSINGNO_CONCRETE.get())
+            .stairs(ModBlocks.MISSINGNO_CONCRETE_STAIRS.get())
+            .slab(ModBlocks.MISSINGNO_CONCRETE_SLAB.get())
+            .recipeGroupPrefix(RECIPE_GROUP_PREFIX_CONCRETE)
+            .generateStonecutterRecipe()
+            .getFamily();
 
     public static ColorCollection<BlockFamily> createFamily(Function<DyeColor, BlockFamily> colorProvider) {
         return ColorCollection.VALUES.map(colorProvider);

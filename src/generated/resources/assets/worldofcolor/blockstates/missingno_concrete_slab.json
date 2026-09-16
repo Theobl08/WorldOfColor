@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "worldofcolor:block/missingno_concrete_slab"
+    },
+    "type=double": {
+      "model": "worldofcolor:block/missingno_concrete"
+    },
+    "type=top": {
+      "model": "worldofcolor:block/missingno_concrete_slab_top"
+    }
+  }
+}

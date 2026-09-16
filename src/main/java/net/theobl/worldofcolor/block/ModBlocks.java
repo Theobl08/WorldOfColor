@@ -425,6 +425,8 @@ public class ModBlocks {
             Block::new,
             () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WOOL.white())
     );
+    public static final DeferredBlock<Block> RGB_WOOL_STAIRS = registerStair("rgb_wool_stairs", RGB_WOOL);
+    public static final DeferredBlock<Block> RGB_WOOL_SLAB = registerSlab("rgb_wool_slab", RGB_WOOL);
     public static final DeferredBlock<Block> RGB_CARPET = registerBlock(
             "rgb_carpet",
             CarpetBlock::new,
@@ -440,6 +442,8 @@ public class ModBlocks {
             Block::new,
             () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CONCRETE.white())
     );
+    public static final DeferredBlock<Block> RGB_CONCRETE_STAIRS = registerStair("rgb_concrete_stairs", RGB_CONCRETE);
+    public static final DeferredBlock<Block> RGB_CONCRETE_SLAB = registerSlab("rgb_concrete_slab", RGB_CONCRETE);
     public static final DeferredBlock<Block> RGB_CONCRETE_POWDER = registerBlock(
             "rgb_concrete_powder",
             p -> new ConcretePowderBlock(RGB_CONCRETE.get(), p),
@@ -502,6 +506,8 @@ public class ModBlocks {
             Block::new,
             () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WOOL.black())
     );
+    public static final DeferredBlock<Block> MISSINGNO_WOOL_STAIRS = registerStair("missingno_wool_stairs", MISSINGNO_WOOL);
+    public static final DeferredBlock<Block> MISSINGNO_WOOL_SLAB = registerSlab("missingno_wool_slab", MISSINGNO_WOOL);
     public static final DeferredBlock<Block> MISSINGNO_CARPET = registerBlock(
             "missingno_carpet",
             CarpetBlock::new,
@@ -517,6 +523,8 @@ public class ModBlocks {
             Block::new,
             () -> BlockBehaviour.Properties.ofFullCopy(Blocks.CONCRETE.black())
     );
+    public static final DeferredBlock<Block> MISSINGNO_CONCRETE_STAIRS = registerStair("missingno_concrete_stairs", MISSINGNO_CONCRETE);
+    public static final DeferredBlock<Block> MISSINGNO_CONCRETE_SLAB = registerSlab("missingno_concrete_slab", MISSINGNO_CONCRETE);
     public static final DeferredBlock<Block> MISSINGNO_CONCRETE_POWDER = registerBlock(
             "missingno_concrete_powder",
             p -> new ConcretePowderBlock(MISSINGNO_CONCRETE.get(), p),
@@ -630,6 +638,14 @@ public class ModBlocks {
                 p -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, flower, p),
                 p -> p.instabreak().noOcclusion().pushReaction(PushReaction.POPPED)
         );
+    }
+
+    private static <T extends Block> DeferredBlock<Block> registerStair(String name, DeferredBlock<T> base) {
+        return registerBlock(name, p -> new StairBlock(base.get().defaultBlockState(), p), () -> BlockBehaviour.Properties.ofFullCopy(base.get()).isViewBlocking(Blocks.NEAR_PLANE_INTERSECTS_OUTLINE));
+    }
+
+    private static <T extends Block> DeferredBlock<Block> registerSlab(String name, DeferredBlock<T> base) {
+        return registerBlock(name, SlabBlock::new, () -> BlockBehaviour.Properties.ofFullCopy(base.get()).isViewBlocking(Blocks.NEAR_PLANE_INTERSECTS_OUTLINE));
     }
 
     private static <T extends Block> DeferredBlock<T> registerBlock(String name, Function<BlockBehaviour.Properties, ? extends T> block, Supplier<BlockBehaviour.Properties> properties) {

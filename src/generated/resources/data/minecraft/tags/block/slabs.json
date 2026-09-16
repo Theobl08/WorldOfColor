@@ -47,6 +47,10 @@
     "worldofcolor:brown_brick_slab",
     "worldofcolor:green_brick_slab",
     "worldofcolor:red_brick_slab",
-    "worldofcolor:black_brick_slab"
+    "worldofcolor:black_brick_slab",
+    "worldofcolor:rgb_wool_slab",
+    "worldofcolor:rgb_concrete_slab",
+    "worldofcolor:missingno_wool_slab",
+    "worldofcolor:missingno_concrete_slab"
   ]
 }

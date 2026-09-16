@@ -1,4 +1,4 @@
-// 26.3	2026-09-15T23:49:31.8266526	Tags for minecraft:block mod id worldofcolor
+// 26.3	2026-09-16T15:54:28.1455515	Tags for minecraft:block mod id worldofcolor
 db245252eb0be16ddfea2e7c10c1b2c19fc2734b data/c/tags/block/concretes.json
 3d6c0b035c67e9cd0ddbf4a707ff7bcd3291dd4f data/c/tags/block/dyed/black.json
 3fc255a89a05737990876711691e7477845dfbe0 data/c/tags/block/dyed/blue.json
@@ -43,14 +43,14 @@ b9a95ecc99790fada9ae0c3945900d4a82bf6555 data/minecraft/tags/block/lanterns.json
 81b55c757690b809acdb2ce5c1681870ab39c745 data/minecraft/tags/block/leaves.json
 a6d27dc8c0531fae7d2ce3c522706c88eb3847f9 data/minecraft/tags/block/lightning_rods.json
 56de79b538193a6ebe9bb005cce4460536d83aff data/minecraft/tags/block/logs_that_burn.json
-e6c650294c1bcd5948c236fc759ec583f2713c57 data/minecraft/tags/block/mineable/pickaxe.json
+c0030833283c3faff5ef22b4afaa02c028e4dc84 data/minecraft/tags/block/mineable/pickaxe.json
 b5752dba81fe58ef5fbb4108c3540ee253b7267a data/minecraft/tags/block/needs_stone_tool.json
 7d53dbc02c6e678cd90c897885a2489382878601 data/minecraft/tags/block/planks.json
 2351f26121bc68d6a820bb3dcbef4fba48958d3f data/minecraft/tags/block/saplings.json
 3823494ecc0cc1a1a081a39bea36cf793133129b data/minecraft/tags/block/shulker_boxes.json
-e44d2232bab9d4b3e8744ee3b5e7484cbbfcc1dd data/minecraft/tags/block/slabs.json
+3fcab7fb50f3ccdf70c2e70daae35a8a24e416ea data/minecraft/tags/block/slabs.json
 c4c6fc1f01ba8edd049865dc43ddbc84bd0dc6b6 data/minecraft/tags/block/small_flowers.json
-9913faadb1efe7ad4fa8c11fe138ad4d3313ae4e data/minecraft/tags/block/stairs.json
+30d759b40f823d24705a9db99b6884c46bd4e6dd data/minecraft/tags/block/stairs.json
 7afb8d0ed6a635c2735ea2d04f8a24483c02ab84 data/minecraft/tags/block/standing_signs.json
 b9d95dc501e4aa158d9141ca972d3d1f87f89c22 data/minecraft/tags/block/terracotta.json
 d899c9501325c18b79823e2c08e0039a9d11c273 data/minecraft/tags/block/trapdoors.json

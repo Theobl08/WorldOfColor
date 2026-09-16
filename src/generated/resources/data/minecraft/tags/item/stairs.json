@@ -47,6 +47,10 @@
     "worldofcolor:brown_brick_stairs",
     "worldofcolor:green_brick_stairs",
     "worldofcolor:red_brick_stairs",
-    "worldofcolor:black_brick_stairs"
+    "worldofcolor:black_brick_stairs",
+    "worldofcolor:rgb_wool_stairs",
+    "worldofcolor:rgb_concrete_stairs",
+    "worldofcolor:missingno_wool_stairs",
+    "worldofcolor:missingno_concrete_stairs"
   ]
 }

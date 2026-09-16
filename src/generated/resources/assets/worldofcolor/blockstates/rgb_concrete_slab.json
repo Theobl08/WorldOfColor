@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "worldofcolor:block/rgb_concrete_slab"
+    },
+    "type=double": {
+      "model": "worldofcolor:block/rgb_concrete"
+    },
+    "type=top": {
+      "model": "worldofcolor:block/rgb_concrete_slab_top"
+    }
+  }
+}

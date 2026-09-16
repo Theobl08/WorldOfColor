@@ -1,0 +1,7 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": "worldofcolor:missingno_concrete",
+  "result": {
+    "id": "worldofcolor:missingno_concrete_stairs"
+  }
+}

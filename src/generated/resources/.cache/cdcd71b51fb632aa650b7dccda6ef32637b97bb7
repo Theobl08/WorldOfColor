@@ -1,4 +1,4 @@
-// 26.3	2026-09-15T23:49:31.8006446	Tags for minecraft:item mod id worldofcolor
+// 26.3	2026-09-16T15:54:28.1295452	Tags for minecraft:item mod id worldofcolor
 db245252eb0be16ddfea2e7c10c1b2c19fc2734b data/c/tags/item/concretes.json
 0b220826d89647f5e377b0df732396ff1f4c9d35 data/c/tags/item/concrete_powders.json
 a1ef82cc6d6804e7a7a65800c859abbae4d821e9 data/c/tags/item/dyed/black.json
@@ -50,9 +50,9 @@ a6d27dc8c0531fae7d2ce3c522706c88eb3847f9 data/minecraft/tags/item/lightning_rods
 2351f26121bc68d6a820bb3dcbef4fba48958d3f data/minecraft/tags/item/saplings.json
 3823494ecc0cc1a1a081a39bea36cf793133129b data/minecraft/tags/item/shulker_boxes.json
 7afb8d0ed6a635c2735ea2d04f8a24483c02ab84 data/minecraft/tags/item/signs.json
-e44d2232bab9d4b3e8744ee3b5e7484cbbfcc1dd data/minecraft/tags/item/slabs.json
+3fcab7fb50f3ccdf70c2e70daae35a8a24e416ea data/minecraft/tags/item/slabs.json
 c4c6fc1f01ba8edd049865dc43ddbc84bd0dc6b6 data/minecraft/tags/item/small_flowers.json
-9913faadb1efe7ad4fa8c11fe138ad4d3313ae4e data/minecraft/tags/item/stairs.json
+30d759b40f823d24705a9db99b6884c46bd4e6dd data/minecraft/tags/item/stairs.json
 b9d95dc501e4aa158d9141ca972d3d1f87f89c22 data/minecraft/tags/item/terracotta.json
 d899c9501325c18b79823e2c08e0039a9d11c273 data/minecraft/tags/item/trapdoors.json
 fd3986b964450a6e845ac746515174f36ebf2463 data/minecraft/tags/item/walls.json

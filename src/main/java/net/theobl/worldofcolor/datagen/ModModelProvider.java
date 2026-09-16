@@ -141,9 +141,7 @@ public class ModModelProvider extends ModelProvider {
         blockModels.createPlantWithDefaultItem(ModBlocks.PURPLE_TULIP.get(), ModBlocks.POTTED_PURPLE_TULIP.get(), BlockModelGenerators.PlantType.NOT_TINTED);
         blockModels.createPlantWithDefaultItem(ModBlocks.MAGENTA_TULIP.get(), ModBlocks.POTTED_MAGENTA_TULIP.get(), BlockModelGenerators.PlantType.NOT_TINTED);
 
-        blockModels.createFullAndCarpetBlocks(ModBlocks.RGB_WOOL.get(), ModBlocks.RGB_CARPET.get());
         blockModels.createTrivialCube(ModBlocks.RGB_TERRACOTTA.get());
-        blockModels.createTrivialCube(ModBlocks.RGB_CONCRETE.get());
         blockModels.createColoredBlockWithRandomRotations(TexturedModel.CUBE, List.of(ModBlocks.RGB_CONCRETE_POWDER.get()));
         blockModels.createColoredBlockWithStateRotations(TexturedModel.GLAZED_TERRACOTTA, List.of(ModBlocks.RGB_GLAZED_TERRACOTTA.get()));
         blockModels.createGlassBlocks(ModBlocks.RGB_STAINED_GLASS.get(), ModBlocks.RGB_STAINED_GLASS_PANE.get());
@@ -153,9 +151,7 @@ public class ModModelProvider extends ModelProvider {
         coloredBlockModels.createBanner(ModBlocks.RGB_BANNER.get(), ModBlocks.RGB_WALL_BANNER.get());
 
         coloredBlockModels.createTrivialBlock(ModBlocks.MISSINGNO.get(), cube(new Material(MissingTextureAtlasSprite.getLocation())), ModelTemplates.CUBE_ALL);
-        blockModels.createFullAndCarpetBlocks(ModBlocks.MISSINGNO_WOOL.get(), ModBlocks.MISSINGNO_CARPET.get());
         blockModels.createTrivialCube(ModBlocks.MISSINGNO_TERRACOTTA.get());
-        blockModels.createTrivialCube(ModBlocks.MISSINGNO_CONCRETE.get());
         blockModels.createColoredBlockWithRandomRotations(TexturedModel.CUBE, List.of(ModBlocks.MISSINGNO_CONCRETE_POWDER.get()));
         blockModels.createColoredBlockWithStateRotations(TexturedModel.GLAZED_TERRACOTTA, List.of(ModBlocks.MISSINGNO_GLAZED_TERRACOTTA.get()));
         blockModels.createGlassBlocks(ModBlocks.MISSINGNO_STAINED_GLASS.get(), ModBlocks.MISSINGNO_STAINED_GLASS_PANE.get());

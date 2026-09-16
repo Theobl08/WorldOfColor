@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "worldofcolor:block/missingno_concrete",
+    "side": "worldofcolor:block/missingno_concrete",
+    "top": "worldofcolor:block/missingno_concrete"
+  }
+}
