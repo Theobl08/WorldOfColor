@@ -27,6 +27,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ColorCollection;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.crafting.CompoundIngredient;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 import net.neoforged.neoforge.common.crafting.DifferenceIngredient;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -180,14 +181,13 @@ public class ModRecipeProvider extends RecipeProvider {
                                 new DyeRecipe(
                                         commonInfo,
                                         bookInfo,
-                                        DataComponentIngredient.of(DataComponents.POTION_CONTENTS, new PotionContents(Potions.WATER), Items.POTION),
+                                        CompoundIngredient.of(DataComponentIngredient.of(DataComponents.POTION_CONTENTS, new PotionContents(Potions.WATER), Items.POTION), Ingredient.of(ModItems.DYED_WATER_BOTTLE)),
                                         this.tag(ItemTags.DYES),
                                         new ItemStackTemplate(ModItems.DYED_WATER_BOTTLE.get()))
                 )
                 .unlockedBy(getHasName(ModItems.DYED_WATER_BOTTLE.get()), this.has(ModItems.DYED_WATER_BOTTLE.get()))
                 .group("dyed_water_bottle")
-                .save(this.output, WorldOfColor.MODID + ":" + getItemName(ModItems.DYED_WATER_BOTTLE.get()) + "_dyed_from_water_bottle");
-        dyedItem(ModItems.DYED_WATER_BOTTLE.get(), "dyed_water_bottle");
+                .save(this.output, WorldOfColor.MODID + ":" + getItemName(ModItems.DYED_WATER_BOTTLE.get()) + "_dyed");
 
         CustomCraftingRecipeBuilder.customCrafting(
                         RecipeCategory.MISC,

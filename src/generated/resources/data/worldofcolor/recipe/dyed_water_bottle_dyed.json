@@ -5,5 +5,19 @@
   "result": {
     "id": "worldofcolor:dyed_water_bottle"
   },
-  "target": "worldofcolor:dyed_water_bottle"
+  "target": {
+    "neoforge:ingredient_type": "neoforge:compound",
+    "children": [
+      {
+        "neoforge:ingredient_type": "neoforge:components",
+        "components": {
+          "minecraft:potion_contents": {
+            "potion": "minecraft:water"
+          }
+        },
+        "items": "minecraft:potion"
+      },
+      "worldofcolor:dyed_water_bottle"
+    ]
+  }
 }
