@@ -164,6 +164,17 @@ public class WorldOfColorClient {
                 ModFluids.DYED_WATER,
                 ModFluids.FLOWING_DYED_WATER
         );
+        event.register(
+                new FluidModel.Unbaked(
+                        new Material(WorldOfColor.asResource("block/rgb_water_still")),
+                        new Material(WorldOfColor.asResource("block/rgb_water_flow")),
+                        new Material(WorldOfColor.asResource("block/rgb_water_overlay")),
+                        null,
+                        null
+                ),
+                ModFluids.RGB_WATER,
+                ModFluids.FLOWING_RGB_WATER
+        );
     }
 
     @SubscribeEvent

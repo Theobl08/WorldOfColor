@@ -1,4 +1,4 @@
-// 26.3	2026-09-16T20:47:49.47596	Resource Metadata
+// 26.3	2026-09-18T20:46:46.2547167	Resource Metadata
 fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/black_leaves.png.mcmeta
 adeef8fe85413db17f59bc226474f3e1a0c6b6bb assets/worldofcolor/textures/block/black_tulip.png.mcmeta
 fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/blue_leaves.png.mcmeta
@@ -39,6 +39,9 @@ fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/red_
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/block/rgb_stained_glass.png.mcmeta
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/block/rgb_stained_glass_pane_top.png.mcmeta
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/block/rgb_terracotta.png.mcmeta
+700ec13e51f7f22e4230a25c3727513679110317 assets/worldofcolor/textures/block/rgb_water_flow.png.mcmeta
+2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/block/rgb_water_overlay.png.mcmeta
+700ec13e51f7f22e4230a25c3727513679110317 assets/worldofcolor/textures/block/rgb_water_still.png.mcmeta
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/block/rgb_wool.png.mcmeta
 fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/white_leaves.png.mcmeta
 fa302f766c2cbba6ed569ee7a479a27fd7d2c328 assets/worldofcolor/textures/block/yellow_leaves.png.mcmeta
@@ -52,3 +55,4 @@ adeef8fe85413db17f59bc226474f3e1a0c6b6bb assets/worldofcolor/textures/block/yell
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/item/rgb_cushion.png.mcmeta
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/item/rgb_dye.png.mcmeta
 2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/item/rgb_harness.png.mcmeta
+2a95e8afe421c15925cf5d2aa312262a69e437d1 assets/worldofcolor/textures/item/rgb_water_bucket.png.mcmeta

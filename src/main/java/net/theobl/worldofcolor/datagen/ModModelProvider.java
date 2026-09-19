@@ -162,6 +162,8 @@ public class ModModelProvider extends ModelProvider {
         blockModels.createNonTemplateModelBlock(ModBlocks.DYED_WATER.get());
         coloredBlockModels.copyBlockModel(Blocks.CAULDRON, ModBlocks.DYED_WATER_CAULDRON.get());
 
+        blockModels.createAirLikeBlock(ModBlocks.RGB_WATER.get(), new Material(Identifier.withDefaultNamespace("block/water_still"))); // Create the fluid dummy block model et blockstate files
+
         ModItems.COLORED_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
         ModItems.COLORED_CHEST_BOATS.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
         ModItems.COLORED_ITEM_FRAMES.forEach(item -> itemModels.generateFlatItem(item.get(), ModelTemplates.FLAT_ITEM));
@@ -186,5 +188,6 @@ public class ModModelProvider extends ModelProvider {
                         TextureMapping.getItemTexture(ModItems.DYED_WATER_BUCKET.get(), "_overlay")),
                 ItemModelGenerators.BLANK_LAYER,
                 new Dye(ARGB.opaque(OverworldBiomes.NORMAL_WATER_COLOR))));
+        itemModels.generateFlatItem(ModItems.RGB_WATER_BUCKET.get(), ModelTemplates.FLAT_ITEM);
     }
 }

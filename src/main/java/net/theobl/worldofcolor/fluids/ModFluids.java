@@ -44,6 +44,32 @@ public class ModFluids {
             new BaseFlowingFluid.Properties(DYED_WATER_TYPE, DYED_WATER, FLOWING_DYED_WATER)
                     .block(ModBlocks.DYED_WATER)
                     .bucket(ModItems.DYED_WATER_BUCKET);
+    public static final DeferredHolder<FluidType, FluidType> RGB_WATER_TYPE = FLUID_TYPES.register(
+            "rgb_water",
+            () -> new FluidType(
+                    FluidType.Properties.create()
+                            .descriptionId(ModBlocks.RGB_WATER.get().getDescriptionId())
+                            .fallDistanceModifier(0F)
+                            .canExtinguish(true)
+                            .canConvertToSource(true)
+                            .supportsBoating(true)
+                            .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
+                            .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
+                            .sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)
+                            .canHydrate(true)
+                            .isWaterLike(true)
+            )
+    );
+    public static final DeferredHolder<Fluid, BaseFlowingFluid.Source> RGB_WATER = FLUIDS.register(
+            "rgb_water", () -> new BaseFlowingFluid.Source(ModFluids.RGB_WATER_PROPERTIES)
+    );
+    public static final DeferredHolder<Fluid, BaseFlowingFluid.Flowing> FLOWING_RGB_WATER = FLUIDS.register(
+            "flowing_rgb_water", () -> new BaseFlowingFluid.Flowing(ModFluids.RGB_WATER_PROPERTIES)
+    );
+    public static final BaseFlowingFluid.Properties RGB_WATER_PROPERTIES =
+            new BaseFlowingFluid.Properties(RGB_WATER_TYPE, RGB_WATER, FLOWING_RGB_WATER)
+                    .block(ModBlocks.RGB_WATER)
+                    .bucket(ModItems.RGB_WATER_BUCKET);
 
     public static void register(IEventBus eventBus) {
         FLUID_TYPES.register(eventBus);

@@ -103,6 +103,12 @@ public class ModItems {
                     .component(DataComponents.CONSUMABLE, Consumables.DEFAULT_DRINK)
                     .usingConvertsTo(Items.GLASS_BOTTLE)
     );
+    public static final DeferredItem<Item> RGB_WATER_BUCKET = ITEMS.registerItem(
+            "rgb_water_bucket",
+            p -> new BucketItem(ModFluids.RGB_WATER.get(), p),
+            p -> p.stacksTo(1)
+                    .craftRemainder(Items.BUCKET)
+    );
     public static final ColorCollection<DeferredItem<Item>> COLORED_POTATO_PEELS = ColorCollectionUtil.register(
             createSimpleColored("potato_peels"),
             (name, color) -> ITEMS.registerSimpleItem(name, p -> p.food(Foods.POTATO).compostable(ContextIntProviders.COMPOSTABLE_MEDIUM))

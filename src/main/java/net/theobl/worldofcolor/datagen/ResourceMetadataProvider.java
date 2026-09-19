@@ -90,6 +90,28 @@ public class ResourceMetadataProvider implements DataProvider {
         this.addSimpleRGB(ModItems.RGB_HARNESS.getId().withPrefix("item/"));
         this.addSimpleRGB(ModItems.RGB_HARNESS.getId().withPrefix("entity/equipment/happy_ghast_body/"));
         this.addSimpleRGB(ModItems.RGB_DYE.getId().withPrefix("item/"));
+        this.addSimpleRGB(ModItems.RGB_WATER_BUCKET.getId().withPrefix("item/"));
+        this.addSimpleRGB(ModBlocks.RGB_WATER.getId().withPrefix("block/").withSuffix("_overlay"));
+        this.textureMetadata(ModBlocks.RGB_WATER.getId().withPrefix("block/").withSuffix("_still")).add(
+                AnimationMetadataSection.TYPE,
+                new AnimationMetadataSection(
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        1,
+                        false
+                )
+        );
+        this.textureMetadata(ModBlocks.RGB_WATER.getId().withPrefix("block/").withSuffix("_flow")).add(
+                AnimationMetadataSection.TYPE,
+                new AnimationMetadataSection(
+                        Optional.empty(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        1,
+                        false
+                )
+        );
     }
 
     private void addSimpleRGB(Identifier identifier) {

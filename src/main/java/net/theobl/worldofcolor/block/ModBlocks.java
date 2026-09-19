@@ -411,6 +411,11 @@ public class ModBlocks {
             DyedWaterCauldronBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)
     );
+    public static final DeferredBlock<LiquidBlock> RGB_WATER = BLOCKS.registerBlock(
+            "rgb_water",
+            p -> new LiquidBlock(ModFluids.RGB_WATER.get(), p),
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)
+    );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_POTATO_PEELS_BLOCK = registerColored(
                 "potato_peels_block",
                     Block::new,
