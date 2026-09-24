@@ -1,0 +1,868 @@
+{
+  "values": {
+    "worldofcolor:black_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:black_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_black_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:black_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:black_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_black_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:blue_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:blue_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_blue_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:blue_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:blue_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_blue_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:brown_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:brown_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_brown_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:brown_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:brown_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_brown_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:cyan_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:cyan_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_cyan_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:cyan_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:cyan_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_cyan_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:gray_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:gray_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_gray_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:gray_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:gray_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_gray_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:green_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:green_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_green_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:green_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:green_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_green_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:light_blue_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:light_blue_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_light_blue_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:light_blue_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:light_blue_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_light_blue_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:light_gray_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:light_gray_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_light_gray_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:light_gray_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:light_gray_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_light_gray_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:lime_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:lime_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_lime_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:lime_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:lime_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_lime_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:magenta_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:magenta_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_magenta_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:magenta_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:magenta_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_magenta_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:orange_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:orange_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_orange_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:orange_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:orange_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_orange_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:pink_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:pink_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_pink_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:pink_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:pink_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_pink_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:purple_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:purple_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_purple_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:purple_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:purple_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_purple_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:red_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:red_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_red_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:red_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:red_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_red_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:white_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:white_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_white_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:white_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:white_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_white_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:yellow_log": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:yellow_log"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_yellow_log",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    },
+    "worldofcolor:yellow_wood": {
+      "transform_data": {
+        "block_state_provider": {
+          "type": "minecraft:rule_based",
+          "rules": [
+            {
+              "if_true": {
+                "type": "minecraft:matching_blocks",
+                "blocks": "worldofcolor:yellow_wood"
+              },
+              "then": {
+                "type": "minecraft:copy_properties",
+                "source": {
+                  "id": "worldofcolor:stripped_yellow_wood",
+                  "properties": {
+                    "axis": "y"
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "item_damage_per_use": 1,
+        "sound": "minecraft:item.axe.strip"
+      },
+      "transformer": "minecraft:axe"
+    }
+  }
+}

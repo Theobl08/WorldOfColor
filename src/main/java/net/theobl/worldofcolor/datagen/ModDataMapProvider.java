@@ -35,12 +35,12 @@ public class ModDataMapProvider extends DataMapProvider {
 
     @Override
     protected void gather(HolderLookup.Provider provider) {
-        final var oxidizables = builder(NeoForgeDataMaps.OXIDIZABLES);
-        final var waxables = builder(NeoForgeDataMaps.WAXABLES);
-        final var strippable = builder(NeoForgeDataMaps.STRIPPABLES);
+        Builder<Oxidizable, Block> oxidizables = builder(NeoForgeDataMaps.OXIDIZABLES);
+        Builder<Waxable, Block> waxables = builder(NeoForgeDataMaps.WAXABLES);
+        Builder<Transformable, Block> transformable = builder(NeoForgeDataMaps.TRANSFORMABLES);
         for (DyeColor color : ModUtil.COLORS) {
-            strippable.add(ModBlocks.COLORED_LOGS.pick(color), new Strippable(ModBlocks.COLORED_STRIPPED_LOGS.pick(color).get()), false);
-            strippable.add(ModBlocks.COLORED_WOODS.pick(color), new Strippable(ModBlocks.COLORED_STRIPPED_WOODS.pick(color).get()), false);
+            transformable.add(ModBlocks.COLORED_LOGS.pick(color), Transformable.stripping(ModBlocks.COLORED_LOGS.pick(color).get(), ModBlocks.COLORED_STRIPPED_LOGS.pick(color).get()), false);
+            transformable.add(ModBlocks.COLORED_WOODS.pick(color), Transformable.stripping(ModBlocks.COLORED_WOODS.pick(color).get(), ModBlocks.COLORED_STRIPPED_WOODS.pick(color).get()), false);
         }
         var coloringBlocks = List.of(
                 ModBlocks.COLORED_COPPER_BLOCKS,

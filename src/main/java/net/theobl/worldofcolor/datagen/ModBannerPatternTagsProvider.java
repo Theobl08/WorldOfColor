@@ -11,7 +11,7 @@ import java.util.concurrent.CompletableFuture;
 
 public class ModBannerPatternTagsProvider extends BannerPatternTagsProvider {
     public ModBannerPatternTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        super(output, lookupProvider);
+        super(output, lookupProvider, WorldOfColor.MODID);
     }
 
     @Override

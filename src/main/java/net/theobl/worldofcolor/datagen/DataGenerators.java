@@ -14,13 +14,13 @@ import java.util.List;
 public class DataGenerators {
     @SubscribeEvent
     public static void gatherData(GatherDataEvent.Client event) {
+        event.createWorldRegistryObjects(ModDatapackBuiltInEntriesProvider.WORLD_BUILDER);
+        event.createReloadableRegistryObjects(ModDatapackBuiltInEntriesProvider.RELOADABLE_BUILDER);
         event.createBlockAndItemTags(ModBlockTagsProvider::new, ModItemTagsProvider::new);
         event.createProvider(ModBannerPatternTagsProvider::new);
         event.createProvider(ModEntityTypeTagsProvider::new);
         event.createProvider(ModFeatureTagsProvider::new);
         event.createProvider(ModDataMapProvider::new);
-        event.createWorldRegistryObjects(ModDatapackBuiltInEntriesProvider.WORLD_BUILDER);
-        event.createReloadableRegistryObjects(ModDatapackBuiltInEntriesProvider.RELOADABLE_BUILDER);
 
         event.createProvider(ModModelProvider::new);
         event.createProvider(ModSpriteSourceProvider::new);
