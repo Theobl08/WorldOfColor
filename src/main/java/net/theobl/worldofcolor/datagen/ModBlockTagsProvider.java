@@ -24,9 +24,6 @@ import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 
 public class ModBlockTagsProvider extends BlockTagsProvider {
-    protected static final ColorCollection<TagKey<Block>> DYED_TAGS = ColorCollection.NAMES
-            .map(name -> BlockTags.create(Identifier.fromNamespaceAndPath("c", "dyed/" + name)));
-
     public ModBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, lookupProvider, WorldOfColor.MODID);
     }
@@ -205,7 +202,6 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         addColored(ModBlocks.COLORED_WALL_SIGNS);
         addColored(ModBlocks.COLORED_HANGING_SIGNS);
         addColored(ModBlocks.COLORED_WALL_HANGING_SIGNS);
-//        addColoredTags(tag(Tags.Blocks.DYED)::addTag, Tags.Blocks.DYED);
     }
     private boolean mineableWithPickaxe(DeferredBlock<Block> block) {
         return (ModUtil.name(block).contains("concrete") && !(block.get() instanceof ConcretePowderBlock)) ||
@@ -218,24 +214,6 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     }
 
     private void addColored(ColorCollection<DeferredBlock<Block>> collection) {
-        ColorCollection.zipApply(DYED_TAGS, collection, (tagKey, block) -> tag(tagKey).add(block));
-    }
-
-//    private void addColoredTags(Consumer<TagKey<Block>> consumer, TagKey<Block> group) {
-//        String prefix = group.location().getPath().toUpperCase(Locale.ENGLISH) + '_';
-//        for (DyeColor color : DyeColor.values()) {
-//            TagKey<Block> tag = getForgeTag(prefix + color.getName());
-//            consumer.accept(tag);
-//        }
-//    }
-
-    @SuppressWarnings("unchecked")
-    private TagKey<Block> getForgeTag(String name) {
-        try {
-            name = name.toUpperCase(Locale.ENGLISH);
-            return (TagKey<Block>) Tags.Blocks.class.getDeclaredField(name).get(null);
-        } catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException e) {
-            throw new IllegalStateException(Tags.Blocks.class.getName() + " is missing tag name: " + name);
-        }
+        ColorCollection.zipApply(Tags.Blocks.DYED_COLORS.map(this::tag), collection, IntrinsicHolderTagAppender::add);
     }
 }

@@ -6,10 +6,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.TagAppender;
 import net.minecraft.references.BlockItemIds;
 import net.minecraft.resources.Identifier;
-import net.minecraft.tags.BlockItemTags;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
+import net.minecraft.tags.*;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
@@ -17,6 +14,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ColorCollection;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.BlockTagCopyingItemTagProvider;
+import net.neoforged.neoforge.registries.DeferredHolder;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.item.ModItems;
@@ -106,75 +104,60 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         tag(ItemTags.BOATS).addAll(ModItems.COLORED_BOATS);
         tag(ItemTags.CHEST_BOATS).addAll(ModItems.COLORED_CHEST_BOATS);
 
-        addColored(Tags.Items.DYED, "{color}_block");
-        addColored(Tags.Items.DYED, "{color}_bricks");
-        addColored(Tags.Items.DYED, "{color}_brick_stairs");
-        addColored(Tags.Items.DYED, "{color}_brick_slab");
-        addColored(Tags.Items.DYED, "{color}_brick_wall");
-        addColored(Tags.Items.DYED, "{color}_copper_block");
-        addColored(Tags.Items.DYED, "{color}_chiseled_copper");
-        addColored(Tags.Items.DYED, "{color}_copper_grate");
-        addColored(Tags.Items.DYED, "{color}_cut_copper");
-        addColored(Tags.Items.DYED, "{color}_cut_copper_stairs");
-        addColored(Tags.Items.DYED, "{color}_cut_copper_slab");
-        addColored(Tags.Items.DYED, "{color}_copper_door");
-        addColored(Tags.Items.DYED, "{color}_copper_trapdoor");
-        addColored(Tags.Items.DYED, "{color}_copper_bulb");
-        addColored(Tags.Items.DYED, "waxed_{color}_copper_block");
-        addColored(Tags.Items.DYED, "waxed_{color}_chiseled_copper");
-        addColored(Tags.Items.DYED, "waxed_{color}_copper_grate");
-        addColored(Tags.Items.DYED, "waxed_{color}_cut_copper");
-        addColored(Tags.Items.DYED, "waxed_{color}_cut_copper_stairs");
-        addColored(Tags.Items.DYED, "waxed_{color}_cut_copper_slab");
-        addColored(Tags.Items.DYED, "waxed_{color}_copper_door");
-        addColored(Tags.Items.DYED, "waxed_{color}_copper_trapdoor");
-        addColored(Tags.Items.DYED, "waxed_{color}_copper_bulb");
-        addColored(Tags.Items.DYED, "{color}_lightning_rod");
-        addColored(Tags.Items.DYED, "{color}_cauldron");
-        addColored(Tags.Items.DYED, "{color}_glazed_concrete");
-        addColored(Tags.Items.DYED, "{color}_quilted_concrete");
-        addColored(Tags.Items.DYED, "{color}_slime_block");
-        addColored(Tags.Items.DYED, "{color}_sapling");
-        addColored(Tags.Items.DYED, "{color}_leaves");
-        addColored(Tags.Items.DYED, "{color}_log");
-        addColored(Tags.Items.DYED, "stripped_{color}_log");
-        addColored(Tags.Items.DYED, "{color}_wood");
-        addColored(Tags.Items.DYED, "stripped_{color}_wood");
-        addColored(Tags.Items.DYED, "{color}_planks");
-        addColored(Tags.Items.DYED, "{color}_stairs");
-        addColored(Tags.Items.DYED, "{color}_slab");
-        addColored(Tags.Items.DYED, "{color}_fence");
-        addColored(Tags.Items.DYED, "{color}_fence_gate");
-        addColored(Tags.Items.DYED, "{color}_door");
-        addColored(Tags.Items.DYED, "{color}_trapdoor");
-        addColored(Tags.Items.DYED, "{color}_pressure_plate");
-        addColored(Tags.Items.DYED, "{color}_button");
-        addColored(Tags.Items.DYED, "{color}_sign");
-        addColored(Tags.Items.DYED, "{color}_hanging_sign");
-        addColored(Tags.Items.DYED, "{color}_boat");
-        addColored(Tags.Items.DYED, "{color}_chest_boat");
-//        addColoredTags(tag(Tags.Items.DYED)::addTag, Tags.Items.DYED);
+        addColored(ModBlocks.SIMPLE_COLORED_BLOCKS);
+        addColored(ModBlocks.COLORED_BRICKS);
+        addColored(ModBlocks.COLORED_BRICK_STAIRS);
+        addColored(ModBlocks.COLORED_BRICK_SLABS);
+        addColored(ModBlocks.COLORED_BRICK_WALLS);
+        addColored(ModBlocks.COLORED_COPPER_BLOCKS.coloring());
+        addColored(ModBlocks.COLORED_CHISELED_COPPER.coloring());
+        addColored(ModBlocks.COLORED_COPPER_GRATES.coloring());
+        addColored(ModBlocks.COLORED_CUT_COPPER.coloring());
+        addColored(ModBlocks.COLORED_CUT_COPPER_STAIRS.coloring());
+        addColored(ModBlocks.COLORED_CUT_COPPER_SLABS.coloring());
+        addColored(ModBlocks.COLORED_COPPER_DOORS.coloring());
+        addColored(ModBlocks.COLORED_COPPER_TRAPDOORS.coloring());
+        addColored(ModBlocks.COLORED_COPPER_BULBS.coloring());
+        addColored(ModBlocks.COLORED_COPPER_BLOCKS.waxed());
+        addColored(ModBlocks.COLORED_CHISELED_COPPER.waxed());
+        addColored(ModBlocks.COLORED_COPPER_GRATES.waxed());
+        addColored(ModBlocks.COLORED_CUT_COPPER.waxed());
+        addColored(ModBlocks.COLORED_CUT_COPPER_STAIRS.waxed());
+        addColored(ModBlocks.COLORED_CUT_COPPER_SLABS.waxed());
+        addColored(ModBlocks.COLORED_COPPER_DOORS.waxed());
+        addColored(ModBlocks.COLORED_COPPER_TRAPDOORS.waxed());
+        addColored(ModBlocks.COLORED_COPPER_BULBS.waxed());
+        addColored(ModBlocks.COLORED_LIGHTNING_RODS.coloring());
+        addColored(ModItems.COLORED_CAULDRONS);
+        addColored(ModBlocks.GLAZED_CONCRETES);
+        addColored(ModBlocks.QUILTED_CONCRETES);
+        addColored(ModBlocks.COLORED_SLIME_BLOCKS);
+        addColored(ModBlocks.COLORED_SAPLINGS);
+        addColored(ModBlocks.COLORED_LEAVES);
+        addColored(ModBlocks.COLORED_LOGS);
+        addColored(ModBlocks.COLORED_STRIPPED_LOGS);
+        addColored(ModBlocks.COLORED_WOODS);
+        addColored(ModBlocks.COLORED_STRIPPED_WOODS);
+        addColored(ModBlocks.COLORED_PLANKS);
+        addColored(ModBlocks.COLORED_STAIRS);
+        addColored(ModBlocks.COLORED_SLABS);
+        addColored(ModBlocks.COLORED_FENCES);
+        addColored(ModBlocks.COLORED_FENCE_GATES);
+        addColored(ModBlocks.COLORED_DOORS);
+        addColored(ModBlocks.COLORED_TRAPDOORS);
+        addColored(ModBlocks.COLORED_PRESSURE_PLATES);
+        addColored(ModBlocks.COLORED_BUTTONS);
+        addColored(ModItems.COLORED_SIGNS);
+        addColored(ModItems.COLORED_HANGING_SIGNS);
+        addColored(ModItems.COLORED_BOATS);
+        addColored(ModItems.COLORED_CHEST_BOATS);
     }
 
-    private void addColored(TagKey<Item> group, String pattern) {
-        String prefix = group.location().getPath().toUpperCase(Locale.ENGLISH) + '_';
-        for (DyeColor color : DyeColor.values()) {
-            Identifier key = WorldOfColor.asResource(pattern.replace("{color}", color.getName()));
-            TagKey<Item> tag = getForgeItemTag(prefix + color.getName());
-            Item item = BuiltInRegistries.ITEM.getValue(key);
-            if (item == null || item == Items.AIR)
-                throw new IllegalStateException("Unknown vanilla item: " + key);
-            tag(tag).add(item.builtInRegistryHolder().key());
-        }
+    private <T extends DeferredHolder<?, ?>> void addColored(ColorCollection<T> collection) {
+        ColorCollection.zipApply(Tags.Items.DYED_COLORS.map(this::tag), collection, (appender, holder) ->
+                appender.add(TagEntry.element(holder.getId()))
+        );
     }
-
-//    private void addColoredTags(Consumer<TagKey<Item>> consumer, TagKey<Item> group) {
-//        String prefix = group.location().getPath().toUpperCase(Locale.ENGLISH) + '_';
-//        for (DyeColor color : DyeColor.values()) {
-//            TagKey<Item> tag = getForgeItemTag(prefix + color.getName());
-//            consumer.accept(tag);
-//        }
-//    }
 
     @SuppressWarnings("unchecked")
     private TagKey<Item> getForgeItemTag(String name) {
