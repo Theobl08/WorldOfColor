@@ -5,6 +5,7 @@ import net.minecraft.core.Registry;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.MultiRegistryBootstrap;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.data.BlockFamily;
 import net.minecraft.data.recipes.*;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
@@ -392,5 +393,24 @@ public class ModRecipeProvider extends RecipeProvider {
                 .requires(Items.DYE.white())
                 .unlockedBy(getHasName(Items.DYE.white()), has(Items.DYE.white()))
                 .save(output);
+    }
+
+    protected void generateStonecutterRecipe(BlockFamily family, BlockFamily.Variant variant, Block base) {
+        RecipeProvider.FamilyStonecutterRecipeProvider recipeFunction = STONECUTTER_RECIPE_BUILDERS.get(variant);
+        if (recipeFunction != null) {
+            recipeFunction.create(this, family.get(variant), base);
+        }
+
+        if (variant == BlockFamily.Variant.POLISHED
+                || variant == BlockFamily.Variant.CUT
+                || variant == BlockFamily.Variant.BRICKS
+                || variant == BlockFamily.Variant.TILES
+                || variant == BlockFamily.Variant.PILLAR
+                || variant == BlockFamily.Variant.COBBLED) {
+            BlockFamily childVariantFamily = ModBlockFamilies.getFamily(family.get(variant));
+            if (childVariantFamily != null) {
+                childVariantFamily.getVariants().forEach((childVariant, r) -> this.generateStonecutterRecipe(childVariantFamily, childVariant, base));
+            }
+        }
     }
 }
