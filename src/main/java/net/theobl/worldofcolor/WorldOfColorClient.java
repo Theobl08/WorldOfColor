@@ -1,8 +1,11 @@
 package net.theobl.worldofcolor;
 
+import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockTintSources;
 import net.minecraft.client.model.object.boat.BoatModel;
+import net.minecraft.client.multiplayer.ClientLevel;
+import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.minecraft.client.renderer.block.BuiltInBlockModels;
 import net.minecraft.client.renderer.block.FluidModel;
@@ -11,6 +14,8 @@ import net.minecraft.client.renderer.blockentity.DecoratedPotRenderer;
 import net.minecraft.client.renderer.entity.BoatRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.client.renderer.entity.ItemFrameRenderer;
+import net.minecraft.client.renderer.fog.FogData;
+import net.minecraft.client.renderer.fog.environment.FogEnvironment;
 import net.minecraft.client.resources.model.sprite.Material;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -20,7 +25,10 @@ import net.minecraft.server.packs.PackType;
 import net.minecraft.server.packs.repository.Pack;
 import net.minecraft.server.packs.repository.PackSource;
 import net.minecraft.util.ARGB;
+import net.minecraft.util.Mth;
+import net.minecraft.world.attribute.EnvironmentAttributes;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.block.BannerBlock;
 import net.minecraft.world.level.block.DecoratedPotBlock;
 import net.minecraft.world.level.block.WallBannerBlock;
@@ -33,9 +41,12 @@ import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
+import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions;
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent;
 import net.neoforged.neoforge.client.fluid.FluidTintSource;
 import net.neoforged.neoforge.client.fluid.FluidTintSources;
 import net.neoforged.neoforge.event.AddPackFindersEvent;
+import net.theobl.worldofcolor.block.DyedWaterLiquidBlock;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.block.entity.DyedWaterCauldronBlockEntity;
 import net.theobl.worldofcolor.block.entity.DyedWaterLiquidBlockEntity;
@@ -54,6 +65,8 @@ import net.theobl.worldofcolor.client.renderer.special.ColoredDecoratedPotSpecia
 import net.theobl.worldofcolor.entity.ModEntityType;
 import net.theobl.worldofcolor.fluids.ModFluids;
 import net.theobl.worldofcolor.util.ModUtil;
+import org.joml.Vector4f;
+import org.jspecify.annotations.Nullable;
 
 import java.util.List;
 
@@ -175,6 +188,36 @@ public class WorldOfColorClient {
                 ModFluids.RGB_WATER,
                 ModFluids.FLOWING_RGB_WATER
         );
+    }
+
+    @SubscribeEvent
+    public static void registerClientExtension(RegisterClientExtensionsEvent event) {
+        event.registerFluidType(new IClientFluidTypeExtensions() {
+            @Override
+            public void modifyFogColor(Camera camera, float partialTick, ClientLevel level, int renderDistance, float darkenWorldAmount, Vector4f fluidFogColor) {
+                IClientFluidTypeExtensions.super.modifyFogColor(camera, partialTick, level, renderDistance, darkenWorldAmount, fluidFogColor);
+                if(level.getBlockEntity(camera.blockPosition()) instanceof DyedWaterLiquidBlockEntity blockEntity) {
+                    DyedItemColor color = blockEntity.getColor();
+                    float red = ARGB.red(color.rgb()) / 255F;
+                    float green = ARGB.green(color.rgb()) / 255F;
+                    float blue = ARGB.blue(color.rgb()) / 255F;
+                    float alpha = 1.0F;
+                    fluidFogColor.set(red, green, blue, alpha);
+                }
+            }
+
+            @Override
+            public void modifyFogRender(Camera camera, @Nullable FogEnvironment environment, float renderDistance, float partialTick, FogData fogData) {
+                fogData.environmentalStart = camera.attributeProbe().getValue(EnvironmentAttributes.WATER_FOG_START_DISTANCE, partialTick);
+                fogData.environmentalEnd = camera.attributeProbe().getValue(EnvironmentAttributes.WATER_FOG_END_DISTANCE, partialTick);
+                if (camera.entity() instanceof LocalPlayer player) {
+                    fogData.environmentalEnd = fogData.environmentalEnd * Math.max(0.25F, player.getWaterVision());
+                }
+
+                fogData.skyEnd = fogData.environmentalEnd;
+                fogData.cloudEnd = fogData.environmentalEnd;
+            }
+        }, ModFluids.DYED_WATER_TYPE);
     }
 
     @SubscribeEvent

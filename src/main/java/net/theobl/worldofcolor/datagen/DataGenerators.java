@@ -19,6 +19,7 @@ public class DataGenerators {
         event.createBlockAndItemTags(ModBlockTagsProvider::new, ModItemTagsProvider::new);
         event.createProvider(ModBannerPatternTagsProvider::new);
         event.createProvider(ModEntityTypeTagsProvider::new);
+        event.createProvider(ModFluidTagsProvider::new);
         event.createProvider(ModFeatureTagsProvider::new);
         event.createProvider(ModDataMapProvider::new);
 
