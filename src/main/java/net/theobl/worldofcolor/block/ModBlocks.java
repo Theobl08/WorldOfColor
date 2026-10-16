@@ -26,6 +26,7 @@ import net.theobl.worldofcolor.fluids.ModFluids;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.sounds.ModSoundType;
 import net.theobl.worldofcolor.util.ColorCollectionUtil;
+import org.apache.commons.lang3.function.TriFunction;
 
 import java.util.*;
 import java.util.function.BiFunction;
@@ -168,7 +169,7 @@ public class ModBlocks {
             Block::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_PLANKS)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_STAIRS = registerColoredStairs("stairs", COLORED_PLANKS, StairBlock::new);
+    public static final ColorCollection<DeferredBlock<Block>> COLORED_STAIRS = registerColoredStairs("stairs", COLORED_PLANKS);
     public static final ColorCollection<DeferredBlock<Block>> COLORED_SLABS = registerColored(
             "slab",
             SlabBlock::new,
@@ -206,21 +207,25 @@ public class ModBlocks {
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_SIGNS = registerColored(
             "sign",
+            BLOCKS::registerBlock,
             (color, p) -> new StandingSignBlock(ModWoodType.COLORED_WOODS.pick(color), p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_WALL_SIGNS = registerColored(
             "wall_sign",
+            BLOCKS::registerBlock,
             (color, p) -> new WallSignBlock(ModWoodType.COLORED_WOODS.pick(color), p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_SIGN)
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_HANGING_SIGNS = registerColored(
             "hanging_sign",
+            BLOCKS::registerBlock,
             (color, p) -> new CeilingHangingSignBlock(ModWoodType.COLORED_WOODS.pick(color), p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN)
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_WALL_HANGING_SIGNS = registerColored(
             "wall_hanging_sign",
+            BLOCKS::registerBlock,
             (color, p) -> new WallHangingSignBlock(ModWoodType.COLORED_WOODS.pick(color), p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.OAK_HANGING_SIGN)
     );
@@ -329,22 +334,26 @@ public class ModBlocks {
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_CAULDRONS = registerColored(
             "cauldron",
+            BLOCKS::registerBlock,
             ColoredCauldronBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_WATER_CAULDRONS = registerColored(
             "water_cauldron",
-            p -> new LayeredCauldronBlock(Biome.Precipitation.RAIN, CauldronInteractions.WATER, p),
+            BLOCKS::registerBlock,
+            (color, p) -> new LayeredCauldronBlock(Biome.Precipitation.RAIN, CauldronInteractions.WATER, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.WATER_CAULDRON)
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_LAVA_CAULDRONS = registerColored(
             "lava_cauldron",
-            LavaCauldronBlock::new,
+            BLOCKS::registerBlock,
+            ((color, p) -> new LavaCauldronBlock(p)),
             BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA_CAULDRON)
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_POWDER_SNOW_CAULDRONS = registerColored(
             "powder_snow_cauldron",
-            p -> new LayeredCauldronBlock(Biome.Precipitation.SNOW, CauldronInteractions.POWDER_SNOW, p),
+            BLOCKS::registerBlock,
+            (color, p) -> new LayeredCauldronBlock(Biome.Precipitation.SNOW, CauldronInteractions.POWDER_SNOW, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.POWDER_SNOW_CAULDRON)
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_BRICKS = registerColored(
@@ -352,7 +361,7 @@ public class ModBlocks {
             Block::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.BRICKS)
     );
-    public static final ColorCollection<DeferredBlock<Block>> COLORED_BRICK_STAIRS = registerColoredStairs("brick_stairs", COLORED_BRICKS, StairBlock::new);
+    public static final ColorCollection<DeferredBlock<Block>> COLORED_BRICK_STAIRS = registerColoredStairs("brick_stairs", COLORED_BRICKS);
     public static final ColorCollection<DeferredBlock<Block>> COLORED_BRICK_SLABS = registerColored(
             "brick_slab",
             SlabBlock::new,
@@ -388,6 +397,7 @@ public class ModBlocks {
     public static final Map<ResourceKey<Block>, ColorCollection<DeferredBlock<Block>>> COLORED_POTTED_PLANTS = registerColoredPottedPlant();
     public static final ColorCollection<DeferredBlock<ColoredDecoratedPotBlock>> COLORED_DECORATED_POTS = registerColored(
             "decorated_pot",
+            BLOCKS::registerBlock,
             ColoredDecoratedPotBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.DECORATED_POT)
     );
@@ -408,6 +418,7 @@ public class ModBlocks {
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_DYED_WATER_CAULDRONS = registerColored(
             "dyed_water_cauldron",
+            BLOCKS::registerBlock,
             DyedWaterCauldronBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.CAULDRON)
     );
@@ -594,27 +605,26 @@ public class ModBlocks {
         return pottedPlants;
     }
 
-    private static ColorCollection<DeferredBlock<Block>> registerColoredStairs(String key, ColorCollection<DeferredBlock<Block>> baseState, BiFunction<BlockState, BlockBehaviour.Properties, Block> factory) {
-        return ColorCollectionUtil.registerBlocks(
-                createSimpleColored(key),
-                ModBlocks::registerBlock,
-                (color, p) -> factory.apply(baseState.pick(color).get().defaultBlockState(), p),
-                (color) -> BlockBehaviour.Properties.ofFullCopy(baseState.pick(color).get()).mapColor(color)
-        );
+    private static ColorCollection<DeferredBlock<Block>> registerColoredStairs(String name, ColorCollection<DeferredBlock<Block>> base) {
+        return ColorCollection.zipMap(ColorCollection.VALUES, createSimpleColored(name), (color, id) -> registerStair(id, base.pick(color)));
     }
 
-    private static <T extends Block> ColorCollection<DeferredBlock<T>> registerColored(String key,  BiFunction<DyeColor, BlockBehaviour.Properties, T> block, BlockBehaviour.Properties properties) {
-        boolean shouldAlsoRegisterItem = !(key.contains("cauldron") || key.contains("copper_golem") || key.contains("decorated_pot") || key.contains("sign"));
+    private static <T extends Block> ColorCollection<DeferredBlock<T>> registerColored(
+            String key,
+            TriFunction<String, Function<BlockBehaviour.Properties, T>, Supplier<BlockBehaviour.Properties>, DeferredBlock<T>> register,
+            BiFunction<DyeColor, BlockBehaviour.Properties, T> block,
+            BlockBehaviour.Properties properties
+    ) {
         return ColorCollectionUtil.registerBlocks(
                 createSimpleColored(key),
-                shouldAlsoRegisterItem ? ModBlocks::registerBlock : BLOCKS::registerBlock,
+                register,
                 block,
                 properties::mapColor
         );
     }
 
-    private static <T extends Block> ColorCollection<DeferredBlock<T>> registerColoredWeathering(String key, BiFunction<WeatherState, BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties) {
-        return registerColored(key, p -> block.apply(WeatherState.UNAFFECTED, p), properties);
+    private static <T extends Block> ColorCollection<DeferredBlock<T>> registerColored(String key,  BiFunction<DyeColor, BlockBehaviour.Properties, T> block, BlockBehaviour.Properties properties) {
+        return registerColored(key, ModBlocks::registerBlock, block, properties);
     }
 
     private static <T extends Block> ColorCollection<DeferredBlock<T>> registerColored(String key, Function<BlockBehaviour.Properties, ? extends T> block, BlockBehaviour.Properties properties) {
