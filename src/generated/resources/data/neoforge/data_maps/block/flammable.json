@@ -1,0 +1,896 @@
+{
+  "values": {
+    "worldofcolor:black_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:black_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:black_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:black_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:black_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:black_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:black_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:black_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:black_tulip": {
+      "burn_odds": 100,
+      "ignite_odds": 60
+    },
+    "worldofcolor:black_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:blue_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:blue_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:blue_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:blue_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:blue_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:blue_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:blue_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:blue_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:blue_tulip": {
+      "burn_odds": 100,
+      "ignite_odds": 60
+    },
+    "worldofcolor:blue_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:bright_cyan_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:bright_cyan_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:bright_magenta_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:bright_magenta_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:bright_yellow_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:bright_yellow_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:brown_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:brown_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:brown_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:brown_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:brown_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:brown_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:brown_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:brown_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:brown_tulip": {
+      "burn_odds": 100,
+      "ignite_odds": 60
+    },
+    "worldofcolor:brown_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:capri_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:capri_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:chartreuse_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:chartreuse_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:classic_white_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:classic_white_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:cyan_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:cyan_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:cyan_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:cyan_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:cyan_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:cyan_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:cyan_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:cyan_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:cyan_tulip": {
+      "burn_odds": 100,
+      "ignite_odds": 60
+    },
+    "worldofcolor:cyan_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:dark_gray_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:dark_gray_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:dull_orange_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:dull_orange_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:gray_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:gray_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:gray_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:gray_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:gray_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:gray_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:gray_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:gray_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:gray_tulip": {
+      "burn_odds": 100,
+      "ignite_odds": 60
+    },
+    "worldofcolor:gray_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:green_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:green_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:green_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:green_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:green_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:green_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:green_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:green_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:green_tulip": {
+      "burn_odds": 100,
+      "ignite_odds": 60
+    },
+    "worldofcolor:green_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:light_blue_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:light_blue_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:light_blue_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:light_blue_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:light_blue_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:light_blue_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:light_blue_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:light_blue_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:light_blue_tulip": {
+      "burn_odds": 100,
+      "ignite_odds": 60
+    },
+    "worldofcolor:light_blue_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:light_gray_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:light_gray_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:light_gray_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:light_gray_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:light_gray_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:light_gray_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:light_gray_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:light_gray_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:light_gray_tulip": {
+      "burn_odds": 100,
+      "ignite_odds": 60
+    },
+    "worldofcolor:light_gray_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:lime_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:lime_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:lime_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:lime_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:lime_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:lime_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:lime_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:lime_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:lime_tulip": {
+      "burn_odds": 100,
+      "ignite_odds": 60
+    },
+    "worldofcolor:lime_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:magenta_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:magenta_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:magenta_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:magenta_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:magenta_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:magenta_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:magenta_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:magenta_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:magenta_tulip": {
+      "burn_odds": 100,
+      "ignite_odds": 60
+    },
+    "worldofcolor:magenta_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:missingno_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:missingno_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:orange_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:orange_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:orange_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:orange_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:orange_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:orange_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:orange_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:orange_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:orange_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:pink_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:pink_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:pink_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:pink_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:pink_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:pink_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:pink_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:pink_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:pink_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:purple_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:purple_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:purple_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:purple_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:purple_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:purple_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:purple_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:purple_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:purple_tulip": {
+      "burn_odds": 100,
+      "ignite_odds": 60
+    },
+    "worldofcolor:purple_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:red_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:red_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:red_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:red_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:red_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:red_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:red_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:red_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:red_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:rgb_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:rose_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:rose_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:silver_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:silver_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:spring_green_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:spring_green_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:stripped_black_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_black_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_blue_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_blue_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_brown_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_brown_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_cyan_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_cyan_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_gray_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_gray_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_green_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_green_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_light_blue_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_light_blue_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_light_gray_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_light_gray_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_lime_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_lime_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_magenta_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_magenta_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_orange_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_orange_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_pink_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_pink_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_purple_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_purple_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_red_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_red_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_white_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_white_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_yellow_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:stripped_yellow_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:ultramarine_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:ultramarine_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:vibrant_green_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:vibrant_green_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:vibrant_purple_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:vibrant_purple_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:vibrant_red_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:vibrant_red_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:violet_carpet": {
+      "burn_odds": 20,
+      "ignite_odds": 60
+    },
+    "worldofcolor:violet_wool": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:white_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:white_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:white_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:white_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:white_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:white_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:white_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:white_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:white_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:yellow_fence": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:yellow_fence_gate": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:yellow_leaves": {
+      "burn_odds": 60,
+      "ignite_odds": 30
+    },
+    "worldofcolor:yellow_log": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    },
+    "worldofcolor:yellow_planks": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:yellow_shelf": {
+      "burn_odds": 20,
+      "ignite_odds": 30
+    },
+    "worldofcolor:yellow_slab": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:yellow_stairs": {
+      "burn_odds": 20,
+      "ignite_odds": 5
+    },
+    "worldofcolor:yellow_tulip": {
+      "burn_odds": 100,
+      "ignite_odds": 60
+    },
+    "worldofcolor:yellow_wood": {
+      "burn_odds": 5,
+      "ignite_odds": 5
+    }
+  }
+}

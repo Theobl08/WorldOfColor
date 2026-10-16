@@ -4,6 +4,7 @@ import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.Identifier;
+import net.minecraft.tags.BlockItemTagId;
 import net.minecraft.tags.BlockItemTags;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.TagKey;
@@ -31,6 +32,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     @Override
     protected IntrinsicHolderTagAppender<Block> tag(TagKey<Block> tag) {
         return new IntrinsicHolderTagAppender<>(super.tag(tag));
+    }
+
+    private IntrinsicHolderTagAppender<Block> tag(BlockItemTagId tag) {
+        return tag(tag.block());
     }
 
     @Override
@@ -82,7 +87,7 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
                 this.tag(BlockTags.WOODEN_SHELVES).add(block);
             }
             else if (block.get() instanceof SlimeBlock) {
-                this.tag(Tags.Blocks.STORAGE_BLOCKS_SLIME).add(block);
+                this.tag(Tags.BlockItems.STORAGE_BLOCKS_SLIME).add(block);
             }
             else if (block.get() instanceof FlowerPotBlock) {
                 this.tag(BlockTags.FLOWER_POTS).add(block);
@@ -112,14 +117,14 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         }
         this.tag(BlockTags.WOOL).addAll(ModBlocks.CLASSIC_WOOLS).add(ModBlocks.RGB_WOOL).add(ModBlocks.MISSINGNO_WOOL);
         this.tag(BlockTags.WOOL_CARPETS).addAll(ModBlocks.CLASSIC_CARPETS).add(ModBlocks.RGB_CARPET).add(ModBlocks.MISSINGNO_CARPET);
-        this.tag(Tags.Blocks.STRIPPED_LOGS).addAll(ModBlocks.COLORED_STRIPPED_LOGS);
-        this.tag(Tags.Blocks.STRIPPED_WOODS).addAll(ModBlocks.COLORED_STRIPPED_WOODS);
+        this.tag(Tags.BlockItems.STRIPPED_LOGS).addAll(ModBlocks.COLORED_STRIPPED_LOGS);
+        this.tag(Tags.BlockItems.STRIPPED_WOODS).addAll(ModBlocks.COLORED_STRIPPED_WOODS);
         this.tag(BlockTags.PLANKS).addAll(ModBlocks.COLORED_PLANKS);
         this.tag(BlockTags.WOODEN_STAIRS).addAll(ModBlocks.COLORED_STAIRS);
         this.tag(BlockTags.WOODEN_SLABS).addAll(ModBlocks.COLORED_SLABS);
         this.tag(BlockTags.WOODEN_FENCES).addAll(ModBlocks.COLORED_FENCES);
         this.tag(BlockTags.FENCE_GATES).addAll(ModBlocks.COLORED_FENCE_GATES);
-        this.tag(Tags.Blocks.FENCE_GATES_WOODEN).addAll(ModBlocks.COLORED_FENCE_GATES);
+        this.tag(Tags.BlockItems.FENCE_GATES_WOODEN).addAll(ModBlocks.COLORED_FENCE_GATES);
         this.tag(BlockTags.WOODEN_DOORS).addAll(ModBlocks.COLORED_DOORS);
         this.tag(BlockTags.WOODEN_TRAPDOORS).addAll(ModBlocks.COLORED_TRAPDOORS);
         this.tag(BlockTags.WOODEN_PRESSURE_PLATES).addAll(ModBlocks.COLORED_PRESSURE_PLATES);
@@ -132,10 +137,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.CANDLE_CAKES).add(ModBlocks.RGB_CANDLE_CAKE).add(ModBlocks.MISSINGNO_CANDLE_CAKE);
         this.tag(BlockTags.BEDS).add(ModBlocks.RGB_BED).add(ModBlocks.MISSINGNO_BED);
         this.tag(BlockTags.BANNERS).add(ModBlocks.RGB_BANNER, ModBlocks.RGB_WALL_BANNER);
-        this.tag(Tags.Blocks.CONCRETES).add(ModBlocks.RGB_CONCRETE).add(ModBlocks.MISSINGNO_CONCRETE);
-        this.tag(Tags.Blocks.GLASS_BLOCKS_CHEAP).add(ModBlocks.RGB_STAINED_GLASS).add(ModBlocks.MISSINGNO_STAINED_GLASS);
-        this.tag(Tags.Blocks.GLASS_PANES).add(ModBlocks.RGB_STAINED_GLASS_PANE).add(ModBlocks.MISSINGNO_STAINED_GLASS_PANE);
-        this.tag(Tags.Blocks.GLAZED_TERRACOTTAS).add(ModBlocks.RGB_GLAZED_TERRACOTTA).add(ModBlocks.MISSINGNO_GLAZED_TERRACOTTA);
+        this.tag(Tags.BlockItems.CONCRETES).add(ModBlocks.RGB_CONCRETE).add(ModBlocks.MISSINGNO_CONCRETE);
+        this.tag(Tags.BlockItems.GLASS_BLOCKS_CHEAP).add(ModBlocks.RGB_STAINED_GLASS).add(ModBlocks.MISSINGNO_STAINED_GLASS);
+        this.tag(Tags.BlockItems.GLASS_PANES).add(ModBlocks.RGB_STAINED_GLASS_PANE).add(ModBlocks.MISSINGNO_STAINED_GLASS_PANE);
+        this.tag(Tags.BlockItems.GLAZED_TERRACOTTAS).add(ModBlocks.RGB_GLAZED_TERRACOTTA).add(ModBlocks.MISSINGNO_GLAZED_TERRACOTTA);
 
         for (DyeColor color : ModUtil.COLORS) {
             this.tag(BlockTags.CAULDRONS)
@@ -214,6 +219,6 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
     }
 
     private void addColored(ColorCollection<DeferredBlock<Block>> collection) {
-        ColorCollection.zipApply(Tags.Blocks.DYED_COLORS.map(this::tag), collection, IntrinsicHolderTagAppender::add);
+        ColorCollection.zipApply(Tags.BlockItems.DYED_COLORS.map(this::tag), collection, IntrinsicHolderTagAppender::add);
     }
 }

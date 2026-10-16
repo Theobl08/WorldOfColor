@@ -11,7 +11,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
-import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.entity.ModEntityType;
 import net.theobl.worldofcolor.item.ModItems;
 
@@ -41,47 +40,12 @@ public class ModUtil {
     public static final List<ResourceKey<Block>> POTTABLE_PLANTS = new ArrayList<>();
 
     public static void setup() {
-        ModBlocks.COLORED_PLANKS.forEach(block -> registerFlammable(block.get(), 5, 20));
-        ModBlocks.COLORED_SLABS.forEach(block -> registerFlammable(block.get(), 5, 20));
-        ModBlocks.COLORED_FENCE_GATES.forEach(block -> registerFlammable(block.get(), 5, 20));
-        ModBlocks.COLORED_FENCES.forEach(block -> registerFlammable(block.get(), 5, 20));
-        ModBlocks.COLORED_STAIRS.forEach(block -> registerFlammable(block.get(), 5, 20));
-        ModBlocks.COLORED_LOGS.forEach(block -> registerFlammable(block.get(), 5, 5));
-        ModBlocks.COLORED_STRIPPED_LOGS.forEach(block -> registerFlammable(block.get(), 5, 5));
-        ModBlocks.COLORED_STRIPPED_WOODS.forEach(block -> registerFlammable(block.get(), 5, 5));
-        ModBlocks.COLORED_WOODS.forEach(block -> registerFlammable(block.get(), 5, 5));
-        ModBlocks.COLORED_LEAVES.forEach(block -> registerFlammable(block.get(), 30, 60));
-        ModBlocks.CLASSIC_WOOLS.forEach(block -> registerFlammable(block.get(), 30, 60));
-        ModBlocks.CLASSIC_CARPETS.forEach(block -> registerFlammable(block.get(), 60, 20));
-        ModBlocks.COLORED_SHELVES.forEach(block -> registerFlammable(block.get(), 30, 20));
-
-        registerFlammable(ModBlocks.LIGHT_GRAY_TULIP.get(), 60, 100);
-        registerFlammable(ModBlocks.GRAY_TULIP.get(), 60, 100);
-        registerFlammable(ModBlocks.BLACK_TULIP.get(), 60, 100);
-        registerFlammable(ModBlocks.BROWN_TULIP.get(), 60, 100);
-        registerFlammable(ModBlocks.YELLOW_TULIP.get(), 60, 100);
-        registerFlammable(ModBlocks.LIME_TULIP.get(), 60, 100);
-        registerFlammable(ModBlocks.GREEN_TULIP.get(), 60, 100);
-        registerFlammable(ModBlocks.CYAN_TULIP.get(), 60, 100);
-        registerFlammable(ModBlocks.LIGHT_BLUE_TULIP.get(), 60, 100);
-        registerFlammable(ModBlocks.BLUE_TULIP.get(), 60, 100);
-        registerFlammable(ModBlocks.PURPLE_TULIP.get(), 60, 100);
-        registerFlammable(ModBlocks.MAGENTA_TULIP.get(), 60, 100);
-
-        registerFlammable(ModBlocks.RGB_WOOL.get(), 30, 60);
-        registerFlammable(ModBlocks.RGB_CARPET.get(), 60, 20);
-
         ColorCollection.zipApply(ModItems.COLORED_BOATS, ModEntityType.COLORED_BOATS.map(DeferredHolder::get),
                 (item, entityType) -> DispenserBlock.registerBehavior(item, new BoatDispenseItemBehavior(entityType)));
         ColorCollection.zipApply(ModItems.COLORED_CHEST_BOATS, ModEntityType.COLORED_CHEST_BOATS.map(DeferredHolder::get),
                 (item, entityType) -> DispenserBlock.registerBehavior(item, new BoatDispenseItemBehavior(entityType)));
         DispenserBlock.registerBehavior(ModItems.RGB_SHULKER_BOX, new ShulkerBoxDispenseBehavior());
         DispenserBlock.registerBehavior(ModItems.MISSINGNO_SHULKER_BOX, new ShulkerBoxDispenseBehavior());
-    }
-
-    public static void registerFlammable(Block block, int encouragement, int flammability) {
-        FireBlock fireblock = (FireBlock) Blocks.FIRE;
-        fireblock.setFlammable(block, encouragement, flammability);
     }
 
     public static boolean isColoredBlock(BlockState state, List<DeferredBlock<Block>> coloredBlocks) {
@@ -123,7 +87,7 @@ public class ModUtil {
                     POTTABLE_PLANTS.add(BlockItemIds.CLOSED_EYEBLOSSOM.block());
                 }
                 else {
-                    POTTABLE_PLANTS.add(block.builtInRegistryHolder().getKey());
+                    POTTABLE_PLANTS.add(block.defaultBlockState().typeHolder().key());
                 }
             }
         }

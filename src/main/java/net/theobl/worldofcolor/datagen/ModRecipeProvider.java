@@ -87,7 +87,7 @@ public class ModRecipeProvider extends RecipeProvider {
 
         colorBlockWithDye(ModBlocks.COLORED_SAPLINGS, Items.DYE, ItemTags.SAPLINGS, "sapling");
         colorBlockWithDye(ModBlocks.COLORED_CAULDRONS, Items.DYE, ModTags.Items.CAULDRONS, "dyed_cauldron");
-        colorBlockWithDye(ModBlocks.COLORED_SLIME_BLOCKS, Items.DYE, Tags.Items.STORAGE_BLOCKS_SLIME, "dyed_slime_blocks");
+        colorBlockWithDye(ModBlocks.COLORED_SLIME_BLOCKS, Items.DYE, Tags.BlockItems.STORAGE_BLOCKS_SLIME.item(), "dyed_slime_blocks");
 
         ColorCollection.zipApply(ModBlocks.COLORED_BRICKS, Items.DYE, this::coloredBricksFromBricksAndDye);
 

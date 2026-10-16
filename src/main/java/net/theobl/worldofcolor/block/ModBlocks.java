@@ -633,7 +633,7 @@ public class ModBlocks {
 
     private static DeferredBlock<Block> registerFlowerBlock(String name, Function<BlockBehaviour.Properties, ? extends Block> block, Supplier<BlockBehaviour.Properties> properties) {
         DeferredBlock<Block> deferredBlock = registerBlock(name, block, properties);
-        POTTABLE_PLANTS.add(deferredBlock.getKey());
+        POTTABLE_PLANTS.add(deferredBlock.key());
         return deferredBlock;
     }
 

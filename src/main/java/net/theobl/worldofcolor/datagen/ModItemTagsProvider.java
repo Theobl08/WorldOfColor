@@ -35,60 +35,64 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         return new IntrinsicHolderTagAppender<>(super.tag(tag));
     }
 
+    private IntrinsicHolderTagAppender<Item> tag(BlockItemTagId tag) {
+        return tag(tag.item());
+    }
+
     @SuppressWarnings("deprecation")
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        this.copy(BlockTags.WOOL, ItemTags.WOOL);
-        this.copy(BlockTags.WOOL_CARPETS, ItemTags.WOOL_CARPETS);
-        this.copy(BlockItemTags.SAPLINGS.block(), ItemTags.SAPLINGS);
-        this.copy(BlockTags.LEAVES, ItemTags.LEAVES);
-        this.copy(BlockItemTags.LOGS_THAT_BURN.block(), ItemTags.LOGS_THAT_BURN);
-        this.copy(BlockTags.PLANKS, ItemTags.PLANKS);
-        this.copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
-        this.copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
-        this.copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
-        this.copy(BlockTags.FENCE_GATES, ItemTags.FENCE_GATES);
-        this.copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
-        this.copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
-        this.copy(BlockTags.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);
-        this.copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
-        this.copy(BlockTags.STANDING_SIGNS, ItemTags.SIGNS);
-        this.copy(BlockTags.CEILING_HANGING_SIGNS, ItemTags.HANGING_SIGNS);
-        this.copy(BlockTags.WOODEN_SHELVES, ItemTags.WOODEN_SHELVES);
+        this.copy(BlockItemTags.WOOL);
+        this.copy(BlockItemTags.WOOL_CARPETS);
+        this.copy(BlockItemTags.SAPLINGS);
+        this.copy(BlockItemTags.LEAVES);
+        this.copy(BlockItemTags.LOGS_THAT_BURN);
+        this.copy(BlockItemTags.PLANKS);
+        this.copy(BlockItemTags.WOODEN_STAIRS);
+        this.copy(BlockItemTags.WOODEN_SLABS);
+        this.copy(BlockItemTags.WOODEN_FENCES);
+        this.copy(BlockItemTags.FENCE_GATES);
+        this.copy(BlockItemTags.WOODEN_DOORS);
+        this.copy(BlockItemTags.WOODEN_TRAPDOORS);
+        this.copy(BlockItemTags.WOODEN_PRESSURE_PLATES);
+        this.copy(BlockItemTags.WOODEN_BUTTONS);
+        this.copy(BlockItemTags.SIGNS);
+        this.copy(BlockItemTags.HANGING_SIGNS);
+        this.copy(BlockItemTags.WOODEN_SHELVES);
 
-        this.copy(BlockTags.STAIRS, BlockItemTags.STAIRS.item());
-        this.copy(BlockTags.SLABS, BlockItemTags.SLABS.item());
-        this.copy(BlockTags.WALLS, ItemTags.WALLS);
-        this.copy(BlockTags.DOORS, BlockItemTags.DOORS.item());
-        this.copy(BlockTags.TRAPDOORS, BlockItemTags.TRAPDOORS.item());
+        this.copy(BlockItemTags.STAIRS);
+        this.copy(BlockItemTags.SLABS);
+        this.copy(BlockItemTags.WALLS);
+        this.copy(BlockItemTags.DOORS);
+        this.copy(BlockItemTags.TRAPDOORS);
 
-        this.copy(BlockTags.BARS, BlockItemTags.BARS.item());
-        this.copy(BlockTags.CHAINS, BlockItemTags.CHAINS.item());
-        this.copy(BlockTags.LANTERNS, BlockItemTags.LANTERNS.item());
-        this.copy(BlockTags.LIGHTNING_RODS, BlockItemTags.LIGHTNING_RODS.item());
-        this.copy(BlockTags.COPPER_CHESTS, BlockItemTags.COPPER_CHESTS.item());
-        this.copy(BlockTags.COPPER_GOLEM_STATUES, BlockItemTags.COPPER_GOLEM_STATUES.item());
+        this.copy(BlockItemTags.BARS);
+        this.copy(BlockItemTags.CHAINS);
+        this.copy(BlockItemTags.LANTERNS);
+        this.copy(BlockItemTags.LIGHTNING_RODS);
+        this.copy(BlockItemTags.COPPER_CHESTS);
+        this.copy(BlockItemTags.COPPER_GOLEM_STATUES);
 
-        this.copy(BlockTags.SMALL_FLOWERS, BlockItemTags.SMALL_FLOWERS.item());
-        this.copy(BlockItemTags.BEE_FOOD.block(), BlockItemTags.BEE_FOOD.item());
+        this.copy(BlockItemTags.SMALL_FLOWERS);
+        this.copy(BlockItemTags.BEE_FOOD);
 
-        this.copy(BlockTags.TERRACOTTA, ItemTags.TERRACOTTA);
-        this.copy(BlockTags.CANDLES, ItemTags.CANDLES);
-        this.copy(BlockTags.BEDS, ItemTags.BEDS);
+        this.copy(BlockItemTags.TERRACOTTA);
+        this.copy(BlockItemTags.CANDLES);
+        this.copy(BlockItemTags.BEDS);
         this.tag(ItemTags.BANNERS).add(ModItems.RGB_BANNER);
-        this.copy(BlockTags.SHULKER_BOXES, ItemTags.SHULKER_BOXES);
+        this.copy(BlockItemTags.SHULKER_BOXES);
         this.tag(Tags.Items.SHULKER_BOXES).add(ModItems.RGB_SHULKER_BOX).add(ModItems.MISSINGNO_SHULKER_BOX);
-        this.copy(BlockTags.CONCRETE_POWDERS, ItemTags.CONCRETE_POWDERS);
+        this.copy(BlockItemTags.CONCRETE_POWDERS);
         this.tag(Tags.Items.CONCRETE_POWDERS).add(ModBlocks.RGB_CONCRETE_POWDER.asItem().builtInRegistryHolder().key()).add(ModBlocks.MISSINGNO_CONCRETE_POWDER.asItem().builtInRegistryHolder().key());
 
-        this.copy(Tags.Blocks.STRIPPED_LOGS, Tags.Items.STRIPPED_LOGS);
-        this.copy(Tags.Blocks.STRIPPED_WOODS, Tags.Items.STRIPPED_WOODS);
-        this.copy(Tags.Blocks.FENCE_GATES_WOODEN, Tags.Items.FENCE_GATES_WOODEN);
-        this.copy(Tags.Blocks.STORAGE_BLOCKS_SLIME, Tags.Items.STORAGE_BLOCKS_SLIME);
-        this.copy(Tags.Blocks.CONCRETES, Tags.Items.CONCRETES);
-        this.copy(Tags.Blocks.GLAZED_TERRACOTTAS, Tags.Items.GLAZED_TERRACOTTAS);
-        this.copy(Tags.Blocks.GLASS_BLOCKS_CHEAP, Tags.Items.GLASS_BLOCKS_CHEAP);
-        this.copy(Tags.Blocks.GLASS_PANES, Tags.Items.GLASS_PANES);
+        this.copy(Tags.BlockItems.STRIPPED_LOGS);
+        this.copy(Tags.BlockItems.STRIPPED_WOODS);
+        this.copy(Tags.BlockItems.FENCE_GATES_WOODEN);
+        this.copy(Tags.BlockItems.STORAGE_BLOCKS_SLIME);
+        this.copy(Tags.BlockItems.CONCRETES);
+        this.copy(Tags.BlockItems.GLAZED_TERRACOTTAS);
+        this.copy(Tags.BlockItems.GLASS_BLOCKS_CHEAP);
+        this.copy(Tags.BlockItems.GLASS_PANES);
 
         for(DyeColor color : ModUtil.COLORS) {
             this.copy(ModTags.Blocks.COLORED_LOGS.pick(color), ModTags.Items.COLORED_LOGS.pick(color));
@@ -154,7 +158,7 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
     }
 
     private <T extends DeferredHolder<?, ?>> void addColored(ColorCollection<T> collection) {
-        ColorCollection.zipApply(Tags.Items.DYED_COLORS.map(this::tag), collection, (appender, holder) ->
+        ColorCollection.zipApply(Tags.BlockItems.DYED_COLORS.map(this::tag), collection, (appender, holder) ->
                 appender.add(TagEntry.element(holder.getId()))
         );
     }
