@@ -1,7 +1,0 @@
-{
-  "type": "minecraft:crafting_special_bannerduplicate",
-  "banner": "worldofcolor:rgb_banner",
-  "result": {
-    "id": "worldofcolor:rgb_banner"
-  }
-}

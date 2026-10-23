@@ -122,7 +122,11 @@ public class ModCreativeModeTabs {
                                 .map(ItemLike::asItem)
                                 .filter(i -> i != Items.AIR)
                                 .filter(i -> i.isEnabled(parameters.enabledFeatures()))
-                                .forEach(i -> acceptWithoutThrowing(output, i));
+                                .forEach(item -> {
+                                    acceptWithoutThrowing(output, item);
+                                    if(item == ModBlocks.RGB_CANDLE.asItem())
+                                        generateRGBBanner(output, parameters.holders().lookupOrThrow(Registries.BANNER_PATTERN));
+                                });
                         ModItems.ITEMS.getEntries().stream()
                                 .filter(i -> i.getId().getPath().contains("rgb_"))
                                 .map(net.minecraft.core.Holder::value)
@@ -167,6 +171,17 @@ public class ModCreativeModeTabs {
         builder.set(DataComponents.BANNER_PATTERNS, patterns)
                 .set(DataComponents.TOOLTIP_DISPLAY, TooltipDisplay.DEFAULT.withHidden(DataComponents.BANNER_PATTERNS, true))
                 .set(DataComponents.ITEM_NAME, Component.translatable("block.worldofcolor.missingno_banner"));
+        output.accept(new ItemStackTemplate(Items.BANNER.white(), builder.build()).create());
+    }
+
+    @SuppressWarnings("deprecation")
+    private static void generateRGBBanner(CreativeModeTab.Output output, HolderGetter<BannerPattern> patternGetter) {
+        DataComponentPatch.Builder builder = DataComponentPatch.builder();
+        BannerPatternLayers patterns = new BannerPatternLayers.Builder()
+                .addIfRegistered(patternGetter, ModBannerPatterns.RGB, DyeColor.WHITE)
+                .build();
+        builder.set(DataComponents.BANNER_PATTERNS, patterns)
+                .set(DataComponents.ITEM_NAME, Component.translatable("block.worldofcolor.rgb_banner"));
         output.accept(new ItemStackTemplate(Items.BANNER.white(), builder.build()).create());
     }
 

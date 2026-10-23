@@ -4,13 +4,16 @@ import net.minecraft.core.dispenser.BoatDispenseItemBehavior;
 import net.minecraft.core.dispenser.ShulkerBoxDispenseBehavior;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.references.BlockItemIds;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.*;
+import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.entity.ModEntityType;
 import net.theobl.worldofcolor.item.ModItems;
 
@@ -55,6 +58,18 @@ public class ModUtil {
                 return true;
         }
         return false;
+    }
+
+    public static boolean hasRGBPattern(List<BannerPatternLayers.Layer> layers) {
+        boolean hasRGB = false;
+        for (BannerPatternLayers.Layer layer : layers) {
+            Identifier patternId = layer.pattern().key().identifier();
+            if (patternId.getNamespace().equals(WorldOfColor.MODID) && patternId.getPath().equals("rgb")) {
+                hasRGB = true;
+                break;
+            }
+        }
+        return hasRGB;
     }
 
     public static <T> String name(DeferredHolder<T, ? extends T> deferredHolder) {

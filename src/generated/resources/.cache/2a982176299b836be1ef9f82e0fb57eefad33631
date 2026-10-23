@@ -1,4 +1,4 @@
-// 26.3	2026-10-16T14:55:18.2941883	Registries for Reloadable (worldofcolor[0]): [worldofcolor]
+// 26.3	2026-10-23T17:49:03.3570382	Registries for Reloadable (worldofcolor[0]): [worldofcolor]
 0b204a5996a7f9eaa658da0e2759db6bbcccbd53 data/worldofcolor/advancement/recipes/building_blocks/black_block_from_black_concrete_stonecutting.json
 0a0b9524b7614dc05553b22d53789a937f2ab09b data/worldofcolor/advancement/recipes/building_blocks/black_block_from_black_quilted_concrete_stonecutting.json
 5085e7518782e688a29056eb166f8123296131ba data/worldofcolor/advancement/recipes/building_blocks/black_bricks.json
@@ -4472,8 +4472,7 @@ fd26139184d3c81b140dbf8cf338277ca31a2526 data/worldofcolor/recipe/red_quilted_co
 5f98b98c18cfad925a886ce71c90234fadef722e data/worldofcolor/recipe/red_stairs.json
 da416782f1f69aa27f165cae5154ed3781695767 data/worldofcolor/recipe/red_trapdoor.json
 89ad23d7a794e5cb4760be2603158b968f683a62 data/worldofcolor/recipe/red_wood.json
-1eb76482b7d286fcaab19fe2854ce4b013840971 data/worldofcolor/recipe/rgb_banner.json
-046caf573df715310e65f6967a1af6d3a6c0404c data/worldofcolor/recipe/rgb_banner_duplicate.json
+2765e81eadf3e53a0b88520f5318798bff5c18ed data/worldofcolor/recipe/rgb_banner.json
 4afa548a520bea0303b23e93650614aaf4350cd0 data/worldofcolor/recipe/rgb_bed.json
 65ef06ac0f571976ca7028071eb3a97daf76d3db data/worldofcolor/recipe/rgb_bundle.json
 338450a3bb8e777826a804765926b895a8a19a9f data/worldofcolor/recipe/rgb_candle.json

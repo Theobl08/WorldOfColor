@@ -2,12 +2,14 @@ package net.theobl.worldofcolor.datagen;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.core.Registry;
+import net.minecraft.core.component.DataComponentPatch;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.core.registries.MultiRegistryBootstrap;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.recipes.*;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -19,7 +21,6 @@ import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionContents;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.item.crafting.BannerDuplicateRecipe;
 import net.minecraft.world.item.crafting.DyeRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
@@ -27,6 +28,7 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ColorCollection;
+import net.minecraft.world.level.block.entity.BannerPatternLayers;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.crafting.CompoundIngredient;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
@@ -36,6 +38,7 @@ import net.neoforged.neoforge.registries.DeferredItem;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ColoringColorCollection;
 import net.theobl.worldofcolor.block.ModBlocks;
+import net.theobl.worldofcolor.block.entity.ModBannerPatterns;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.item.crafting.ColoredDecoratedPotRecipe;
 import net.theobl.worldofcolor.tags.ModTags;
@@ -265,8 +268,22 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ModItems.RGB_DYE), has(ModItems.RGB_DYE))
                 .save(this.output);
         bedFromPlanksAndWool(ModBlocks.RGB_BED, ModBlocks.RGB_WOOL);
-        banner(ModBlocks.RGB_BANNER, ModBlocks.RGB_WOOL);
         harness(ModItems.RGB_HARNESS, ModBlocks.RGB_WOOL);
+
+        DataComponentPatch patch = DataComponentPatch.builder()
+                .set(DataComponents.BANNER_PATTERNS, new BannerPatternLayers.Builder().add(output.lookup(Registries.BANNER_PATTERN).getOrThrow(ModBannerPatterns.RGB), DyeColor.WHITE).build())
+                .set(DataComponents.ITEM_NAME, Component.translatable("block.worldofcolor.rgb_banner"))
+                .build();
+        ItemStackTemplate template = new ItemStackTemplate(Items.BANNER.white(), patch);
+        this.shaped(RecipeCategory.DECORATIONS, template)
+                .define('#', ModBlocks.RGB_WOOL)
+                .define('|', Items.STICK)
+                .pattern("###")
+                .pattern("###")
+                .pattern(" | ")
+                .group("banner")
+                .unlockedBy(getHasName(ModBlocks.RGB_WOOL), this.has(ModBlocks.RGB_WOOL))
+                .save(this.output, WorldOfColor.MODID + ":rgb_banner");
     }
 
     @Override
@@ -308,21 +325,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(target), this.has(target))
                 .group(group)
                 .save(this.output, WorldOfColor.MODID + ":" + getItemName(target) + "_dyed");
-    }
-
-    @Override
-    protected void banner(ItemLike result, ItemLike wool) {
-        this.shaped(RecipeCategory.DECORATIONS, result)
-                .define('#', wool)
-                .define('|', Items.STICK)
-                .pattern("###")
-                .pattern("###")
-                .pattern(" | ")
-                .group("banner")
-                .unlockedBy(getHasName(wool), this.has(wool))
-                .save(this.output);
-        SpecialRecipeBuilder.special(() -> new BannerDuplicateRecipe(Ingredient.of(result), new ItemStackTemplate(result.asItem())))
-                .save(this.output, WorldOfColor.MODID + ":" + getItemName(result) + "_duplicate");
     }
 
     protected void colorWithDye(ColorCollection<Item> dyes, ColorCollection<Item> dyedItems, @Nullable Item uncoloredItem, String groupName, RecipeCategory category) {

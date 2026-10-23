@@ -12,6 +12,7 @@ public class ModBannerPatterns {
     public static final ResourceKey<BannerPattern> BOTTOM_RIGHT = create("bottom_right");
     public static final ResourceKey<BannerPattern> TOP_LEFT = create("top_left");
     public static final ResourceKey<BannerPattern> TOP_RIGHT = create("top_right");
+    public static final ResourceKey<BannerPattern> RGB = create("rgb");
 
     private static ResourceKey<BannerPattern> create(String id) {
         return ResourceKey.create(Registries.BANNER_PATTERN, WorldOfColor.asResource(id));
@@ -22,5 +23,6 @@ public class ModBannerPatterns {
         BannerPatterns.register(context, BOTTOM_RIGHT);
         BannerPatterns.register(context, TOP_LEFT);
         BannerPatterns.register(context, TOP_RIGHT);
+        BannerPatterns.register(context, RGB);
     }
 }

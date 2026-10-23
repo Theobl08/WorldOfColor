@@ -5,6 +5,7 @@ import net.minecraft.client.renderer.item.ItemModelResolver;
 import net.minecraft.client.renderer.item.ItemStackRenderState;
 import net.minecraft.client.renderer.item.SpecialModelWrapper;
 import net.minecraft.world.entity.ItemOwner;
+import net.minecraft.world.item.BannerItem;
 import net.minecraft.world.item.ItemDisplayContext;
 import net.minecraft.world.item.ItemStack;
 import net.theobl.worldofcolor.block.ModBlocks;
@@ -17,7 +18,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 public abstract class SpecialModelWrapperMixin {
     @Inject(method = "update", at = @At("HEAD"))
     private void updateMixin(ItemStackRenderState output, ItemStack item, ItemModelResolver resolver, ItemDisplayContext displayContext, ClientLevel level, ItemOwner owner, int seed, CallbackInfo ci) {
-        if(item.toString().contains("rgb")) {
+        if(item.toString().contains("rgb") || item.getItem() instanceof BannerItem) {
             output.setAnimated();
         }
     }

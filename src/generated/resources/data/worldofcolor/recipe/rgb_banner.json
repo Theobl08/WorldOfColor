@@ -11,6 +11,17 @@
     " | "
   ],
   "result": {
-    "id": "worldofcolor:rgb_banner"
+    "components": {
+      "minecraft:banner_patterns": [
+        {
+          "color": "white",
+          "pattern": "worldofcolor:rgb"
+        }
+      ],
+      "minecraft:item_name": {
+        "translate": "block.worldofcolor.rgb_banner"
+      }
+    },
+    "id": "minecraft:white_banner"
   }
 }

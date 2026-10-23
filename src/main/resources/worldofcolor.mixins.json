@@ -8,11 +8,13 @@
   "compatibilityLevel": "JAVA_25",
   "refmap": "worldofcolor.refmap.json",
   "mixins": [
+    "BannerPatternLayersMixin",
     "CauldronInteractionsMixin",
     "ColorLerperMixin",
     "CopperChestBlockMixin",
     "HangingEntityItemMixin",
     "LayeredCauldronBlockMixin",
+    "LoomMenuMixin",
     "MapColorMixin",
     "ShulkerBoxBlockMixin"
   ],
