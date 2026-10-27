@@ -1,6 +1,6 @@
 package net.theobl.worldofcolor.entity;
 
-import com.azure.json.implementation.jackson.core.TreeNode;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.entity.decoration.Cushion;
@@ -16,38 +16,40 @@ import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.util.ColorCollectionUtil;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
+import java.util.function.UnaryOperator;
 
 public class ModEntityType {
     public static final DeferredRegister.Entities ENTITY_TYPES = DeferredRegister.createEntities(WorldOfColor.MODID);
 
-    public static final ColorCollection<DeferredHolder<EntityType<?>, EntityType<Boat>>> COLORED_BOATS = ColorCollectionUtil.register(
-            createSimpleColored("boat"),
-            (name, color) -> ENTITY_TYPES.registerEntityType(name,
-                    boatFactory(ModItems.COLORED_BOATS.pick(color)), MobCategory.MISC,
-                    b-> b.noLootTable()
+    public static final ColorCollection<DeferredHolder<EntityType<?>, EntityType<Boat>>> COLORED_BOATS = registerColored(
+            "boat",
+            color -> boatFactory(ModItems.COLORED_BOATS.pick(color)),
+            MobCategory.MISC,
+            b-> b.noLootTable()
                     .sized(1.375F, 0.5625F)
                     .eyeHeight(0.5625F)
-                    .clientTrackingRange(10))
+                    .clientTrackingRange(10)
     );
-    public static final ColorCollection<DeferredHolder<EntityType<?>, EntityType<ChestBoat>>> COLORED_CHEST_BOATS = ColorCollectionUtil.register(
-            createSimpleColored("chest_boat"),
-            (name, color) -> ENTITY_TYPES.registerEntityType(name,
-                    chestBoatFactory(ModItems.COLORED_CHEST_BOATS.pick(color)), MobCategory.MISC,
-                    b -> b.noLootTable()
+    public static final ColorCollection<DeferredHolder<EntityType<?>, EntityType<ChestBoat>>> COLORED_CHEST_BOATS = registerColored(
+            "chest_boat",
+            color -> chestBoatFactory(ModItems.COLORED_CHEST_BOATS.pick(color)),
+            MobCategory.MISC,
+            b -> b.noLootTable()
                     .sized(1.375F, 0.5625F)
                     .eyeHeight(0.5625F)
-                    .clientTrackingRange(10))
+                    .clientTrackingRange(10)
     );
-    public static final ColorCollection<DeferredHolder<EntityType<?>, EntityType<ColoredItemFrame>>> COLORED_ITEM_FRAMES = ColorCollectionUtil.register(
-            createSimpleColored("item_frame"),
-            (name, color) -> ENTITY_TYPES.registerEntityType(name,
-                    itemFrameFactory(color), MobCategory.MISC,
-                    b -> b.noLootTable()
+    public static final ColorCollection<DeferredHolder<EntityType<?>, EntityType<ColoredItemFrame>>> COLORED_ITEM_FRAMES = registerColored(
+            "item_frame",
+            ModEntityType::itemFrameFactory,
+            MobCategory.MISC,
+            b -> b.noLootTable()
                     .sized(0.5F, 0.5F)
                     .eyeHeight(0.0F)
                     .clientTrackingRange(10)
-                    .updateInterval(Integer.MAX_VALUE))
+                    .updateInterval(Integer.MAX_VALUE)
     );
 
     public static final DeferredHolder<EntityType<?>, EntityType<Cushion>> RGB_CUSHION = ENTITY_TYPES.registerEntityType(
@@ -85,6 +87,24 @@ public class ModEntityType {
 
     private static ColorCollection<String> createSimpleColored(String baseName) {
         return ColorCollection.prefixWithColor(ColorCollection.create(baseName));
+    }
+
+    @SuppressWarnings("SameParameterValue")
+    private static <E extends Entity> ColorCollection<DeferredHolder<EntityType<?>, EntityType<E>>> registerColored(
+            String name,
+            Function<DyeColor, EntityType.EntityFactory<E>> factory,
+            MobCategory category,
+            UnaryOperator<EntityType.Builder<E>> builder
+    ) {
+        return ColorCollectionUtil.register(
+                createSimpleColored(name),
+                (id, color) -> ENTITY_TYPES.registerEntityType(
+                        id,
+                        factory.apply(color),
+                        category,
+                        builder
+                )
+        );
     }
 
     public static void register(IEventBus eventBus) {
