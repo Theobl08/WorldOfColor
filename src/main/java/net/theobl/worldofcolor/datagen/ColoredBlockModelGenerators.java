@@ -259,20 +259,19 @@ public class ColoredBlockModelGenerators {
                 );
     }
 
-    public void createGlassBlocks(Block glassBlock, Block paneBlock) {
-        blockModels.createTrivialBlock(glassBlock, TexturedModel.CUBE.updateTexture(TextureMapping::forceAllTranslucent));
-        TextureMapping texturemapping = TextureMapping.pane(glassBlock, paneBlock);
-        MultiVariant post = plainVariant(ModelTemplates.STAINED_GLASS_PANE_POST.create(paneBlock, texturemapping, blockModels.modelOutput));
-        MultiVariant side = plainVariant(ModelTemplates.STAINED_GLASS_PANE_SIDE.create(paneBlock, texturemapping, blockModels.modelOutput));
-        MultiVariant sideAlt = plainVariant(ModelTemplates.STAINED_GLASS_PANE_SIDE_ALT.create(paneBlock, texturemapping, blockModels.modelOutput));
-        MultiVariant noSide = plainVariant(ModelTemplates.STAINED_GLASS_PANE_NOSIDE.create(paneBlock, texturemapping, blockModels.modelOutput));
-        MultiVariant noSideAlt = plainVariant(ModelTemplates.STAINED_GLASS_PANE_NOSIDE_ALT.create(paneBlock, texturemapping, blockModels.modelOutput));
-        Item paneItem = paneBlock.asItem();
-        blockModels.registerSimpleItemModel(paneItem,
-                ModelTemplates.FLAT_ITEM.create(ModelLocationUtils.getModelLocation(paneItem), TextureMapping.layer0(glassBlock), blockModels.modelOutput));
+    public void createGlassBlocks(Block block, Block pane, Block edge) {
+        blockModels.createTrivialBlock(block, TexturedModel.CUBE.updateTexture(TextureMapping::forceAllTranslucent));
+        TextureMapping texturemapping = TextureMapping.pane(block, edge);
+        MultiVariant post = plainVariant(ModelTemplates.STAINED_GLASS_PANE_POST.create(pane, texturemapping, blockModels.modelOutput));
+        MultiVariant side = plainVariant(ModelTemplates.STAINED_GLASS_PANE_SIDE.create(pane, texturemapping, blockModels.modelOutput));
+        MultiVariant sideAlt = plainVariant(ModelTemplates.STAINED_GLASS_PANE_SIDE_ALT.create(pane, texturemapping, blockModels.modelOutput));
+        MultiVariant noSide = plainVariant(ModelTemplates.STAINED_GLASS_PANE_NOSIDE.create(pane, texturemapping, blockModels.modelOutput));
+        MultiVariant noSideAlt = plainVariant(ModelTemplates.STAINED_GLASS_PANE_NOSIDE_ALT.create(pane, texturemapping, blockModels.modelOutput));
+        Item paneItem = pane.asItem();
+        blockModels.registerSimpleItemModel(paneItem, blockModels.createFlatItemModelWithBlockTexture(paneItem, block));
         blockModels.blockStateOutput
                 .accept(
-                        MultiPartGenerator.multiPart(paneBlock)
+                        MultiPartGenerator.multiPart(pane)
                                 .with(post)
                                 .with(condition().term(BlockStateProperties.NORTH, true), side)
                                 .with(condition().term(BlockStateProperties.EAST, true), side.with(Y_ROT_90))

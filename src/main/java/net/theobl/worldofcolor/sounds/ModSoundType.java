@@ -14,4 +14,14 @@ public class ModSoundType {
             ModSoundEvents.POTONE_HIT,
             ModSoundEvents.POTONE_FALL
     );
+
+    public static final SoundType LEGACY_GLASS = new DeferredSoundType(
+            1.0F,
+            1.0F,
+            () -> SoundEvents.GLASS_BREAK,
+            () -> SoundEvents.GLASS_STEP,
+            () -> SoundEvents.GLASS_STEP,
+            () -> SoundEvents.GLASS_HIT,
+            () -> SoundEvents.GLASS_FALL
+    );
 }

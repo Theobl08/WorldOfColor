@@ -1,14 +1,13 @@
 package net.theobl.worldofcolor.datagen;
 
 import net.minecraft.client.color.item.Dye;
-import net.minecraft.client.color.item.Potion;
 import net.minecraft.client.data.models.BlockModelGenerators;
 import net.minecraft.client.data.models.ItemModelGenerators;
 import net.minecraft.client.data.models.ModelProvider;
 import net.minecraft.client.data.models.model.*;
 import net.minecraft.client.renderer.texture.MissingTextureAtlasSprite;
 import net.minecraft.client.resources.model.sprite.Material;
-import net.minecraft.core.component.DataComponents;
+import net.minecraft.core.Holder;
 import net.minecraft.data.BlockFamily;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.biome.OverworldBiomes;
@@ -16,12 +15,10 @@ import net.minecraft.references.BlockItemIds;
 import net.minecraft.resources.Identifier;
 import net.minecraft.util.ARGB;
 import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.alchemy.PotionContents;
-import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.block.AzaleaBlock;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.ColorCollection;
 import net.minecraft.world.level.block.NetherRootsBlock;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
@@ -29,6 +26,7 @@ import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.client.renderer.special.ColoredDecoratedPotSpecialRenderer;
 import net.theobl.worldofcolor.item.ModItems;
+import net.theobl.worldofcolor.util.ColorCollectionUtil;
 import net.theobl.worldofcolor.util.ModUtil;
 
 import java.util.List;
@@ -79,6 +77,8 @@ public class ModModelProvider extends ModelProvider {
         });
         ModBlocks.COLORED_REDSTONE_LAMPS.forEach(block -> coloredBlockModels.createRedstoneLamp(block.get()));
         ModBlocks.COLORED_POTATO_PEELS_BLOCK.forEach(block -> blockModels.createTrivialCube(block.get()));
+        blockModels.createGlassBlocks(ModBlocks.HARDENED_GLASS.get(), ModBlocks.HARDENED_GLASS_PANE.get());
+        ColorCollectionUtil.zipApply(ModBlocks.HARDENED_STAINED_GLASS.map(Holder::value), ModBlocks.HARDENED_STAINED_GLASS_PANE.map(Holder::value), Blocks.STAINED_GLASS_PANE, coloredBlockModels::createGlassBlocks);
         for(DyeColor color : ModUtil.COLORS) {
             int index = ModUtil.COLORS.indexOf(color);
             blockModels.family(ModBlocks.COLORED_CUT_COPPER.coloring().pick(color).get())

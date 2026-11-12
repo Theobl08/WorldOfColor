@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "minecraft:purple_stained_glass_pane"
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "id": "worldofcolor:hardened_purple_stained_glass_pane"
+  }
+}

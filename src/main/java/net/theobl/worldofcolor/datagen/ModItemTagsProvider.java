@@ -93,6 +93,8 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         this.copy(Tags.BlockItems.GLAZED_TERRACOTTAS);
         this.copy(Tags.BlockItems.GLASS_BLOCKS_CHEAP);
         this.copy(Tags.BlockItems.GLASS_PANES);
+        this.copy(Tags.BlockItems.GLASS_BLOCKS_COLORLESS);
+        this.copy(Tags.BlockItems.GLASS_PANES_COLORLESS);
 
         for(DyeColor color : ModUtil.COLORS) {
             this.copy(ModTags.Blocks.COLORED_LOGS.pick(color), ModTags.Items.COLORED_LOGS.pick(color));

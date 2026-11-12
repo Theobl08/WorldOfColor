@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.WeatheringCopper.WeatherState;
 import net.minecraft.world.level.block.sounds.AmbientLeavesBlockSoundPlayer;
 import net.minecraft.world.level.block.state.BlockBehaviour;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -435,6 +434,38 @@ public class ModBlocks {
                             .strength(2.0F)
                             .sound(ModSoundType.POTONE)
                             .ignitedByLava()
+    );
+    public static final DeferredBlock<Block> HARDENED_GLASS = registerBlock(
+            "hardened_glass",
+            TransparentBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS)
+                    .strength(10.0F, 9.0F)
+                    .sound(ModSoundType.LEGACY_GLASS)
+    );
+    public static final ColorCollection<DeferredBlock<Block>> HARDENED_STAINED_GLASS = ColorCollectionUtil.registerBlocks(
+            ColorCollection.NAMES.map(color -> "hardened_" + color + "_stained_glass"),
+            ModBlocks::registerBlock,
+            StainedGlassBlock::new,
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.STAINED_GLASS.white())
+                    .mapColor(color)
+                    .strength(10.0F, 9.0F)
+                    .sound(ModSoundType.LEGACY_GLASS)
+    );
+    public static final DeferredBlock<Block> HARDENED_GLASS_PANE = registerBlock(
+            "hardened_glass_pane",
+            IronBarsBlock::new,
+            () -> BlockBehaviour.Properties.ofFullCopy(Blocks.GLASS_PANE)
+                    .strength(10.0F, 9.0F)
+                    .sound(ModSoundType.LEGACY_GLASS)
+    );
+    public static final ColorCollection<DeferredBlock<Block>> HARDENED_STAINED_GLASS_PANE = ColorCollectionUtil.registerBlocks(
+            ColorCollection.NAMES.map(color -> "hardened_" + color + "_stained_glass_pane"),
+            ModBlocks::registerBlock,
+            StainedGlassPaneBlock::new,
+            color -> BlockBehaviour.Properties.ofFullCopy(Blocks.STAINED_GLASS_PANE.white())
+                    .mapColor(color)
+                    .strength(10.0F, 9.0F)
+                    .sound(ModSoundType.LEGACY_GLASS)
     );
     public static final DeferredBlock<Block> RGB_WOOL = registerBlock(
             "rgb_wool",

@@ -134,6 +134,12 @@ public class ModRecipeProvider extends RecipeProvider {
         ColoringColorCollection.zipApply(ModBlocks.COLORED_COPPER_GRATES.map(DeferredBlock::get), ModBlocks.COLORED_COPPER_BLOCKS.map(DeferredBlock::get),
                 (grate, block) -> this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, grate, block, 4)
         );
+        twoByTwoPacker(RecipeCategory.BUILDING_BLOCKS, ModBlocks.HARDENED_GLASS, Blocks.GLASS);
+        ColorCollection.zipApply(ModBlocks.HARDENED_STAINED_GLASS, Blocks.STAINED_GLASS,
+                (result, ingredient) -> twoByTwoPacker(RecipeCategory.BUILDING_BLOCKS, result, ingredient));
+        twoByTwoPacker(RecipeCategory.BUILDING_BLOCKS, ModBlocks.HARDENED_GLASS_PANE, Blocks.GLASS_PANE);
+        ColorCollection.zipApply(ModBlocks.HARDENED_STAINED_GLASS_PANE, Blocks.STAINED_GLASS_PANE,
+                (result, ingredient) -> twoByTwoPacker(RecipeCategory.BUILDING_BLOCKS, result, ingredient));
 
         ModBlocks.COLORED_DECORATED_POTS.forEach(block -> this.shaped(RecipeCategory.DECORATIONS, block.get().asItem())
                 .define('#', Items.BRICK)

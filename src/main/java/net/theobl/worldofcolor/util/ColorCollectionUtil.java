@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.ColorCollection;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.DeferredHolder;
+import org.apache.commons.lang3.function.TriConsumer;
 import org.apache.commons.lang3.function.TriFunction;
 
 import java.util.function.BiConsumer;
@@ -26,6 +27,25 @@ public final class ColorCollectionUtil {
 
     public static <H extends DeferredHolder<?, ?>, Id> ColorCollection<H> register(ColorCollection<Id> ids, BiFunction<Id, DyeColor, H> factory) {
         return ColorCollection.zipMap(ColorCollection.VALUES, ids, (color, id) -> factory.apply(id, color));
+    }
+
+    public static <T, U, V> void zipApply(ColorCollection<T> first, ColorCollection<U> second, ColorCollection<V> third, TriConsumer<T, U, V> consumer) {
+        consumer.accept(first.white(), second.white(), third.white());
+        consumer.accept(first.orange(), second.orange(), third.orange());
+        consumer.accept(first.magenta(), second.magenta(), third.magenta());
+        consumer.accept(first.lightBlue(), second.lightBlue(), third.lightBlue());
+        consumer.accept(first.yellow(), second.yellow(), third.yellow());
+        consumer.accept(first.lime(), second.lime(), third.lime());
+        consumer.accept(first.pink(), second.pink(), third.pink());
+        consumer.accept(first.gray(), second.gray(), third.gray());
+        consumer.accept(first.lightGray(), second.lightGray(), third.lightGray());
+        consumer.accept(first.cyan(), second.cyan(), third.cyan());
+        consumer.accept(first.purple(), second.purple(), third.purple());
+        consumer.accept(first.blue(), second.blue(), third.blue());
+        consumer.accept(first.brown(), second.brown(), third.brown());
+        consumer.accept(first.green(), second.green(), third.green());
+        consumer.accept(first.red(), second.red(), third.red());
+        consumer.accept(first.black(), second.black(), third.black());
     }
 
     public static <T> void progressMapping(ColorCollection<T> collection, BiConsumer<T, T> consumer) {

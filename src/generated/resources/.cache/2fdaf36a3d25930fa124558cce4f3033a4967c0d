@@ -1,4 +1,4 @@
-// 26.3	2026-10-16T14:55:18.3451883	worldofcolor-global/Tags for minecraft:block mod id worldofcolor
+// 26.3	2026-11-13T00:37:16.1653316	worldofcolor-global/Tags for minecraft:block mod id worldofcolor
 db245252eb0be16ddfea2e7c10c1b2c19fc2734b data/c/tags/block/concretes.json
 3d6c0b035c67e9cd0ddbf4a707ff7bcd3291dd4f data/c/tags/block/dyed/black.json
 3fc255a89a05737990876711691e7477845dfbe0 data/c/tags/block/dyed/blue.json
@@ -17,8 +17,10 @@ f4a0d9ad1e5e71555fa7fbf5c1755b27b7937336 data/c/tags/block/dyed/orange.json
 8afcff0531d8543be5a624baf06e2a1905d80362 data/c/tags/block/dyed/white.json
 65970d0d330ca562c5338bc8621f3a49ef0e0237 data/c/tags/block/dyed/yellow.json
 980cbcedf631b76124da987c44a2b5e21c0112c8 data/c/tags/block/fence_gates/wooden.json
-10fdf41cadf23d927824d150b180a774d462f1d7 data/c/tags/block/glass_blocks/cheap.json
-0e16896b07dfb9d846253522d24b97821fb724ca data/c/tags/block/glass_panes.json
+93b06c48ca13a2bb270fe6560684c0deeccd8911 data/c/tags/block/glass_blocks/cheap.json
+5d26edb68588ee714b3cc8df35e11a91d10378e2 data/c/tags/block/glass_blocks/colorless.json
+7595f6233a808a5de220985036a3ee06d403e079 data/c/tags/block/glass_panes.json
+0e41ea1b18ab2da3dc916cf2ef9bb94dfaa2a333 data/c/tags/block/glass_panes/colorless.json
 26ef31713fe1ba06fc43a5fe457083838a35907a data/c/tags/block/glazed_terracottas.json
 3361b119fb8236ff3cf18144a1d5c81cf47504dd data/c/tags/block/storage_blocks/slime.json
 cbb8572630174602401ba3dc14b427ff7089f8fd data/c/tags/block/stripped_logs.json

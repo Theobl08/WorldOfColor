@@ -138,8 +138,10 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         this.tag(BlockTags.BEDS).add(ModBlocks.RGB_BED).add(ModBlocks.MISSINGNO_BED);
         this.tag(BlockTags.BANNERS).add(ModBlocks.RGB_BANNER, ModBlocks.RGB_WALL_BANNER);
         this.tag(Tags.BlockItems.CONCRETES).add(ModBlocks.RGB_CONCRETE).add(ModBlocks.MISSINGNO_CONCRETE);
-        this.tag(Tags.BlockItems.GLASS_BLOCKS_CHEAP).add(ModBlocks.RGB_STAINED_GLASS).add(ModBlocks.MISSINGNO_STAINED_GLASS);
-        this.tag(Tags.BlockItems.GLASS_PANES).add(ModBlocks.RGB_STAINED_GLASS_PANE).add(ModBlocks.MISSINGNO_STAINED_GLASS_PANE);
+        this.tag(Tags.BlockItems.GLASS_BLOCKS_CHEAP).add(ModBlocks.RGB_STAINED_GLASS).add(ModBlocks.MISSINGNO_STAINED_GLASS).add(ModBlocks.HARDENED_GLASS).addAll(ModBlocks.HARDENED_STAINED_GLASS);
+        this.tag(Tags.BlockItems.GLASS_PANES).add(ModBlocks.RGB_STAINED_GLASS_PANE).add(ModBlocks.MISSINGNO_STAINED_GLASS_PANE).addAll(ModBlocks.HARDENED_STAINED_GLASS_PANE).add(ModBlocks.HARDENED_GLASS_PANE);
+        this.tag(Tags.BlockItems.GLASS_BLOCKS_COLORLESS).add(ModBlocks.HARDENED_GLASS);
+        this.tag(Tags.BlockItems.GLASS_PANES_COLORLESS).add(ModBlocks.HARDENED_GLASS_PANE);
         this.tag(Tags.BlockItems.GLAZED_TERRACOTTAS).add(ModBlocks.RGB_GLAZED_TERRACOTTA).add(ModBlocks.MISSINGNO_GLAZED_TERRACOTTA);
 
         for (DyeColor color : ModUtil.COLORS) {

@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_glass_pane_noside_alt",
+  "textures": {
+    "pane": "worldofcolor:block/hardened_yellow_stained_glass"
+  }
+}

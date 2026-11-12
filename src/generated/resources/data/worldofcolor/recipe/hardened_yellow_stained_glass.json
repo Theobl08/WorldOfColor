@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": "minecraft:yellow_stained_glass"
+  },
+  "pattern": [
+    "##",
+    "##"
+  ],
+  "result": {
+    "id": "worldofcolor:hardened_yellow_stained_glass"
+  }
+}
