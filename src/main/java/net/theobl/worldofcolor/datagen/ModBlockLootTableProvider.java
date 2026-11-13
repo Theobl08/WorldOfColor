@@ -54,8 +54,7 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
         }
 
         for (DyeColor color : ModUtil.COLORS) {
-            if(color != null)
-                this.add(ModBlocks.COLORED_LEAVES.pick(color).get(), createLeavesDrops(ModBlocks.COLORED_LEAVES.pick(color).get(), ModBlocks.COLORED_SAPLINGS.pick(color).get(), NORMAL_LEAVES_SAPLING_CHANCES));
+            this.add(ModBlocks.COLORED_LEAVES.pick(color).get(), createLeavesDrops(ModBlocks.COLORED_LEAVES.pick(color).get(), ModBlocks.COLORED_SAPLINGS.pick(color).get(), NORMAL_LEAVES_SAPLING_CHANCES));
         }
         this.add(ModBlocks.RGB_CANDLE.get(), this::createCandleDrops);
         this.add(ModBlocks.RGB_CANDLE_CAKE.get(), createCandleCakeDrops(ModBlocks.RGB_CANDLE.get()));
@@ -116,6 +115,6 @@ public class ModBlockLootTableProvider extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return ModBlocks.BLOCKS.getEntries().stream().map(Holder::value)::iterator;
+        return ModBlocks.BLOCKS.getEntries().stream().map(Holder::value).toList();
     }
 }

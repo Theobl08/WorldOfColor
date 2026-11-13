@@ -12,6 +12,8 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BannerPattern;
 import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.data.LanguageProvider;
+import net.neoforged.neoforge.registries.DeferredHolder;
+import net.neoforged.neoforge.registries.DeferredRegister;
 import net.theobl.worldofcolor.WorldOfColor;
 import net.theobl.worldofcolor.block.ModBlocks;
 import net.theobl.worldofcolor.block.entity.ModBannerPatterns;
@@ -21,6 +23,7 @@ import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.tags.ModTags;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.function.Function;
 import java.util.function.Supplier;
 
 public class ModLanguageProvider extends LanguageProvider {
@@ -59,21 +62,18 @@ public class ModLanguageProvider extends LanguageProvider {
      * @return a capitalized string.
      */
     private static @NotNull String capitalizeString(String string) {
-        char[] chars = string.toLowerCase().toCharArray();
-        boolean found = false;
-        for (int i = 0; i < chars.length; i++){
-            if(!found && Character.isLetter(chars[i])) {
-                chars[i] = Character.toUpperCase(chars[i]);
-                found = true;
-            } else if (Character.isWhitespace(chars[i]) || chars[i] == '.' || chars[i] == '_') {
-                found = false;
-            }
+        String[] words = string.split("_");
+
+        StringBuilder sb = new StringBuilder();
+        for (String word : words) {
+            if(!sb.isEmpty()) sb.append(' ');
+            sb.append(word.substring(0, 1).toUpperCase()).append(word.substring(1).toLowerCase());
         }
-        return String.valueOf(chars);
+        return sb.toString();
     }
 
     private static String colorLang(DyeColor color) {
-        return capitalizeString(color.getName().replace("_", " "));
+        return capitalizeString(color.getName());
     }
 
     private <T> void lang(T key) {
@@ -89,8 +89,7 @@ public class ModLanguageProvider extends LanguageProvider {
                 .replace("item.worldofcolor.","")
                 .replace("entity.worldofcolor.","")
                 .replace("tag.", "")
-                .replace("chest_boat","boat_with_chest")
-                .replace("_"," "))
+                .replace("chest_boat","boat_with_chest"))
                 .replace("Rgb", "RGB")
                 .replace(" With "," with ");
 

@@ -96,9 +96,7 @@ public class ModItemTagsProvider extends BlockTagCopyingItemTagProvider {
         this.copy(Tags.BlockItems.GLASS_BLOCKS_COLORLESS);
         this.copy(Tags.BlockItems.GLASS_PANES_COLORLESS);
 
-        for(DyeColor color : ModUtil.COLORS) {
-            this.copy(ModTags.Blocks.COLORED_LOGS.pick(color), ModTags.Items.COLORED_LOGS.pick(color));
-        }
+        ColorCollection.zipApply(ModTags.Blocks.COLORED_LOGS, ModTags.Items.COLORED_LOGS, this::copy);
 
         this.tag(ItemTags.CUSHIONS).add(ModItems.RGB_CUSHION).add(ModItems.MISSINGNO_CUSHION);
         this.tag(ItemTags.BUNDLES).add(ModItems.RGB_BUNDLE).add(ModItems.MISSINGNO_BUNDLE);

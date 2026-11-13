@@ -1,26 +1,17 @@
 package net.theobl.worldofcolor.datagen;
 
-import com.google.common.collect.ImmutableBiMap;
-import com.google.common.collect.ImmutableList;
 import net.minecraft.core.Holder;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.item.DyeColor;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.ColorCollection;
 import net.neoforged.neoforge.common.data.DataMapProvider;
-import net.neoforged.neoforge.registries.DeferredBlock;
 import net.neoforged.neoforge.registries.datamaps.builtin.*;
-import net.theobl.worldofcolor.block.ColoringColorCollection;
 import net.theobl.worldofcolor.block.ModBlocks;
-import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.util.ColorCollectionUtil;
-import net.theobl.worldofcolor.util.ModUtil;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
-import java.util.function.Function;
-import java.util.stream.Stream;
 
 public class ModDataMapProvider extends DataMapProvider {
     /**
@@ -35,14 +26,8 @@ public class ModDataMapProvider extends DataMapProvider {
 
     @Override
     protected void gather(HolderLookup.Provider provider) {
-        Builder<Oxidizable, Block> oxidizables = builder(NeoForgeDataMaps.OXIDIZABLES);
-        Builder<Waxable, Block> waxables = builder(NeoForgeDataMaps.WAXABLES);
-        Builder<Transformable, Block> transformable = builder(NeoForgeDataMaps.TRANSFORMABLES);
-        Builder<Flammable, Block> flammable = builder(NeoForgeDataMaps.FLAMMABLE);
-        for (DyeColor color : ModUtil.COLORS) {
-            transformable.add(ModBlocks.COLORED_LOGS.pick(color), Transformable.stripping(ModBlocks.COLORED_LOGS.pick(color).get(), ModBlocks.COLORED_STRIPPED_LOGS.pick(color).get()), false);
-            transformable.add(ModBlocks.COLORED_WOODS.pick(color), Transformable.stripping(ModBlocks.COLORED_WOODS.pick(color).get(), ModBlocks.COLORED_STRIPPED_WOODS.pick(color).get()), false);
-        }
+        ColorCollection.zipApply(ModBlocks.COLORED_LOGS, ModBlocks.COLORED_STRIPPED_LOGS, this::registerStrippable);
+        ColorCollection.zipApply(ModBlocks.COLORED_WOODS, ModBlocks.COLORED_STRIPPED_WOODS, this::registerStrippable);
         var coloringBlocks = List.of(
                 ModBlocks.COLORED_COPPER_BLOCKS,
                 ModBlocks.COLORED_CHISELED_COPPER,
@@ -60,48 +45,56 @@ public class ModDataMapProvider extends DataMapProvider {
                 ModBlocks.COLORED_COPPER_GOLEM_STATUES,
                 ModBlocks.COLORED_LIGHTNING_RODS
         );
-        ImmutableBiMap.Builder<DeferredBlock<Block>, DeferredBlock<Block>> waxedBuilder =  ImmutableBiMap.builder(), coloringBuilder =  ImmutableBiMap.builder();
-        coloringBlocks.forEach(collection -> collection.zipUnwaxedWaxed(waxedBuilder::put));
-        coloringBlocks.forEach(collection -> ColorCollectionUtil.progressMapping(collection.coloring(), coloringBuilder::put));
-        waxedBuilder.build().forEach((now, after) -> waxables.add(now, new Waxable(after.get()), false));
-//        coloringBuilder.build().forEach((now, after) -> oxidizables.add(now, new Oxidizable(after.get()), false));
-        coloringBuilder.build().forEach((now, after) -> add(oxidizables, now, after, Oxidizable::new));
+        coloringBlocks.forEach(collection -> collection.zipUnwaxedWaxed(this::registerWaxable));
+        coloringBlocks.forEach(collection -> ColorCollectionUtil.progressMapping(collection.coloring(), this::registerOxidizable));
 
-        ModBlocks.COLORED_PLANKS.forEach(block -> registerFlammable(flammable, block, 5, 20));
-        ModBlocks.COLORED_SLABS.forEach(block -> registerFlammable(flammable, block, 5, 20));
-        ModBlocks.COLORED_FENCE_GATES.forEach(block -> registerFlammable(flammable, block, 5, 20));
-        ModBlocks.COLORED_FENCES.forEach(block -> registerFlammable(flammable, block, 5, 20));
-        ModBlocks.COLORED_STAIRS.forEach(block -> registerFlammable(flammable, block, 5, 20));
-        ModBlocks.COLORED_LOGS.forEach(block -> registerFlammable(flammable, block, 5, 5));
-        ModBlocks.COLORED_STRIPPED_LOGS.forEach(block -> registerFlammable(flammable, block, 5, 5));
-        ModBlocks.COLORED_STRIPPED_WOODS.forEach(block -> registerFlammable(flammable, block, 5, 5));
-        ModBlocks.COLORED_WOODS.forEach(block -> registerFlammable(flammable, block, 5, 5));
-        ModBlocks.COLORED_LEAVES.forEach(block -> registerFlammable(flammable, block, 30, 60));
-        ModBlocks.CLASSIC_WOOLS.forEach(block -> registerFlammable(flammable, block, 30, 60));
-        ModBlocks.CLASSIC_CARPETS.forEach(block -> registerFlammable(flammable, block, 60, 20));
-        ModBlocks.COLORED_SHELVES.forEach(block -> registerFlammable(flammable, block, 30, 20));
-        registerFlammable(flammable, ModBlocks.LIGHT_GRAY_TULIP, 60, 100);
-        registerFlammable(flammable, ModBlocks.GRAY_TULIP, 60, 100);
-        registerFlammable(flammable, ModBlocks.BLACK_TULIP, 60, 100);
-        registerFlammable(flammable, ModBlocks.BROWN_TULIP, 60, 100);
-        registerFlammable(flammable, ModBlocks.YELLOW_TULIP, 60, 100);
-        registerFlammable(flammable, ModBlocks.LIME_TULIP, 60, 100);
-        registerFlammable(flammable, ModBlocks.GREEN_TULIP, 60, 100);
-        registerFlammable(flammable, ModBlocks.CYAN_TULIP, 60, 100);
-        registerFlammable(flammable, ModBlocks.LIGHT_BLUE_TULIP, 60, 100);
-        registerFlammable(flammable, ModBlocks.BLUE_TULIP, 60, 100);
-        registerFlammable(flammable, ModBlocks.PURPLE_TULIP, 60, 100);
-        registerFlammable(flammable, ModBlocks.MAGENTA_TULIP, 60, 100);
-        registerFlammable(flammable, ModBlocks.RGB_WOOL, 30, 60);
-        registerFlammable(flammable, ModBlocks.MISSINGNO_WOOL, 30, 60);
-        registerFlammable(flammable, ModBlocks.MISSINGNO_CARPET, 60, 20);
+        ModBlocks.COLORED_PLANKS.forEach(block -> registerFlammable(block, 5, 20));
+        ModBlocks.COLORED_SLABS.forEach(block -> registerFlammable(block, 5, 20));
+        ModBlocks.COLORED_FENCE_GATES.forEach(block -> registerFlammable(block, 5, 20));
+        ModBlocks.COLORED_FENCES.forEach(block -> registerFlammable(block, 5, 20));
+        ModBlocks.COLORED_STAIRS.forEach(block -> registerFlammable(block, 5, 20));
+        ModBlocks.COLORED_LOGS.forEach(block -> registerFlammable(block, 5, 5));
+        ModBlocks.COLORED_STRIPPED_LOGS.forEach(block -> registerFlammable(block, 5, 5));
+        ModBlocks.COLORED_STRIPPED_WOODS.forEach(block -> registerFlammable(block, 5, 5));
+        ModBlocks.COLORED_WOODS.forEach(block -> registerFlammable(block, 5, 5));
+        ModBlocks.COLORED_LEAVES.forEach(block -> registerFlammable(block, 30, 60));
+        ModBlocks.CLASSIC_WOOLS.forEach(block -> registerFlammable(block, 30, 60));
+        ModBlocks.CLASSIC_CARPETS.forEach(block -> registerFlammable(block, 60, 20));
+        ModBlocks.COLORED_SHELVES.forEach(block -> registerFlammable(block, 30, 20));
+        registerFlammable(ModBlocks.LIGHT_GRAY_TULIP, 60, 100);
+        registerFlammable(ModBlocks.GRAY_TULIP, 60, 100);
+        registerFlammable(ModBlocks.BLACK_TULIP, 60, 100);
+        registerFlammable(ModBlocks.BROWN_TULIP, 60, 100);
+        registerFlammable(ModBlocks.YELLOW_TULIP, 60, 100);
+        registerFlammable(ModBlocks.LIME_TULIP, 60, 100);
+        registerFlammable(ModBlocks.GREEN_TULIP, 60, 100);
+        registerFlammable(ModBlocks.CYAN_TULIP, 60, 100);
+        registerFlammable(ModBlocks.LIGHT_BLUE_TULIP, 60, 100);
+        registerFlammable(ModBlocks.BLUE_TULIP, 60, 100);
+        registerFlammable(ModBlocks.PURPLE_TULIP, 60, 100);
+        registerFlammable(ModBlocks.MAGENTA_TULIP, 60, 100);
+        registerFlammable(ModBlocks.RGB_WOOL, 30, 60);
+        registerFlammable(ModBlocks.MISSINGNO_WOOL, 30, 60);
+        registerFlammable(ModBlocks.MISSINGNO_CARPET, 60, 20);
     }
 
-    private <T, R> void add(Builder<T, R> builder, Holder<R> object, Holder<R> other, Function<R, T> value) {
-        builder.add(object, value.apply(other.value()), false);
+    private void registerStrippable(Holder<Block> original, Holder<Block> stripped) {
+        Builder<Transformable, Block> builder = builder(NeoForgeDataMaps.TRANSFORMABLES);
+        builder.add(original, Transformable.stripping(original.value(), stripped.value()), false);
     }
 
-    private void registerFlammable(Builder<Flammable, Block> builder, Holder<Block> object, int igniteOdds, int burnOdds) {
+    private void registerFlammable(Holder<Block> object, int igniteOdds, int burnOdds) {
+        Builder<Flammable, Block> builder = builder(NeoForgeDataMaps.FLAMMABLE);
         builder.add(object, new Flammable(igniteOdds, burnOdds), false);
+    }
+
+    private void registerWaxable(Holder<Block> original, Holder<Block> waxed) {
+        Builder<Waxable, Block> builder = builder(NeoForgeDataMaps.WAXABLES);
+        builder.add(original, new Waxable(waxed.value()), false);
+    }
+
+    private void registerOxidizable(Holder<Block> now, Holder<Block> after) {
+        Builder<Oxidizable, Block> builder = builder(NeoForgeDataMaps.OXIDIZABLES);
+        builder.add(now, new Oxidizable(after.value()), false);
     }
 }

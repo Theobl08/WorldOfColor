@@ -20,6 +20,7 @@ import net.theobl.worldofcolor.item.ModItems;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiConsumer;
 
 public class ModUtil {
     public static final List<DyeColor> COLORS = new ArrayList<>(Arrays.asList(
@@ -78,6 +79,18 @@ public class ModUtil {
 
     public static Block getBlock(ResourceKey<Block> id) {
         return BuiltInRegistries.BLOCK.getValue(id);
+    }
+
+    ///Similar to [ColorCollection#zipApply(net.minecraft.world.level.block.ColorCollection, net.minecraft.world.level.block.ColorCollection, java.util.function.BiConsumer)],
+    ///but for any same-sized [List]
+    public static <T, U> void zipApply(List<T> first, List<U> second, BiConsumer<T, U> consumer) {
+        if(first.isEmpty() || second.isEmpty())
+            return;
+        if (first.size() != second.size())
+            throw new IllegalStateException("Inconsistent size");
+        for(int i = 0; i < first.size(); i++) {
+            consumer.accept(first.get(i), second.get(i));
+        }
     }
 
     static {

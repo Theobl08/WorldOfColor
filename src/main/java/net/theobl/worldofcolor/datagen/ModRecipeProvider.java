@@ -42,6 +42,7 @@ import net.theobl.worldofcolor.block.entity.ModBannerPatterns;
 import net.theobl.worldofcolor.item.ModItems;
 import net.theobl.worldofcolor.item.crafting.ColoredDecoratedPotRecipe;
 import net.theobl.worldofcolor.tags.ModTags;
+import net.theobl.worldofcolor.util.ModUtil;
 import org.jspecify.annotations.Nullable;
 
 import java.util.Set;
@@ -52,21 +53,7 @@ import static net.theobl.worldofcolor.util.ModUtil.*;
 public class ModRecipeProvider extends RecipeProvider {
 
     public ModRecipeProvider(BootstrapContext<Recipe<?>> recipeOutput, BootstrapContext<Advancement> advancementOutput) {
-        super(recipeOutput, advancementOutput);
-    }
-
-    public static MultiRegistryBootstrap create() {
-        return new MultiRegistryBootstrap() {
-            @Override
-            public Set<ResourceKey<? extends Registry<?>>> requestedRegistries() {
-                return Set.of(Registries.RECIPE, Registries.ADVANCEMENT);
-            }
-
-            @Override
-            public void run(MultiRegistryBootstrap.BootstrapGetter registries) {
-                new ModRecipeProvider(registries.get(Registries.RECIPE), registries.get(Registries.ADVANCEMENT)).buildRecipes();
-            }
-        };
+        super(recipeOutput, advancementOutput, WorldOfColor.MODID);
     }
 
     @Override
@@ -88,9 +75,9 @@ public class ModRecipeProvider extends RecipeProvider {
         waxRecipes(ModBlocks.COLORED_COPPER_GOLEM_STATUES);
         waxRecipes(ModBlocks.COLORED_LIGHTNING_RODS);
 
-        colorBlockWithDye(ModBlocks.COLORED_SAPLINGS, Items.DYE, ItemTags.SAPLINGS, "sapling");
-        colorBlockWithDye(ModBlocks.COLORED_CAULDRONS, Items.DYE, ModTags.Items.CAULDRONS, "dyed_cauldron");
-        colorBlockWithDye(ModBlocks.COLORED_SLIME_BLOCKS, Items.DYE, Tags.BlockItems.STORAGE_BLOCKS_SLIME.item(), "dyed_slime_blocks");
+        colorBlockWithDye(ModBlocks.COLORED_SAPLINGS, ItemTags.SAPLINGS, "sapling");
+        colorBlockWithDye(ModBlocks.COLORED_CAULDRONS, ModTags.Items.CAULDRONS, "dyed_cauldron");
+        colorBlockWithDye(ModBlocks.COLORED_SLIME_BLOCKS, Tags.BlockItems.STORAGE_BLOCKS_SLIME.item(), "dyed_slime_blocks");
 
         ColorCollection.zipApply(ModBlocks.COLORED_BRICKS, Items.DYE, this::coloredBricksFromBricksAndDye);
 
@@ -103,37 +90,22 @@ public class ModRecipeProvider extends RecipeProvider {
         stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.QUILTED_CONCRETES, ModBlocks.SIMPLE_COLORED_BLOCKS);
 
         ColorCollection.zipApply(ModBlocks.GLAZED_CONCRETES, Blocks.CONCRETE, this::smeltingResultFromBase);
-        for (DeferredBlock<Block> carpet : ModBlocks.CLASSIC_CARPETS) {
-            int index = ModBlocks.CLASSIC_CARPETS.indexOf(carpet);
-            carpet(carpet.get(), ModBlocks.CLASSIC_WOOLS.get(index));
-        }
+        ModUtil.zipApply(ModBlocks.CLASSIC_CARPETS, ModBlocks.CLASSIC_WOOLS, this::carpet);
 
-        for (DyeColor color : COLORS) {
-            planksFromLogs(ModBlocks.COLORED_PLANKS.pick(color), ModTags.Items.COLORED_LOGS.pick(color), 4);
-            woodFromLogs(ModBlocks.COLORED_WOODS.pick(color), ModBlocks.COLORED_LOGS.pick(color));
-            woodFromLogs(ModBlocks.COLORED_STRIPPED_WOODS.pick(color), ModBlocks.COLORED_STRIPPED_LOGS.pick(color));
-            woodenBoat(ModItems.COLORED_BOATS.pick(color).get(), ModBlocks.COLORED_PLANKS.pick(color));
-            chestBoat(ModItems.COLORED_CHEST_BOATS.pick(color).get(), ModItems.COLORED_BOATS.pick(color).get());
-            shelf(ModBlocks.COLORED_SHELVES.pick(color), ModBlocks.COLORED_STRIPPED_LOGS.pick(color));
-        }
+        ColorCollection.zipApply(ModBlocks.COLORED_PLANKS, ModTags.Items.COLORED_LOGS, (planks, logTag) -> planksFromLogs(planks, logTag, 4));
+        ColorCollection.zipApply(ModBlocks.COLORED_WOODS, ModBlocks.COLORED_LOGS, this::woodFromLogs);
+        ColorCollection.zipApply(ModBlocks.COLORED_STRIPPED_WOODS, ModBlocks.COLORED_STRIPPED_LOGS, this::woodFromLogs);
+        ColorCollection.zipApply(ModItems.COLORED_BOATS, ModBlocks.COLORED_PLANKS, this::woodenBoat);
+        ColorCollection.zipApply(ModItems.COLORED_CHEST_BOATS, ModItems.COLORED_BOATS, this::chestBoat);
+        ColorCollection.zipApply(ModBlocks.COLORED_SHELVES, ModBlocks.COLORED_STRIPPED_LOGS, this::shelf);
 
-        ColoringColorCollection.zipApply(ModBlocks.COLORED_CUT_COPPER.map(DeferredBlock::get), ModBlocks.COLORED_COPPER_BLOCKS.map(DeferredBlock::get),
-                (cutBlock, material) -> this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, cutBlock, material, 4)
-        );
-        ColoringColorCollection.zipApply(ModBlocks.COLORED_CUT_COPPER_STAIRS.map(DeferredBlock::get), ModBlocks.COLORED_COPPER_BLOCKS.map(DeferredBlock::get),
-                (cutStairs, material) -> this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, cutStairs, material, 4)
-        );
-        ColoringColorCollection.zipApply(ModBlocks.COLORED_CUT_COPPER_SLABS.map(DeferredBlock::get), ModBlocks.COLORED_COPPER_BLOCKS.map(DeferredBlock::get),
-                (cutSlab, material) -> this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, cutSlab, material, 8)
-        );
-        ColoringColorCollection.zipApply(ModBlocks.COLORED_CHISELED_COPPER.map(DeferredBlock::get), ModBlocks.COLORED_COPPER_BLOCKS.map(DeferredBlock::get),
-                (chiseled, material) -> this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, chiseled, material, 4)
-        );
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER, ModBlocks.COLORED_COPPER_BLOCKS, 4);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_STAIRS, ModBlocks.COLORED_COPPER_BLOCKS, 4);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CUT_COPPER_SLABS, ModBlocks.COLORED_COPPER_BLOCKS, 8);
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_CHISELED_COPPER, ModBlocks.COLORED_COPPER_BLOCKS, 4);
         ColoringColorCollection.zipApply(ModBlocks.COLORED_COPPER_GRATES.map(DeferredBlock::get), ModBlocks.COLORED_COPPER_BLOCKS.map(DeferredBlock::get), this::grate);
         ColoringColorCollection.zipApply(ModBlocks.COLORED_COPPER_BULBS.map(DeferredBlock::get), ModBlocks.COLORED_COPPER_BLOCKS.map(DeferredBlock::get), this::copperBulb);
-        ColoringColorCollection.zipApply(ModBlocks.COLORED_COPPER_GRATES.map(DeferredBlock::get), ModBlocks.COLORED_COPPER_BLOCKS.map(DeferredBlock::get),
-                (grate, block) -> this.stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, grate, block, 4)
-        );
+        stonecutterResultFromBase(RecipeCategory.BUILDING_BLOCKS, ModBlocks.COLORED_COPPER_GRATES, ModBlocks.COLORED_COPPER_BLOCKS, 4);
         twoByTwoPacker(RecipeCategory.BUILDING_BLOCKS, ModBlocks.HARDENED_GLASS, Blocks.GLASS);
         ColorCollection.zipApply(ModBlocks.HARDENED_STAINED_GLASS, Blocks.STAINED_GLASS,
                 (result, ingredient) -> twoByTwoPacker(RecipeCategory.BUILDING_BLOCKS, result, ingredient));
@@ -141,7 +113,7 @@ public class ModRecipeProvider extends RecipeProvider {
         ColorCollection.zipApply(ModBlocks.HARDENED_STAINED_GLASS_PANE, Blocks.STAINED_GLASS_PANE,
                 (result, ingredient) -> twoByTwoPacker(RecipeCategory.BUILDING_BLOCKS, result, ingredient));
 
-        ModBlocks.COLORED_DECORATED_POTS.forEach(block -> this.shaped(RecipeCategory.DECORATIONS, block.get().asItem())
+        ModBlocks.COLORED_DECORATED_POTS.forEach(block -> this.shaped(RecipeCategory.DECORATIONS, block)
                 .define('#', Items.BRICK)
                 .define('D', Items.DYE.pick(block.get().getColor()))
                 .pattern(" # ")
@@ -163,16 +135,12 @@ public class ModRecipeProvider extends RecipeProvider {
         SpecialRecipeBuilder.special(() -> new ColoredDecoratedPotRecipe(this.tag(ItemTags.DECORATED_POT_INGREDIENTS), tag(ItemTags.DYES)))
                 .save(this.output, WorldOfColor.MODID + ":colored_decorated_pot");
 
-        colorWithDye(Items.DYE, ModBlocks.COLORED_FLOWER_POTS.map(DeferredBlock::asItem), Items.FLOWER_POT,
-                "flower_pot_dye", RecipeCategory.DECORATIONS);
-        colorWithDye(Items.DYE, ModBlocks.COLORED_REDSTONE_LAMPS.map(DeferredBlock::asItem), Items.REDSTONE_LAMP,
-                "redstone_lamp_dye", RecipeCategory.REDSTONE);
-        colorWithDye(Items.DYE, ModItems.COLORED_ITEM_FRAMES.map(DeferredItem::asItem), Items.ITEM_FRAME,
-                "item_frame_dye", RecipeCategory.DECORATIONS);
-        colorWithDye(Items.DYE, ModBlocks.COLORED_POTATO_PEELS_BLOCK.map(DeferredBlock::asItem), null,
-                "potato_peels_block_dye", RecipeCategory.MISC);
-        colorWithDye(Items.DYE, ModItems.COLORED_POTATO_PEELS.map(DeferredItem::get), Items.POTATO,
-                "potato_peels_dye", RecipeCategory.MISC);
+        colorWithDye(ModBlocks.COLORED_FLOWER_POTS, Items.FLOWER_POT, "flower_pot_dye", RecipeCategory.DECORATIONS);
+        colorWithDye(ModBlocks.COLORED_REDSTONE_LAMPS, Items.REDSTONE_LAMP, "redstone_lamp_dye", RecipeCategory.REDSTONE);
+        colorWithDye(ModItems.COLORED_ITEM_FRAMES, Items.ITEM_FRAME, "item_frame_dye", RecipeCategory.DECORATIONS);
+        colorWithDye(ModBlocks.COLORED_POTATO_PEELS_BLOCK, null, "potato_peels_block_dye", RecipeCategory.MISC);
+        colorWithDye(ModItems.COLORED_POTATO_PEELS, Items.POTATO, "potato_peels_dye", RecipeCategory.MISC);
+
         for (DyeColor color : COLORS) {
             nineBlockStorageRecipes(
                     RecipeCategory.MISC,
@@ -193,11 +161,11 @@ public class ModRecipeProvider extends RecipeProvider {
                                         bookInfo,
                                         CompoundIngredient.of(DataComponentIngredient.of(DataComponents.POTION_CONTENTS, new PotionContents(Potions.WATER), Items.POTION), Ingredient.of(ModItems.DYED_WATER_BOTTLE)),
                                         this.tag(ItemTags.DYES),
-                                        new ItemStackTemplate(ModItems.DYED_WATER_BOTTLE.get()))
+                                        new ItemStackTemplate(ModItems.DYED_WATER_BOTTLE))
                 )
-                .unlockedBy(getHasName(ModItems.DYED_WATER_BOTTLE.get()), this.has(ModItems.DYED_WATER_BOTTLE.get()))
+                .unlockedBy(getHasName(ModItems.DYED_WATER_BOTTLE), this.has(ModItems.DYED_WATER_BOTTLE))
                 .group("dyed_water_bottle")
-                .save(this.output, WorldOfColor.MODID + ":" + getItemName(ModItems.DYED_WATER_BOTTLE.get()) + "_dyed");
+                .save(this.output, WorldOfColor.MODID + ":" + getItemName(ModItems.DYED_WATER_BOTTLE) + "_dyed");
 
         CustomCraftingRecipeBuilder.customCrafting(
                         RecipeCategory.MISC,
@@ -251,28 +219,11 @@ public class ModRecipeProvider extends RecipeProvider {
         coloredTerracottaFromTerracottaAndDye(ModBlocks.RGB_TERRACOTTA, ModItems.RGB_DYE);
         smeltingResultFromBase(ModBlocks.RGB_GLAZED_TERRACOTTA, ModBlocks.RGB_TERRACOTTA);
         stainedGlassFromGlassAndDye(ModBlocks.RGB_STAINED_GLASS, ModItems.RGB_DYE);
-        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.RGB_STAINED_GLASS_PANE, 8)
-                .define('#', Blocks.GLASS_PANE)
-                .define('$', ModItems.RGB_DYE)
-                .pattern("###")
-                .pattern("#$#")
-                .pattern("###")
-                .group("stained_glass_pane")
-                .unlockedBy("has_glass_pane", this.has(Blocks.GLASS_PANE))
-                .unlockedBy(getHasName(ModItems.RGB_DYE), this.has(ModItems.RGB_DYE))
-                .save(this.output, WorldOfColor.MODID + ":" + getConversionRecipeName(ModBlocks.RGB_STAINED_GLASS_PANE, Blocks.GLASS_PANE));
+        stainedGlassPaneFromGlassPaneAndDye(ModBlocks.RGB_STAINED_GLASS_PANE, ModItems.RGB_DYE);
         stainedGlassPaneFromStainedGlass(ModBlocks.RGB_STAINED_GLASS_PANE, ModBlocks.RGB_STAINED_GLASS);
         candle(ModBlocks.RGB_CANDLE, ModItems.RGB_DYE);
-        TransmuteRecipeBuilder.transmute(
-                        RecipeCategory.DECORATIONS, tag(ItemTags.SHULKER_BOXES), Ingredient.of(ModItems.RGB_DYE), ModBlocks.RGB_SHULKER_BOX.asItem()
-                )
-                .group("shulker_box_dye")
-                .unlockedBy("has_shulker_box", this.has(ItemTags.SHULKER_BOXES))
-                .save(this.output);
-        TransmuteRecipeBuilder.transmute(RecipeCategory.TOOLS, tag(ItemTags.BUNDLES), Ingredient.of(ModItems.RGB_DYE), ModItems.RGB_BUNDLE.get())
-                .group("bundle_dye")
-                .unlockedBy(getHasName(ModItems.RGB_DYE), has(ModItems.RGB_DYE))
-                .save(this.output);
+        dyedShulkerBoxRecipe(ModItems.RGB_DYE.asItem(), ModBlocks.RGB_SHULKER_BOX.asItem());
+        dyedBundleRecipe(ModItems.RGB_DYE.asItem(), ModItems.RGB_BUNDLE.asItem());
         bedFromPlanksAndWool(ModBlocks.RGB_BED, ModBlocks.RGB_WOOL);
         harness(ModItems.RGB_HARNESS, ModBlocks.RGB_WOOL);
 
@@ -297,47 +248,19 @@ public class ModRecipeProvider extends RecipeProvider {
         ModBlockFamilies.getAllFamilies().forEach(family -> generateRecipes(family, set));
     }
 
-    @Override
-    protected void oneToOneConversionRecipe(ItemLike product, ItemLike resource, @Nullable String group, int productCount) {
-        this.shapeless(RecipeCategory.MISC, product, productCount)
-                .requires(resource)
-                .group(group)
-                .unlockedBy(getHasName(resource), this.has(resource))
-                .save(this.output, WorldOfColor.MODID + ":" + getConversionRecipeName(product, resource));
-    }
-
-    @Override
-    protected void stonecutterResultFromBase(RecipeCategory category, ItemLike result, ItemLike material) {
-        stonecutterResultFromBase(category, result, material, 1);
-    }
-
     protected <T extends ItemLike, U extends ItemLike> void stonecutterResultFromBase(RecipeCategory category, ColorCollection<T> result, ColorCollection<U> material) {
         ColorCollection.zipApply(result, material, (res, mat) -> stonecutterResultFromBase(category, res, mat, 1));
     }
 
-    @Override
-    protected void stonecutterResultFromBase(RecipeCategory category, ItemLike result, ItemLike material, int resultCount) {
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(material), category, result, resultCount)
-                .unlockedBy(getHasName(material), has(material))
-                .save(output, WorldOfColor.MODID + ":" + getConversionRecipeName(result, material) + "_stonecutting");
+    protected <T extends ItemLike, U extends ItemLike> void stonecutterResultFromBase(RecipeCategory category, ColoringColorCollection<T> result, ColoringColorCollection<U> material, int count) {
+        ColoringColorCollection.zipApply(result, material, (res, mat) -> stonecutterResultFromBase(category, res, mat, count));
     }
 
-    @Override
-    protected void dyedItem(Item target, String group) {
-        CustomCraftingRecipeBuilder.customCrafting(
-                        RecipeCategory.MISC,
-                        (commonInfo, bookInfo) -> new DyeRecipe(commonInfo, bookInfo, Ingredient.of(target), this.tag(ItemTags.DYES), new ItemStackTemplate(target))
-                )
-                .unlockedBy(getHasName(target), this.has(target))
-                .group(group)
-                .save(this.output, WorldOfColor.MODID + ":" + getItemName(target) + "_dyed");
-    }
-
-    protected void colorWithDye(ColorCollection<Item> dyes, ColorCollection<Item> dyedItems, @Nullable Item uncoloredItem, String groupName, RecipeCategory category) {
+    protected void colorWithDye(ColorCollection<? extends ItemLike> dyedItems, @Nullable ItemLike uncoloredItem, String groupName, RecipeCategory category) {
         for (DyeColor color : COLORS) {
-            Item dye = dyes.pick(color);
-            Item dyedItem = dyedItems.pick(color);
-            Stream<Item> sourceItems = dyedItems.asList().stream().filter(b -> !b.equals(dyedItem));
+            Item dye = Items.DYE.pick(color);
+            ItemLike dyedItem = dyedItems.pick(color);
+            Stream<? extends ItemLike> sourceItems = dyedItems.asList().stream().filter(b -> !b.equals(dyedItem));
             if (uncoloredItem != null) {
                 sourceItems = Stream.concat(sourceItems, Stream.of(uncoloredItem));
             }
@@ -351,10 +274,10 @@ public class ModRecipeProvider extends RecipeProvider {
         }
     }
 
-    protected void colorBlockWithDye(ColorCollection<DeferredBlock<Block>> results, ColorCollection<Item> dyes, TagKey<Item> dyeableItems, String group) {
+    protected void colorBlockWithDye(ColorCollection<DeferredBlock<Block>> results, TagKey<Item> dyeableItems, String group) {
         for (DyeColor color : COLORS) {
-            Item dye = dyes.pick(color);
-            Item dyedItem = results.pick(color).asItem();
+            Item dye = Items.DYE.pick(color);
+            ItemLike dyedItem = results.pick(color);
             shapeless(RecipeCategory.BUILDING_BLOCKS, dyedItem)
                     .requires(dye)
                     .requires(dyeableItems)
@@ -403,6 +326,7 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(output);
     }
 
+    @Override
     protected void generateStonecutterRecipe(BlockFamily family, BlockFamily.Variant variant, Block base) {
         RecipeProvider.FamilyStonecutterRecipeProvider recipeFunction = STONECUTTER_RECIPE_BUILDERS.get(variant);
         if (recipeFunction != null) {
