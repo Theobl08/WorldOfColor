@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import javax.annotation.ParametersAreNonnullByDefault;
 
 @ParametersAreNonnullByDefault
-public class ColoredSlimeBlock extends SlimeBlock {
+public class ColoredSlimeBlock extends SlimeBlock implements ColoredBlock {
     private final DyeColor color;
 
     public ColoredSlimeBlock(DyeColor color, Properties properties) {
@@ -34,5 +34,10 @@ public class ColoredSlimeBlock extends SlimeBlock {
         else if(other.getBlock() instanceof ColoredSlimeBlock slimeBlock && slimeBlock.color != this.color)
             return false;
         return super.canStickTo(state, other);
+    }
+
+    @Override
+    public DyeColor getColor() {
+        return color;
     }
 }

@@ -9,10 +9,10 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.function.Supplier;
 
-public class ColoredFlowerPotBlock extends FlowerPotBlock {
+public class ColoredFlowerPotBlock extends FlowerPotBlock implements ColoredBlock {
     private final DyeColor color;
 
-    public ColoredFlowerPotBlock(@Nullable Supplier<FlowerPotBlock> emptyPot, DeferredBlock<? extends Block> flower, DyeColor color, Properties properties) {
+    public ColoredFlowerPotBlock(Supplier<FlowerPotBlock> emptyPot, DeferredBlock<? extends Block> flower, DyeColor color, Properties properties) {
         super(emptyPot, flower, properties);
         this.color = color;
     }
@@ -31,5 +31,10 @@ public class ColoredFlowerPotBlock extends FlowerPotBlock {
                     ? ModBlocks.COLORED_POTTED_PLANTS.get(BlockItemIds.OPEN_EYEBLOSSOM.block()).pick(this.color).get().defaultBlockState()
                     : state;
         }
+    }
+
+    @Override
+    public DyeColor getColor() {
+        return color;
     }
 }

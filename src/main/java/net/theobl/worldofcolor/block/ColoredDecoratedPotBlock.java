@@ -13,7 +13,7 @@ import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
 @NullMarked
-public class ColoredDecoratedPotBlock extends DecoratedPotBlock {
+public class ColoredDecoratedPotBlock extends DecoratedPotBlock implements ColoredBlock {
     private final DyeColor color;
     public ColoredDecoratedPotBlock(DyeColor color, Properties properties) {
         super(properties);

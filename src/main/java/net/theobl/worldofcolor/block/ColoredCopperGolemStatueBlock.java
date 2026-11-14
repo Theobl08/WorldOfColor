@@ -4,7 +4,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.CopperGolemStatueBlock;
 import net.minecraft.world.level.block.WeatheringCopper;
 
-public class ColoredCopperGolemStatueBlock extends CopperGolemStatueBlock {
+public class ColoredCopperGolemStatueBlock extends CopperGolemStatueBlock implements ColoredBlock {
     private final DyeColor color;
 
     public ColoredCopperGolemStatueBlock(WeatheringCopper.WeatherState weatheringState, DyeColor color, Properties properties) {

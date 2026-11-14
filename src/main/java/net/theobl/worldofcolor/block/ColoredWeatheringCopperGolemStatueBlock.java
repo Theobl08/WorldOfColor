@@ -3,7 +3,7 @@ package net.theobl.worldofcolor.block;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.WeatheringCopperGolemStatueBlock;
 
-public class ColoredWeatheringCopperGolemStatueBlock extends WeatheringCopperGolemStatueBlock {
+public class ColoredWeatheringCopperGolemStatueBlock extends WeatheringCopperGolemStatueBlock implements ColoredBlock {
     private final DyeColor color;
 
     public ColoredWeatheringCopperGolemStatueBlock(WeatherState weatherState, DyeColor color, Properties properties) {

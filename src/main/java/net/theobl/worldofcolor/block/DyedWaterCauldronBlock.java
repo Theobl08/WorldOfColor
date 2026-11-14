@@ -25,7 +25,7 @@ import org.jspecify.annotations.NullMarked;
 import org.jspecify.annotations.Nullable;
 
 @NullMarked
-public class DyedWaterCauldronBlock extends AbstractCauldronBlock implements EntityBlock {
+public class DyedWaterCauldronBlock extends AbstractCauldronBlock implements EntityBlock, ColoredBlock {
     public static final int MIN_FILL_LEVEL = 1;
     public static final int MAX_FILL_LEVEL = 3;
     public static final IntegerProperty LEVEL = LayeredCauldronBlock.LEVEL;
@@ -108,5 +108,10 @@ public class DyedWaterCauldronBlock extends AbstractCauldronBlock implements Ent
     @Override
     public @Nullable BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
         return new DyedWaterCauldronBlockEntity(pos, state);
+    }
+
+    @Override
+    public @Nullable DyeColor getColor() {
+        return color;
     }
 }

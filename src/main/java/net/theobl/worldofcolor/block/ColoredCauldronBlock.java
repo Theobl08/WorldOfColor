@@ -10,7 +10,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 
-public class ColoredCauldronBlock extends CauldronBlock {
+public class ColoredCauldronBlock extends CauldronBlock implements ColoredBlock {
     private final DyeColor color;
     public ColoredCauldronBlock(DyeColor color, Properties properties) {
         super(properties);
@@ -43,5 +43,10 @@ public class ColoredCauldronBlock extends CauldronBlock {
             level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockstate1));
             level.levelEvent(1046, pos, 0);
         }
+    }
+
+    @Override
+    public DyeColor getColor() {
+        return color;
     }
 }
