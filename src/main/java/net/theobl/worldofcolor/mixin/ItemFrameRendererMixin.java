@@ -13,6 +13,7 @@ import net.minecraft.world.entity.decoration.ItemFrame;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.theobl.worldofcolor.client.resources.model.ModBlockStateDefinitions;
+import net.theobl.worldofcolor.entity.ColoredItemFrame;
 import net.theobl.worldofcolor.entity.ModEntityType;
 import net.theobl.worldofcolor.util.ModUtil;
 import org.spongepowered.asm.mixin.Final;
@@ -32,12 +33,10 @@ public abstract class ItemFrameRendererMixin {
     @WrapOperation(method = "extractRenderState(Lnet/minecraft/world/entity/decoration/ItemFrame;Lnet/minecraft/client/renderer/entity/state/ItemFrameRenderState;F)V",
             at = @At("MIXINEXTRAS:EXPRESSION"))
     private void getColoredItemFrameFakeBlockstate(BlockModelResolver instance, BlockModelRenderState renderState, boolean isGlowing, boolean map, Operation<Void> original, @Local(argsOnly = true) ItemFrame entity, @Local(argsOnly = true) ItemFrameRenderState state) {
-        for(DyeColor color : ModUtil.COLORS) {
-            if(entity.is(ModEntityType.COLORED_ITEM_FRAMES.pick(color).get())) {
-                BlockState fakeState = ModBlockStateDefinitions.getItemFrameFakeState(color, state.mapId != null);
-                this.blockModelResolver.update(renderState, fakeState, ItemFrameRenderer.BLOCK_DISPLAY_CONTEXT);
-                return;
-            }
+        if(entity instanceof ColoredItemFrame itemFrame) {
+            BlockState fakeState = ModBlockStateDefinitions.getItemFrameFakeState(itemFrame.getColor(), state.mapId != null);
+            this.blockModelResolver.update(renderState, fakeState, ItemFrameRenderer.BLOCK_DISPLAY_CONTEXT);
+            return;
         }
         original.call(instance, renderState, isGlowing, map);
     }

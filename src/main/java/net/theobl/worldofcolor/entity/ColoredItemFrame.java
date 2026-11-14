@@ -25,4 +25,8 @@ public class ColoredItemFrame extends ItemFrame {
     protected ItemStack getFrameItemStack() {
         return new ItemStack(ModItems.COLORED_ITEM_FRAMES.pick(this.color).get());
     }
+
+    public DyeColor getColor() {
+        return color;
+    }
 }

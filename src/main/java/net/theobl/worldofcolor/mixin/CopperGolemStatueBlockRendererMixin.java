@@ -4,7 +4,10 @@ import com.llamalad7.mixinextras.sugar.Local;
 import net.minecraft.client.renderer.blockentity.CopperGolemStatueBlockRenderer;
 import net.minecraft.client.renderer.blockentity.state.CopperGolemStatueRenderState;
 import net.minecraft.resources.Identifier;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CopperGolemStatueBlock;
 import net.theobl.worldofcolor.WorldOfColor;
+import net.theobl.worldofcolor.block.ColoredBlock;
 import net.theobl.worldofcolor.block.ColoredCopperGolemStatueBlock;
 import net.theobl.worldofcolor.block.ColoredWeatheringCopperGolemStatueBlock;
 import org.spongepowered.asm.mixin.Mixin;
@@ -17,10 +20,9 @@ public abstract class CopperGolemStatueBlockRendererMixin {
             at = @At(value = "INVOKE", target = "Lnet/minecraft/client/renderer/SubmitNodeCollector;submitModel(Lnet/minecraft/client/model/Model;Ljava/lang/Object;Lcom/mojang/blaze3d/vertex/PoseStack;Lnet/minecraft/resources/Identifier;III)V"),
             index = 3)
     private Identifier submitColoredCopperGolemStatue(Identifier value, @Local(argsOnly = true) CopperGolemStatueRenderState state) {
-        if(state.blockState.getBlock() instanceof ColoredWeatheringCopperGolemStatueBlock block)
-            return WorldOfColor.asResource("textures/entity/copper_golem/" + block.getColor().getName() + "_copper_golem.png");
-        else if(state.blockState.getBlock() instanceof ColoredCopperGolemStatueBlock block)
-            return WorldOfColor.asResource("textures/entity/copper_golem/" + block.getColor().getName() + "_copper_golem.png");
+        Block block = state.blockState.getBlock();
+        if(block instanceof CopperGolemStatueBlock && block instanceof ColoredBlock coloredBlock)
+            return WorldOfColor.asResource("textures/entity/copper_golem/" + coloredBlock.getColor().getName() + "_copper_golem.png");
         else
             return value;
     }
