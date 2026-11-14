@@ -9,11 +9,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AbstractCauldronBlock;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ColorCollection;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.registries.DeferredBlock;
+import net.theobl.worldofcolor.block.ColoredBlock;
 import net.theobl.worldofcolor.block.ModBlocks;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Unique;
@@ -27,43 +29,18 @@ public abstract class CauldronInteractionsMixin {
                                                              @Local(argsOnly = true)Level level, @Local(argsOnly = true)ItemStack itemInHand) {
         if(!level.isClientSide()) {
             Item item = itemInHand.getItem();
-            BlockState blockState = worldOfColor$isColoredCauldron(ModBlocks.COLORED_CAULDRONS, level, pos, item);
-            if(blockState != null)
-                return blockState;
-
-            blockState = worldOfColor$isColoredCauldron(ModBlocks.COLORED_WATER_CAULDRONS, level, pos, item);
-            if(blockState != null)
-                return blockState;
-
-            blockState = worldOfColor$isColoredCauldron(ModBlocks.COLORED_LAVA_CAULDRONS, level, pos, item);
-            if(blockState != null)
-                return blockState;
-
-            blockState = worldOfColor$isColoredCauldron(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS, level, pos, item);
-            if(blockState != null)
-                return blockState;
-
-            blockState = worldOfColor$isColoredCauldron(ModBlocks.COLORED_DYED_WATER_CAULDRONS, level, pos, item);
-            if(blockState != null)
-                return blockState;
+            Block cauldron = level.getBlockState(pos).getBlock();
+            if(cauldron instanceof AbstractCauldronBlock && cauldron instanceof ColoredBlock coloredBlock) {
+                DyeColor color = coloredBlock.getColor();
+                if (item == Items.WATER_BUCKET) {
+                    return ModBlocks.COLORED_WATER_CAULDRONS.pick(color).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
+                } else if (item == Items.LAVA_BUCKET) {
+                    return ModBlocks.COLORED_LAVA_CAULDRONS.pick(color).get().defaultBlockState();
+                } else
+                    return ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.pick(color).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
+            }
 
         }
         return newState;
-    }
-
-    @Unique
-    private static BlockState worldOfColor$isColoredCauldron(ColorCollection<DeferredBlock<Block>> checkedBlock, Level level, BlockPos pos, Item item) {
-        BlockState blockState = null;
-        for (DyeColor color : DyeColor.values()) {
-            if (level.getBlockState(pos).is(checkedBlock.pick(color))) {
-                if (item == Items.WATER_BUCKET)
-                    blockState = ModBlocks.COLORED_WATER_CAULDRONS.pick(color).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
-                else if (item == Items.LAVA_BUCKET) {
-                    blockState = ModBlocks.COLORED_LAVA_CAULDRONS.pick(color).get().defaultBlockState();
-                } else
-                    blockState = ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.pick(color).get().defaultBlockState().setValue(LayeredCauldronBlock.LEVEL, 3);
-            }
-        }
-        return blockState;
     }
 }

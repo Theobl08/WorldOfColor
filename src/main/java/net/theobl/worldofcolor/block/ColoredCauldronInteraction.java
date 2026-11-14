@@ -22,10 +22,7 @@ import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.component.DyedItemColor;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.ColorCollection;
-import net.minecraft.world.level.block.LayeredCauldronBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
@@ -366,18 +363,9 @@ public class ColoredCauldronInteraction extends CauldronInteractions {
     }
 
     static BlockState getColoredCauldron(BlockState currentCauldron, BlockState uncoloredCauldron, ColorCollection<BlockState> coloredCauldron) {
-        for(DyeColor color : DyeColor.values()) {
-            if(currentCauldron.is(ModBlocks.COLORED_CAULDRONS.pick(color))) {
-                return coloredCauldron.pick(color);
-            } else if (currentCauldron.is(ModBlocks.COLORED_WATER_CAULDRONS.pick(color))) {
-                return coloredCauldron.pick(color);
-            } else if (currentCauldron.is(ModBlocks.COLORED_LAVA_CAULDRONS.pick(color))) {
-                return coloredCauldron.pick(color);
-            } else if (currentCauldron.is(ModBlocks.COLORED_POWDER_SNOW_CAULDRONS.pick(color))) {
-                return coloredCauldron.pick(color);
-            } else if (currentCauldron.is(ModBlocks.COLORED_DYED_WATER_CAULDRONS.pick(color))) {
-                return coloredCauldron.pick(color);
-            }
+        Block cauldron = currentCauldron.getBlock();
+        if(cauldron instanceof AbstractCauldronBlock && cauldron instanceof ColoredBlock coloredBlock && coloredBlock.getColor() != null) {
+            return coloredCauldron.pick(coloredBlock.getColor());
         }
         return uncoloredCauldron;
     }

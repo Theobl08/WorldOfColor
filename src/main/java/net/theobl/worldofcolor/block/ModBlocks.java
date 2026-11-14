@@ -340,19 +340,19 @@ public class ModBlocks {
     public static final ColorCollection<DeferredBlock<Block>> COLORED_WATER_CAULDRONS = registerColored(
             "water_cauldron",
             BLOCKS::registerBlock,
-            (color, p) -> new LayeredCauldronBlock(Biome.Precipitation.RAIN, CauldronInteractions.WATER, p),
+            (color, p) -> new ColoredLayeredCauldronBlock(Biome.Precipitation.RAIN, CauldronInteractions.WATER, color, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.WATER_CAULDRON)
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_LAVA_CAULDRONS = registerColored(
             "lava_cauldron",
             BLOCKS::registerBlock,
-            ((color, p) -> new LavaCauldronBlock(p)),
+            ColoredLavaCauldronBlock::new,
             BlockBehaviour.Properties.ofFullCopy(Blocks.LAVA_CAULDRON)
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_POWDER_SNOW_CAULDRONS = registerColored(
             "powder_snow_cauldron",
             BLOCKS::registerBlock,
-            (color, p) -> new LayeredCauldronBlock(Biome.Precipitation.SNOW, CauldronInteractions.POWDER_SNOW, p),
+            (color, p) -> new ColoredLayeredCauldronBlock(Biome.Precipitation.SNOW, CauldronInteractions.POWDER_SNOW, color, p),
             BlockBehaviour.Properties.ofFullCopy(Blocks.POWDER_SNOW_CAULDRON)
     );
     public static final ColorCollection<DeferredBlock<Block>> COLORED_BRICKS = registerColored(
