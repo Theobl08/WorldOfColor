@@ -254,7 +254,7 @@ public class ColoredBlockModelGenerators extends BlockModelGenerators {
 
     public void createGlassBlocks(Block block, Block pane, Block edge) {
         this.createTrivialBlock(block, TexturedModel.CUBE.updateTexture(TextureMapping::forceAllTranslucent));
-        TextureMapping texturemapping = TextureMapping.pane(block, edge);
+        TextureMapping texturemapping = TextureMapping.pane(block, edge).forceAllTranslucent();
         MultiVariant post = plainVariant(ModelTemplates.STAINED_GLASS_PANE_POST.create(pane, texturemapping, this.modelOutput));
         MultiVariant side = plainVariant(ModelTemplates.STAINED_GLASS_PANE_SIDE.create(pane, texturemapping, this.modelOutput));
         MultiVariant sideAlt = plainVariant(ModelTemplates.STAINED_GLASS_PANE_SIDE_ALT.create(pane, texturemapping, this.modelOutput));

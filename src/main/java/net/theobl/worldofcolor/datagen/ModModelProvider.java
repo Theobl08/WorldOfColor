@@ -76,7 +76,7 @@ public class ModModelProvider extends ModelProvider {
         });
         ModBlocks.COLORED_REDSTONE_LAMPS.forEach(block -> coloredBlockModels.createRedstoneLamp(block.get()));
         ModBlocks.COLORED_POTATO_PEELS_BLOCK.forEach(block -> blockModels.createTrivialCube(block.get()));
-        blockModels.createGlassBlocks(ModBlocks.HARDENED_GLASS.get(), ModBlocks.HARDENED_GLASS_PANE.get());
+        coloredBlockModels.createGlassBlocks(ModBlocks.HARDENED_GLASS.get(), ModBlocks.HARDENED_GLASS_PANE.get(), Blocks.GLASS_PANE);
         ColorCollectionUtil.zipApply(ModBlocks.HARDENED_STAINED_GLASS.map(Holder::value), ModBlocks.HARDENED_STAINED_GLASS_PANE.map(Holder::value), Blocks.STAINED_GLASS_PANE, coloredBlockModels::createGlassBlocks);
         ModUtil.zipApply(ModBlocks.CLASSIC_WOOLS, ModBlocks.CLASSIC_CARPETS, coloredBlockModels::createFullAndCarpetBlocks);
         ColorCollectionUtil.zipApply(ModBlocks.COLORED_COPPER_CHESTS.coloring(), ModBlocks.COLORED_COPPER_BLOCKS.coloring(), COLORED_COPPER_CHESTS_TEXTURES,
@@ -144,7 +144,7 @@ public class ModModelProvider extends ModelProvider {
         coloredBlockModels.createShulkerBox(ModBlocks.MISSINGNO_SHULKER_BOX.get(), WorldOfColor.asResource("shulker_missingno"));
         coloredBlockModels.createBed(ModBlocks.MISSINGNO_BED.get());
 
-        blockModels.createNonTemplateModelBlock(ModBlocks.DYED_WATER.get());
+        blockModels.createAirLikeBlock(ModBlocks.DYED_WATER.get(), new Material(Identifier.withDefaultNamespace("block/water_still")));
         coloredBlockModels.copyBlockModel(Blocks.CAULDRON, ModBlocks.DYED_WATER_CAULDRON.get());
 
         blockModels.createAirLikeBlock(ModBlocks.RGB_WATER.get(), new Material(Identifier.withDefaultNamespace("block/water_still"))); // Create the fluid dummy block model et blockstate files
