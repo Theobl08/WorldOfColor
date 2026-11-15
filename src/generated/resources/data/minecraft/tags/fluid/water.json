@@ -1,6 +1,8 @@
 {
   "values": [
     "worldofcolor:dyed_water",
-    "worldofcolor:flowing_dyed_water"
+    "worldofcolor:flowing_dyed_water",
+    "worldofcolor:rgb_water",
+    "worldofcolor:flowing_rgb_water"
   ]
 }

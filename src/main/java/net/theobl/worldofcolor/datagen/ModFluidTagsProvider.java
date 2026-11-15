@@ -23,6 +23,8 @@ public class ModFluidTagsProvider extends FluidTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider registries) {
-        this.tag(FluidTags.WATER).add(ModFluids.DYED_WATER, ModFluids.FLOWING_DYED_WATER);
+        this.tag(FluidTags.WATER).add(ModFluids.DYED_WATER, ModFluids.FLOWING_DYED_WATER)
+                .add(ModFluids.RGB_WATER, ModFluids.FLOWING_RGB_WATER);
+        this.tag(FluidTags.SUPPORTS_LILY_PAD).add(ModFluids.RGB_WATER);
     }
 }
